@@ -1,0 +1,455 @@
+<%
+/*
+ * Copyright (C) 2004-2005  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.exedio.cope.Model;
+import com.exedio.dsmf.CheckConstraint;
+import com.exedio.dsmf.Column;
+import com.exedio.dsmf.Constraint;
+import com.exedio.dsmf.ForeignKeyConstraint;
+import com.exedio.dsmf.LastAnalyzed;
+import com.exedio.dsmf.PrimaryKeyConstraint;
+import com.exedio.dsmf.Schema;
+import com.exedio.dsmf.Table;
+import com.exedio.dsmf.UniqueConstraint;
+
+final class Schema_Jspm
+{
+	private static final String color(final int color)
+	{
+		switch(color)
+		{
+		case Schema.COLOR_OK:
+			return "ok";
+		case Schema.COLOR_WARNING:
+			return "warning";
+		case Schema.COLOR_ERROR:
+			return "error";
+		default:
+			throw new RuntimeException(String.valueOf(color));
+		}
+	}
+	
+	private static final String type(final Constraint constraint)
+	{
+		if(constraint instanceof CheckConstraint)
+			return "check";
+		else if(constraint instanceof PrimaryKeyConstraint)
+			return "pk";
+		else if(constraint instanceof ForeignKeyConstraint)
+			return "fk";
+		else if(constraint instanceof UniqueConstraint)
+			return "unique";
+		else
+			throw new RuntimeException(constraint.getClass().getName());
+	}
+	
+	final static void writeSchema(final PrintStream out, final Model model, final SchemaCop cop, final HttpServletRequest request)
+		throws IOException
+	{
+		%>
+		<form action="<%=cop%>" method="POST">
+			<h4>Database</h4>
+			<input type="submit" name="CREATE" value="create" />
+			<input type="submit" name="TEARDOWN" value="tear down"/>
+			<input type="submit" name="DROP" value="drop"/>
+			<hr>
+			<h4>Constraints</h4>
+			<input type="submit" name="CREATE_CONSTRAINTS" value="create" />
+			<input type="submit" name="TEARDOWN_CONSTRAINTS" value="tear down"/>
+			<input type="submit" name="DROP_CONSTRAINTS" value="drop"/>
+			<hr>
+			<h4>Details</h4>
+			<%
+				if(request.getParameter("CREATE")!=null)
+				{
+					model.createDatabase();
+					%><div class="message">Database successfully created!</div><%
+				}
+				else if(request.getParameter("TEARDOWN")!= null)
+				{
+					model.tearDownDatabase();
+					%><div class="message">Database successfully torn down!</div><%
+				}
+				else if(request.getParameter("DROP")!=null)
+				{
+					model.dropDatabase();
+					%><div class="message">Database successfully dropped!</div><%
+				}
+				else if(request.getParameter("CREATE_CONSTRAINTS")!=null)
+				{
+					model.createDatabaseConstraints();
+					%><div class="message">Database constraints successfully created!</div><%
+				}
+				else if(request.getParameter("TEARDOWN_CONSTRAINTS")!=null)
+				{
+					model.tearDownDatabaseConstraints();
+					%><div class="message">Database constraints successfully torn down!</div><%
+				}
+				else if(request.getParameter("DROP_CONSTRAINTS")!=null)
+				{
+					model.dropDatabaseConstraints();
+					%><div class="message">Database constraints successfully dropped!</div><%
+				}
+				else if(request.getParameter("APPLY")!=null)
+				{
+					%><hr>
+					<a href="<%=cop%>">flush log</a><%
+	%>
+	<ol><%
+					SchemaCop.writeApply(out, request, model);
+	%>
+	</ol><%
+					%>
+					<a href="<%=cop%>">flush log</a>
+					<hr><%
+				}
+
+		final Schema schema = model.getVerifiedSchema();
+		final String schemaColor = color(schema.getCumulativeColor());
+		final boolean narrow = cop.isNarrow();
+
+%>
+drop boxes: <a href="<%=cop.toggleDropBoxes()%>"><%=cop.showDropBoxes?"hide":"show"%></a><br>
+rename fields: <a href="<%=cop.toggleRenameFields()%>"><%=cop.showRenameFields?"hide":"show"%></a><br>
+check all:
+<input type="button" value="analyze" onClick="checkAll(&quot;ANALYZE_TABLE&quot;)">
+<input type="button" value="drop table" onClick="checkAll(&quot;DROP_TABLE&quot;)">
+<input type="button" value="drop column" onClick="checkAll(&quot;DROP_COLUMN&quot;)">
+<br>
+<span class="<%=schemaColor%>"><%
+if(narrow)
+{
+	%><a href="<%=cop.widen()%>"><%
+}
+%>Schema<%
+if(narrow)
+{
+	%></a><%
+}
+%></span>
+<input type="submit" name="APPLY" value="apply"/>
+<br>
+supports check constraints: <i><%if(model.supportsCheckConstraints()){%>yes<%}else{%>no<%}%></i>
+<br>
+supports empty strings: <i><%if(model.supportsEmptyStrings()){%>yes<%}else{%>no<%}%></i>
+<br>
+supports right outer joins: <i><%if(model.supportsRightOuterJoins()){%>yes<%}else{%>no<%}%></i>
+<ul class="<%=schemaColor%>"><%
+
+int tableCount = 1;
+for(Iterator i = schema.getTables().iterator(); i.hasNext(); tableCount++)
+{
+	final Table table = (Table)i.next();
+	
+	if(cop.skipTable(table))
+		continue;
+	
+	final String tableColor = color(table.getCumulativeColor());
+	%>
+	<li class="<%=tableColor%>"><%
+	
+	%><small>tab<%=tableCount%></small> <%
+	if(!narrow)
+	{
+		%><a href="<%=cop.narrow(table)%>"><%
+	}
+	%><%=table.getName()%><%
+	if(!narrow)
+	{
+		%></a><%
+	}
+	if(cop.showRenameFields && table.exists())
+	{
+		%>
+		<input name="RENAME_TABLE_<%=table.getName()%>" size="<%=table.getName().length()%>"/><%
+	}
+	
+	final String tableError = table.getError();
+	if(tableError!=null)
+	{
+		%> <span class="<%=color(table.getParticularColor())
+										%>"><%=tableError%></span><%
+	}
+	if(table.exists())
+	{
+		if(cop.showDropBoxes)
+		{
+			%>,
+		<input type="checkbox" name="DROP_TABLE" value="<%=table.getName()%>"/>drop<%
+		}
+	}
+	else if(table.required())
+	{
+		%>,
+		<input type="checkbox" name="CREATE_TABLE" value="<%=table.getName()%>"/>create<%
+	}
+	
+	final LastAnalyzed lastAnalyzed = table.getLastAnalyzed();
+
+	if(!narrow)
+	{
+		if(lastAnalyzed!=null)
+		{
+			final Date date = lastAnalyzed.getDate();
+			final String lastAnalyzedString = date!=null ? (new SimpleDateFormat("dd.MM.yyyy HH:mm:ss")).format(date) : "NEVER";
+			%>
+			<input type="checkbox" name="ANALYZE_TABLE" value="<%=table.getName()%>"/>analyze (<%=lastAnalyzedString%>)<%
+		}
+	}
+	else
+	{
+	%>
+		<ul><%
+		if(lastAnalyzed!=null)
+		{
+			final Date date = lastAnalyzed.getDate();
+			final String lastAnalyzedString = date!=null ? (new SimpleDateFormat("dd.MM.yyyy HH:mm:ss")).format(date) : "NEVER";
+			%>
+			<li class="<%=color(lastAnalyzed.getCumulativeColor())%>">
+				last analyzed: <%=lastAnalyzedString%>
+				<input type="checkbox" name="ANALYZE_TABLE" value="<%=table.getName()%>"/>analyze
+			</li><%
+		}
+		
+		final String options = table.getOptions();
+		if(options!=null)
+		{
+			%>
+			<li class="<%=color(Schema.COLOR_OK)%>">
+				options: <pre><%=options%></pre>
+			</li><%
+		}
+		
+		int columnCount = 1;
+		for(Iterator j = table.getColumns().iterator(); j.hasNext(); columnCount++)
+		{
+			final Column column = (Column)j.next();
+			final String color = color(column.getCumulativeColor());
+			%>
+			<li class="<%=color%>">
+				<small>col<%=columnCount%></small> <%=column.getName()%><%
+			
+			if(cop.showRenameFields && column.exists())
+			{
+				%>
+				<input name="RENAME_COLUMN_<%=
+					table.getName()%>#<%=column.getName()%>" size="<%=
+					column.getName().length()%>"/><%
+			}
+			
+			final String columnType = column.getType();
+			%>
+				<small><%=columnType%></small><%
+			
+			if(cop.showRenameFields && column.exists())
+			{
+				%>
+				<input name="MODIFY_COLUMN_<%=
+					table.getName()%>#<%=column.getName()%>" size="<%=
+					columnType.length()%>"/><%
+			}
+			
+			final String error = column.getError();
+			if(error!=null)
+			{
+				%>
+				<span class="<%=color(column.getParticularColor())%>"><%=error%></span><%
+			}
+			if(column.exists())
+			{
+				if(cop.showDropBoxes)
+				{
+					%>,
+				<input type="checkbox" name="DROP_COLUMN" value="<%=table.getName()%>#<%=column.getName()%>"/>drop<%
+				}
+			}
+			else if(column.required() &&
+						column.getTable().exists() )
+			{
+				%>,
+				<input type="checkbox" name="CREATE_COLUMN" value="<%=table.getName()%>#<%=column.getName()%>"/>create<%
+			}
+			%>
+			</li><%
+		}
+		
+		int constraintCount = 1;
+		for(Iterator j = table.getConstraints().iterator(); j.hasNext(); constraintCount++)
+		{
+			final Constraint constraint = (Constraint)j.next();
+			final String constraintColor = color(constraint.getCumulativeColor());
+			%>
+			<li class="<%=constraintColor%>">
+				<small><%=type(constraint)%><%=constraintCount%></small> <%=constraint.getName()%><%
+			
+			final String constraintCondition = constraint.getRequiredCondition();
+			if(constraintCondition!=null)
+			{
+				%> <small><%=constraintCondition%></small><%
+			}
+			
+			final String constraintError = constraint.getError();
+			if(constraintError!=null)
+			{
+				%>
+				<span class="<%=color(constraint.getParticularColor())%>"><%=constraintError%></span><%
+			}
+			if(constraint.exists())
+			{
+				if(cop.showDropBoxes)
+				{
+					%>
+				<input type="checkbox" name="<%=SchemaCop.DROP_CONSTRAINT%>" value="<%=table.getName()%>#<%=constraint.getName()%>"/>drop<%
+				}
+			}
+			else if( constraint.required() &&
+						constraint.getTable().exists() )
+			{
+				%>
+				<input type="checkbox" name="<%=SchemaCop.CREATE_CONSTRAINT%>" value="<%=table.getName()%>#<%=constraint.getName()%>"/>create<%
+			}
+			%>
+			</li><%
+		}
+		%>
+		</ul><%
+	}
+	%>
+	</li><%
+}
+%>
+</ul>
+		</form><%
+	}
+	
+	final static void writeHead(final HttpServletRequest request, final PrintStream out) throws IOException
+	{
+		%>
+		<script src="<%=ConsoleServlet.reportScript.url(request)%>" type="text/javascript"></script><%
+	}
+	
+	final static void writeDone(final PrintStream out, final long startTime)
+		throws IOException
+	{
+		final long endTime = System.currentTimeMillis();
+		%><li class="timelog">ok, <%=endTime-startTime%>ms.</li><%
+		out.flush();
+	}
+	
+	final static void writeDrop(final PrintStream out, final Constraint constraint)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			constraint.getTable().getName()%></b>&quot;).getConstraint(&quot;<b><%=
+			constraint.getName()%></b>&quot;).drop();</li><%
+	}
+
+	final static void writeDrop(final PrintStream out, final Column column)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			column.getTable().getName()%></b>&quot;).getColumn(&quot;<b><%=
+			column.getName()%></b>&quot;).drop();</li><%
+	}
+
+	final static void writeDrop(final PrintStream out, final Table table)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			table.getName()%></b>&quot;).drop();</li><%
+	}
+
+	final static void writeRename(final PrintStream out, final Table table, final String targetName)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			table.getName()%></b>&quot;).renameTo(&quot;<%=
+			targetName%>&quot;);</li><%
+	}
+
+	final static void writeModify(final PrintStream out, final Column column, final String targetType)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			column.getTable().getName()%></b>&quot;).getColumn(&quot;<b><%=
+			column.getName()%></b>&quot;).modify(&quot;<b><%=
+			targetType%></b>&quot;);</li><%
+	}
+
+	final static void writeRename(final PrintStream out, final Column column, final String targetName)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			column.getTable().getName()%></b>&quot;).getColumn(&quot;<b><%=
+			column.getName()%></b>&quot;).renameTo(&quot;<b><%=
+			targetName%></b>&quot;);</li><%
+	}
+
+	final static void writeCreate(final PrintStream out, final Table table)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			table.getName()%></b>&quot;).create();</li><%
+	}
+
+	final static void writeAnalyze(final PrintStream out, final Table table)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			table.getName()%></b>&quot;).analyze();</li><%
+	}
+	
+	final static void writeCreate(final PrintStream out, final Column column)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			column.getTable().getName()%></b>&quot;).getColumn(&quot;<b><%=
+			column.getName()%></b>&quot;).create();</li><%
+	}
+
+	final static void writeCreate(final PrintStream out, final Constraint constraint)
+		throws IOException
+	{
+		%>
+		<li>schema.getTable(&quot;<b><%=
+			constraint.getTable().getName()%></b>&quot;).getConstraint(&quot;<b><%=
+			constraint.getName()%></b>&quot;).create();</li><%
+	}
+
+}
+%>

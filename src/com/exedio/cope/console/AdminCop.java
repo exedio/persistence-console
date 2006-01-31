@@ -1,0 +1,130 @@
+/*
+ * Copyright (C) 2004-2005  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.exedio.cope.Model;
+import com.exedio.cops.Cop;
+
+abstract class AdminCop extends Cop
+{
+	final String name;
+
+	protected AdminCop(final String name)
+	{
+		this.name = name;
+	}
+	
+	long start = 0;
+	long end = 0;
+	SimpleDateFormat df;
+	
+	final void initialize()
+	{
+		start = System.currentTimeMillis();
+		df = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
+	}
+	
+	final AdminCop[] getTabs()
+	{
+		return new AdminCop[]{
+				new PropertiesCop(false),
+				new SchemaCop(null, false, false),
+				new ConnectionStatsCop(),
+				new CacheStatsCop(),
+				new MediaStatsCop(),
+				new VmCop(false),
+				new DbCop(),
+			};
+	}
+	
+	final String getStart()
+	{
+		if(start==0)
+			throw new RuntimeException();
+		
+		return df.format(new Date(start));
+	}
+	
+	final String getEnd()
+	{
+		if(end!=0)
+			throw new RuntimeException();
+		
+		end = System.currentTimeMillis();
+		return df.format(new Date(end));
+	}
+	
+	final long getDuration()
+	{
+		if(start==0)
+			throw new RuntimeException();
+		if(end==0)
+			throw new RuntimeException();
+
+		return end-start;
+	}
+	
+	final String format(final Date date)
+	{
+		return df.format(date);
+	}
+	
+	void writeHead(HttpServletRequest request, PrintStream out) throws IOException
+	{
+		// default implementation does nothing
+	}
+	
+	abstract void writeBody(PrintStream out, Model model, HttpServletRequest request) throws IOException;
+	
+	static final String TAB = "t";
+	static final String TAB_CONNECTION_STATS = "cp";
+	static final String TAB_CACHE_STATS = "ca";
+	static final String TAB_MEDIA_STATS = "m";
+	static final String TAB_VM = "vm";
+	static final String TAB_DB = "db";
+	
+	static final AdminCop getCop(final HttpServletRequest request)
+	{
+		final String tab = request.getParameter(TAB);
+		if(TAB_CONNECTION_STATS.equals(tab))
+			return new ConnectionStatsCop();
+		if(TAB_CACHE_STATS.equals(tab))
+			return new CacheStatsCop();
+		if(TAB_MEDIA_STATS.equals(tab))
+			return new MediaStatsCop();
+		if(TAB_VM.equals(tab))
+			return VmCop.getVmCop(request);
+		if(TAB_DB.equals(tab))
+			return new DbCop();
+
+		final String schemaID = request.getParameter(SchemaCop.SCHEMA);
+		if(schemaID!=null)
+			return SchemaCop.getCop(schemaID, request);
+		
+		return PropertiesCop.getPropertiesCop(request);
+	}
+
+}

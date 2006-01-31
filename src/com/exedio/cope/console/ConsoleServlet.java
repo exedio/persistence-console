@@ -1,0 +1,115 @@
+/*
+ * Copyright (C) 2004-2005  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+
+import java.io.IOException;
+import java.io.PrintStream;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.exedio.cope.Model;
+import com.exedio.cope.util.ServletUtil;
+import com.exedio.cops.CopsServlet;
+import com.exedio.cops.Resource;
+import com.exedio.cops.ResourceSet;
+
+/**
+ * The servlet providing the COPE Database Administration application.
+ * 
+ * In order to use it, you have to deploy the servlet in your <code>web.xml</code>,
+ * providing the name of the cope model via an init-parameter.
+ * Typically, your <code>web.xml</code> would contain a snippet like this:  
+ *  
+ * <pre>
+ * &lt;servlet&gt;
+ *    &lt;servlet-name&gt;admin&lt;/servlet-name&gt;
+ *    &lt;servlet-class&gt;com.exedio.cope.console.ConsoleServlet&lt;/servlet-class&gt;
+ *    &lt;init-param&gt;
+ *       &lt;param-name&gt;model&lt;/param-name&gt;
+ *       &lt;param-value&gt;{@link com.exedio.cope.Model com.bigbusiness.shop.Main#model}&lt;/param-value&gt;
+ *    &lt;/init-param&gt;
+ * &lt;/servlet&gt;
+ * &lt;servlet-mapping&gt;
+ *    &lt;servlet-name&gt;admin&lt;/servlet-name&gt;
+ *    &lt;url-pattern&gt;/admin.jsp/*&lt;/url-pattern&gt;
+ * &lt;/servlet-mapping&gt;
+ * </pre>
+ * 
+ * @author Ralf Wiebicke
+ */
+public final class ConsoleServlet extends CopsServlet
+{
+	final static String ENCODING = "utf-8";
+
+	Model model = null;
+	
+	private static final ResourceSet resources = new ResourceSet(ConsoleServlet.class);
+	static final Resource stylesheet = new Resource(resources, "admin.css");
+	static final Resource reportScript = new Resource(resources, "admin-report.js");
+	static final Resource logo = new Resource(resources, "logo.png");
+	
+	public final void init() throws ServletException
+	{
+		super.init();
+		resources.init();
+		
+		if(model!=null)
+		{
+			System.out.println("reinvokation of jspInit");
+			return;
+		}
+		
+		try
+		{
+			model = ServletUtil.getModel(getServletConfig());
+		}
+		catch(RuntimeException e)
+		{
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	protected void doRequest(
+			final HttpServletRequest request,
+			final HttpServletResponse response)
+		throws ServletException, IOException
+	{
+		// resource handling
+		if("GET".equals(request.getMethod()))
+		{
+			if(resources.doGet(request, response))
+				return;
+		}
+		// /resource handling
+
+		request.setCharacterEncoding(ENCODING);
+		response.setContentType("text/html; charset="+ENCODING);
+
+		final AdminCop cop = AdminCop.getCop(request);
+		cop.initialize();
+		final PrintStream out = new PrintStream(response.getOutputStream(), false, ENCODING);
+		Admin_Jspm.write(out, request, model, cop);
+		out.close();
+	}
+
+}

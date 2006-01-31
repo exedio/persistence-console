@@ -1,0 +1,336 @@
+<%
+/*
+ * Copyright (C) 2004-2005  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Collection;
+import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.exedio.cope.Model;
+import com.exedio.cope.pattern.MediaPath;
+import com.exedio.cope.pattern.MediaRedirect;
+import com.exedio.cope.util.ConnectionPoolInfo;
+import com.exedio.cope.util.PoolCounter;
+import com.exedio.cope.util.CacheInfo;
+import com.exedio.cope.util.CacheQueryInfo;
+
+final class Admin_Jspm
+{
+	static final void write(
+				final PrintStream out,
+				final HttpServletRequest request,
+				final Model model,
+				final AdminCop cop)
+		throws IOException
+	{
+%><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=<%=ConsoleServlet.ENCODING%>">
+		<title>COPE Console</title>
+		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet.url(request)%>"><%
+		cop.writeHead(request, out);
+		%>
+	</head>
+	<body>
+		<a href="http://www.exedio.com/" target="_blank" border="0"><img src="<%=ConsoleServlet.logo.url(request)%>" width="200" height="66" align="right"></a>
+		<h1>COPE Console</h3>
+		<p><%
+		
+		final AdminCop[] tabs = cop.getTabs();
+		for(int i = 0; i<tabs.length; i++)
+		{
+			final AdminCop tab = tabs[i];
+			if(cop.name.equals(tab.name))
+			{
+			%>
+			| <b><%=tab.name%></b><%
+			}
+			else
+			{
+			%>
+			| <a href="<%=tab%>"><%=tab.name%></a><%
+			}
+		}
+		%>
+		</p>
+		<hr><%
+		cop.writeBody(out, model, request);
+		%>
+		<hr>
+		<small>request: <%=cop.getStart()%> - <%=cop.getEnd()%> (<%=cop.getDuration()%>ms)</small>
+	</body>
+</html>
+<%
+	}
+
+	final static void write(final PrintStream out, final ConnectionPoolInfo info, final ConnectionStatsCop cop)
+		throws IOException
+	{
+		final PoolCounter poolCounter = info.getCounter();
+		final String[] names = new String[]{
+			"Loss = 100 * Destroy / Get",
+			"Idle",
+			"Idle Max",
+			"Create",
+			"Destroy",
+		};
+		%>
+		<table class="statistics">
+			<tr>
+				<th colspan="7">Connection Pool Statistics</th>
+			</tr>
+			<tr>
+				<th>From</th>
+				<td colspan="6"><%=cop.format(poolCounter.getStart())%></td>
+			</tr>
+			<tr>
+				<th>Idle</th>
+				<td colspan="6"><%=info.getIdleCounter()%></td>
+			</tr>
+			<tr>
+				<th>Active</th>
+				<td colspan="6"><%=info.getActiveCounter()%></td>
+			</tr>
+			<tr>
+				<th>Get</th>
+				<td colspan="6"><%=poolCounter.getGetCounter()%></td>
+			</tr>
+			<tr>
+				<th>Put</th>
+				<td colspan="6"><%=poolCounter.getPutCounter()%></td>
+			</tr><%
+			writeColouredHeader(out, names, 1);
+			%>
+			<tr>
+				<th>maxIdle</th><%
+				writeColouredHeaderSchnips(out, names);
+				%>
+				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			</tr><%
+			for(Iterator i = poolCounter.getPools().iterator(); i.hasNext(); )
+			{
+				final PoolCounter.Pool pool = (PoolCounter.Pool)i.next();
+				final boolean inconsistent = !pool.isConsistent();
+				final int[] data = new int[]{
+						pool.getLoss(),
+						pool.getIdleCount(),
+						pool.getIdleCountMax(),
+						pool.getCreateCounter(),
+						pool.getDestroyCounter(),
+					};
+			%>
+			<tr<%if(inconsistent){%> class="inconsistent"<%}%>>
+				<td><%=pool.getSize()%><%if(inconsistent){%>!<%}%></td><%
+				writeColouredData(out, data);
+				%>
+			</tr><%
+			}
+		%>
+		</table><%
+	}
+
+	final static void write(final PrintStream out,
+									final CacheInfo[] infos,
+									final int[] queryInfos,
+									final CacheQueryInfo[] queryHistogram,
+									final CacheStatsCop cop)
+		throws IOException
+	{
+		final String[] names = new String[]{
+			"Max Number Of Items In Cache",
+			"Number Of Items In Cache",
+			"Hits",
+			"Misses",
+			"Age Min (s)",
+			"Age Average (s)",
+			"Age Max (s)",
+		};
+		final Runtime rt = Runtime.getRuntime();
+		%>
+		<table class="statistics">
+			<tr>
+				<th colspan="<%=names.length+2%>">Cache Statistics</th>
+			</tr>
+			<tr><th>Query Hits</th><td colspan="<%=names.length+1%>"><%=queryInfos[0]%></td></tr>
+			<tr><th>Query Misses</th><td colspan="<%=names.length+1%>"><%=queryInfos[1]%></td></tr>
+			<tr><th>Queries in Cache</th><td colspan="<%=names.length+1%>"><%=queryInfos[2]%></td></tr>
+			<tr><th>Max Memory</th><td colspan="<%=names.length+1%>"><%=rt.maxMemory()%></td></tr>
+			<tr><th>Total Memory</th><td colspan="<%=names.length+1%>"><%=rt.totalMemory()%></td></tr>
+			<tr><th>Free Memory</th><td colspan="<%=names.length+1%>"><%=rt.freeMemory()%></td></tr><%
+			writeColouredHeader(out, names, 1);
+			%>
+			<tr>
+				<th>Type</th><%
+				writeColouredHeaderSchnips(out, names);
+				%>
+				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+			</tr><%
+			for(int i = 0; i<infos.length; i++)
+			{
+				final CacheInfo info = infos[i];
+				final int[] data = new int[]{
+						info.getMapSizeLimit(),
+						info.getNumberOfItemsInCache(),
+						info.getHits(),
+						info.getMisses(),
+						(int)(info.getAgeMinMillis()/1000l),
+						(int)(info.getAgeAverageMillis()/1000l),
+						(int)(info.getAgeMaxMillis()/1000l),
+					};
+			%>
+			<tr>
+				<td><%=info.getType().getID()%></td><%
+				writeColouredData(out, data);
+				%>
+				<td></td>
+			</tr><%
+			}
+		%>
+		</table><%
+
+		if(queryHistogram!=null)
+		{
+		%>
+		<table class="statistics">
+			<tr><th colspan="2">Query Cache Histogram</th></tr>
+			<tr><th>Hits</th><th>Query</th></tr><%
+
+		for(int i = 0; i<queryHistogram.length; i++)
+		{
+			final CacheQueryInfo info = queryHistogram[i];
+			%>
+			<tr><th><%=info.getHits()%></th><td><%=info.getQuery()%></td></tr><%
+		}
+		%>
+		</table><%
+		}
+	}
+
+	final static void writeMediaStats(final PrintStream out, final Collection media, final String prefix, final MediaStatsCop cop)
+		throws IOException
+	{
+		final String[] names = new String[]{
+			"Exception (500)",
+			"Not An Item (404)",
+			"No Such Item (404)",
+			"Data Is Null (404)",
+			"Not Modified (304)",
+			"Delivered (200/301)",
+		};
+		%>
+		<table class="statistics">
+			<tr><th colspan="<%=names.length+3%>">Media Statistics</th></tr>
+			<tr><th>No Such Path (404)</th><td colspan="<%=names.length+2%>"><%=MediaPath.noSuchPath.get()%></td></tr><%
+			writeColouredHeader(out, names, 2);
+			%>
+			<tr>
+				<th>type</th>
+				<th>media</th><%
+				writeColouredHeaderSchnips(out, names);
+				%>
+				<th>From</th>
+				<th>class</th>
+			</tr><%
+	
+			for(Iterator i = media.iterator(); i.hasNext(); )
+			{
+				final MediaPath path = (MediaPath)i.next();
+				final String type = path.getType().getID();
+				final String name = path.getName();
+				final int[] data = new int[]{
+					path.exception.get(),
+					path.notAnItem.get(),
+					path.noSuchItem.get(),
+					path.dataIsNull.get(),
+					path.notModified.get(),
+					path.delivered.get(),
+				};
+	
+				%>
+			<tr>
+				<td><%=type%></td>
+				<td><a href="<%=prefix%><%=type%>/<%=name%>/0"><%=name%></a><%
+				if(path instanceof MediaRedirect)
+				{
+					final MediaRedirect redirect = (MediaRedirect)path;
+					%> --&gt; <%=redirect.getTarget().getName()%><%
+				}
+				%></td><%
+				writeColouredData(out, data);
+				%>
+				<td><%=cop.format(path.getStart())%></td>
+				<td><%=path.getClass().getName()%></td>
+			</tr><%
+			}
+		%>
+		</table><%
+	}
+
+	private static final void writeColouredHeader(final PrintStream out, final String[] names, final int preColumns)
+	{
+			%>
+			<tr>
+				<th colspan="<%=preColumns%>" rowspan="<%=names.length%>"></th>
+				<th colspan="<%=names.length + 1%>" class="colored1"><%=names[0]%></th>
+			</tr><%
+	
+			for(int i = 1; i<names.length; i++)
+			{
+			%>
+			<tr>
+				<th rowspan="<%=names.length-i+1%>" class="colored<%=i%>"></th>
+				<th colspan="<%=names.length-i+1%>" class="colored<%=i+1%>"><%=names[i]%></th>
+			</tr><%
+			}
+	}
+
+	private static final void writeColouredHeaderSchnips(final PrintStream out, final String[] names)
+	{
+				%>
+				<th class="colored<%=names.length%>"></th><%
+	}
+
+	private static final void writeColouredData(final PrintStream out, final int[] data)
+	{
+			for(int j = 0; j<data.length; j++)
+			{
+			%>
+				<td class="colored<%=j+1%>"><%
+				switch(data[j])
+				{
+				case 0:
+					%>&nbsp;<%
+					break;
+				case Integer.MIN_VALUE:
+					%>-<%
+					break;
+				default:
+					%><%=data[j]%><%
+					break;
+				}
+				%></td><%
+			}
+	}
+
+}%>

@@ -1,0 +1,305 @@
+<%
+/*
+ * Copyright (C) 2004-2005  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.TreeSet;
+
+import com.exedio.cope.Properties;
+
+final class Properties_Jspm
+{
+	private static final String[] systemProperties = new String[]{
+			"java.runtime.version",
+			"java.class.path",
+			"java.version",
+			"java.vm.name",
+			"java.vm.info",
+			"java.vm.version",
+			"user.name",
+			"user.dir",
+			"user.home",
+			"user.language",
+			"os.name",
+			"os.arch",
+			"os.version",
+		};
+	
+	final static void write(
+				final PrintStream out,
+				final PropertiesCop cop,
+				final Properties properties,
+				final String sourceContent)
+		throws IOException
+	{
+		final boolean showUnspecified = cop.showUnspecified;
+		%>
+		<table class="properties">
+			<tr>
+				<th colspan="2"><a href="<%=cop.toToggleUnspecified()%>"><%if(showUnspecified){%>hide<%}else{%>show<%}%> unspecified properties</a></th>
+			</tr>
+			<tr>
+				<th colspan="2"><%=properties.getSource()%></th>
+			</tr><%
+			for(Iterator i = properties.getFields().iterator(); i.hasNext(); )
+			{
+				final Properties.Field field = (Properties.Field)i.next();
+				final boolean fieldSpecified = field.isSpecified();
+				if(!field.hasHiddenValue() && (showUnspecified||fieldSpecified))
+				{
+			%>
+			<tr<%
+				if(!fieldSpecified)
+				{
+					%> class="unspecified"<%
+				}
+				%>>
+				<th><%=field.getKey()%></th>
+				<td><%
+					final Object defaultValue = field.getDefaultValue();
+					if(defaultValue!=null && fieldSpecified)
+					{
+						%><%=
+							field.getValue()
+							%> <span style="font-size:8pt;">(<%=
+							defaultValue
+							%>)</span><%
+					}
+					else if(field instanceof Properties.FileField)
+					{
+						final File file = ((Properties.FileField)field).getFileValue();
+						if(file!=null)
+						{
+							%><a href="<%=
+								file.toURL().toString()
+								%>"><%=
+								file.getAbsolutePath()
+								%></a><br><span style="font-size:8pt;">(link works only if the server is running locally).</span><%
+						}
+						else
+						{
+							%><b>n/a</b><%
+						}
+					}
+					else
+					{
+						%><%=field.getValue()%><%
+					}
+				%></td>
+			</tr><%
+				}
+			}
+
+			if(sourceContent!=null)
+			{
+			%>
+			<tr>
+				<td colspan="2">
+					<pre>
+<%=sourceContent%>
+					</pre>
+				</td>
+			</tr><%
+			}
+		%>
+		</table><%
+	}
+
+	final static void writeDatabaseInfo(final PrintStream out, final java.util.Properties properties)
+		throws IOException
+	{
+		%>
+		<table class="properties">
+			<tr>
+				<th colspan="2">Connection.getMetaData()</th>
+			</tr><%
+
+			for(Iterator i = new TreeSet(properties.keySet()).iterator(); i.hasNext(); )
+			{
+				final String name = (String)i.next();
+			%>
+			<tr>
+				<th><%=name%></th>
+				<td><%=properties.getProperty(name)%></td>
+			</tr><%
+			}
+			%>
+		</table><%
+	}
+
+	private static final String[] TEST_INFO_KEYS = new String[] {
+			"name",
+			"database.name",
+			"database.version",
+			"driver.name",
+			"driver.version",
+			"cope.properties",
+		};
+
+	final static void writeTestInfo(final PrintStream out, final java.util.Properties current, final HashMap[] properties)
+		throws IOException
+	{
+		%>
+		<hr>
+		<table class="properties">
+			<tr>
+				<th colspan="<%=TEST_INFO_KEYS.length%>">testprotocol.properties</th>
+			</tr><%
+		if(properties!=null)
+		{
+			%>
+			<tr><%
+				for(int j = 0; j<TEST_INFO_KEYS.length; j++)
+				{
+				%>
+				<th><%=TEST_INFO_KEYS[j]%></th><%
+				}
+				%>
+			</tr><%
+
+			for(int i = 0; i<properties.length; i++)
+			{
+				final HashMap db = properties[i];
+			%>
+			<tr><%
+				for(int j = 0; j<TEST_INFO_KEYS.length; j++)
+				{
+					final String key = TEST_INFO_KEYS[j];
+					Object value = db.get(key);
+					if(value==null)
+						value = "";
+					int rowspan = properties.length - i;
+					for(int k = i+1; k<properties.length; k++)
+					{
+						if(!value.equals(properties[k].get(key)))
+						{
+							rowspan = k - i;
+							break;
+						}
+					}
+					if(rowspan<=0)
+						throw new RuntimeException();
+
+					if(i==0 || !value.equals(properties[i-1].get(key)))
+					{
+				%>
+				<td<% 
+					if(rowspan!=1){ %> rowspan="<%=rowspan%>"<% }
+					if(value.equals(current.get(key))){ %> bgcolor="#cff"<% }
+					%>><%
+					if(value instanceof Map)
+					{
+						final Map valueMap = (Map)value;
+						for(Iterator k = valueMap.keySet().iterator(); k.hasNext(); )
+						{
+							final Object mapKey = k.next();
+							final Object mapValue = valueMap.get(mapKey);
+							%><%=mapKey%>=<%=mapValue%><br><%
+						}
+					}
+					else
+					{
+						%><%=value%><%
+					}
+					%></td><%
+					}
+				}
+				%>
+			</tr><%
+			}
+		}
+		else
+		{
+			%>
+			<tr>
+				<td colspan="<%=TEST_INFO_KEYS.length%>">
+					No such file available from class loader.
+					<br>
+					This should not happen with any officially distributed jar files for cope.
+				</td>
+			</tr><%
+		}
+		%>
+		</table><%
+	}
+
+	final static void write(final PrintStream out, final String key, String value)
+		throws IOException
+	{
+		if(value!=null)
+		{
+			%>
+			<tr>
+				<th><%=key%></th>
+				<td><%=value%></td>
+			</tr><%
+		}
+	}
+
+	final static void write(final PrintStream out, final Package thePackage)
+		throws IOException
+	{
+			%>
+			<tr>
+				<th colspan="2"><%=thePackage.getName()%></th>
+			</tr><%
+			write(out, "specification.title", thePackage.getSpecificationTitle());
+			write(out, "specification.version", thePackage.getSpecificationVersion());
+			write(out, "specification.vendor", thePackage.getSpecificationVendor());
+			write(out, "implementation.title", thePackage.getImplementationTitle());
+			write(out, "implementation.version", thePackage.getImplementationVersion());
+			write(out, "implementation.vendor", thePackage.getImplementationVendor());
+	}
+
+	final static void writeVm(final PrintStream out, final VmCop cop, final Package[] packages)
+		throws IOException
+	{
+		%>
+		<table class="properties">
+			<tr>
+				<th colspan="2">System.getProperty()</th>
+			</tr><%
+
+			for(int i = 0; i<systemProperties.length; i++)
+			{
+				final String name = systemProperties[i];
+			%>
+			<tr>
+				<th><%=name%></th>
+				<td><%=System.getProperty(name)%></td>
+			</tr><%
+			}
+			%>
+			<tr>
+				<th colspan="2"><a href="<%=cop.toToggleAllPackages()%>"><%if(cop.allPackages){%>hide<%}else{%>show<%}%> none-cope</a></th>
+			</tr><%
+
+			for(int i = 0; i<packages.length; i++)
+				write(out, packages[i]);
+			%>
+		</table><%
+	}
+}
+%>
