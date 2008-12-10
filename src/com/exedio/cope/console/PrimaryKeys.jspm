@@ -20,27 +20,28 @@
 package com.exedio.cope.console;
 
 import java.io.PrintStream;
-import java.util.Map;
+import java.util.ArrayList;
 
 import com.exedio.cope.Type;
+import com.exedio.cope.util.PrimaryKeyInfo;
 
 final class PrimaryKeys_Jspm
 {
 	final static void writeBody(
 			final PrimaryKeysCop cop,
 			final PrintStream out,
-			final Map<Type, Integer> primaryKeys)
+			final ArrayList<PrimaryKeyInfo> primaryKeys)
 	{
 		%>
 		<table>
 			<caption>Primary Keys</caption>
-			<tr><th>Type</th><th>PK</th></tr><%
-			for(final Type type : primaryKeys.keySet())
+			<tr><th>Type</th><th>Last</th></tr><%
+			for(final PrimaryKeyInfo info : primaryKeys)
 			{
 			%>
-			<tr><td class="text"><%=type.getID()%></td><td><%
-				final Integer info = primaryKeys.get(type);
-				if(info==null) { %>-<% } else { %><%=cop.format(info)%><% }
+			<tr><td class="text"><%=info.getType().getID()%></td><td><%
+				final boolean unknown = !info.isKnown();
+				if(unknown) { %>-<% } else { %><%=cop.format(info.getLast())%><% }
 				%></td></tr><%
 			}
 		%>
