@@ -144,7 +144,7 @@
 	</target>
 	
 	<target name="console.web.instrument" unless="skip.instrument">
-		<instrument>
+		<instrument verbose="false">
 			<fileset dir="websrc">
 				<include name="**/*.java" />
 			</fileset>
