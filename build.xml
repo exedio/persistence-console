@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+
+<project name="cope" default="build" basedir=".">
+
+	<property file="local.properties" />
+	<property file="project.properties" />
+	
+	<import file="macros/compile.xml" />
+	
+	<taskdef name="LoadFile" classname="org.apache.tools.ant.taskdefs.LoadFile" />
+
+	<taskdef
+			resource="com/exedio/jspm/ant.properties"
+			classpath="lib/exedio-jspm.jar" />
+	
+	<taskdef resource="com/exedio/cope/instrument/ant.properties">
+		<classpath>
+			<pathelement location="lib/exedio-cope-instrument.jar" />
+			<pathelement location="lib/servlet-api.jar" />
+		</classpath>
+	</taskdef>
+	
+	<macrodef name="ljar">
+		<attribute name="jarfile" />
+		<attribute name="name" />
+		<attribute name="classpath" />
+		<element name="fileset" optional="true" implicit="true" />
+		<sequential>
+			<!--echo message="local jar @{jarfile}" /-->
+			<jar jarfile="@{jarfile}" filesonly="true" duplicate="fail" strict="fail" level="9">
+				<fileset />
+				<manifest>
+					<attribute name="Specification-Title" value="exedio @{name}" />
+					<attribute name="Specification-Version" value="${build.tag}" />
+					<attribute name="Specification-Vendor" value="exedio GmbH" />
+					<attribute name="Implementation-Title" value="exedio @{name}" />
+					<attribute name="Implementation-Version" value="${build.tag}" />
+					<attribute name="Implementation-Vendor" value="exedio GmbH" />
+					<attribute name="Class-Path" value="@{classpath}" />
+				</manifest>
+			</jar>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="ljunit">
+		<attribute name="test" />
+		<attribute name="env" default="N" />
+		<element name="classpath" optional="true" implicit="true" />
+		<sequential>
+			<mkdir dir="build/testresults" />
+			<junit fork="yes"
+					haltonerror="true" haltonfailure="true"
+					showoutput="true" printsummary="true">
+				<formatter type="brief" usefile="false" />
+				<formatter type="xml" />
+				<classpath />
+				<test name="@{test}" todir="build/testresults" outfile="@{test}-@{env}" />
+				<sysproperty key="tomcat.port.http" value="${tomcat.port.http}" />
+				<assertions><enable/></assertions>
+			</junit>
+		</sequential>
+	</macrodef>
+	
+	<target name="catalina">
+		<property name="catalina.root" value="apache-tomcat-6.0.16" />
+		<untar src="lib/apache-tomcat.tar.gz"
+				 compression="gzip"
+				 dest="${basedir}">
+			<patternset>
+				<exclude name="${catalina.root}/conf/server.xml" />
+				<exclude name="${catalina.root}/conf/tomcat-users.xml" />
+				<exclude name="${catalina.root}/webapps/ROOT/**" />
+				<exclude name="${catalina.root}/webapps/docs/**" />
+				<exclude name="${catalina.root}/webapps/examples/**" />
+			</patternset>
+			<mapper type="glob" from="${catalina.root}/*" to="tomcat/*" />
+		</untar>
+		<chmod dir="tomcat/bin" perm="ugo+x" includes="*.sh" />
+		<copy todir="tomcat/conf">
+			<fileset dir="${basedir}">
+				<include name="tomcat-users.xml" />
+			</fileset>
+		</copy>
+		<echo message="tomcat ports: shutdown=${tomcat.port.shutdown} http=${tomcat.port.http}" />
+		<copy file="server.xml" todir="tomcat/conf" overwrite="true">
+			<filterset>
+				<filter token="PORT_SHUTDOWN" value="${tomcat.port.shutdown}" />
+				<filter token="PORT_HTTP"     value="${tomcat.port.http}"     />
+			</filterset>
+		</copy>
+	</target>
+	
+	<!-- console -->
+	
+	<target name="console.jspm">
+		<jspm>
+			<fileset dir="src" includes="**/*.jspm" />
+		</jspm>
+	</target>
+	
+	<target name="console.core.compile" depends="console.jspm">
+		<compile srcdir="src">
+			<classpath>
+				<pathelement location="lib/exedio-cope-util.jar" />
+				<pathelement location="lib/exedio-cops.jar" />
+				<pathelement location="lib/exedio-cope.jar" />
+				<pathelement location="lib/servlet-api.jar" />
+			</classpath>
+		</compile>
+	</target>
+	
+	<target name="console.jar" depends="console.core.compile">
+		<ljar name="cope console" jarfile="build/exedio-cope-console.jar" classpath="exedio-cope.jar exedio-cops.jar">
+			<fileset dir="build/classes/src" />
+		</ljar>
+	</target>
+	
+	<target name="console.test.compile" depends="console.core.compile">
+		<compile srcdir="testsrc">
+			<classpath>
+				<pathelement location="build/classes/src" />
+				<pathelement location="lib/exedio-cope-util.jar" />
+				<pathelement location="lib/exedio-cops.jar" />
+				<pathelement location="lib/exedio-cope.jar" />
+				<pathelement location="lib/servlet-api.jar" />
+				<pathelement location="lib/junit.jar" />
+			</classpath>
+		</compile>
+	</target>
+	
+	<target name="console.test" depends="console.core.compile, console.test.compile">
+		<ljunit test="com.exedio.cope.console.PackageTest">
+			<classpath>
+				<pathelement location="build/classes/src" />
+				<pathelement location="build/classes/testsrc" />
+				<pathelement location="lib/exedio-cope-util.jar" />
+				<pathelement location="lib/exedio-cops.jar" />
+				<pathelement location="lib/exedio-cope.jar" />
+				<pathelement location="lib/trove.jar" />
+				<pathelement location="lib/jdbc/hsqldb.jar" />
+				<pathelement location="lib/junit.jar" />
+			</classpath>
+		</ljunit>
+	</target>
+	
+	<target name="console.web.instrument" unless="skip.instrument">
+		<instrument>
+			<fileset dir="websrc">
+				<include name="**/*.java" />
+			</fileset>
+		</instrument>
+	</target>
+	
+	<target name="console.web" depends="console.web.instrument, console.core.compile">
+		<compile srcdir="websrc">
+			<classpath>
+				<pathelement location="lib/exedio-cope-util.jar" />
+				<pathelement location="lib/exedio-cope.jar" />
+				<pathelement location="lib/servlet-api.jar" />
+			</classpath>
+		</compile>
+		<copy todir="web/WEB-INF/classes">
+			<fileset dir="build/classes/src" />
+			<fileset dir="build/classes/websrc" />
+		</copy>
+		<copy todir="web/WEB-INF/lib">
+			<fileset file="lib/trove.jar" />
+			<fileset file="lib/exedio-cops.jar" />
+			<fileset file="lib/exedio-cope-util.jar" />
+			<fileset file="lib/exedio-cope.jar" />
+			<fileset file="lib/jdbc/hsqldb.jar" />
+			<fileset file="lib/jdbc/mysql-connector-java-5.0.3-bin.jar" />
+		</copy>
+		<copy todir="build/historyweb">
+			<fileset dir="web" />
+		</copy>
+	</target>
+	
+	<target name="console.tomcat" depends="console.web, catalina">
+		<copy tofile="tomcat/conf/Catalina/localhost/cope-console.xml" file="context.xml"/>
+		<copy tofile="tomcat/conf/Catalina/localhost/cope-console-history.xml" file="context-history.xml"/>
+		<copy todir="tomcat/bin" file="history.cope.properties"/>
+	</target>
+	
+	<target name="console.compile" depends="console.core.compile, console.test.compile" />
+	
+	<target name="console.clean">
+		<delete dir="build/console" />
+		<delete dir="web/WEB-INF/classes" />
+		<delete dir="web/WEB-INF/lib" />
+		<delete>
+			<fileset dir="src">
+				<include name="**/*_Jspm.java" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<!-- common -->
+	
+	<target name="jspm" depends="console.jspm" />
+	
+	<target name="src" depends="jspm" description="creates all sources, so the IDE does not complain" />
+	
+	<target name="instrument" depends="console.web.instrument" />
+	
+	<target name="compile"
+			  depends="console.compile" />
+	
+	<target name="jar" depends="console.jar" />
+	
+	
+	
+	<target name="test" depends="console.test" />
+	
+	
+	
+	<target name="tomcat" depends="console.tomcat" />
+	
+	<target name="clean" depends="console.clean">
+		<delete dir="build" />
+		<delete dir="tomcat" />
+	</target>
+	
+	<target name="api">
+		<delete dir="build/api" />
+		<javadoc
+				destdir="build/api"
+				maxmemory="60m"
+				source="1.5"
+				private="on"
+				author="off"
+				use="off"
+				version="off"
+				notree="true"
+				noindex="true"
+				failonerror="true">
+			<fileset file="src/com" includes="**/*.java" />
+			<classpath>
+				<pathelement location="lib/exedio-cops.jar" />
+				<pathelement location="lib/exedio-cope-util.jar" />
+				<pathelement location="lib/exedio-cope.jar" />
+				<pathelement location="lib/servlet-api.jar" />
+			</classpath>
+		</javadoc>
+	</target>
+	
+	<target name="build"
+			depends="compile, test, jar, tomcat" />
+	
+	<target name="findbugs.prepare">
+		<untar
+				compression="gzip"
+				src="${basedir}/lib/findbugs-1.3.9.tar.gz"
+				dest="${basedir}/build/findbugs-home" />
+		<taskdef
+				resource="edu/umd/cs/findbugs/anttask/tasks.properties"
+				classpath="build/findbugs-home/findbugs-1.3.9/lib/findbugs-ant.jar" />
+	</target>
+	
+	<target name="findbugs.prod" depends="findbugs.prepare, compile">
+		<findbugs
+					home="${basedir}/build/findbugs-home/findbugs-1.3.9"
+					jvmargs="-Xmx250M"
+					failOnError="true"
+					warningsProperty="findbugs.warnings"
+					output="html"
+					outputFile="${basedir}/build/findbugs-prod.html"
+					excludeFilter="findbugs-exclude.xml"
+					effort="max"
+					reportlevel="low">
+			<class location="${basedir}/build/classes/src" />
+			<auxclasspath>
+				<pathelement location="${basedir}/lib/exedio-cope.jar" />
+				<pathelement location="${basedir}/lib/exedio-cope-util.jar" />
+				<pathelement location="${basedir}/lib/exedio-cops.jar" />
+				<pathelement location="${basedir}/lib/trove.jar" />
+				<pathelement location="${basedir}/lib/commons-io.jar" />
+				<pathelement location="${basedir}/lib/servlet-api.jar" />
+				<pathelement location="${basedir}/lib/junit.jar" />
+				<pathelement location="${ant.core.lib}" />
+			</auxclasspath>
+		</findbugs>
+		<fail if="findbugs.warnings" message="findbugs warnings" />
+	</target>
+	
+	<target name="findbugs.test" depends="findbugs.prepare, compile">
+		<findbugs
+					home="${basedir}/build/findbugs-home/findbugs-1.3.9"
+					jvmargs="-Xmx250M"
+					output="html"
+					outputFile="${basedir}/build/findbugs-test.html"
+					effort="max"
+					reportlevel="low">
+			<class location="${basedir}/build/classes/testsrc" />
+			<auxclasspath>
+				<pathelement location="${basedir}/build/classes/src" />
+				<pathelement location="${basedir}/lib/exedio-cope-util.jar" />
+				<pathelement location="${basedir}/lib/exedio-cops.jar" />
+				<pathelement location="${basedir}/lib/exedio-cope.jar" />
+				<pathelement location="${basedir}/lib/trove.jar" />
+				<pathelement location="${basedir}/lib/commons-io.jar" />
+				<pathelement location="${basedir}/lib/servlet-api.jar" />
+				<pathelement location="${basedir}/lib/junit.jar" />
+			</auxclasspath>
+		</findbugs>
+	</target>
+	
+	<target name="findbugs" depends="findbugs.prod, findbugs.test" />
+	
+	<target name="all" depends="build, api, findbugs" />
+	
+	<target name="hudson" depends="all">
+		<copy todir="${basedir}/build/success">
+			<fileset file="${basedir}/build/exedio-cope-console.jar" />
+		</copy>
+	</target>
+
+</project>

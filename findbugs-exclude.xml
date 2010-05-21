@@ -1,0 +1,53 @@
+<FindBugsFilter>
+	<Match>
+		<!-- Non-transient non-serializable instance field in serializable class -->
+		<Bug pattern="SE_BAD_FIELD" />
+		<Or>
+			<Class name="com.exedio.cope.console.ConsoleServlet" />
+		</Or>
+	</Match>
+	<Match>
+		<!-- Could be refactored into a named static inner class -->
+		<Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
+		<!-- Used often for ResultSethandler -->
+	</Match>
+	<Match>
+		<Or>
+			<!-- A prepared statement is generated from a nonconstant String -->
+			<Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" />
+			<!-- Method may fail to close database resource on exception  -->
+			<Bug pattern="ODR_OPEN_DATABASE_RESOURCE_EXCEPTION_PATH" />
+		</Or>
+		<Class name="com.exedio.cope.console.HistoryPurge" />
+	</Match>
+	<Match>
+		<Or>
+			<!-- Class extends Servlet class and uses instance variables -->
+			<Bug pattern="MTIA_SUSPECT_SERVLET_INSTANCE_FIELD" />
+			<!-- Mutable servlet field -->
+			<Bug pattern="MSF_MUTABLE_SERVLET_FIELD" />
+		</Or>
+		<Or>
+			<Class name="com.exedio.cope.console.ConsoleServlet" />
+		</Or>
+	</Match>
+	<Match>
+		<!-- Inefficient use of keySet iterator instead of entrySet iterator -->
+		<Bug pattern="WMI_WRONG_MAP_ITERATOR" />
+		<Or>
+			<Class name="com.exedio.cope.console.EnvironmentCop" />
+			<Class name="com.exedio.cope.console.Environment_Jspm" />
+		</Or>
+	</Match>
+	<Match>
+		<Or>
+			<!-- Using notify() rather than notifyAll() -->
+			<Bug pattern="NO_NOTIFY_NOT_NOTIFYALL" />
+			<!-- Unconditional wait -->
+			<Bug pattern="UW_UNCOND_WAIT" />
+			<!-- Wait not in loop -->
+			<Bug pattern="WA_NOT_IN_LOOP" />
+		</Or>
+		<Class name="com.exedio.cope.console.HistoryThread" />
+	</Match>
+</FindBugsFilter>

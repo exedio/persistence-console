@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="testsrc"/>
+	<classpathentry kind="src" path="websrc"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/cojen.jar" sourcepath="lib/cojen-sources.jar"/>
+	<classpathentry kind="lib" path="lib/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io.jar"/>
+	<classpathentry kind="lib" path="lib/junit.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api.jar" sourcepath="lib/servlet-api.jar-src.zip"/>
+	<classpathentry kind="lib" path="lib/trove.jar" sourcepath="lib/trove-src.jar"/>
+	<classpathentry kind="lib" path="lib/exedio-cope-util.jar" sourcepath="lib/exedio-cope-util.jar-src.zip"/>
+	<classpathentry kind="lib" path="lib/exedio-cops.jar" sourcepath="lib/exedio-cops.jar-src.zip"/>
+	<classpathentry kind="lib" path="lib/jdbc/hsqldb.jar"/>
+	<classpathentry kind="output" path=".eclipse-output"/>
+</classpath>
