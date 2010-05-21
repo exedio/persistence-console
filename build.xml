@@ -274,7 +274,6 @@
 				<pathelement location="${basedir}/lib/exedio-cope-util.jar" />
 				<pathelement location="${basedir}/lib/exedio-cops.jar" />
 				<pathelement location="${basedir}/lib/trove.jar" />
-				<pathelement location="${basedir}/lib/commons-io.jar" />
 				<pathelement location="${basedir}/lib/servlet-api.jar" />
 				<pathelement location="${basedir}/lib/junit.jar" />
 				<pathelement location="${ant.core.lib}" />
@@ -298,7 +297,6 @@
 				<pathelement location="${basedir}/lib/exedio-cops.jar" />
 				<pathelement location="${basedir}/lib/exedio-cope.jar" />
 				<pathelement location="${basedir}/lib/trove.jar" />
-				<pathelement location="${basedir}/lib/commons-io.jar" />
 				<pathelement location="${basedir}/lib/servlet-api.jar" />
 				<pathelement location="${basedir}/lib/junit.jar" />
 			</auxclasspath>
