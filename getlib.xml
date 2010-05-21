@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<project name="cope getlib" default="getlib" basedir=".">
+	<property environment="env" />
+	<property name="getlib.home" value="${env.GETLIB_HOME}" />
+
+	<import file="${getlib.home}/getlib-contrib.xml"/>
+
+
+	<target name="getlib" depends="exedio-cope, exedio-cope-util, exedio-cops, exedio-jspm" />
+	
+</project>
