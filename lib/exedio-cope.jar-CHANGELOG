@@ -1,0 +1,253 @@
+
+CHANGELOG for cope
+
+This file lists all changes relevant for the user - especially all
+API changes and new features recommended for most users. The log may
+omit bug fixes.
+The items are sorted inversely, i.e. lastest items are on top
+
+--------------------------------------------------------------------------
+* added FeatureField
+* make FunctionField#defaultTo work for Composite
+* added SetValueUtil
+* added Dispatcher#defaultPendingTo
+* added @NonGuessableUrl
+* added ordered PartOf
+* added Type#emptyQuery
+* added SetField#getQuery
+	affects instrumented code
+* added ListField#getQuery
+	affects instrumented code
+* added Model#supportsRandom(), is true for MySQL only
+* added QueryAggregator
+* added Type.random(seed), works on MySQL only
+* TextUrlFilter
+* refactoring of Dispatcher
+	This breaks backwards API compatibility
+	and requires modification of persistent schema.
+	- rename Dispatcher.Failure to Run
+	- rename Run.cause to failure
+	- move successDate/successElapsed into Run, add BooleanField Run.success
+	- rename getSuccess[Date|Elapsed] to getLastSuccess[Date|Elapsed]
+	- remove @Computed from pending
+* added method DynamicModel.Field#getFieldEnum()
+* Dispatcher accepts configuration at time of dispatching,
+	not at time of feature construction.
+	This breaks backwards API compatibility.
+* console history allows auto purging
+* bugfix: polymorphic and bound this-functions selected in queries
+* bugfix: polymorphic and bound item fields selected in queries
+* do not use raw type SetValue in instrumented code, avoids typical ide warnings
+	heavily affects instrumented code !
+* Query.setSelects does not accept one Selectable only,
+	a new method setSelect is provided instead.
+	This breaks backwards API compatibility.
+* rename Model.getCurrentTransaction() to currentTransaction
+	deprecated version is provided
+* patterns must call super.onMount() in onMount()
+	otherwise type initialization fails
+	this breaks backwards API compatibility
+* add Importer.doImport(Class<P>, E, List<? extends SetValue>) in addition to
+	doImport(Class<P>, E, SetValue...)
+* deprecate constructor Query(Selectable[], Type, Condition)
+	in favour of type-safe factory method
+* add @RedirectFrom for media
+	deprecate MediaRedirect
+* implement Concurrent Modification Detection, still disabled by default
+* refactoring of id of types, features and items
+	BEWARE !!!
+	heavily affects
+	- persistent schema
+	- localization files of a generic backoffice
+	- media urls
+* MediaPath.onMount is not final anymore
+* add pattern Importer
+	helps implementing typical update-or-insert scenarios
+* do not allow item ids with leading zeros
+	protects against Denial of Service against MediaServlet caching mechanism
+* allow arbitrary Feature as source of Pattern, not Field only
+* make Pattern.getSource[Fields|Types] final
+* allow serialization/deserialization of:
+		* Model
+		* Type
+		* Feature and its subclasses
+		* Items of unbound Types (see Type.isBound)
+	To make serialization work, you need to enable it at the model. Otherwise
+	a NotSerializableException is thrown when trying to deserialize.
+	For any model defined like this:
+	
+		static final Model model = new Model(Aaa.TYPE, Bbb.TYPE, ...);
+	
+	add the following code immediately below:
+	
+		static
+		{
+			model.enableSerialization(Main.class, "model");
+		}
+	
+	where "model" is the name of the static final field, the model is assigned to,
+	and Main is the class of that field.
+	
+* CopeAssert.reserialize checks for exact expected size, not for maximum
+	this breaks backwards API compatibility, but affects junit tests only
+* instrumentor generates minimal method names for feature "defaultFeature"
+* Resizing with ImageMagick works on Windows. 
+	On Windows, install ImageMagick, and set the system properties com.exedio.cope.media.imagemagick (to "true") and 
+	com.exedio.cope.media.convertcommand (to the absolute path of the convert binary).
+* bugfix: Model failed on second connect, if there was a IntegerField.defaultToNext
+* add MediaPath.Locator
+	affects instrumented code
+* allow optional EnumField on Enum with one value only
+* Item implements Comparable
+* Type implements Comparable
+* Price implements Comparable
+* add Model#isConnected()
+* rename Model.getProperties() to getConnectProperties()
+	deprecated version is provided
+* flush sequences in checkEmptySchema, fixes CopeTest
+* remove Model.flushSequences()
+	deprecated version is provided
+* added conditions CompositeField.is[Not]Null()
+* removed key in cope.properties: database.oracle.varchar
+* deprecated Pattern.annotationField
+* rename keys in cope.properties:
+	cache.limit      -> cache.item.limit
+	cache.queryLimit -> cache.query.limit
+* rename CopeTest.getProperties() to getConnectProperties()
+	deprecated version is provided
+* added CompositeField.getValueClass()
+* move com.exedio.cope.util.CopeFilter to package com.exedio.cope.misc
+	deprecated version is provided
+* added generic creator method "newValue(SetValue...)" for Composite on CompositeField
+* made generic getters and setter on Composite public
+* added CompositeField.getTemplate(FunctionField)
+* added CompositeField.getTemplates()
+* move ConnectToken and ServletUtil to package com.exedio.cope.misc
+	deprecated version is provided
+* move TransactionSlicer to package com.exedio.cope.misc
+	deprecated version is provided
+* rename Pattern.initialize to onMount
+	deprecated version is provided
+* add @Computed
+* add [Type|Feature].isAnnotationPresent
+* allow annotations for types added by patterns
+	this breaks backwards API compatibility of Type#getAnnotation(), but is likely to affect a generic backoffice only
+* allow annotations for fields of types added by patterns
+* allow annotations for fields added by patterns
+* replace Model.isDatabaseLogEnabled/getDatabaseLogThreshold/getDatabaseLogSQL by getDatabaseListener
+	replace setDatabaseLog by setDatabaseListener
+	this breaks backwards API compatibility, but is likely to affect cope console only
+* big overhauling of composites
+	this breaks backwards API compatibility in a subtle way, BEWARE!
+	- changed behaviour of optional composites,
+		setter accepts null now for optional Composites and
+		getter returns null.
+	- renamed Composite to CompositeField and Composite.Value to Composite,
+		making it a top-level class
+	- Composite checks its values for violation of field constraints,
+		such as mandatory, string length, integer range etc.
+	- final fields in Composite are not supported
+		and cause an exception to be thrown
+	- Composites do get instrumentation
+* replace AbstractListField.getElementValueClass() by getElement()
+	this breaks backwards API compatibility, but is likely to affect a generic backoffice only
+* LimitedListField throws ListSizeViolationException instead of IllegalArgumentException
+* add AbstractListField.getMaximumSize()
+* replace SchemaInfo.getColumnValue(EnumField, Enum) by getColumnValue(Enum)
+	deprecated version is provided
+* add @CopeSchemaValue for enum values
+* add ItemCacheInfo.getConcurrentLoads()
+	replaces message on System.out: warning: duplicate computation of state ...
+* add SchemaInfo.quoteName
+* remove automatic detection of convert in MediaImageMagickFilter
+	now you need a java system property to enable:
+		com.exedio.cope.media.imagemagick=true
+* console history adds a column for ClusterSenderInfo.getInvalidationSplit()
+	requires modification of persistent schema
+* MandatoryViolation and FinalViolation for PriceField has PriceField itself as feature, not the source-Field of the PriceField
+	this breaks backwards API compatibility, but is likely to affect a generic backoffice only
+* MandatoryViolation for Media has Media itself as feature, not the body of the Media
+	this breaks backwards API compatibility, but is likely to affect a generic backoffice only
+* added Model.containsTypeSet
+* move Item.newType to class TypesBound
+	deprecated version is provided
+* move Type.forClass[Unchecked] to a new class TypesBound
+	deprecated version is provided
+* renamed Type#isJavaClassExclusive to isBound
+	deprecated version is provided
+* fix instrumented javadoc after "Type.newItem does not invoke creation constructor anymore"
+	(see below), heavily affects instrumented code !
+* DynamicModel uses MapField for names
+	this affects names of columns and tables in database schema,
+	requires a revision
+* reorganized creation and activation of items,
+	breaks backwards API compatibility
+	heavily affects instrumented code !
+	- Type.newItem does not invoke creation constructor anymore,
+		this breaks preCreate constructs
+		use a static method "SetValue[] beforeNewCopeItem(SetValue[])" instead
+		search for @cope.generic.constructor none
+	- renamed Item.postCreate() to afterNewCopeItem()
+		the compiler will help you, if you have your @Override annotations in place
+	- renamed instrumentor tag @cope.reactivation.constructor to @cope.activation.constructor
+		this is very rarly used
+	- reactivation constructor changed
+		+ new signature instead of 
+			Item(com.exedio.cope.util.ReactivationDummy, int[, Type]) is now
+			Item(com.exedio.cope.ActivationParameters)
+		+ in Item is now protected instead of public
+	- removed creation constructor Item(SetValue[], Type)
+		use Type.newItem instead
+* make Type.This a top-level class
+	this breaks backwards API compatibility, but is likely to affect a generic backoffice only
+* do not use BackingItem for DynamicModel anymore
+	this breaks backwards API compatibility, but is likely to affect a generic backoffice only
+	affects instrumented code
+* renamed Type.hasUniqueJavaClass() to isJavaClassExclusive()
+* deprecated constructors of Model not using Revisions
+* replaced Model.isRevisionEnabled() and getRevisionNumber() by getRevisions()
+	this breaks backwards API compatibility, but is unlikely to affect normal projects
+* renamed dsmf driver to dialect
+	this breaks backwards API compatibility, but is unlikely to affect normal projects
+* moved info classes into separate package
+	this breaks backwards API compatibility, but is unlikely to affect normal projects
+* removed cope live editor from exedio-cope.jar, it is now it's own project
+* deprecated empty constructor of Schedule, provide a Locale instead
+* subclasses of MediaPath do not get the url extension anymore
+* MediaPath got new method getNamedURL, with additional parameter for setting the "name" of the media
+* Console History puts date first in unique constraints
+	- makes purging faster
+	- affect persistent schema of the history
+		you have to drop the old constraints and create the new constraints
+* renamed UniqueConstraint.searchUnique to search
+	affects instrumented code
+* Console allows checking Media ContentType against body using magic numbers
+* rename Media.contentTypeMajor to contentTypeSub
+* Media with default Content-Type or major Content-Type do restrict the
+	CharSet of the StringField storing the Content-Type. You may need to adjust
+	the persistent schema (adding new check constraints) and/or adjust your data.
+* add pattern Range
+* Editor provides LOGIN_PATH_INFO
+* Editor provides isBordersEnabled()
+	use  this instead of isLoggedIn() for triggering css import
+* Interrupter from exedio-cope-util.jar is used
+	- affects Dispatcher, Schedule, PasswordRecovery
+* cope now depends on new project copeutil
+	- add exedio-cope-util.jar where trove.jar is used as well
+* add Schedule.enabled, adds new columns to schema, should be initialized with "true"
+* changed url of content editor from contentEditorLogin.html or copeContentEditor.html to copeLiveEdit.html
+* in contentEditor.css remove any styles related to contentEditorBar
+* for content editor, Editor.writeHead must be called in html head
+* renamed EditorPreview to Draft
+* added SHAHash as a replacement for MD5Hash, which is no longer secure
+* field for storing hashes uses algorithm for name,
+	i.e. passwordHash becomes passwordMD5
+	affects instrumented methods and persistent schema
+* support for
+	<taskdef resource="com/exedio/cope/instrument/ant.properties" classpath="lib/exedio-cope-instrument.jar" />
+* Editor
+	- put classes into separate package com.exedio.cope.editor
+	- make Login a top-level interface and rename it to Session
+* updated cops library to build.54, do get it from cops project now
+* updated jspm library to build.14, added check.version target to getlib.xml
+* added Query.emptyResult()
