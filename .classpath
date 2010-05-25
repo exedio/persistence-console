@@ -10,6 +10,6 @@
 	<classpathentry kind="lib" path="lib/exedio-cope-util.jar" sourcepath="lib/exedio-cope-util.jar-src.zip"/>
 	<classpathentry kind="lib" path="lib/exedio-cops.jar" sourcepath="lib/exedio-cops.jar-src.zip"/>
 	<classpathentry kind="lib" path="lib/jdbc/hsqldb.jar"/>
-	<classpathentry kind="lib" path="lib/exedio-cope.jar"/>
+	<classpathentry kind="lib" path="lib/exedio-cope.jar" sourcepath="lib/exedio-cope.jar-src.zip"/>
 	<classpathentry kind="output" path=".eclipse-output"/>
 </classpath>
