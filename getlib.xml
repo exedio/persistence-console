@@ -7,6 +7,12 @@
 	<import file="${getlib.home}/getlib-contrib.xml"/>
 
 
-	<target name="getlib" depends="exedio-cope, exedio-cope-util, exedio-cops, exedio-jspm" />
+	<target name="getlib" depends="exedio-cope, exedio-cope-util, exedio-cops, exedio-jspm">
+		<delete>
+			<fileset dir="lib">
+				<include name="exedio-cope-test.jar" />
+			</fileset>
+		</delete>
+	</target>
 	
 </project>
