@@ -110,7 +110,7 @@
 		</compile>
 	</target>
 	
-	<target name="console.test" depends="src.compile, testsrc.compile">
+	<target name="test" depends="src.compile, testsrc.compile">
 		<ljunit test="com.exedio.cope.console.PackageTest">
 			<classpath>
 				<pathelement location="build/classes/src" />
@@ -185,10 +185,6 @@
 	
 	<target name="compile"
 			  depends="console.compile" />
-	
-	<target name="test" depends="console.test" />
-	
-	
 	
 	<target name="tomcat" depends="console.tomcat" />
 	
