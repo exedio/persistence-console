@@ -8,8 +8,6 @@
 	<import file="macros/compile.xml" />
 	<import file="macros/jar-exedio.xml" />
 	
-	<taskdef name="LoadFile" classname="org.apache.tools.ant.taskdefs.LoadFile" />
-
 	<taskdef
 			resource="com/exedio/jspm/ant.properties"
 			classpath="lib/exedio-jspm.jar" />
@@ -133,7 +131,7 @@
 		</instrument>
 	</target>
 	
-	<target name="web" depends="web.instrument, src.compile">
+	<target name="web.compile" depends="web.instrument">
 		<compile srcdir="websrc">
 			<classpath>
 				<pathelement location="lib/exedio-cope-util.jar" />
@@ -141,6 +139,9 @@
 				<pathelement location="lib/servlet-api.jar" />
 			</classpath>
 		</compile>
+	</target>
+		
+	<target name="web" depends="web.compile, src.compile">
 		<copy todir="web/WEB-INF/classes">
 			<fileset dir="build/classes/src" />
 			<fileset dir="build/classes/websrc" />
@@ -164,7 +165,7 @@
 		<copy todir="tomcat/bin" file="history.cope.properties"/>
 	</target>
 	
-	<target name="compile" depends="src.compile, testsrc.compile" />
+	<target name="compile" depends="src.compile, testsrc.compile, web.compile" />
 	
 	<target name="clean">
 		<delete dir="build" />
