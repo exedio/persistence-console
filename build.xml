@@ -71,13 +71,13 @@
 	
 	<!-- console -->
 	
-	<target name="console.jspm">
+	<target name="jspm">
 		<jspm>
 			<fileset dir="src" includes="**/*.jspm" />
 		</jspm>
 	</target>
 	
-	<target name="console.core.compile" depends="console.jspm">
+	<target name="console.core.compile" depends="jspm">
 		<compile srcdir="src">
 			<classpath>
 				<pathelement location="lib/exedio-cope-util.jar" />
@@ -178,8 +178,6 @@
 	</target>
 	
 	<!-- common -->
-	
-	<target name="jspm" depends="console.jspm" />
 	
 	<target name="src" depends="jspm" description="creates all sources, so the IDE does not complain" />
 	
