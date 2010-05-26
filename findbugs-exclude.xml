@@ -9,7 +9,11 @@
 	<Match>
 		<!-- Could be refactored into a named static inner class -->
 		<Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
-		<!-- Used often for ResultSethandler -->
+		<Or>
+			<Class name="com.exedio.cope.console.TransactionCop$1" />
+			<Class name="com.exedio.cope.console.QueryCacheCop$Content$1" />
+			<Class name="com.exedio.cope.console.HistoryTest$1" />
+		</Or>
 	</Match>
 	<Match>
 		<Or>

@@ -233,6 +233,7 @@
 					effort="max"
 					reportlevel="low">
 			<class location="${basedir}/build/classes/src" />
+			<class location="${basedir}/build/classes/testsrc" />
 			<auxclasspath>
 				<pathelement location="${basedir}/lib/exedio-cope.jar" />
 				<pathelement location="${basedir}/lib/exedio-cope-util.jar" />
@@ -254,7 +255,6 @@
 					outputFile="${basedir}/build/findbugs-test.html"
 					effort="max"
 					reportlevel="low">
-			<class location="${basedir}/build/classes/testsrc" />
 			<class location="${basedir}/build/classes/websrc" />
 			<auxclasspath>
 				<pathelement location="${basedir}/build/classes/src" />
