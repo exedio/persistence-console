@@ -166,10 +166,11 @@
 	
 	<target name="compile" depends="src.compile, testsrc.compile" />
 	
-	<target name="console.clean">
-		<delete dir="build/console" />
+	<target name="clean">
+		<delete dir="build" />
 		<delete dir="web/WEB-INF/classes" />
 		<delete dir="web/WEB-INF/lib" />
+		<delete dir="tomcat" />
 		<delete>
 			<fileset dir="src">
 				<include name="**/*_Jspm.java" />
@@ -182,11 +183,6 @@
 	<target name="src" depends="jspm" description="creates all sources, so the IDE does not complain" />
 	
 	<target name="instrument" depends="web.instrument" />
-	
-	<target name="clean" depends="console.clean">
-		<delete dir="build" />
-		<delete dir="tomcat" />
-	</target>
 	
 	<target name="api">
 		<delete dir="build/api" />
