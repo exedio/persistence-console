@@ -158,7 +158,7 @@
 		</copy>
 	</target>
 	
-	<target name="console.tomcat" depends="web, catalina">
+	<target name="tomcat" depends="web, catalina">
 		<copy tofile="tomcat/conf/Catalina/localhost/cope-console.xml" file="context.xml"/>
 		<copy tofile="tomcat/conf/Catalina/localhost/cope-console-history.xml" file="context-history.xml"/>
 		<copy todir="tomcat/bin" file="history.cope.properties"/>
@@ -185,8 +185,6 @@
 	
 	<target name="compile"
 			  depends="console.compile" />
-	
-	<target name="tomcat" depends="console.tomcat" />
 	
 	<target name="clean" depends="console.clean">
 		<delete dir="build" />
