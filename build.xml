@@ -67,8 +67,6 @@
 		</copy>
 	</target>
 	
-	<!-- console -->
-	
 	<target name="jspm">
 		<jspm>
 			<fileset dir="src" includes="**/*.jspm" />
@@ -165,8 +163,6 @@
 		<copy todir="tomcat/bin" file="history.cope.properties"/>
 	</target>
 	
-	<target name="compile" depends="src.compile, testsrc.compile, web.compile" />
-	
 	<target name="clean">
 		<delete dir="build" />
 		<delete dir="web/WEB-INF/classes" />
@@ -179,11 +175,11 @@
 		</delete>
 	</target>
 	
-	<!-- common -->
-	
 	<target name="src" depends="jspm" description="creates all sources, so the IDE does not complain" />
 	
 	<target name="instrument" depends="web.instrument" />
+	
+	<target name="compile" depends="src.compile, testsrc.compile, web.compile" />
 	
 	<target name="api">
 		<delete dir="build/api" />
@@ -208,8 +204,7 @@
 		</javadoc>
 	</target>
 	
-	<target name="build"
-			depends="compile, test, jar, tomcat" />
+	<target name="build" depends="compile, test, jar, tomcat" />
 	
 	<target name="findbugs.prepare">
 		<untar
