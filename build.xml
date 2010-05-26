@@ -97,7 +97,7 @@
 		</jar-exedio>
 	</target>
 	
-	<target name="console.test.compile" depends="src.compile">
+	<target name="testsrc.compile" depends="src.compile">
 		<compile srcdir="testsrc">
 			<classpath>
 				<pathelement location="build/classes/src" />
@@ -110,7 +110,7 @@
 		</compile>
 	</target>
 	
-	<target name="console.test" depends="src.compile, console.test.compile">
+	<target name="console.test" depends="src.compile, testsrc.compile">
 		<ljunit test="com.exedio.cope.console.PackageTest">
 			<classpath>
 				<pathelement location="build/classes/src" />
@@ -164,7 +164,7 @@
 		<copy todir="tomcat/bin" file="history.cope.properties"/>
 	</target>
 	
-	<target name="console.compile" depends="src.compile, console.test.compile" />
+	<target name="console.compile" depends="src.compile, testsrc.compile" />
 	
 	<target name="console.clean">
 		<delete dir="build/console" />
