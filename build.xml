@@ -88,7 +88,7 @@
 		</compile>
 	</target>
 	
-	<target name="console.jar" depends="src.compile">
+	<target name="jar" depends="src.compile">
 		<jar-exedio
 				name="cope console"
 				jarfile="build/exedio-cope-console.jar"
@@ -185,10 +185,6 @@
 	
 	<target name="compile"
 			  depends="console.compile" />
-	
-	<target name="jar" depends="console.jar" />
-	
-	
 	
 	<target name="test" depends="console.test" />
 	
