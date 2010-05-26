@@ -77,7 +77,7 @@
 		</jspm>
 	</target>
 	
-	<target name="console.core.compile" depends="jspm">
+	<target name="src.compile" depends="jspm">
 		<compile srcdir="src">
 			<classpath>
 				<pathelement location="lib/exedio-cope-util.jar" />
@@ -88,7 +88,7 @@
 		</compile>
 	</target>
 	
-	<target name="console.jar" depends="console.core.compile">
+	<target name="console.jar" depends="src.compile">
 		<jar-exedio
 				name="cope console"
 				jarfile="build/exedio-cope-console.jar"
@@ -97,7 +97,7 @@
 		</jar-exedio>
 	</target>
 	
-	<target name="console.test.compile" depends="console.core.compile">
+	<target name="console.test.compile" depends="src.compile">
 		<compile srcdir="testsrc">
 			<classpath>
 				<pathelement location="build/classes/src" />
@@ -110,7 +110,7 @@
 		</compile>
 	</target>
 	
-	<target name="console.test" depends="console.core.compile, console.test.compile">
+	<target name="console.test" depends="src.compile, console.test.compile">
 		<ljunit test="com.exedio.cope.console.PackageTest">
 			<classpath>
 				<pathelement location="build/classes/src" />
@@ -133,7 +133,7 @@
 		</instrument>
 	</target>
 	
-	<target name="console.web" depends="console.web.instrument, console.core.compile">
+	<target name="console.web" depends="console.web.instrument, src.compile">
 		<compile srcdir="websrc">
 			<classpath>
 				<pathelement location="lib/exedio-cope-util.jar" />
@@ -164,7 +164,7 @@
 		<copy todir="tomcat/bin" file="history.cope.properties"/>
 	</target>
 	
-	<target name="console.compile" depends="console.core.compile, console.test.compile" />
+	<target name="console.compile" depends="src.compile, console.test.compile" />
 	
 	<target name="console.clean">
 		<delete dir="build/console" />
