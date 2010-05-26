@@ -6,6 +6,7 @@
 	<property file="project.properties" />
 	
 	<import file="macros/compile.xml" />
+	<import file="macros/jar-exedio.xml" />
 	
 	<taskdef name="LoadFile" classname="org.apache.tools.ant.taskdefs.LoadFile" />
 
@@ -19,28 +20,6 @@
 			<pathelement location="lib/servlet-api.jar" />
 		</classpath>
 	</taskdef>
-	
-	<macrodef name="ljar">
-		<attribute name="jarfile" />
-		<attribute name="name" />
-		<attribute name="classpath" />
-		<element name="fileset" optional="true" implicit="true" />
-		<sequential>
-			<!--echo message="local jar @{jarfile}" /-->
-			<jar jarfile="@{jarfile}" filesonly="true" duplicate="fail" strict="fail" level="9">
-				<fileset />
-				<manifest>
-					<attribute name="Specification-Title" value="exedio @{name}" />
-					<attribute name="Specification-Version" value="${build.tag}" />
-					<attribute name="Specification-Vendor" value="exedio GmbH" />
-					<attribute name="Implementation-Title" value="exedio @{name}" />
-					<attribute name="Implementation-Version" value="${build.tag}" />
-					<attribute name="Implementation-Vendor" value="exedio GmbH" />
-					<attribute name="Class-Path" value="@{classpath}" />
-				</manifest>
-			</jar>
-		</sequential>
-	</macrodef>
 	
 	<macrodef name="ljunit">
 		<attribute name="test" />
@@ -110,9 +89,9 @@
 	</target>
 	
 	<target name="console.jar" depends="console.core.compile">
-		<ljar name="cope console" jarfile="build/exedio-cope-console.jar" classpath="exedio-cope.jar exedio-cops.jar">
+		<jar-exedio name="cope console" jarfile="build/exedio-cope-console.jar" classpath="exedio-cope.jar exedio-cops.jar">
 			<fileset dir="build/classes/src" />
-		</ljar>
+		</jar-exedio>
 	</target>
 	
 	<target name="console.test.compile" depends="console.core.compile">

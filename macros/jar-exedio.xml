@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<project name="jar-exedio" default="fail" basedir=".">
+
+	<macrodef name="jar-exedio">
+		<attribute name="jarfile" />
+		<attribute name="name" />
+		<attribute name="classpath" />
+		<element name="fileset" optional="true" implicit="true" />
+		<sequential>
+			<!--echo message="local jar @{jarfile}" /-->
+			<jar jarfile="@{jarfile}" filesonly="true" duplicate="fail" strict="fail" level="9">
+				<fileset />
+				<manifest>
+					<attribute name="Specification-Title" value="exedio @{name}" />
+					<attribute name="Specification-Version" value="${build.tag}" />
+					<attribute name="Specification-Vendor" value="exedio GmbH" />
+					<attribute name="Implementation-Title" value="exedio @{name}" />
+					<attribute name="Implementation-Version" value="${build.tag}" />
+					<attribute name="Implementation-Vendor" value="exedio GmbH" />
+					<attribute name="Class-Path" value="@{classpath}" />
+				</manifest>
+			</jar>
+		</sequential>
+	</macrodef>
+	
+	<target name="fail">
+		<fail message="This file contains helper macros only. There are no targets." />
+	</target>
+	
+</project>
