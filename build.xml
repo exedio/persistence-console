@@ -164,7 +164,7 @@
 		<copy todir="tomcat/bin" file="history.cope.properties"/>
 	</target>
 	
-	<target name="console.compile" depends="src.compile, testsrc.compile" />
+	<target name="compile" depends="src.compile, testsrc.compile" />
 	
 	<target name="console.clean">
 		<delete dir="build/console" />
@@ -182,9 +182,6 @@
 	<target name="src" depends="jspm" description="creates all sources, so the IDE does not complain" />
 	
 	<target name="instrument" depends="web.instrument" />
-	
-	<target name="compile"
-			  depends="console.compile" />
 	
 	<target name="clean" depends="console.clean">
 		<delete dir="build" />
