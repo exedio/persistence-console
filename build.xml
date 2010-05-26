@@ -125,7 +125,7 @@
 		</ljunit>
 	</target>
 	
-	<target name="console.web.instrument" unless="skip.instrument">
+	<target name="web.instrument" unless="skip.instrument">
 		<instrument verbose="false">
 			<fileset dir="websrc">
 				<include name="**/*.java" />
@@ -133,7 +133,7 @@
 		</instrument>
 	</target>
 	
-	<target name="console.web" depends="console.web.instrument, src.compile">
+	<target name="console.web" depends="web.instrument, src.compile">
 		<compile srcdir="websrc">
 			<classpath>
 				<pathelement location="lib/exedio-cope-util.jar" />
@@ -181,7 +181,7 @@
 	
 	<target name="src" depends="jspm" description="creates all sources, so the IDE does not complain" />
 	
-	<target name="instrument" depends="console.web.instrument" />
+	<target name="instrument" depends="web.instrument" />
 	
 	<target name="compile"
 			  depends="console.compile" />
