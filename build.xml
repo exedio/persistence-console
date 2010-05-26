@@ -89,7 +89,10 @@
 	</target>
 	
 	<target name="console.jar" depends="console.core.compile">
-		<jar-exedio name="cope console" jarfile="build/exedio-cope-console.jar" classpath="exedio-cope.jar exedio-cops.jar">
+		<jar-exedio
+				name="cope console"
+				jarfile="build/exedio-cope-console.jar"
+				classpath="exedio-cope.jar exedio-cops.jar">
 			<fileset dir="build/classes/src" />
 		</jar-exedio>
 	</target>
