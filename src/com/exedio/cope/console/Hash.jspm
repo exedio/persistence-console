@@ -19,15 +19,20 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Format.format;
+
 import java.util.List;
 
 import com.exedio.cope.pattern.Hash;
 
 final class Hash_Jspm
 {
-	final static void writeBody(final Out out, final List<Hash> hashes)
+	final static void writeBody(final Out out, final HashCop cop, final List<Hash> hashes, final boolean measure)
 	{
 		%>
+		<form action="<%=cop%>" method="POST">
+			<input type="submit" name="<%=cop.MEASURE%>" value="measure" />
+		</form>
 		<table>
 			<caption>Hashes</caption>
 			<tr>
@@ -35,6 +40,13 @@ final class Hash_Jspm
 				<th rowspan="2">Name</th>
 				<th rowspan="2">Encoding</th>
 				<th colspan="2">Algorithm</th>
+			<%
+			if(measure)
+			{
+			%>
+				<th rowspan="2">Time<small>/ns</small></th><%
+			}
+			%>
 			</tr>
 			<tr>
 				<th>Name</th>
@@ -50,6 +62,17 @@ final class Hash_Jspm
 				<td class="text"><%=hash.getEncoding()%></td>
 				<td class="text"><%=algorithm.name()%></td>
 				<td class="text"><%=algorithm.length()%></td>
+			<%
+			if(measure)
+			{
+				out.flush();
+				final long start = System.nanoTime();
+				hash.blind(null, "example password");
+				final long end = System.nanoTime();
+				%>
+				<td><%=format(end-start)%></th><%
+			}
+			%>
 			</tr><%
 			}
 			%>
