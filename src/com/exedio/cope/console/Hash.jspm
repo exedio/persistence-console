@@ -65,7 +65,7 @@ final class Hash_Jspm
 				<td class="text"><%=hash.getName()%></td>
 				<td class="text"><%=hash.getEncoding()%></td>
 				<td class="text"><%=algorithm.name()%></td>
-				<td class="text"><%=algorithm.length()%></td><%
+				<td><%=format(algorithm.length())%></td><%
 			
 			if(measure)
 			{
