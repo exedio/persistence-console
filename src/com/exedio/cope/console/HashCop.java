@@ -16,23 +16,42 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package com.exedio.cope.console.example;
+package com.exedio.cope.console;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
+import com.exedio.cope.Type;
+import com.exedio.cope.pattern.Hash;
 
-public final class Main
+final class HashCop extends ConsoleCop
 {
-	public static final Model model =
-		new Model(
-				Revisions.revisions(64),
-				AnItem.TYPE,
-				ASubItem.TYPE,
-				AHashItem.TYPE,
-				AMediaItem.TYPE
-		);
+	HashCop(final Args args)
+	{
+		super(TAB_HASH, "hash", args);
+	}
+
+	@Override
+	protected HashCop newArgs(final Args args)
+	{
+		return new HashCop(args);
+	}
 	
-	public static final Model reducedModel =
-		new Model(
-				AReducedItem.TYPE
-		);
+	@Override
+	final void writeBody(
+			final Out out,
+			final Model model,
+			final HttpServletRequest request,
+			final History history)
+	{
+		final ArrayList<Hash> hashes = new ArrayList<Hash>();
+		for(final Type<?> type : model.getTypes())
+			for(final Feature f : type.getDeclaredFeatures())
+				if(f instanceof Hash)
+					hashes.add((Hash)f);
+		Hash_Jspm.writeBody(out, hashes);
+	}
 }

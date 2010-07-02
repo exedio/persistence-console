@@ -135,6 +135,7 @@ abstract class ConsoleCop<S> extends Cop
 					new ClusterCop(args),
 					new VmCop(args, false, false),
 					new EnvironmentCop(args),
+					new HashCop(args),
 					new HiddenCop(args),
 					new ModificationListenerCop(args),
 					new HistoryCop(args),
@@ -186,6 +187,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_CLUSTER = "cluster";
 	static final String TAB_VM = "vm";
 	static final String TAB_ENVIRONMENT = "environment";
+	static final String TAB_HASH = "hash";
 	static final String TAB_HIDDEN = "hidden";
 	static final String TAB_MODIFICATION_LISTENER = "modificationlistener";
 	
@@ -239,6 +241,8 @@ abstract class ConsoleCop<S> extends Cop
 			return VmCop.getVmCop(args, request);
 		if(TAB_ENVIRONMENT.equals(tab))
 			return new EnvironmentCop(args);
+		if(TAB_HASH.equals(tab))
+			return new HashCop(args);
 		if(TAB_HIDDEN.equals(tab))
 			return new HiddenCop(args);
 		if(TAB_MODIFICATION_LISTENER.equals(tab))
