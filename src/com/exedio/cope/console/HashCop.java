@@ -54,6 +54,9 @@ final class HashCop extends ConsoleCop
 			for(final Feature f : type.getDeclaredFeatures())
 				if(f instanceof Hash)
 					hashes.add((Hash)f);
-		Hash_Jspm.writeBody(out, this, hashes, isPost(request) && request.getParameter(MEASURE)!=null);
+		Hash_Jspm.writeBody(
+				out, this,
+				hashes,
+				isPost(request) && request.getParameter(MEASURE)!=null);
 	}
 }
