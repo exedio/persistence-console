@@ -110,7 +110,7 @@ final class Connect_Jspm extends Console_Jspm
 					}
 					else if(field instanceof ConnectProperties.FileField)
 					{
-						final File file = ((ConnectProperties.FileField)field).getFileValue();
+						final File file = ((ConnectProperties.FileField)field).fileValue();
 						if(file!=null)
 						{
 							try
