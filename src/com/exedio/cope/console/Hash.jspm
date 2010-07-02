@@ -43,8 +43,8 @@ final class Hash_Jspm
 				<th rowspan="2">Type</th>
 				<th rowspan="2">Name</th>
 				<th rowspan="2">Encoding</th>
-				<th colspan="2">Algorithm</th>
-			<%
+				<th colspan="2">Algorithm</th><%
+			
 			if(measure)
 			{
 			%>
@@ -65,8 +65,8 @@ final class Hash_Jspm
 				<td class="text"><%=hash.getName()%></td>
 				<td class="text"><%=hash.getEncoding()%></td>
 				<td class="text"><%=algorithm.name()%></td>
-				<td class="text"><%=algorithm.length()%></td>
-			<%
+				<td class="text"><%=algorithm.length()%></td><%
+			
 			if(measure)
 			{
 				out.flush();
