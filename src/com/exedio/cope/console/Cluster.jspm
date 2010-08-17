@@ -36,8 +36,16 @@ final class Cluster_Jspm
 	{
 		%>
 		<table>
-			<caption>Cluster Network</caption>
+			<caption>Cluster Sender</caption>
+			<tr><th>Node ID</th><td><%=format(senderInfo.getNodeID())%></td></tr>
+			<tr><th>Local Port</th><td><%=format(senderInfo.getLocalPort())%></td></tr>
+			<tr><th>Send Buffer Size</th><td><%=format(senderInfo.getSendBufferSize())%></td></tr>
+			<tr><th>Traffic Class</th><td><%=format(senderInfo.getTrafficClass())%></td></tr>
 			<tr><th>Invalidation Split</th><td><%=format(senderInfo.getInvalidationSplit())%></td></tr>
+		</table>
+		<table>
+			<caption>Cluster Listener</caption>
+			<tr><th>Receive Buffer Size</th><td><%=format(listenerInfo.getReceiveBufferSize())%></td></tr>
 			<tr><th>Exception</th><td><%=format(listenerInfo.getException())%></td></tr>
 			<tr><th>Missing Magic</th><td><%=format(listenerInfo.getMissingMagic())%></td></tr>
 			<tr><th>Wrong Secret</th><td><%=format(listenerInfo.getWrongSecret())%></td></tr>
