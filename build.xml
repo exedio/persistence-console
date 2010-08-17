@@ -122,7 +122,7 @@
 	</target>
 	
 	<target name="web.instrument" unless="skip.instrument">
-		<instrument verbose="false">
+		<instrument finalArgs="true" verbose="false">
 			<fileset dir="websrc">
 				<include name="**/*.java" />
 			</fileset>
