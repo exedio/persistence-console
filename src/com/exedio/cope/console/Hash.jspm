@@ -71,7 +71,7 @@ final class Hash_Jspm
 			{
 				out.flush();
 				final long start = System.nanoTime();
-				hash.blind(null, "example password");
+				hash.blind("example password");
 				final long end = System.nanoTime();
 				%>
 				<td><%=format(end-start)%></th><%
