@@ -32,7 +32,7 @@ final class VmCop extends ConsoleCop
 {
 	private static final String DETAILED = "dt";
 	private static final String ALL_PACKAGES = "ap";
-	
+
 	final boolean detailed;
 	final boolean allPackages;
 
@@ -41,11 +41,11 @@ final class VmCop extends ConsoleCop
 		super(TAB_VM, "vm", args);
 		this.detailed = detailed;
 		this.allPackages = allPackages;
-		
+
 		addParameter(DETAILED, detailed);
 		addParameter(ALL_PACKAGES, allPackages);
 	}
-	
+
 	static final VmCop getVmCop(final Args args, final HttpServletRequest request)
 	{
 		return new VmCop(args, getBooleanParameter(request, DETAILED), getBooleanParameter(request, ALL_PACKAGES));
@@ -56,17 +56,17 @@ final class VmCop extends ConsoleCop
 	{
 		return new VmCop(args, detailed, allPackages);
 	}
-	
+
 	VmCop toToggleDetailed()
 	{
 		return new VmCop(args, !detailed, allPackages);
 	}
-	
+
 	VmCop toToggleAllPackages()
 	{
 		return new VmCop(args, detailed, !allPackages);
 	}
-	
+
 	private static final Comparator<Package> COMPARATOR = new Comparator<Package>()
 	{
 		public int compare(final Package p1, final Package p2)
@@ -74,7 +74,7 @@ final class VmCop extends ConsoleCop
 			return p1.getName().compareTo(p2.getName());
 		}
 	};
-	
+
 	@Override
 	final void writeBody(
 			final Out out,
@@ -83,12 +83,12 @@ final class VmCop extends ConsoleCop
 			final History history)
 	{
 		final HashMap<String, TreeSet<Package>> jarMap = new HashMap<String, TreeSet<Package>>();
-		
+
 		for(final Package pack : Package.getPackages())
 		{
 			if(!allPackages && !pack.getName().startsWith("com.exedio."))
 				continue;
-			
+
 			if(pack.getSpecificationTitle()==null &&
 				pack.getSpecificationVersion()==null &&
 				pack.getSpecificationVendor()==null &&
@@ -96,7 +96,7 @@ final class VmCop extends ConsoleCop
 				pack.getImplementationVersion()==null &&
 				pack.getImplementationVendor()==null)
 				continue;
-				
+
 			final String key =
 				pack.getSpecificationTitle() + '|' +
 				pack.getSpecificationVersion() + '|' +
@@ -104,9 +104,9 @@ final class VmCop extends ConsoleCop
 				pack.getImplementationTitle() + '|' +
 				pack.getImplementationVersion() + '|' +
 				pack.getImplementationVendor();
-			
+
 			TreeSet<Package> jar = jarMap.get(key);
-			
+
 			if(jar==null)
 			{
 				jar = new TreeSet<Package>(COMPARATOR);
@@ -114,10 +114,10 @@ final class VmCop extends ConsoleCop
 			}
 			jar.add(pack);
 		}
-		
+
 		final ArrayList<TreeSet<Package>> jars = new ArrayList<TreeSet<Package>>();
 		jars.addAll(jarMap.values());
-		
+
 		Vm_Jspm.writeBody(out, this, jars);
 	}
 }

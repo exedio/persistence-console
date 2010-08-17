@@ -43,7 +43,7 @@ public final class AMediaItem extends Item
 
 	@Deprecated
 	static final MediaRedirect thumbnailRedirect = new MediaRedirect(thumbnail);
-	
+
 	static final MediaImageMagickThumbnail thumbnailMagick = new MediaImageMagickThumbnail(content, 150, 150);
 
 	static final MediaImageMagickThumbnail thumbnailMagickPng = new MediaImageMagickThumbnail(content, 150, 150).outputContentType("image/png");
@@ -51,13 +51,13 @@ public final class AMediaItem extends Item
 	static final MediaImageMagickThumbnail thumbnailMagickPngBlue = new MediaImageMagickThumbnail(content, 150, 150).outputContentType("image/png").flatten("blue");
 
 	static final ANameServer nameServer = new ANameServer(name);
-	
-	
+
+
 	AMediaItem()
 	{
 		this((String)null);
 	}
-	
+
 	/**
 
 	 **

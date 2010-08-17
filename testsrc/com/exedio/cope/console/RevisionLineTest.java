@@ -35,7 +35,7 @@ public class RevisionLineTest extends CopeAssert
 {
 	private static final Date DATE = new Date(2874526134l);
 	private static final String DATE_STRING = "1970/02/03 06:28:46.134";
-	
+
 	public void testBad() throws UnsupportedEncodingException
 	{
 		final RevisionLine l = new RevisionLine(55);
@@ -49,7 +49,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(list(), l.getBody());
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
-		
+
 		final Revision r = new Revision(55, "comment55", "sql55.1", "sql55.2");
 		l.setRevision(r);
 		assertEquals(true, l.hasRevision());
@@ -66,7 +66,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(0, l.getBody().get(1).getElapsed());
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
-		
+
 		l.setInfo("#migrationlogv01\nkey1=value1\nkey2=value2".getBytes("latin1"));
 		assertEquals("#migrationlogv01\nkey1=value1\nkey2=value2", l.getLogString());
 		final HashMap<String, String> map = new HashMap<String, String>();
@@ -86,7 +86,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
 	}
-	
+
 	public void testRevise()
 	{
 		final RevisionLine l = new RevisionLine(55);
@@ -100,7 +100,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(list(), l.getBody());
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
-		
+
 		final Revision r = new Revision(55, "comment55", "sql55.1", "sql55.2");
 		l.setRevision(r);
 		assertEquals(true, l.hasRevision());
@@ -117,7 +117,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(0, l.getBody().get(1).getElapsed());
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
-		
+
 		l.setInfo(new RevisionInfoRevise(55, DATE, Collections.<String, String>emptyMap(), "comment55",
 				new Body("sql55.1", 126, 567),
 				new Body("sql55.2", 127, 568)).toBytes());
@@ -146,7 +146,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(253, l.getRows());
 		assertEquals(1135, l.getElapsed());
 	}
-	
+
 	public void testReviseRemoved()
 	{
 		final RevisionLine l = new RevisionLine(55);
@@ -160,7 +160,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(list(), l.getBody());
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
-		
+
 		l.setInfo(new RevisionInfoRevise(55, DATE, Collections.<String, String>emptyMap(), "comment55",
 				new Body("sql55.1", 126, 567),
 				new Body("sql55.2", 127, 568)).toBytes());
@@ -189,7 +189,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(253, l.getRows());
 		assertEquals(1135, l.getElapsed());
 	}
-	
+
 	public void testCreate()
 	{
 		final RevisionLine l = new RevisionLine(55);
@@ -203,7 +203,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(list(), l.getBody());
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
-		
+
 		final Revision r = new Revision(55, "comment55", "sql55.1", "sql55.2");
 		l.setRevision(r);
 		assertEquals(true, l.hasRevision());
@@ -220,7 +220,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(0, l.getBody().get(1).getElapsed());
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
-		
+
 		l.setInfo(new RevisionInfoCreate(55, DATE, Collections.<String, String>emptyMap()).toBytes());
 		assertTrue(l.getLogString(), l.getLogString().startsWith("#migrationlogv01"+lineSeparator()));
 		final HashMap<String, String> map = new HashMap<String, String>();
@@ -241,7 +241,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
 	}
-	
+
 	public void testCreateRemoved()
 	{
 		final RevisionLine l = new RevisionLine(55);
@@ -255,7 +255,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(list(), l.getBody());
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
-		
+
 		l.setInfo(new RevisionInfoCreate(55, DATE, Collections.<String, String>emptyMap()).toBytes());
 		assertTrue(l.getLogString(), l.getLogString().startsWith("#migrationlogv01"+lineSeparator()));
 		final HashMap<String, String> map = new HashMap<String, String>();
@@ -271,7 +271,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
 	}
-	
+
 	public void testDiff()
 	{
 		final HashMap<String, String> left = new HashMap<String, String>();
@@ -282,10 +282,10 @@ public class RevisionLineTest extends CopeAssert
 		right.put("rightOnly", "true");
 		right.put("equal", "equalValue");
 		right.put("nonEqual", "right");
-		
+
 		assertContains("leftOnly", "rightOnly", "nonEqual", RevisionLine.diff(left, right));
 	}
-	
+
 	public void testHighlightSQL()
 	{
 		assertEquals(

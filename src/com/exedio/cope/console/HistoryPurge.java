@@ -47,25 +47,25 @@ final class HistoryPurge extends Item
 	private static final DateField finished = new DateField().toFinal().defaultToNow();
 	private static final IntegerField rows  = new IntegerField().toFinal().min(0);
 	private static final IntegerField elapsed  = new IntegerField().toFinal().min(0);
-	
+
 	static Query<HistoryPurge> newQuery()
 	{
 		final Query<HistoryPurge> q = TYPE.newQuery();
 		q.setOrderBy(new Function[]{finished, TYPE.getThis()}, new boolean[]{false, false});
 		return q;
 	}
-	
+
 	static int purge(final int days)
 	{
 		if(days<=0)
 			throw new IllegalArgumentException(String.valueOf(days));
-		
+
 		final GregorianCalendar cal = new GregorianCalendar();
 		cal.setTimeInMillis(System.currentTimeMillis());
 		cal.add(cal.DATE, -days);
 		return purge(cal.getTime());
 	}
-	
+
 	static int purge(final Date limit) // non-private for testing
 	{
 		int result = 0;
@@ -73,9 +73,9 @@ final class HistoryPurge extends Item
 			if(HistoryModel.TYPE!=type && // purge HistoryModel at the end
 				TYPE!=type)
 				result += purge(type, limit);
-		
+
 		result += purge(HistoryModel.TYPE, limit);
-		
+
 		return result;
 	}
 
@@ -97,13 +97,13 @@ final class HistoryPurge extends Item
 		{
 			con = DriverManager.getConnection(p.getDatabaseUrl(), p.getDatabaseUser(), p.getDatabasePassword());
 			stat = con.prepareStatement(bf);
-			
+
 			if(SchemaInfo.supportsNativeDate(model))
 				stat.setTimestamp(1, new Timestamp(limit.getTime())); else
 				stat.setLong     (1,               limit.getTime() );
-			
+
 			rows = stat.executeUpdate();
-			
+
 			if(stat!=null)
 			{
 				stat.close();
@@ -147,7 +147,7 @@ final class HistoryPurge extends Item
 			}
 		}
 		final long end = System.nanoTime();
-		
+
 		try
 		{
 			model.startTransaction("history analyze dates");
@@ -158,11 +158,11 @@ final class HistoryPurge extends Item
 		{
 			model.rollbackIfNotCommitted();
 		}
-		
+
 		return rows;
 	}
 
-	
+
 	HistoryPurge(
 			final Type type,
 			final Date limit,
@@ -175,39 +175,39 @@ final class HistoryPurge extends Item
 			HistoryPurge.rows   .map(rows),
 			HistoryPurge.elapsed.map(elapsed));
 	}
-	
+
 	@SuppressWarnings("unused")
 	private HistoryPurge(final ActivationParameters ap)
 	{
 		super(ap);
 	}
-	
+
 	String getType()
 	{
 		return type.get(this);
 	}
-	
+
 	Date getLimit()
 	{
 		return limit.get(this);
 	}
-	
+
 	Date getFinished()
 	{
 		return finished.get(this);
 	}
-	
+
 	int getRows()
 	{
 		return rows.get(this);
 	}
-	
+
 	int getElapsed()
 	{
 		return elapsed.get(this);
 	}
-	
+
 	private static final long serialVersionUID = 1l;
-	
+
 	static final Type<HistoryPurge> TYPE = TypesBound.newType(HistoryPurge.class);
 }

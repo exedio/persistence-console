@@ -30,7 +30,7 @@ import com.exedio.cope.pattern.Hash;
 final class HashCop extends ConsoleCop
 {
 	final static String MEASURE = "measure";
-	
+
 	HashCop(final Args args)
 	{
 		super(TAB_HASH, "hash", args);
@@ -41,7 +41,7 @@ final class HashCop extends ConsoleCop
 	{
 		return new HashCop(args);
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,

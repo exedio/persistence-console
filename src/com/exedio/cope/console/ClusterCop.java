@@ -27,7 +27,7 @@ final class ClusterCop extends ConsoleCop
 {
 	static final String PING_COUNT = "ping.count";
 	static final String PING = "ping";
-	
+
 	ClusterCop(final Args args)
 	{
 		super(TAB_CLUSTER, "cluster", args);
@@ -38,9 +38,9 @@ final class ClusterCop extends ConsoleCop
 	{
 		return new ClusterCop(args);
 	}
-	
+
 	private int donePing = 0;
-	
+
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
 	{
@@ -55,7 +55,7 @@ final class ClusterCop extends ConsoleCop
 			}
 		}
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,

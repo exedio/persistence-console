@@ -37,7 +37,7 @@ import com.exedio.cope.pattern.MediaPath;
 public final class ANameServer extends MediaPath
 {
 	private static final long serialVersionUID = 1l;
-	
+
 	final StringField source;
 
 	ANameServer(final StringField source)
@@ -46,12 +46,12 @@ public final class ANameServer extends MediaPath
 		if(source!=null)
 			addSource(source, "Source");
 	}
-	
+
 	StringField getSource()
 	{
 		return source;
 	}
-	
+
 	@Override
 	public String getContentType(final Item item)
 	{
@@ -59,10 +59,10 @@ public final class ANameServer extends MediaPath
 	}
 
 	private static final long EXPIRES_OFFSET = 1000 * 5; // 5 seconds
-	
+
 	private static final String RESPONSE_EXPIRES = "Expires";
 	private static final String RESPONSE_CONTENT_LENGTH = "Content-Length";
-	
+
 	@Override
 	public Media.Log doGet(
 			final HttpServletRequest request, final HttpServletResponse response,
@@ -73,7 +73,7 @@ public final class ANameServer extends MediaPath
 		//System.out.println("contentType="+contentType);
 		if(content==null)
 			return isNull;
-		
+
 		if(content.endsWith(" error"))
 			throw new RuntimeException("test error in ANameServer");
 
@@ -81,7 +81,7 @@ public final class ANameServer extends MediaPath
 
 		final long now = System.currentTimeMillis();
 		response.setDateHeader(RESPONSE_EXPIRES, now+EXPIRES_OFFSET);
-		
+
 		final byte[] contentBytes = content.getBytes("utf-8");
 		final long contentLength = contentBytes.length;
 		//System.out.println("contentLength="+String.valueOf(contentLength));

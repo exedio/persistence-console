@@ -37,7 +37,7 @@ final class ItemCacheSummary
 	final long ageMaxMillis;
 	final long invalidationsOrdered;
 	final long invalidationsDone;
-	
+
 	ItemCacheSummary(final ItemCacheInfo[] infos)
 	{
 		int allLimit = 0;
@@ -54,7 +54,7 @@ final class ItemCacheSummary
 		long allAgeMaxMillis = 0l;
 		long allInvalidationsOrdered = 0l;
 		long allInvalidationsDone = 0l;
-		
+
 		for(final ItemCacheInfo info : infos)
 		{
 			allLimit += info.getLimit();
@@ -62,10 +62,10 @@ final class ItemCacheSummary
 			allHits += info.getHits();
 			allMisses += info.getMisses();
 			allConcurrentLoads += info.getConcurrentLoads();
-			
+
 			allReplacementRuns += info.getReplacementRuns();
 			allReplacements += info.getReplacements();
-			
+
 			final Date lastReplacementRun = info.getLastReplacementRun();
 			if(allLastReplacementRun==null || (lastReplacementRun!=null && allLastReplacementRun.before(lastReplacementRun)))
 				allLastReplacementRun = lastReplacementRun;
@@ -77,14 +77,14 @@ final class ItemCacheSummary
 				final long minAge = info.getAgeMinMillis();
 				if(allAgeMinMillis>minAge)
 					allAgeMinMillis = minAge;
-				
+
 				allSumAgeAverageMillis += info.getAgeAverageMillis();
-	
+
 				final long maxAge = info.getAgeMaxMillis();
 				if(allAgeMaxMillis<maxAge)
 					allAgeMaxMillis = maxAge;
 			}
-			
+
 			allInvalidationsOrdered += info.getInvalidationsOrdered();
 			allInvalidationsDone += info.getInvalidationsDone();
 		}

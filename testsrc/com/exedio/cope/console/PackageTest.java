@@ -27,12 +27,12 @@ public class PackageTest extends TestCase
 	public static Test suite()
 	{
 		final TestSuite suite = new TestSuite();
-		
+
 		suite.addTestSuite(MimeTypesTest.class);
 		suite.addTestSuite(QueryCacheTest.class);
 		suite.addTestSuite(HistoryTest.class);
 		suite.addTestSuite(RevisionLineTest.class);
-		
+
 		return suite;
 	}
 }

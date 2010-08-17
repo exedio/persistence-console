@@ -38,11 +38,11 @@ import com.exedio.cope.RevisionInfoRevise.Body;
 final class RevisionLine
 {
 	final int number;
-	
+
 	private boolean current = false;
-	
+
 	private Revision revision = null;
-	
+
 	private String logString = null;
 	private TreeMap<String, String> logProperties = null;
 	private Date date = null;
@@ -51,33 +51,33 @@ final class RevisionLine
 	private List<Body> body = Collections.<Body>emptyList();
 	private int  rows    = -1;
 	private long elapsed = -1;
-	
+
 	RevisionLine(final int number)
 	{
 		this.number = number;
 	}
-	
+
 	boolean isCurrent()
 	{
 		return current;
 	}
-	
+
 	void setCurrent()
 	{
 		assert !current;
 		current = true;
 	}
-	
+
 	boolean hasRevision()
 	{
 		return revision!=null;
 	}
-	
+
 	String getContent()
 	{
 		return content;
 	}
-	
+
 	void setRevision(final Revision revision)
 	{
 		assert revision!=null;
@@ -89,56 +89,56 @@ final class RevisionLine
 			body.add(new Body(sql, 0, 0));
 		this.body = body;
 	}
-	
+
 	String getLogString()
 	{
 		return logString;
 	}
-	
+
 	Map<String, String> getLogProperties()
 	{
 		return logProperties;
 	}
-	
+
 	Date getDate()
 	{
 		return date;
 	}
-	
+
 	Map<String, String> getEnvironment()
 	{
 		return environment;
 	}
-	
+
 	int getBodyCount()
 	{
 		return body!=null ? body.size() : 0;
 	}
-	
+
 	List<Body> getBody()
 	{
 		return body;
 	}
-	
+
 	int getRows()
 	{
 		return rows;
 	}
-	
+
 	long getElapsed()
 	{
 		return elapsed;
 	}
-	
+
 	private static final String CHARSET = "latin1";
-	
+
 	void setInfo(final byte[] infoBytes)
 	{
 		assert infoBytes!=null;
 		assert this.logString==null;
 		assert this.logProperties==null;
 		assert this.date==null;
-		
+
 		try
 		{
 			this.logString = new String(infoBytes, CHARSET);
@@ -192,7 +192,7 @@ final class RevisionLine
 			}
 		}
 	}
-	
+
 	static final <K,V> Set<K> diff(final Map<K,V> left, final Map<K,V> right)
 	{
 		final TreeSet<K> result = new TreeSet<K>();

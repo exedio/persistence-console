@@ -34,21 +34,21 @@ final class HistoryCop extends ConsoleCop<HashMap<Type<?>, HistoryCop.Info>> imp
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
 	static final String ANALYZE = "analyze";
 	static final String PURGE = "purge";
-	
+
 	private final Pager pager;
-	
+
 	HistoryCop(final Args args)
 	{
 		this(args, PAGER_CONFIG.newPager());
 	}
-	
+
 	private HistoryCop(final Args args, final Pager pager)
 	{
 		super(TAB_HISTORY, "history", args);
 		this.pager = pager;
 		pager.addParameters(this);
 	}
-	
+
 	static final HistoryCop getHistoryCop(final Args args, final HttpServletRequest request)
 	{
 		return new HistoryCop(args, PAGER_CONFIG.newPager(request));
@@ -59,7 +59,7 @@ final class HistoryCop extends ConsoleCop<HashMap<Type<?>, HistoryCop.Info>> imp
 	{
 		return new HistoryCop(args);
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,
@@ -77,7 +77,7 @@ final class HistoryCop extends ConsoleCop<HashMap<Type<?>, HistoryCop.Info>> imp
 					history.getThreadID(),
 					history.isRunning(),
 					(isPost(request) && request.getParameter(ANALYZE)!=null));
-			
+
 			try
 			{
 				int limitDays = 100;
@@ -106,13 +106,13 @@ final class HistoryCop extends ConsoleCop<HashMap<Type<?>, HistoryCop.Info>> imp
 		else
 			History_Jspm.writeBodyNotAvailable(out);
 	}
-	
+
 	static class Info
 	{
 		final int count;
 		final Date from;
 		final Date until;
-		
+
 		Info(final int count, final Date from, final Date until)
 		{
 			this.count = count;
@@ -120,12 +120,12 @@ final class HistoryCop extends ConsoleCop<HashMap<Type<?>, HistoryCop.Info>> imp
 			this.until = until;
 		}
 	}
-	
+
 	public Pager getPager()
 	{
 		return pager;
 	}
-	
+
 	public HistoryCop toPage(final Pager pager)
 	{
 		return new HistoryCop(args, pager);

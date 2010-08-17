@@ -38,7 +38,7 @@ import com.exedio.cope.util.Properties;
 public class HistoryTest extends TestCase
 {
 	private static final Model MODEL = new Model(HistoryItem.TYPE);
-	
+
 	@Override
 	protected void setUp() throws Exception
 	{
@@ -73,7 +73,7 @@ public class HistoryTest extends TestCase
 		HISTORY_MODEL.connect(new ConnectProperties(s, null));
 		HISTORY_MODEL.createSchema();
 	}
-	
+
 	@Override
 	protected void tearDown() throws Exception
 	{
@@ -82,7 +82,7 @@ public class HistoryTest extends TestCase
 		HISTORY_MODEL.disconnect();
 		super.tearDown();
 	}
-	
+
 	public void testIt()
 	{
 		final HistoryThread thread = new HistoryThread(MODEL, "zack", 0);
@@ -100,7 +100,7 @@ public class HistoryTest extends TestCase
 		assertEquals(asList((Date)null, null), asList(HistoryThread.analyzeDate(HistoryItemCache.TYPE)));
 		assertEquals(asList((Date)null, null), asList(HistoryThread.analyzeDate(HistoryClusterNode.TYPE)));
 		assertEquals(asList((Date)null, null), asList(HistoryThread.analyzeDate(HistoryMedia.TYPE)));
-		
+
 		final Date before55 = new Date();
 		thread.store(55);
 		final Date after55 = new Date();
@@ -133,7 +133,7 @@ public class HistoryTest extends TestCase
 		assertEquals(asList(date55, date55  ), asList(HistoryThread.analyzeDate(HistoryItemCache.TYPE)));
 		assertEquals(asList((Date)null, null), asList(HistoryThread.analyzeDate(HistoryClusterNode.TYPE)));
 		assertEquals(asList(date55, date55  ), asList(HistoryThread.analyzeDate(HistoryMedia.TYPE)));
-		
+
 		final Date before66 = new Date();
 		thread.store(66);
 		final Date after66 = new Date();
@@ -168,7 +168,7 @@ public class HistoryTest extends TestCase
 		assertEquals(asList((Date)null, null), asList(HistoryThread.analyzeDate(HistoryClusterNode.TYPE)));
 		assertEquals(asList(date55, date66  ), asList(HistoryThread.analyzeDate(HistoryMedia.TYPE)));
 	}
-	
+
 	public void testPurge()
 	{
 		final HistoryThread thread = new HistoryThread(MODEL, "zack", 0);
@@ -177,20 +177,20 @@ public class HistoryTest extends TestCase
 		assertEquals(0, HistoryThread.analyzeCount(HistoryClusterNode.TYPE));
 		assertEquals(0, HistoryThread.analyzeCount(HistoryMedia.TYPE));
 		assertEquals(0, HistoryPurge.purge(new Date()));
-		
+
 		thread.store(66);
 		assertEquals(1, HistoryThread.analyzeCount(HistoryModel.TYPE));
 		assertEquals(1, HistoryThread.analyzeCount(HistoryItemCache.TYPE));
 		assertEquals(0, HistoryThread.analyzeCount(HistoryClusterNode.TYPE));
 		assertEquals(1, HistoryThread.analyzeCount(HistoryMedia.TYPE));
-		
+
 		sleepLongerThan(1);
 		assertEquals(3, HistoryPurge.purge(new Date()));
 		assertEquals(0, HistoryThread.analyzeCount(HistoryModel.TYPE));
 		assertEquals(0, HistoryThread.analyzeCount(HistoryItemCache.TYPE));
 		assertEquals(0, HistoryThread.analyzeCount(HistoryClusterNode.TYPE));
 		assertEquals(0, HistoryThread.analyzeCount(HistoryMedia.TYPE));
-		
+
 		sleepLongerThan(1);
 		assertEquals(0, HistoryPurge.purge(new Date()));
 		assertEquals(0, HistoryThread.analyzeCount(HistoryModel.TYPE));
@@ -198,7 +198,7 @@ public class HistoryTest extends TestCase
 		assertEquals(0, HistoryThread.analyzeCount(HistoryClusterNode.TYPE));
 		assertEquals(0, HistoryThread.analyzeCount(HistoryMedia.TYPE));
 	}
-	
+
 	private static final HistoryModel assertIt(
 			final HistoryThread thread,
 			final Date before, final Date after,
@@ -226,7 +226,7 @@ public class HistoryTest extends TestCase
 		assertEquals(HistoryModel.running.getMandatory(model), itemCache.getRunning());
 		return itemCache;
 	}
-	
+
 	private static final HistoryMedia assertIt(
 			final HistoryModel model,
 			final HistoryThread thread,
@@ -241,16 +241,16 @@ public class HistoryTest extends TestCase
 		assertEquals(HistoryModel.running.getMandatory(model), media.getRunning());
 		return media;
 	}
-	
+
 	private static final <E extends Item> Iterator<E> iter(final Type<E> type)
 	{
 		final Query<E> q = new Query<E>(type.getThis());
 		q.setOrderBy(type.getThis(), true);
 		return q.search().iterator();
 	}
-	
+
 	private static final String DATE_FORMAT_FULL = "dd.MM.yyyy HH:mm:ss.SSS";
-	
+
 	public static final void assertWithin(final Date expectedBefore, final Date expectedAfter, final Date actual)
 	{
 		final SimpleDateFormat df = new SimpleDateFormat(DATE_FORMAT_FULL);

@@ -31,14 +31,14 @@ import com.exedio.cope.misc.ServletUtil;
 public final class InitServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1l;
-	
+
 	private ConnectToken connectToken = null;
-	
+
 	@Override
 	public void init() throws ServletException
 	{
 		super.init();
-		
+
 		final Class thisClass = InitServlet.class;
 		connectToken = ServletUtil.connect(Main.model, getServletConfig(), thisClass.getName());
 		Main.model.createSchema();
@@ -74,7 +74,7 @@ public final class InitServlet extends HttpServlet
 		connectToken = null;
 		super.destroy();
 	}
-	
+
 	@Override
 	protected final void doGet(
 			final HttpServletRequest request,

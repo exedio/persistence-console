@@ -41,7 +41,7 @@ final class ModificationListenerCop extends ConsoleCop
 	{
 		return new ModificationListenerCop(args);
 	}
-	
+
 	//static int debugNumber = 0;
 
 	@Override
@@ -56,7 +56,7 @@ final class ModificationListenerCop extends ConsoleCop
 			if(request.getParameter(REMOVE_SELECTED)!=null)
 			{
 				final String[] toDeleteArray = request.getParameterValues(REMOVE_CHECKBOX);
-				
+
 				if(toDeleteArray!=null)
 				{
 					final HashSet<String> toDelete = new HashSet<String>(Arrays.asList(toDeleteArray));
@@ -68,7 +68,7 @@ final class ModificationListenerCop extends ConsoleCop
 				}
 			}
 		}
-		
+
 		ModificationListener_Jspm.writeBody(this, out,
 				model.getModificationListenersCleared(),
 				model.getModificationListeners(),
@@ -77,12 +77,12 @@ final class ModificationListenerCop extends ConsoleCop
 		/*model.addModificationListener(new ModificationListener()
 		{
 			private int count = debugNumber++;
-			
+
 			public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
 			{
 				// do nothing
 			}
-			
+
 			@Override
 			public String toString()
 			{
@@ -97,7 +97,7 @@ final class ModificationListenerCop extends ConsoleCop
 			{
 				// do nothing
 			}
-			
+
 			@Override
 			public String toString()
 			{
@@ -105,7 +105,7 @@ final class ModificationListenerCop extends ConsoleCop
 			}
 		});*/
 	}
-	
+
 	final String toID(final ModificationListener listener)
 	{
 		return listener.getClass().getName() + '@' + System.identityHashCode(listener);

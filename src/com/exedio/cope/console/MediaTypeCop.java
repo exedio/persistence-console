@@ -39,12 +39,12 @@ final class MediaTypeCop extends TestCop<Media>
 	{
 		return new MediaTypeCop(args);
 	}
-	
+
 	@Override
 	List<Media> getItems(final Model model)
 	{
 		final ArrayList<Media> medias = new ArrayList<Media>();
-		
+
 		for(final Type<?> type : model.getTypes())
 		{
 			for(final Feature feature : type.getDeclaredFeatures())
@@ -55,19 +55,19 @@ final class MediaTypeCop extends TestCop<Media>
 		}
 		return medias;
 	}
-	
+
 	@Override
 	String getCaption()
 	{
 		return "Media Types";
 	}
-	
+
 	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Type", "Name", "Content Type", "Query"};
 	}
-	
+
 	@Override
 	void writeValue(final Out out, final Media media, final int h)
 	{
@@ -91,7 +91,7 @@ final class MediaTypeCop extends TestCop<Media>
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}
-	
+
 	@Override
 	int check(final Media media)
 	{

@@ -36,32 +36,32 @@ abstract class ConsoleCop<S> extends Cop
 	{
 		static final String HISTORY_MODEL_SHOWN = "sh";
 		private static final String AUTO_REFRESH = "ar";
-		
+
 		final ConsoleServlet servlet;
 		final boolean historyModelShown;
 		final int autoRefresh;
-		
+
 		Args(final ConsoleServlet servlet, final boolean historyModelShown, final int autoRefresh)
 		{
 			this.servlet = servlet;
 			this.historyModelShown = historyModelShown;
 			this.autoRefresh = autoRefresh;
 		}
-		
+
 		Args(final ConsoleServlet servlet, final HttpServletRequest request)
 		{
 			this.servlet = servlet;
 			this.historyModelShown = getBooleanParameter(request, HISTORY_MODEL_SHOWN);
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
 		}
-		
+
 		void addParameters(final ConsoleCop cop)
 		{
 			cop.addParameterAccessor(HISTORY_MODEL_SHOWN, historyModelShown);
 			cop.addParameterAccessor(AUTO_REFRESH, autoRefresh, 0);
 		}
 	}
-	
+
 	private static final String NAME_POSTFIX = ".html";
 	final String name;
 	final Args args;
@@ -74,19 +74,19 @@ abstract class ConsoleCop<S> extends Cop
 		this.args = args;
 		args.addParameters(this);
 	}
-	
+
 	long start = 0;
-	
+
 	void addParameterAccessor(final String key, final boolean value)
 	{
 		addParameter(key, value);
 	}
-	
+
 	void addParameterAccessor(final String key, final int value, final int defaultValue)
 	{
 		addParameter(key, value, defaultValue);
 	}
-	
+
 	/**
 	 * @param request used in subclasses
 	 * @param model used in subclasses
@@ -95,24 +95,24 @@ abstract class ConsoleCop<S> extends Cop
 	{
 		start = System.currentTimeMillis();
 	}
-	
+
 	protected abstract ConsoleCop newArgs(final Args args);
-	
+
 	final ConsoleCop toHistoryModelShown(final boolean historyModelShown)
 	{
 		return newArgs(new Args(args.servlet, historyModelShown, args.autoRefresh));
 	}
-	
+
 	final ConsoleCop toAutoRefresh(final int autoRefresh)
 	{
 		return newArgs(new Args(args.servlet, args.historyModelShown, autoRefresh));
 	}
-	
+
 	int getResponseStatus()
 	{
 		return HttpServletResponse.SC_OK;
 	}
-	
+
 	final ConsoleCop[] getTabs()
 	{
 		return
@@ -141,15 +141,15 @@ abstract class ConsoleCop<S> extends Cop
 					new HistoryCop(args),
 				};
 	}
-	
+
 	final String getStart()
 	{
 		if(start==0)
 			throw new RuntimeException();
-		
+
 		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS Z (z)").format(new Date(start));
 	}
-	
+
 	final long getDuration()
 	{
 		if(start==0)
@@ -157,7 +157,7 @@ abstract class ConsoleCop<S> extends Cop
 
 		return System.currentTimeMillis() - start;
 	}
-	
+
 	/**
 	 * @param out used in subclasses
 	 */
@@ -165,9 +165,9 @@ abstract class ConsoleCop<S> extends Cop
 	{
 		// default implementation does nothing
 	}
-	
+
 	abstract void writeBody(Out out, Model model, HttpServletRequest request, History history);
-	
+
 	static final String TAB_CONNECT = "connect";
 	static final String TAB_SCHEMA = "schema";
 	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
@@ -190,18 +190,18 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_HASH = "hash";
 	static final String TAB_HIDDEN = "hidden";
 	static final String TAB_MODIFICATION_LISTENER = "modificationlistener";
-	
+
 	static final ConsoleCop getCop(final ConsoleServlet servlet, final Model model, final HttpServletRequest request)
 	{
 		final Args args = new Args(servlet, request);
 		final String pathInfo = request.getPathInfo();
-		
+
 		if("/".equals(pathInfo))
 			return new ConnectCop(args);
-		
+
 		if(pathInfo==null || !pathInfo.startsWith("/") || !pathInfo.endsWith(NAME_POSTFIX))
 			return new NotFound(args, pathInfo);
-		
+
 		final String tab = pathInfo.substring(1, pathInfo.length()-NAME_POSTFIX.length());
 		if(TAB_SCHEMA.equals(tab))
 			return new SchemaCop(args);
@@ -254,11 +254,11 @@ abstract class ConsoleCop<S> extends Cop
 
 		return new NotFound(args, pathInfo);
 	}
-	
+
 	private final static class NotFound extends ConsoleCop
 	{
 		private final String pathInfo;
-		
+
 		protected NotFound(final Args args, final String pathInfo)
 		{
 			super("Not Found", "Not Found", args);
@@ -270,7 +270,7 @@ abstract class ConsoleCop<S> extends Cop
 		{
 			return new NotFound(args, pathInfo);
 		}
-		
+
 		@Override
 		int getResponseStatus()
 		{
@@ -287,54 +287,54 @@ abstract class ConsoleCop<S> extends Cop
 			Console_Jspm.writeNotFound(out, pathInfo);
 		}
 	}
-	
+
 	static void writePager(final Out out, final Pageable cop)
 	{
 		final Pager pager = cop.getPager();
 		if(pager.isNeeded())
 		{
 			out.writeRaw("<tr><td colspan=\"0\" class=\"pager\"><div class=\"right\">");
-			
+
 			out.write(pager.getFrom());
 			out.writeRaw('-');
 			out.write(pager.getTo());
 			out.writeRaw(" of ");
 			out.write(pager.getTotal());
-			
+
 			out.writeRaw("<br>per page:");
 			for(final Pager newLimit : pager.newLimits())
 				Console_Jspm.writePagerButton(out, cop, newLimit, String.valueOf(newLimit.getLimit()), "selected");
-				
+
 			out.writeRaw("</div>");
-			
+
 			Console_Jspm.writePagerButton(out, cop, pager.first(),    "<<", "disabled");
 			Console_Jspm.writePagerButton(out, cop, pager.previous(), "<" , "disabled");
 			Console_Jspm.writePagerButton(out, cop, pager.next(),     ">" , "disabled");
 			Console_Jspm.writePagerButton(out, cop, pager.last(),     ">>", "disabled");
-			
+
 			out.writeRaw(" page ");
 			out.write(pager.getPage());
 			out.writeRaw(" of ");
 			out.write(pager.getTotalPages());
 			out.writeRaw("<br>");
-			
+
 			if(pager.hasBeforeNewPages())
 				out.writeStatic("...");
 			for(final Pager newPage : pager.newPages())
 				Console_Jspm.writePagerButton(out, cop, newPage, String.valueOf(newPage.getPage()), "selected");
 			if(pager.hasAfterNewPages())
 				out.writeStatic("...");
-			
+
 			out.writeRaw("</td></tr>");
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	Store<S> getStore()
 	{
 		return args.servlet.getStore(this.getClass());
 	}
-	
+
 	void putStore(final S value)
 	{
 		args.servlet.putStore(this.getClass(), value);

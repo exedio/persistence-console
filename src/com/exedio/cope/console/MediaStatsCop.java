@@ -42,12 +42,12 @@ final class MediaStatsCop extends ConsoleCop
 	{
 		return new MediaStatsCop(args);
 	}
-	
+
 	MediaCop toMedia(final MediaPath media)
 	{
 		return new MediaCop(args, media);
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,
@@ -67,7 +67,7 @@ final class MediaStatsCop extends ConsoleCop
 					if(!isUrlGuessingPrevented && path.isUrlGuessingPrevented())
 						isUrlGuessingPrevented = true;
 				}
-		
+
 		final boolean isUrlGuessingNotSecure =
 			isUrlGuessingPrevented &&
 			!MediaPath.isUrlGuessingPreventedSecurely(model.getConnectProperties());
@@ -77,10 +77,10 @@ final class MediaStatsCop extends ConsoleCop
 		for(final MediaPath media : medias)
 			infos[mediaIndex++] = media.getInfo();
 		final MediaSummary summary = new MediaSummary(infos);
-		
+
 		Media_Jspm.writeBody(this, out, names, shortNames, isUrlGuessingNotSecure, infos, summary);
 	}
-	
+
 	private static final String[] names = {
 			"Redirect From <small>(301)</small>",
 			"Exception <small>(500)</small>",
@@ -108,7 +108,7 @@ final class MediaStatsCop extends ConsoleCop
 			"del",
 			"ratio",
 		};
-	
+
 	static final String[] format(final MediaSummary summary)
 	{
 		return format(new int[]{
@@ -123,7 +123,7 @@ final class MediaStatsCop extends ConsoleCop
 				summary.getDelivered()
 		});
 	}
-	
+
 	static final String[] format(final MediaInfo info)
 	{
 		return format(new int[]{
@@ -138,7 +138,7 @@ final class MediaStatsCop extends ConsoleCop
 				info.getDelivered()
 		});
 	}
-	
+
 	private static final String[] format(final int[] numbers)
 	{
 		final int length = numbers.length;
@@ -147,7 +147,7 @@ final class MediaStatsCop extends ConsoleCop
 			result[i] = Format.formatAndHide(0, numbers[i]);
 		return result;
 	}
-	
+
 	private static final void collapse(final TreeSet<String> contentTypes, final String r, final String a, final String b)
 	{
 		if(contentTypes.contains(a) && contentTypes.contains(b))
@@ -157,13 +157,13 @@ final class MediaStatsCop extends ConsoleCop
 			contentTypes.add(r);
 		}
 	}
-	
+
 	static final void printContentTypes(final OutBasic out, final Collection<String> contentTypes)
 	{
 		final TreeSet<String> sorted = new TreeSet<String>(contentTypes);
 		collapse(sorted, "image/[p]jpeg", "image/jpeg", "image/pjpeg");
 		collapse(sorted, "image/[x-]png", "image/png", "image/x-png");
-		
+
 		String prefix = null;
 		boolean first = true;
 		for(final String contentType : sorted)
@@ -172,7 +172,7 @@ final class MediaStatsCop extends ConsoleCop
 				first = false;
 			else
 				out.write(", ");
-			
+
 			if(prefix!=null && contentType.startsWith(prefix))
 			{
 				out.write('~');

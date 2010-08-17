@@ -45,7 +45,7 @@ final class EnvironmentCop extends ConsoleCop
 	{
 		return new EnvironmentCop(args);
 	}
-	
+
 	private static final String replaceNull(final String s)
 	{
 		return (s==null) ? "n/a" : s;
@@ -68,7 +68,7 @@ final class EnvironmentCop extends ConsoleCop
 		Environment_Jspm.writeCurrent(out, model.getConnectProperties().getDialect(), current);
 		Environment_Jspm.writeTest(out, current, makeTestedDatabases());
 	}
-	
+
 	private static final HashMap[] makeTestedDatabases()
 	{
 		final Properties p = new Properties();
@@ -78,7 +78,7 @@ final class EnvironmentCop extends ConsoleCop
 			in = Cope.class.getResourceAsStream("testprotocol.properties");
 			if(in==null)
 				return null;
-			
+
 			p.load(in);
 			in.close();
 			in = null;
@@ -101,17 +101,17 @@ final class EnvironmentCop extends ConsoleCop
 				}
 			}
 		}
-		
+
 		final TreeMap<String, HashMap<String, Object>> testedDatabases = new TreeMap<String, HashMap<String, Object>>();
 		for(Iterator i = p.keySet().iterator(); i.hasNext(); )
 		{
 			final String name = (String)i.next();
 			final String value = replaceNull(p.getProperty(name));
-			
+
 			final int nameDot = name.indexOf('.');
 			if(nameDot<=0)
 				throw new RuntimeException(name);
-			
+
 			final String databaseName = name.substring(0, nameDot);
 			HashMap<String, Object> database = testedDatabases.get(databaseName);
 			if(database==null)
@@ -120,7 +120,7 @@ final class EnvironmentCop extends ConsoleCop
 				database.put("name", databaseName);
 				testedDatabases.put(databaseName, database);
 			}
-			
+
 			final String key = name.substring(nameDot+1);
 			if(key.startsWith("cope."))
 			{
@@ -135,16 +135,16 @@ final class EnvironmentCop extends ConsoleCop
 			else
 				database.put(key, value);
 		}
-		
+
 		return testedDatabases.values().toArray(new HashMap[testedDatabases.size()]);
 	}
-	
+
 	@SuppressWarnings("unchecked") // TODO testedDatabases contains Strings and Maps
 	private static final TreeMap<String, String> castTreeMap(final Object o)
 	{
 		return (TreeMap<String, String>)o;
 	}
-	
+
 	public static final void main(final String[] args)
 	{
 		FileOutputStream out = null;

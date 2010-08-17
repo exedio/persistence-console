@@ -66,12 +66,12 @@ import com.exedio.cops.Resource;
 public final class ConsoleServlet extends CopsServlet
 {
 	private static final long serialVersionUID = 1l;
-	
+
 	private HashMap<Class<? extends ConsoleCop>, Store> stores = null;
 	private ConnectToken connectToken = null;
 	private Model model = null;
 	private History history;
-	
+
 	static final Resource stylesheet = new Resource("console.css");
 	static final Resource schemaScript = new Resource("schema.js");
 	static final Resource logo = new Resource("logo.png");
@@ -93,24 +93,24 @@ public final class ConsoleServlet extends CopsServlet
 	static final Resource error2  = new Resource("error2.png");
 	static final Resource write  = new Resource("write.png");
 	static final Resource imagebackground = new Resource("imagebackground.png");
-	
+
 	@Override
 	public void init() throws ServletException
 	{
 		super.init();
-		
+
 		if(model!=null)
 		{
 			System.out.println("reinvokation of jspInit");
 			return;
 		}
-		
+
 		stores = new HashMap<Class<? extends ConsoleCop>, Store>();
 		connectToken = ServletUtil.getConnectedModel(this);
 		model = connectToken.getModel();
 		history = new History(model);
 	}
-	
+
 	@Override
 	public void destroy()
 	{
@@ -121,7 +121,7 @@ public final class ConsoleServlet extends CopsServlet
 		stores = null;
 		super.destroy();
 	}
-	
+
 	@Override
 	protected void doRequest(
 			final HttpServletRequest request,
@@ -157,7 +157,7 @@ public final class ConsoleServlet extends CopsServlet
 			{
 				model = this.model;
 			}
-			
+
 			final ConsoleCop cop = ConsoleCop.getCop(this, model, request);
 			cop.initialize(request, model);
 			final Principal principal = request.getUserPrincipal();
@@ -185,29 +185,29 @@ public final class ConsoleServlet extends CopsServlet
 				historyConnectToken.returnIt();
 		}
 	}
-	
+
 	static final String HISTORY_PROPERTY_FILE = "com.exedio.cope.console.log"; // TODO rename to history
 	static final String HISTORY_START = "history.start";
 	static final String HISTORY_STOP  = "history.stop";
-	
-	
+
+
 	static class Store<S>
 	{
 		final S value;
 		private final long date;
-		
+
 		Store(final S value)
 		{
 			this.value = value;
 			this.date = System.currentTimeMillis();
 		}
-		
+
 		Date getDate()
 		{
 			return new Date(date);
 		}
 	}
-	
+
 	Store getStore(final Class<? extends ConsoleCop> clazz)
 	{
 		synchronized(stores)
@@ -215,7 +215,7 @@ public final class ConsoleServlet extends CopsServlet
 			return stores.get(clazz);
 		}
 	}
-	
+
 	void putStore(final Class<? extends ConsoleCop> clazz, final Object value)
 	{
 		final Store store = new Store<Object>(value);

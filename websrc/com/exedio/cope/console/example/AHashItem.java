@@ -28,7 +28,7 @@ public final class AHashItem extends Item
 	static final Hash md8 = new MessageDigestHash(8);
 	static final Hash md8x6latin = new MessageDigestHash(80000, "ISO-8859-1");
 	static final Hash md5 = new Hash(new MessageDigestAlgorithm("MD5", 2, 5000));
-	
+
 	/**
 
 	 **

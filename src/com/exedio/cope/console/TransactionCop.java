@@ -46,12 +46,12 @@ final class TransactionCop extends ConsoleCop
 	{
 		return new TransactionCop(args);
 	}
-	
+
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
 	{
 		super.initialize(request, model);
-		
+
 		if(isPost(request))
 		{
 			if(request.getParameter(ENABLE)!=null && !model.getModificationListeners().contains(listener))
@@ -71,13 +71,13 @@ final class TransactionCop extends ConsoleCop
 			}
 		}
 	}
-	
+
 	@Override
 	void writeHead(final Out out)
 	{
 		Transaction_Jspm.writeHead(out);
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,
@@ -95,7 +95,7 @@ final class TransactionCop extends ConsoleCop
 				final long id2 = tx2.getID();
 				return id1<id2 ? -1 : id1>id2 ? 1 : 0;
 			}
-			
+
 		});
 
 		final Thread[] threads = new Thread[openTransactions.length];
@@ -117,7 +117,7 @@ final class TransactionCop extends ConsoleCop
 				stacktraces[i] = thread.getStackTrace();
 			}
 		}
-		
+
 		final Commit[] commits;
 		synchronized(this.commits)
 		{
@@ -134,9 +134,9 @@ final class TransactionCop extends ConsoleCop
 				model.getModificationListeners().contains(listener),
 				commits);
 	}
-	
+
 	static final ArrayList<Commit> commits = new ArrayList<Commit>();
-	
+
 	private static final ModificationListener listener = new ModificationListener()
 	{
 		public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
@@ -147,7 +147,7 @@ final class TransactionCop extends ConsoleCop
 				commits.add(commit);
 			}
 		}
-		
+
 		@Override
 		public String toString()
 		{

@@ -32,7 +32,7 @@ final class QueryCacheCop extends ConsoleCop
 	static final String HISTOGRAM_LIMIT = "hl";
 	private static final int HISTOGRAM_LIMIT_DEFAULT = 100;
 	private static final String CONDENSE = "condense";
-	
+
 	final int histogramLimit;
 	final boolean condense;
 
@@ -40,13 +40,13 @@ final class QueryCacheCop extends ConsoleCop
 	{
 		this(args, HISTOGRAM_LIMIT_DEFAULT, true);
 	}
-	
+
 	private QueryCacheCop(final Args args, final int histogramLimit, final boolean condense)
 	{
 		super(TAB_QUERY_CACHE, "query cache", args);
 		addParameter(HISTOGRAM_LIMIT, histogramLimit, HISTOGRAM_LIMIT_DEFAULT);
 		addParameter(CONDENSE, condense);
-		
+
 		this.histogramLimit = histogramLimit;
 		this.condense = condense;
 	}
@@ -62,26 +62,26 @@ final class QueryCacheCop extends ConsoleCop
 	{
 		return new QueryCacheCop(args, histogramLimit, condense);
 	}
-	
+
 	QueryCacheCop toToggleCondense()
 	{
 		return new QueryCacheCop(args, histogramLimit, !condense);
 	}
-	
+
 	static final class Content
 	{
 		final QueryCacheHistogram[] histogram;
 		final Condense[] histogramCondensed;
-		
+
 		final int avgKeyLength;
 		final int maxKeyLength;
 		final int minKeyLength;
-		
+
 		final int avgResultSize;
 		final int maxResultSize;
 		final int minResultSize;
 		final int[] resultSizes;
-		
+
 		final long avgHits;
 		final long maxHits;
 		final long minHits;
@@ -91,27 +91,27 @@ final class QueryCacheCop extends ConsoleCop
 			if(histogram.length>0)
 			{
 				this.histogram = histogram;
-				
+
 				final HashMap<String, Condense> histogramCondensed = condense ? new HashMap<String, Condense>() : null;
-				
+
 				int sumKeyLength = 0;
 				int maxKeyLength = 0;
 				int minKeyLength = Integer.MAX_VALUE;
-				
+
 				int sumResultSize = 0;
 				int maxResultSize = 0;
 				int minResultSize = Integer.MAX_VALUE;
 				int[] resultSizes = new int[5];
-				
+
 				long sumHits = 0;
 				long maxHits = 0;
 				long minHits = Integer.MAX_VALUE;
-				
+
 				int recentUsage = 0;
 				for(final QueryCacheHistogram info : histogram)
 				{
 					final String q = info.getQuery();
-					
+
 					if(condense)
 					{
 						StringBuilder qxbuf = null;
@@ -122,16 +122,16 @@ final class QueryCacheCop extends ConsoleCop
 								qxbuf = new StringBuilder(q.substring(0, pos));
 							else
 								qxbuf.append(q.substring(lastpos+1, pos));
-							
+
 							qxbuf.append('?');
-							
+
 							pos = q.indexOf('\'', pos+1);
 							if(pos<0)
 							{
 								qxbuf = null;
 								break;
 							}
-							
+
 							lastpos = pos;
 						}
 						final String qx;
@@ -142,21 +142,21 @@ final class QueryCacheCop extends ConsoleCop
 						}
 						else
 							qx = q;
-	
+
 						final Condense dongs = histogramCondensed.get(qx);
 						if(dongs==null)
 							histogramCondensed.put(qx, new Condense(qx, recentUsage, info));
 						else
 							dongs.accumulate(qx, recentUsage, info);
 					}
-					
+
 					final int keyLength = q.length();
 					sumKeyLength += keyLength;
 					if(keyLength<minKeyLength)
 						minKeyLength = keyLength;
 					if(keyLength>maxKeyLength)
 						maxKeyLength = keyLength;
-		
+
 					final int resultSize = info.getResultSize();
 					sumResultSize += resultSize;
 					if(resultSize<minResultSize)
@@ -165,17 +165,17 @@ final class QueryCacheCop extends ConsoleCop
 						maxResultSize = resultSize;
 					if(resultSize<resultSizes.length)
 						resultSizes[resultSize]++;
-					
+
 					final long hits = info.getHits();
 					sumHits += hits;
 					if(hits<minHits)
 						minHits = hits;
 					if(hits>maxHits)
 						maxHits = hits;
-					
+
 					recentUsage++;
 				}
-				
+
 				if(histogramCondensed!=null)
 				{
 					this.histogramCondensed = histogramCondensed.values().toArray(new Condense[histogramCondensed.size()]);
@@ -203,16 +203,16 @@ final class QueryCacheCop extends ConsoleCop
 				{
 					this.histogramCondensed = null;
 				}
-				
+
 				this.avgKeyLength = sumKeyLength / histogram.length;
 				this.maxKeyLength = maxKeyLength;
 				this.minKeyLength = minKeyLength;
-				
+
 				this.avgResultSize = sumResultSize / histogram.length;
 				this.maxResultSize = maxResultSize;
 				this.minResultSize = minResultSize;
 				this.resultSizes = resultSizes;
-				
+
 				this.avgHits = sumHits / histogram.length;
 				this.maxHits = maxHits;
 				this.minHits = minHits;
@@ -221,23 +221,23 @@ final class QueryCacheCop extends ConsoleCop
 			{
 				this.histogram = histogram;
 				this.histogramCondensed = condense ? new Condense[0] : null;
-				
+
 				this.avgKeyLength = -1;
 				this.maxKeyLength = -1;
 				this.minKeyLength = -1;
-				
+
 				this.avgResultSize = -1;
 				this.maxResultSize = -1;
 				this.minResultSize = -1;
 				this.resultSizes = new int[0];
-				
+
 				this.avgHits = -1;
 				this.maxHits = -1;
 				this.minHits = -1;
 			}
 		}
 	}
-	
+
 	static final class Condense
 	{
 		final String query;
@@ -245,7 +245,7 @@ final class QueryCacheCop extends ConsoleCop
 		private int recentUsage;
 		private int resultSize;
 		private long hits;
-		
+
 		Condense(final String query, final int recentUsage, final QueryCacheHistogram info)
 		{
 			this.query = query;
@@ -254,7 +254,7 @@ final class QueryCacheCop extends ConsoleCop
 			this.resultSize  = info.getResultSize();
 			this.hits        = info.getHits();
 		}
-		
+
 		void accumulate(final String query, final int recentUsage, final QueryCacheHistogram info)
 		{
 			assert this.query.equals(query);
@@ -263,28 +263,28 @@ final class QueryCacheCop extends ConsoleCop
 			this.resultSize  += info.getResultSize();
 			this.hits        += info.getHits();
 		}
-		
+
 		int getCount()
 		{
 			return count;
 		}
-		
+
 		int getRecentUsage()
 		{
 			return recentUsage / count;
 		}
-		
+
 		int getResultSize()
 		{
 			return resultSize;
 		}
-		
+
 		long getHits()
 		{
 			return hits;
 		}
 	}
-		
+
 	@Override
 	final void writeBody(
 			final Out out,

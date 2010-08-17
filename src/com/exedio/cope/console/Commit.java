@@ -31,11 +31,11 @@ final class Commit
 	final String name;
 	private final long startDate;
 	final long elapsed;
-	
+
 	Commit(final Collection<Item> modifiedItems, final Transaction transaction)
 	{
 		final long now = System.currentTimeMillis();
-		
+
 		final StringBuilder bf = new StringBuilder();
 		boolean first = true;
 		for(final Item item : modifiedItems)
@@ -44,7 +44,7 @@ final class Commit
 				first = false;
 			else
 				bf.append(',').append(' ');
-			
+
 			bf.append(item.getCopeID());
 		}
 		this.modifiedItems = bf.toString();
@@ -53,7 +53,7 @@ final class Commit
 		this.startDate = transaction.getStartDate().getTime();
 		this.elapsed = now - startDate;
 	}
-	
+
 	Date getStartDate()
 	{
 		return new Date(startDate);

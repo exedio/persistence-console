@@ -30,19 +30,19 @@ final class DatabaseLogListener implements DatabaseListener
 	final int threshold;
 	final String sql;
 	private final PrintStream out;
-	
+
 	DatabaseLogListener(final int threshold, final String sql, final PrintStream out)
 	{
 		if(threshold<0)
 			throw new IllegalArgumentException("threshold must not be negative, but was " + threshold);
 		if(out==null)
 			throw new NullPointerException("out");
-		
+
 		this.threshold = threshold;
 		this.sql = sql;
 		this.out = out;
 	}
-	
+
 	public void onStatement(
 			final String statement,
 			final List<Object> parameters,
@@ -56,7 +56,7 @@ final class DatabaseLogListener implements DatabaseListener
 		{
 			final StringBuilder bf = new StringBuilder(
 					new SimpleDateFormat("yyyy/dd/MM HH:mm:ss.SSS").format(new Date()));
-			
+
 			bf.append('|');
 			bf.append(durationPrepare);
 			bf.append('|');
@@ -67,13 +67,13 @@ final class DatabaseLogListener implements DatabaseListener
 			bf.append(durationClose);
 			bf.append('|');
 			bf.append(statement);
-			
+
 			if(parameters!=null)
 			{
 				bf.append('|');
 				bf.append(parameters);
 			}
-			
+
 			out.println(bf.toString());
 		}
 	}

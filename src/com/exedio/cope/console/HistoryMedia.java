@@ -39,20 +39,20 @@ final class HistoryMedia extends Item
 {
 	private static final ItemField<HistoryModel> model = newItemField(HistoryModel.class).toFinal();
 	private static final StringField media = new StringField().toFinal();
-	
+
 	private static final DateField date = new DateField().toFinal();
 	@SuppressWarnings("unused") private static final UniqueConstraint dateAndMedia = new UniqueConstraint(date, media); // date must be first, so purging can use the index
 	private static final DateField initializeDate = new DateField().toFinal();
 	private static final DateField connectDate = new DateField().toFinal();
 	private static final IntegerField thread = new IntegerField().toFinal();
 	private static final IntegerField running = new IntegerField().toFinal().min(0);
-	
+
 	@SuppressWarnings("unused") private static final CopyConstraint dateCC = new CopyConstraint(model, date);
 	@SuppressWarnings("unused") private static final CopyConstraint initializeDateCC = new CopyConstraint(model, initializeDate);
 	@SuppressWarnings("unused") private static final CopyConstraint connectDateCC = new CopyConstraint(model, connectDate);
 	@SuppressWarnings("unused") private static final CopyConstraint threadCC = new CopyConstraint(model, thread);
 	@SuppressWarnings("unused") private static final CopyConstraint runningCC = new CopyConstraint(model, running);
-	
+
 	static List<SetValue> map(final HistoryModel m)
 	{
 		return Arrays.asList((SetValue)
@@ -63,8 +63,8 @@ final class HistoryMedia extends Item
 			thread        .map(HistoryModel.thread.get(m)),
 			running       .map(HistoryModel.running.get(m)));
 	}
-	
-	
+
+
 	private static final IntegerField redirectFrom  = new IntegerField().toFinal().min(0);
 	private static final IntegerField exception     = new IntegerField().toFinal().min(0);
 	private static final IntegerField guessedUrl    = new IntegerField().toFinal().min(0);
@@ -75,7 +75,7 @@ final class HistoryMedia extends Item
 	private static final IntegerField notComputable = new IntegerField().toFinal().min(0);
 	private static final IntegerField notModified   = new IntegerField().toFinal().min(0);
 	private static final IntegerField delivered     = new IntegerField().toFinal().min(0);
-	
+
 	static List<SetValue> map(final MediaInfo info)
 	{
 		return Arrays.asList((SetValue)
@@ -91,50 +91,50 @@ final class HistoryMedia extends Item
 			notModified  .map(info.getNotModified()),
 			delivered    .map(info.getDelivered()));
 	}
-	
-	
+
+
 	@SuppressWarnings("unused")
 	private HistoryMedia(final ActivationParameters ap)
 	{
 		super(ap);
 	}
-	
+
 	HistoryModel getModel()
 	{
 		return model.get(this);
 	}
-	
+
 	String getMedia()
 	{
 		return media.get(this);
 	}
-	
+
 	Date getDate()
 	{
 		return date.get(this);
 	}
-	
+
 	Date getInitalizeDate()
 	{
 		return initializeDate.get(this);
 	}
-	
+
 	Date getConnectDate()
 	{
 		return connectDate.get(this);
 	}
-	
+
 	int getThread()
 	{
 		return thread.getMandatory(this);
 	}
-	
+
 	int getRunning()
 	{
 		return running.getMandatory(this);
 	}
-	
+
 	private static final long serialVersionUID = 1l;
-	
+
 	static final Type<HistoryMedia> TYPE = TypesBound.newType(HistoryMedia.class);
 }

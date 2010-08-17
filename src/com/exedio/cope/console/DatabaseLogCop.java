@@ -28,7 +28,7 @@ final class DatabaseLogCop extends ConsoleCop
 	static final String ENABLE = "dblogenable";
 	static final String THRESHOLD = "dblogthreshold";
 	static final String SQL = "dblogsql";
-	
+
 	DatabaseLogCop(final Args args)
 	{
 		super(TAB_DATBASE_LOG, "db logs", args);
@@ -39,7 +39,7 @@ final class DatabaseLogCop extends ConsoleCop
 	{
 		return new DatabaseLogCop(args);
 	}
-	
+
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
 	{
@@ -58,7 +58,7 @@ final class DatabaseLogCop extends ConsoleCop
 					: null);
 		}
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,

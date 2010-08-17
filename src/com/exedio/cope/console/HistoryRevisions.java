@@ -64,7 +64,7 @@ final class HistoryRevisions
 					" change `itemsCleanedUp` `replacements` integer," +
 					" change `lastCleanup` `lastReplacementRun` bigint")
 		);
-	
+
 	private HistoryRevisions()
 	{
 		// prevent instantiation

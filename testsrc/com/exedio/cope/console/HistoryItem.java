@@ -30,18 +30,18 @@ public class HistoryItem extends Item
 {
 	static final StringField code = new StringField();
 	static final Media media = new Media();
-	
+
 	HistoryItem(final SetValue... values)
 	{
 		super(values);
 	}
-	
+
 	HistoryItem(final ActivationParameters ap)
 	{
 		super(ap);
 	}
-	
+
 	private static final long serialVersionUID = 1l;
-	
+
 	static final Type<HistoryItem> TYPE = TypesBound.newType(HistoryItem.class);
 }

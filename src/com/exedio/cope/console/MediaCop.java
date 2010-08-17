@@ -40,12 +40,12 @@ final class MediaCop extends ConsoleCop implements Pageable
 	private static final String MEDIA_INLINE = "ilm";
 	private static final String OTHER_INLINE = "ilo";
 	private static final String CONTENT_TYPE_MISMATCH = "ctmm";
-	
+
 	static final String TOUCH = "touch";
 	static final String TOUCH_OTHER = "touchOther";
-	
+
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
-	
+
 	final MediaPath media;
 	final MediaPath other;
 	final boolean mediaInline;
@@ -67,9 +67,9 @@ final class MediaCop extends ConsoleCop implements Pageable
 			final Pager pager)
 	{
 		super("media", "media - " + media.getID(), args);
-		
+
 		this.media = media;
-		
+
 		if(media instanceof MediaFilter)
 			other = ((MediaFilter)media).getSource();
 		else if(media instanceof MediaRedirect)
@@ -81,14 +81,14 @@ final class MediaCop extends ConsoleCop implements Pageable
 		this.otherInline = otherInline;
 		this.contentTypeMismatch = contentTypeMismatch;
 		this.pager = pager;
-		
+
 		addParameter(MEDIA, media.getID());
 		addParameter(MEDIA_INLINE, mediaInline);
 		addParameter(OTHER_INLINE, otherInline);
 		addParameter(CONTENT_TYPE_MISMATCH, contentTypeMismatch);
 		pager.addParameters(this);
 	}
-	
+
 	static MediaCop getMediaCop(final Model model, final Args args, final HttpServletRequest request)
 	{
 		final String mediaID = request.getParameter(MEDIA);
@@ -109,7 +109,7 @@ final class MediaCop extends ConsoleCop implements Pageable
 	{
 		return new MediaCop(args, media, mediaInline, otherInline, contentTypeMismatch, pager);
 	}
-	
+
 	MediaCop toggleInlineMedia()
 	{
 		return new MediaCop(args, media, !mediaInline, otherInline, contentTypeMismatch, pager);
@@ -119,49 +119,49 @@ final class MediaCop extends ConsoleCop implements Pageable
 	{
 		return new MediaCop(args, media, mediaInline, !otherInline, contentTypeMismatch, pager);
 	}
-	
+
 	MediaCop toggleContentTypeMismatch()
 	{
 		return new MediaCop(args, media, mediaInline, otherInline, !contentTypeMismatch, pager);
 	}
-	
+
 	public Pager getPager()
 	{
 		return pager;
 	}
-	
+
 	public MediaCop toPage(final Pager pager)
 	{
 		return new MediaCop(args, media, mediaInline, otherInline, contentTypeMismatch, pager);
 	}
-	
+
 	MediaCop toOther()
 	{
 		return new MediaCop(args, other, otherInline, false, contentTypeMismatch, pager);
 	}
-	
+
 	boolean canContentTypeMismatch()
 	{
 		return media instanceof Media;
 	}
-	
+
 	boolean canTouch()
 	{
 		return canTouchInternal(media);
 	}
-	
+
 	boolean canTouchOther()
 	{
 		return other!=null && canTouchInternal(other);
 	}
-	
+
 	private static boolean canTouchInternal(final MediaPath media)
 	{
 		return
 			media instanceof Media &&
 			!((Media)media).getLastModified().isFinal();
 	}
-	
+
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
 	{
@@ -179,7 +179,7 @@ final class MediaCop extends ConsoleCop implements Pageable
 					final Date now = new Date();
 					touchInternal(model, now, media, touchIds);
 					touchInternal(model, now, other, touchOtherIds);
-					
+
 					model.commit();
 				}
 				finally
@@ -189,7 +189,7 @@ final class MediaCop extends ConsoleCop implements Pageable
 			}
 		}
 	}
-	
+
 	private static void touchInternal(final Model model, final Date now, final MediaPath media, final String[] touchIds)
 	{
 		if(touchIds!=null)
@@ -206,14 +206,14 @@ final class MediaCop extends ConsoleCop implements Pageable
 			}
 		}
 	}
-	
+
 	@Override
 	void writeHead(final Out out)
 	{
 		if(mediaInline || otherInline)
 			Media_Jspm.writeHead(out);
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,
@@ -224,7 +224,7 @@ final class MediaCop extends ConsoleCop implements Pageable
 		try
 		{
 			model.startTransaction(getClass().getName());
-			
+
 			final Query<? extends Item> q = media.getType().newQuery(media.isNotNull());
 			if(contentTypeMismatch)
 				q.narrow(((Media)media).bodyMismatchesContentType());
@@ -240,7 +240,7 @@ final class MediaCop extends ConsoleCop implements Pageable
 			model.rollbackIfNotCommitted();
 		}
 	}
-	
+
 	static final String fn(final String url)
 	{
 		final int pos = url.lastIndexOf('/');

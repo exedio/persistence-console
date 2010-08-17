@@ -42,26 +42,26 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	List<CopyConstraint> getItems(final Model model)
 	{
 		final ArrayList<CopyConstraint> constraints = new ArrayList<CopyConstraint>();
-		
+
 		for(final Type<?> t : model.getTypes())
 			for(final CopyConstraint cc : t.getDeclaredCopyConstraints())
 				constraints.add(cc);
-		
+
 		return constraints;
 	}
-	
+
 	@Override
 	String getCaption()
 	{
 		return "Copy Constraints";
 	}
-	
+
 	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Constraint", "Target"};
 	}
-	
+
 	@Override
 	void writeValue(final Out out, final CopyConstraint constraint, final int h)
 	{
@@ -73,7 +73,7 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 				throw new RuntimeException(String.valueOf(h));
 		};
 	}
-	
+
 	@Override
 	int check(final CopyConstraint constraint)
 	{

@@ -32,7 +32,7 @@ final class MediaSummary
 	private final int notComputable;
 	private final int notModified;
 	private final int delivered;
-	
+
 	MediaSummary(final MediaInfo[] infos)
 	{
 		int redirectFrom = 0;
@@ -45,7 +45,7 @@ final class MediaSummary
 		int notComputable = 0;
 		int notModified = 0;
 		int delivered = 0;
-		
+
 		for(final MediaInfo info : infos)
 		{
 			redirectFrom  += info.getRedirectFrom();
@@ -59,7 +59,7 @@ final class MediaSummary
 			notModified   += info.getNotModified();
 			delivered     += info.getDelivered();
 		}
-		
+
 		this.redirectFrom = redirectFrom;
 		this.exception = exception;
 		this.guessedUrl = guessedUrl;
@@ -81,7 +81,7 @@ final class MediaSummary
 	{
 		return exception;
 	}
-	
+
 	public int getGuessedUrl()
 	{
 		return guessedUrl;

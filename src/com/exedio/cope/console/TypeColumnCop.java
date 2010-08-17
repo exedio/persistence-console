@@ -45,13 +45,13 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 	List<ItemFunction> getItems(final Model model)
 	{
 		final ArrayList<ItemFunction> functions = new ArrayList<ItemFunction>();
-		
+
 		for(final Type<?> t : model.getTypes())
 		{
 			final This<?> tt = t.getThis();
 			if(tt.needsCheckTypeColumn())
 				functions.add(tt);
-			
+
 			for(final Field f : t.getDeclaredFields())
 				if(f instanceof ItemField)
 				{
@@ -60,22 +60,22 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 						functions.add(itf);
 				}
 		}
-		
+
 		return functions;
 	}
-	
+
 	@Override
 	String getCaption()
 	{
 		return "Type Columns";
 	}
-	
+
 	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Function", "Value"};
 	}
-	
+
 	@Override
 	void writeValue(final Out out, final ItemFunction function, final int h)
 	{
@@ -87,7 +87,7 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 				throw new RuntimeException(String.valueOf(h));
 		};
 	}
-	
+
 	@Override
 	int check(final ItemFunction function)
 	{

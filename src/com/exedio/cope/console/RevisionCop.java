@@ -36,22 +36,22 @@ import com.exedio.dsmf.SQLRuntimeException;
 final class RevisionCop extends ConsoleCop implements Pageable
 {
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
-	
+
 	final Pager pager;
-	
+
 	private RevisionCop(final Args args, final Pager pager)
 	{
 		super(TAB_REVISION, "revision", args);
 		this.pager = pager;
-		
+
 		pager.addParameters(this);
 	}
-	
+
 	RevisionCop(final Args args)
 	{
 		this(args, PAGER_CONFIG.newPager());
 	}
-	
+
 	RevisionCop(final Args args, final HttpServletRequest request)
 	{
 		this(args, PAGER_CONFIG.newPager(request));
@@ -62,23 +62,23 @@ final class RevisionCop extends ConsoleCop implements Pageable
 	{
 		return new RevisionCop(args, pager);
 	}
-	
+
 	public Pager getPager()
 	{
 		return pager;
 	}
-	
+
 	public RevisionCop toPage(final Pager pager)
 	{
 		return new RevisionCop(args, pager);
 	}
-	
+
 	@Override
 	void writeHead(final Out out)
 	{
 		Revision_Jspm.writeHead(out);
 	}
-	
+
 	private static RevisionLine register(final TreeMap<Integer, RevisionLine> lines, final int revision)
 	{
 		RevisionLine result = lines.get(revision);
@@ -89,7 +89,7 @@ final class RevisionCop extends ConsoleCop implements Pageable
 		}
 		return result;
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,
@@ -98,19 +98,19 @@ final class RevisionCop extends ConsoleCop implements Pageable
 			final History history)
 	{
 		final Revisions revisions = model.getRevisions();
-		
+
 		if(revisions==null)
 		{
 			Revision_Jspm.writeBodyDisabled(out);
 			return;
 		}
-		
+
 		final TreeMap<Integer, RevisionLine> lines = new TreeMap<Integer, RevisionLine>();
-		
+
 		register(lines, revisions.getNumber()).setCurrent();
 		for(final Revision m : revisions.getList())
 			register(lines, m.getNumber()).setRevision(m);
-		
+
 		Map<Integer, byte[]> logsRaw = null;
 		try
 		{
@@ -126,16 +126,16 @@ final class RevisionCop extends ConsoleCop implements Pageable
 			for(final Map.Entry<Integer, byte[]> e : logsRaw.entrySet())
 				register(lines, e.getKey()).setInfo(e.getValue());
 		}
-		
+
 		final ArrayList<RevisionLine> lineList = new ArrayList<RevisionLine>(lines.values());
 		Collections.reverse(lineList);
-		
+
 		final int offset = pager.getOffset();
 		final List<RevisionLine> lineListLimited =
 			lineList.subList(offset, Math.min(offset + pager.getLimit(), lineList.size()));
-		
+
 		pager.init(lineListLimited.size(), lineList.size());
-		
+
 		Revision_Jspm.writeBody(out, this, lineListLimited);
 	}
 }

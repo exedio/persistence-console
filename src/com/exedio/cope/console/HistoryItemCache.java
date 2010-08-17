@@ -40,20 +40,20 @@ final class HistoryItemCache extends Item
 {
 	private static final ItemField<HistoryModel> model = newItemField(HistoryModel.class).toFinal();
 	private static final StringField type = new StringField().toFinal();
-	
+
 	private static final DateField date = new DateField().toFinal();
 	@SuppressWarnings("unused") private static final UniqueConstraint dateAndType = new UniqueConstraint(date, type); // date must be first, so purging can use the index
 	private static final DateField initializeDate = new DateField().toFinal();
 	private static final DateField connectDate = new DateField().toFinal();
 	private static final IntegerField thread = new IntegerField().toFinal();
 	private static final IntegerField running = new IntegerField().toFinal().min(0);
-	
+
 	@SuppressWarnings("unused") private static final CopyConstraint dateCC = new CopyConstraint(model, date);
 	@SuppressWarnings("unused") private static final CopyConstraint initializeDateCC = new CopyConstraint(model, initializeDate);
 	@SuppressWarnings("unused") private static final CopyConstraint connectDateCC = new CopyConstraint(model, connectDate);
 	@SuppressWarnings("unused") private static final CopyConstraint threadCC = new CopyConstraint(model, thread);
 	@SuppressWarnings("unused") private static final CopyConstraint runningCC = new CopyConstraint(model, running);
-	
+
 	static List<SetValue> map(final HistoryModel m)
 	{
 		return Arrays.asList((SetValue)
@@ -64,8 +64,8 @@ final class HistoryItemCache extends Item
 			thread        .map(HistoryModel.thread.get(m)),
 			running       .map(HistoryModel.running.get(m)));
 	}
-	
-	
+
+
 	private static final IntegerField limit = new IntegerField().toFinal().min(0);
 	private static final IntegerField level = new IntegerField().toFinal().min(0);
 	private static final LongField hits = new LongField().toFinal();
@@ -79,7 +79,7 @@ final class HistoryItemCache extends Item
 	private static final LongField ageMaxMillis = new LongField().toFinal();
 	private static final LongField invalidationsOrdered = new LongField().toFinal();
 	private static final LongField invalidationsDone = new LongField().toFinal();
-	
+
 	static List<SetValue> map(final ItemCacheInfo info)
 	{
 		return Arrays.asList((SetValue)
@@ -88,64 +88,64 @@ final class HistoryItemCache extends Item
 			level .map(info.getLevel()),
 			hits  .map(info.getHits()),
 			misses.map(info.getMisses()),
-			
+
 			concurrentLoads.map(info.getConcurrentLoads()),
-			
+
 			replacementRuns   .map(info.getReplacementRuns()),
 			replacements      .map(info.getReplacements()),
 			lastReplacementRun.map(info.getLastReplacementRun()),
-			
+
 			ageAverageMillis.map(info.getAgeAverageMillis()),
 			ageMinMillis    .map(info.getAgeMinMillis()),
 			ageMaxMillis    .map(info.getAgeMaxMillis()),
-			
+
 			invalidationsOrdered.map(info.getInvalidationsOrdered()),
 			invalidationsDone   .map(info.getInvalidationsDone()));
 	}
-	
-	
+
+
 	@SuppressWarnings("unused")
 	private HistoryItemCache(final ActivationParameters ap)
 	{
 		super(ap);
 	}
-	
+
 	HistoryModel getModel()
 	{
 		return model.get(this);
 	}
-	
+
 	String getType()
 	{
 		return type.get(this);
 	}
-	
+
 	Date getDate()
 	{
 		return date.get(this);
 	}
-	
+
 	Date getInitalizeDate()
 	{
 		return initializeDate.get(this);
 	}
-	
+
 	Date getConnectDate()
 	{
 		return connectDate.get(this);
 	}
-	
+
 	int getThread()
 	{
 		return thread.getMandatory(this);
 	}
-	
+
 	int getRunning()
 	{
 		return running.getMandatory(this);
 	}
-	
+
 	private static final long serialVersionUID = 1l;
-	
+
 	static final Type<HistoryItemCache> TYPE = TypesBound.newType(HistoryItemCache.class);
 }

@@ -98,7 +98,7 @@ public class QueryCacheTest extends TestCase
 			assertEquals(7, cn.length);
 		}
 	}
-	
+
 	private static final void assertInfo(
 			final QueryCacheCop.Condense actual,
 			final int count,
@@ -113,7 +113,7 @@ public class QueryCacheTest extends TestCase
 		assertEquals(hits, actual.getHits());
 		assertEquals(query, actual.query);
 	}
-	
+
 	private static final void assertEquals(final int[] expected, final int[] actual)
 	{
 		if(!Arrays.equals(expected, actual))

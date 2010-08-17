@@ -34,7 +34,7 @@ final class HiddenCop extends ConsoleCop
 	{
 		return new HiddenCop(args);
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,

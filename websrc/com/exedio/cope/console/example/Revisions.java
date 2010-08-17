@@ -41,7 +41,7 @@ public final class Revisions
 	static final com.exedio.cope.Revisions revisions(final int length)
 	{
 		final Revision[] result = new Revision[length];
-		
+
 		int i = 0;
 		int revision = length;
 		result[i++] =
@@ -79,7 +79,7 @@ public final class Revisions
 			new Revision(revision--,
 					"before change of environment",
 					"drop table \"Item\"");
-		
+
 		for(; i<length; i++, revision--)
 		{
 			final String[] body = new String[(i%4) + 1];
@@ -89,16 +89,16 @@ public final class Revisions
 		}
 		return new com.exedio.cope.Revisions(result);
 	}
-	
+
 	static final void revisions(final Model model)
 	{
 		final java.util.Properties dbinfo = model.getEnvironmentInfo().asProperties();
 		final HashMap<String, String> environment = new HashMap<String, String>();
 		for(final Object key : dbinfo.keySet())
 			environment.put((String)key, dbinfo.getProperty((String)key));
-		
+
 		final Iterator<Revision> revisions = model.getRevisions().getList().iterator();
-		
+
 		final ConnectProperties p = model.getConnectProperties();
 		Connection con = null;
 		PreparedStatement stat = null;
@@ -106,11 +106,11 @@ public final class Revisions
 		{
 			con = DriverManager.getConnection(p.getDatabaseUrl(), p.getDatabaseUser(), p.getDatabasePassword());
 			stat = con.prepareStatement("insert into " + q(model, "while") + " (" + q(model, "v") + "," + q(model, "i") + ") values (?,?)");
-			
+
 			// skip first two revisions not yet applied
 			revisions.next();
 			revisions.next();
-			
+
 			for(int i = 0; i<5; i++)
 			{
 				final Revision revision = revisions.next();
@@ -127,7 +127,7 @@ public final class Revisions
 						environment,
 						revision.getComment(),
 						body.toArray(new RevisionInfoRevise.Body[body.size()])));
-				
+
 				if("before change of environment".equals(revision.getComment()))
 				{
 					environment.put("database.name",    environment.get("database.name")    + " - Changed");
@@ -174,12 +174,12 @@ public final class Revisions
 			}
 		}
 	}
-	
+
 	private static final String q(final Model model, final String name)
 	{
 		return SchemaInfo.quoteName(model, name);
 	}
-	
+
 	private static final void save(final PreparedStatement stat, final RevisionInfo info) throws SQLException
 	{
 		stat.setInt(1, info.getNumber());

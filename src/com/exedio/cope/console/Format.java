@@ -29,10 +29,10 @@ final class Format
 	{
 		// prevent instantiation
 	}
-	
+
 	private static SimpleDateFormat fullDateFormat, todayDateFormat;
 	private static DecimalFormat numberFormat;
-	
+
 	static
 	{
 		fullDateFormat = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
@@ -42,14 +42,14 @@ final class Format
 		nfs.setGroupingSeparator('\'');
 		numberFormat = new DecimalFormat("", nfs);
 	}
-	
+
 	private static final long todayInterval = 6 * 60 * 60 * 1000; // 6 hours
-	
+
 	static final String formatAndHide(final Date date)
 	{
 		return date!=null ? format(date) : "";
 	}
-	
+
 	static final String format(final Date date)
 	{
 		final long dateMillis = date.getTime();
@@ -58,7 +58,7 @@ final class Format
 			( (now-todayInterval) < dateMillis && dateMillis < (now+todayInterval) )
 			? todayDateFormat : fullDateFormat).format(date);
 	}
-	
+
 	static final String format(final long number)
 	{
 		if(number==Integer.MIN_VALUE)
@@ -69,34 +69,34 @@ final class Format
 			return "min64";
 		if(number==Long.MAX_VALUE)
 			return "max64";
-		
+
 		return /*"fm" +*/ numberFormat.format(number);
 	}
-	
+
 	static final String formatAndHide(final long hidden, final long number)
 	{
 		return /*("["+hidden+']') +*/ (number!=hidden ? format(number) : "");
 	}
-	
+
 	private static final DecimalFormat RATIO_FORMAT = new DecimalFormat("###0.00");
-	
+
 	static String ratio(final long dividend, final long divisor)
 	{
 		if(dividend<0 || divisor<0)
 			return "<0";
 		if(divisor==0)
 			return "";
-		
+
 		return RATIO_FORMAT.format(Math.log10(((double)dividend) / ((double)divisor)));
 	}
-	
+
 	private static final String hs(String s, final String... keywords)
 	{
 		for(final String keyword : keywords)
 			s = s.replaceAll("\\b(" + keyword +")\\b", "<b>" + keyword +"</b>");
 		return s;
 	}
-	
+
 	static String highlightSQL(final String s)
 	{
 		return hs(s,

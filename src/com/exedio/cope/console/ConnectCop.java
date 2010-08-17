@@ -41,13 +41,13 @@ final class ConnectCop extends ConsoleCop
 	{
 		return new ConnectCop(args);
 	}
-	
+
 	@Override
 	void writeHead(final Out out)
 	{
 		Connect_Jspm.writeHead(out);
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,
@@ -101,14 +101,14 @@ final class ConnectCop extends ConsoleCop
 				}
 			}
 		}
-		
+
 		Connect_Jspm.writeBody(
 				out, this,
 				props,
 				model,
 				sourceContent);
 	}
-	
+
 	static String formatObject(final Object o)
 	{
 		if(o==null)

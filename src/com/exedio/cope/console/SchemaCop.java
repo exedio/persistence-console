@@ -43,7 +43,7 @@ final class SchemaCop extends ConsoleCop
 	{
 		return new SchemaCop(args);
 	}
-	
+
 	@Override
 	void writeHead(final Out out)
 	{
@@ -61,12 +61,12 @@ final class SchemaCop extends ConsoleCop
 		SchemaConstraints_Jspm.writeBody(this, out, model, request);
 		SchemaDetails_Jspm.writeBody(this, out, model, request);
 	}
-	
+
 	private static final String strip(final String s, final String prefix)
 	{
 		return s.startsWith(prefix) ? s.substring(prefix.length()) : null;
 	}
-	
+
 	private static final Sequence getSequence(final Schema schema, final String param)
 	{
 		final Sequence result = schema.getSequence(param);
@@ -74,7 +74,7 @@ final class SchemaCop extends ConsoleCop
 			throw new RuntimeException(param);
 		return result;
 	}
-	
+
 	private static final Table getTable(final Schema schema, final String param)
 	{
 		final Table result = schema.getTable(param);
@@ -82,41 +82,41 @@ final class SchemaCop extends ConsoleCop
 			throw new RuntimeException(param);
 		return result;
 	}
-	
+
 	private static final Column getColumn(final Schema schema, final String param)
 	{
 		final int pos = param.indexOf('#');
 		if(pos<=0)
 			throw new RuntimeException(param);
-		
+
 		final Table table = schema.getTable(param.substring(0, pos));
 		if(table==null)
 			throw new RuntimeException(param);
-		
+
 		final Column result = table.getColumn(param.substring(pos+1));
 		if(result==null)
 			throw new RuntimeException(param);
-		
+
 		return result;
 	}
-	
+
 	private static final Constraint getConstraint(final Schema schema, final String param)
 	{
 		final int pos = param.indexOf('#');
 		if(pos<=0)
 			throw new RuntimeException(param);
-		
+
 		final Table table = schema.getTable(param.substring(0, pos));
 		if(table==null)
 			throw new RuntimeException(param);
-		
+
 		final Constraint result = table.getConstraint(param.substring(pos+1));
 		if(result==null)
 			throw new RuntimeException(param);
-		
+
 		return result;
 	}
-	
+
 	static final String DROP_CONSTRAINT = "DROP_CONSTRAINT";
 	static final String DROP_COLUMN     = "DROP_COLUMN";
 	static final String DROP_TABLE      = "DROP_TABLE";
@@ -128,11 +128,11 @@ final class SchemaCop extends ConsoleCop
 	static final String CREATE_TABLE      = "CREATE_TABLE";
 	static final String CREATE_COLUMN     = "CREATE_COLUMN";
 	static final String CREATE_CONSTRAINT = "CREATE_CONSTRAINT";
-	
+
 	static final String CATCH_CREATE = "catch.create";
 	static final String CATCH_DROP   = "catch.drop";
 	static final String CATCH_RESET  = "catch.reset";
-	
+
 	final static void writeApply(final Out out,
 			final HttpServletRequest request, final Model model, final boolean dryRun)
 	{
@@ -140,7 +140,7 @@ final class SchemaCop extends ConsoleCop
 		final StatementListener listener = new StatementListener()
 		{
 			long beforeExecuteTime = Long.MIN_VALUE;
-			
+
 			public boolean beforeExecute(final String statement)
 			{
 				out.writeRaw("\n\t\t<li><span class=\"javaDecoration\">\"</span>"); // TODO do java decoration by javascript, and encode quotes for java string literal
@@ -157,7 +157,7 @@ final class SchemaCop extends ConsoleCop
 					return true;
 				}
 			}
-			
+
 			public void afterExecute(final String statement, final int rows)
 			{
 				final long time = System.currentTimeMillis()-beforeExecuteTime;
@@ -168,7 +168,7 @@ final class SchemaCop extends ConsoleCop
 				out.writeRaw(" rows</li>");
 			}
 		};
-		
+
 		for(final String p : getParameters(request, DROP_CONSTRAINT))
 			getConstraint(schema, p).drop(listener);
 		for(final String p : getParameters(request, DROP_COLUMN))
@@ -181,7 +181,7 @@ final class SchemaCop extends ConsoleCop
 			getTable     (schema, p).drop(listener);
 		for(final String p : getParameters(request, DROP_SEQUENCE))
 			getSequence  (schema, p).drop(listener);
-		
+
 		for (Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
 		{
 			final String p = (String) i.next();
@@ -224,7 +224,7 @@ final class SchemaCop extends ConsoleCop
 		if(request.getParameter(CATCH_RESET)!=null)
 			for(final Column c : getCatchColumns(schema))
 				c.update("0", listener);
-		
+
 		for(final String p : getParameters(request, CREATE_SEQUENCE))
 			getSequence  (schema, p).create(listener);
 		for(final String p : getParameters(request, CREATE_TABLE))
@@ -238,15 +238,15 @@ final class SchemaCop extends ConsoleCop
 		for(final String p : getParameters(request, CREATE_CONSTRAINT))
 			getConstraint(schema, p).create(listener);
 	}
-	
+
 	private static final String[] EMPTY_STRINGS = new String[]{};
-	
+
 	private static final String[] getParameters(final HttpServletRequest request, final String name)
 	{
 		final String[] result = (String[]) request.getParameterMap().get(name);
 		return result!=null ? result : EMPTY_STRINGS;
 	}
-	
+
 	private static final ArrayList<Column> getCatchColumns(final Schema schema)
 	{
 		final ArrayList<Column> result = new ArrayList<Column>();

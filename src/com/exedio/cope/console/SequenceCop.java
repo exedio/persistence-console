@@ -39,25 +39,25 @@ final class SequenceCop extends TestCop<com.exedio.cope.SequenceInfo>
 	{
 		return new SequenceCop(args);
 	}
-	
+
 	@Override
 	List<com.exedio.cope.SequenceInfo> getItems(final Model model)
 	{
 		return model.getSequenceInfo();
 	}
-	
+
 	@Override
 	String getCaption()
 	{
 		return "Sequences";
 	}
-	
+
 	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Type", "Name", "Start", "Min", "Max", "Count", "First", "Last"};
 	}
-	
+
 	@Override
 	void writeValue(final Out out, final com.exedio.cope.SequenceInfo info, final int h)
 	{
@@ -77,7 +77,7 @@ final class SequenceCop extends TestCop<com.exedio.cope.SequenceInfo>
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}
-	
+
 	@Override
 	int check(final com.exedio.cope.SequenceInfo info)
 	{

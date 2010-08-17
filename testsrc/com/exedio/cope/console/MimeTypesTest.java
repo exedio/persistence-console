@@ -35,7 +35,7 @@ public class MimeTypesTest extends TestCase
 		assertIt("image/[p]jpeg, ~/png, text/plain", "image/jpeg", "text/plain", "image/png", "image/pjpeg");
 		assertIt("image/[p]jpeg, ~/[x-]png, text/plain", "image/x-png", "image/jpeg", "text/plain", "image/png", "image/pjpeg");
 	}
-	
+
 	private void assertIt(final String expected, final String... actual) throws UnsupportedEncodingException
 	{
 		final ByteArrayOutputStream baos = new ByteArrayOutputStream();

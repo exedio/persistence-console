@@ -43,13 +43,13 @@ final class HistoryModel extends Item
 	static final DateField connectDate = new DateField().toFinal();
 	static final IntegerField thread = new IntegerField().toFinal();
 	static final IntegerField running = new IntegerField().toFinal().min(0);
-	
+
 	private static final IntegerField connectionPoolIdle = new IntegerField().toFinal().min(0);
 	private static final IntegerField connectionPoolGet = new IntegerField().toFinal().min(0);
 	private static final IntegerField connectionPoolPut = new IntegerField().toFinal().min(0);
 	private static final IntegerField connectionPoolInvalidOnGet = new IntegerField().toFinal().min(0);
 	private static final IntegerField connectionPoolInvalidOnPut = new IntegerField().toFinal().min(0);
-	
+
 	static List<SetValue> map(final Pool.Info info)
 	{
 		return Arrays.asList((SetValue)
@@ -59,17 +59,17 @@ final class HistoryModel extends Item
 			connectionPoolInvalidOnGet.map(info.getInvalidOnGet()),
 			connectionPoolInvalidOnPut.map(info.getInvalidOnPut()));
 	}
-	
-	
+
+
 	static final LongField nextTransactionId = new LongField().toFinal();
-	
+
 	@CopeSchemaName("commitOutConnection")
 	private static final LongField commitWithoutConnection = new LongField().toFinal();
 	private static final LongField commitWithConnection = new LongField().toFinal();
 	@CopeSchemaName("rollbackOutConnection")
 	private static final LongField rollbackWithoutConnection = new LongField().toFinal();
 	private static final LongField rollbackWithConnection = new LongField().toFinal();
-	
+
 	static List<SetValue> map(final TransactionCounters info)
 	{
 		return Arrays.asList((SetValue)
@@ -78,31 +78,31 @@ final class HistoryModel extends Item
 			rollbackWithoutConnection.map(info.getRollbackWithoutConnection()),
 			rollbackWithConnection   .map(info.getRollbackWithConnection()));
 	}
-	
-	
+
+
 	private static final LongField itemCacheHits = new LongField().toFinal();
 	private static final LongField itemCacheMisses = new LongField().toFinal();
 	private static final LongField itemCacheConcurrentLoads = new LongField().toFinal();
 	private static final IntegerField itemCacheReplacementRuns = new IntegerField().toFinal().min(0);
 	private static final IntegerField itemCacheReplacements = new IntegerField().toFinal().min(0);
-	
+
 	static List<SetValue> map(final ItemCacheSummary info)
 	{
 		return Arrays.asList((SetValue)
 			itemCacheHits  .map(info.hits),
 			itemCacheMisses.map(info.misses),
-			
+
 			itemCacheConcurrentLoads.map(info.concurrentLoads),
 			itemCacheReplacementRuns.map(info.replacementRuns),
 			itemCacheReplacements   .map(info.replacements));
 	}
-	
-	
+
+
 	private static final LongField queryCacheHits = new LongField().toFinal();
 	private static final LongField queryCacheMisses = new LongField().toFinal();
 	private static final LongField queryCacheReplacements = new LongField().toFinal();
 	private static final LongField queryCacheInvalidations = new LongField().toFinal();
-	
+
 	static List<SetValue> map(final QueryCacheInfo info)
 	{
 		return Arrays.asList((SetValue)
@@ -111,10 +111,10 @@ final class HistoryModel extends Item
 			queryCacheReplacements .map(info.getReplacements()),
 			queryCacheInvalidations.map(info.getInvalidations()));
 	}
-	
-	
+
+
 	static final IntegerField mediasNoSuchPath = new IntegerField().toFinal().min(0);
-	
+
 	private static final IntegerField mediasRedirectFrom  = new IntegerField().toFinal().min(0);
 	private static final IntegerField mediasException     = new IntegerField().toFinal().min(0);
 	private static final IntegerField mediasGuessedUrl    = new IntegerField().toFinal().min(0);
@@ -125,7 +125,7 @@ final class HistoryModel extends Item
 	private static final IntegerField mediasNotComputable = new IntegerField().toFinal().min(0);
 	private static final IntegerField mediasNotModified   = new IntegerField().toFinal().min(0);
 	private static final IntegerField mediasDelivered     = new IntegerField().toFinal().min(0);
-	
+
 	static List<SetValue> map(final MediaSummary info)
 	{
 		return Arrays.asList((SetValue)
@@ -140,22 +140,22 @@ final class HistoryModel extends Item
 			mediasNotModified  .map(info.getNotModified()),
 			mediasDelivered    .map(info.getDelivered()));
 	}
-	
-	
+
+
 	private static final LongField clusterSenderInvalidationSplit = new LongField().toFinal();
-	
+
 	static List<SetValue> map(final ClusterSenderInfo info)
 	{
 		return Arrays.asList((SetValue)
 			clusterSenderInvalidationSplit.map(info!=null ? info.getInvalidationSplit() : 0));
 	}
-	
-	
+
+
 	private static final LongField clusterListenerException    = new LongField().toFinal();
 	private static final LongField clusterListenerMissingMagic = new LongField().toFinal();
 	private static final LongField clusterListenerWrongSecret  = new LongField().toFinal();
 	private static final LongField clusterListenerFromMyself   = new LongField().toFinal();
-	
+
 	static List<SetValue> map(final ClusterListenerInfo info)
 	{
 		return Arrays.asList((SetValue)
@@ -164,15 +164,15 @@ final class HistoryModel extends Item
 			clusterListenerWrongSecret .map(info!=null ? info.getWrongSecret()  : 0),
 			clusterListenerFromMyself  .map(info!=null ? info.getFromMyself()   : 0));
 	}
-	
-	
+
+
 	@SuppressWarnings("unused")
 	private HistoryModel(final ActivationParameters ap)
 	{
 		super(ap);
 	}
-	
+
 	private static final long serialVersionUID = 1l;
-	
+
 	static final Type<HistoryModel> TYPE = TypesBound.newType(HistoryModel.class);
 }

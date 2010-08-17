@@ -43,7 +43,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	List<Constraint> getItems(final Model model)
 	{
 		final ArrayList<Constraint> constraints = new ArrayList<Constraint>();
-		
+
 		final Schema schema = model.getSchema();
 		for(final Table t : schema.getTables())
 		{
@@ -51,22 +51,22 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 				if(!c.isSupported())
 					constraints.add(c);
 		}
-		
+
 		return constraints;
 	}
-	
+
 	@Override
 	String getCaption()
 	{
 		return "Unsupported Constraints";
 	}
-	
+
 	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Table", "Name", "Condition"};
 	}
-	
+
 	@Override
 	void writeValue(final Out out, final Constraint constraint, final int h)
 	{
@@ -79,7 +79,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 				throw new RuntimeException(String.valueOf(h));
 		};
 	}
-	
+
 	@Override
 	int check(final Constraint constraint)
 	{

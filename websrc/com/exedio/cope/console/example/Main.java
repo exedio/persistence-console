@@ -30,7 +30,7 @@ public final class Main
 				AHashItem.TYPE,
 				AMediaItem.TYPE
 		);
-	
+
 	public static final Model reducedModel =
 		new Model(
 				AReducedItem.TYPE

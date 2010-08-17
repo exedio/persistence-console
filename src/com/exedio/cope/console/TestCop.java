@@ -39,7 +39,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 	{
 		Test_Jspm.writeHead(out);
 	}
-	
+
 	@Override
 	final void writeBody(
 			final Out out,
@@ -48,7 +48,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 			final History history)
 	{
 		final List<I> items = getItems(model);
-		
+
 		if(isPost(request) && request.getParameter(TEST)!=null)
 		{
 			try
@@ -65,19 +65,19 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 		else
 			Test_Jspm.writeBody(this, out, getCaption(), getHeadings(), items, false);
 	}
-	
+
 	static class Info
 	{
 		final int failures;
 		final long elapsed;
-		
+
 		Info(final int failures, final long elapsed)
 		{
 			this.failures = failures;
 			this.elapsed  = elapsed;
 		}
 	}
-	
+
 	abstract List<I> getItems(Model model);
 	abstract String getCaption();
 	abstract String[] getHeadings();

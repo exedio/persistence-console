@@ -23,7 +23,7 @@ import com.exedio.cope.StringField;
 public final class ASubItem extends AnItem
 {
 	static final StringField aSubField = new StringField();
-	
+
 	/**
 
 	 **

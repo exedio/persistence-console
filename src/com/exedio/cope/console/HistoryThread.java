@@ -54,10 +54,10 @@ final class HistoryThread extends Thread
 			HistoryClusterNode.TYPE,
 			HistoryMedia.TYPE,
 			HistoryPurge.TYPE);
-	
+
 	private static final String NAME = "COPE History";
 	private static final int PURGE_INTERVAL = Calendar.DAY_OF_YEAR;
-	
+
 	private final String name;
 	private final Model watchedModel;
 	private final String propertyFile;
@@ -66,7 +66,7 @@ final class HistoryThread extends Thread
 	private final String topic;
 	private final MediaPath[] medias;
 	private volatile boolean proceed = true;
-	
+
 	HistoryThread(final Model watchedModel, final String propertyFile, final int autoPurgeDays)
 	{
 		super(NAME);
@@ -76,10 +76,10 @@ final class HistoryThread extends Thread
 		this.propertyFile = propertyFile;
 		this.autoPurgeDays = autoPurgeDays;
 		this.topic = name + ' ';
-		
+
 		assert watchedModel!=null;
 		assert propertyFile!=null;
-		
+
 		final ArrayList<MediaPath> medias = new ArrayList<MediaPath>();
 		for(final Type<?> type : watchedModel.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
@@ -87,7 +87,7 @@ final class HistoryThread extends Thread
 					medias.add((MediaPath)feature);
 		this.medias = medias.toArray(new MediaPath[medias.size()]);
 	}
-	
+
 	@Override
 	public void run()
 	{
@@ -97,7 +97,7 @@ final class HistoryThread extends Thread
 			sleepByWait(2000l);
 			if(!proceed)
 				return;
-			
+
 			System.out.println(topic + "run() connecting");
 			ConnectToken connectToken = null;
 			final long connecting = System.currentTimeMillis();
@@ -117,16 +117,16 @@ final class HistoryThread extends Thread
 				{
 					HISTORY_MODEL.rollbackIfNotCommitted();
 				}
-				
+
 				final GregorianCalendar purgeLast = new GregorianCalendar();
 				purgeLast.setTimeInMillis(System.currentTimeMillis());
 				int purgeDayLast = purgeLast.get(PURGE_INTERVAL);
-				
+
 				for(int running = 0; proceed; running++)
 				{
 					System.out.println(topic + "run() store " + running);
 					store(running);
-					
+
 					if(autoPurgeDays>0)
 					{
 						purgeLast.setTimeInMillis(System.currentTimeMillis());
@@ -141,7 +141,7 @@ final class HistoryThread extends Thread
 							purgeDayLast = purgeDayNow;
 						}
 					}
-					
+
 					sleepByWait(60000l);
 				}
 			}
@@ -163,13 +163,13 @@ final class HistoryThread extends Thread
 			e.printStackTrace();
 		}
 	}
-	
+
 	void store(final int running) // non-private for testing
 	{
 		// prepare
 		final int thread = System.identityHashCode(this);
 		final MediaInfo[] mediaInfos = new MediaInfo[medias.length];
-		
+
 		// gather data
 		final Date date = new Date();
 		final Date initializeDate = watchedModel.getInitializeDate();
@@ -185,11 +185,11 @@ final class HistoryThread extends Thread
 			mediaInfos[mediaValuesIndex++] = path.getInfo();
 		final ClusterSenderInfo clusterSenderInfo = watchedModel.getClusterSenderInfo();
 		final ClusterListenerInfo clusterListenerInfo = watchedModel.getClusterListenerInfo();
-		
+
 		// process data
 		final ItemCacheSummary itemCacheSummary = new ItemCacheSummary(itemCacheInfos);
 		final MediaSummary mediaSummary = new MediaSummary(mediaInfos);
-		
+
 		// save data
 		try
 		{
@@ -248,7 +248,7 @@ final class HistoryThread extends Thread
 			HISTORY_MODEL.rollbackIfNotCommitted();
 		}
 	}
-	
+
 	private void sleepByWait(final long millis)
 	{
 		synchronized(lock)
@@ -266,7 +266,7 @@ final class HistoryThread extends Thread
 			//System.out.println(topic + "run() slept    (" + (System.currentTimeMillis()-sleeping) + "ms)");
 		}
 	}
-	
+
 	void stopAndJoin()
 	{
 		System.out.println(topic + "stopAndJoin() entering");
@@ -288,13 +288,13 @@ final class HistoryThread extends Thread
 		}
 		System.out.println(topic + "stopAndJoin() joined (" + (System.currentTimeMillis() - joining) + "ms)");
 	}
-	
+
 	@Override
 	public String toString()
 	{
 		return name;
 	}
-	
+
 	static int analyzeCount(final Type type)
 	{
 		final int result;
@@ -310,7 +310,7 @@ final class HistoryThread extends Thread
 		}
 		return result;
 	}
-	
+
 	static Date[] analyzeDate(final Type type)
 	{
 		final DateField date = (DateField)type.getFeature("date");

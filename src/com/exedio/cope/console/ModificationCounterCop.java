@@ -41,26 +41,26 @@ final class ModificationCounterCop extends TestCop<Type>
 	List<Type> getItems(final Model model)
 	{
 		final ArrayList<Type> result = new ArrayList<Type>();
-		
+
 		for(final Type t : model.getTypes())
 			if(t.needsCheckModificationCounter())
 				result.add(t);
-		
+
 		return result;
 	}
-	
+
 	@Override
 	String getCaption()
 	{
 		return "Modification Counters";
 	}
-	
+
 	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Supertype", "Type"};
 	}
-	
+
 	@Override
 	void writeValue(final Out out, final Type type, final int h)
 	{
@@ -72,7 +72,7 @@ final class ModificationCounterCop extends TestCop<Type>
 				throw new RuntimeException(String.valueOf(h));
 		};
 	}
-	
+
 	@Override
 	int check(final Type type)
 	{

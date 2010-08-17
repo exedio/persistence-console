@@ -25,28 +25,28 @@ import com.exedio.cope.util.XMLEncoder;
 class OutBasic
 {
 	protected final PrintStream bf;
-	
+
 	OutBasic(final PrintStream bf)
 	{
 		assert bf!=null;
 		this.bf = bf;
 	}
-	
+
 	void writeStatic(final String s)
 	{
 		bf.print(s);
 	}
-	
+
 	void write(final String s)
 	{
 		bf.print(XMLEncoder.encode(s));
 	}
-	
+
 	void write(final char c)
 	{
 		bf.print(c); // TODO encode this as well
 	}
-	
+
 	void write(final int i)
 	{
 		bf.print(i);

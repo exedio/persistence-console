@@ -24,7 +24,7 @@ import com.exedio.cope.StringField;
 public class AnItem extends Item
 {
 	static final StringField aField = new StringField();
-	
+
 	/**
 
 	 **

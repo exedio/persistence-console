@@ -24,19 +24,19 @@ import com.exedio.cope.util.Properties;
 final class History
 {
 	private static final String AUTO_PURGE_DAYS = "com.exedio.cope.console.history.autoPurgeDays";
-	
+
 	private final Model model;
 	private final Object lock = new Object();
 	private HistoryThread thread = null;
 	private boolean available = false;
-	
+
 	History(final Model model)
 	{
 		this.model = model;
 		assert model!=null;
 		start();
 	}
-	
+
 	boolean isAvailable()
 	{
 		synchronized(lock)
@@ -44,7 +44,7 @@ final class History
 			return available;
 		}
 	}
-	
+
 	boolean isRunning()
 	{
 		synchronized(lock)
@@ -52,14 +52,14 @@ final class History
 			return thread!=null && thread.isAlive();
 		}
 	}
-	
+
 	void start()
 	{
 		synchronized(lock)
 		{
 			if(thread!=null && thread.isAlive())
 				throw new RuntimeException("already running");
-			
+
 			Properties.Source context = null;
 			try
 			{
@@ -75,12 +75,12 @@ final class History
 				if(propertyFile!=null)
 				{
 					available = true;
-					
+
 					int autoPurgeDays = 0;
 					final String autoPurgeDaysString = context.get(AUTO_PURGE_DAYS);
 					if(autoPurgeDaysString!=null)
 						autoPurgeDays = Integer.parseInt(autoPurgeDaysString);
-					
+
 					thread = new HistoryThread(model, propertyFile, autoPurgeDays);
 					thread.start();
 				}
@@ -99,7 +99,7 @@ final class History
 			}
 		}
 	}
-	
+
 	String getThreadID()
 	{
 		return
@@ -107,7 +107,7 @@ final class History
 			? thread.toString()
 			: null;
 	}
-	
+
 	int getAutoPurgeDays()
 	{
 		final HistoryThread thread = this.thread;
