@@ -115,7 +115,7 @@ final class HistoryPurge extends Item
 				con = null;
 			}
 		}
-		catch(SQLException e)
+		catch(final SQLException e)
 		{
 			throw new SQLRuntimeException(e, bf);
 		}
@@ -128,7 +128,7 @@ final class HistoryPurge extends Item
 					stat.close();
 					stat = null;
 				}
-				catch(SQLException e)
+				catch(final SQLException e)
 				{
 					// exception is already thrown
 				}
@@ -140,7 +140,7 @@ final class HistoryPurge extends Item
 					con.close();
 					con = null;
 				}
-				catch(SQLException e)
+				catch(final SQLException e)
 				{
 					// exception is already thrown
 				}

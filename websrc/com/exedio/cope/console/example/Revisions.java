@@ -142,7 +142,7 @@ public final class Revisions
 						environment));
 			}
 		}
-		catch(SQLException e)
+		catch(final SQLException e)
 		{
 			throw new SQLRuntimeException(e, "create");
 		}
@@ -155,7 +155,7 @@ public final class Revisions
 					stat.close();
 					stat = null;
 				}
-				catch(SQLException e)
+				catch(final SQLException e)
 				{
 					throw new SQLRuntimeException(e, "close");
 				}
@@ -167,7 +167,7 @@ public final class Revisions
 					con.close();
 					con = null;
 				}
-				catch(SQLException e)
+				catch(final SQLException e)
 				{
 					throw new SQLRuntimeException(e, "close");
 				}

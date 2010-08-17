@@ -158,7 +158,7 @@ final class HistoryThread extends Thread
 					System.out.println(topic + "run() not connected");
 			}
 		}
-		catch(RuntimeException e)
+		catch(final RuntimeException e)
 		{
 			e.printStackTrace();
 		}
@@ -259,7 +259,7 @@ final class HistoryThread extends Thread
 			{
 				lock.wait(millis);
 			}
-			catch(InterruptedException e)
+			catch(final InterruptedException e)
 			{
 				throw new RuntimeException(name, e);
 			}
@@ -282,7 +282,7 @@ final class HistoryThread extends Thread
 		{
 			join();
 		}
-		catch(InterruptedException e)
+		catch(final InterruptedException e)
 		{
 			throw new RuntimeException(name, e);
 		}

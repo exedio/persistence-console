@@ -181,7 +181,7 @@ final class MediaStatsCop extends ConsoleCop
 			else
 			{
 				out.write(contentType);
-				int pos = contentType.indexOf('/');
+				final int pos = contentType.indexOf('/');
 				if(pos>1)
 					prefix = contentType.substring(0, pos+1);
 			}

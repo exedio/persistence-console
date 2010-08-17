@@ -59,7 +59,7 @@ final class EnvironmentCop extends ConsoleCop
 			final History history)
 	{
 		final java.util.Properties current = model.getEnvironmentInfo().asProperties();
-		for(Iterator i = current.keySet().iterator(); i.hasNext(); )
+		for(final Iterator i = current.keySet().iterator(); i.hasNext(); )
 		{
 			final String name = (String)i.next();
 			current.setProperty(name, replaceNull(current.getProperty(name)));
@@ -83,7 +83,7 @@ final class EnvironmentCop extends ConsoleCop
 			in.close();
 			in = null;
 		}
-		catch(IOException e)
+		catch(final IOException e)
 		{
 			throw new RuntimeException(e);
 		}
@@ -95,7 +95,7 @@ final class EnvironmentCop extends ConsoleCop
 				{
 					in.close();
 				}
-				catch(IOException e)
+				catch(final IOException e)
 				{
 					// oops
 				}
@@ -103,7 +103,7 @@ final class EnvironmentCop extends ConsoleCop
 		}
 
 		final TreeMap<String, HashMap<String, Object>> testedDatabases = new TreeMap<String, HashMap<String, Object>>();
-		for(Iterator i = p.keySet().iterator(); i.hasNext(); )
+		for(final Iterator i = p.keySet().iterator(); i.hasNext(); )
 		{
 			final String name = (String)i.next();
 			final String value = replaceNull(p.getProperty(name));
@@ -156,7 +156,7 @@ final class EnvironmentCop extends ConsoleCop
 					new java.util.Properties(),
 					makeTestedDatabases());
 		}
-		catch(IOException e)
+		catch(final IOException e)
 		{
 			throw new RuntimeException(e);
 		}

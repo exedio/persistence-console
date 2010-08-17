@@ -65,7 +65,7 @@ final class History
 			{
 				context = model.getConnectProperties().getContext();
 			}
-			catch(IllegalStateException e)
+			catch(final IllegalStateException e)
 			{
 				// ok, then no history
 			}

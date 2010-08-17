@@ -167,7 +167,7 @@ public final class ConsoleServlet extends CopsServlet
 			{
 				hostname = InetAddress.getLocalHost().getHostName();
 			}
-			catch(UnknownHostException e)
+			catch(final UnknownHostException e)
 			{
 				// leave hostname==null
 			}

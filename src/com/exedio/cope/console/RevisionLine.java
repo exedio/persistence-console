@@ -143,7 +143,7 @@ final class RevisionLine
 		{
 			this.logString = new String(infoBytes, CHARSET);
 		}
-		catch(UnsupportedEncodingException e)
+		catch(final UnsupportedEncodingException e)
 		{
 			throw new RuntimeException(CHARSET, e);
 		}
@@ -160,7 +160,7 @@ final class RevisionLine
 		{
 			info = RevisionInfo.read(infoBytes);
 		}
-		catch(Exception e)
+		catch(final Exception e)
 		{
 			info = null;
 		}

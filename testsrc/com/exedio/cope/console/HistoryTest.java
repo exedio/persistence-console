@@ -280,7 +280,7 @@ public class HistoryTest extends TestCase
 			}
 			while((System.currentTimeMillis()-start)<=millis);
 		}
-		catch(InterruptedException e)
+		catch(final InterruptedException e)
 		{
 			throw new RuntimeException(e);
 		}

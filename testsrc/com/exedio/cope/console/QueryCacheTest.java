@@ -35,7 +35,7 @@ public class QueryCacheTest extends TestCase
 			new QueryCacheCop.Content(null, true);
 			fail();
 		}
-		catch(NullPointerException e)
+		catch(final NullPointerException e)
 		{
 			assertEquals(null, e.getMessage());
 		}

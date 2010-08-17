@@ -101,7 +101,7 @@ final class QueryCacheCop extends ConsoleCop
 				int sumResultSize = 0;
 				int maxResultSize = 0;
 				int minResultSize = Integer.MAX_VALUE;
-				int[] resultSizes = new int[5];
+				final int[] resultSizes = new int[5];
 
 				long sumHits = 0;
 				long maxHits = 0;

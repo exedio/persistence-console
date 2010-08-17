@@ -182,7 +182,7 @@ final class SchemaCop extends ConsoleCop
 		for(final String p : getParameters(request, DROP_SEQUENCE))
 			getSequence  (schema, p).drop(listener);
 
-		for (Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
+		for (final Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
 		{
 			final String p = (String) i.next();
 			final String sourceName = strip(p, RENAME_TABLE_PREFIX);
@@ -195,7 +195,7 @@ final class SchemaCop extends ConsoleCop
 
 			getTable(schema, sourceName).renameTo(targetName, listener);
 		}
-		for (Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
+		for (final Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
 		{
 			final String p = (String) i.next();
 			final String sourceName = strip(p, MODIFY_COLUMN_PREFIX);
@@ -208,7 +208,7 @@ final class SchemaCop extends ConsoleCop
 
 			getColumn(schema, sourceName).modify(targetType, listener);
 		}
-		for (Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
+		for (final Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
 		{
 			final String p = (String) i.next();
 			final String sourceName = strip(p, RENAME_COLUMN_PREFIX);

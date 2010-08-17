@@ -161,7 +161,7 @@ abstract class ConsoleCop<S> extends Cop
 	/**
 	 * @param out used in subclasses
 	 */
-	void writeHead(Out out)
+	void writeHead(final Out out)
 	{
 		// default implementation does nothing
 	}

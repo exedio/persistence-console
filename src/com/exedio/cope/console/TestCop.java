@@ -35,7 +35,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 	}
 
 	@Override
-	final void writeHead(Out out)
+	final void writeHead(final Out out)
 	{
 		Test_Jspm.writeHead(out);
 	}

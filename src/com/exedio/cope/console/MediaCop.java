@@ -200,7 +200,7 @@ final class MediaCop extends ConsoleCop implements Pageable
 				for(final String touchId : touchIds)
 					lastModified.set(model.getItem(touchId), now);
 			}
-			catch(NoSuchIDException e)
+			catch(final NoSuchIDException e)
 			{
 				throw new RuntimeException(e);
 			}

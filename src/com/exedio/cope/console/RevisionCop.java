@@ -116,7 +116,7 @@ final class RevisionCop extends ConsoleCop implements Pageable
 		{
 			logsRaw = model.getRevisionLogs();
 		}
-		catch(SQLRuntimeException e)
+		catch(final SQLRuntimeException e)
 		{
 			e.printStackTrace(); // TODO show error in page together with declared revisions
 		}

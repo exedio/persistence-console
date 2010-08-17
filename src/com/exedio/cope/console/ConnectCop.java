@@ -79,11 +79,11 @@ final class ConnectCop extends ConsoleCop
 				}
 			}
 		}
-		catch(FileNotFoundException e)
+		catch(final FileNotFoundException e)
 		{
 			// sourceContent is still null
 		}
-		catch(IOException e)
+		catch(final IOException e)
 		{
 			throw new RuntimeException(source, e);
 		}
@@ -95,7 +95,7 @@ final class ConnectCop extends ConsoleCop
 				{
 					r.close();
 				}
-				catch(IOException e)
+				catch(final IOException e)
 				{
 					throw new RuntimeException(e);
 				}
