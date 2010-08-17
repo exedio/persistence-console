@@ -6,4 +6,5 @@
 		privileged="true">
 	<Parameter name="com.exedio.cope.console.log" value="history.cope.properties" />
 	<Parameter name="com.exedio.cope.console.history.autoPurgeDays" value="2" />
+	<Parameter name="cluster.secret" value="5476" />
 </Context>
