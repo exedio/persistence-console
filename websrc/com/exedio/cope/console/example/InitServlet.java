@@ -40,10 +40,13 @@ public final class InitServlet extends CopsServlet
 
 	static final String CREATE_SAMPLE_DATA = "createSampleData";
 
+	static final String TRANSACTION = "transaction";
+
 	static final String MODIFICATION_LISTENER_ADD           = "modificationListener.add";
 	static final String MODIFICATION_LISTENER_ADD_EXCEPTION = "modificationListener.addException";
 
 	private ConnectToken connectToken = null;
+	static int transactionNumber = 0;
 	static int modificationListenerNumber = 0;
 
 	@Override
@@ -58,6 +61,20 @@ public final class InitServlet extends CopsServlet
 		{
 			if(request.getParameter(CREATE_SAMPLE_DATA)!=null)
 				createSampleData();
+			else if(request.getParameter(TRANSACTION)!=null)
+			{
+				try
+				{
+					final String name = InitServlet.class.getName() + "#transaction#" + (transactionNumber++);
+					Main.model.startTransaction(name);
+					new AnItem(name);
+					Main.model.commit();
+				}
+				finally
+				{
+					Main.model.rollbackIfNotCommitted();
+				}
+			}
 			else if(request.getParameter(MODIFICATION_LISTENER_ADD)!=null)
 			{
 				Main.model.addModificationListener(new ModificationListener()
@@ -116,7 +133,7 @@ public final class InitServlet extends CopsServlet
 		Main.model.createSchema();
 		try
 		{
-			Main.model.startTransaction(thisClass.getName());
+			Main.model.startTransaction(thisClass.getName() + "#createSampleData");
 			new AnItem("aField1");
 			new AnItem("aField2");
 			new ASubItem("aField1s", "aSubField1s");
