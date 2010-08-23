@@ -42,8 +42,6 @@ final class ModificationListenerCop extends ConsoleCop
 		return new ModificationListenerCop(args);
 	}
 
-	//static int debugNumber = 0;
-
 	@Override
 	final void writeBody(
 			final Out out,
@@ -73,37 +71,6 @@ final class ModificationListenerCop extends ConsoleCop
 				model.getModificationListenersCleared(),
 				model.getModificationListeners(),
 				model.getModificationListenersCleared());
-
-		/*model.addModificationListener(new ModificationListener()
-		{
-			private int count = debugNumber++;
-
-			public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
-			{
-				// do nothing
-			}
-
-			@Override
-			public String toString()
-			{
-				return "toString of ModificationListener " + count;
-			}
-		});
-		model.addModificationListener(new ModificationListener()
-		{
-			private int count = debugNumber++;
-
-			public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
-			{
-				// do nothing
-			}
-
-			@Override
-			public String toString()
-			{
-				throw new RuntimeException("Exception in toString of ModificationListener " + count);
-			}
-		});*/
 	}
 
 	final String toID(final ModificationListener listener)

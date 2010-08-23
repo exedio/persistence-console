@@ -20,13 +20,17 @@ package com.exedio.cope.console.example;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.exedio.cope.Item;
+import com.exedio.cope.Transaction;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.ServletUtil;
+import com.exedio.cope.util.ModificationListener;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 
@@ -36,7 +40,11 @@ public final class InitServlet extends CopsServlet
 
 	static final String CREATE_SAMPLE_DATA = "createSampleData";
 
+	static final String MODIFICATION_LISTENER_ADD           = "modificationListener.add";
+	static final String MODIFICATION_LISTENER_ADD_EXCEPTION = "modificationListener.addException";
+
 	private ConnectToken connectToken = null;
+	static int modificationListenerNumber = 0;
 
 	@Override
 	protected void doRequest(
@@ -50,6 +58,42 @@ public final class InitServlet extends CopsServlet
 		{
 			if(request.getParameter(CREATE_SAMPLE_DATA)!=null)
 				createSampleData();
+			else if(request.getParameter(MODIFICATION_LISTENER_ADD)!=null)
+			{
+				Main.model.addModificationListener(new ModificationListener()
+				{
+					private final int count = modificationListenerNumber++;
+
+					public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
+					{
+						// do nothing
+					}
+
+					@Override
+					public String toString()
+					{
+						return "toString of ModificationListener " + count;
+					}
+				});
+			}
+			else if(request.getParameter(MODIFICATION_LISTENER_ADD_EXCEPTION)!=null)
+			{
+				Main.model.addModificationListener(new ModificationListener()
+				{
+					private final int count = modificationListenerNumber++;
+
+					public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
+					{
+						// do nothing
+					}
+
+					@Override
+					public String toString()
+					{
+						throw new RuntimeException("Exception in toString of ModificationListener " + count);
+					}
+				});
+			}
 		}
 
 		final Out out = new Out(new PrintStream(response.getOutputStream(), false, UTF8));
