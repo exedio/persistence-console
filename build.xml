@@ -67,13 +67,13 @@
 		</copy>
 	</target>
 	
-	<target name="jspm">
+	<target name="src.jspm">
 		<jspm>
 			<fileset dir="src" includes="**/*.jspm" />
 		</jspm>
 	</target>
 	
-	<target name="src.compile" depends="jspm">
+	<target name="src.compile" depends="src.jspm">
 		<compile srcdir="src">
 			<classpath>
 				<pathelement location="lib/exedio-cope-util.jar" />
@@ -121,6 +121,12 @@
 		</ljunit>
 	</target>
 	
+	<target name="web.jspm">
+		<jspm>
+			<fileset dir="websrc" includes="**/*.jspm" />
+		</jspm>
+	</target>
+	
 	<target name="web.instrument" unless="skip.instrument">
 		<instrument finalArgs="true" verbose="false">
 			<fileset dir="websrc">
@@ -129,11 +135,12 @@
 		</instrument>
 	</target>
 	
-	<target name="web.compile" depends="web.instrument">
+	<target name="web.compile" depends="web.jspm, web.instrument">
 		<compile srcdir="websrc">
 			<classpath>
 				<pathelement location="lib/exedio-cope-util.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
+				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/servlet-api.jar" />
 			</classpath>
 		</compile>
@@ -175,7 +182,7 @@
 		</delete>
 	</target>
 	
-	<target name="src" depends="jspm" description="creates all sources, so the IDE does not complain" />
+	<target name="src" depends="src.jspm, web.jspm" description="creates all sources, so the IDE does not complain" />
 	
 	<target name="instrument" depends="web.instrument" />
 	

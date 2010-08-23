@@ -19,20 +19,43 @@
 package com.exedio.cope.console.example;
 
 import java.io.IOException;
+import java.io.PrintStream;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.ServletUtil;
+import com.exedio.cops.Cop;
+import com.exedio.cops.CopsServlet;
 
-public final class InitServlet extends HttpServlet
+public final class InitServlet extends CopsServlet
 {
 	private static final long serialVersionUID = 1l;
 
+	static final String CREATE_SAMPLE_DATA = "createSampleData";
+
 	private ConnectToken connectToken = null;
+
+	@Override
+	protected void doRequest(
+			final HttpServletRequest request,
+			final HttpServletResponse response)
+		throws IOException
+	{
+		//System.out.println("request ---" + request.getMethod() + "---" + request.getContextPath() + "---" + request.getServletPath() + "---" + request.getPathInfo() + "---" + request.getQueryString() + "---");
+
+		if(Cop.isPost(request))
+		{
+			if(request.getParameter(CREATE_SAMPLE_DATA)!=null)
+				createSampleData();
+		}
+
+		final Out out = new Out(new PrintStream(response.getOutputStream(), false, UTF8));
+		Init_Jspm.write(out);
+		out.close();
+	}
 
 	@Override
 	public void init() throws ServletException
@@ -41,6 +64,11 @@ public final class InitServlet extends HttpServlet
 
 		final Class thisClass = InitServlet.class;
 		connectToken = ServletUtil.connect(Main.model, getServletConfig(), thisClass.getName());
+	}
+
+	private void createSampleData()
+	{
+		final Class thisClass = InitServlet.class;
 		Main.model.createSchema();
 		try
 		{
@@ -73,13 +101,5 @@ public final class InitServlet extends HttpServlet
 		connectToken.returnIt();
 		connectToken = null;
 		super.destroy();
-	}
-
-	@Override
-	protected final void doGet(
-			final HttpServletRequest request,
-			final HttpServletResponse response)
-	{
-		response.setContentType("text/plain");
 	}
 }
