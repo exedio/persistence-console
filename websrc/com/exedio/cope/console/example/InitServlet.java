@@ -170,6 +170,7 @@ public final class InitServlet extends CopsServlet
 		{
 			private final int count = modificationListenerNumber++;
 
+			@Deprecated
 			public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
 			{
 				// do nothing
