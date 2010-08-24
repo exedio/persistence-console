@@ -100,58 +100,58 @@ final class TransactionCop extends ConsoleCop
 			final Out out,
 			final Model model)
 	{
-			final Collection<Transaction> openTransactionsList = model.getOpenTransactions();
-			final Transaction[] openTransactions = openTransactionsList.toArray(new Transaction[openTransactionsList.size()]);
-			Arrays.sort(openTransactions, new Comparator<Transaction>(){
+		final Collection<Transaction> openTransactionsList = model.getOpenTransactions();
+		final Transaction[] openTransactions = openTransactionsList.toArray(new Transaction[openTransactionsList.size()]);
+		Arrays.sort(openTransactions, new Comparator<Transaction>(){
 
-				public int compare(final Transaction tx1, final Transaction tx2)
-				{
-					final long id1 = tx1.getID();
-					final long id2 = tx2.getID();
-					return id1<id2 ? -1 : id1>id2 ? 1 : 0;
-				}
-
-			});
-
-			final Thread[] threads = new Thread[openTransactions.length];
-			final long[] threadIds = new long[openTransactions.length];
-			final String[] threadNames = new String[openTransactions.length];
-			final int[] threadPriorities = new int[openTransactions.length];
-			final Thread.State[] threadStates = new Thread.State[openTransactions.length];
-			final StackTraceElement[][] stacktraces = new StackTraceElement[openTransactions.length][];
-			for(int i = 0; i<openTransactions.length; i++)
+			public int compare(final Transaction tx1, final Transaction tx2)
 			{
-				final Thread thread = openTransactions[i].getBoundThread();
-				if(thread!=null)
-				{
-					threads[i] = thread;
-					threadIds[i] = thread.getId();
-					threadNames[i] = thread.getName();
-					threadPriorities[i] = thread.getPriority();
-					threadStates[i] = thread.getState();
-					stacktraces[i] = thread.getStackTrace();
-				}
+				final long id1 = tx1.getID();
+				final long id2 = tx2.getID();
+				return id1<id2 ? -1 : id1>id2 ? 1 : 0;
 			}
 
-			Transaction_Jspm.writeOpen(
-					out,
-					openTransactions,
-					threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces);
+		});
+
+		final Thread[] threads = new Thread[openTransactions.length];
+		final long[] threadIds = new long[openTransactions.length];
+		final String[] threadNames = new String[openTransactions.length];
+		final int[] threadPriorities = new int[openTransactions.length];
+		final Thread.State[] threadStates = new Thread.State[openTransactions.length];
+		final StackTraceElement[][] stacktraces = new StackTraceElement[openTransactions.length][];
+		for(int i = 0; i<openTransactions.length; i++)
+		{
+			final Thread thread = openTransactions[i].getBoundThread();
+			if(thread!=null)
+			{
+				threads[i] = thread;
+				threadIds[i] = thread.getId();
+				threadNames[i] = thread.getName();
+				threadPriorities[i] = thread.getPriority();
+				threadStates[i] = thread.getState();
+				stacktraces[i] = thread.getStackTrace();
+			}
+		}
+
+		Transaction_Jspm.writeOpen(
+				out,
+				openTransactions,
+				threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces);
 	}
 
 	private void writeRecorded(
 			final Out out,
 			final Model model)
 	{
-			final Commit[] commits;
-			synchronized(this.commits)
-			{
-				commits = this.commits.toArray(new Commit[this.commits.size()]);
-			}
-			Transaction_Jspm.writeRecorded(
-					out, this,
-					model.getChangeListeners().contains(listener),
-					commits);
+		final Commit[] commits;
+		synchronized(this.commits)
+		{
+			commits = this.commits.toArray(new Commit[this.commits.size()]);
+		}
+		Transaction_Jspm.writeRecorded(
+				out, this,
+				model.getChangeListeners().contains(listener),
+				commits);
 	}
 
 	static final ArrayList<Commit> commits = new ArrayList<Commit>();
