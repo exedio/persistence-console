@@ -26,6 +26,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.exedio.cope.ChangeEvent;
+import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Item;
 import com.exedio.cope.Transaction;
 import com.exedio.cope.misc.ConnectToken;
@@ -42,11 +44,15 @@ public final class InitServlet extends CopsServlet
 
 	static final String TRANSACTION = "transaction";
 
+	static final String CHANGE_LISTENER_ADD      = "changeListener.add";
+	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
+
 	static final String MODIFICATION_LISTENER_ADD           = "modificationListener.add";
 	static final String MODIFICATION_LISTENER_ADD_EXCEPTION = "modificationListener.addException";
 
 	private ConnectToken connectToken = null;
 	static int transactionNumber = 0;
+	static int changeListenerNumber = 0;
 	static int modificationListenerNumber = 0;
 
 	@Override
@@ -74,6 +80,14 @@ public final class InitServlet extends CopsServlet
 				{
 					Main.model.rollbackIfNotCommitted();
 				}
+			}
+			else if(request.getParameter(CHANGE_LISTENER_ADD)!=null)
+			{
+				Main.model.addChangeListener(newChangeListener(false));
+			}
+			else if(request.getParameter(CHANGE_LISTENER_ADD_FAIL)!=null)
+			{
+				Main.model.addChangeListener(newChangeListener(true));
 			}
 			else if(request.getParameter(MODIFICATION_LISTENER_ADD)!=null)
 			{
@@ -154,6 +168,28 @@ public final class InitServlet extends CopsServlet
 			Main.model.rollbackIfNotCommitted();
 		}
 		Revisions.revisions(Main.model);
+	}
+
+	private static ChangeListener newChangeListener(final boolean toStringFails)
+	{
+		return new ChangeListener()
+		{
+			private final int count = changeListenerNumber++;
+
+			public void onChange(final ChangeEvent event)
+			{
+				// do nothing
+			}
+
+			@Override
+			public String toString()
+			{
+				if(toStringFails)
+					throw new RuntimeException("Exception in toString of ChangeListener " + count);
+				else
+					return "toString of ChangeListener " + count;
+			}
+		};
 	}
 
 	@Override

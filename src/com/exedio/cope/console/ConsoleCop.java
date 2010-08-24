@@ -137,6 +137,7 @@ abstract class ConsoleCop<S> extends Cop
 					new EnvironmentCop(args),
 					new HashCop(args),
 					new HiddenCop(args),
+					new ChangeListenerCop(args),
 					new ModificationListenerCop(args),
 					new HistoryCop(args),
 				};
@@ -189,6 +190,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_ENVIRONMENT = "environment";
 	static final String TAB_HASH = "hash";
 	static final String TAB_HIDDEN = "hidden";
+	static final String TAB_CHANGE_LISTENER = "changelistener";
 	static final String TAB_MODIFICATION_LISTENER = "modificationlistener";
 
 	static final ConsoleCop getCop(final ConsoleServlet servlet, final Model model, final HttpServletRequest request)
@@ -245,6 +247,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new HashCop(args);
 		if(TAB_HIDDEN.equals(tab))
 			return new HiddenCop(args);
+		if(TAB_CHANGE_LISTENER.equals(tab))
+			return new ChangeListenerCop(args);
 		if(TAB_MODIFICATION_LISTENER.equals(tab))
 			return new ModificationListenerCop(args);
 
