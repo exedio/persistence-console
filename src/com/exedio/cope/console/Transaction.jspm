@@ -25,6 +25,7 @@ import static com.exedio.cope.console.Format.ratio;
 import java.util.Date;
 import java.util.Locale;
 
+import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.Transaction;
 import com.exedio.cope.TransactionCounters;
 
@@ -39,6 +40,10 @@ final class Transaction_Jspm extends Console_Jspm
 				font-size:80%;
 			}
 			input
+			{
+				font-size:7pt;
+			}
+			td.notavailable
 			{
 				font-size:7pt;
 			}
@@ -196,36 +201,95 @@ final class Transaction_Jspm extends Console_Jspm
 		writeRecordingForm(out, cop, recordCommits);
 		%>
 		<table>
-			<caption>Modifying Committed Transactions</caption><%
+			<caption>Changes</caption><%
 		
 		if(commits.length==0)
 		{
 			%>
-			<tr><td class="text">There are no recorded modifying committed transactions.</td></tr><%
+			<tr><td class="text">There are no recorded changes.</td></tr><%
 		}
 		else
 		{
 			%>
 			<tr>
-				<th>#</th>
+				<th rowspan="2">#</th>
+				<th rowspan="2">Remote<br>Node</th>
+				<th colspan="4">Transaction</th>
+				<th rowspan="2">Items</th>
+			</tr>
+			<tr>
 				<th>ID</th>
 				<th>Started</th>
 				<th>Elpsd.</th>
 				<th>Name</th>
-				<th>Modified Items</th>
 			</tr><%
 			
 			for(int n = 0; n<commits.length; n++)
 			{
 				final Commit commit = commits[n];
+				final ChangeEvent event = commit.event;
 			%>
 			<tr>
-				<td><%=format(n)%></td>
-				<td><%=format(commit.id)%></td>
-				<td><%=commit.getStartDate()%></td>
-				<td><%=format(commit.elapsed)%></td>
-				<td class="text"><%=commit.name%></td>
-				<td class="text"><%=commit.modifiedItems%></td>
+				<td><%=format(n)%></td><%
+				
+			try
+			{
+				final int value = event.getRemoteNodeID();
+				%>
+				<td><%=format(value)%></td><%
+			}
+			catch(IllegalArgumentException e)
+			{
+				%>
+				<td class="notavailable"><%=e.getMessage()%></td><%
+			}
+			try
+			{
+				final long value = event.getTransactionID();
+				%>
+				<td><%=format(value)%></td><%
+			}
+			catch(IllegalArgumentException e)
+			{
+				%>
+				<td class="notavailable"><%=e.getMessage()%></td><%
+			}
+			try
+			{
+				final Date value = event.getTransactionStartDate();
+				%>
+				<td><%=value%></td><%
+			}
+			catch(IllegalArgumentException e)
+			{
+				%>
+				<td class="notavailable"><%=e.getMessage()%></td><%
+			}
+			try
+			{
+				final long value = commit.getElapsed();
+				%>
+				<td><%=format(value)%></td><%
+			}
+			catch(IllegalArgumentException e)
+			{
+				%>
+				<td class="notavailable"><%=e.getMessage()%></td><%
+			}
+			try
+			{
+				final String value = event.getTransactionName();
+				%>
+				<td><%=value%></td><%
+			}
+			catch(IllegalArgumentException e)
+			{
+				%>
+				<td class="notavailable"><%=e.getMessage()%></td><%
+			}
+			
+				%>
+				<td class="text"><%commit.writeItems(out);%></td>
 			</tr><%
 			}
 		}

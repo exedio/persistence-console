@@ -18,44 +18,36 @@
 
 package com.exedio.cope.console;
 
-import java.util.Collection;
-import java.util.Date;
-
+import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.Item;
-import com.exedio.cope.Transaction;
 
 final class Commit
 {
-	final String modifiedItems;
-	final long id;
-	final String name;
-	private final long startDate;
-	final long elapsed;
+	private final long timeStamp;
+	final ChangeEvent event;
 
-	Commit(final Collection<Item> modifiedItems, final Transaction transaction)
+	Commit(final ChangeEvent event)
 	{
-		final long now = System.currentTimeMillis();
+		this.timeStamp = System.currentTimeMillis();
+		this.event = event;
+	}
 
-		final StringBuilder bf = new StringBuilder();
+	void writeItems(final Out bf)
+	{
 		boolean first = true;
-		for(final Item item : modifiedItems)
+		for(final Item item : event.getItems())
 		{
 			if(first)
 				first = false;
 			else
-				bf.append(',').append(' ');
+				bf.write(", ");
 
-			bf.append(item.getCopeID());
+			bf.write(item.getCopeID());
 		}
-		this.modifiedItems = bf.toString();
-		this.id = transaction.getID();
-		this.name = transaction.getName();
-		this.startDate = transaction.getStartDate().getTime();
-		this.elapsed = now - startDate;
 	}
 
-	Date getStartDate()
+	long getElapsed()
 	{
-		return new Date(startDate);
+		return timeStamp - event.getTransactionStartDate().getTime();
 	}
 }

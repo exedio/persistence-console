@@ -25,10 +25,10 @@ import java.util.Comparator;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.exedio.cope.Item;
+import com.exedio.cope.ChangeEvent;
+import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Model;
 import com.exedio.cope.Transaction;
-import com.exedio.cope.util.ModificationListener;
 
 final class TransactionCop extends ConsoleCop
 {
@@ -56,11 +56,11 @@ final class TransactionCop extends ConsoleCop
 		{
 			if(request.getParameter(ENABLE)!=null && !model.getModificationListeners().contains(listener))
 			{
-				model.addModificationListener(listener);
+				model.addChangeListener(listener);
 			}
 			else if(request.getParameter(DISABLE)!=null)
 			{
-				model.removeModificationListener(listener);
+				model.removeChangeListener(listener);
 			}
 			else if(request.getParameter(CLEAR)!=null)
 			{
@@ -131,17 +131,17 @@ final class TransactionCop extends ConsoleCop
 				model.getTransactionCounters(),
 				openTransactions,
 				threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces,
-				model.getModificationListeners().contains(listener),
+				model.getChangeListeners().contains(listener),
 				commits);
 	}
 
 	static final ArrayList<Commit> commits = new ArrayList<Commit>();
 
-	private static final ModificationListener listener = new ModificationListener()
+	private static final ChangeListener listener = new ChangeListener()
 	{
-		public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
+		public void onChange(final ChangeEvent event)
 		{
-			final Commit commit = new Commit(modifiedItems, transaction);
+			final Commit commit = new Commit(event);
 			synchronized(commits)
 			{
 				commits.add(commit);
@@ -151,7 +151,7 @@ final class TransactionCop extends ConsoleCop
 		@Override
 		public String toString()
 		{
-			return "Console ModificationListener for Committed Transactions";
+			return "Console ChangeListener for Committed Transactions";
 		}
 	};
 }
