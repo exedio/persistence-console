@@ -45,6 +45,10 @@ final class Transaction_Jspm extends Console_Jspm
 			}
 			td.notavailable
 			{
+				text-align:center;
+				vertical-align:middle;
+				background:#eee;
+				padding:1px 3px;
 				font-size:7pt;
 			}
 		</style>
