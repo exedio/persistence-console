@@ -92,7 +92,14 @@ final class TransactionCop extends ConsoleCop
 		Transaction_Jspm.writeCounters(
 				out,
 				model.getTransactionCounters());
-		{
+		writeOpenTransations(out, model);
+		writeRecorded(out, model);
+	}
+
+	private void writeOpenTransations(
+			final Out out,
+			final Model model)
+	{
 			final Collection<Transaction> openTransactionsList = model.getOpenTransactions();
 			final Transaction[] openTransactions = openTransactionsList.toArray(new Transaction[openTransactionsList.size()]);
 			Arrays.sort(openTransactions, new Comparator<Transaction>(){
@@ -130,8 +137,12 @@ final class TransactionCop extends ConsoleCop
 					out,
 					openTransactions,
 					threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces);
-		}
-		{
+	}
+
+	private void writeRecorded(
+			final Out out,
+			final Model model)
+	{
 			final Commit[] commits;
 			synchronized(this.commits)
 			{
@@ -141,7 +152,6 @@ final class TransactionCop extends ConsoleCop
 					out, this,
 					model.getChangeListeners().contains(listener),
 					commits);
-		}
 	}
 
 	static final ArrayList<Commit> commits = new ArrayList<Commit>();
