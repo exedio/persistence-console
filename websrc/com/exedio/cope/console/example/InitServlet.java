@@ -47,8 +47,8 @@ public final class InitServlet extends CopsServlet
 	static final String CHANGE_LISTENER_ADD      = "changeListener.add";
 	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
 
-	static final String MODIFICATION_LISTENER_ADD           = "modificationListener.add";
-	static final String MODIFICATION_LISTENER_ADD_EXCEPTION = "modificationListener.addException";
+	static final String MODIFICATION_LISTENER_ADD      = "modificationListener.add";
+	static final String MODIFICATION_LISTENER_ADD_FAIL = "modificationListener.addFail";
 
 	private ConnectToken connectToken = null;
 	static int transactionNumber = 0;
@@ -91,39 +91,11 @@ public final class InitServlet extends CopsServlet
 			}
 			else if(request.getParameter(MODIFICATION_LISTENER_ADD)!=null)
 			{
-				Main.model.addModificationListener(new ModificationListener()
-				{
-					private final int count = modificationListenerNumber++;
-
-					public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
-					{
-						// do nothing
-					}
-
-					@Override
-					public String toString()
-					{
-						return "toString of ModificationListener " + count;
-					}
-				});
+				Main.model.addModificationListener(newModificationListener(false));
 			}
-			else if(request.getParameter(MODIFICATION_LISTENER_ADD_EXCEPTION)!=null)
+			else if(request.getParameter(MODIFICATION_LISTENER_ADD_FAIL)!=null)
 			{
-				Main.model.addModificationListener(new ModificationListener()
-				{
-					private final int count = modificationListenerNumber++;
-
-					public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
-					{
-						// do nothing
-					}
-
-					@Override
-					public String toString()
-					{
-						throw new RuntimeException("Exception in toString of ModificationListener " + count);
-					}
-				});
+				Main.model.addModificationListener(newModificationListener(true));
 			}
 		}
 
@@ -188,6 +160,28 @@ public final class InitServlet extends CopsServlet
 					throw new RuntimeException("Exception in toString of ChangeListener " + count);
 				else
 					return "toString of ChangeListener " + count;
+			}
+		};
+	}
+
+	private static ModificationListener newModificationListener(final boolean toStringFails)
+	{
+		return new ModificationListener()
+		{
+			private final int count = modificationListenerNumber++;
+
+			public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
+			{
+				// do nothing
+			}
+
+			@Override
+			public String toString()
+			{
+				if(toStringFails)
+					throw new RuntimeException("Exception in toString of ModificationListener " + count);
+				else
+					return "toString of ModificationListener " + count;
 			}
 		};
 	}
