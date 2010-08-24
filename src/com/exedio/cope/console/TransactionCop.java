@@ -124,13 +124,19 @@ final class TransactionCop extends ConsoleCop
 			commits = this.commits.toArray(new Commit[this.commits.size()]);
 		}
 
-		Transaction_Jspm.writeBody(
-				out, this,
+		Transaction_Jspm.writeStats(
+				out,
 				model.getNextTransactionId(),
-				model.getLastTransactionStartDate(),
-				model.getTransactionCounters(),
+				model.getLastTransactionStartDate());
+		Transaction_Jspm.writeCounters(
+				out,
+				model.getTransactionCounters());
+		Transaction_Jspm.writeOpen(
+				out,
 				openTransactions,
-				threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces,
+				threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces);
+		Transaction_Jspm.writeRecorded(
+				out, this,
 				model.getChangeListeners().contains(listener),
 				commits);
 	}
