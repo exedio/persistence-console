@@ -131,14 +131,18 @@ final class TransactionCop extends ConsoleCop
 		Transaction_Jspm.writeCounters(
 				out,
 				model.getTransactionCounters());
-		Transaction_Jspm.writeOpen(
-				out,
-				openTransactions,
-				threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces);
-		Transaction_Jspm.writeRecorded(
-				out, this,
-				model.getChangeListeners().contains(listener),
-				commits);
+		{
+			Transaction_Jspm.writeOpen(
+					out,
+					openTransactions,
+					threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces);
+		}
+		{
+			Transaction_Jspm.writeRecorded(
+					out, this,
+					model.getChangeListeners().contains(listener),
+					commits);
+		}
 	}
 
 	static final ArrayList<Commit> commits = new ArrayList<Commit>();
