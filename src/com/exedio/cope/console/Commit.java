@@ -46,7 +46,7 @@ final class Commit
 		}
 	}
 
-	long getElapsed()
+	long getElapsed() throws ChangeEvent.NotAvailableException
 	{
 		return timeStamp - event.getTransactionStartDate().getTime();
 	}
