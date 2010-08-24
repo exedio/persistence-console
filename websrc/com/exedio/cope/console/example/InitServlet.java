@@ -70,36 +70,11 @@ public final class InitServlet extends CopsServlet
 				createSampleData();
 			else if(request.getParameter(TRANSACTION)!=null)
 			{
-				try
-				{
-					final String name = InitServlet.class.getName() + "#transaction#" + (transactionNumber++);
-					Main.model.startTransaction(name);
-					new AnItem(name);
-					Main.model.commit();
-				}
-				finally
-				{
-					Main.model.rollbackIfNotCommitted();
-				}
+				doTransaction(1, 0);
 			}
 			else if(request.getParameter(TRANSACTION_SLOW)!=null)
 			{
-				try
-				{
-					final String name = InitServlet.class.getName() + "#transaction#" + (transactionNumber++);
-					Main.model.startTransaction(name);
-					new AnItem(name);
-					Thread.sleep(5000);
-					Main.model.commit();
-				}
-				catch(final InterruptedException e)
-				{
-					throw new RuntimeException(e);
-				}
-				finally
-				{
-					Main.model.rollbackIfNotCommitted();
-				}
+				doTransaction(5, 5000);
 			}
 			else if(request.getParameter(CHANGE_LISTENER_ADD)!=null)
 			{
@@ -160,6 +135,29 @@ public final class InitServlet extends CopsServlet
 			Main.model.rollbackIfNotCommitted();
 		}
 		Revisions.revisions(Main.model);
+	}
+
+	private static void doTransaction(final int items, final long sleep)
+	{
+		try
+		{
+			final String name = InitServlet.class.getName() + "#transaction#" + (transactionNumber++);
+			Main.model.startTransaction(name);
+			for(int i = 0; i<items; i++)
+				new AnItem(name + "#" + i);
+			if(sleep>0)
+				Thread.sleep(sleep);
+			Main.model.commit();
+		}
+		catch(final InterruptedException e)
+		{
+			throw new RuntimeException(e);
+		}
+		finally
+		{
+			Main.model.rollbackIfNotCommitted();
+		}
+
 	}
 
 	private static ChangeListener newChangeListener(final boolean toStringFails)
