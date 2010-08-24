@@ -92,7 +92,7 @@ public final class InitServlet extends CopsServlet
 					Thread.sleep(5000);
 					Main.model.commit();
 				}
-				catch (final InterruptedException e)
+				catch(final InterruptedException e)
 				{
 					throw new RuntimeException(e);
 				}
