@@ -37,6 +37,7 @@ class Init_Jspm
 		<h2>Transactions</h2>
 		<form method="POST">
 			<input type="submit" name="<%=InitServlet.TRANSACTION%>" value="do" />
+			<input type="submit" name="<%=InitServlet.TRANSACTION_SLOW%>" value="slow(5s)" />
 		</form>
 		<h2>Change Listeners</h2>
 		<form method="POST">

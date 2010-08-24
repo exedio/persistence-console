@@ -43,6 +43,7 @@ public final class InitServlet extends CopsServlet
 	static final String CREATE_SAMPLE_DATA = "createSampleData";
 
 	static final String TRANSACTION = "transaction";
+	static final String TRANSACTION_SLOW = "transactionSlow";
 
 	static final String CHANGE_LISTENER_ADD      = "changeListener.add";
 	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
@@ -75,6 +76,25 @@ public final class InitServlet extends CopsServlet
 					Main.model.startTransaction(name);
 					new AnItem(name);
 					Main.model.commit();
+				}
+				finally
+				{
+					Main.model.rollbackIfNotCommitted();
+				}
+			}
+			else if(request.getParameter(TRANSACTION_SLOW)!=null)
+			{
+				try
+				{
+					final String name = InitServlet.class.getName() + "#transaction#" + (transactionNumber++);
+					Main.model.startTransaction(name);
+					new AnItem(name);
+					Thread.sleep(5000);
+					Main.model.commit();
+				}
+				catch (final InterruptedException e)
+				{
+					throw new RuntimeException(e);
 				}
 				finally
 				{
