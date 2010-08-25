@@ -170,12 +170,13 @@ final class Transaction_Jspm extends Console_Jspm
 			{
 				final Transaction t = openTransactions[n];
 				final Thread thread = threads[n];
+				final String name = t.getName();
 			%>
 			<tr>
 				<td><%=format(n)%></td>
 				<td><%=format(t.getID())%></td>
 				<td><%=t.getStartDate()%></td>
-				<td class="text"><%=t.getName()%></td>
+				<td class="<% if(name!=null){%>text<%}else{%>notavailable<%} %>"><%=name%></td>
 				<%
 				if(thread!=null)
 				{
@@ -306,7 +307,7 @@ final class Transaction_Jspm extends Console_Jspm
 			{
 				final String value = event.getTransactionName();
 				%>
-				<td><%=value%></td><%
+				<td<% if(value==null){%> class="notavailable"<%} %>><%=value%></td><%
 			}
 			catch(NotAvailableException e)
 			{
