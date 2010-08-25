@@ -43,6 +43,8 @@ public final class ExampleServlet extends CopsServlet
 
 	static final String CREATE_SAMPLE_DATA = "createSampleData";
 
+	static final String CONNECT_NAME   = "connect.name";
+	static final String CONNECT_COND   = "connect.conditional";
 	static final String CONNECT_SUBMIT = "connect.submit";
 
 	static final String TRANSACTION_NAME   = "transaction.name";
@@ -74,7 +76,11 @@ public final class ExampleServlet extends CopsServlet
 				createSampleData();
 			else if(request.getParameter(CONNECT_SUBMIT)!=null)
 			{
-				connect();
+				final String name = replaceNullName(request.getParameter(CONNECT_NAME));
+				if(request.getParameter(CONNECT_COND)!=null)
+					ConnectToken.issueIfConnected(Main.model, name);
+				else
+					connect(name);
 			}
 			else if(request.getParameter(TRANSACTION_SUBMIT)!=null)
 			{
@@ -106,16 +112,15 @@ public final class ExampleServlet extends CopsServlet
 		out.close();
 	}
 
-	private void connect()
+	private void connect(final String name)
 	{
-		final Class thisClass = ExampleServlet.class;
-		connectTokens.add(ServletUtil.connect(Main.model, getServletConfig(), thisClass.getName()));
+		connectTokens.add(ServletUtil.connect(Main.model, getServletConfig(), name));
 	}
 
 	private void createSampleData()
 	{
-		connect();
 		final Class thisClass = ExampleServlet.class;
+		connect(thisClass.getName() + "#createSampleData");
 		Main.model.createSchema();
 		try
 		{
@@ -146,7 +151,7 @@ public final class ExampleServlet extends CopsServlet
 	{
 		try
 		{
-			Main.model.startTransaction("nullName".equals(name) ? null : name);
+			Main.model.startTransaction(replaceNullName(name));
 			for(int i = 0; i<items; i++)
 				new AnItem(name + "#" + i);
 			if(sleep>0)
@@ -207,6 +212,11 @@ public final class ExampleServlet extends CopsServlet
 					return "toString of ModificationListener " + count;
 			}
 		};
+	}
+
+	private static String replaceNullName(final String name)
+	{
+		return "nullName".equals(name) ? null : name;
 	}
 
 	@Override

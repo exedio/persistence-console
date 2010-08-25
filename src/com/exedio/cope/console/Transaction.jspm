@@ -44,14 +44,6 @@ final class Transaction_Jspm extends Console_Jspm
 			{
 				font-size:7pt;
 			}
-			td.notavailable
-			{
-				text-align:center;
-				vertical-align:middle;
-				background:#eee;
-				padding:1px 3px;
-				font-size:7pt;
-			}
 		</style>
 		<script>
 			function toggleStacktrace(image,more)

@@ -184,10 +184,10 @@ final class Connect_Jspm extends Console_Jspm
 				final String name = token.getName();
 			%>
 			<tr>
-				<td><%=format(number++)%></td>
+				<td><% if(token.wasConditional()){%>c<%} %><%=format(number++)%></td>
 				<td><% if(token.didConnect()){%>&#187;&nbsp;<%} %><%=format(token.getID())%></td>
 				<td class="text"><%=token.getIssueDate()%></td>
-				<td class="text"><% if(name!=null) { %><%=name%><% } %></td>
+				<td class="<% if(name!=null){%>text<%}else{%>notavailable<%} %>"><%=name%></td>
 			</tr><%
 			}
 		%>

@@ -36,6 +36,11 @@ class Example_Jspm
 		</form>
 		<h2>Connects</h2>
 		<form method="POST">
+			<br>name:
+			<input name="<%=ExampleServlet.CONNECT_NAME  %>" value="ExampleServlet" />
+			<br>conditional:
+			<input name="<%=ExampleServlet.CONNECT_COND  %>" value="true" type="checkbox" />
+			<br>
 			<input name="<%=ExampleServlet.CONNECT_SUBMIT%>" type="submit" value="do" />
 		</form>
 		<h2>Transactions</h2>

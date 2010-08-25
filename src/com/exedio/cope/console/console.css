@@ -112,6 +112,15 @@ table td.text
 	text-align:left;
 }
 
+td.notavailable
+{
+	text-align:center;
+	vertical-align:middle;
+	background:#eee;
+	padding:1px 3px;
+	font-size:7pt;
+}
+
 table tr.inconsistent td
 {
 	background:#C00;
