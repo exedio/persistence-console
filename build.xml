@@ -179,6 +179,9 @@
 			<fileset dir="src">
 				<include name="**/*_Jspm.java" />
 			</fileset>
+			<fileset dir="websrc">
+				<include name="**/*_Jspm.java" />
+			</fileset>
 		</delete>
 	</target>
 	
