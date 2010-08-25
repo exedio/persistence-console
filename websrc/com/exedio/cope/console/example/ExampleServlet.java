@@ -36,7 +36,7 @@ import com.exedio.cope.util.ModificationListener;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 
-public final class InitServlet extends CopsServlet
+public final class ExampleServlet extends CopsServlet
 {
 	private static final long serialVersionUID = 1l;
 
@@ -104,13 +104,13 @@ public final class InitServlet extends CopsServlet
 	{
 		super.init();
 
-		final Class thisClass = InitServlet.class;
+		final Class thisClass = ExampleServlet.class;
 		connectToken = ServletUtil.connect(Main.model, getServletConfig(), thisClass.getName());
 	}
 
 	private void createSampleData()
 	{
-		final Class thisClass = InitServlet.class;
+		final Class thisClass = ExampleServlet.class;
 		Main.model.createSchema();
 		try
 		{
@@ -141,7 +141,7 @@ public final class InitServlet extends CopsServlet
 	{
 		try
 		{
-			final String name = InitServlet.class.getName() + "#transaction#" + (transactionNumber++);
+			final String name = ExampleServlet.class.getName() + "#transaction#" + (transactionNumber++);
 			Main.model.startTransaction(name);
 			for(int i = 0; i<items; i++)
 				new AnItem(name + "#" + i);

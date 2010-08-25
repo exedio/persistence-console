@@ -64,12 +64,12 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>init</servlet-name>
-		<servlet-class>com.exedio.cope.console.example.InitServlet</servlet-class>
+		<servlet-name>example</servlet-name>
+		<servlet-class>com.exedio.cope.console.example.ExampleServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>init</servlet-name>
-		<url-pattern>/init/*</url-pattern>
+		<servlet-name>example</servlet-name>
+		<url-pattern>/example/*</url-pattern>
 	</servlet-mapping>
 	
 	<description>Cope Console Test Application</description>

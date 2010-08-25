@@ -19,35 +19,35 @@
 
 package com.exedio.cope.console.example;
 
-class Init_Jspm
+class Example_Jspm
 {
 	static final void write(final Out out)
 	{
 %><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=<%=InitServlet.UTF8%>">
-		<title>COPE Console Init</title>
+		<meta http-equiv="content-type" content="text/html; charset=<%=ExampleServlet.UTF8%>">
+		<title>COPE Console Example</title>
 	</head>
 	<body>
-		<h1>COPE Console Init</h1>
+		<h1>COPE Console Example</h1>
 		<form method="POST">
-			<input type="submit" name="<%=InitServlet.CREATE_SAMPLE_DATA%>" value="create sample data" />
+			<input type="submit" name="<%=ExampleServlet.CREATE_SAMPLE_DATA%>" value="create sample data" />
 		</form>
 		<h2>Transactions</h2>
 		<form method="POST">
-			<input type="submit" name="<%=InitServlet.TRANSACTION%>" value="do" />
-			<input type="submit" name="<%=InitServlet.TRANSACTION_SLOW%>" value="slow(5s)" />
+			<input type="submit" name="<%=ExampleServlet.TRANSACTION%>" value="do" />
+			<input type="submit" name="<%=ExampleServlet.TRANSACTION_SLOW%>" value="slow(5s)" />
 		</form>
 		<h2>Change Listeners</h2>
 		<form method="POST">
-			<input type="submit" name="<%=InitServlet.CHANGE_LISTENER_ADD     %>" value="add" />
-			<input type="submit" name="<%=InitServlet.CHANGE_LISTENER_ADD_FAIL%>" value="add with exception in toString()" />
+			<input type="submit" name="<%=ExampleServlet.CHANGE_LISTENER_ADD     %>" value="add" />
+			<input type="submit" name="<%=ExampleServlet.CHANGE_LISTENER_ADD_FAIL%>" value="add with exception in toString()" />
 		</form>
 		<h2>Modification Listeners</h2>
 		<form method="POST">
-			<input type="submit" name="<%=InitServlet.MODIFICATION_LISTENER_ADD     %>" value="add" />
-			<input type="submit" name="<%=InitServlet.MODIFICATION_LISTENER_ADD_FAIL%>" value="add with exception in toString()" />
+			<input type="submit" name="<%=ExampleServlet.MODIFICATION_LISTENER_ADD     %>" value="add" />
+			<input type="submit" name="<%=ExampleServlet.MODIFICATION_LISTENER_ADD_FAIL%>" value="add with exception in toString()" />
 		</form>
 	</body>
 </html>
