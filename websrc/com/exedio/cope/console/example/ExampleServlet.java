@@ -224,9 +224,18 @@ public final class ExampleServlet extends CopsServlet
 	{
 		for(final Iterator<ConnectToken> i = connectTokens.iterator(); i.hasNext(); )
 		{
-			i.next().returnIt();
+			returnIfNeeded(i.next());
 			i.remove();
 		}
 		super.destroy();
+	}
+
+	/**
+	 * Not sure, whether this is a good idea.
+	 */
+	private void returnIfNeeded(final ConnectToken token)
+	{
+		if(!token.isReturned())
+			token.returnIt();
 	}
 }

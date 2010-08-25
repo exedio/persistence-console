@@ -22,15 +22,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
+import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.util.XMLEncoder;
 
 final class ConnectCop extends ConsoleCop
 {
+	static final String RETURN_SELECTED = "returnSelected";
+	static final String RETURN_CHECKBOX = "rt";
+
 	ConnectCop(final Args args)
 	{
 		super(TAB_CONNECT, "connect", args);
@@ -55,6 +60,23 @@ final class ConnectCop extends ConsoleCop
 			final HttpServletRequest request,
 			final History history)
 	{
+		if(isPost(request))
+		{
+			if(request.getParameter(RETURN_SELECTED)!=null)
+			{
+				final String[] ids = request.getParameterValues(RETURN_CHECKBOX);
+				if(ids!=null)
+				{
+					final HashMap<Integer, ConnectToken> map = new HashMap<Integer, ConnectToken>();
+					for(final ConnectToken token : ConnectToken.getTokens(model))
+						map.put(token.getID(), token);
+
+					for(final String id : ids)
+						map.get(Integer.valueOf(id)).returnIt();
+				}
+			}
+		}
+
 		final ConnectProperties props = model.getConnectProperties();
 		final String source = props.getSource();
 		String sourceContent = null;
