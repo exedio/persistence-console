@@ -54,7 +54,6 @@ public final class ExampleServlet extends CopsServlet
 	static final String MODIFICATION_LISTENER_ADD_FAIL = "modificationListener.addFail";
 
 	private ConnectToken connectToken = null;
-	static int transactionNumber = 0;
 	static int changeListenerNumber = 0;
 	static int modificationListenerNumber = 0;
 
