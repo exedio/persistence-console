@@ -20,9 +20,10 @@ package com.exedio.cope.console.example;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,6 +43,8 @@ public final class ExampleServlet extends CopsServlet
 
 	static final String CREATE_SAMPLE_DATA = "createSampleData";
 
+	static final String CONNECT_SUBMIT = "connect.submit";
+
 	static final String TRANSACTION_NAME   = "transaction.name";
 	static final String TRANSACTION_ITEMS  = "transaction.items";
 	static final String TRANSACTION_SLEEP  = "transaction.sleep";
@@ -53,7 +56,7 @@ public final class ExampleServlet extends CopsServlet
 	static final String MODIFICATION_LISTENER_ADD      = "modificationListener.add";
 	static final String MODIFICATION_LISTENER_ADD_FAIL = "modificationListener.addFail";
 
-	private ConnectToken connectToken = null;
+	private final ArrayList<ConnectToken> connectTokens = new ArrayList<ConnectToken>();
 	static int changeListenerNumber = 0;
 	static int modificationListenerNumber = 0;
 
@@ -69,6 +72,10 @@ public final class ExampleServlet extends CopsServlet
 		{
 			if(request.getParameter(CREATE_SAMPLE_DATA)!=null)
 				createSampleData();
+			else if(request.getParameter(CONNECT_SUBMIT)!=null)
+			{
+				connect();
+			}
 			else if(request.getParameter(TRANSACTION_SUBMIT)!=null)
 			{
 				doTransaction(
@@ -99,17 +106,15 @@ public final class ExampleServlet extends CopsServlet
 		out.close();
 	}
 
-	@Override
-	public void init() throws ServletException
+	private void connect()
 	{
-		super.init();
-
 		final Class thisClass = ExampleServlet.class;
-		connectToken = ServletUtil.connect(Main.model, getServletConfig(), thisClass.getName());
+		connectTokens.add(ServletUtil.connect(Main.model, getServletConfig(), thisClass.getName()));
 	}
 
 	private void createSampleData()
 	{
+		connect();
 		final Class thisClass = ExampleServlet.class;
 		Main.model.createSchema();
 		try
@@ -207,8 +212,11 @@ public final class ExampleServlet extends CopsServlet
 	@Override
 	public void destroy()
 	{
-		connectToken.returnIt();
-		connectToken = null;
+		for(final Iterator<ConnectToken> i = connectTokens.iterator(); i.hasNext(); )
+		{
+			i.next().returnIt();
+			i.remove();
+		}
 		super.destroy();
 	}
 }
