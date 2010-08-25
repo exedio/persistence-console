@@ -36,8 +36,14 @@ class Example_Jspm
 		</form>
 		<h2>Transactions</h2>
 		<form method="POST">
-			<input type="submit" name="<%=ExampleServlet.TRANSACTION%>" value="do" />
-			<input type="submit" name="<%=ExampleServlet.TRANSACTION_SLOW%>" value="slow(5s)" />
+			<br>name:
+			<input name="<%=ExampleServlet.TRANSACTION_NAME  %>" value="ExampleServlet" />
+			<br>items:
+			<input name="<%=ExampleServlet.TRANSACTION_ITEMS %>" value="1" />
+			<br>sleep:
+			<input name="<%=ExampleServlet.TRANSACTION_SLEEP %>" value="0" />
+			<br>
+			<input name="<%=ExampleServlet.TRANSACTION_SUBMIT%>" type="submit" value="do" />
 		</form>
 		<h2>Change Listeners</h2>
 		<form method="POST">

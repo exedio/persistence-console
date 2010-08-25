@@ -42,8 +42,10 @@ public final class ExampleServlet extends CopsServlet
 
 	static final String CREATE_SAMPLE_DATA = "createSampleData";
 
-	static final String TRANSACTION = "transaction";
-	static final String TRANSACTION_SLOW = "transactionSlow";
+	static final String TRANSACTION_NAME   = "transaction.name";
+	static final String TRANSACTION_ITEMS  = "transaction.items";
+	static final String TRANSACTION_SLEEP  = "transaction.sleep";
+	static final String TRANSACTION_SUBMIT = "transaction.submit";
 
 	static final String CHANGE_LISTENER_ADD      = "changeListener.add";
 	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
@@ -68,13 +70,12 @@ public final class ExampleServlet extends CopsServlet
 		{
 			if(request.getParameter(CREATE_SAMPLE_DATA)!=null)
 				createSampleData();
-			else if(request.getParameter(TRANSACTION)!=null)
+			else if(request.getParameter(TRANSACTION_SUBMIT)!=null)
 			{
-				doTransaction(1, 0);
-			}
-			else if(request.getParameter(TRANSACTION_SLOW)!=null)
-			{
-				doTransaction(5, 5000);
+				doTransaction(
+						request.getParameter(TRANSACTION_NAME),
+						Integer.valueOf(request.getParameter(TRANSACTION_ITEMS)),
+						Integer.valueOf(request.getParameter(TRANSACTION_SLEEP)));
 			}
 			else if(request.getParameter(CHANGE_LISTENER_ADD)!=null)
 			{
@@ -95,7 +96,7 @@ public final class ExampleServlet extends CopsServlet
 		}
 
 		final Out out = new Out(new PrintStream(response.getOutputStream(), false, UTF8));
-		Init_Jspm.write(out);
+		Example_Jspm.write(out);
 		out.close();
 	}
 
@@ -137,12 +138,11 @@ public final class ExampleServlet extends CopsServlet
 		Revisions.revisions(Main.model);
 	}
 
-	private static void doTransaction(final int items, final long sleep)
+	private static void doTransaction(final String name, final int items, final long sleep)
 	{
 		try
 		{
-			final String name = ExampleServlet.class.getName() + "#transaction#" + (transactionNumber++);
-			Main.model.startTransaction(name);
+			Main.model.startTransaction("nullName".equals(name) ? null : name);
 			for(int i = 0; i<items; i++)
 				new AnItem(name + "#" + i);
 			if(sleep>0)
