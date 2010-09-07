@@ -219,8 +219,8 @@ final class Revision_Jspm extends Console_Jspm
 				}
 				final String content = line.getContent();
 				%>');"><% if(content!=null){%><%=content%><%}else{%>-<%} %></td>
-				<td<% if(!line.hasRows   ()){%> class="notavailable"<%} %>><%=line.getRows   ()%></td>
-				<td<% if(!line.hasElapsed()){%> class="notavailable"<%} %>><%=line.getElapsed()%></td>
+				<td<% if(!line.hasRows   ()){%> class="notavailable"<%} %>><%=format(line.getRows   ())%></td>
+				<td<% if(!line.hasElapsed()){%> class="notavailable"<%} %>><%=format(line.getElapsed())%></td>
 			</tr><%
 		{
 			int currentBodyNumber = 0;
