@@ -119,6 +119,9 @@ final class Revision_Jspm extends Console_Jspm
 			final List<RevisionLine> lines)
 	{
 		%>
+		<form action="<%=cop%>" method="POST">
+			<input type="submit" name="<%=cop.REVISE%>" value="revise" />
+		</form>
 		<table>
 			<caption>Revisions</caption><%
 				cop.writePager(out, cop);

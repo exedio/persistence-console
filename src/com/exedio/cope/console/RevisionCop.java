@@ -36,6 +36,7 @@ import com.exedio.dsmf.SQLRuntimeException;
 final class RevisionCop extends ConsoleCop implements Pageable
 {
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
+	static final String REVISE  = "revise";
 
 	final Pager pager;
 
@@ -71,6 +72,18 @@ final class RevisionCop extends ConsoleCop implements Pageable
 	public RevisionCop toPage(final Pager pager)
 	{
 		return new RevisionCop(args, pager);
+	}
+
+	@Override
+	void initialize(final HttpServletRequest request, final Model model)
+	{
+		super.initialize(request, model);
+
+		if(isPost(request))
+		{
+			if(request.getParameter(REVISE)!=null)
+				model.revise();
+		}
 	}
 
 	@Override
