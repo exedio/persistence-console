@@ -100,6 +100,11 @@ final class RevisionLine
 		return logProperties;
 	}
 
+	boolean hasDate()
+	{
+		return date!=null;
+	}
+
 	Date getDate()
 	{
 		return date;
@@ -120,9 +125,19 @@ final class RevisionLine
 		return body;
 	}
 
+	boolean hasRows()
+	{
+		return rows>=0;
+	}
+
 	int getRows()
 	{
 		return rows;
+	}
+
+	boolean hasElapsed()
+	{
+		return elapsed>=0;
 	}
 
 	long getElapsed()

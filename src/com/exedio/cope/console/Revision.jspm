@@ -28,7 +28,6 @@ import com.exedio.cope.RevisionInfoRevise.Body;
 import com.exedio.cope.console.RevisionLine;
 
 import static com.exedio.cope.console.Format.format;
-import static com.exedio.cope.console.Format.formatAndHide;
 
 final class Revision_Jspm extends Console_Jspm
 {
@@ -196,7 +195,7 @@ final class Revision_Jspm extends Console_Jspm
 					}
 					%><%=bodyCount%></td>
 				<td><% if(line.isCurrent()){%>&#187;&nbsp;<%} %><%=number%></td>
-				<td<% if(date!=null && date.equals(lastDate)){%> class="grey"<%} %>><%=date%></td>
+				<td<% if(!line.hasDate()){%> class="notavailable"<%} else if(date!=null && date.equals(lastDate)){%> class="grey"<%} %>><%=date%></td>
 				<td class="text" onClick="alert('<%
 				final String logString = line.getLogString();
 				final Map<String, String> logProperty = line.getLogProperties();
@@ -217,8 +216,8 @@ final class Revision_Jspm extends Console_Jspm
 				}
 				final String content = line.getContent();
 				%>');"><% if(content!=null){%><%=content%><%}else{%>-<%} %></td>
-				<td><%=formatAndHide(-1, line.getRows   ())%></td>
-				<td><%=formatAndHide(-1, line.getElapsed())%></td>
+				<td<% if(!line.hasRows   ()){%> class="notavailable"<%} %>><%=line.getRows   ()%></td>
+				<td<% if(!line.hasElapsed()){%> class="notavailable"<%} %>><%=line.getElapsed()%></td>
 			</tr><%
 		{
 			int currentBodyNumber = 0;
