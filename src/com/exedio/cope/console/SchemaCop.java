@@ -143,11 +143,12 @@ final class SchemaCop extends ConsoleCop
 
 			public boolean beforeExecute(final String statement)
 			{
-				out.writeRaw("\n\t\t<li><span class=\"javaDecoration\">\"</span>"); // TODO do java decoration by javascript, and encode quotes for java string literal
-				out.writeSQL(statement); // TODO encode quotes for java string literal
-				out.writeRaw("<span class=\"javaDecoration\">\",</span></li>");
+				out.writeRaw("\n\t\t<div><span class=\"javaDecoration\">\"</span>"); // TODO do java decoration by javascript
+				out.writeSQL(statement.replace("\"", "\\\""));
+				out.writeRaw("<span class=\"javaDecoration\">\",</span>");
 				if(dryRun)
 				{
+					out.writeRaw("</div>");
 					return false;
 				}
 				else
@@ -161,11 +162,11 @@ final class SchemaCop extends ConsoleCop
 			public void afterExecute(final String statement, final int rows)
 			{
 				final long time = System.currentTimeMillis() - beforeExecuteTime;
-				out.writeRaw("\n\t\t<li class=\"timelog\">// ");
+				out.writeRaw(" <span class=\"javaDecoration\">// ");
 				out.write(time);
 				out.writeRaw("ms, ");
 				out.write(rows);
-				out.writeRaw(" rows</li>");
+				out.writeRaw(" rows</span></div>");
 			}
 		};
 
