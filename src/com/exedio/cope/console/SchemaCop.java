@@ -160,7 +160,7 @@ final class SchemaCop extends ConsoleCop
 
 			public void afterExecute(final String statement, final int rows)
 			{
-				final long time = System.currentTimeMillis()-beforeExecuteTime;
+				final long time = System.currentTimeMillis() - beforeExecuteTime;
 				out.writeRaw("\n\t\t<li class=\"timelog\">// ");
 				out.write(time);
 				out.writeRaw("ms, ");
