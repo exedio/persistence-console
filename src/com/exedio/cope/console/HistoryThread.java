@@ -189,6 +189,7 @@ final class HistoryThread extends Thread
 		// process data
 		final ItemCacheSummary itemCacheSummary = new ItemCacheSummary(itemCacheInfos);
 		final MediaSummary mediaSummary = new MediaSummary(mediaInfos);
+		final ArrayList<SetValue> sv = new ArrayList<SetValue>();
 
 		// save data
 		try
@@ -196,7 +197,7 @@ final class HistoryThread extends Thread
 			HISTORY_MODEL.startTransaction(topic + running);
 			final HistoryModel model;
 			{
-				final ArrayList<SetValue> sv = new ArrayList<SetValue>();
+				sv.clear();
 				sv.add(HistoryModel.date.map(date));
 				sv.add(HistoryModel.initializeDate.map(initializeDate));
 				sv.add(HistoryModel.connectDate.map(connectDate));
@@ -216,7 +217,7 @@ final class HistoryThread extends Thread
 			{
 				for(final ItemCacheInfo info : itemCacheInfos)
 				{
-					final ArrayList<SetValue> sv = new ArrayList<SetValue>();
+					sv.clear();
 					sv.addAll(HistoryItemCache.map(model));
 					sv.addAll(HistoryItemCache.map(info));
 					HistoryItemCache.TYPE.newItem(sv);
@@ -225,7 +226,7 @@ final class HistoryThread extends Thread
 			{
 				for(final MediaInfo info : mediaInfos)
 				{
-					final ArrayList<SetValue> sv = new ArrayList<SetValue>();
+					sv.clear();
 					sv.addAll(HistoryMedia.map(model));
 					sv.addAll(HistoryMedia.map(info));
 					HistoryMedia.TYPE.newItem(sv);
@@ -235,7 +236,7 @@ final class HistoryThread extends Thread
 			{
 				for(final ClusterListenerInfo.Node node : clusterListenerInfo.getNodes())
 				{
-					final ArrayList<SetValue> sv = new ArrayList<SetValue>();
+					sv.clear();
 					sv.addAll(HistoryClusterNode.map(model));
 					sv.addAll(HistoryClusterNode.map(node));
 					HistoryClusterNode.TYPE.newItem(sv);
