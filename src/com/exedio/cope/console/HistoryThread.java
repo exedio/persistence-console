@@ -235,10 +235,10 @@ final class HistoryThread extends Thread
 			{
 				for(final ClusterListenerInfo.Node node : clusterListenerInfo.getNodes())
 				{
-					final ArrayList<SetValue> list = new ArrayList<SetValue>();
-					HistoryClusterNode.map(model);
-					HistoryClusterNode.map(node);
-					HistoryClusterNode.TYPE.newItem(list);
+					final ArrayList<SetValue> sv = new ArrayList<SetValue>();
+					sv.addAll(HistoryClusterNode.map(model));
+					sv.addAll(HistoryClusterNode.map(node));
+					HistoryClusterNode.TYPE.newItem(sv);
 				}
 			}
 			HISTORY_MODEL.commit();
