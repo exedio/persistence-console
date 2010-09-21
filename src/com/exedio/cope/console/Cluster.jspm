@@ -75,10 +75,10 @@ final class Cluster_Jspm
 			{
 			%>
 			<tr>
-				<td><%=node.getID()%></td>
+				<td><%=format(node.getID())%></td>
 				<td><%=node.getFirstEncounter()%></td>
 				<td><%=node.getAddress()%></td>
-				<td><%=node.getPort()%></td><%
+				<td><%=format(node.getPort())%></td><%
 				write(out, node.getPingInfo());
 				write(out, node.getPongInfo());
 				write(out, node.getInvalidateInfo());
