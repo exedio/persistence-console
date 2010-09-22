@@ -44,11 +44,20 @@ final class DataField_Jspm extends Console_Jspm
 		for(final DataField field : fields)
 		{
 			final long length = field.getMaximumLength();
+			
+			final String color;
+			if(length>=lengthMax)
+				color = "ffc";
+			else if(length==DataField.DEFAULT_LENGTH)
+				color = "ccf";
+			else
+				color = null;
+			
 			%>
 			<tr>
 				<td class="text"><%=field.getType().getID()%></td>
 				<td class="text"><%=field.getName()%></td>
-				<td<% if(length>=lengthMax){%> style="background:#ffc;"<%} %>><%=format(length)%></td>
+				<td<% if(color!=null){%> style="background:#<%=color%>;"<%} %>><%=format(length)%></td>
 			</tr><%
 		}
 		%>
