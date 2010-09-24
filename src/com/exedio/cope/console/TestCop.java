@@ -83,11 +83,11 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 		abstract void writeCellContent(Out out);
 	}
 
-	static final class InfoResult extends Info
+	static final class ResultInfo extends Info
 	{
 		final int result;
 
-		InfoResult(final long elapsed, final int result)
+		ResultInfo(final long elapsed, final int result)
 		{
 			super(elapsed);
 			this.result = result;
@@ -118,11 +118,11 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 		}
 	}
 
-	static final class InfoException extends Info
+	static final class ExceptionInfo extends Info
 	{
 		final Exception exception;
 
-		InfoException(final long elapsed, final Exception exception)
+		ExceptionInfo(final long elapsed, final Exception exception)
 		{
 			super(elapsed);
 			this.exception = exception;
