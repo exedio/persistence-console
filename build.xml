@@ -217,7 +217,7 @@
 	
 	<target name="build" depends="compile, test, jar, tomcat" />
 	
-	<target name="findbugs.prod" depends="compile, findbugs.taskdef">
+	<target name="findbugs" depends="compile, findbugs.taskdef">
 		<findbugs
 					home="${basedir}/build/findbugs-home"
 					jvmargs="-Xmx250M"
@@ -230,6 +230,7 @@
 					reportlevel="low">
 			<class location="${basedir}/build/classes/src" />
 			<class location="${basedir}/build/classes/testsrc" />
+			<class location="${basedir}/build/classes/websrc" />
 			<auxclasspath>
 				<pathelement location="${basedir}/lib/exedio-cope.jar" />
 				<pathelement location="${basedir}/lib/exedio-cope-util.jar" />
@@ -241,29 +242,6 @@
 			</auxclasspath>
 		</findbugs>
 	</target>
-	
-	<target name="findbugs.test" depends="compile, findbugs.taskdef">
-		<findbugs
-					home="${basedir}/build/findbugs-home"
-					jvmargs="-Xmx250M"
-					output="html"
-					outputFile="${basedir}/build/findbugs-test.html"
-					effort="max"
-					reportlevel="low">
-			<class location="${basedir}/build/classes/websrc" />
-			<auxclasspath>
-				<pathelement location="${basedir}/build/classes/src" />
-				<pathelement location="${basedir}/lib/exedio-cope-util.jar" />
-				<pathelement location="${basedir}/lib/exedio-cops.jar" />
-				<pathelement location="${basedir}/lib/exedio-cope.jar" />
-				<pathelement location="${basedir}/lib/trove.jar" />
-				<pathelement location="${basedir}/lib/servlet-api.jar" />
-				<pathelement location="${basedir}/lib/junit.jar" />
-			</auxclasspath>
-		</findbugs>
-	</target>
-	
-	<target name="findbugs" depends="findbugs.prod, findbugs.test" />
 	
 	<target name="all" depends="build, api, findbugs" />
 	
