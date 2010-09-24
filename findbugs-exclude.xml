@@ -40,6 +40,11 @@
 		</Or>
 	</Match>
 	<Match>
+		<!-- may fail to clean up java.io.InputStream -->
+		<Bug pattern="OBL_UNSATISFIED_OBLIGATION" />
+		<Class name="com.exedio.cope.console.example.ExampleServlet" />
+	</Match>
+	<Match>
 		<Or>
 			<!-- Using notify() rather than notifyAll() -->
 			<Bug pattern="NO_NOTIFY_NOT_NOTIFYALL" />
