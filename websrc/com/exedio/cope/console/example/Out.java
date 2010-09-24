@@ -24,7 +24,7 @@ import com.exedio.cope.util.XMLEncoder;
 
 final class Out
 {
-	protected final PrintStream bf;
+	private final PrintStream bf;
 
 	Out(final PrintStream bf)
 	{
