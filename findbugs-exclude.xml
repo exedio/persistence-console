@@ -20,7 +20,10 @@
 			<!-- A prepared statement is generated from a nonconstant String -->
 			<Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" />
 		</Or>
-		<Class name="com.exedio.cope.console.HistoryPurge" />
+		<Or>
+			<Class name="com.exedio.cope.console.HistoryPurge" />
+			<Class name="com.exedio.cope.console.example.Revisions" />
+		</Or>
 	</Match>
 	<Match>
 		<Or>
