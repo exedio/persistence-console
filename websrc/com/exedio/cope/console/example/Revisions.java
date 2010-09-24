@@ -101,45 +101,63 @@ public final class Revisions
 
 		final ConnectProperties p = model.getConnectProperties();
 		Connection con = null;
-		PreparedStatement stat = null;
 		try
 		{
 			con = DriverManager.getConnection(p.getDatabaseUrl(), p.getDatabaseUser(), p.getDatabasePassword());
-			stat = con.prepareStatement("insert into " + q(model, "while") + " (" + q(model, "v") + "," + q(model, "i") + ") values (?,?)");
-
-			// skip first two revisions not yet applied
-			revisions.next();
-			revisions.next();
-
-			for(int i = 0; i<5; i++)
+			PreparedStatement stat = null;
+			try
 			{
-				final Revision revision = revisions.next();
-				final ArrayList<RevisionInfoRevise.Body> body = new ArrayList<RevisionInfoRevise.Body>();
-				int j = 0;
-				for(final String sql : revision.getBody())
-				{
-					body.add(new RevisionInfoRevise.Body(sql, (100*i)+j+1000, (100*i)+(10*j)+10000));
-					j++;
-				}
-				save(stat, new RevisionInfoRevise(
-						revision.getNumber(),
-						new Date(),
-						environment,
-						revision.getComment(),
-						body.toArray(new RevisionInfoRevise.Body[body.size()])));
+				stat = con.prepareStatement("insert into " + q(model, "while") + " (" + q(model, "v") + "," + q(model, "i") + ") values (?,?)");
 
-				if("before change of environment".equals(revision.getComment()))
+				// skip first two revisions not yet applied
+				revisions.next();
+				revisions.next();
+
+				for(int i = 0; i<5; i++)
 				{
-					environment.put("database.name",    environment.get("database.name")    + " - Changed");
-					environment.put("database.version", environment.get("database.version") + " - Changed");
+					final Revision revision = revisions.next();
+					final ArrayList<RevisionInfoRevise.Body> body = new ArrayList<RevisionInfoRevise.Body>();
+					int j = 0;
+					for(final String sql : revision.getBody())
+					{
+						body.add(new RevisionInfoRevise.Body(sql, (100*i)+j+1000, (100*i)+(10*j)+10000));
+						j++;
+					}
+					save(stat, new RevisionInfoRevise(
+							revision.getNumber(),
+							new Date(),
+							environment,
+							revision.getComment(),
+							body.toArray(new RevisionInfoRevise.Body[body.size()])));
+
+					if("before change of environment".equals(revision.getComment()))
+					{
+						environment.put("database.name",    environment.get("database.name")    + " - Changed");
+						environment.put("database.version", environment.get("database.version") + " - Changed");
+					}
+				}
+				{
+					final Revision revision = revisions.next();
+					save(stat, new RevisionInfoCreate(
+							revision.getNumber(),
+							new Date(),
+							environment));
 				}
 			}
+			finally
 			{
-				final Revision revision = revisions.next();
-				save(stat, new RevisionInfoCreate(
-						revision.getNumber(),
-						new Date(),
-						environment));
+				if(stat!=null)
+				{
+					try
+					{
+						stat.close();
+						stat = null;
+					}
+					catch(final SQLException e)
+					{
+						throw new SQLRuntimeException(e, "close");
+					}
+				}
 			}
 		}
 		catch(final SQLException e)
@@ -148,18 +166,6 @@ public final class Revisions
 		}
 		finally
 		{
-			if(stat!=null)
-			{
-				try
-				{
-					stat.close();
-					stat = null;
-				}
-				catch(final SQLException e)
-				{
-					throw new SQLRuntimeException(e, "close");
-				}
-			}
 			if(con!=null)
 			{
 				try
