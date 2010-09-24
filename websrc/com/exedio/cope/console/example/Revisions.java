@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
@@ -94,8 +95,8 @@ public final class Revisions
 	{
 		final java.util.Properties dbinfo = model.getEnvironmentInfo().asProperties();
 		final HashMap<String, String> environment = new HashMap<String, String>();
-		for(final Object key : dbinfo.keySet())
-			environment.put((String)key, dbinfo.getProperty((String)key));
+		for(final Map.Entry<Object, Object> entry : dbinfo.entrySet())
+			environment.put((String)entry.getKey(), (String)entry.getValue());
 
 		final Iterator<Revision> revisions = model.getRevisions().getList().iterator();
 
