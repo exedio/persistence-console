@@ -134,8 +134,8 @@ final class Test_Jspm
 					final long start = System.currentTimeMillis();
 					try
 					{
-						final int failures = cop.check(item);
-						info = new InfoResult(System.currentTimeMillis() - start, failures);
+						final int result = cop.check(item);
+						info = new InfoResult(System.currentTimeMillis() - start, result);
 					}
 					catch(Exception e)
 					{

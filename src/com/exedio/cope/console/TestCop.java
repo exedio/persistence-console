@@ -85,36 +85,36 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 
 	static final class InfoResult extends Info
 	{
-		final int failures;
+		final int result;
 
-		InfoResult(final long elapsed, final int failures)
+		InfoResult(final long elapsed, final int result)
 		{
 			super(elapsed);
-			this.failures = failures;
+			this.result = result;
 		}
 
 		@Override
 		int failures()
 		{
-			return failures;
+			return result;
 		}
 
 		@Override
 		String getCellClass()
 		{
-			return (failures>0) ? "failure" : null;
+			return (result>0) ? "failure" : null;
 		}
 
 		@Override
 		boolean isError()
 		{
-			return failures>0;
+			return result>0;
 		}
 
 		@Override
 		void writeCellContent(final Out out)
 		{
-			out.write(format(failures));
+			out.write(format(result));
 		}
 	}
 
