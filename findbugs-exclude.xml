@@ -19,8 +19,6 @@
 		<Or>
 			<!-- A prepared statement is generated from a nonconstant String -->
 			<Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" />
-			<!-- Method may fail to close database resource on exception  -->
-			<Bug pattern="ODR_OPEN_DATABASE_RESOURCE_EXCEPTION_PATH" />
 		</Or>
 		<Class name="com.exedio.cope.console.HistoryPurge" />
 	</Match>

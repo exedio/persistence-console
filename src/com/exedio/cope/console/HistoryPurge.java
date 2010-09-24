@@ -90,29 +90,40 @@ final class HistoryPurge extends Item
 			"delete from " + SchemaInfo.quoteName(model, SchemaInfo.getTableName (type )) +
 			" where "      + SchemaInfo.quoteName(model, SchemaInfo.getColumnName(field)) + "<?";
 		Connection con = null;
-		PreparedStatement stat = null;
 		final int rows;
 		final long start = System.nanoTime();
 		try
 		{
 			con = DriverManager.getConnection(p.getDatabaseUrl(), p.getDatabaseUser(), p.getDatabasePassword());
-			stat = con.prepareStatement(bf);
-
-			if(SchemaInfo.supportsNativeDate(model))
-				stat.setTimestamp(1, new Timestamp(limit.getTime())); else
-				stat.setLong     (1,               limit.getTime() );
-
-			rows = stat.executeUpdate();
-
-			if(stat!=null)
+			PreparedStatement stat = null;
+			try
 			{
-				stat.close();
-				stat = null;
+				stat = con.prepareStatement(bf);
+
+				if(SchemaInfo.supportsNativeDate(model))
+					stat.setTimestamp(1, new Timestamp(limit.getTime())); else
+					stat.setLong     (1,               limit.getTime() );
+
+				rows = stat.executeUpdate();
+
+				if(stat!=null)
+				{
+					stat.close();
+					stat = null;
+				}
+				if(con!=null)
+				{
+					con.close();
+					con = null;
+				}
 			}
-			if(con!=null)
+			finally
 			{
-				con.close();
-				con = null;
+				if(stat!=null)
+				{
+					stat.close();
+					stat = null;
+				}
 			}
 		}
 		catch(final SQLException e)
@@ -121,18 +132,6 @@ final class HistoryPurge extends Item
 		}
 		finally
 		{
-			if(stat!=null)
-			{
-				try
-				{
-					stat.close();
-					stat = null;
-				}
-				catch(final SQLException e)
-				{
-					// exception is already thrown
-				}
-			}
 			if(con!=null)
 			{
 				try
