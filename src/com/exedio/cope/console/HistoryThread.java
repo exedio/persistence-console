@@ -100,12 +100,12 @@ final class HistoryThread extends Thread
 
 			System.out.println(topic + "run() connecting");
 			ConnectToken connectToken = null;
-			final long connecting = System.currentTimeMillis();
+			final long connecting = System.nanoTime();
 			try
 			{
 				connectToken =
 					ConnectToken.issue(HISTORY_MODEL, new ConnectProperties(new File(propertyFile)), name);
-				System.out.println(topic + "run() connected (" + (System.currentTimeMillis() - connecting) + "ms)");
+				System.out.println(topic + "run() connected (" + ((System.nanoTime() - connecting) / 1000000) + "ms)");
 				HISTORY_MODEL.reviseIfSupported();
 				try
 				{
@@ -150,9 +150,9 @@ final class HistoryThread extends Thread
 				if(connectToken!=null)
 				{
 					System.out.println(topic + "run() disconnecting");
-					final long disconnecting = System.currentTimeMillis();
+					final long disconnecting = System.nanoTime();
 					connectToken.returnIt();
-					System.out.println(topic + "run() disconnected (" + (System.currentTimeMillis() - disconnecting) + "ms)");
+					System.out.println(topic + "run() disconnected (" + ((System.nanoTime() - disconnecting) / 1000000) + "ms)");
 				}
 				else
 					System.out.println(topic + "run() not connected");
@@ -278,7 +278,7 @@ final class HistoryThread extends Thread
 			lock.notify();
 		}
 		System.out.println(topic + "stopAndJoin() notified");
-		final long joining = System.currentTimeMillis();
+		final long joining = System.nanoTime();
 		try
 		{
 			join();
@@ -287,7 +287,7 @@ final class HistoryThread extends Thread
 		{
 			throw new RuntimeException(name, e);
 		}
-		System.out.println(topic + "stopAndJoin() joined (" + (System.currentTimeMillis() - joining) + "ms)");
+		System.out.println(topic + "stopAndJoin() joined (" + ((System.nanoTime() - joining) / 1000000) + "ms)");
 	}
 
 	@Override

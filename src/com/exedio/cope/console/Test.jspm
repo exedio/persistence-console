@@ -131,15 +131,15 @@ final class Test_Jspm
 				if(test)
 				{
 					out.flush();
-					final long start = System.currentTimeMillis();
+					final long start = System.nanoTime();
 					try
 					{
 						final int result = cop.check(item);
-						info = new InfoResult(System.currentTimeMillis() - start, result);
+						info = new InfoResult((System.nanoTime() - start) / 1000000, result);
 					}
 					catch(Exception e)
 					{
-						info = new InfoException(System.currentTimeMillis() - start, e);
+						info = new InfoException((System.nanoTime() - start) / 1000000, e);
 					}
 					infos.put(itemNumber, info);
 				}

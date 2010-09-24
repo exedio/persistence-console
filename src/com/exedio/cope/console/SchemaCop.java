@@ -154,14 +154,14 @@ final class SchemaCop extends ConsoleCop
 				else
 				{
 					out.flush();
-					beforeExecuteTime = System.currentTimeMillis();
+					beforeExecuteTime = System.nanoTime();
 					return true;
 				}
 			}
 
 			public void afterExecute(final String statement, final int rows)
 			{
-				final long time = System.currentTimeMillis() - beforeExecuteTime;
+				final long time = (System.nanoTime() - beforeExecuteTime) / 1000000;
 				out.writeRaw(" <span class=\"javaDecoration\">// ");
 				out.write(time);
 				out.writeRaw("ms, ");
