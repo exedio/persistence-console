@@ -87,6 +87,6 @@ final class SequenceCop extends TestCop<com.exedio.cope.SequenceInfo>
 		else if(feature instanceof IntegerField)
 			return ((IntegerField)feature).checkDefaultToNext();
 		else
-			return 111111111;
+			throw new RuntimeException(feature.toString());
 	}
 }

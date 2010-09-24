@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Format.format;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -66,15 +68,88 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 			Test_Jspm.writeBody(this, out, getCaption(), getHeadings(), items, false);
 	}
 
-	static class Info
+	static abstract class Info
 	{
-		final int failures;
 		final long elapsed;
 
-		Info(final int failures, final long elapsed)
+		Info(final long elapsed)
 		{
-			this.failures = failures;
 			this.elapsed  = elapsed;
+		}
+
+		abstract int failures();
+		abstract String getCellClass();
+		abstract boolean isError();
+		abstract void writeCellContent(Out out);
+	}
+
+	static final class InfoResult extends Info
+	{
+		final int failures;
+
+		InfoResult(final long elapsed, final int failures)
+		{
+			super(elapsed);
+			this.failures = failures;
+		}
+
+		@Override
+		int failures()
+		{
+			return failures;
+		}
+
+		@Override
+		String getCellClass()
+		{
+			return (failures>0) ? "failure" : null;
+		}
+
+		@Override
+		boolean isError()
+		{
+			return failures>0;
+		}
+
+		@Override
+		void writeCellContent(final Out out)
+		{
+			out.write(format(failures));
+		}
+	}
+
+	static final class InfoException extends Info
+	{
+		final Exception exception;
+
+		InfoException(final long elapsed, final Exception exception)
+		{
+			super(elapsed);
+			this.exception = exception;
+		}
+
+		@Override
+		int failures()
+		{
+			return 1;
+		}
+
+		@Override
+		String getCellClass()
+		{
+			return "notavailable";
+		}
+
+		@Override
+		boolean isError()
+		{
+			return true;
+		}
+
+		@Override
+		void writeCellContent(final Out out)
+		{
+			out.writeStackTrace(exception);
 		}
 	}
 

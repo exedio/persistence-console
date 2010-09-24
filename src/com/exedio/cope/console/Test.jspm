@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.exedio.cope.console.TestCop.Info;
+import com.exedio.cope.console.TestCop.InfoException;
+import com.exedio.cope.console.TestCop.InfoResult;
 
 final class Test_Jspm
 {
@@ -44,7 +46,7 @@ final class Test_Jspm
 					for(cellCount = 0; cellCount<cells.length; cellCount++)
 					{
 						var cell = cells[cellCount];
-						if(cell.tagName=="TH" || cell.className=="failure")
+						if(cell.tagName=="TH" || cell.className=="failure" || cell.className=="notavailable")
 						{
 							keep = true;
 							break;
@@ -124,36 +126,42 @@ final class Test_Jspm
 			}
 			if(infos!=null)
 			{
-				final int failures;
-				final long elapsed;
+				Info info;
 				
 				if(test)
 				{
 					out.flush();
 					final long start = System.currentTimeMillis();
-					failures = cop.check(item);
-					elapsed = System.currentTimeMillis() - start;
-					infos.put(itemNumber, new Info(failures, elapsed));
+					try
+					{
+						final int failures = cop.check(item);
+						info = new InfoResult(System.currentTimeMillis() - start, failures);
+					}
+					catch(Exception e)
+					{
+						info = new InfoException(System.currentTimeMillis() - start, e);
+					}
+					infos.put(itemNumber, info);
 				}
 				else
 				{
-					final Info info = infos.get(itemNumber);
-					failures = info.failures;
-					elapsed  = info.elapsed;
+					info = infos.get(itemNumber);
 				}
 				
-				totalFailures += failures;
-				totalElapsed += elapsed;
-				%>
-				<td<% if(failures!=0){%> class="failure"<%} %>><%
+				totalFailures += info.failures();
+				totalElapsed += info.elapsed;
 				
-				if(failures!=0)
+				final String cellClass = info.getCellClass();
+				%>
+				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
+				
+				if(info.isError())
 				{
 					%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
 				}
-				%><%=failures%><%
+				%><% info.writeCellContent(out); %><%
 				%></td>
-				<td><%=format(elapsed)%></td><%
+				<td><%=format(info.elapsed)%></td><%
 			}
 			%>
 			</tr><%
