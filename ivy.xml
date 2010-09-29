@@ -18,7 +18,10 @@
 		<dependency org="javax.servlet" name="servlet-api" rev="2.4" />
 		<dependency org="junit" name="junit" rev="4.4" conf="build->default" />
 		<dependency org="com.exedio" name="cops" rev= "198" />
-		<dependency org="com.exedio" name="cope" rev="6415" />
+		<dependency org="com.exedio" name="cope" rev="6425">
+			<conf name="runtime" mapped="runtime" />
+			<conf name="build" mapped="hsqldb" />
+		</dependency>
 		<dependency org="com.exedio" name="jspm" rev=  "89" conf="build->runtime" />
 	</dependencies>
 </ivy-module>
