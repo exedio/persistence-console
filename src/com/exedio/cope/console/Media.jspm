@@ -43,8 +43,7 @@ final class Media_Jspm extends Console_Jspm
 	final static void writeBody(
 			final MediaStatsCop cop,
 			final Out out,
-			final String[] names,
-			final String[] shortNames,
+			final int tableColumns,
 			final boolean isUrlGuessingNotSecure,
 			final MediaInfo[] infos,
 			final MediaSummary summary)
@@ -52,8 +51,8 @@ final class Media_Jspm extends Console_Jspm
 		%>
 		<table id="coloredTable">
 			<caption>Media Statistics</caption>
-			<tr><th colspan="<%=shortNames.length+1%>">No Such Path <small>(404)</small></th><td><%=format(MediaPath.getNoSuchPath())%></td></tr><%
-			ColoredTable_Jspm.writeHeader(out, names, shortNames);
+			<tr><th colspan="<%=tableColumns%>">No Such Path <small>(404)</small></th><td><%=format(MediaPath.getNoSuchPath())%></td></tr><%
+			MediaStatsCop.writeTableHeader(out);
 			
 			if(isUrlGuessingNotSecure)
 			{

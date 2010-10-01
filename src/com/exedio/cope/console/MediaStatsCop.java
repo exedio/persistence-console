@@ -78,7 +78,12 @@ final class MediaStatsCop extends ConsoleCop
 			infos[mediaIndex++] = media.getInfo();
 		final MediaSummary summary = new MediaSummary(infos);
 
-		Media_Jspm.writeBody(this, out, names, shortNames, isUrlGuessingNotSecure, infos, summary);
+		Media_Jspm.writeBody(this, out, shortNames.length+1, isUrlGuessingNotSecure, infos, summary);
+	}
+
+	static void writeTableHeader(final Out out)
+	{
+		ColoredTable_Jspm.writeHeader(out, names, shortNames);
 	}
 
 	private static final String[] names = {
