@@ -221,6 +221,7 @@ final class MediaCop extends ConsoleCop implements Pageable
 			final HttpServletRequest request,
 			final History history)
 	{
+		Media_Jspm.writeStats(out, this, media.getInfo());
 		try
 		{
 			model.startTransaction(getClass().getName());

@@ -43,11 +43,6 @@ final class MediaStatsCop extends ConsoleCop
 		return new MediaStatsCop(args);
 	}
 
-	MediaCop toMedia(final MediaPath media)
-	{
-		return new MediaCop(args, media);
-	}
-
 	@Override
 	final void writeBody(
 			final Out out,

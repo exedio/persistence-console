@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.console.ConsoleServlet.Store;
+import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
@@ -106,6 +107,11 @@ abstract class ConsoleCop<S> extends Cop
 	final ConsoleCop toAutoRefresh(final int autoRefresh)
 	{
 		return newArgs(new Args(args.servlet, args.historyModelShown, autoRefresh));
+	}
+
+	MediaCop toMedia(final MediaPath media)
+	{
+		return new MediaCop(args, media);
 	}
 
 	int getResponseStatus()
