@@ -103,16 +103,11 @@ final class HistoryPurge extends Item
 
 				rows = stat.executeUpdate();
 
-				if(stat!=null)
-				{
-					stat.close();
-					stat = null;
-				}
-				if(con!=null)
-				{
-					con.close();
-					con = null;
-				}
+				stat.close();
+				stat = null;
+
+				con.close();
+				con = null;
 			}
 			finally
 			{
