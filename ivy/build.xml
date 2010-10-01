@@ -11,5 +11,23 @@
 	</target>
 	<target name="copy" depends="resolve">
 		<copy file="artifacts/junit-4.4-jar.jar" tofile="../lib/junit.jar" overwrite="true" />
+		<copy overwrite="true" file="artifacts/exedio-cope-util-160-jar.jar" tofile="../lib/exedio-cope-util.jar" />
+		<copy overwrite="true" file="artifacts/exedio-cope-util-160-log.txt" tofile="../lib/exedio-cope-util.jar-CHANGELOG" />
+		<copy overwrite="true" file="artifacts/exedio-cope-util-160-src.zip" tofile="../lib/exedio-cope-util.jar-src.zip" />
+		<copy overwrite="true" file="artifacts/exedio-cops-200-jar.jar" tofile="../lib/exedio-cops.jar" />
+		<copy overwrite="true" file="artifacts/exedio-cops-200-log.txt" tofile="../lib/exedio-cops.jar-CHANGELOG" />
+		<copy overwrite="true" file="artifacts/exedio-cops-200-src.zip" tofile="../lib/exedio-cops.jar-src.zip" />
+		<copy overwrite="true" file="artifacts/exedio-jspm-89-jar.jar" tofile="../lib/exedio-jspm.jar" />
+		<copy overwrite="true" file="artifacts/exedio-jspm-89-log.txt" tofile="../lib/exedio-jspm.jar-CHANGELOG" />
+		<copy overwrite="true" file="artifacts/exedio-cope-6434-jar.jar" tofile="../lib/exedio-cope.jar" />
+		<copy overwrite="true" file="artifacts/exedio-cope-6434-log.txt" tofile="../lib/exedio-cope.jar-CHANGELOG" />
+		<copy overwrite="true" file="artifacts/exedio-cope-6434-src.zip" tofile="../lib/exedio-cope.jar-src.zip" />
+		<copy overwrite="true" file="artifacts/exedio-cope-instrument-6434-jar.jar" tofile="../lib/exedio-cope-instrument.jar" />
+		<copy overwrite="true" file="artifacts/servlet-api-2.5-jar.jar" tofile="../lib/servlet-api.jar" />
+		<copy overwrite="true" file="artifacts/servlet-api-2.5-source.jar" tofile="../lib/../lib/servlet-api.jar-src.zip" />
+		<copy overwrite="true" file="artifacts/trove-2.0.2-jar.jar" tofile="../lib/trove.jar" />
+		<copy overwrite="true" file="artifacts/cojen-2.0-jar.jar" tofile="../lib/cojen.jar" />
+		<copy overwrite="true" file="artifacts/bsh-2.0b4-core.jar" tofile="../lib/bsh-core.jar" />
+		<copy overwrite="true" file="artifacts/hsqldb-1.8.0.8-jar.jar" tofile="../lib/jdbc/hsqldb.jar" />
 	</target>
 </project>
