@@ -10,7 +10,7 @@
 		<ivy:retrieve file="../ivy.xml" pattern="artifacts/[artifact]-[revision]-[type].[ext]" />
 	</target>
 	<target name="copy" depends="resolve">
-		<copy file="artifacts/junit-4.4-jar.jar" tofile="../lib/junit.jar" overwrite="true" />
+		<copy overwrite="true" file="artifacts/junit-4.4-jar.jar" tofile="../lib/junit.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-util-160-jar.jar" tofile="../lib/exedio-cope-util.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-util-160-log.txt" tofile="../lib/exedio-cope-util.jar-CHANGELOG" />
 		<copy overwrite="true" file="artifacts/exedio-cope-util-160-src.zip" tofile="../lib/exedio-cope-util.jar-src.zip" />
