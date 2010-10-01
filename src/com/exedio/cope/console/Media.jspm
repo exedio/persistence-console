@@ -75,7 +75,18 @@ final class Media_Jspm extends Console_Jspm
 			
 			boolean firstMediaImageMagickFilter = true;
 			for(final MediaInfo info : infos)
-			{
+				firstMediaImageMagickFilter = write(out, cop, isUrlGuessingNotSecure, info, firstMediaImageMagickFilter);
+		%>
+		</table><%
+	}
+	
+	final static boolean write(
+				final Out out,
+				final MediaStatsCop cop,
+				final boolean isUrlGuessingNotSecure,
+				final MediaInfo info,
+				boolean firstMediaImageMagickFilter)
+	{
 				final MediaPath path = info.getPath();
 				final String type = path.getType().getID();
 				final String name = path.getName();
@@ -148,11 +159,10 @@ final class Media_Jspm extends Console_Jspm
 					}
 				%></td>
 			</tr><%
-			}
-		%>
-		</table><%
+			
+			return firstMediaImageMagickFilter;
 	}
-
+	
 	final static void writeHead(
 				final Out out)
 	{
