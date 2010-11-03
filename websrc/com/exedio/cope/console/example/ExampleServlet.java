@@ -125,11 +125,11 @@ public final class ExampleServlet extends CopsServlet
 		try
 		{
 			Main.model.startTransaction(thisClass.getName() + "#createSampleData");
-			new AnItem("aField1");
-			new AnItem("aField2");
-			new ASubItem("aField1s", "aSubField1s");
-			new ASubItem("aField2s", "aSubField2s");
-			new ASubItem("aField3s", "aSubField3s");
+			new AnItem("aField1", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
+			new AnItem("aField2", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
+			new ASubItem("aField1s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue, "aSubField1s");
+			new ASubItem("aField2s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue, "aSubField2s");
+			new ASubItem("aField3s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue, "aSubField3s");
 			new AMediaItem();
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "image/png");
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "unknownma/unknownmi");
@@ -153,7 +153,7 @@ public final class ExampleServlet extends CopsServlet
 		{
 			Main.model.startTransaction(replaceNullName(name));
 			for(int i = 0; i<items; i++)
-				new AnItem(name + "#" + i);
+				new AnItem(name + "#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
 			if(sleep>0)
 				Thread.sleep(sleep);
 			Main.model.commit();
