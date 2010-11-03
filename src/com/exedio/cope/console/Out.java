@@ -55,6 +55,23 @@ final class Out extends OutBasic
 		bf.print(i);
 	}
 
+	void write(final Class c)
+	{
+		final String s = c.getName();
+		final int pos = s.lastIndexOf('.');
+		if(pos<0)
+		{
+			bf.print(s);
+		}
+		else
+		{
+			bf.print("<small>");
+			bf.print(s.substring(0, pos));
+			bf.print("</small>");
+			bf.print(s.substring(pos));
+		}
+	}
+
 	void write(final InetAddress s)
 	{
 		bf.print(s);

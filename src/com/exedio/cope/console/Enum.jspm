@@ -56,7 +56,7 @@ final class Enum_Jspm extends Console_Jspm
 				{
 					first = false;
 				%>
-				<td class="text"<% if(size>1){%> rowspan="<%=size%>"<%} %>><a href="<%=cop.toClass(clazz)%>"><%=clazz.getName()%></a></td><%
+				<td class="text"<% if(size>1){%> rowspan="<%=size%>"<%} %>><a href="<%=cop.toClass(clazz)%>"><%=clazz%></a></td><%
 				}
 				%>
 				<td class="text"><%=field.getID()%></td>
@@ -73,7 +73,7 @@ final class Enum_Jspm extends Console_Jspm
 	{
 		%>
 		<table>
-			<caption>Enum <%=clazz.getName()%></caption>
+			<caption>Enum <%=clazz%></caption>
 			<tr>
 				<th>Name</th>
 				<th>Ordinal</th>
