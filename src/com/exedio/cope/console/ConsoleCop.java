@@ -141,6 +141,7 @@ abstract class ConsoleCop<S> extends Cop
 					new MediaTypeCop(args),
 					new ClusterCop(args),
 					new VmCop(args, false, false),
+					new EnumCop(args, null),
 					new EnvironmentCop(args),
 					new HashCop(args),
 					new HiddenCop(args),
@@ -195,6 +196,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_MEDIA_TYPE = "mediatype";
 	static final String TAB_CLUSTER = "cluster";
 	static final String TAB_VM = "vm";
+	static final String TAB_ENUM = "enum";
 	static final String TAB_ENVIRONMENT = "environment";
 	static final String TAB_HASH = "hash";
 	static final String TAB_HIDDEN = "hidden";
@@ -251,6 +253,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new ClusterCop(args);
 		if(TAB_VM.equals(tab))
 			return VmCop.getVmCop(args, request);
+		if(TAB_ENUM.equals(tab))
+			return EnumCop.getEnumCop(args, request);
 		if(TAB_ENVIRONMENT.equals(tab))
 			return new EnvironmentCop(args);
 		if(TAB_HASH.equals(tab))
