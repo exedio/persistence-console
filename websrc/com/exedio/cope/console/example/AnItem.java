@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console.example;
 
+import com.exedio.cope.CopeSchemaValue;
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
@@ -36,7 +37,7 @@ public class AnItem extends Item
 
 	enum Color
 	{
-		red, green, yellow, blue, pink;
+		red, green, yellow, @CopeSchemaValue(35) blue, pink;
 	}
 
 	static final EnumField<Color> color = newEnumField(Color.class);
