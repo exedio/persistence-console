@@ -52,6 +52,8 @@ public final class ExampleServlet extends CopsServlet
 	static final String TRANSACTION_SLEEP  = "transaction.sleep";
 	static final String TRANSACTION_SUBMIT = "transaction.submit";
 
+	static final String ITEM_CACHE_REPLACE = "itemCache.replace";
+
 	static final String CHANGE_LISTENER_ADD      = "changeListener.add";
 	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
 
@@ -88,6 +90,10 @@ public final class ExampleServlet extends CopsServlet
 						request.getParameter(TRANSACTION_NAME),
 						Integer.valueOf(request.getParameter(TRANSACTION_ITEMS)),
 						Integer.valueOf(request.getParameter(TRANSACTION_SLEEP)));
+			}
+			else if(request.getParameter(ITEM_CACHE_REPLACE)!=null)
+			{
+				replaceItemCache();
 			}
 			else if(request.getParameter(CHANGE_LISTENER_ADD)!=null)
 			{
@@ -167,6 +173,25 @@ public final class ExampleServlet extends CopsServlet
 			Main.model.rollbackIfNotCommitted();
 		}
 
+	}
+
+	private static void replaceItemCache()
+	{
+		try
+		{
+			Main.model.startTransaction("ItemCache create");
+			for(int i = 0; i<30000; i++)
+				new AnItem("ItemCache#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
+			Main.model.commit();
+			Main.model.startTransaction("ItemCache read");
+			for(final AnItem i : AnItem.TYPE.search())
+				i.getAField();
+			Main.model.commit();
+		}
+		finally
+		{
+			Main.model.rollbackIfNotCommitted();
+		}
 	}
 
 	private static ChangeListener newChangeListener(final boolean toStringFails)
