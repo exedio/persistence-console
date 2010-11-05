@@ -172,7 +172,6 @@ public final class ExampleServlet extends CopsServlet
 		{
 			Main.model.rollbackIfNotCommitted();
 		}
-
 	}
 
 	private static void replaceItemCache()
