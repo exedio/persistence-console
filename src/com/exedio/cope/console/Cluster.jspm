@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
+import static com.exedio.cope.console.Format.formatAndHide;
 
 import com.exedio.cope.ClusterListenerInfo;
 import com.exedio.cope.ClusterSenderInfo;
@@ -41,15 +42,15 @@ final class Cluster_Jspm
 			<tr><th>Local Port</th><td><%=format(senderInfo.getLocalPort())%></td></tr>
 			<tr><th>Send Buffer Size</th><td><%=format(senderInfo.getSendBufferSize())%></td></tr>
 			<tr><th>Traffic Class</th><td><%=format(senderInfo.getTrafficClass())%></td></tr>
-			<tr><th>Invalidation Split</th><td><%=format(senderInfo.getInvalidationSplit())%></td></tr>
+			<tr><th>Invalidation Split</th><td><%=formatAndHide(0, senderInfo.getInvalidationSplit())%></td></tr>
 		</table>
 		<table>
 			<caption>Cluster Listener</caption>
 			<tr><th>Receive Buffer Size</th><td><%=format(listenerInfo.getReceiveBufferSize())%></td></tr>
-			<tr><th>Exception</th><td><%=format(listenerInfo.getException())%></td></tr>
-			<tr><th>Missing Magic</th><td><%=format(listenerInfo.getMissingMagic())%></td></tr>
-			<tr><th>Wrong Secret</th><td><%=format(listenerInfo.getWrongSecret())%></td></tr>
-			<tr><th>From Myself</th><td><%=format(listenerInfo.getFromMyself())%></td></tr>
+			<tr><th>Exception</th><td><%=formatAndHide(0, listenerInfo.getException())%></td></tr>
+			<tr><th>Missing Magic</th><td><%=formatAndHide(0, listenerInfo.getMissingMagic())%></td></tr>
+			<tr><th>Wrong Secret</th><td><%=formatAndHide(0, listenerInfo.getWrongSecret())%></td></tr>
+			<tr><th>From Myself</th><td><%=formatAndHide(0, listenerInfo.getFromMyself())%></td></tr>
 		</table>
 		<hr>
 		<table>
@@ -112,12 +113,12 @@ final class Cluster_Jspm
 	private final static void write(final Out out, final SequenceChecker.Info ic)
 	{
 				%>
-				<td><%=format(ic.getPending())%></td>
-				<td><%=format(ic.getInOrder())%></td>
-				<td><%=format(ic.getOutOfOrder())%></td>
-				<td><%=format(ic.getDuplicate())%></td>
-				<td><%=format(ic.getLost())%></td>
-				<td><%=format(ic.getLate())%></td><%
+				<td><%=formatAndHide(0, ic.getPending())%></td>
+				<td><%=formatAndHide(0, ic.getInOrder())%></td>
+				<td><%=formatAndHide(0, ic.getOutOfOrder())%></td>
+				<td><%=formatAndHide(0, ic.getDuplicate())%></td>
+				<td><%=formatAndHide(0, ic.getLost())%></td>
+				<td><%=formatAndHide(0, ic.getLate())%></td><%
 	}
 	
 	final static void writeBodyDisabled(final Out out)
