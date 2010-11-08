@@ -140,6 +140,7 @@ public final class ExampleServlet extends CopsServlet
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "image/png");
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "unknownma/unknownmi");
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "image/jpeg"); // wrong content type by intention
+			new AMediaItem().setSecret (thisClass.getResourceAsStream("test.png"), "image/png");
 			Main.model.commit();
 		}
 		catch(final IOException e)
