@@ -157,6 +157,11 @@ span.help
 	color:#375798;
 }
 
+small
+{
+	font-size:60%;
+}
+
 div.message
 {
 	color: #000;
