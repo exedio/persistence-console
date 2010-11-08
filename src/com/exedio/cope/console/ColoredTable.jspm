@@ -32,7 +32,7 @@ abstract class ColoredTable_Jspm
 			
 			%>
 			<tr style="display:none;">
-				<th colspan="<%= names.length %>" class="color0"><%=names[0]%></th>
+				<th colspan="<%= names.length %>" class="color0"><% out.writeRaw(names[0]); %></th>
 			</tr><%
 	
 			for(int i = 1; i<shortNames.length; i++)
@@ -40,7 +40,7 @@ abstract class ColoredTable_Jspm
 			%>
 			<tr style="display:none;">
 				<th rowspan="<%= shortNames.length - i %>" class="color<%= (i-1)%COLORS %>"></th>
-				<th colspan="<%=      names.length - i %>" class="color<%= i%COLORS %>"><%=names[i]%></th>
+				<th colspan="<%=      names.length - i %>" class="color<%= i%COLORS %>"><% out.writeRaw(names[i]); %></th>
 			</tr><%
 			}
 			%>
@@ -63,8 +63,8 @@ abstract class ColoredTable_Jspm
 			for(; i<shortNames.length; i++)
 			{
 				%>
-				<th class="color<%= i%COLORS %>s" title="<%=names[i]%>"><%=
-					shortNames[i] %><%
+				<th class="color<%= i%COLORS %>s" title="<%=names[i]%>"><%
+					out.writeRaw(shortNames[i]); %><%
 					if(i==0)
 					{
 						%><span class="help" onClick="return displayColored();">?</span><%
@@ -74,7 +74,7 @@ abstract class ColoredTable_Jspm
 			for(; i<names.length; i++)
 			{
 				%>
-				<th><%= names[i] %></th><%
+				<th><% out.writeRaw(names[i]); %></th><%
 			}
 			%>
 			</tr><%
@@ -85,7 +85,7 @@ abstract class ColoredTable_Jspm
 			for(int i = 0; i<data.length; i++)
 			{
 			%>
-				<td class="color<%= i%COLORS %>"><%=data[i]%></td><%
+				<td class="color<%= i%COLORS %>"><% out.writeRaw(data[i]); %></td><%
 			}
 	}
 }%>
