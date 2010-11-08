@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Field;
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.Type;
 
 final class EnumCop extends ConsoleCop
@@ -106,5 +107,11 @@ final class EnumCop extends ConsoleCop
 		}
 		else
 			Enum_Jspm.writeBodyClass(out, clazz);
+	}
+
+	@SuppressWarnings("unchecked")
+	static int getColumnValue(final Enum constant)
+	{
+		return SchemaInfo.getColumnValue(constant);
 	}
 }

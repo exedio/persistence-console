@@ -19,12 +19,13 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.EnumCop.getColumnValue;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.exedio.cope.EnumField;
-import com.exedio.cope.SchemaInfo;
 
 final class Enum_Jspm extends Console_Jspm
 {
@@ -86,7 +87,7 @@ final class Enum_Jspm extends Console_Jspm
 			<tr>
 				<td class="text"><%=constant.name()%></td>
 				<td><%=constant.ordinal()%></td>
-				<td><%=SchemaInfo.getColumnValue(constant)%></td>
+				<td><%=getColumnValue(constant)%></td>
 			</tr><%
 		}
 			%>
