@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -141,6 +142,17 @@ public final class ExampleServlet extends CopsServlet
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "unknownma/unknownmi");
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "image/jpeg"); // wrong content type by intention
 			new AMediaItem().setSecret (thisClass.getResourceAsStream("test.png"), "image/png");
+			{
+				final AMediaItem item = new AMediaItem();
+				item.setContent(thisClass.getResourceAsStream("test.png"), "image/png");
+				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified()-(1000l*60*60*7))); // 7 hours
+			}
+			{
+				final AMediaItem item = new AMediaItem();
+				item.setContent(thisClass.getResourceAsStream("test.png"), "image/png");
+				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified()-(1000l*60*60*24*91))); // 91 days
+			}
+
 			Main.model.commit();
 		}
 		catch(final IOException e)

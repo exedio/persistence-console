@@ -30,12 +30,13 @@ final class Format
 		// prevent instantiation
 	}
 
-	private static SimpleDateFormat fullDateFormat, todayDateFormat;
+	private static SimpleDateFormat fullDateFormat, yearFormat, todayDateFormat;
 	private static DecimalFormat numberFormat;
 
 	static
 	{
 		fullDateFormat = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
+		yearFormat = new SimpleDateFormat("MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
 		todayDateFormat = new SimpleDateFormat("HH:mm:ss'<small>'.SSS'</small>'");
 		final DecimalFormatSymbols nfs = new DecimalFormatSymbols();
 		nfs.setDecimalSeparator(',');
@@ -43,6 +44,7 @@ final class Format
 		numberFormat = new DecimalFormat("", nfs);
 	}
 
+	private static final long yearInterval = 90l * 24 * 60 * 60 * 1000; // 90 days
 	private static final long todayInterval = 6 * 60 * 60 * 1000; // 6 hours
 
 	static final String formatAndHide(final Date date)
@@ -56,7 +58,9 @@ final class Format
 		final long now = System.currentTimeMillis();
 		return (
 			( (now-todayInterval) < dateMillis && dateMillis < (now+todayInterval) )
-			? todayDateFormat : fullDateFormat).format(date);
+			? todayDateFormat :
+			( (now-yearInterval) < dateMillis && dateMillis < (now+yearInterval) )
+			? yearFormat : fullDateFormat).format(date);
 	}
 
 	static final String format(final long number)
