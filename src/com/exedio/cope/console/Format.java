@@ -44,8 +44,8 @@ final class Format
 		numberFormat = new DecimalFormat("", nfs);
 	}
 
-	private static final long yearInterval = 90l * 24 * 60 * 60 * 1000; // 90 days
-	private static final long todayInterval = 6 * 60 * 60 * 1000; // 6 hours
+	private static final long yearInterval  = 1000l * 60 * 60 * 24 * 90; // 90 days
+	private static final long todayInterval = 1000l * 60 * 60 * 6; // 6 hours
 
 	static final String formatAndHide(final Date date)
 	{
