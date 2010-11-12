@@ -286,12 +286,10 @@ final class QueryCacheCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final Model model = out.model;
+
 		final QueryCacheHistogram[] histogram = model.getQueryCacheHistogram();
 		QueryCache_Jspm.writeBody(this, out,
 				model.getConnectProperties().getQueryCacheLimit(),

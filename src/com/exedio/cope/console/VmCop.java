@@ -25,9 +25,6 @@ import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.exedio.cope.Model;
-
-
 final class VmCop extends ConsoleCop
 {
 	private static final String DETAILED = "dt";
@@ -76,11 +73,7 @@ final class VmCop extends ConsoleCop
 	};
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
 		final HashMap<String, TreeSet<Package>> jarMap = new HashMap<String, TreeSet<Package>>();
 

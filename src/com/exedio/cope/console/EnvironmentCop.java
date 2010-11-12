@@ -27,8 +27,6 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.TreeMap;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Cope;
 import com.exedio.cope.Model;
 
@@ -52,12 +50,10 @@ final class EnvironmentCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final Model model = out.model;
+
 		final java.util.Properties current = model.getEnvironmentInfo().asProperties();
 		for(final Iterator i = current.keySet().iterator(); i.hasNext(); )
 		{

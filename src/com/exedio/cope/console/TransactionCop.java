@@ -79,12 +79,10 @@ final class TransactionCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final Model model = out.model;
+
 		Transaction_Jspm.writeStats(
 				out,
 				model.getNextTransactionId(),

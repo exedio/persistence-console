@@ -43,12 +43,11 @@ final class ChangeListenerCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final HttpServletRequest request = out.request;
+		final Model model = out.model;
+
 		if(isPost(request))
 		{
 			if(request.getParameter(REMOVE_SELECTED)!=null)

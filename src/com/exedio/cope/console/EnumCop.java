@@ -79,14 +79,12 @@ final class EnumCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
 		if(clazz==null)
 		{
+			final Model model = out.model;
+
 			final LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>> map =
 				new LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>>();
 			for(final Type<?> type : model.getTypes())

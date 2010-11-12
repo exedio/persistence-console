@@ -60,12 +60,10 @@ final class DatabaseLogCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final Model model = out.model;
+
 		final DatabaseListener listener = model.getDatabaseListener();
 		final boolean enabled = (listener instanceof DatabaseLogListener);
 		DatabaseLog_Jspm.writeBody(this, out,

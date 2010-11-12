@@ -18,10 +18,6 @@
 
 package com.exedio.cope.console;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.exedio.cope.Model;
-
 final class ConnectionPoolCop extends ConsoleCop
 {
 	ConnectionPoolCop(final Args args)
@@ -36,12 +32,8 @@ final class ConnectionPoolCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
-		ConnectionPool_Jspm.writeBody(out, model.getConnectionPoolInfo());
+		ConnectionPool_Jspm.writeBody(out, out.model.getConnectionPoolInfo());
 	}
 }

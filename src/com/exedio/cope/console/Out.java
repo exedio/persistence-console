@@ -24,6 +24,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.exedio.cope.Model;
 import com.exedio.cope.util.XMLEncoder;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Resource;
@@ -31,13 +32,21 @@ import com.exedio.dsmf.Constraint;
 
 final class Out extends OutBasic
 {
-	private final HttpServletRequest request;
+	final HttpServletRequest request;
+	final Model model;
+	final History history;
 
-	Out(final HttpServletRequest request, final PrintStream bf)
+	Out(
+			final HttpServletRequest request,
+			final Model model,
+			final History history,
+			final PrintStream bf)
 	{
 		super(bf);
 		assert request!=null;
 		this.request = request;
+		this.model = model;
+		this.history = history;
 	}
 
 	void writeRaw(final String s)

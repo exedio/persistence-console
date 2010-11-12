@@ -51,15 +51,11 @@ final class SchemaCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
-		SchemaSchema_Jspm.writeBody(this, out, model, request);
-		SchemaConstraints_Jspm.writeBody(this, out, model, request);
-		SchemaDetails_Jspm.writeBody(this, out, model, request);
+		SchemaSchema_Jspm.writeBody(this, out);
+		SchemaConstraints_Jspm.writeBody(this, out);
+		SchemaDetails_Jspm.writeBody(this, out);
 	}
 
 	private static final String strip(final String s, final String prefix)

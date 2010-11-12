@@ -20,8 +20,6 @@ package com.exedio.cope.console;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.DataField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
@@ -41,12 +39,10 @@ final class DataFieldCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final Model model = out.model;
+
 		final ArrayList<DataField> fields = new ArrayList<DataField>();
 		long lengthMax = 0;
 

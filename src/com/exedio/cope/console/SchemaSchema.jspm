@@ -36,10 +36,11 @@ final class SchemaSchema_Jspm extends Console_Jspm
 	
 	final static void writeBody(
 			final SchemaCop cop,
-			final Out out,
-			final Model model,
-			final HttpServletRequest request)
+			final Out out)
 	{
+		final HttpServletRequest request = out.request;
+		final Model model = out.model;
+
 		%>
 		<h4>Schema</h4>
 		<form action="<%=cop%>#overall" method="POST">

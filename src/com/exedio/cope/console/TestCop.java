@@ -43,12 +43,11 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final HttpServletRequest request = out.request;
+		final Model model = out.model;
+
 		final List<I> items = getItems(model);
 
 		if(isPost(request) && request.getParameter(TEST)!=null)

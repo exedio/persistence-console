@@ -41,10 +41,11 @@ final class SchemaDetails_Jspm extends Console_Jspm
 	
 	final static void writeBody(
 			final SchemaCop cop,
-			final Out out,
-			final Model model,
-			final HttpServletRequest request)
+			final Out out)
 	{
+		final HttpServletRequest request = out.request;
+		final Model model = out.model;
+
 		%>
 		<hr>
 		<h4>Details</h4>

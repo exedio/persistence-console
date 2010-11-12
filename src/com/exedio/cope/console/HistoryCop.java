@@ -23,7 +23,6 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.Type;
 import com.exedio.cops.Pageable;
@@ -61,12 +60,11 @@ final class HistoryCop extends ConsoleCop<HashMap<Type<?>, HistoryCop.Info>> imp
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final HttpServletRequest request = out.request;
+		final History history = out.history;
+
 		if(history.isAvailable())
 		{
 			History_Jspm.writeBody(

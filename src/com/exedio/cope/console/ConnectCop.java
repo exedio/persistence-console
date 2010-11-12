@@ -54,12 +54,11 @@ final class ConnectCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final HttpServletRequest request = out.request;
+		final Model model = out.model;
+
 		if(isPost(request))
 		{
 			if(request.getParameter(RETURN_SELECTED)!=null)

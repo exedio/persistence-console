@@ -19,10 +19,8 @@
 
 package com.exedio.cope.console;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.exedio.cope.Model;
 import com.exedio.cope.console.ConsoleServlet.Store;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
@@ -31,13 +29,10 @@ abstract class Console_Jspm
 {
 	static final void write(
 				final Out out,
-				final HttpServletRequest request,
 				final HttpServletResponse response,
-				final Model model,
 				final ConsoleCop cop,
 				final String authentication,
-				final String hostname,
-				final History history)
+				final String hostname)
 	{
 		try
 		{
@@ -95,7 +90,7 @@ abstract class Console_Jspm
 		writeMenu(out, cop);
 		%>
 		<hr><%
-		cop.writeBody(out, model, request, history);
+		cop.writeBody(out);
 		%>
 		<hr><%
 		writeMenu(out, cop);

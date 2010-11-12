@@ -43,12 +43,11 @@ final class HashCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final HttpServletRequest request = out.request;
+		final Model model = out.model;
+
 		final ArrayList<Hash> hashes = new ArrayList<Hash>();
 		for(final Type<?> type : model.getTypes())
 			for(final Feature f : type.getDeclaredFeatures())

@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeSet;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
@@ -44,12 +42,10 @@ final class MediaStatsCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
+		final Model model = out.model;
+
 		final ArrayList<MediaPath> medias = new ArrayList<MediaPath>();
 		boolean isUrlGuessingPrevented = false;
 

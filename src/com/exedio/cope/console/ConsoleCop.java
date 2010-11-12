@@ -175,7 +175,7 @@ abstract class ConsoleCop<S> extends Cop
 		// default implementation does nothing
 	}
 
-	abstract void writeBody(Out out, Model model, HttpServletRequest request, History history);
+	abstract void writeBody(Out out);
 
 	static final String TAB_CONNECT = "connect";
 	static final String TAB_SCHEMA = "schema";
@@ -296,11 +296,7 @@ abstract class ConsoleCop<S> extends Cop
 		}
 
 		@Override
-		final void writeBody(
-				final Out out,
-				final Model model,
-				final HttpServletRequest request,
-				final History history)
+		final void writeBody(final Out out)
 		{
 			Console_Jspm.writeNotFound(out, pathInfo);
 		}

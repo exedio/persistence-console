@@ -18,10 +18,6 @@
 
 package com.exedio.cope.console;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.exedio.cope.Model;
-
 final class HiddenCop extends ConsoleCop
 {
 	HiddenCop(final Args args)
@@ -36,12 +32,8 @@ final class HiddenCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
-		Hidden_Jspm.writeBody(out, model.getHiddenFeatures());
+		Hidden_Jspm.writeBody(out, out.model.getHiddenFeatures());
 	}
 }

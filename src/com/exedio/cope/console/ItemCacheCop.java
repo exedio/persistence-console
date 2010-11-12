@@ -18,10 +18,7 @@
 
 package com.exedio.cope.console;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.ItemCacheInfo;
-import com.exedio.cope.Model;
 
 final class ItemCacheCop extends ConsoleCop
 {
@@ -37,13 +34,9 @@ final class ItemCacheCop extends ConsoleCop
 	}
 
 	@Override
-	final void writeBody(
-			final Out out,
-			final Model model,
-			final HttpServletRequest request,
-			final History history)
+	final void writeBody(final Out out)
 	{
-		final ItemCacheInfo[] infos = model.getItemCacheInfo();
+		final ItemCacheInfo[] infos = out.model.getItemCacheInfo();
 		final ItemCacheSummary summary = new ItemCacheSummary(infos);
 		ItemCache_Jspm.writeBody(out, summary, infos);
 	}
