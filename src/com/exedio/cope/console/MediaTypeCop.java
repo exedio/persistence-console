@@ -27,7 +27,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Media;
 
-final class MediaTypeCop extends TestCop<Media>
+final class MediaTypeCop extends TestAjaxCop<Media>
 {
 	MediaTypeCop(final Args args)
 	{
@@ -90,6 +90,18 @@ final class MediaTypeCop extends TestCop<Media>
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		}
+	}
+
+	@Override
+	String getID(final Media media)
+	{
+		return media.getID();
+	}
+
+	@Override
+	Media forID(final Model model, final String id)
+	{
+		return (Media)model.getFeature(id);
 	}
 
 	@Override
