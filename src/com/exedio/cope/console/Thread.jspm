@@ -23,7 +23,6 @@ import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.formatAndHide;
 
 import java.util.List;
-import java.util.Locale;
 
 import com.exedio.cope.ThreadController;
 
@@ -85,7 +84,7 @@ final class Thread_Jspm
 				<td><%=formatAndHide(Integer.MIN_VALUE, thread.getPriority())%></td>
 				<td><%=format(thread.getId())%></td>
 				<td class="text"><% if(thread.isAlive()){%>X<%} %></td>
-				<td class="text"><%=thread.getState().name().toLowerCase(Locale.ENGLISH)%></td>
+				<td class="text"><%=thread.getState()%></td>
 				<td class="text"><%
 					final StackTraceElement[] sts = thread.getStackTrace();
 					if(sts!=null && sts.length>0)

@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -90,6 +91,12 @@ final class Out extends OutBasic
 	{
 		if(date!=null)
 			bf.print(Format.format(date));
+	}
+
+	void write(final Thread.State state)
+	{
+		if(state!=null)
+			write(state.name().toLowerCase(Locale.ENGLISH));
 	}
 
 	void write(final Constraint.Type type)
