@@ -28,6 +28,34 @@ import java.util.List;
 
 final class Thread_Jspm
 {
+	final static void writeHead(final Out out)
+	{
+	%>
+		<style>
+			span.expand
+			{
+				font-size:80%;
+			}
+		</style>
+		<script>
+			function toggleStacktrace(image,more)
+			{
+				var imageSrc = image.src;
+				var moreElement = document.getElementById(more);
+				if(imageSrc.substring(imageSrc.length-8)=="true.png")
+				{
+					image.src = imageSrc.substring(0, imageSrc.length-8) + "false.png";
+					moreElement.style.display = "none";
+				}
+				else
+				{
+					image.src = imageSrc.substring(0, imageSrc.length-9) + "true.png";
+					moreElement.style.display = "inline";
+				}
+			}
+		</script><%
+	}
+	
 	final static void writeBody(
 			final Out out,
 			final List<ThreadController> threads)
@@ -42,8 +70,10 @@ final class Thread_Jspm
 				<th>Id</th>
 				<th>Alive</th>
 				<th>State</th>
+				<th>Stacktrace</th>
 			</tr><%
 			
+			int n = 0;
 			for(final ThreadController thread : threads)
 			{
 			%>
@@ -54,6 +84,27 @@ final class Thread_Jspm
 				<td><%=format(thread.getId())%></td>
 				<td><% if(thread.isAlive()){%>X<%} %></td>
 				<td><%=thread.getState().name()%></td>
+				<td class="text"><%
+					final StackTraceElement[] sts = thread.getStackTrace();
+					if(sts!=null && sts.length>0)
+					{
+					%>
+					<img class="node" onClick="toggleStacktrace(this,'more<%=n%>')" src="<%=ConsoleServlet.nodeFalse%>">
+					<%=sts[0].toString()%>
+					<span id="more<%=n%>" class="expand"><%
+						
+						for(int i = 1; i<sts.length; i++)
+						{
+							final StackTraceElement st = sts[i];
+						%>
+						<br><%=st.toString()%><%
+						}
+						n++;
+						%>
+					</span>
+				<%
+					}
+				%></td>
 			</tr><%
 			}
 			%>

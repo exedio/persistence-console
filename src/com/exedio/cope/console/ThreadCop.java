@@ -58,6 +58,12 @@ final class ThreadCop extends ConsoleCop
 	}
 
 	@Override
+	void writeHead(final Out out)
+	{
+		Thread_Jspm.writeHead(out);
+	}
+
+	@Override
 	final void writeBody(final Out out)
 	{
 		Thread_Jspm.writeBody(out, out.model.getThreadControllers());
