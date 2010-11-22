@@ -140,6 +140,7 @@ abstract class ConsoleCop<S> extends Cop
 					new MediaStatsCop(args),
 					new MediaTypeCop(args),
 					new ClusterCop(args),
+					new ThreadCop(args),
 					new VmCop(args, false, false),
 					new EnumCop(args, null),
 					new EnvironmentCop(args),
@@ -195,6 +196,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_MEDIA_STATS = "mediastats";
 	static final String TAB_MEDIA_TYPE = "mediatype";
 	static final String TAB_CLUSTER = "cluster";
+	static final String TAB_THREAD = "thread";
 	static final String TAB_VM = "vm";
 	static final String TAB_ENUM = "enum";
 	static final String TAB_ENVIRONMENT = "environment";
@@ -251,6 +253,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new MediaTypeCop(args);
 		if(TAB_CLUSTER.equals(tab))
 			return new ClusterCop(args);
+		if(TAB_THREAD.equals(tab))
+			return new ThreadCop(args);
 		if(TAB_VM.equals(tab))
 			return VmCop.getVmCop(args, request);
 		if(TAB_ENUM.equals(tab))
