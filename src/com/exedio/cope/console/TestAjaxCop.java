@@ -91,7 +91,11 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		}
 		else
 		{
-			TestAjax_Jspm.writeBody(this, out, getCaption(), getHeadings(), getItems(model), getStore().value);
+			final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
+			TestAjax_Jspm.writeBody(
+					this, out,
+					getCaption(), getHeadings(), getItems(model),
+					testStore!=null ? testStore.value : new HashMap<String, Info>());
 		}
 	}
 
