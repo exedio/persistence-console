@@ -24,16 +24,19 @@ import static com.exedio.cope.console.Format.format;
 import java.util.List;
 
 import com.exedio.cope.ChangeListener;
+import com.exedio.cope.ChangeListenerInfo;
 
 final class ChangeListener_Jspm extends Console_Jspm
 {
 	final static void writeBody(
 			final ChangeListenerCop cop,
 			final Out out,
-			final int clearedBefore,
+			final ChangeListenerInfo infoBefore,
 			final List<ChangeListener> listeners,
-			final int clearedAfter)
+			final ChangeListenerInfo infoAfter)
 	{
+		final int clearedBefore = infoBefore.getCleared();
+		final int clearedAfter = infoAfter.getCleared();
 		%>
 		<table>
 			<caption>Listener Statistics</caption>
@@ -44,6 +47,7 @@ final class ChangeListener_Jspm extends Console_Jspm
 						%>/<%=format(clearedAfter)%><%
 					}
 					%></td></tr>
+			<tr><th>Removed</td><td><%=format(infoAfter.getRemoved())%></td></tr>
 		</table>
 		<hr>
 		<form action="<%=cop%>" method="POST"><%

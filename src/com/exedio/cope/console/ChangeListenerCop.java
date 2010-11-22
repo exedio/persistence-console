@@ -67,9 +67,9 @@ final class ChangeListenerCop extends ConsoleCop
 		}
 
 		ChangeListener_Jspm.writeBody(this, out,
-				model.getChangeListenersCleared(),
+				model.getChangeListenersInfo(),
 				model.getChangeListeners(),
-				model.getChangeListenersCleared());
+				model.getChangeListenersInfo());
 	}
 
 	final String toID(final ChangeListener listener)
