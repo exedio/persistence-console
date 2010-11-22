@@ -91,6 +91,8 @@ final class TestAjax_Jspm
 				%>
 				<td class="text"><% cop.writeValue(out, item, h); %></td><%
 			}
+			if(info!=null)
+			{
 				final String cellClass = info.getCellClass();
 				%>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
@@ -102,5 +104,12 @@ final class TestAjax_Jspm
 				%><% info.writeCellContent(out); %><%
 				%></td>
 				<td><%=format(info.elapsed)%></td><%
+			}
+			else
+			{
+				%>
+				<td></td>
+				<td></td><%
+			}
 	}
 }%>
