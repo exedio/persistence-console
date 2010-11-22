@@ -7,4 +7,5 @@
 	<Parameter name="cope-console-history.com.exedio.cope.console.log" value="history.cope.properties" />
 	<Parameter name="cope-console-history.com.exedio.cope.console.history.autoPurgeDays" value="2" />
 	<Parameter name="cope-console-history.cluster.secret" value="5476" />
+	<Parameter name="cope-console-history.cluster.listenThreads" value="10" />
 </Context>
