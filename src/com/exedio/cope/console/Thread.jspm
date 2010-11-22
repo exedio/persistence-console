@@ -22,9 +22,10 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.formatAndHide;
 
-import com.exedio.cope.ThreadController;
-
 import java.util.List;
+import java.util.Locale;
+
+import com.exedio.cope.ThreadController;
 
 final class Thread_Jspm
 {
@@ -78,12 +79,12 @@ final class Thread_Jspm
 			{
 			%>
 			<tr>
-				<td><%=thread.getName()%></td>
-				<td><% if(thread.isDaemon()){%>X<%} %></td>
-				<td><%=thread.getPriority()%></td>
+				<td class="text"><%=thread.getName()%></td>
+				<td class="text"><% if(thread.isDaemon()){%>X<%} %></td>
+				<td><%=formatAndHide(Integer.MIN_VALUE, thread.getPriority())%></td>
 				<td><%=format(thread.getId())%></td>
-				<td><% if(thread.isAlive()){%>X<%} %></td>
-				<td><%=thread.getState().name()%></td>
+				<td class="text"><% if(thread.isAlive()){%>X<%} %></td>
+				<td class="text"><%=thread.getState().name().toLowerCase(Locale.ENGLISH)%></td>
 				<td class="text"><%
 					final StackTraceElement[] sts = thread.getStackTrace();
 					if(sts!=null && sts.length>0)
