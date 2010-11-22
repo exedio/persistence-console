@@ -114,6 +114,11 @@ abstract class ConsoleCop<S> extends Cop
 		return new MediaCop(args, media);
 	}
 
+	boolean isAjax()
+	{
+		return false;
+	}
+
 	int getResponseStatus()
 	{
 		return HttpServletResponse.SC_OK;
@@ -138,7 +143,7 @@ abstract class ConsoleCop<S> extends Cop
 					new QueryCacheCop(args),
 					new DataFieldCop(args),
 					new MediaStatsCop(args),
-					new MediaTypeCop(args),
+					new MediaTypeCop(args, null),
 					new ClusterCop(args),
 					new VmCop(args, false, false),
 					new EnumCop(args, null),
@@ -248,7 +253,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_MEDIA_STATS.equals(tab))
 			return new MediaStatsCop(args);
 		if(TAB_MEDIA_TYPE.equals(tab))
-			return new MediaTypeCop(args);
+			return new MediaTypeCop(args, request.getParameter(TestAjaxCop.ID));
 		if(TAB_CLUSTER.equals(tab))
 			return new ClusterCop(args);
 		if(TAB_VM.equals(tab))

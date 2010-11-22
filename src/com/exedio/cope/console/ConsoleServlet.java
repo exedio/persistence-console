@@ -172,6 +172,8 @@ public final class ConsoleServlet extends CopsServlet
 				// leave hostname==null
 			}
 			response.setStatus(cop.getResponseStatus());
+			if(cop.isAjax())
+				response.setContentType("text/xml; charset="+UTF8);
 			final Out out = new Out(request, model, history, new PrintStream(response.getOutputStream(), false, UTF8));
 			Console_Jspm.write(
 					out, response, cop,

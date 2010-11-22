@@ -23,17 +23,25 @@ import static com.exedio.cope.console.Format.format;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Model;
 
-abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<Integer, TestAjaxCop.Info>>
+abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Info>>
 {
-	final static String TEST = "TEST";
+	final static String ID = "testajax";
 
-	TestAjaxCop(final String tab, final String name, final Args args)
+	protected final String id;
+
+	TestAjaxCop(final String tab, final String name, final Args args, final String id)
 	{
 		super(tab, name, args);
+		this.id = id;
+		addParameter(ID, id);
+	}
+
+	@Override
+	boolean isAjax()
+	{
+		return id!=null;
 	}
 
 	@Override
@@ -45,26 +53,46 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<Integer, TestAjaxCop.In
 	@Override
 	final void writeBody(final Out out)
 	{
-		final HttpServletRequest request = out.request;
 		final Model model = out.model;
 
-		final List<I> items = getItems(model);
-
-		if(isPost(request) && request.getParameter(TEST)!=null)
+		if(id!=null)
 		{
+			final I item = forID(model, id);
+			if(id==null)
+				throw new IllegalArgumentException(id);
+
+			final long start = System.nanoTime();
+			Info info;
 			try
 			{
-				model.startTransaction();
-				TestAjax_Jspm.writeBody(this, out, getCaption(), getHeadings(), items, true);
-				model.commit();
+				final int result = check(item);
+				info = new ResultInfo((System.nanoTime() - start) / 1000000, result);
 			}
-			finally
+			catch(final Exception e)
 			{
-				model.rollbackIfNotCommitted();
+				info = new ExceptionInfo((System.nanoTime() - start) / 1000000, e);
 			}
+			final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
+
+			HashMap<String, Info> infos = testStore.value;
+			if(infos==null)
+				infos = new HashMap<String, Info>();
+			infos.put(id, info);
+			putStore(infos);
+
+			out.writeRaw(
+				"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+				"<info id=");
+			out.write(id);
+			out.writeRaw("><![CDATA[");
+			TestAjax_Jspm.writeRowInner(out, this, getHeadings().length, item, info);
+			out.writeRaw(
+				"]]></info>");
 		}
 		else
-			TestAjax_Jspm.writeBody(this, out, getCaption(), getHeadings(), items, false);
+		{
+			TestAjax_Jspm.writeBody(this, out, getCaption(), getHeadings(), getItems(model), getStore().value);
+		}
 	}
 
 	static abstract class Info
