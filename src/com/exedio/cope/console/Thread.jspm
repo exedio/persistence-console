@@ -72,6 +72,7 @@ final class Thread_Jspm
 				<th>Alive</th>
 				<th>State</th>
 				<th>Stacktrace</th>
+				<th>Start</th>
 			</tr><%
 			
 			int n = 0;
@@ -106,6 +107,12 @@ final class Thread_Jspm
 				<%
 					}
 				%></td>
+				<td class="text">
+					<form method="POST">
+						<input type="hidden" name="<%=ThreadCop.ID%>" value="<%=thread.getId()%>" />
+						<input type="submit" name="<%=ThreadCop.RESTART%>" value="Now" />
+					</form>
+				</td>
 			</tr><%
 			}
 			%>
