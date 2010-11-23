@@ -51,19 +51,19 @@ final class StackTrace_Jspm
 	
 	final static void write(
 			final Out out,
-			final StackTraceElement[] sts)
+			final StackTraceElement[] stackTrace)
 	{
-					if(sts!=null && sts.length>0)
+					if(stackTrace!=null && stackTrace.length>0)
 					{
 					final int n = out.nextId();
 					%>
 					<img class="node" onClick="toggleStacktrace(this,'more<%=n%>')" src="<%=ConsoleServlet.nodeFalse%>">
-					<%=sts[0].toString()%>
+					<%=stackTrace[0].toString()%>
 					<span id="more<%=n%>" class="expand"><%
 						
-						for(int i = 1; i<sts.length; i++)
+						for(int i = 1; i<stackTrace.length; i++)
 						{
-							final StackTraceElement st = sts[i];
+							final StackTraceElement st = stackTrace[i];
 						%>
 						<br><%=st.toString()%><%
 						}
