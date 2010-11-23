@@ -61,13 +61,13 @@ final class StackTrace_Jspm
 					>&nbsp;<%=stackTrace[0].toString()%>
 					<span id="more<%=n%>" class="expand"><%
 						
-						for(int i = 1; i<stackTrace.length; i++)
-						{
-							final StackTraceElement element = stackTrace[i];
+					for(int i = 1; i<stackTrace.length; i++)
+					{
+						final StackTraceElement element = stackTrace[i];
 						%>
 						<br><%=element.toString()%><%
-						}
-						%>
+					}
+					%>
 					</span>
 					<%
 				}
