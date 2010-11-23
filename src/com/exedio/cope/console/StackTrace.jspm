@@ -57,8 +57,8 @@ final class StackTrace_Jspm
 				{
 					final int n = out.nextId();
 					%>
-					<img class="node" onClick="toggleStacktrace(this,'more<%=n%>')" src="<%=ConsoleServlet.nodeFalse%>">
-					<%=stackTrace[0].toString()%>
+					<img class="node" onClick="toggleStacktrace(this,'more<%=n%>')" src="<%=ConsoleServlet.nodeFalse%>"
+					>&nbsp;<%=stackTrace[0].toString()%>
 					<span id="more<%=n%>" class="expand"><%
 						
 						for(int i = 1; i<stackTrace.length; i++)
