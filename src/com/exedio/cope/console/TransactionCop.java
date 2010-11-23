@@ -76,6 +76,7 @@ final class TransactionCop extends ConsoleCop
 	void writeHead(final Out out)
 	{
 		Transaction_Jspm.writeHead(out);
+		StackTrace_Jspm.writeHead(out);
 	}
 
 	@Override

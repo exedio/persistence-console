@@ -60,7 +60,7 @@ final class ThreadCop extends ConsoleCop
 	@Override
 	void writeHead(final Out out)
 	{
-		Thread_Jspm.writeHead(out);
+		StackTrace_Jspm.writeHead(out);
 	}
 
 	@Override

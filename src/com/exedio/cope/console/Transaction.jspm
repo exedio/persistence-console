@@ -35,32 +35,11 @@ final class Transaction_Jspm extends Console_Jspm
 	{
 	%>
 		<style>
-			span.expand
-			{
-				font-size:80%;
-			}
 			input
 			{
 				font-size:7pt;
 			}
-		</style>
-		<script>
-			function toggleStacktrace(image,more)
-			{
-				var imageSrc = image.src;
-				var moreElement = document.getElementById(more);
-				if(imageSrc.substring(imageSrc.length-8)=="true.png")
-				{
-					image.src = imageSrc.substring(0, imageSrc.length-8) + "false.png";
-					moreElement.style.display = "none";
-				}
-				else
-				{
-					image.src = imageSrc.substring(0, imageSrc.length-9) + "true.png";
-					moreElement.style.display = "inline";
-				}
-			}
-		</script><%
+		</style><%
 	}
 	
 	final static void writeStats(
@@ -175,25 +154,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<td class="text"><%=threadNames[n]%></td>
 				<td><%=threadPriorities[n]%></td>
 				<td class="text"><%=threadStates[n]%></td>
-				<td class="text"><%
-					final StackTraceElement[] sts = stacktraces[n];
-					if(sts!=null && sts.length>0)
-					{
-					%>
-					<img class="node" onClick="toggleStacktrace(this,'more<%=n%>')" src="<%=ConsoleServlet.nodeFalse%>">
-					<%=sts[0].toString()%>
-					<span id="more<%=n%>" class="expand"><%
-						
-						for(int i = 1; i<sts.length; i++)
-						{
-							final StackTraceElement st = sts[i];
-						%>
-						<br><%=st.toString()%><%
-						}
-						%>
-					</span>
-				<%
-					}
+				<td class="text"><% StackTrace_Jspm.write(out, thread.getStackTrace());
 				}
 				else
 				{

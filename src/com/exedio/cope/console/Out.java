@@ -36,6 +36,7 @@ final class Out extends OutBasic
 	final HttpServletRequest request;
 	final Model model;
 	final History history;
+	private int nextId = 0;
 
 	Out(
 			final HttpServletRequest request,
@@ -132,6 +133,15 @@ final class Out extends OutBasic
 		// here we don't have to call HttpServletResponse.encodeURL
 		// since HttpSessions are not used at all
 		bf.print(XMLEncoder.encode(cop.getURL(request)));
+	}
+
+	/**
+	 * Returns an id unique within the document.
+	 * Useful for html ids needed for javascript manipulating DOM.
+	 */
+	int nextId()
+	{
+		return nextId++;
 	}
 
 	void flush()
