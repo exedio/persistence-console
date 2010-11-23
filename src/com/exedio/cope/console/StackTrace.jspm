@@ -63,9 +63,9 @@ final class StackTrace_Jspm
 						
 						for(int i = 1; i<stackTrace.length; i++)
 						{
-							final StackTraceElement st = stackTrace[i];
+							final StackTraceElement element = stackTrace[i];
 						%>
-						<br><%=st.toString()%><%
+						<br><%=element.toString()%><%
 						}
 						%>
 					</span>
