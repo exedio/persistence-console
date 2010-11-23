@@ -53,8 +53,8 @@ final class StackTrace_Jspm
 			final Out out,
 			final StackTraceElement[] stackTrace)
 	{
-					if(stackTrace!=null && stackTrace.length>0)
-					{
+				if(stackTrace!=null && stackTrace.length>0)
+				{
 					final int n = out.nextId();
 					%>
 					<img class="node" onClick="toggleStacktrace(this,'more<%=n%>')" src="<%=ConsoleServlet.nodeFalse%>">
@@ -69,7 +69,7 @@ final class StackTrace_Jspm
 						}
 						%>
 					</span>
-				<%
-					}
+					<%
+				}
 	}
 }%>
