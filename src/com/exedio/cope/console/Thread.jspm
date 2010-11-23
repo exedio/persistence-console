@@ -108,7 +108,7 @@ final class Thread_Jspm
 				%></td>
 				<td class="text">
 					<form method="POST">
-						<input type="hidden" name="<%=ThreadCop.ID%>" value="<%=thread.getId()%>" />
+						<input type="hidden" name="<%=ThreadCop.ID_HASH%>" value="<%=System.identityHashCode(thread)%>" />
 						<input type="submit" name="<%=ThreadCop.RESTART%>" value="Now" />
 					</form>
 				</td>

@@ -26,7 +26,7 @@ import com.exedio.cope.ThreadController;
 final class ThreadCop extends ConsoleCop
 {
 	static final String RESTART = "restart";
-	static final String ID = "id";
+	static final String ID_HASH = "idhs";
 
 	ThreadCop(final Args args)
 	{
@@ -47,10 +47,10 @@ final class ThreadCop extends ConsoleCop
 		{
 			if(request.getParameter(RESTART)!=null)
 			{
-				final int id = getIntParameter(request, ID, Integer.MIN_VALUE);
+				final int id = getIntParameter(request, ID_HASH, Integer.MIN_VALUE);
 				for(final ThreadController thread : model.getThreadControllers())
 				{
-					if(thread.getId()==id)
+					if(System.identityHashCode(thread)==id) // cannot use getId(), because this is -1 if not active
 						thread.restart();
 				}
 			}
