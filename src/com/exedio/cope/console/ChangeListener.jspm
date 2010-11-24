@@ -25,6 +25,7 @@ import java.util.List;
 
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.ChangeListenerInfo;
+import com.exedio.cope.ChangeListenerDispatcherInfo;
 
 final class ChangeListener_Jspm extends Console_Jspm
 {
@@ -33,13 +34,14 @@ final class ChangeListener_Jspm extends Console_Jspm
 			final Out out,
 			final ChangeListenerInfo infoBefore,
 			final List<ChangeListener> listeners,
-			final ChangeListenerInfo infoAfter)
+			final ChangeListenerInfo infoAfter,
+			final ChangeListenerDispatcherInfo dispatcherInfo)
 	{
 		final int clearedBefore = infoBefore.getCleared();
 		final int clearedAfter = infoAfter.getCleared();
 		%>
-		<table>
-			<caption>Listener Statistics</caption>
+		<table style="float:left;">
+			<caption>Listener</caption>
 			<tr><th>Size</td><td><%=format(listeners.size())%></td></tr>
 			<tr><th>Cleared</td><td><%=format(clearedBefore)%><%
 					if(clearedBefore!=clearedAfter)
@@ -48,6 +50,13 @@ final class ChangeListener_Jspm extends Console_Jspm
 					}
 					%></td></tr>
 			<tr><th>Removed</td><td><%=format(infoAfter.getRemoved())%></td></tr>
+			<tr><th>Failed</td><td><%=format(infoAfter.getFailed())%></td></tr>
+		</table>
+		<table>
+			<caption>Dispatcher</caption>
+			<tr><th>Overflow</td><td><%=format(dispatcherInfo.getOverflow())%></td></tr>
+			<tr><th>Exception</td><td><%=format(dispatcherInfo.getException())%></td></tr>
+			<tr><th>Pending</td><td><%=format(dispatcherInfo.getPending())%></td></tr>
 		</table>
 		<hr>
 		<form action="<%=cop%>" method="POST"><%
