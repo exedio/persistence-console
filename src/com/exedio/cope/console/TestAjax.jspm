@@ -141,6 +141,7 @@ final class TestAjax_Jspm
 				<th><%=heading%></th><%
 				}
 				%>
+				<th></th>
 				<th>Failures</th>
 				<th>Elapsed<small>/ms<small></th>
 			</tr><%
@@ -172,6 +173,10 @@ final class TestAjax_Jspm
 				%>
 				<td class="text"><% cop.writeValue(out, item, h); %></td><%
 			}
+			
+				%>
+				<td><% writeButton(out, cop, id); %></td><%
+				
 			if(info!=null)
 			{
 				final String cellClass = info.getCellClass();
@@ -183,14 +188,13 @@ final class TestAjax_Jspm
 					%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
 				}
 				%><% info.writeCellContent(out); %><%
-				writeButton(out, cop, id);
 				%></td>
 				<td><%=format(info.elapsed)%></td><%
 			}
 			else
 			{
 				%>
-				<td colspan="2"><% writeButton(out, cop, id); %></td><%
+				<td colspan="2"></td><%
 			}
 	}
 	
@@ -199,6 +203,6 @@ final class TestAjax_Jspm
 			final TestAjaxCop<I> cop,
 			final String id)
 	{
-		%><a href="#" onclick="return doTest('<%=cop.toTest(id)%>');">test</a><%
+		%><a href="#" onclick="return doTest('<%=cop.toTest(id)%>');">T</a><%
 	}
 }%>
