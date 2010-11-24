@@ -179,6 +179,10 @@ final class RevisionLine
 		{
 			info = null;
 		}
+		catch(final AssertionError e)
+		{
+			info = null;
+		}
 		if(info!=null)
 		{
 			date = info.getDate();
