@@ -83,6 +83,10 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		{
 			info = new ExceptionInfo((System.nanoTime() - start) / 1000000, e);
 		}
+		catch(final AssertionError e)
+		{
+			info = new ExceptionInfo((System.nanoTime() - start) / 1000000, e);
+		}
 
 		final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
 		HashMap<String, Info> infos = testStore!=null ? testStore.value : null;
@@ -153,9 +157,9 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 
 	static final class ExceptionInfo extends Info
 	{
-		final Exception exception;
+		final Throwable exception;
 
-		ExceptionInfo(final long elapsed, final Exception exception)
+		ExceptionInfo(final long elapsed, final Throwable exception)
 		{
 			super(elapsed);
 			this.exception = exception;
