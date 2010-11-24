@@ -59,11 +59,12 @@ final class TestAjax_Jspm
 
 			var testRequest = getXmlHttpRequestObject();
 
-			function doTest(url)
+			function doTest(url,anchor)
 			{
 				//alert('toTest >' + url + '<');
 				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
 				{
+					anchor.style.display = "none";
 					testRequest.open("GET", url, true);
 					testRequest.onreadystatechange = handleTest; 
 					testRequest.send(null);
@@ -176,7 +177,7 @@ final class TestAjax_Jspm
 			}
 			
 				%>
-				<td><a href="#" onclick="return doTest('<%=cop.toTest(id)%>');">T</a></td><%
+				<td><a href="#" onclick="return doTest('<%=cop.toTest(id)%>', this);">T</a></td><%
 				
 			if(info!=null)
 			{
