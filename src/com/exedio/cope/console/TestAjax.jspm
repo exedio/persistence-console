@@ -198,7 +198,7 @@ final class TestAjax_Jspm
 			else
 			{
 				%>
-				<td colspan="3"></td><%
+				<td class="notavailable" colspan="3">not yet tested</td><%
 			}
 	}
 	
