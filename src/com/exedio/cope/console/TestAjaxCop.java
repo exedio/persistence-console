@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -107,11 +108,17 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 
 	static abstract class Info
 	{
+		private final long date = System.currentTimeMillis();
 		final long elapsed;
 
 		Info(final long elapsed)
 		{
 			this.elapsed  = elapsed;
+		}
+
+		Date getDate()
+		{
+			return new Date(date);
 		}
 
 		abstract int failures();

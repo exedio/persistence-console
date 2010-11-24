@@ -142,6 +142,7 @@ final class TestAjax_Jspm
 				}
 				%>
 				<th></th>
+				<th>Date</th>
 				<th>Failures</th>
 				<th>Elapsed<small>/ms<small></th>
 			</tr><%
@@ -179,6 +180,9 @@ final class TestAjax_Jspm
 				
 			if(info!=null)
 			{
+				%>
+				<td><%=info.getDate()%></td><%
+				
 				final String cellClass = info.getCellClass();
 				%>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
@@ -194,7 +198,7 @@ final class TestAjax_Jspm
 			else
 			{
 				%>
-				<td colspan="2"></td><%
+				<td colspan="3"></td><%
 			}
 	}
 	
