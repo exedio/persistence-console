@@ -105,8 +105,26 @@ final class MediaTypeCop extends TestAjaxCop<Media>
 	}
 
 	@Override
+	MediaTypeCop toTest(final String id)
+	{
+		return new MediaTypeCop(args, id);
+	}
+
+	@Override
 	int check(final Media media)
 	{
-		return media.getType().newQuery(media.bodyMismatchesContentType()).total();
+		final Model model = media.getType().getModel();
+		try
+		{
+			model.startTransaction("Console MediaType " + id);
+			final int result =
+				media.getType().newQuery(media.bodyMismatchesContentType()).total();
+			model.commit();
+			return result;
+		}
+		finally
+		{
+			model.rollbackIfNotCommitted();
+		}
 	}
 }

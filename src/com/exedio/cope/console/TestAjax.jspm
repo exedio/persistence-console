@@ -28,6 +28,86 @@ import com.exedio.cope.console.TestAjaxCop.Info;
 
 final class TestAjax_Jspm
 {
+	final static void writeHead(final Out out)
+	{
+		%>
+		<script>
+			/*
+				This is the JavaScript file for the AJAX Suggest Tutorial
+
+				You may use this code in your own projects as long as this 
+				copyright is left	in place.  All code is provided AS-IS.
+				This code is distributed in the hope that it will be useful,
+				but WITHOUT ANY WARRANTY; without even the implied warranty of
+				MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+				
+				For the rest of the code visit http://www.DynamicAJAX.com
+				
+				Copyright 2006 Ryan Smith / 345 Technical / 345 Group.
+
+			*/
+			//Gets the browser specific XmlHttpRequest Object
+			function getXmlHttpRequestObject() {
+				if (window.XMLHttpRequest) {
+					return new XMLHttpRequest();
+				} else if(window.ActiveXObject) {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				} else {
+					//alert("Ihr Browser ist schon etwas aelter.\nEventuell sollten Sie einmal ueber ein Update nachdenken...");
+				}
+			}
+
+			var testRequest = getXmlHttpRequestObject();
+
+			function doTest(url)
+			{
+				//alert('toTest >' + url + '<');
+				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
+				{
+					testRequest.open("GET", url, true);
+					testRequest.onreadystatechange = handleTest; 
+					testRequest.send(null);
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+			function handleTest() 
+			{
+				if(testRequest.readyState == 4)
+				{
+					try
+					{
+						if(testRequest.status != null && testRequest.status == 200)
+						{
+							var responseXML = testRequest.responseXML;
+							var infoNode = responseXML.childNodes[0];
+							if(infoNode==null || infoNode.nodeName!="info")
+							{
+								alert("Communication failed - info node not found:" + testRequest.responseText);
+								stopAll = true;
+								return;
+							}
+							var id = infoNode.getAttribute("id");
+							var row = document.getElementById(id);
+							var content = infoNode.childNodes[0].nodeValue;
+							row.innerHTML = content;
+						}
+					}
+					catch(e)
+					{
+						alert(e);
+						stopAll = true;
+						throw e;
+					}
+				}
+			}
+		</script><%
+	}
+	
 	final static <I> void writeBody(
 			final TestAjaxCop<I> cop,
 			final Out out,
@@ -71,7 +151,7 @@ final class TestAjax_Jspm
 			final String id = cop.getID(item);
 			%>
 			<tr id="<%=id%>"><%
-				writeRowInner(out, cop, headingsLength, item, infos.get(id));
+				writeRowInner(out, cop, headingsLength, item, id, infos.get(id));
 			%>
 			</tr><%
 		}
@@ -84,6 +164,7 @@ final class TestAjax_Jspm
 			final TestAjaxCop<I> cop,
 			final int headingsLength,
 			final I item,
+			final String id,
 			final Info info)
 	{
 			for(int h = 0; h<headingsLength; h++)
@@ -102,14 +183,22 @@ final class TestAjax_Jspm
 					%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
 				}
 				%><% info.writeCellContent(out); %><%
+				writeButton(out, cop, id);
 				%></td>
 				<td><%=format(info.elapsed)%></td><%
 			}
 			else
 			{
 				%>
-				<td></td>
-				<td></td><%
+				<td colspan="2"><% writeButton(out, cop, id); %></td><%
 			}
+	}
+	
+	final static <I> void writeButton(
+			final Out out,
+			final TestAjaxCop<I> cop,
+			final String id)
+	{
+		%><a href="#" onclick="return doTest('<%=cop.toTest(id)%>');">test</a><%
 	}
 }%>

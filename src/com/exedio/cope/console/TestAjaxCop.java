@@ -39,15 +39,9 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 	}
 
 	@Override
-	boolean isAjax()
-	{
-		return id!=null;
-	}
-
-	@Override
 	final void writeHead(final Out out)
 	{
-		Test_Jspm.writeHead(out);
+		TestAjax_Jspm.writeHead(out);
 	}
 
 	@Override
@@ -55,48 +49,56 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 	{
 		final Model model = out.model;
 
-		if(id!=null)
+		final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
+		TestAjax_Jspm.writeBody(
+				this, out,
+				getCaption(), getHeadings(), getItems(model),
+				testStore!=null ? testStore.value : new HashMap<String, Info>());
+	}
+
+	@Override
+	boolean isAjax()
+	{
+		return id!=null;
+	}
+
+	@Override
+	void writeAjax(final Out out)
+	{
+		if(id==null)
+			throw new IllegalArgumentException(id);
+
+		final I item = forID(out.model, id);
+		if(item==null)
+			throw new IllegalArgumentException(id);
+
+		final long start = System.nanoTime();
+		Info info;
+		try
 		{
-			final I item = forID(model, id);
-			if(id==null)
-				throw new IllegalArgumentException(id);
-
-			final long start = System.nanoTime();
-			Info info;
-			try
-			{
-				final int result = check(item);
-				info = new ResultInfo((System.nanoTime() - start) / 1000000, result);
-			}
-			catch(final Exception e)
-			{
-				info = new ExceptionInfo((System.nanoTime() - start) / 1000000, e);
-			}
-			final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
-
-			HashMap<String, Info> infos = testStore.value;
-			if(infos==null)
-				infos = new HashMap<String, Info>();
-			infos.put(id, info);
-			putStore(infos);
-
-			out.writeRaw(
-				"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-				"<info id=");
-			out.write(id);
-			out.writeRaw("><![CDATA[");
-			TestAjax_Jspm.writeRowInner(out, this, getHeadings().length, item, info);
-			out.writeRaw(
-				"]]></info>");
+			final int result = check(item);
+			info = new ResultInfo((System.nanoTime() - start) / 1000000, result);
 		}
-		else
+		catch(final Exception e)
 		{
-			final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
-			TestAjax_Jspm.writeBody(
-					this, out,
-					getCaption(), getHeadings(), getItems(model),
-					testStore!=null ? testStore.value : new HashMap<String, Info>());
+			info = new ExceptionInfo((System.nanoTime() - start) / 1000000, e);
 		}
+
+		final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
+		HashMap<String, Info> infos = testStore!=null ? testStore.value : null;
+		if(infos==null)
+			infos = new HashMap<String, Info>();
+		infos.put(id, info);
+		putStore(infos);
+
+		out.writeRaw(
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+			"<info id=\"");
+		out.write(id);
+		out.writeRaw("\"><![CDATA[");
+		TestAjax_Jspm.writeRowInner(out, this, getHeadings().length, item, id, info);
+		out.writeRaw(
+			"]]></info>");
 	}
 
 	static abstract class Info
@@ -190,5 +192,6 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 	abstract void writeValue(Out out, I item, int h);
 	abstract String getID(I item);
 	abstract I forID(Model model, String id);
+	abstract TestAjaxCop toTest(String id);
 	abstract int check(I item);
 }

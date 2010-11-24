@@ -114,11 +114,6 @@ abstract class ConsoleCop<S> extends Cop
 		return new MediaCop(args, media);
 	}
 
-	boolean isAjax()
-	{
-		return false;
-	}
-
 	int getResponseStatus()
 	{
 		return HttpServletResponse.SC_OK;
@@ -181,6 +176,17 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	abstract void writeBody(Out out);
+
+
+	boolean isAjax()
+	{
+		return false;
+	}
+
+	void writeAjax(@SuppressWarnings("unused") final Out out)
+	{
+		throw new RuntimeException(getClass().getName());
+	}
 
 	static final String TAB_CONNECT = "connect";
 	static final String TAB_SCHEMA = "schema";
