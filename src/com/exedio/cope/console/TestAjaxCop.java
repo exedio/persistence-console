@@ -103,7 +103,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 			"<update id=\"");
 		out.write(id);
 		out.writeRaw("\"><![CDATA[");
-		TestAjax_Jspm.writeRowInner(out, this, headingsLength, item, id, info);
+		TestAjax_Jspm.writeRow(out, this, headingsLength, item, id, info);
 		out.writeRaw(
 			"]]></update>" +
 			"<update id=\"total\"><![CDATA[");

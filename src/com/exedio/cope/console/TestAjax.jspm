@@ -175,7 +175,7 @@ final class TestAjax_Jspm
 			final String id = cop.getID(item);
 			%>
 			<tr id="<%=id%>"><%
-				writeRowInner(out, cop, headingsLength, item, id, infos.get(id));
+				writeRow(out, cop, headingsLength, item, id, infos.get(id));
 			%>
 			</tr><%
 		}
@@ -183,7 +183,7 @@ final class TestAjax_Jspm
 		</table><%
 	}
 	
-	final static <I> void writeRowInner(
+	final static <I> void writeRow(
 			final Out out,
 			final TestAjaxCop<I> cop,
 			final int headingsLength,
