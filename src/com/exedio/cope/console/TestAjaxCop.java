@@ -98,12 +98,14 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 
 		out.writeRaw(
 			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-			"<info id=\"");
+			"<response>" +
+			"<update id=\"");
 		out.write(id);
 		out.writeRaw("\"><![CDATA[");
 		TestAjax_Jspm.writeRowInner(out, this, getHeadings().length, item, id, info);
 		out.writeRaw(
-			"]]></info>");
+			"]]></update>" +
+			"</response>");
 	}
 
 	static abstract class Info
