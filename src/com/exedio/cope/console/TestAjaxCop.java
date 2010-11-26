@@ -113,7 +113,10 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 			"</response>");
 	}
 
-	static void writeTotal(final Out out, final int headingsLength, final HashMap<String, Info> infos)
+	static void writeTotal(
+			final Out out,
+			final int headingsLength,
+			final HashMap<String, Info> infos)
 	{
 		int elapsed = 0;
 		Info date = null;
