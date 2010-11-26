@@ -96,16 +96,46 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		infos.put(id, info);
 		putStore(infos);
 
+		final int headingsLength = getHeadings().length;
 		out.writeRaw(
 			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
 			"<response>" +
 			"<update id=\"");
 		out.write(id);
 		out.writeRaw("\"><![CDATA[");
-		TestAjax_Jspm.writeRowInner(out, this, getHeadings().length, item, id, info);
+		TestAjax_Jspm.writeRowInner(out, this, headingsLength, item, id, info);
+		out.writeRaw(
+			"]]></update>" +
+			"<update id=\"total\"><![CDATA[");
+		writeTotal(out, headingsLength, infos);
 		out.writeRaw(
 			"]]></update>" +
 			"</response>");
+	}
+
+	static void writeTotal(final Out out, final int headingsLength, final HashMap<String, Info> infos)
+	{
+		int elapsed = 0;
+		Info date = null;
+		int failures = 0;
+		boolean isError = false;
+
+		for(final Info info : infos.values())
+		{
+			elapsed  += info.elapsed;
+			date      = info.oldest(date);
+			failures += info.failures();
+			isError  |= info.isError();
+		}
+
+		TestAjax_Jspm.writeTotal(
+				out,
+				headingsLength,
+				elapsed,
+				date!=null ? date.getDate() : null,
+				failures,
+				(failures>0) ? "failure" : null,
+				isError);
 	}
 
 	static abstract class Info
@@ -121,6 +151,14 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		Date getDate()
 		{
 			return new Date(date);
+		}
+
+		Info oldest(final Info other)
+		{
+			if(other==null)
+				return this;
+
+			return date<=other.date ? this : other;
 		}
 
 		abstract int failures();

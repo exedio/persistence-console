@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -146,9 +147,15 @@ final class TestAjax_Jspm
 			return;
 		}
 		
+		final int headingsLength = headings.length;
+		
 		%>
 		<table id="test_table">
 			<caption><%=caption%></caption>
+			<tr id="total"><%
+				TestAjaxCop.writeTotal(out, headingsLength, infos);
+			%>
+			</tr>
 			<tr><%
 				
 				for(final String heading : headings)
@@ -163,7 +170,6 @@ final class TestAjax_Jspm
 				<th>Elapsed<small>/ms<small></th>
 			</tr><%
 		
-		final int headingsLength = headings.length;
 		for(final I item : items)
 		{
 			final String id = cop.getID(item);
@@ -216,5 +222,29 @@ final class TestAjax_Jspm
 				%>
 				<td class="notavailable" colspan="3">not yet tested</td><%
 			}
+	}
+	
+	final static <I> void writeTotal(
+			final Out out,
+			final int headingsLength,
+			final int elapsed,
+			final Date date,
+			final int failures,
+			final String cellClass,
+			final boolean isError)
+	{
+				%>
+				<th colspan="<%=headingsLength%>"></th>
+				<td>T</td>
+				<td><%=date%></td>
+				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
+				
+				if(isError)
+				{
+					%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
+				}
+				%><%=failures%><%
+				%></td>
+				<td><%=format(elapsed)%></td><%
 	}
 }%>
