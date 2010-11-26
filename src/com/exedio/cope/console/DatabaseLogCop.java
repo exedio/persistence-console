@@ -69,6 +69,7 @@ final class DatabaseLogCop extends ConsoleCop
 		DatabaseLog_Jspm.writeBody(this, out,
 				listener!=null ? listener.getClass() : null,
 				enabled,
+				enabled ? ((DatabaseLogListener)listener).getDate() : null,
 				enabled ? ((DatabaseLogListener)listener).threshold : 0,
 				enabled ? ((DatabaseLogListener)listener).sql       : null);
 	}

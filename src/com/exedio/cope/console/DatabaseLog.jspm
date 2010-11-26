@@ -19,6 +19,8 @@
 
 package com.exedio.cope.console;
 
+import java.util.Date;
+
 final class DatabaseLog_Jspm
 {
 	final static void writeBody(
@@ -26,11 +28,13 @@ final class DatabaseLog_Jspm
 			final Out out,
 			final Class listenerClass,
 			final boolean enable,
+			final Date date,
 			final int threshold,
 			final String sql)
 	{
 		%>
 		active: <%= listenerClass!=null ? listenerClass.getName() : "NONE" %>
+		<br>since: <%= date %>
 		<form action="<%=cop%>" method="POST">
 			<input type="checkbox" name="<%=cop.ENABLE%>"<%if(enable){%> checked="checked"<%}%>> enable
 			<br>

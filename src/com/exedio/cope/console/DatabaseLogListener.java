@@ -27,6 +27,7 @@ import com.exedio.cope.misc.DatabaseListener;
 
 final class DatabaseLogListener implements DatabaseListener
 {
+	private final long date;
 	final int threshold;
 	final String sql;
 	private final PrintStream out;
@@ -38,9 +39,15 @@ final class DatabaseLogListener implements DatabaseListener
 		if(out==null)
 			throw new NullPointerException("out");
 
+		this.date = System.currentTimeMillis();
 		this.threshold = threshold;
 		this.sql = sql;
 		this.out = out;
+	}
+
+	Date getDate()
+	{
+		return new Date(date);
 	}
 
 	public void onStatement(
