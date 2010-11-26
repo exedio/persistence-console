@@ -96,18 +96,18 @@ final class TestAjax_Jspm
 							
 							for(var i=0; i<responseNode.childNodes.length; i++)
 							{
-								var infoNode = responseNode.childNodes[i];
-								if(infoNode.nodeType==1)
+								var updateNode = responseNode.childNodes[i];
+								if(updateNode.nodeType==1)
 								{
-									if(infoNode==null || infoNode.nodeName!="update")
+									if(updateNode==null || updateNode.nodeName!="update")
 									{
 										alert("Communication failed - update node not found:" + testRequest.responseText);
 										stopAll = true;
 										return;
 									}
-									var id = infoNode.getAttribute("id");
+									var id = updateNode.getAttribute("id");
 									var row = document.getElementById(id);
-									var content = infoNode.childNodes[0].nodeValue;
+									var content = updateNode.childNodes[0].nodeValue;
 									row.innerHTML = content;
 								}
 							}
