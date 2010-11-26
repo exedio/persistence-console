@@ -19,6 +19,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Console_Jspm.writeFail;
 import static com.exedio.cope.console.Format.format;
 
 import java.util.Date;
@@ -208,11 +209,7 @@ final class TestAjax_Jspm
 				final String cellClass = info.getCellClass();
 				%>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
-				
-				if(info.isError())
-				{
-					%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
-				}
+				writeFail(out, info.isError());
 				%><% info.writeCellContent(out); %><%
 				%></td>
 				<td><%=format(info.elapsed)%></td><%
@@ -237,13 +234,9 @@ final class TestAjax_Jspm
 				%>
 				<th colspan="<%=headingsLength%>"></th>
 				<td>T</td>
-				<td><% if(!complete){%><img class="check2" src="<%=ConsoleServlet.error2%>"><%} %><%=date%></td>
+				<td><% writeFail(out, !complete); %><%=date%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
-				
-				if(isError)
-				{
-					%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
-				}
+				writeFail(out, isError);
 				%><%=failures%><%
 				%></td>
 				<td><%=format(elapsed)%></td><%
