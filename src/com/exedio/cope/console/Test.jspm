@@ -174,7 +174,7 @@ final class Test_Jspm
 			%>
 			<tr>
 				<th colspan="<%=headings.length%>"><a name="overall">T</a>otal</th>
-				<td<% if(totalFailures!=0){%> class="failure"<%} %>><% if(totalFailures!=0){%><img class="check2" src="<%=ConsoleServlet.error2%>"><%} %><%=totalFailures%></td>
+				<td<% if(totalFailures!=0){%> class="failure"<%} %>><% writeFail(out, totalFailures!=0); %><%=totalFailures%></td>
 				<td><%=format(totalElapsed)%></td>
 			</tr><%
 		}
