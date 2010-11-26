@@ -153,7 +153,7 @@ final class TestAjax_Jspm
 		<table id="test_table">
 			<caption><%=caption%></caption>
 			<tr id="total"><%
-				TestAjaxCop.writeTotal(out, headingsLength, infos);
+				TestAjaxCop.writeTotal(out, headingsLength, items, infos);
 			%>
 			</tr>
 			<tr><%
@@ -227,6 +227,7 @@ final class TestAjax_Jspm
 	final static <I> void writeTotal(
 			final Out out,
 			final int headingsLength,
+			final boolean complete,
 			final int elapsed,
 			final Date date,
 			final int failures,
@@ -236,7 +237,7 @@ final class TestAjax_Jspm
 				%>
 				<th colspan="<%=headingsLength%>"></th>
 				<td>T</td>
-				<td><%=date%></td>
+				<td><% if(!complete){%><img class="check2" src="<%=ConsoleServlet.error2%>"><%} %><%=date%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
 				
 				if(isError)
