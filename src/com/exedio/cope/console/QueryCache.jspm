@@ -39,7 +39,7 @@ final class QueryCache_Jspm extends Console_Jspm
 		final long misses = info.getMisses();
 		%>
 		<table>
-			<caption>Query Cache Statistics</caption>
+			<caption>Statistics</caption>
 			<tr><th colspan="2">Limit</th><td><%= format(limit)%></td></tr>
 			<tr><th colspan="2">Level</th><td><%= format(info.getLevel()) %></td></tr>
 			<tr><th colspan="2">Replacements</th><td><%=format(info.getReplacements())%></td></tr>
@@ -89,7 +89,7 @@ final class QueryCache_Jspm extends Console_Jspm
 		};
 		%>
 		<table id="coloredTable">
-			<caption>Query Cache Histogram</caption><%
+			<caption>Histogram</caption><%
 			ColoredTable_Jspm.writeHeader(out, names, shortNames);
 		
 		final int histogramLimit = cop.histogramLimit;
@@ -142,7 +142,7 @@ final class QueryCache_Jspm extends Console_Jspm
 		};
 		%>
 		<table id="coloredTable">
-			<caption>Query Cache Histogram</caption><%
+			<caption>Histogram</caption><%
 			ColoredTable_Jspm.writeHeader(out, names, shortNames);
 		
 		final int histogramLimit = cop.histogramLimit;

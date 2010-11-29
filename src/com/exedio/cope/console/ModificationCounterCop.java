@@ -50,12 +50,6 @@ final class ModificationCounterCop extends TestCop<Type>
 	}
 
 	@Override
-	String getCaption()
-	{
-		return "Modification Counters";
-	}
-
-	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Supertype", "Type"};

@@ -34,7 +34,6 @@ final class DataField_Jspm extends Console_Jspm
 	{
 		%>
 		<table>
-			<caption>Data Fields</caption>
 			<tr>
 				<th>Type</th>
 				<th>Name</th>

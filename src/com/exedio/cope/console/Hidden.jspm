@@ -29,7 +29,6 @@ final class Hidden_Jspm
 	{
 		%>
 		<table>
-			<caption>Hidden Features</caption>
 			<tr>
 				<th>Name</th>
 				<th>Type</th>

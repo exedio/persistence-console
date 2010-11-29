@@ -65,12 +65,6 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 	}
 
 	@Override
-	String getCaption()
-	{
-		return "Type Columns";
-	}
-
-	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Function", "Value"};

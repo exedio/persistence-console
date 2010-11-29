@@ -38,7 +38,6 @@ final class Hash_Jspm
 			<input type="submit" name="<%=cop.MEASURE%>" value="measure" />
 		</form>
 		<table>
-			<caption>Hashes</caption>
 			<tr>
 				<th rowspan="2">Type</th>
 				<th rowspan="2">Name</th>

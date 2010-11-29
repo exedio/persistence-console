@@ -37,7 +37,7 @@ final class Connect_Jspm extends Console_Jspm
 	{
 		%>
 		<table>
-			<caption>Connect Date</caption>
+			<caption>Date</caption>
 			<tr>
 				<th>Initialized</th>
 				<td class="text"><%=model.getInitializeDate()%></td>
@@ -81,7 +81,7 @@ final class Connect_Jspm extends Console_Jspm
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=ConnectCop.RETURN_SELECTED%>" value="return selected" />
 			<table>
-				<caption>Open Connect Tokens</caption>
+				<caption>Tokens</caption>
 				<tr>
 					<th></th>
 					<th>#</th>
@@ -107,7 +107,7 @@ final class Connect_Jspm extends Console_Jspm
 		</form>
 		<hr>
 		<table>
-			<caption>Connect Properties Source</caption>
+			<caption>Properties Source</caption>
 			<tr>
 				<td class="text"><%=properties.getSource()%></td>
 			</tr><%

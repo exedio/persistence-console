@@ -55,7 +55,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 			try
 			{
 				model.startTransaction();
-				Test_Jspm.writeBody(this, out, getCaption(), getHeadings(), items, true);
+				Test_Jspm.writeBody(this, out, getHeadings(), items, true);
 				model.commit();
 			}
 			finally
@@ -64,7 +64,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 			}
 		}
 		else
-			Test_Jspm.writeBody(this, out, getCaption(), getHeadings(), items, false);
+			Test_Jspm.writeBody(this, out, getHeadings(), items, false);
 	}
 
 	static abstract class Info
@@ -153,7 +153,6 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<Integer, TestCop.Info>>
 	}
 
 	abstract List<I> getItems(Model model);
-	abstract String getCaption();
 	abstract String[] getHeadings();
 	abstract void writeValue(Out out, I item, int h);
 	abstract int check(I item);

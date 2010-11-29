@@ -50,7 +50,7 @@ final class Media_Jspm extends Console_Jspm
 	{
 		%>
 		<table id="coloredTable">
-			<caption>Media Statistics</caption>
+			<caption>Statistics</caption>
 			<tr><th colspan="<%=tableColumns%>">No Such Path <small>(404)</small></th><td><%=format(MediaPath.getNoSuchPath())%></td></tr><%
 			MediaStatsCop.writeTableHeader(out);
 			
@@ -183,7 +183,7 @@ final class Media_Jspm extends Console_Jspm
 	{
 		%>
 		<table id="coloredTable">
-			<caption>Media Statistics</caption><%
+			<caption>Statistics</caption><%
 			MediaStatsCop.writeTableHeader(out);
 			write(out, cop, false, info, true);
 		%>
@@ -220,8 +220,7 @@ final class Media_Jspm extends Console_Jspm
 	}
 		
 		%>
-		<table>
-			<caption><%=media.getID()%></caption><%
+		<table><%
 				cop.writePager(out, cop);
 			%>
 			<tr>

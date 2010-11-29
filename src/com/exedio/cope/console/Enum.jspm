@@ -36,7 +36,6 @@ final class Enum_Jspm extends Console_Jspm
 	{
 		%>
 		<table>
-			<caption>Enums</caption>
 			<tr>
 				<th>Class</th>
 				<th>Fields</th>

@@ -49,7 +49,7 @@ final class Transaction_Jspm extends Console_Jspm
 	{
 		%>
 		<table style="float:left;">
-			<caption>Transaction Statistics</caption>
+			<caption>Statistics</caption>
 			<tr><th>Next ID</th><td><%=format(nextId)%></td></tr>
 			<tr><th>Last Start Date</th><td><%=lastStartDate%></td></tr>
 		</table>
@@ -62,7 +62,7 @@ final class Transaction_Jspm extends Console_Jspm
 	{
 		%>
 		<table>
-			<caption>Transaction Counters</caption>
+			<caption>Counters</caption>
 			<tr>
 				<td rowspan="2"></td>
 				<th rowspan="2">All</th>
@@ -110,7 +110,7 @@ final class Transaction_Jspm extends Console_Jspm
 		%>
 		<hr>
 		<table>
-			<caption>Open Transactions</caption><%
+			<caption>Open</caption><%
 			
 		if(openTransactions.length==0)
 		{

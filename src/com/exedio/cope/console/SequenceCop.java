@@ -47,12 +47,6 @@ final class SequenceCop extends TestCop<com.exedio.cope.SequenceInfo>
 	}
 
 	@Override
-	String getCaption()
-	{
-		return "Sequences";
-	}
-
-	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Type", "Name", "Start", "Min", "Max", "Count", "First", "Last"};

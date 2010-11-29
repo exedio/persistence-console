@@ -57,12 +57,6 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
-	String getCaption()
-	{
-		return "Media Types";
-	}
-
-	@Override
 	String[] getHeadings()
 	{
 		return new String[]{"Type", "Name", "Content Type", "Query"};

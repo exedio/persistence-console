@@ -48,7 +48,7 @@ final class ConnectionPool_Jspm extends Console_Jspm
 		};
 		%>
 		<table>
-			<caption>Connection Pool Statistics</caption>
+			<caption>Statistics</caption>
 			<tr>
 				<th>Limit</th>
 				<td><%=format(info.getIdleLimit())%></td>

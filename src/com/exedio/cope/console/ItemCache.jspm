@@ -65,8 +65,7 @@ final class ItemCache_Jspm extends Console_Jspm
 			"ratio",
 		};
 		%>
-		<table id="coloredTable">
-			<caption>Item Cache Statistics</caption><%
+		<table id="coloredTable"><%
 			ColoredTable_Jspm.writeHeader(out, names, shortNames);
 			%>
 			<tr><%
