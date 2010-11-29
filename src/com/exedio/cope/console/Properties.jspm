@@ -89,9 +89,9 @@ final class Properties_Jspm extends Console_Jspm
 					{
 						%><%=
 							cop.formatObject(field.getValue())
-							%> <span style="font-size:8pt;">(<%=
+							%> <small>(<%=
 							cop.formatObject(defaultValue)
-							%>)</span><%
+							%>)</small><%
 					}
 					else if(field instanceof Properties.FileField)
 					{
@@ -105,7 +105,7 @@ final class Properties_Jspm extends Console_Jspm
 									fileURL
 									%>"><%=
 									file.getAbsolutePath()
-									%></a><br><span style="font-size:8pt;">(link works only if the server is running locally).</span><%
+									%></a><br><small>(link works only if the server is running locally).</small><%
 							}
 							catch(MalformedURLException e)
 							{
