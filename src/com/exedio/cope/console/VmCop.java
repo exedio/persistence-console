@@ -35,7 +35,7 @@ final class VmCop extends ConsoleCop
 
 	VmCop(final Args args, final boolean detailed, final boolean allPackages)
 	{
-		super(TAB_VM, "vm", args);
+		super(TAB_VM, "Java Packages", args);
 		this.detailed = detailed;
 		this.allPackages = allPackages;
 

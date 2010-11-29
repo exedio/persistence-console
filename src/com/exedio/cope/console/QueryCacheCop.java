@@ -43,7 +43,7 @@ final class QueryCacheCop extends ConsoleCop
 
 	private QueryCacheCop(final Args args, final int histogramLimit, final boolean condense)
 	{
-		super(TAB_QUERY_CACHE, "query cache", args);
+		super(TAB_QUERY_CACHE, "Query Cache", args);
 		addParameter(HISTOGRAM_LIMIT, histogramLimit, HISTOGRAM_LIMIT_DEFAULT);
 		addParameter(CONDENSE, condense);
 

@@ -31,7 +31,7 @@ final class MediaTypeCop extends TestCop<Media>
 {
 	MediaTypeCop(final Args args)
 	{
-		super(TAB_MEDIA_TYPE, "media types", args);
+		super(TAB_MEDIA_TYPE, "Media Types", args);
 	}
 
 	@Override

@@ -42,7 +42,7 @@ final class RevisionCop extends ConsoleCop implements Pageable
 
 	private RevisionCop(final Args args, final Pager pager)
 	{
-		super(TAB_REVISION, "revision", args);
+		super(TAB_REVISION, "Revisions", args);
 		this.pager = pager;
 
 		pager.addParameters(this);

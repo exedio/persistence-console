@@ -31,7 +31,7 @@ final class SequenceCop extends TestCop<com.exedio.cope.SequenceInfo>
 {
 	SequenceCop(final Args args)
 	{
-		super(TAB_SEQUENCE, "sequences", args);
+		super(TAB_SEQUENCE, "Sequences", args);
 	}
 
 	@Override

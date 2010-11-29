@@ -22,7 +22,7 @@ final class HiddenCop extends ConsoleCop
 {
 	HiddenCop(final Args args)
 	{
-		super(TAB_HIDDEN, "hidden", args);
+		super(TAB_HIDDEN, "Hidden Features", args);
 	}
 
 	@Override

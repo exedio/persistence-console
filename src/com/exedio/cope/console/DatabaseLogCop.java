@@ -31,7 +31,7 @@ final class DatabaseLogCop extends ConsoleCop
 
 	DatabaseLogCop(final Args args)
 	{
-		super(TAB_DATBASE_LOG, "db logs", args);
+		super(TAB_DATBASE_LOG, "Database Log", args);
 	}
 
 	@Override

@@ -29,7 +29,7 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 {
 	CopyConstraintCop(final Args args)
 	{
-		super(TAB_COPY_CONSTRAINTS, "copy constraints", args);
+		super(TAB_COPY_CONSTRAINTS, "Copy Constraints", args);
 	}
 
 	@Override

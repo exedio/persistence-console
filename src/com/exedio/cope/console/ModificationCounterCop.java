@@ -28,7 +28,7 @@ final class ModificationCounterCop extends TestCop<Type>
 {
 	ModificationCounterCop(final Args args)
 	{
-		super(TAB_MODIFICATION_COUNTERS, "modification counters", args);
+		super(TAB_MODIFICATION_COUNTERS, "Modification Counters", args);
 	}
 
 	@Override

@@ -35,7 +35,7 @@ final class EnvironmentCop extends ConsoleCop
 {
 	EnvironmentCop(final Args args)
 	{
-		super(TAB_ENVIRONMENT, "environment", args);
+		super(TAB_ENVIRONMENT, "Environment", args);
 	}
 
 	@Override

@@ -22,7 +22,7 @@ final class ConnectionPoolCop extends ConsoleCop
 {
 	ConnectionPoolCop(final Args args)
 	{
-		super(TAB_CONNECTION_POOL, "connections", args);
+		super(TAB_CONNECTION_POOL, "Connection Pool", args);
 	}
 
 	@Override

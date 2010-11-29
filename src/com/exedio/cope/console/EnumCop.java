@@ -37,7 +37,7 @@ final class EnumCop extends ConsoleCop
 
 	EnumCop(final Args args, final Class<? extends Enum> clazz)
 	{
-		super(TAB_ENUM, "enum", args);
+		super(TAB_ENUM, "Enums", args);
 		this.clazz = clazz;
 
 		if(clazz!=null)

@@ -43,7 +43,7 @@ final class HistoryCop extends ConsoleCop<HashMap<Type<?>, HistoryCop.Info>> imp
 
 	private HistoryCop(final Args args, final Pager pager)
 	{
-		super(TAB_HISTORY, "history", args);
+		super(TAB_HISTORY, "History", args);
 		this.pager = pager;
 		pager.addParameters(this);
 	}

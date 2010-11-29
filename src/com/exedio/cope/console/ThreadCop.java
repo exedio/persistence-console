@@ -30,7 +30,7 @@ final class ThreadCop extends ConsoleCop
 
 	ThreadCop(final Args args)
 	{
-		super(TAB_THREAD, "thread", args);
+		super(TAB_THREAD, "Threads", args);
 	}
 
 	@Override

@@ -38,7 +38,7 @@ final class TransactionCop extends ConsoleCop
 
 	TransactionCop(final Args args)
 	{
-		super(TAB_TRANSACTION, "transactions", args);
+		super(TAB_TRANSACTION, "Transactions", args);
 	}
 
 	@Override

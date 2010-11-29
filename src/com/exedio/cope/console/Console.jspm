@@ -89,7 +89,7 @@ abstract class Console_Jspm
 		<br clear="right"><%
 		writeMenu(out, cop);
 		%>
-		<hr><%
+		<h2><%=cop.name%></h2><%
 		cop.writeBody(out);
 		%>
 		<hr><%

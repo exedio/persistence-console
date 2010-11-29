@@ -35,7 +35,7 @@ final class SchemaCop extends ConsoleCop
 {
 	SchemaCop(final Args args)
 	{
-		super(TAB_SCHEMA, "schema", args);
+		super(TAB_SCHEMA, "Schema", args);
 	}
 
 	@Override

@@ -29,7 +29,7 @@ final class DataFieldCop extends ConsoleCop
 {
 	DataFieldCop(final Args args)
 	{
-		super(ConsoleCop.TAB_DATA_FIELD, "data fields", args);
+		super(ConsoleCop.TAB_DATA_FIELD, "Data Fields", args);
 	}
 
 	@Override

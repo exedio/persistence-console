@@ -33,7 +33,7 @@ final class ChangeListenerCop extends ConsoleCop
 
 	ChangeListenerCop(final Args args)
 	{
-		super(TAB_CHANGE_LISTENER, "change", args);
+		super(TAB_CHANGE_LISTENER, "Change Listeners", args);
 	}
 
 	@Override

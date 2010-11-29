@@ -30,7 +30,7 @@ final class ClusterCop extends ConsoleCop
 
 	ClusterCop(final Args args)
 	{
-		super(TAB_CLUSTER, "cluster", args);
+		super(TAB_CLUSTER, "Cluster", args);
 	}
 
 	@Override

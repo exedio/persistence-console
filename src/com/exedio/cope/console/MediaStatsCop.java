@@ -32,7 +32,7 @@ final class MediaStatsCop extends ConsoleCop
 {
 	MediaStatsCop(final Args args)
 	{
-		super(TAB_MEDIA_STATS, "media", args);
+		super(TAB_MEDIA_STATS, "Media", args);
 	}
 
 	@Override

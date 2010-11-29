@@ -33,7 +33,7 @@ final class ModificationListenerCop extends ConsoleCop
 
 	ModificationListenerCop(final Args args)
 	{
-		super(TAB_MODIFICATION_LISTENER, "mods", args);
+		super(TAB_MODIFICATION_LISTENER, "Modification Listeners", args);
 	}
 
 	@Override

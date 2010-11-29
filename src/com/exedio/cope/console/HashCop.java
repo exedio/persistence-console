@@ -33,7 +33,7 @@ final class HashCop extends ConsoleCop
 
 	HashCop(final Args args)
 	{
-		super(TAB_HASH, "hash", args);
+		super(TAB_HASH, "Hashes", args);
 	}
 
 	@Override

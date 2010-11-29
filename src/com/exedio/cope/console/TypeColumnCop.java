@@ -32,7 +32,7 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 {
 	TypeColumnCop(final Args args)
 	{
-		super(TAB_TYPE_COLUMNS, "type columns", args);
+		super(TAB_TYPE_COLUMNS, "Type Columns", args);
 	}
 
 	@Override

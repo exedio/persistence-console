@@ -24,7 +24,7 @@ final class ItemCacheCop extends ConsoleCop
 {
 	ItemCacheCop(final Args args)
 	{
-		super(TAB_ITEM_CACHE, "item cache", args);
+		super(TAB_ITEM_CACHE, "Item Cache", args);
 	}
 
 	@Override

@@ -66,7 +66,7 @@ final class MediaCop extends ConsoleCop implements Pageable
 			final boolean contentTypeMismatch,
 			final Pager pager)
 	{
-		super("media", "media - " + media.getID(), args);
+		super("media", "Media - " + media.getID(), args);
 
 		this.media = media;
 

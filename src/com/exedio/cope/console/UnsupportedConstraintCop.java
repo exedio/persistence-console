@@ -30,7 +30,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 {
 	UnsupportedConstraintCop(final Args args)
 	{
-		super(TAB_UNSUPPORTED_CONSTRAINTS, "unsupported constraints", args);
+		super(TAB_UNSUPPORTED_CONSTRAINTS, "Unsupported Constraints", args);
 	}
 
 	@Override

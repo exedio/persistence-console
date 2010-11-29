@@ -38,7 +38,7 @@ final class ConnectCop extends ConsoleCop
 
 	ConnectCop(final Args args)
 	{
-		super(TAB_CONNECT, "connect", args);
+		super(TAB_CONNECT, "Connect", args);
 	}
 
 	@Override
