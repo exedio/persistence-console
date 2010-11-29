@@ -65,7 +65,7 @@ final class Properties_Jspm extends Console_Jspm
 	{
 		%>
 		<table>
-			<caption>Connect Properties</caption>
+			<caption>Properties</caption>
 			<tr>
 				<th colspan="2"><img class="check" onClick="toggleUnspecified(this)" src="<%=ConsoleServlet.checkFalse%>"> show unspecified</th>
 			</tr><%
