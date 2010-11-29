@@ -50,7 +50,7 @@ final class ConnectCop extends ConsoleCop
 	@Override
 	void writeHead(final Out out)
 	{
-		Connect_Jspm.writeHead(out);
+		Properties_Jspm.writeHead(out);
 	}
 
 	@Override

@@ -1,0 +1,132 @@
+<%
+/*
+ * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import java.io.File;
+import java.net.MalformedURLException;
+
+import com.exedio.cope.util.Properties;
+
+final class Properties_Jspm extends Console_Jspm
+{
+	final static void writeHead(final Out out)
+	{
+	%>
+		<script>
+			function toggleUnspecified(image)
+			{
+				var imageSrc = image.src;
+				if(imageSrc.substring(imageSrc.length-8)=="true.png")
+				{
+					image.src = imageSrc.substring(0, imageSrc.length-8) + "false.png";
+					var rows = document.body.getElementsByTagName("tr");
+					for(i=0; i<rows.length; i++)
+					{
+						var row = rows[i];
+						if(row.className=="unspecified")
+							row.style.display = "none";
+					}
+				}
+				else
+				{
+					image.src = imageSrc.substring(0, imageSrc.length-9) + "true.png";
+					var rows = document.body.getElementsByTagName("tr");
+					for(i=0; i<rows.length; i++)
+					{
+						var row = rows[i];
+						if(row.className=="unspecified")
+							row.style.display = "table-row";
+					}
+				}
+			}
+		</script><%
+	}
+	
+	final static void writeBody(
+				final Out out,
+				final ConnectCop cop,
+				final Properties properties)
+	{
+		%>
+		<table>
+			<caption>Connect Properties</caption>
+			<tr>
+				<th colspan="2"><img class="check" onClick="toggleUnspecified(this)" src="<%=ConsoleServlet.checkFalse%>"> show unspecified</th>
+			</tr><%
+			for(final Properties.Field field : properties.getFields())
+			{
+				final boolean fieldSpecified = field.isSpecified();
+				if(!field.hasHiddenValue())
+				{
+			%>
+			<tr<%
+				if(!fieldSpecified)
+				{
+					%> class="unspecified"<%
+				}
+				%>>
+				<th><%=field.getKey()%></th>
+				<td class="text"><%
+					final Object defaultValue = field.getDefaultValue();
+					if(defaultValue!=null && fieldSpecified)
+					{
+						%><%=
+							cop.formatObject(field.getValue())
+							%> <span style="font-size:8pt;">(<%=
+							cop.formatObject(defaultValue)
+							%>)</span><%
+					}
+					else if(field instanceof Properties.FileField)
+					{
+						final File file = ((Properties.FileField)field).fileValue();
+						if(file!=null)
+						{
+							try
+							{
+								final String fileURL = file.toURI().toURL().toString();
+								%><a href="<%=
+									fileURL
+									%>"><%=
+									file.getAbsolutePath()
+									%></a><br><span style="font-size:8pt;">(link works only if the server is running locally).</span><%
+							}
+							catch(MalformedURLException e)
+							{
+								%><b>n/a</b><%
+							}
+						}
+						else
+						{
+							%><b>n/a</b><%
+						}
+					}
+					else
+					{
+						%><%=cop.formatObject(field.getValue())%><%
+					}
+				%></td>
+			</tr><%
+				}
+			}
+			%>
+		</table><%
+	}
+}
+%>
