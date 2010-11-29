@@ -66,6 +66,11 @@ final class Out extends OutBasic
 		bf.print(i);
 	}
 
+	void write(final boolean b)
+	{
+		bf.print(b);
+	}
+
 	void write(final Class c)
 	{
 		final String s = c.getName();

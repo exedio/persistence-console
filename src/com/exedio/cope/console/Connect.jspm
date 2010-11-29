@@ -48,7 +48,7 @@ final class Connect_Jspm extends Console_Jspm
 			</tr>
 		</table>
 		<%
-			Properties_Jspm.writeBody(out, cop, properties);
+			Properties_Jspm.writeBody(out, properties);
 		%>
 		<hr>
 		<table>

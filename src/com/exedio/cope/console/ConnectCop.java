@@ -129,18 +129,4 @@ final class ConnectCop extends ConsoleCop
 				model,
 				sourceContent);
 	}
-
-	static String formatObject(final Object o)
-	{
-		if(o==null)
-			return null;
-		else if(o instanceof Integer)
-			return Format.format(((Integer)o).longValue());
-		else if(o instanceof Long)
-			return Format.format(((Long)o).longValue());
-		else if(o instanceof String)
-			return XMLEncoder.encode((String)o);
-		else
-			return o.toString();
-	}
 }

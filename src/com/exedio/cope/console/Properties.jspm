@@ -61,7 +61,6 @@ final class Properties_Jspm extends Console_Jspm
 	
 	final static void writeBody(
 				final Out out,
-				final ConnectCop cop,
 				final Properties properties)
 	{
 		%>
@@ -87,10 +86,10 @@ final class Properties_Jspm extends Console_Jspm
 					final Object defaultValue = field.getDefaultValue();
 					if(defaultValue!=null && fieldSpecified)
 					{
-						%><%=
-							cop.formatObject(field.getValue())
-							%> <small>(<%=
-							cop.formatObject(defaultValue)
+						%><%
+							write(out, field.getValue());
+							%> <small>(<%
+							write(out, defaultValue);
 							%>)</small><%
 					}
 					else if(field instanceof Properties.FileField)
@@ -119,7 +118,7 @@ final class Properties_Jspm extends Console_Jspm
 					}
 					else
 					{
-						%><%=cop.formatObject(field.getValue())%><%
+						%><% write(out, field.getValue()); %><%
 					}
 				%></td>
 			</tr><%
@@ -128,5 +127,36 @@ final class Properties_Jspm extends Console_Jspm
 			%>
 		</table><%
 	}
+	
+	private static void write(final Out out, final Object o)
+	{
+		if(o==null)
+		{
+			%>NULL<%
+		}
+		else if(o instanceof Integer)
+		{
+			%><%=Format.format(((Integer)o).longValue())%><%
+		}
+		else if(o instanceof Long)
+		{
+			%><%=Format.format(((Long)o).longValue())%><%
+		}
+		else if(o instanceof Boolean)
+		{
+			%><%=((Boolean)o).booleanValue()%><%
+		}
+		else if(o instanceof String)
+		{
+			%><%=(String)o%><%
+		}
+		else if(o instanceof java.util.Properties)
+		{
+			%><%=o.toString()%><%
+		}
+		else
+			throw new RuntimeException(o.getClass().getName());
+	}
+
 }
 %>
