@@ -68,6 +68,9 @@ final class Properties_Jspm extends Console_Jspm
 			<caption>Properties</caption>
 			<tr>
 				<th colspan="2"><img class="check" onClick="toggleUnspecified(this)" src="<%=ConsoleServlet.checkFalse%>"> show unspecified</th>
+			</tr>
+			<tr class="unspecified">
+				<td colspan="2" class="text"><small><%=properties.getSourceObject().getDescription()%></small></td>
 			</tr><%
 			for(final Properties.Field field : properties.getFields())
 			{
