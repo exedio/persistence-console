@@ -73,7 +73,7 @@ final class Connect_Jspm extends Console_Jspm
 	{
 		%>
 		<table>
-			<caption>Connect Properties</caption>
+			<caption>Connect Date</caption>
 			<tr>
 				<th>Initialized</th>
 				<td class="text"><%=model.getInitializeDate()%></td>
@@ -82,6 +82,9 @@ final class Connect_Jspm extends Console_Jspm
 				<th>Connected</th>
 				<td class="text"><%=model.getConnectDate()%></td>
 			</tr>
+		</table>
+		<table>
+			<caption>Connect Properties</caption>
 			<tr>
 				<th colspan="2"><img class="check" onClick="toggleUnspecified(this)" src="<%=ConsoleServlet.checkFalse%>"> show unspecified</th>
 			</tr><%
