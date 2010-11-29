@@ -57,13 +57,19 @@ final class ClusterCop extends ConsoleCop
 	}
 
 	@Override
+	void writeHead(final Out out)
+	{
+		Properties_Jspm.writeHead(out);
+	}
+
+	@Override
 	final void writeBody(final Out out)
 	{
 		final Model model = out.model;
 
 		final ClusterListenerInfo listenerInfo = model.getClusterListenerInfo();
 		if(listenerInfo!=null)
-			Cluster_Jspm.writeBody(this, out, model.getClusterSenderInfo(), listenerInfo, donePing);
+			Cluster_Jspm.writeBody(this, out, model.getClusterProperties(), model.getClusterSenderInfo(), listenerInfo, donePing);
 		else
 			Cluster_Jspm.writeBodyDisabled(out);
 	}

@@ -24,6 +24,7 @@ import static com.exedio.cope.console.Format.formatAndHide;
 
 import com.exedio.cope.ClusterListenerInfo;
 import com.exedio.cope.ClusterSenderInfo;
+import com.exedio.cope.util.Properties;
 import com.exedio.cope.util.SequenceChecker;
 
 final class Cluster_Jspm
@@ -31,13 +32,14 @@ final class Cluster_Jspm
 	final static void writeBody(
 			final ClusterCop cop,
 			final Out out,
+			final Properties properties,
 			final ClusterSenderInfo senderInfo,
 			final ClusterListenerInfo listenerInfo,
 			final int donePing)
 	{
 		%>
-		<table>
-			<caption>Cluster Sender</caption>
+		<table style="float:left;">
+			<caption>Sender</caption>
 			<tr><th>Node ID</th><td><%=format(senderInfo.getNodeID())%></td></tr>
 			<tr><th>Local Port</th><td><%=format(senderInfo.getLocalPort())%></td></tr>
 			<tr><th>Send Buffer Size</th><td><%=format(senderInfo.getSendBufferSize())%></td></tr>
@@ -45,7 +47,7 @@ final class Cluster_Jspm
 			<tr><th>Invalidation Split</th><td><%=formatAndHide(0, senderInfo.getInvalidationSplit())%></td></tr>
 		</table>
 		<table>
-			<caption>Cluster Listener</caption>
+			<caption>Listener</caption>
 			<tr><th>Receive Buffer Size</th><td><%=format(listenerInfo.getReceiveBufferSize())%></td></tr>
 			<tr><th>Exception</th><td><%=formatAndHide(0, listenerInfo.getException())%></td></tr>
 			<tr><th>Missing Magic</th><td><%=formatAndHide(0, listenerInfo.getMissingMagic())%></td></tr>
@@ -53,8 +55,12 @@ final class Cluster_Jspm
 			<tr><th>From Myself</th><td><%=formatAndHide(0, listenerInfo.getFromMyself())%></td></tr>
 		</table>
 		<hr>
+		<%
+			Properties_Jspm.writeBody(out, properties);
+		%>
+		<hr>
 		<table>
-			<caption>Cluster Network Nodes</caption>
+			<caption>Network Nodes</caption>
 			<tr>
 				<th rowspan="2">ID</th>
 				<th rowspan="2">First<br>Encounter</th>
