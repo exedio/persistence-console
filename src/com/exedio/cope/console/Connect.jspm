@@ -24,10 +24,10 @@ import static com.exedio.cope.console.Format.format;
 import java.io.File;
 import java.net.MalformedURLException;
 
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.misc.ConnectToken;
+import com.exedio.cope.util.Properties;
 
 final class Connect_Jspm extends Console_Jspm
 {
@@ -67,7 +67,7 @@ final class Connect_Jspm extends Console_Jspm
 	final static void writeBody(
 				final Out out,
 				final ConnectCop cop,
-				final ConnectProperties properties,
+				final Properties properties,
 				final Model model,
 				final String sourceContent)
 	{
@@ -85,7 +85,7 @@ final class Connect_Jspm extends Console_Jspm
 			<tr>
 				<th colspan="2"><img class="check" onClick="toggleUnspecified(this)" src="<%=ConsoleServlet.checkFalse%>"> show unspecified</th>
 			</tr><%
-			for(final ConnectProperties.Field field : properties.getFields())
+			for(final Properties.Field field : properties.getFields())
 			{
 				final boolean fieldSpecified = field.isSpecified();
 				if(!field.hasHiddenValue())
@@ -108,9 +108,9 @@ final class Connect_Jspm extends Console_Jspm
 							cop.formatObject(defaultValue)
 							%>)</span><%
 					}
-					else if(field instanceof ConnectProperties.FileField)
+					else if(field instanceof Properties.FileField)
 					{
-						final File file = ((ConnectProperties.FileField)field).fileValue();
+						final File file = ((Properties.FileField)field).fileValue();
 						if(file!=null)
 						{
 							try
