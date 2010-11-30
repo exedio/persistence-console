@@ -113,10 +113,10 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 			"</response>");
 	}
 
-	static void writeTotal(
+	void writeTotal(
 			final Out out,
 			final int headingsLength,
-			final List<?> items,
+			final List<I> items,
 			final HashMap<String, Info> infos)
 	{
 		int elapsed = 0;
@@ -134,7 +134,9 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 
 		TestAjax_Jspm.writeTotal(
 				out,
+				this,
 				headingsLength,
+				getID(items.get(0)),
 				items.size()==infos.size(),
 				elapsed,
 				date!=null ? date.getDate() : null,
