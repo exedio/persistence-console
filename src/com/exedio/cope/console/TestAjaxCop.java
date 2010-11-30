@@ -29,14 +29,19 @@ import com.exedio.cope.Model;
 abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Info>>
 {
 	final static String ID = "testajax";
+	final static String ITERATE = "iterate";
 
 	protected final String id;
+	protected final boolean iterate;
 
-	TestAjaxCop(final String tab, final String name, final Args args, final String id)
+	TestAjaxCop(final String tab, final String name, final Args args, final String id, final boolean iterate)
 	{
 		super(tab, name, args);
 		this.id = id;
+		this.iterate = iterate;
+
 		addParameter(ID, id);
+		addParameter(ITERATE, iterate);
 	}
 
 	@Override
@@ -96,6 +101,8 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		infos.put(id, info);
 		putStore(infos);
 
+		final List<I> items = getItems(out.model);
+
 		final int headingsLength = getHeadings().length;
 		out.writeRaw(
 			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
@@ -107,7 +114,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		out.writeRaw(
 			"]]></update>" +
 			"<update id=\"total\"><![CDATA[");
-		writeTotal(out, headingsLength, getItems(out.model), infos);
+		writeTotal(out, headingsLength, items, infos);
 		out.writeRaw(
 			"]]></update>" +
 			"</response>");
@@ -250,6 +257,6 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 	abstract void writeValue(Out out, I item, int h);
 	abstract String getID(I item);
 	abstract I forID(Model model, String id);
-	abstract TestAjaxCop toTest(String id);
+	abstract TestAjaxCop toTest(String id, boolean iterate);
 	abstract int check(I item);
 }

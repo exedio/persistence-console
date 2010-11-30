@@ -29,15 +29,15 @@ import com.exedio.cope.pattern.Media;
 
 final class MediaTypeCop extends TestAjaxCop<Media>
 {
-	MediaTypeCop(final Args args, final String id)
+	MediaTypeCop(final Args args, final String id, final boolean iterate)
 	{
-		super(TAB_MEDIA_TYPE, "media types", args, id);
+		super(TAB_MEDIA_TYPE, "media types", args, id, iterate);
 	}
 
 	@Override
 	protected MediaTypeCop newArgs(final Args args)
 	{
-		return new MediaTypeCop(args, id);
+		return new MediaTypeCop(args, id, iterate);
 	}
 
 	@Override
@@ -105,9 +105,9 @@ final class MediaTypeCop extends TestAjaxCop<Media>
 	}
 
 	@Override
-	MediaTypeCop toTest(final String id)
+	MediaTypeCop toTest(final String id, final boolean iterate)
 	{
-		return new MediaTypeCop(args, id);
+		return new MediaTypeCop(args, id, iterate);
 	}
 
 	@Override
