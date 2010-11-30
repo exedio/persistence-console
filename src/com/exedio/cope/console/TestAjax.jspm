@@ -68,7 +68,7 @@ final class TestAjax_Jspm
 				{
 					anchor.style.display = "none";
 					testRequest.open("GET", url, true);
-					testRequest.onreadystatechange = handleTest; 
+					testRequest.onreadystatechange = handleTest;
 					testRequest.send(null);
 					return false;
 				}
