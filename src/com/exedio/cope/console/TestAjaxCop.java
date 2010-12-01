@@ -50,7 +50,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 			this.iterate = false;
 		}
 
-		TestArgs(final String id, final boolean iterate)
+		private TestArgs(final String id, final boolean iterate)
 		{
 			this.id = id;
 			this.iterate = iterate;
@@ -67,6 +67,11 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 			cop.addParameter(ID, id);
 			cop.addParameter(ITERATE, iterate);
 		}
+
+		TestArgs toTest(final String id, final boolean iterate)
+		{
+			return new TestArgs(id, iterate);
+		}
 	}
 
 	TestAjaxCop(final String tab, final String name, final Args args, final TestArgs testArgs)
@@ -81,7 +86,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 
 	final TestAjaxCop toTest(final String id, final boolean iterate)
 	{
-		return new MediaTypeCop(args, new TestArgs(id, iterate));
+		return new MediaTypeCop(args, testArgs.toTest(id, iterate));
 	}
 
 	@Override
