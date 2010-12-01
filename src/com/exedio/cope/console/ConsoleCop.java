@@ -138,7 +138,7 @@ abstract class ConsoleCop<S> extends Cop
 					new QueryCacheCop(args),
 					new DataFieldCop(args),
 					new MediaStatsCop(args),
-					new MediaTypeCop(args, null, false),
+					new MediaTypeCop(args, new TestAjaxCop.TestArgs()),
 					new ClusterCop(args),
 					new ThreadCop(args),
 					new VmCop(args, false, false),
@@ -261,7 +261,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_MEDIA_STATS.equals(tab))
 			return new MediaStatsCop(args);
 		if(TAB_MEDIA_TYPE.equals(tab))
-			return new MediaTypeCop(args, request.getParameter(TestAjaxCop.ID), Cop.getBooleanParameter(request, TestAjaxCop.ITERATE));
+			return new MediaTypeCop(args, new TestAjaxCop.TestArgs(request));
 		if(TAB_CLUSTER.equals(tab))
 			return new ClusterCop(args);
 		if(TAB_THREAD.equals(tab))

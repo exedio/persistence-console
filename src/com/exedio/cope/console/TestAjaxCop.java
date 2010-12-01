@@ -25,24 +25,63 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.exedio.cope.Model;
+import com.exedio.cops.Cop;
 
 abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Info>>
 {
 	final static String ID = "testajax";
 	final static String ITERATE = "iterate";
 
+	protected final TestArgs testArgs;
 	protected final String id;
 	protected final boolean iterate;
 
-	TestAjaxCop(final String tab, final String name, final Args args, final String id, final boolean iterate)
+	protected static class TestArgs
+	{
+		protected final String id;
+		protected final boolean iterate;
+
+		TestArgs()
+		{
+			this.id = null;
+			this.iterate = false;
+		}
+
+		TestArgs(final String id, final boolean iterate)
+		{
+			this.id = id;
+			this.iterate = iterate;
+		}
+
+		TestArgs(final HttpServletRequest request)
+		{
+			this.id = request.getParameter(TestAjaxCop.ID);
+			this.iterate = Cop.getBooleanParameter(request, TestAjaxCop.ITERATE);
+		}
+
+		void addParameters(final TestAjaxCop cop)
+		{
+			cop.addParameter(ID, id);
+			cop.addParameter(ITERATE, iterate);
+		}
+	}
+
+	TestAjaxCop(final String tab, final String name, final Args args, final TestArgs testArgs)
 	{
 		super(tab, name, args);
-		this.id = id;
-		this.iterate = iterate;
+		this.testArgs = testArgs;
+		this.id = testArgs.id;
+		this.iterate = testArgs.iterate;
 
-		addParameter(ID, id);
-		addParameter(ITERATE, iterate);
+		testArgs.addParameters(this);
+	}
+
+	final TestAjaxCop toTest(final String id, final boolean iterate)
+	{
+		return new MediaTypeCop(args, new TestArgs(id, iterate));
 	}
 
 	@Override
@@ -278,6 +317,6 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 	abstract void writeValue(Out out, I item, int h);
 	abstract String getID(I item);
 	abstract I forID(Model model, String id);
-	abstract TestAjaxCop toTest(String id, boolean iterate);
+	abstract TestAjaxCop newTestArgs(TestArgs testArgs);
 	abstract int check(I item);
 }
