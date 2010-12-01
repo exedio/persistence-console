@@ -24,17 +24,23 @@ import java.util.List;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class ModificationCounterCop extends TestCop<Type>
+final class ModificationCounterCop extends TestAjaxCop<Type>
 {
-	ModificationCounterCop(final Args args)
+	ModificationCounterCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_MODIFICATION_COUNTERS, "Modification Counters", args);
+		super(TAB_MODIFICATION_COUNTERS, "Modification Counters", args, testArgs);
 	}
 
 	@Override
 	protected ModificationCounterCop newArgs(final Args args)
 	{
-		return new ModificationCounterCop(args);
+		return new ModificationCounterCop(args, testArgs);
+	}
+
+	@Override
+	protected ModificationCounterCop newTestArgs(final TestArgs testArgs)
+	{
+		return new ModificationCounterCop(args, testArgs);
 	}
 
 	@Override
@@ -68,8 +74,31 @@ final class ModificationCounterCop extends TestCop<Type>
 	}
 
 	@Override
+	String getID(final Type type)
+	{
+		return type.getID();
+	}
+
+	@Override
+	Type forID(final Model model, final String id)
+	{
+		return model.getType(id);
+	}
+
+	@Override
 	int check(final Type type)
 	{
-		return type.checkModificationCounter();
+		final Model model = type.getModel();
+		try
+		{
+			model.startTransaction("Console ModificationCounter " + id);
+			final int result = type.checkModificationCounter();
+			model.commit();
+			return result;
+		}
+		finally
+		{
+			model.rollbackIfNotCommitted();
+		}
 	}
 }
