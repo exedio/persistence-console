@@ -119,7 +119,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 	void writeAjax(final Out out)
 	{
 		if(id==null)
-			throw new IllegalArgumentException(id);
+			throw new IllegalArgumentException();
 
 		final I item = forID(out.model, id);
 		if(item==null)
