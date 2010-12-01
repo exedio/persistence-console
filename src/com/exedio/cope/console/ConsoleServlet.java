@@ -172,7 +172,7 @@ public final class ConsoleServlet extends CopsServlet
 				// leave hostname==null
 			}
 			response.setStatus(cop.getResponseStatus());
-			final boolean ajax = cop.isAjax();
+			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
 			if(ajax)
 				response.setContentType("text/xml; charset="+UTF8);
 			final Out out = new Out(request, model, history, new PrintStream(response.getOutputStream(), false, UTF8));

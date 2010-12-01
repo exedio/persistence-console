@@ -67,7 +67,7 @@ final class TestAjax_Jspm
 				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
 				{
 					anchor.style.display = "none";
-					testRequest.open("GET", url, true);
+					testRequest.open("POST", url, true);
 					testRequest.onreadystatechange = handleTest;
 					testRequest.send(null);
 					return false;
@@ -83,7 +83,7 @@ final class TestAjax_Jspm
 				//alert('toTest >' + url + '<');
 				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
 				{
-					testRequest.open("GET", url, true);
+					testRequest.open("POST", url, true);
 					testRequest.onreadystatechange = handleTest;
 					testRequest.send(null);
 					return false;
