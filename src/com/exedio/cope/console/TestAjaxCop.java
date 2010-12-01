@@ -22,6 +22,7 @@ import static com.exedio.cope.console.Format.format;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import com.exedio.cope.Model;
@@ -102,11 +103,20 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		putStore(infos);
 
 		final List<I> items = getItems(out.model);
+		final I nextItem = nextItem(items, id);
 
 		final int headingsLength = getHeadings().length;
 		out.writeRaw(
 			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-			"<response>" +
+			"<response");
+		if(nextItem!=null)
+		{
+			out.writeRaw(" iterate=\"");
+			final String nextId = getID(nextItem);
+			out.write(toTest(nextId, true));
+			out.writeRaw('"');
+		}
+		out.writeRaw(">" +
 			"<update id=\"");
 		out.write(id);
 		out.writeRaw("\"><![CDATA[");
@@ -118,6 +128,18 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		out.writeRaw(
 			"]]></update>" +
 			"</response>");
+	}
+
+	private final I nextItem(final List<I> items, final String id)
+	{
+		if(!iterate)
+			return null;
+
+		for(final Iterator<I> i = items.iterator(); i.hasNext(); )
+			if(id.equals(getID(i.next())))
+				return i.hasNext() ? i.next() : null;
+
+		return null;
 	}
 
 	void writeTotal(

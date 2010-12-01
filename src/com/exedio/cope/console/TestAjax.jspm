@@ -78,6 +78,22 @@ final class TestAjax_Jspm
 				}
 			}
 
+			function doTest(url)
+			{
+				//alert('toTest >' + url + '<');
+				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
+				{
+					testRequest.open("GET", url, true);
+					testRequest.onreadystatechange = handleTest;
+					testRequest.send(null);
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
 			function handleTest() 
 			{
 				if(testRequest.readyState == 4)
@@ -113,6 +129,10 @@ final class TestAjax_Jspm
 									row.innerHTML = content;
 								}
 							}
+							
+							var iterateURL = responseNode.getAttribute("iterate");
+							if(iterateURL!=null)
+								doTest(iterateURL);
 						}
 					}
 					catch(e)
