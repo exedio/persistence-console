@@ -216,7 +216,7 @@ final class TestAjax_Jspm
 			}
 			
 				%>
-				<td><a href="#" onclick="return doTest('<%=cop.toTest(id, false)%>', this);">T</a></td><%
+				<td><a href="#" onclick="return doTest('<%=cop.toTest(id, false)%>', this);">Test</a></td><%
 				
 			if(info!=null)
 			{
@@ -251,8 +251,8 @@ final class TestAjax_Jspm
 			final boolean isError)
 	{
 				%>
-				<th colspan="<%=headingsLength%>"></th>
-				<td><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">T</a></td>
+				<th style="text-align:right;" colspan="<%=headingsLength%>">All</th>
+				<td><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">Test</a></td>
 				<td><% writeFail(out, !complete); %><%=date%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
 				writeFail(out, isError);
