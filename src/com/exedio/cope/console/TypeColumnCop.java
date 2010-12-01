@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.ItemField;
 import com.exedio.cope.ItemFunction;
@@ -28,17 +29,23 @@ import com.exedio.cope.Model;
 import com.exedio.cope.This;
 import com.exedio.cope.Type;
 
-final class TypeColumnCop extends TestCop<ItemFunction>
+final class TypeColumnCop extends TestAjaxCop<ItemFunction>
 {
-	TypeColumnCop(final Args args)
+	TypeColumnCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_TYPE_COLUMNS, "Type Columns", args);
+		super(TAB_TYPE_COLUMNS, "Type Columns", args, testArgs);
 	}
 
 	@Override
 	protected TypeColumnCop newArgs(final Args args)
 	{
-		return new TypeColumnCop(args);
+		return new TypeColumnCop(args, testArgs);
+	}
+
+	@Override
+	protected TypeColumnCop newTestArgs(final TestArgs testArgs)
+	{
+		return new TypeColumnCop(args, testArgs);
 	}
 
 	@Override
@@ -83,8 +90,31 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 	}
 
 	@Override
+	String getID(final ItemFunction function)
+	{
+		return ((Feature)function).getID();
+	}
+
+	@Override
+	ItemFunction forID(final Model model, final String id)
+	{
+		return (ItemFunction)model.getFeature(id);
+	}
+
+	@Override
 	int check(final ItemFunction function)
 	{
-		return function.checkTypeColumn();
+		final Model model = function.getType().getModel();
+		try
+		{
+			model.startTransaction("Console TypeColumn " + id);
+			final int result = function.checkTypeColumn();
+			model.commit();
+			return result;
+		}
+		finally
+		{
+			model.rollbackIfNotCommitted();
+		}
 	}
 }

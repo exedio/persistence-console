@@ -128,7 +128,7 @@ abstract class ConsoleCop<S> extends Cop
 					new UnsupportedConstraintCop(args),
 					new ModificationCounterCop(args, new TestAjaxCop.TestArgs()),
 					new SequenceCop(args, new TestAjaxCop.TestArgs()),
-					new TypeColumnCop(args),
+					new TypeColumnCop(args, new TestAjaxCop.TestArgs()),
 					new CopyConstraintCop(args),
 					new RevisionCop(args),
 					new DatabaseLogCop(args),
@@ -233,7 +233,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_UNSUPPORTED_CONSTRAINTS.equals(tab))
 			return new UnsupportedConstraintCop(args);
 		if(TAB_TYPE_COLUMNS.equals(tab))
-			return new TypeColumnCop(args);
+			return new TypeColumnCop(args, new TestAjaxCop.TestArgs(request));
 		if(TAB_MODIFICATION_COUNTERS.equals(tab))
 			return new ModificationCounterCop(args, new TestAjaxCop.TestArgs(request));
 		if(TAB_COPY_CONSTRAINTS.equals(tab))
