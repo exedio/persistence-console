@@ -89,6 +89,8 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		return new MediaTypeCop(args, testArgs.toTest(id, iterate));
 	}
 
+	abstract TestAjaxCop newTestArgs(TestArgs testArgs);
+
 	@Override
 	final void writeHead(final Out out)
 	{
@@ -322,6 +324,5 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 	abstract void writeValue(Out out, I item, int h);
 	abstract String getID(I item);
 	abstract I forID(Model model, String id);
-	abstract TestAjaxCop newTestArgs(TestArgs testArgs);
 	abstract int check(I item);
 }
