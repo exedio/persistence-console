@@ -25,9 +25,10 @@ import java.util.List;
 import com.exedio.cope.Feature;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Model;
+import com.exedio.cope.SequenceInfo;
 import com.exedio.cope.This;
 
-final class SequenceCop extends TestAjaxCop<com.exedio.cope.SequenceInfo>
+final class SequenceCop extends TestAjaxCop<SequenceInfo>
 {
 	SequenceCop(final Args args, final TestArgs testArgs)
 	{
@@ -47,7 +48,7 @@ final class SequenceCop extends TestAjaxCop<com.exedio.cope.SequenceInfo>
 	}
 
 	@Override
-	List<com.exedio.cope.SequenceInfo> getItems(final Model model)
+	List<SequenceInfo> getItems(final Model model)
 	{
 		return model.getSequenceInfo();
 	}
@@ -59,7 +60,7 @@ final class SequenceCop extends TestAjaxCop<com.exedio.cope.SequenceInfo>
 	}
 
 	@Override
-	void writeValue(final Out out, final com.exedio.cope.SequenceInfo info, final int h)
+	void writeValue(final Out out, final SequenceInfo info, final int h)
 	{
 		final Feature feature = info.getFeature();
 		final boolean known = info.isKnown();
@@ -79,13 +80,13 @@ final class SequenceCop extends TestAjaxCop<com.exedio.cope.SequenceInfo>
 	}
 
 	@Override
-	String getID(final com.exedio.cope.SequenceInfo info)
+	String getID(final SequenceInfo info)
 	{
 		return info.getFeature().getID();
 	}
 
 	@Override
-	com.exedio.cope.SequenceInfo forID(final Model model, final String id)
+	SequenceInfo forID(final Model model, final String id)
 	{
 		final Feature feature = model.getFeature(id);
 		if(feature instanceof This)
@@ -97,7 +98,7 @@ final class SequenceCop extends TestAjaxCop<com.exedio.cope.SequenceInfo>
 	}
 
 	@Override
-	int check(final com.exedio.cope.SequenceInfo info)
+	int check(final SequenceInfo info)
 	{
 		final Feature feature = info.getFeature();
 		if(feature instanceof This)
