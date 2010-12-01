@@ -86,7 +86,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 
 	final TestAjaxCop toTest(final String id, final boolean iterate)
 	{
-		return new MediaTypeCop(args, testArgs.toTest(id, iterate));
+		return newTestArgs(testArgs.toTest(id, iterate));
 	}
 
 	abstract TestAjaxCop newTestArgs(TestArgs testArgs);
