@@ -127,7 +127,7 @@ abstract class ConsoleCop<S> extends Cop
 					new SchemaCop(args),
 					new UnsupportedConstraintCop(args),
 					new ModificationCounterCop(args),
-					new SequenceCop(args),
+					new SequenceCop(args, new TestAjaxCop.TestArgs()),
 					new TypeColumnCop(args),
 					new CopyConstraintCop(args),
 					new RevisionCop(args),
@@ -255,7 +255,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_HISTORY.equals(tab))
 			return HistoryCop.getHistoryCop(args, request);
 		if(TAB_SEQUENCE.equals(tab))
-			return new SequenceCop(args);
+			return new SequenceCop(args, new TestAjaxCop.TestArgs(request));
 		if(TAB_DATA_FIELD.equals(tab))
 			return new DataFieldCop(args);
 		if(TAB_MEDIA_STATS.equals(tab))

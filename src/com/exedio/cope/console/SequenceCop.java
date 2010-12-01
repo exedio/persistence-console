@@ -27,17 +27,23 @@ import com.exedio.cope.IntegerField;
 import com.exedio.cope.Model;
 import com.exedio.cope.This;
 
-final class SequenceCop extends TestCop<com.exedio.cope.SequenceInfo>
+final class SequenceCop extends TestAjaxCop<com.exedio.cope.SequenceInfo>
 {
-	SequenceCop(final Args args)
+	SequenceCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_SEQUENCE, "Sequences", args);
+		super(TAB_SEQUENCE, "Sequences", args, testArgs);
 	}
 
 	@Override
 	protected SequenceCop newArgs(final Args args)
 	{
-		return new SequenceCop(args);
+		return new SequenceCop(args, testArgs);
+	}
+
+	@Override
+	protected SequenceCop newTestArgs(final TestArgs testArgs)
+	{
+		return new SequenceCop(args, testArgs);
 	}
 
 	@Override
@@ -70,6 +76,24 @@ final class SequenceCop extends TestCop<com.exedio.cope.SequenceInfo>
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		}
+	}
+
+	@Override
+	String getID(final com.exedio.cope.SequenceInfo info)
+	{
+		return info.getFeature().getID();
+	}
+
+	@Override
+	com.exedio.cope.SequenceInfo forID(final Model model, final String id)
+	{
+		final Feature feature = model.getFeature(id);
+		if(feature instanceof This)
+			return ((This)feature).getType().getPrimaryKeyInfo();
+		else if(feature instanceof IntegerField)
+			return ((IntegerField)feature).getDefaultToNextInfo();
+		else
+			throw new RuntimeException(feature.toString());
 	}
 
 	@Override
