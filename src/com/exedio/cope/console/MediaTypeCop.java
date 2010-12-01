@@ -27,17 +27,17 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Media;
 
-final class MediaTypeCop extends TestCop<Media>
+final class MediaTypeCop extends TestAjaxCop<Media>
 {
-	MediaTypeCop(final Args args)
+	MediaTypeCop(final Args args, final String id, final boolean iterate)
 	{
-		super(TAB_MEDIA_TYPE, "Media Types", args);
+		super(TAB_MEDIA_TYPE, "Media Types", args, id, iterate);
 	}
 
 	@Override
 	protected MediaTypeCop newArgs(final Args args)
 	{
-		return new MediaTypeCop(args);
+		return new MediaTypeCop(args, id, iterate);
 	}
 
 	@Override
@@ -87,8 +87,38 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
+	String getID(final Media media)
+	{
+		return media.getID();
+	}
+
+	@Override
+	Media forID(final Model model, final String id)
+	{
+		return (Media)model.getFeature(id);
+	}
+
+	@Override
+	MediaTypeCop toTest(final String id, final boolean iterate)
+	{
+		return new MediaTypeCop(args, id, iterate);
+	}
+
+	@Override
 	int check(final Media media)
 	{
-		return media.getType().newQuery(media.bodyMismatchesContentType()).total();
+		final Model model = media.getType().getModel();
+		try
+		{
+			model.startTransaction("Console MediaType " + id);
+			final int result =
+				media.getType().newQuery(media.bodyMismatchesContentType()).total();
+			model.commit();
+			return result;
+		}
+		finally
+		{
+			model.rollbackIfNotCommitted();
+		}
 	}
 }

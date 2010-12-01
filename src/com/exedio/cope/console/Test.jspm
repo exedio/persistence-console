@@ -19,6 +19,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Console_Jspm.writeFail;
 import static com.exedio.cope.console.Format.format;
 
 import java.util.HashMap;
@@ -151,11 +152,7 @@ final class Test_Jspm
 				final String cellClass = info.getCellClass();
 				%>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
-				
-				if(info.isError())
-				{
-					%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
-				}
+				writeFail(out, info.isError());
 				%><% info.writeCellContent(out); %><%
 				%></td>
 				<td><%=format(info.elapsed)%></td><%
@@ -174,7 +171,7 @@ final class Test_Jspm
 			%>
 			<tr>
 				<th colspan="<%=headings.length%>"><a name="overall">T</a>otal</th>
-				<td<% if(totalFailures!=0){%> class="failure"<%} %>><% if(totalFailures!=0){%><img class="check2" src="<%=ConsoleServlet.error2%>"><%} %><%=totalFailures%></td>
+				<td<% if(totalFailures!=0){%> class="failure"<%} %>><% writeFail(out, totalFailures!=0); %><%=totalFailures%></td>
 				<td><%=format(totalElapsed)%></td>
 			</tr><%
 		}

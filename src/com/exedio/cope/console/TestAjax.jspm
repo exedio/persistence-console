@@ -1,0 +1,263 @@
+<%
+/*
+ * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import static com.exedio.cope.console.Console_Jspm.writeFail;
+import static com.exedio.cope.console.Format.format;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import com.exedio.cope.console.TestAjaxCop.Info;
+
+final class TestAjax_Jspm
+{
+	final static void writeHead(final Out out)
+	{
+		%>
+		<script>
+			/*
+				This is the JavaScript file for the AJAX Suggest Tutorial
+
+				You may use this code in your own projects as long as this 
+				copyright is left	in place.  All code is provided AS-IS.
+				This code is distributed in the hope that it will be useful,
+				but WITHOUT ANY WARRANTY; without even the implied warranty of
+				MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+				
+				For the rest of the code visit http://www.DynamicAJAX.com
+				
+				Copyright 2006 Ryan Smith / 345 Technical / 345 Group.
+
+			*/
+			//Gets the browser specific XmlHttpRequest Object
+			function getXmlHttpRequestObject() {
+				if (window.XMLHttpRequest) {
+					return new XMLHttpRequest();
+				} else if(window.ActiveXObject) {
+					return new ActiveXObject("Microsoft.XMLHTTP");
+				} else {
+					//alert("Ihr Browser ist schon etwas aelter.\nEventuell sollten Sie einmal ueber ein Update nachdenken...");
+				}
+			}
+
+			var testRequest = getXmlHttpRequestObject();
+
+			function doTest(url,anchor)
+			{
+				//alert('toTest >' + url + '<');
+				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
+				{
+					anchor.style.display = "none";
+					testRequest.open("GET", url, true);
+					testRequest.onreadystatechange = handleTest;
+					testRequest.send(null);
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+			function doTest(url)
+			{
+				//alert('toTest >' + url + '<');
+				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
+				{
+					testRequest.open("GET", url, true);
+					testRequest.onreadystatechange = handleTest;
+					testRequest.send(null);
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+			function handleTest() 
+			{
+				if(testRequest.readyState == 4)
+				{
+					try
+					{
+						if(testRequest.status != null && testRequest.status == 200)
+						{
+							var responseXML = testRequest.responseXML;
+							
+							var responseNode = responseXML.childNodes[0];
+							if(responseNode==null || responseNode.nodeName!="response")
+							{
+								alert("Communication failed - responseNode node not found:" + testRequest.responseText);
+								stopAll = true;
+								return;
+							}
+							
+							for(var i=0; i<responseNode.childNodes.length; i++)
+							{
+								var updateNode = responseNode.childNodes[i];
+								if(updateNode.nodeType==1)
+								{
+									if(updateNode==null || updateNode.nodeName!="update")
+									{
+										alert("Communication failed - update node not found:" + testRequest.responseText);
+										stopAll = true;
+										return;
+									}
+									var id = updateNode.getAttribute("id");
+									var row = document.getElementById(id);
+									var content = updateNode.childNodes[0].nodeValue;
+									row.innerHTML = content;
+								}
+							}
+							
+							var iterateURL = responseNode.getAttribute("iterate");
+							if(iterateURL!=null)
+								doTest(iterateURL);
+						}
+					}
+					catch(e)
+					{
+						alert(e);
+						stopAll = true;
+						throw e;
+					}
+				}
+			}
+		</script><%
+	}
+	
+	final static <I> void writeBody(
+			final TestAjaxCop<I> cop,
+			final Out out,
+			final String[] headings,
+			final List<I> items,
+			final HashMap<String, Info> infos)
+	{
+		if(items.isEmpty())
+		{
+			%>
+			<table>
+				<tr>
+					<td class="text">
+						There are no <%=cop.name%> in this model.
+					</td>
+				</td>
+			</table><%
+			return;
+		}
+		
+		final int headingsLength = headings.length;
+		
+		%>
+		<table id="test_table">
+			<tr id="total"><%
+				cop.writeTotal(out, headingsLength, items, infos);
+			%>
+			</tr>
+			<tr><%
+				
+				for(final String heading : headings)
+				{
+				%>
+				<th><%=heading%></th><%
+				}
+				%>
+				<th></th>
+				<th>Date</th>
+				<th>Failures</th>
+				<th>Elapsed<small>/ms<small></th>
+			</tr><%
+		
+		for(final I item : items)
+		{
+			final String id = cop.getID(item);
+			%>
+			<tr id="<%=id%>"><%
+				writeRow(out, cop, headingsLength, item, id, infos.get(id));
+			%>
+			</tr><%
+		}
+		%>
+		</table><%
+	}
+	
+	final static <I> void writeRow(
+			final Out out,
+			final TestAjaxCop<I> cop,
+			final int headingsLength,
+			final I item,
+			final String id,
+			final Info info)
+	{
+			for(int h = 0; h<headingsLength; h++)
+			{
+				%>
+				<td class="text"><% cop.writeValue(out, item, h); %></td><%
+			}
+			
+				%>
+				<td><a href="#" onclick="return doTest('<%=cop.toTest(id, false)%>', this);">T</a></td><%
+				
+			if(info!=null)
+			{
+				%>
+				<td><%=info.getDate()%></td><%
+				
+				final String cellClass = info.getCellClass();
+				%>
+				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
+				writeFail(out, info.isError());
+				%><% info.writeCellContent(out); %><%
+				%></td>
+				<td><%=format(info.elapsed)%></td><%
+			}
+			else
+			{
+				%>
+				<td class="notavailable" colspan="3">not yet tested</td><%
+			}
+	}
+	
+	final static <I> void writeTotal(
+			final Out out,
+			final TestAjaxCop<I> cop,
+			final int headingsLength,
+			final String firstId,
+			final boolean complete,
+			final int elapsed,
+			final Date date,
+			final int failures,
+			final String cellClass,
+			final boolean isError)
+	{
+				%>
+				<th colspan="<%=headingsLength%>"></th>
+				<td><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">T</a></td>
+				<td><% writeFail(out, !complete); %><%=date%></td>
+				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
+				writeFail(out, isError);
+				%><%=failures%><%
+				%></td>
+				<td><%=format(elapsed)%></td><%
+	}
+}%>

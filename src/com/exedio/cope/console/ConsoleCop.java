@@ -138,7 +138,7 @@ abstract class ConsoleCop<S> extends Cop
 					new QueryCacheCop(args),
 					new DataFieldCop(args),
 					new MediaStatsCop(args),
-					new MediaTypeCop(args),
+					new MediaTypeCop(args, null, false),
 					new ClusterCop(args),
 					new ThreadCop(args),
 					new VmCop(args, false, false),
@@ -177,6 +177,17 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	abstract void writeBody(Out out);
+
+
+	boolean isAjax()
+	{
+		return false;
+	}
+
+	void writeAjax(@SuppressWarnings("unused") final Out out)
+	{
+		throw new RuntimeException(getClass().getName());
+	}
 
 	static final String TAB_CONNECT = "connect";
 	static final String TAB_SCHEMA = "schema";
@@ -250,7 +261,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_MEDIA_STATS.equals(tab))
 			return new MediaStatsCop(args);
 		if(TAB_MEDIA_TYPE.equals(tab))
-			return new MediaTypeCop(args);
+			return new MediaTypeCop(args, request.getParameter(TestAjaxCop.ID), Cop.getBooleanParameter(request, TestAjaxCop.ITERATE));
 		if(TAB_CLUSTER.equals(tab))
 			return new ClusterCop(args);
 		if(TAB_THREAD.equals(tab))
