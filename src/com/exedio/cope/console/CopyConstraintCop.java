@@ -25,17 +25,23 @@ import com.exedio.cope.CopyConstraint;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class CopyConstraintCop extends TestCop<CopyConstraint>
+final class CopyConstraintCop extends TestAjaxCop<CopyConstraint>
 {
-	CopyConstraintCop(final Args args)
+	CopyConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_COPY_CONSTRAINTS, "Copy Constraints", args);
+		super(TAB_COPY_CONSTRAINTS, "Copy Constraints", args, testArgs);
 	}
 
 	@Override
 	protected CopyConstraintCop newArgs(final Args args)
 	{
-		return new CopyConstraintCop(args);
+		return new CopyConstraintCop(args, testArgs);
+	}
+
+	@Override
+	protected CopyConstraintCop newTestArgs(final TestArgs testArgs)
+	{
+		return new CopyConstraintCop(args, testArgs);
 	}
 
 	@Override
@@ -69,8 +75,31 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	}
 
 	@Override
+	String getID(final CopyConstraint constraint)
+	{
+		return constraint.getID();
+	}
+
+	@Override
+	CopyConstraint forID(final Model model, final String id)
+	{
+		return (CopyConstraint)model.getFeature(id);
+	}
+
+	@Override
 	int check(final CopyConstraint constraint)
 	{
-		return constraint.check();
+		final Model model = constraint.getType().getModel();
+		try
+		{
+			model.startTransaction("Console CopyConstraint " + id);
+			final int result = constraint.check();
+			model.commit();
+			return result;
+		}
+		finally
+		{
+			model.rollbackIfNotCommitted();
+		}
 	}
 }
