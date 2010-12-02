@@ -23,7 +23,7 @@
 		<dependency org="com.exedio" name="cops" rev= "200" />
 		<dependency org="com.exedio" name="cope" rev="6542">
 			<conf name="runtime" mapped="runtime" />
-			<conf name="build" mapped="hsqldb" />
+			<conf name="build" mapped="hsqldb,mysql" />
 		</dependency>
 		<dependency org="com.exedio" name="copeutil" rev="160" />
 		<dependency org="com.exedio" name="jspm" rev=  "89" conf="build->runtime" />

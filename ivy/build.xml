@@ -21,5 +21,6 @@
 		<copy overwrite="true" file="artifacts/cojen-jar.jar" tofile="../lib/cojen.jar" />
 		<copy overwrite="true" file="artifacts/bsh-core.jar" tofile="../lib/bsh-core.jar" />
 		<copy overwrite="true" file="artifacts/hsqldb-jar.jar" tofile="../lib/jdbc/hsqldb.jar" />
+		<copy overwrite="true" file="artifacts/mysql-connector-java-jar.jar" tofile="../lib/jdbc/mysql-connector-java.jar" />
 	</target>
 </project>
