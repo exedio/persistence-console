@@ -28,6 +28,8 @@ public final class Main
 				AnItem.TYPE,
 				ASubItem.TYPE,
 				AHashItem.TYPE,
+				CopyItem.TYPE,
+				CopyOriginItem.TYPE,
 				AMediaItem.TYPE
 		);
 
