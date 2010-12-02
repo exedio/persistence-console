@@ -26,17 +26,23 @@ import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Table;
 
-final class UnsupportedConstraintCop extends TestCop<Constraint>
+final class UnsupportedConstraintCop extends TestAjaxCop<Constraint>
 {
-	UnsupportedConstraintCop(final Args args)
+	UnsupportedConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_UNSUPPORTED_CONSTRAINTS, "Unsupported Constraints", args);
+		super(TAB_UNSUPPORTED_CONSTRAINTS, "Unsupported Constraints", args, testArgs);
 	}
 
 	@Override
 	protected UnsupportedConstraintCop newArgs(final Args args)
 	{
-		return new UnsupportedConstraintCop(args);
+		return new UnsupportedConstraintCop(args, testArgs);
+	}
+
+	@Override
+	protected UnsupportedConstraintCop newTestArgs(final TestArgs testArgs)
+	{
+		return new UnsupportedConstraintCop(args, testArgs);
 	}
 
 	@Override
@@ -72,6 +78,25 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		};
+	}
+
+	@Override
+	String getID(final Constraint constraint)
+	{
+		return constraint.getName();
+	}
+
+	@Override
+	Constraint forID(final Model model, final String id)
+	{
+		final Schema schema = model.getSchema();
+		for(final Table t : schema.getTables())
+		{
+			for(final Constraint c : t.getConstraints())
+				if(id.equals(c.getName()))
+					return c;
+		}
+		throw new RuntimeException(id);
 	}
 
 	@Override
