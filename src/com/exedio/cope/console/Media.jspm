@@ -19,6 +19,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Console_Jspm.writeFail;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.ratio;
 
@@ -57,11 +58,12 @@ final class Media_Jspm extends Console_Jspm
 			if(isUrlGuessingNotSecure)
 			{
 			%>
-			<div class="message">
+			<div>
 				Beware:
 				@<%=PreventUrlGuessing.class.getSimpleName()%> enabled for at least one media,
 				but not securely.
 				This should not happen on production systems.
+				<% writeFail(out, true); %>
 			</div><%
 			}
 			
@@ -101,7 +103,7 @@ final class Media_Jspm extends Console_Jspm
 					
 					if(path.isUrlGuessingPrevented())
 					{
-						%><small<% if(isUrlGuessingNotSecure){%> style="color:red;"<%} %>>@<%=PreventUrlGuessing.class.getSimpleName()%></small><br><%
+						%><small>@<%=PreventUrlGuessing.class.getSimpleName()%><% writeFail(out, isUrlGuessingNotSecure); %></small><br><%
 					}
 					
 					final String className = path.getClass().getName();
