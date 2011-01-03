@@ -19,7 +19,6 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.Console_Jspm.writeFail;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.ratio;
 
