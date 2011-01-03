@@ -40,7 +40,7 @@ final class Cluster_Jspm
 		%>
 		<table style="float:left;">
 			<caption>Sender</caption>
-			<tr><th>Node ID</th><td><%=format(senderInfo.getNodeID())%></td></tr>
+			<tr><th>Node ID</th><td><%=senderInfo.getNodeIDString()%></td></tr>
 			<tr><th>Local Port</th><td><%=format(senderInfo.getLocalPort())%></td></tr>
 			<tr><th>Send Buffer Size</th><td><%=format(senderInfo.getSendBufferSize())%></td></tr>
 			<tr><th>Traffic Class</th><td><%=format(senderInfo.getTrafficClass())%></td></tr>
@@ -82,7 +82,7 @@ final class Cluster_Jspm
 			{
 			%>
 			<tr>
-				<td><%=format(node.getID())%></td>
+				<td><%=node.getIDString()%></td>
 				<td><%=node.getFirstEncounter()%></td>
 				<td><%=node.getAddress()%></td>
 				<td><%=format(node.getPort())%></td><%

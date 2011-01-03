@@ -213,9 +213,9 @@ final class Transaction_Jspm extends Console_Jspm
 				
 			try
 			{
-				final int value = event.getRemoteNodeID();
+				final String value = event.getRemoteNodeIDString();
 				%>
-				<td><%=format(value)%></td><%
+				<td><%=value%></td><%
 			}
 			catch(NotAvailableException e)
 			{
