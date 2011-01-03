@@ -55,6 +55,12 @@ final class HistoryThread extends Thread
 			HistoryMedia.TYPE,
 			HistoryPurge.TYPE);
 
+	static
+	{
+		// needed for meaningful Model#toString as well
+		HISTORY_MODEL.enableSerialization(HistoryThread.class, "HISTORY_MODEL");
+	}
+
 	private static final String NAME = "COPE History";
 	private static final int PURGE_INTERVAL = Calendar.DAY_OF_YEAR;
 
