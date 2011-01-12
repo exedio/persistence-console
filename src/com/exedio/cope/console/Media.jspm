@@ -62,6 +62,7 @@ final class Media_Jspm extends Console_Jspm
 				@<%=PreventUrlGuessing.class.getSimpleName()%> enabled for at least one media,
 				but not securely.
 				This should not happen on production systems.
+				To fix this, set cope property <tt>media.url.secret</tt> to an arbitrary unguessable value.
 				<% writeFail(out, true); %>
 			</div><%
 			}
