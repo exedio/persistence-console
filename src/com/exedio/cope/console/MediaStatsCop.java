@@ -18,18 +18,24 @@
 
 package com.exedio.cope.console;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeSet;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
+import com.exedio.cope.pattern.MediaImageMagickFilter;
 import com.exedio.cope.pattern.MediaInfo;
 import com.exedio.cope.pattern.MediaPath;
 
 final class MediaStatsCop extends ConsoleCop
 {
+	static final String TEST = "test";
+
 	MediaStatsCop(final Args args)
 	{
 		super(TAB_MEDIA_STATS, "Media", args);
@@ -39,6 +45,28 @@ final class MediaStatsCop extends ConsoleCop
 	protected MediaStatsCop newArgs(final Args args)
 	{
 		return new MediaStatsCop(args);
+	}
+
+	@Override
+	void initialize(final HttpServletRequest request, final Model model)
+	{
+		super.initialize(request, model);
+		if(isPost(request))
+		{
+			final String test = request.getParameter(TEST);
+			if(test!=null)
+			{
+				System.out.println("Testing MediaImageMagickFilter " + test);
+				try
+				{
+					((MediaImageMagickFilter)model.getFeature(test)).test();
+				}
+				catch(final IOException e)
+				{
+					throw new RuntimeException(test, e);
+				}
+			}
+		}
 	}
 
 	@Override
