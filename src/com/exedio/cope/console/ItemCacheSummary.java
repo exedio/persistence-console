@@ -37,6 +37,7 @@ final class ItemCacheSummary
 	final long ageMaxMillis;
 	final long invalidationsOrdered;
 	final long invalidationsDone;
+	final long invalidationBucketHits;
 
 	ItemCacheSummary(final ItemCacheInfo[] infos)
 	{
@@ -54,6 +55,7 @@ final class ItemCacheSummary
 		long allAgeMaxMillis = 0l;
 		long allInvalidationsOrdered = 0l;
 		long allInvalidationsDone = 0l;
+		long allInvalidationBucketHits = 0l;
 
 		for(final ItemCacheInfo info : infos)
 		{
@@ -87,6 +89,7 @@ final class ItemCacheSummary
 
 			allInvalidationsOrdered += info.getInvalidationsOrdered();
 			allInvalidationsDone += info.getInvalidationsDone();
+			allInvalidationBucketHits += info.getInvalidationBucketHits();
 		}
 		this.limit = allLimit;
 		this.level = allLevel;
@@ -101,5 +104,6 @@ final class ItemCacheSummary
 		this.ageMaxMillis = allAgeMaxMillis;
 		this.invalidationsOrdered = allInvalidationsOrdered;
 		this.invalidationsDone = allInvalidationsDone;
+		this.invalidationBucketHits = allInvalidationBucketHits;
 	}
 }
