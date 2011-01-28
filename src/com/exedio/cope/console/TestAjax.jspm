@@ -170,8 +170,8 @@ final class TestAjax_Jspm
 		
 		%>
 		<table id="test_table">
-			<tr id="total"><%
-				cop.writeTotal(out, headingsLength, items, infos);
+			<tr id="summary"><%
+				cop.writeSummary(out, headingsLength, items, infos);
 			%>
 			</tr>
 			<tr><%
@@ -238,7 +238,7 @@ final class TestAjax_Jspm
 			}
 	}
 	
-	final static <I> void writeTotal(
+	final static <I> void writeSummary(
 			final Out out,
 			final TestAjaxCop<I> cop,
 			final int headingsLength,
@@ -251,7 +251,7 @@ final class TestAjax_Jspm
 			final boolean isError)
 	{
 				%>
-				<th style="text-align:right;" colspan="<%=headingsLength%>">All</th>
+				<th style="text-align:right;" colspan="<%=headingsLength%>">Summary</th>
 				<td><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">Test</a></td>
 				<td><% writeFail(out, !complete); %><%=date%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%

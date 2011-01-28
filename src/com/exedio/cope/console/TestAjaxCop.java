@@ -169,8 +169,8 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		TestAjax_Jspm.writeRow(out, this, headingsLength, item, id, info);
 		out.writeRaw(
 			"]]></update>" +
-			"<update id=\"total\"><![CDATA[");
-		writeTotal(out, headingsLength, items, infos);
+			"<update id=\"summary\"><![CDATA[");
+		writeSummary(out, headingsLength, items, infos);
 		out.writeRaw(
 			"]]></update>" +
 			"</response>");
@@ -188,7 +188,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		return null;
 	}
 
-	void writeTotal(
+	void writeSummary(
 			final Out out,
 			final int headingsLength,
 			final List<I> items,
@@ -207,7 +207,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 			isError  |= info.isError();
 		}
 
-		TestAjax_Jspm.writeTotal(
+		TestAjax_Jspm.writeSummary(
 				out,
 				this,
 				headingsLength,

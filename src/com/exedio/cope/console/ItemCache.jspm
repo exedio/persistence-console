@@ -71,7 +71,7 @@ final class ItemCache_Jspm extends Console_Jspm
 			ColoredTable_Jspm.writeHeader(out, names, shortNames);
 			%>
 			<tr><%
-				final String[] allData = {
+				final String[] summaryData = {
 						formatAndHide(0, summary.limit),
 						formatAndHide(0, summary.level),
 						formatAndHide(0, summary.hits),
@@ -87,10 +87,10 @@ final class ItemCache_Jspm extends Console_Jspm
 						formatAndHide(0, summary.invalidationsDone),
 						formatAndHide(0, summary.invalidationBucketHits),
 					};
-				ColoredTable_Jspm.writeData(out, allData);
+				ColoredTable_Jspm.writeData(out, summaryData);
 				%>
 				<td class="color0"><%=ratio(summary.hits, summary.misses)%></td>
-				<th>All</th>
+				<th>Summary</th>
 			</tr><%
 			for(final ItemCacheInfo info : infos)
 			{

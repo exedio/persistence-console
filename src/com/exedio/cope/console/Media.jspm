@@ -73,7 +73,7 @@ final class Media_Jspm extends Console_Jspm
 				ColoredTable_Jspm.writeData(out, cop.format(summary));
 				%>
 				<td class="color1"><%=ratio(summary.getNotModified(), summary.getDelivered())%></td>
-				<th colspan="3">Total</th>
+				<th colspan="3">Summary</th>
 			</tr><%
 			
 			boolean firstMediaImageMagickFilter = true;
