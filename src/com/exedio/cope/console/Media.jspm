@@ -27,6 +27,7 @@ import java.util.Set;
 
 import com.exedio.cope.Item;
 import com.exedio.cope.Query;
+import com.exedio.cope.misc.MediaSummary;
 import com.exedio.cope.pattern.CachedMedia;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaFilter;
