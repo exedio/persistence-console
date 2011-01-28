@@ -23,6 +23,7 @@ import static com.exedio.cope.console.Format.formatAndHide;
 import static com.exedio.cope.console.Format.ratio;
 
 import com.exedio.cope.ItemCacheInfo;
+import com.exedio.cope.misc.ItemCacheSummary;
 
 final class ItemCache_Jspm extends Console_Jspm
 {
@@ -72,24 +73,24 @@ final class ItemCache_Jspm extends Console_Jspm
 			%>
 			<tr><%
 				final String[] summaryData = {
-						formatAndHide(0, summary.limit),
-						formatAndHide(0, summary.level),
-						formatAndHide(0, summary.hits),
-						formatAndHide(0, summary.misses),
-						formatAndHide(0, summary.concurrentLoads),
-						formatAndHide(0, summary.replacementRuns),
-						formatAndHide(0, summary.replacements),
-						formatAndHide(summary.lastReplacementRun),
-						formatAndHide(0, summary.ageMinMillis/1000l),
-						formatAndHide(0, summary.ageAverageMillis/1000l),
-						formatAndHide(0, summary.ageMaxMillis/1000l),
-						formatAndHide(0, summary.invalidationsOrdered),
-						formatAndHide(0, summary.invalidationsDone),
-						formatAndHide(0, summary.invalidationBucketHits),
+						formatAndHide(0, summary.getLimit()),
+						formatAndHide(0, summary.getLevel()),
+						formatAndHide(0, summary.getHits()),
+						formatAndHide(0, summary.getMisses()),
+						formatAndHide(0, summary.getConcurrentLoads()),
+						formatAndHide(0, summary.getReplacementRuns()),
+						formatAndHide(0, summary.getReplacements()),
+						formatAndHide(summary.getLastReplacementRun()),
+						formatAndHide(0, summary.getAgeMinMillis()/1000l),
+						formatAndHide(0, summary.getAgeAverageMillis()/1000l),
+						formatAndHide(0, summary.getAgeMaxMillis()/1000l),
+						formatAndHide(0, summary.getInvalidationsOrdered()),
+						formatAndHide(0, summary.getInvalidationsDone()),
+						formatAndHide(0, summary.getInvalidationBucketHits()),
 					};
 				ColoredTable_Jspm.writeData(out, summaryData);
 				%>
-				<td class="color0"><%=ratio(summary.hits, summary.misses)%></td>
+				<td class="color0"><%=ratio(summary.getHits(), summary.getMisses())%></td>
 				<th>Summary</th>
 			</tr><%
 			for(final ItemCacheInfo info : infos)

@@ -34,6 +34,7 @@ import com.exedio.cope.SetValue;
 import com.exedio.cope.TransactionCounters;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
+import com.exedio.cope.misc.ItemCacheSummary;
 import com.exedio.cope.misc.MediaSummary;
 import com.exedio.cope.util.Pool;
 
@@ -90,12 +91,12 @@ final class HistoryModel extends Item
 	static List<SetValue> map(final ItemCacheSummary info)
 	{
 		return Arrays.asList((SetValue)
-			itemCacheHits  .map(info.hits),
-			itemCacheMisses.map(info.misses),
+			itemCacheHits  .map(info.getHits()),
+			itemCacheMisses.map(info.getMisses()),
 
-			itemCacheConcurrentLoads.map(info.concurrentLoads),
-			itemCacheReplacementRuns.map(info.replacementRuns),
-			itemCacheReplacements   .map(info.replacements));
+			itemCacheConcurrentLoads.map(info.getConcurrentLoads()),
+			itemCacheReplacementRuns.map(info.getReplacementRuns()),
+			itemCacheReplacements   .map(info.getReplacements()));
 	}
 
 

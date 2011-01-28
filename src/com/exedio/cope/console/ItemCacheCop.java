@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.ItemCacheInfo;
+import com.exedio.cope.misc.ItemCacheSummary;
 
 final class ItemCacheCop extends ConsoleCop
 {
