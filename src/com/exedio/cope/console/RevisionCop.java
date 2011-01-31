@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +38,8 @@ final class RevisionCop extends ConsoleCop implements Pageable
 {
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
 	static final String REVISE  = "revise";
+	static final String NICE_CREATE = "nice.create";
+	static final String NICE_DROP   = "nice.drop";
 
 	final Pager pager;
 
@@ -83,6 +86,28 @@ final class RevisionCop extends ConsoleCop implements Pageable
 		{
 			if(request.getParameter(REVISE)!=null)
 				model.revise();
+			if(request.getParameter(NICE_CREATE)!=null)
+			{
+				try
+				{
+					new SchemaNice(model).create();
+				}
+				catch(final SQLException e)
+				{
+					throw new RuntimeException(e);
+				}
+			}
+			if(request.getParameter(NICE_DROP)!=null)
+			{
+				try
+				{
+					new SchemaNice(model).drop();
+				}
+				catch(final SQLException e)
+				{
+					throw new RuntimeException(e);
+				}
+			}
 		}
 	}
 

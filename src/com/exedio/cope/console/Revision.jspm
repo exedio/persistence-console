@@ -121,6 +121,9 @@ final class Revision_Jspm extends Console_Jspm
 		%>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=cop.REVISE%>" value="revise" />
+			nice:
+			<input type="submit" name="<%=cop.NICE_CREATE%>" value="create" />
+			<input type="submit" name="<%=cop.NICE_DROP  %>" value="drop" />
 		</form>
 		<table><%
 				cop.writePager(out, cop);
