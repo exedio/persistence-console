@@ -22,6 +22,7 @@ import static com.exedio.cope.SchemaInfo.quoteName;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Field;
@@ -96,9 +97,7 @@ final class SchemaNice
 
 				bf.append(')');
 
-				System.out.println(bf.toString());
-				connection.createStatement().execute(bf.toString());
-				bf.setLength(0);
+				execute(connection, bf);
 			}
 		}
 		finally
@@ -118,15 +117,28 @@ final class SchemaNice
 			{
 				bf.append("drop view if exists ").
 					append(view(type));
-				System.out.println(bf.toString());
-				connection.createStatement().execute(bf.toString());
-				bf.setLength(0);
+				execute(connection, bf);
 			}
 		}
 		finally
 		{
 			connection.close();
 		}
+	}
+
+	private static void execute(final Connection connection, final StringBuilder bf) throws SQLException
+	{
+		System.out.println(bf.toString());
+		final Statement statement = connection.createStatement();
+		try
+		{
+			statement.execute(bf.toString());
+		}
+		finally
+		{
+			statement.close();
+		}
+		bf.setLength(0);
 	}
 
 	private String table(final Type type)
