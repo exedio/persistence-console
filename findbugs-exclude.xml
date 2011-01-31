@@ -20,6 +20,15 @@
 	</Match>
 	<Match>
 		<Or>
+			<!-- Passes a nonconstant String to an execute method on an SQL statement -->
+			<Bug pattern="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE" />
+		</Or>
+		<Or>
+			<Class name="com.exedio.cope.console.SchemaNice" />
+		</Or>
+	</Match>
+	<Match>
+		<Or>
 			<!-- Class extends Servlet class and uses instance variables -->
 			<Bug pattern="MTIA_SUSPECT_SERVLET_INSTANCE_FIELD" />
 			<!-- Mutable servlet field -->
