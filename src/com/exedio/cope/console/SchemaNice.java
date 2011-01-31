@@ -72,7 +72,7 @@ final class SchemaNice
 									append(v.name()).
 									append('\'');
 							}
-							bf.append(" end");
+							bf.append(" end as ").append(column(field));
 						}
 						else
 						{
