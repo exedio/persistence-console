@@ -24,6 +24,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.exedio.cope.DateField;
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Field;
 import com.exedio.cope.Model;
@@ -74,6 +75,12 @@ final class SchemaNice
 									append('\'');
 							}
 							bf.append(" end as ").append(column(field));
+						}
+						else if(field instanceof DateField && !SchemaInfo.supportsNativeDate(model))
+						{
+							bf.append("from_unixtime(").
+								append(table(superType)).append('.').append(column(field)).
+								append("/1000) as ").append(column(field));
 						}
 						else
 						{
