@@ -63,7 +63,7 @@ final class Connect_Jspm extends Console_Jspm
 			</tr>
 		</table>
 		<table>
-			<caption>Dialect Capabilities</caption>
+			<caption>Schema Capabilities</caption>
 			<tr>
 				<th>Supports Check Constraints</th>
 				<td class="text"><%if(SchemaInfo.supportsCheckConstraints(model)){%>yes<%}else{%>no<%}%></td>
