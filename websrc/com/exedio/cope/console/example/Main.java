@@ -33,8 +33,18 @@ public final class Main
 				AMediaItem.TYPE
 		);
 
+	static
+	{
+		model.enableSerialization(Main.class, "model");
+	}
+
 	public static final Model reducedModel =
 		new Model(
 				AReducedItem.TYPE
 		);
+
+	static
+	{
+		reducedModel.enableSerialization(Main.class, "reducedModel");
+	}
 }
