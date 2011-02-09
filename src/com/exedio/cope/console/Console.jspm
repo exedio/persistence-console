@@ -31,6 +31,7 @@ abstract class Console_Jspm
 				final Out out,
 				final HttpServletResponse response,
 				final ConsoleCop cop,
+				final String modelName,
 				final String authentication,
 				final String hostname)
 	{
@@ -57,6 +58,7 @@ abstract class Console_Jspm
 	<body>
 		<a href="http://cope.sourceforge.net/" target="_blank"><img class="logo" src="<%=ConsoleServlet.logo%>" alt="Exedio Logo"></a>
 		<h1>COPE Console</h1>
+		<div class="authenticated">Model <%= modelName %></div>
 		<div class="<% if(authentication==null){%>not<%} %>authenticated"><%
 		if(authentication!=null)
 		{
