@@ -33,7 +33,6 @@ import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Item;
 import com.exedio.cope.Transaction;
 import com.exedio.cope.misc.ConnectToken;
-import com.exedio.cope.misc.ServletUtil;
 import com.exedio.cope.util.ModificationListener;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
@@ -121,7 +120,7 @@ public final class ExampleServlet extends CopsServlet
 
 	private void connect(final String name)
 	{
-		connectTokens.add(ServletUtil.connect(Main.model, getServletConfig(), name));
+		connectTokens.add(ConnectToken.issue(Main.model, name));
 	}
 
 	private void createSampleData()

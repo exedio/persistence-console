@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
@@ -31,7 +30,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.ServletUtil;
@@ -148,8 +146,6 @@ public final class ConsoleServlet extends CopsServlet
 					historyConnectToken =
 						ConnectToken.issue(
 								HistoryThread.HISTORY_MODEL,
-								new ConnectProperties(new File(this.model.getConnectProperties().getContext().
-										get(HISTORY_PROPERTY_FILE))),
 								"ConsoleServlet");
 				}
 			}

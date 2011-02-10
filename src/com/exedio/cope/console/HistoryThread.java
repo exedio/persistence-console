@@ -96,6 +96,8 @@ final class HistoryThread extends Thread
 		this.medias = medias.toArray(new MediaPath[medias.size()]);
 	}
 
+	private static boolean setConnectProperties = false;
+
 	@Override
 	public void run()
 	{
@@ -111,8 +113,13 @@ final class HistoryThread extends Thread
 			final long connecting = System.nanoTime();
 			try
 			{
+				if(!setConnectProperties)
+				{
+					ConnectToken.setProperties(HISTORY_MODEL, new ConnectProperties(new File(propertyFile)));
+					setConnectProperties = true;
+				}
 				connectToken =
-					ConnectToken.issue(HISTORY_MODEL, new ConnectProperties(new File(propertyFile)), name);
+					ConnectToken.issue(HISTORY_MODEL, name);
 				System.out.println(topic + "run() connected (" + ((System.nanoTime() - connecting) / 1000000) + "ms)");
 				HISTORY_MODEL.reviseIfSupported();
 				try

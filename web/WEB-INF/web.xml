@@ -10,6 +10,10 @@
 		<param-value>com.exedio.cope.console.example.Main#model</param-value>
 	</context-param>
 	
+	<listener>
+		<listener-class>com.exedio.cope.console.example.PropertiesInitializer</listener-class>
+	</listener>
+	
 	<servlet>
 		<servlet-name>standard</servlet-name>
 		<servlet-class>com.exedio.cope.console.ConsoleServlet</servlet-class>
@@ -25,10 +29,6 @@
 		<init-param>
 			<param-name>model</param-name>
 			<param-value>com.exedio.cope.console.example.Main#reducedModel</param-value>
-		</init-param>
-		<init-param>
-			<param-name>cope.properties</param-name>
-			<param-value>WEB-INF/cope-reduced.properties</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
