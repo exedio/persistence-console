@@ -48,6 +48,7 @@ final class ItemCache_Jspm extends Console_Jspm
 			"Invalidations Done",
 			"Invalidate Last Size",
 			"Invalidate Last Hits",
+			"Invalidate Last Purged",
 			"Invalidation Bucket Hits",
 			"log<sub>10</sub> Hits/Misses",
 			"Type",
@@ -68,6 +69,7 @@ final class ItemCache_Jspm extends Console_Jspm
 			"id",
 			"ils",
 			"ilh",
+			"ilp",
 			"ibh",
 			"ratio",
 		};
@@ -92,6 +94,7 @@ final class ItemCache_Jspm extends Console_Jspm
 						formatAndHide(0, summary.getInvalidationsDone()),
 						formatAndHide(0, summary.getInvalidateLastSize()),
 						formatAndHide(0, summary.getInvalidateLastHits()),
+						formatAndHide(0, summary.getInvalidateLastPurged()),
 						formatAndHide(0, summary.getInvalidationBucketHits()),
 					};
 				ColoredTable_Jspm.writeData(out, summaryData);
@@ -117,6 +120,7 @@ final class ItemCache_Jspm extends Console_Jspm
 						formatAndHide(0, info.getInvalidationsDone()),
 						formatAndHide(0, info.getInvalidateLastSize()),
 						formatAndHide(0, info.getInvalidateLastHits()),
+						formatAndHide(0, info.getInvalidateLastPurged()),
 						formatAndHide(0, info.getInvalidationBucketHits()),
 					};
 			%>
