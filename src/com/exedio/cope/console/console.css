@@ -157,6 +157,17 @@ table th.color1s { margin:0px; background:#fff; border-color:#fff; text-align:ce
 table td.color0 { margin:0px; background:#ddf; border-color:#ddf; }
 table td.color1 { margin:0px; background:#fff; border-color:#ddf; }
 
+
+table.matrixTable th
+{
+	min-width:1em;
+	overflow:hidden;
+}
+
+table.matrixTable td.a { margin:0px; background:#fff; border-color:#ddf; }
+table.matrixTable td.b { margin:0px; background:#ddf; border-color:#ddf; }
+
+
 span.help
 {
 	font-size:70%;

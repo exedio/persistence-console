@@ -32,102 +32,83 @@ final class ItemCache_Jspm extends Console_Jspm
 			final ItemCacheSummary summary,
 			final ItemCacheInfo[] infos)
 	{
-		final String[] names = {
-			"Limit",
-			"Level",
-			"Hits",
-			"Misses",
-			"Concurrent Loads",
-			"Replacement Runs",
-			"Replacements",
-			"Last Replacement Run",
-			"Age Min (s)",
-			"Age Average (s)",
-			"Age Max (s)",
-			"Invalidations Ordered",
-			"Invalidations Done",
-			"Invalidate Last Size",
-			"Invalidate Last Hits",
-			"Invalidate Last Purged",
-			"Invalidation Bucket Hits",
-			"log<sub>10</sub> Hits/Misses",
-			"Type",
-		};
-		final String[] shortNames = {
-			"lm",
-			"lv",
-			"ht",
-			"ms",
-			"cl",
-			"rr",
-			"r",
-			"lrr",
-			"an",
-			"aa",
-			"ax",
-			"io",
-			"id",
-			"ils",
-			"ilh",
-			"ilp",
-			"ibh",
-			"ratio",
-		};
 		%>
-		<table id="coloredTable"><%
-			ColoredTable_Jspm.writeHeader(out, names, shortNames);
-			%>
-			<tr><%
-				final String[] summaryData = {
-						formatAndHide(0, summary.getLimit()),
-						formatAndHide(0, summary.getLevel()),
-						formatAndHide(0, summary.getHits()),
-						formatAndHide(0, summary.getMisses()),
-						formatAndHide(0, summary.getConcurrentLoads()),
-						formatAndHide(0, summary.getReplacementRuns()),
-						formatAndHide(0, summary.getReplacements()),
-						formatAndHide(summary.getLastReplacementRun()),
-						formatAndHide(0, summary.getAgeMinMillis()/1000l),
-						formatAndHide(0, summary.getAgeAverageMillis()/1000l),
-						formatAndHide(0, summary.getAgeMaxMillis()/1000l),
-						formatAndHide(0, summary.getInvalidationsOrdered()),
-						formatAndHide(0, summary.getInvalidationsDone()),
-						formatAndHide(0, summary.getInvalidateLastSize()),
-						formatAndHide(0, summary.getInvalidateLastHits()),
-						formatAndHide(0, summary.getInvalidateLastPurged()),
-						formatAndHide(0, summary.getInvalidationBucketHits()),
-					};
-				ColoredTable_Jspm.writeData(out, summaryData);
-				%>
-				<td class="color0"><%=ratio(summary.getHits(), summary.getMisses())%></td>
+		<table class="matrixTable">
+			<tr>
+				<th colspan="3">Current</th>
+				<th colspan="3">Efficiency</th>
+				<th rowspan="2" title="Concurrent Loads">CL</th>
+				<th colspan="3">Replacement</th>
+				<th colspan="3">Age <small>/seconds</small></th>
+				<th colspan="2">Invalidations</th>
+				<th colspan="3">Invalidate Last</th>
+				<th rowspan="2" title="Invalidation Bucket Hits">IBH</th>
+				<th rowspan="2">Type</th>
+			</tr>
+			<tr>
+				<th title="Limit">Lim</th>
+				<th title="Level">Lvl</th>
+				<th title="log Limit/Level">ratio</th>
+				<th title="Hits">Hit</th>
+				<th title="Misses">Miss</th>
+				<th title="log Hits/Misses">ratio</th>
+				<th title="Replacement Runs">Runs</th>
+				<th title="Replaced Items">Items</th>
+				<th title="Last Replacement Run">Last Run</th>
+				<th title="Minimum Age (s)">Min</th>
+				<th title="Average Age (s)">Avg</th>
+				<th title="Maximum Age (s)">Max</th>
+				<th title="Invalidations Ordered">Ordrd</th>
+				<th title="Invalidations Done">Done</th>
+				<th title="Invalidate Last Size">Size</th>
+				<th title="Invalidate Last Hits">Hits</th>
+				<th title="Invalidate Last Purged">Purg</th>
+			</tr>
+			<tr>
+				<td class="a"><%=formatAndHide(0, summary.getLimit())%></td>
+				<td class="a"><%=formatAndHide(0, summary.getLevel())%></td>
+				<td class="a"><%=ratio(summary.getLimit(), summary.getLevel())%></td>
+				<td class="b"><%=formatAndHide(0, summary.getHits())%></td>
+				<td class="b"><%=formatAndHide(0, summary.getMisses())%></td>
+				<td class="b"><%=ratio(summary.getHits(), summary.getMisses())%></td>
+				<td class="a"><%=formatAndHide(0, summary.getConcurrentLoads())%></td>
+				<td class="b"><%=formatAndHide(0, summary.getReplacementRuns())%></td>
+				<td class="b"><%=formatAndHide(0, summary.getReplacements())%></td>
+				<td class="b"><% out.writeRaw(formatAndHide(summary.getLastReplacementRun())); %></td>
+				<td class="a"><%=formatAndHide(0, summary.getAgeMinMillis()/1000l)%></td>
+				<td class="a"><%=formatAndHide(0, summary.getAgeAverageMillis()/1000l)%></td>
+				<td class="a"><%=formatAndHide(0, summary.getAgeMaxMillis()/1000l)%></td>
+				<td class="b"><%=formatAndHide(0, summary.getInvalidationsOrdered())%></td>
+				<td class="b"><%=formatAndHide(0, summary.getInvalidationsDone())%></td>
+				<td class="a"><%=formatAndHide(0, summary.getInvalidateLastSize())%></td>
+				<td class="a"><%=formatAndHide(0, summary.getInvalidateLastHits())%></td>
+				<td class="a"><%=formatAndHide(0, summary.getInvalidateLastPurged())%></td>
+				<td class="b"><%=formatAndHide(0, summary.getInvalidationBucketHits())%></td>
 				<th>Summary</th>
 			</tr><%
 			for(final ItemCacheInfo info : infos)
 			{
-				final String[] data = {
-						formatAndHide(0, info.getLimit()),
-						formatAndHide(0, info.getLevel()),
-						formatAndHide(0, info.getHits()),
-						formatAndHide(0, info.getMisses()),
-						formatAndHide(0, info.getConcurrentLoads()),
-						formatAndHide(0, info.getReplacementRuns()),
-						formatAndHide(0, info.getReplacements()),
-						formatAndHide(info.getLastReplacementRun()),
-						formatAndHide(Long.MAX_VALUE/1000l, info.getAgeMinMillis()/1000l),
-						formatAndHide(0, info.getAgeAverageMillis()/1000l),
-						formatAndHide(0, info.getAgeMaxMillis()/1000l),
-						formatAndHide(0, info.getInvalidationsOrdered()),
-						formatAndHide(0, info.getInvalidationsDone()),
-						formatAndHide(0, info.getInvalidateLastSize()),
-						formatAndHide(0, info.getInvalidateLastHits()),
-						formatAndHide(0, info.getInvalidateLastPurged()),
-						formatAndHide(0, info.getInvalidationBucketHits()),
-					};
 			%>
-			<tr><%
-				ColoredTable_Jspm.writeData(out, data);
-				%>
-				<td class="color0"><%=ratio(info.getHits(), info.getMisses())%></td>
+			<tr>
+				<td class="a"><%=formatAndHide(0, info.getLimit())%></td>
+				<td class="a"><%=formatAndHide(0, info.getLevel())%></td>
+				<td class="a"><%=ratio(info.getLimit(), info.getLevel())%></td>
+				<td class="b"><%=formatAndHide(0, info.getHits())%></td>
+				<td class="b"><%=formatAndHide(0, info.getMisses())%></td>
+				<td class="b"><%=ratio(info.getHits(), info.getMisses())%></td>
+				<td class="a"><%=formatAndHide(0, info.getConcurrentLoads())%></td>
+				<td class="b"><%=formatAndHide(0, info.getReplacementRuns())%></td>
+				<td class="b"><%=formatAndHide(0, info.getReplacements())%></td>
+				<td class="b"><% out.writeRaw(formatAndHide(info.getLastReplacementRun())); %></td>
+				<td class="a"><%=formatAndHide(Long.MAX_VALUE/1000l, info.getAgeMinMillis()/1000l)%></td>
+				<td class="a"><%=formatAndHide(0, info.getAgeAverageMillis()/1000l)%></td>
+				<td class="a"><%=formatAndHide(0, info.getAgeMaxMillis()/1000l)%></td>
+				<td class="b"><%=formatAndHide(0, info.getInvalidationsOrdered())%></td>
+				<td class="b"><%=formatAndHide(0, info.getInvalidationsDone())%></td>
+				<td class="a"><%=formatAndHide(0, info.getInvalidateLastSize())%></td>
+				<td class="a"><%=formatAndHide(0, info.getInvalidateLastHits())%></td>
+				<td class="a"><%=formatAndHide(0, info.getInvalidateLastPurged())%></td>
+				<td class="b"><%=formatAndHide(0, info.getInvalidationBucketHits())%></td>
 				<td class="text"><%=info.getType().getID()%></td>
 			</tr><%
 			}
