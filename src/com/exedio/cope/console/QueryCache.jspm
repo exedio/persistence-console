@@ -38,7 +38,7 @@ final class QueryCache_Jspm extends Console_Jspm
 		final long hits = info.getHits();
 		final long misses = info.getMisses();
 		%>
-		<table>
+		<table style="float:left;">
 			<caption>Statistics</caption>
 			<tr><th colspan="2">Limit</th><td><%= format(limit)%></td></tr>
 			<tr><th colspan="2">Level</th><td><%= format(info.getLevel()) %></td></tr>
@@ -68,6 +68,10 @@ final class QueryCache_Jspm extends Console_Jspm
 			}
 		%>
 		</table>
+		<form action="<%=cop%>" method="POST">
+			<input type="submit" name="<%=cop.CLEAR%>" value="clear all caches" 
+				onclick="return confirm('This operation will clear all global (cross-transactional) caches, such as item cache and query cache.\nDo you really want to do this?')" />
+		</form>
 		<hr>
 		<% writeToggle(out, cop.toToggleCondense(), cop.condense); %> condense<%
 		

@@ -29,6 +29,7 @@ import com.exedio.cope.QueryCacheHistogram;
 
 final class QueryCacheCop extends ConsoleCop
 {
+	static final String CLEAR  = "cache.clear";
 	static final String HISTOGRAM_LIMIT = "hl";
 	private static final int HISTOGRAM_LIMIT_DEFAULT = 100;
 	private static final String CONDENSE = "condense";
@@ -66,6 +67,21 @@ final class QueryCacheCop extends ConsoleCop
 	QueryCacheCop toToggleCondense()
 	{
 		return new QueryCacheCop(args, histogramLimit, !condense);
+	}
+
+	@Override
+	void initialize(final HttpServletRequest request, final Model model)
+	{
+		super.initialize(request, model);
+
+		if(isPost(request))
+		{
+			if(request.getParameter(CLEAR)!=null)
+			{
+				System.out.println("QueryCacheCop#clear");
+				model.clearCache();
+			}
+		}
 	}
 
 	static final class Content
