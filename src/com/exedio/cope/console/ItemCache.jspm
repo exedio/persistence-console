@@ -52,16 +52,16 @@ final class ItemCache_Jspm extends Console_Jspm
 				<th title="Hits">Hit</th>
 				<th title="Misses">Miss</th>
 				<th title="log Hits/Misses">ratio</th>
-				<th title="Replacement Runs">Runs</th>
-				<th title="Replaced Items">Items</th>
-				<th title="Last Replacement Run">Last Run</th>
+				<th title="Replacement Runs">Run</th>
+				<th title="Replaced Items">Item</th>
+				<th title="Last Replacement Run">Last</th>
 				<th title="Minimum Age (s)">Min</th>
 				<th title="Average Age (s)">Avg</th>
 				<th title="Maximum Age (s)">Max</th>
 				<th title="Invalidations Ordered">Ordrd</th>
 				<th title="Invalidations Done">Done</th>
 				<th title="Invalidate Last Size">Size</th>
-				<th title="Invalidate Last Hits">Hits</th>
+				<th title="Invalidate Last Hits">Hit</th>
 				<th title="Invalidate Last Purged">Purg</th>
 			</tr>
 			<tr>
