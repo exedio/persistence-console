@@ -65,9 +65,9 @@ final class Cluster_Jspm
 				<th rowspan="2">ID</th>
 				<th rowspan="2">First<br>Encounter</th>
 				<th colspan="2">From</th>
+				<th colspan="6">Invalidate</th>
 				<th colspan="6">Ping</th>
 				<th colspan="6">Pong</th>
-				<th colspan="6">Invalidate</th>
 			</tr>
 			<tr>
 				<th>Address</th>
@@ -86,9 +86,9 @@ final class Cluster_Jspm
 				<td><%=node.getFirstEncounter()%></td>
 				<td><%=node.getAddress()%></td>
 				<td><%=format(node.getPort())%></td><%
+				write(out, node.getInvalidateInfo());
 				write(out, node.getPingInfo());
 				write(out, node.getPongInfo());
-				write(out, node.getInvalidateInfo());
 				%>
 			</tr><%
 			}
