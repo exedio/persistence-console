@@ -81,7 +81,7 @@ final class HistoryClusterNode extends Item
 				fromPort      .map(node.getPort()),
 
 				ping      .map(new SequenceInfo(node.getPingInfo())),
-				pong      .map(new SequenceInfo(node.getPingInfo())),
+				pong      .map(new SequenceInfo(node.getPongInfo())),
 				invalidate.map(new SequenceInfo(node.getInvalidateInfo())));
 	}
 
