@@ -121,15 +121,16 @@ abstract class ConsoleCop<S> extends Cop
 
 	final ConsoleCop[] getTabs()
 	{
+		final TestCop.TestArgs testArgs = new TestCop.TestArgs();
 		return
 			new ConsoleCop[]{
 					new ConnectCop(args),
 					new SchemaCop(args),
-					new UnsupportedConstraintCop(args, new TestCop.TestArgs()),
-					new ModificationCounterCop(args, new TestCop.TestArgs()),
-					new SequenceCop(args, new TestCop.TestArgs()),
-					new TypeColumnCop(args, new TestCop.TestArgs()),
-					new CopyConstraintCop(args, new TestCop.TestArgs()),
+					new UnsupportedConstraintCop(args, testArgs),
+					new ModificationCounterCop(args, testArgs),
+					new SequenceCop(args, testArgs),
+					new TypeColumnCop(args, testArgs),
+					new CopyConstraintCop(args, testArgs),
 					new RevisionCop(args),
 					new DatabaseLogCop(args),
 					new ConnectionPoolCop(args),
@@ -138,7 +139,7 @@ abstract class ConsoleCop<S> extends Cop
 					new QueryCacheCop(args),
 					new DataFieldCop(args),
 					new MediaStatsCop(args),
-					new MediaTypeCop(args, new TestCop.TestArgs()),
+					new MediaTypeCop(args, testArgs),
 					new ClusterCop(args),
 					new ThreadCop(args),
 					new VmCop(args, false, false),
