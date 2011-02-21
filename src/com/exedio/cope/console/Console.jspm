@@ -89,13 +89,13 @@ abstract class Console_Jspm
 		}
 		%>
 		<br clear="right"><%
-		writeMenu(out, cop);
+		Menue_Jspm.write(out, cop);
 		%>
 		<h2><%=cop.name%></h2><%
 		cop.writeBody(out);
 		%>
 		<hr><%
-		writeMenu(out, cop);
+		Menue_Jspm.write(out, cop);
 		%>
 		<hr>
 		<div class="footer"><%=cop.getStart()%> (<%=cop.getDuration()%>ms)</div>
@@ -117,30 +117,6 @@ abstract class Console_Jspm
 			</pre><%
 		}
 		
-	}
-	
-	private final static void writeMenu(
-			final Out out,
-			final ConsoleCop cop)
-	{
-		%>
-		<div class="menu"><%
-		
-		for(final ConsoleCop tab : cop.getTabs())
-		{
-			if(cop.name.equals(tab.name))
-			{
-			%>
-			| <%=tab.name%><%
-			}
-			else
-			{
-			%>
-			| <a href="<%=tab%>"><%=tab.name%></a><%
-			}
-		}
-		%>
-		</div><%
 	}
 	
 	final static void writeNotFound(final Out out, final String pathInfo)
