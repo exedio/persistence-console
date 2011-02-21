@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import com.exedio.cope.console.TestAjaxCop.Info;
+import com.exedio.cope.console.TestCop.Info;
 
 final class TestAjax_Jspm
 {
@@ -147,7 +147,7 @@ final class TestAjax_Jspm
 	}
 	
 	final static <I> void writeBody(
-			final TestAjaxCop<I> cop,
+			final TestCop<I> cop,
 			final Out out,
 			final String[] headings,
 			final List<I> items,
@@ -203,7 +203,7 @@ final class TestAjax_Jspm
 	
 	final static <I> void writeRow(
 			final Out out,
-			final TestAjaxCop<I> cop,
+			final TestCop<I> cop,
 			final int headingsLength,
 			final I item,
 			final String id,
@@ -240,7 +240,7 @@ final class TestAjax_Jspm
 	
 	final static <I> void writeSummary(
 			final Out out,
-			final TestAjaxCop<I> cop,
+			final TestCop<I> cop,
 			final int headingsLength,
 			final String firstId,
 			final boolean complete,

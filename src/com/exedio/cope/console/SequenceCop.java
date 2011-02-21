@@ -28,7 +28,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.SequenceInfo;
 import com.exedio.cope.This;
 
-final class SequenceCop extends TestAjaxCop<SequenceInfo>
+final class SequenceCop extends TestCop<SequenceInfo>
 {
 	SequenceCop(final Args args, final TestArgs testArgs)
 	{

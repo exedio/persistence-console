@@ -24,7 +24,7 @@ import java.util.List;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class ModificationCounterCop extends TestAjaxCop<Type>
+final class ModificationCounterCop extends TestCop<Type>
 {
 	ModificationCounterCop(final Args args, final TestArgs testArgs)
 	{

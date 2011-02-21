@@ -125,11 +125,11 @@ abstract class ConsoleCop<S> extends Cop
 			new ConsoleCop[]{
 					new ConnectCop(args),
 					new SchemaCop(args),
-					new UnsupportedConstraintCop(args, new TestAjaxCop.TestArgs()),
-					new ModificationCounterCop(args, new TestAjaxCop.TestArgs()),
-					new SequenceCop(args, new TestAjaxCop.TestArgs()),
-					new TypeColumnCop(args, new TestAjaxCop.TestArgs()),
-					new CopyConstraintCop(args, new TestAjaxCop.TestArgs()),
+					new UnsupportedConstraintCop(args, new TestCop.TestArgs()),
+					new ModificationCounterCop(args, new TestCop.TestArgs()),
+					new SequenceCop(args, new TestCop.TestArgs()),
+					new TypeColumnCop(args, new TestCop.TestArgs()),
+					new CopyConstraintCop(args, new TestCop.TestArgs()),
 					new RevisionCop(args),
 					new DatabaseLogCop(args),
 					new ConnectionPoolCop(args),
@@ -138,7 +138,7 @@ abstract class ConsoleCop<S> extends Cop
 					new QueryCacheCop(args),
 					new DataFieldCop(args),
 					new MediaStatsCop(args),
-					new MediaTypeCop(args, new TestAjaxCop.TestArgs()),
+					new MediaTypeCop(args, new TestCop.TestArgs()),
 					new ClusterCop(args),
 					new ThreadCop(args),
 					new VmCop(args, false, false),
@@ -231,13 +231,13 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_SCHEMA.equals(tab))
 			return new SchemaCop(args);
 		if(TAB_UNSUPPORTED_CONSTRAINTS.equals(tab))
-			return new UnsupportedConstraintCop(args, new TestAjaxCop.TestArgs(request));
+			return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_TYPE_COLUMNS.equals(tab))
-			return new TypeColumnCop(args, new TestAjaxCop.TestArgs(request));
+			return new TypeColumnCop(args, new TestCop.TestArgs(request));
 		if(TAB_MODIFICATION_COUNTERS.equals(tab))
-			return new ModificationCounterCop(args, new TestAjaxCop.TestArgs(request));
+			return new ModificationCounterCop(args, new TestCop.TestArgs(request));
 		if(TAB_COPY_CONSTRAINTS.equals(tab))
-			return new CopyConstraintCop(args, new TestAjaxCop.TestArgs(request));
+			return new CopyConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_CONNECT.equals(tab))
 			return new ConnectCop(args);
 		if(TAB_REVISION.equals(tab))
@@ -255,13 +255,13 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_HISTORY.equals(tab))
 			return HistoryCop.getHistoryCop(args, request);
 		if(TAB_SEQUENCE.equals(tab))
-			return new SequenceCop(args, new TestAjaxCop.TestArgs(request));
+			return new SequenceCop(args, new TestCop.TestArgs(request));
 		if(TAB_DATA_FIELD.equals(tab))
 			return new DataFieldCop(args);
 		if(TAB_MEDIA_STATS.equals(tab))
 			return new MediaStatsCop(args);
 		if(TAB_MEDIA_TYPE.equals(tab))
-			return new MediaTypeCop(args, new TestAjaxCop.TestArgs(request));
+			return new MediaTypeCop(args, new TestCop.TestArgs(request));
 		if(TAB_CLUSTER.equals(tab))
 			return new ClusterCop(args);
 		if(TAB_THREAD.equals(tab))

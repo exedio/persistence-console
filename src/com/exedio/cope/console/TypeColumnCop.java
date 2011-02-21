@@ -29,7 +29,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.This;
 import com.exedio.cope.Type;
 
-final class TypeColumnCop extends TestAjaxCop<ItemFunction>
+final class TypeColumnCop extends TestCop<ItemFunction>
 {
 	TypeColumnCop(final Args args, final TestArgs testArgs)
 	{

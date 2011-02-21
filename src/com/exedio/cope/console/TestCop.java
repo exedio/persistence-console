@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.Model;
 import com.exedio.cops.Cop;
 
-abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Info>>
+abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 {
 	final static String ID = "testajax";
 	final static String ITERATE = "iterate";
@@ -58,11 +58,11 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 
 		TestArgs(final HttpServletRequest request)
 		{
-			this.id = request.getParameter(TestAjaxCop.ID);
-			this.iterate = Cop.getBooleanParameter(request, TestAjaxCop.ITERATE);
+			this.id = request.getParameter(TestCop.ID);
+			this.iterate = Cop.getBooleanParameter(request, TestCop.ITERATE);
 		}
 
-		void addParameters(final TestAjaxCop cop)
+		void addParameters(final TestCop cop)
 		{
 			cop.addParameter(ID, id);
 			cop.addParameter(ITERATE, iterate);
@@ -74,7 +74,7 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		}
 	}
 
-	TestAjaxCop(final String tab, final String name, final Args args, final TestArgs testArgs)
+	TestCop(final String tab, final String name, final Args args, final TestArgs testArgs)
 	{
 		super(tab, name, args);
 		this.testArgs = testArgs;
@@ -84,12 +84,12 @@ abstract class TestAjaxCop<I> extends ConsoleCop<HashMap<String, TestAjaxCop.Inf
 		testArgs.addParameters(this);
 	}
 
-	final TestAjaxCop toTest(final String id, final boolean iterate)
+	final TestCop toTest(final String id, final boolean iterate)
 	{
 		return newTestArgs(testArgs.toTest(id, iterate));
 	}
 
-	abstract TestAjaxCop newTestArgs(TestArgs testArgs);
+	abstract TestCop newTestArgs(TestArgs testArgs);
 
 	@Override
 	final void writeHead(final Out out)

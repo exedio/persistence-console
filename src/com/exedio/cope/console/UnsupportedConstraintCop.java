@@ -26,7 +26,7 @@ import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Table;
 
-final class UnsupportedConstraintCop extends TestAjaxCop<Constraint>
+final class UnsupportedConstraintCop extends TestCop<Constraint>
 {
 	UnsupportedConstraintCop(final Args args, final TestArgs testArgs)
 	{

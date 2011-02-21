@@ -27,7 +27,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Media;
 
-final class MediaTypeCop extends TestAjaxCop<Media>
+final class MediaTypeCop extends TestCop<Media>
 {
 	MediaTypeCop(final Args args, final TestArgs testArgs)
 	{

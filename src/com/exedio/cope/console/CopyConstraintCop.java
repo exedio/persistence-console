@@ -25,7 +25,7 @@ import com.exedio.cope.CopyConstraint;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class CopyConstraintCop extends TestAjaxCop<CopyConstraint>
+final class CopyConstraintCop extends TestCop<CopyConstraint>
 {
 	CopyConstraintCop(final Args args, final TestArgs testArgs)
 	{
