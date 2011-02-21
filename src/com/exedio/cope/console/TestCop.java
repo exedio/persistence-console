@@ -94,7 +94,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 	@Override
 	final void writeHead(final Out out)
 	{
-		TestAjax_Jspm.writeHead(out);
+		Test_Jspm.writeHead(out);
 	}
 
 	@Override
@@ -103,7 +103,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		final Model model = out.model;
 
 		final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
-		TestAjax_Jspm.writeBody(
+		Test_Jspm.writeBody(
 				this, out,
 				getHeadings(), getItems(model),
 				testStore!=null ? testStore.value : new HashMap<String, Info>());
@@ -166,7 +166,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			"<update id=\"");
 		out.write(id);
 		out.writeRaw("\"><![CDATA[");
-		TestAjax_Jspm.writeRow(out, this, headingsLength, item, id, info);
+		Test_Jspm.writeRow(out, this, headingsLength, item, id, info);
 		out.writeRaw(
 			"]]></update>" +
 			"<update id=\"summary\"><![CDATA[");
@@ -207,7 +207,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			isError  |= info.isError();
 		}
 
-		TestAjax_Jspm.writeSummary(
+		Test_Jspm.writeSummary(
 				out,
 				this,
 				headingsLength,

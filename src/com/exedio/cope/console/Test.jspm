@@ -28,7 +28,7 @@ import java.util.List;
 
 import com.exedio.cope.console.TestCop.Info;
 
-final class TestAjax_Jspm
+final class Test_Jspm
 {
 	final static void writeHead(final Out out)
 	{
