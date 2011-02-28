@@ -96,8 +96,8 @@ final class HistoryItemCache extends Item
 			lastReplacementRun.map(info.getLastReplacementRun()),
 
 			ageAverageMillis.map(info.getAgeAverageMillis()),
-			ageMinMillis    .map(info.getAgeMinMillis()),
-			ageMaxMillis    .map(info.getAgeMaxMillis()),
+			ageMinMillis    .map(info.getAgeMinimumMillis()),
+			ageMaxMillis    .map(info.getAgeMaximumMillis()),
 
 			invalidationsOrdered.map(info.getInvalidationsOrdered()),
 			invalidationsDone   .map(info.getInvalidationsDone()));
