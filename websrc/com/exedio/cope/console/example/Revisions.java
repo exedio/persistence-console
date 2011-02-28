@@ -19,7 +19,6 @@
 package com.exedio.cope.console.example;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.Revision;
 import com.exedio.cope.RevisionInfo;
@@ -100,11 +98,10 @@ public final class Revisions
 
 		final Iterator<Revision> revisions = model.getRevisions().getList().iterator();
 
-		final ConnectProperties p = model.getConnectProperties();
 		Connection con = null;
 		try
 		{
-			con = DriverManager.getConnection(p.getDatabaseUrl(), p.getDatabaseUser(), p.getDatabasePassword());
+			con = SchemaInfo.newConnection(model);
 			PreparedStatement stat = null;
 			try
 			{
