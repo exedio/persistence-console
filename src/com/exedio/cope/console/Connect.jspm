@@ -61,6 +61,10 @@ final class Connect_Jspm extends Console_Jspm
 				<th>Supports Empty Strings</th>
 				<td class="text"><%if(model.supportsEmptyStrings()){%>yes<%}else{%>no<%}%></td>
 			</tr>
+			<tr>
+				<th>Supports Random</th>
+				<td class="text"><%if(model.supportsRandom()){%>yes<%}else{%>no<%}%></td>
+			</tr>
 		</table>
 		<table>
 			<caption>Schema Capabilities</caption>
