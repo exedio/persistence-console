@@ -24,23 +24,23 @@ import java.util.List;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class ModificationCounterCop extends TestCop<Type>
+final class UpdateCounterCop extends TestCop<Type>
 {
-	ModificationCounterCop(final Args args, final TestArgs testArgs)
+	UpdateCounterCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_MODIFICATION_COUNTERS, "Modification Counters", args, testArgs);
+		super(TAB_UPDATE_COUNTERS, "Update Counters", args, testArgs);
 	}
 
 	@Override
-	protected ModificationCounterCop newArgs(final Args args)
+	protected UpdateCounterCop newArgs(final Args args)
 	{
-		return new ModificationCounterCop(args, testArgs);
+		return new UpdateCounterCop(args, testArgs);
 	}
 
 	@Override
-	protected ModificationCounterCop newTestArgs(final TestArgs testArgs)
+	protected UpdateCounterCop newTestArgs(final TestArgs testArgs)
 	{
-		return new ModificationCounterCop(args, testArgs);
+		return new UpdateCounterCop(args, testArgs);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ final class ModificationCounterCop extends TestCop<Type>
 		final ArrayList<Type> result = new ArrayList<Type>();
 
 		for(final Type t : model.getTypes())
-			if(t.needsCheckModificationCounter())
+			if(t.needsCheckUpdateCounter())
 				result.add(t);
 
 		return result;
@@ -91,8 +91,8 @@ final class ModificationCounterCop extends TestCop<Type>
 		final Model model = type.getModel();
 		try
 		{
-			model.startTransaction("Console ModificationCounter " + id);
-			final int result = type.checkModificationCounter();
+			model.startTransaction("Console UpdateCounter " + id);
+			final int result = type.checkUpdateCounter();
 			model.commit();
 			return result;
 		}

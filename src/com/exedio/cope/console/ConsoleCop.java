@@ -127,7 +127,7 @@ abstract class ConsoleCop<S> extends Cop
 					new ConnectCop(args),
 					new SchemaCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
-					new ModificationCounterCop(args, testArgs),
+					new UpdateCounterCop(args, testArgs),
 					new SequenceCop(args, testArgs),
 					new TypeColumnCop(args, testArgs),
 					new CopyConstraintCop(args, testArgs),
@@ -194,7 +194,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_SCHEMA = "schema";
 	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
 	static final String TAB_TYPE_COLUMNS = "typecolumns";
-	static final String TAB_MODIFICATION_COUNTERS = "modificationcounters";
+	static final String TAB_UPDATE_COUNTERS = "updatecounters";
 	static final String TAB_COPY_CONSTRAINTS = "copyconstraints";
 	static final String TAB_REVISION = "revision";
 	static final String TAB_DATBASE_LOG = "dblogs";
@@ -235,8 +235,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_TYPE_COLUMNS.equals(tab))
 			return new TypeColumnCop(args, new TestCop.TestArgs(request));
-		if(TAB_MODIFICATION_COUNTERS.equals(tab))
-			return new ModificationCounterCop(args, new TestCop.TestArgs(request));
+		if(TAB_UPDATE_COUNTERS.equals(tab))
+			return new UpdateCounterCop(args, new TestCop.TestArgs(request));
 		if(TAB_COPY_CONSTRAINTS.equals(tab))
 			return new CopyConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_CONNECT.equals(tab))
