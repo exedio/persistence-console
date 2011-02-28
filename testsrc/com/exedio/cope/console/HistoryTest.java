@@ -47,11 +47,11 @@ public class HistoryTest extends TestCase
 
 			public String get(final String key)
 			{
-				if(key.equals("database.url"))
+				if(key.equals("connection.url"))
 					return "jdbc:hsqldb:mem:copetest";
-				else if(key.equals("database.user"))
+				else if(key.equals("connection.user"))
 					return "sa";
-				else if(key.equals("database.password"))
+				else if(key.equals("connection.password"))
 					return "";
 				else if(key.equals("cache.query.limit"))
 					return "0";
