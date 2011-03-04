@@ -178,6 +178,7 @@ public final class ConsoleServlet extends CopsServlet
 				Console_Jspm.write(
 						out, response, cop,
 						this.model.toString(),
+						this.model.getInitializeDate(),
 						authentication, hostname
 						);
 			out.close();

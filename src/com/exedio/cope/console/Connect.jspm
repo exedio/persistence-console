@@ -35,19 +35,6 @@ final class Connect_Jspm extends Console_Jspm
 				final Model model,
 				final String sourceContent)
 	{
-		%>
-		<table>
-			<caption>Date</caption>
-			<tr>
-				<th>Initialized</th>
-				<td class="text"><%=model.getInitializeDate()%></td>
-			</tr>
-			<tr>
-				<th>Connected</th>
-				<td class="text"><%=model.getConnectDate()%></td>
-			</tr>
-		</table>
-		<%
 			Properties_Jspm.writeBody(out, properties);
 		%>
 		<hr>
@@ -89,7 +76,7 @@ final class Connect_Jspm extends Console_Jspm
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=ConnectCop.RETURN_SELECTED%>" value="return selected" />
 			<table>
-				<caption>Tokens</caption>
+				<caption>Tokens <small title="when the model was connected"><%=model.getConnectDate()%></small></caption>
 				<tr>
 					<th></th>
 					<th>#</th>
