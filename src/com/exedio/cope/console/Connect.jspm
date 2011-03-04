@@ -38,7 +38,7 @@ final class Connect_Jspm extends Console_Jspm
 			Properties_Jspm.writeBody(out, properties);
 		%>
 		<hr>
-		<table>
+		<table style="float:left;">
 			<caption>Capabilities</caption>
 			<tr>
 				<th>Nulls Are Sorted</th>
