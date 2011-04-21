@@ -125,7 +125,9 @@ final class Test_Jspm
 									}
 									var id = updateNode.getAttribute("id");
 									var row = document.getElementById(id);
+									var className = updateNode.getAttribute("className");
 									var content = updateNode.childNodes[0].nodeValue;
+									row.className = className;
 									row.innerHTML = content;
 								}
 							}
@@ -140,6 +142,33 @@ final class Test_Jspm
 						alert(e);
 						stopAll = true;
 						throw e;
+					}
+				}
+			}
+
+			function toggleSuccess(image)
+			{
+				var imageSrc = image.src;
+				if(imageSrc.substring(imageSrc.length-8)=="true.png")
+				{
+					image.src = imageSrc.substring(0, imageSrc.length-8) + "false.png";
+					var rows = document.body.getElementsByTagName("tr");
+					for(i=0; i<rows.length; i++)
+					{
+						var row = rows[i];
+						if(row.className=="<%=TestCop.SUCCESS_CLASS%>")
+							row.style.display = "table-row";
+					}
+				}
+				else
+				{
+					image.src = imageSrc.substring(0, imageSrc.length-9) + "true.png";
+					var rows = document.body.getElementsByTagName("tr");
+					for(i=0; i<rows.length; i++)
+					{
+						var row = rows[i];
+						if(row.className=="<%=TestCop.SUCCESS_CLASS%>")
+							row.style.display = "none";
 					}
 				}
 			}
@@ -173,6 +202,7 @@ final class Test_Jspm
 			<tr id="summary"><%
 				cop.writeSummary(out, headingsLength, items, infos);
 			%>
+				<img class="check" onClick="toggleSuccess(this)" src="<%=ConsoleServlet.checkFalse%>"> hide success
 			</tr>
 			<tr><%
 				
@@ -191,9 +221,11 @@ final class Test_Jspm
 		for(final I item : items)
 		{
 			final String id = cop.getID(item);
+			final Info info = infos.get(id);
+			final String rowClass = info!=null ? info.getRowClass() : null;
 			%>
-			<tr id="<%=id%>"><%
-				writeRow(out, cop, headingsLength, item, id, infos.get(id));
+			<tr id="<%=id%>"<% if(rowClass!=null){%> class="<%=rowClass%>"<%} %>><%
+				writeRow(out, cop, headingsLength, item, id, info);
 			%>
 			</tr><%
 		}

@@ -34,6 +34,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 {
 	final static String ID = "testajax";
 	final static String ITERATE = "iterate";
+	final static String SUCCESS_CLASS = "success";
 
 	protected final TestArgs testArgs;
 	protected final String id;
@@ -165,7 +166,14 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		out.writeRaw(">" +
 			"<update id=\"");
 		out.write(id);
-		out.writeRaw("\"><![CDATA[");
+		out.writeRaw("\"");
+		final String rowClass = info.getRowClass();
+		{
+			out.writeRaw(" className=\"");
+			out.write(rowClass);
+			out.writeRaw('"');
+		}
+		out.writeRaw("><![CDATA[");
 		Test_Jspm.writeRow(out, this, headingsLength, item, id, info);
 		out.writeRaw(
 			"]]></update>" +
@@ -244,6 +252,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		}
 
 		abstract int failures();
+		abstract String getRowClass();
 		abstract String getCellClass();
 		abstract boolean isError();
 		abstract void writeCellContent(Out out);
@@ -263,6 +272,12 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		int failures()
 		{
 			return result;
+		}
+
+		@Override
+		String getRowClass()
+		{
+			return (result>0) ? null : SUCCESS_CLASS;
 		}
 
 		@Override
@@ -298,6 +313,12 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		int failures()
 		{
 			return 1;
+		}
+
+		@Override
+		String getRowClass()
+		{
+			return null;
 		}
 
 		@Override
