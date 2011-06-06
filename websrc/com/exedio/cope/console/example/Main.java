@@ -28,6 +28,7 @@ public final class Main
 				AnItem.TYPE,
 				ASubItem.TYPE,
 				OptionalItem.TYPE,
+				OptionalNoneItem.TYPE,
 				StringLengthItem.TYPE,
 				AHashItem.TYPE,
 				CopyItem.TYPE,
