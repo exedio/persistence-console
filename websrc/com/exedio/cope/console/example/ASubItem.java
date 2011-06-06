@@ -40,9 +40,9 @@ public final class ASubItem extends AnItem
 	 */
 	ASubItem(
 				final java.lang.String aField,
-				final Letter letter,
-				final Letter secondLetter,
-				final Color color,
+				final com.exedio.cope.console.example.AnItem.Letter letter,
+				final com.exedio.cope.console.example.AnItem.Letter secondLetter,
+				final com.exedio.cope.console.example.AnItem.Color color,
 				final java.lang.String aSubField)
 			throws
 				com.exedio.cope.MandatoryViolationException,
