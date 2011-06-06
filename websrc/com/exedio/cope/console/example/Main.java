@@ -27,6 +27,7 @@ public final class Main
 				Revisions.revisions(64),
 				AnItem.TYPE,
 				ASubItem.TYPE,
+				OptionalItem.TYPE,
 				AHashItem.TYPE,
 				CopyItem.TYPE,
 				CopyOriginItem.TYPE,
