@@ -29,6 +29,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.Revision;
+import com.exedio.cope.RevisionInfo;
+import com.exedio.cope.RevisionInfoMutex;
 import com.exedio.cope.Revisions;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
@@ -128,6 +130,26 @@ final class RevisionCop extends ConsoleCop implements Pageable
 		return result;
 	}
 
+	static final RevisionInfo read(final byte[] bytes)
+	{
+		if(bytes==null)
+			return null;
+
+		try
+		{
+			return RevisionInfo.read(bytes);
+		}
+		catch(final Exception e)
+		{
+			e.printStackTrace();
+		}
+		catch(final AssertionError e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@Override
 	final void writeBody(final Out out)
 	{
@@ -149,17 +171,23 @@ final class RevisionCop extends ConsoleCop implements Pageable
 		Map<Integer, byte[]> logsRaw = null;
 		try
 		{
-			logsRaw = model.getRevisionLogs();
+			logsRaw = model.getRevisionLogsAndMutex();
 		}
 		catch(final SQLRuntimeException e)
 		{
 			e.printStackTrace(); // TODO show error in page together with declared revisions
 		}
 
+		byte[] mutex = null;
 		if(logsRaw!=null)
 		{
 			for(final Map.Entry<Integer, byte[]> e : logsRaw.entrySet())
-				register(lines, e.getKey()).setInfo(e.getValue());
+			{
+				if(e.getKey().intValue()==-1)
+					mutex = e.getValue();
+				else
+					register(lines, e.getKey()).setInfo(e.getValue());
+			}
 		}
 
 		final ArrayList<RevisionLine> lineList = new ArrayList<RevisionLine>(lines.values());
@@ -171,6 +199,6 @@ final class RevisionCop extends ConsoleCop implements Pageable
 
 		pager.init(lineListLimited.size(), lineList.size());
 
-		Revision_Jspm.writeBody(out, this, lineListLimited);
+		Revision_Jspm.writeBody(out, this, (RevisionInfoMutex)read(mutex), lineListLimited);
 	}
 }

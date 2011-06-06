@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.exedio.cope.RevisionInfoRevise.Body;
+import com.exedio.cope.RevisionInfoMutex;
 import com.exedio.cope.console.RevisionLine;
 
 import static com.exedio.cope.console.Format.format;
@@ -116,8 +117,27 @@ final class Revision_Jspm extends Console_Jspm
 	final static void writeBody(
 			final Out out,
 			final RevisionCop cop,
+			final RevisionInfoMutex mutex,
 			final List<RevisionLine> lines)
 	{
+		if(mutex!=null)
+		{
+		%>
+		<table>
+			<caption>Revision Mutex</caption>
+			<tr>
+				<td class="text">
+					The Revision Mutex is set for this model.
+					<br>
+					This means, either revisions are executed right now,
+					or the execution of revisions has failed.
+					<br>
+					Revising from number <%=mutex.getActualNumber()%> to <%=mutex.getExpectedNumber()%> started at <%=mutex.getDate()%>.
+				</td>
+			</td>
+		</table><%
+		}
+		
 		%>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=cop.REVISE%>" value="revise" />

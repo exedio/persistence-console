@@ -33,6 +33,7 @@ class Example_Jspm
 		<h1>COPE Console Example</h1>
 		<form method="POST">
 			<input type="submit" name="<%=ExampleServlet.CREATE_SAMPLE_DATA%>" value="create sample data" />
+			<input type="submit" name="<%=ExampleServlet.REMOVE_REVISION_MUTEX%>" value="remove revision mutex" />
 		</form>
 		<h2>Connects</h2>
 		<form method="POST">

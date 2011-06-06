@@ -31,6 +31,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Revision;
 import com.exedio.cope.RevisionInfo;
 import com.exedio.cope.RevisionInfoCreate;
+import com.exedio.cope.RevisionInfoMutex;
 import com.exedio.cope.RevisionInfoRevise;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.dsmf.SQLRuntimeException;
@@ -141,6 +142,62 @@ public final class Revisions
 							new Date(),
 							environment));
 				}
+				{
+					save(stat, new RevisionInfoMutex(
+							new Date(),
+							environment,
+							63, 60));
+				}
+			}
+			finally
+			{
+				if(stat!=null)
+				{
+					try
+					{
+						stat.close();
+						stat = null;
+					}
+					catch(final SQLException e)
+					{
+						throw new SQLRuntimeException(e, "close");
+					}
+				}
+			}
+		}
+		catch(final SQLException e)
+		{
+			throw new SQLRuntimeException(e, "create");
+		}
+		finally
+		{
+			if(con!=null)
+			{
+				try
+				{
+					con.close();
+					con = null;
+				}
+				catch(final SQLException e)
+				{
+					throw new SQLRuntimeException(e, "close");
+				}
+			}
+		}
+	}
+
+	static final void removeMutex(final Model model)
+	{
+		Connection con = null;
+		try
+		{
+			con = SchemaInfo.newConnection(model);
+			PreparedStatement stat = null;
+			try
+			{
+				stat = con.prepareStatement("delete from " + q(model, "while") + " where " + q(model, "v") + "=?");
+				stat.setInt(1, -1);
+				stat.execute();
 			}
 			finally
 			{

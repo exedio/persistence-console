@@ -42,6 +42,7 @@ public final class ExampleServlet extends CopsServlet
 	private static final long serialVersionUID = 1l;
 
 	static final String CREATE_SAMPLE_DATA = "createSampleData";
+	static final String REMOVE_REVISION_MUTEX = "removeRevisionMutex";
 
 	static final String CONNECT_NAME   = "connect.name";
 	static final String CONNECT_COND   = "connect.conditional";
@@ -76,6 +77,8 @@ public final class ExampleServlet extends CopsServlet
 		{
 			if(request.getParameter(CREATE_SAMPLE_DATA)!=null)
 				createSampleData();
+			else if(request.getParameter(REMOVE_REVISION_MUTEX)!=null)
+				Revisions.removeMutex(Main.model);
 			else if(request.getParameter(CONNECT_SUBMIT)!=null)
 			{
 				final String name = replaceNullName(request.getParameter(CONNECT_NAME));
