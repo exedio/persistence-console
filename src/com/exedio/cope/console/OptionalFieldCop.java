@@ -97,13 +97,16 @@ final class OptionalFieldCop extends TestCop<FunctionField>
 	@Override
 	int check(final FunctionField field)
 	{
-		final Model model = field.getType().getModel();
+		final Type type = field.getType();
+		final Model model = type.getModel();
 		try
 		{
 			model.startTransaction("Optional Field " + id);
-			final int result = field.getType().newQuery(field.isNull()).total();
+			final boolean result =
+				(type.newQuery(field.isNull()).total()==0) &&
+				(type.newQuery().total()>0);
 			model.commit();
-			return 1 - result;
+			return result ? 1 : 0;
 		}
 		finally
 		{
