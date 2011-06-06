@@ -138,6 +138,8 @@ public final class ExampleServlet extends CopsServlet
 			new ASubItem("aField3s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue, "aSubField3s");
 			new OptionalItem("mandatory", "optional", "optionalOk");
 			new OptionalItem("mandatory", "optional", null);
+			new StringLengthItem("empty", "emptyOk", "normal", "normalOk", "min10xxxxx", "min10Okxxx");
+			new StringLengthItem("empty", "",        "normal", "x",        "min10xxxxx", "min10Okxxx");
 			new AMediaItem();
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "image/png");
 			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "unknownma/unknownmi");

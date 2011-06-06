@@ -132,6 +132,7 @@ abstract class ConsoleCop<S> extends Cop
 					new TypeColumnCop(args, testArgs),
 					new CopyConstraintCop(args, testArgs),
 					new OptionalFieldCop(args, testArgs),
+					new MinLengthStringFieldCop(args, testArgs),
 					new RevisionCop(args),
 					new DatabaseLogCop(args),
 					new ConnectionPoolCop(args),
@@ -198,6 +199,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_UPDATE_COUNTERS = "updatecounters";
 	static final String TAB_COPY_CONSTRAINTS = "copyconstraints";
 	static final String TAB_OPTIONAL_FIELDS = "optional";
+	static final String TAB_MIN_LENGTH_STRING_FIELDS = "minlength";
 	static final String TAB_REVISION = "revision";
 	static final String TAB_DATBASE_LOG = "dblogs";
 	static final String TAB_CONNECTION_POOL = "connections";
@@ -245,6 +247,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new ConnectCop(args);
 		if(TAB_OPTIONAL_FIELDS.equals(tab))
 			return new OptionalFieldCop(args, new TestCop.TestArgs(request));
+		if(TAB_MIN_LENGTH_STRING_FIELDS.equals(tab))
+			return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
 		if(TAB_REVISION.equals(tab))
 			return new RevisionCop(args, request);
 		if(TAB_CONNECTION_POOL.equals(tab))
