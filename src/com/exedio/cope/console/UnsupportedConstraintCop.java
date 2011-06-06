@@ -48,17 +48,17 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	@Override
 	List<Constraint> getItems(final Model model)
 	{
-		final ArrayList<Constraint> constraints = new ArrayList<Constraint>();
+		final ArrayList<Constraint> result = new ArrayList<Constraint>();
 
 		final Schema schema = model.getSchema();
 		for(final Table t : schema.getTables())
 		{
 			for(final Constraint c : t.getConstraints())
 				if(!c.isSupported())
-					constraints.add(c);
+					result.add(c);
 		}
 
-		return constraints;
+		return result;
 	}
 
 	@Override

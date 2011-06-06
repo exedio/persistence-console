@@ -47,13 +47,13 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	@Override
 	List<CopyConstraint> getItems(final Model model)
 	{
-		final ArrayList<CopyConstraint> constraints = new ArrayList<CopyConstraint>();
+		final ArrayList<CopyConstraint> result = new ArrayList<CopyConstraint>();
 
 		for(final Type<?> t : model.getTypes())
 			for(final CopyConstraint cc : t.getDeclaredCopyConstraints())
-				constraints.add(cc);
+				result.add(cc);
 
-		return constraints;
+		return result;
 	}
 
 	@Override

@@ -51,24 +51,24 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 	@Override
 	List<ItemFunction> getItems(final Model model)
 	{
-		final ArrayList<ItemFunction> functions = new ArrayList<ItemFunction>();
+		final ArrayList<ItemFunction> result = new ArrayList<ItemFunction>();
 
 		for(final Type<?> t : model.getTypes())
 		{
 			final This<?> tt = t.getThis();
 			if(tt.needsCheckTypeColumn())
-				functions.add(tt);
+				result.add(tt);
 
 			for(final Field f : t.getDeclaredFields())
 				if(f instanceof ItemField)
 				{
 					final ItemField itf = (ItemField)f;
 					if(itf.needsCheckTypeColumn())
-						functions.add(itf);
+						result.add(itf);
 				}
 		}
 
-		return functions;
+		return result;
 	}
 
 	@Override
