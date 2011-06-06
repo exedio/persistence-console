@@ -24,6 +24,7 @@ import java.util.List;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.Model;
+import com.exedio.cope.Query;
 import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 
@@ -61,15 +62,10 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 		return result;
 	}
 
-	private static int getThreshold(final StringField f)
-	{
-		return Math.min(2*f.getMinimumLength(), f.getMaximumLength());
-	}
-
 	@Override
 	String[] getHeadings()
 	{
-		return new String[]{"Field", "Min Length", "Threshold"};
+		return new String[]{"Field", "Min Length"};
 	}
 
 	@Override
@@ -79,7 +75,6 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 		{
 			case 0: out.write(field.toString()); break;
 			case 1: out.write(Format.formatAndHide(0, field.getMinimumLength())); break;
-			case 2: out.write(getThreshold(field)); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		};
@@ -101,12 +96,17 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	int check(final StringField field)
 	{
 		final Model model = field.getType().getModel();
+		final Query<Integer> q = new Query<Integer>(field.length().min());
 		try
 		{
 			model.startTransaction("Min Length String Field " + id);
-			final int result = field.getType().newQuery(field.length().lessOrEqual(getThreshold(field))).total();
+			final Integer result = q.searchSingleton();
 			model.commit();
-			return 1 - result;
+
+			return
+				(result!=null)
+				? (result.intValue() - field.getMinimumLength())
+				: 0;
 		}
 		finally
 		{
