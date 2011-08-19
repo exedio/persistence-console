@@ -244,7 +244,7 @@
 	
 	<target name="all" depends="build, api, findbugs" />
 	
-	<target name="hudson" depends="all">
+	<target name="jenkins" depends="all">
 		<copy todir="${basedir}/build/success">
 			<fileset file="${basedir}/build/exedio-cope-console.jar" />
 		</copy>
