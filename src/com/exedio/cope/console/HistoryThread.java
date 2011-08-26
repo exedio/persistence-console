@@ -42,6 +42,7 @@ import com.exedio.cope.Type;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.ItemCacheSummary;
 import com.exedio.cope.misc.MediaSummary;
+import com.exedio.cope.misc.TimeUtil;
 import com.exedio.cope.pattern.MediaInfo;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.util.Pool;
@@ -120,7 +121,7 @@ final class HistoryThread extends Thread
 				}
 				connectToken =
 					ConnectToken.issue(HISTORY_MODEL, name);
-				System.out.println(topic + "run() connected (" + ((System.nanoTime() - connecting) / 1000000) + "ms)");
+				System.out.println(topic + "run() connected (" + TimeUtil.toMillies(System.nanoTime(), connecting) + "ms)");
 				HISTORY_MODEL.reviseIfSupported();
 				try
 				{
@@ -151,8 +152,8 @@ final class HistoryThread extends Thread
 							System.out.println(topic + "run() purge " + autoPurgeDays + " days");
 							final long start = System.nanoTime();
 							final int result = HistoryPurge.purge(autoPurgeDays);
-							final long elapsed = System.nanoTime() - start;
-							System.out.println(topic + "run() purge " + autoPurgeDays + " days deleted " + result + " rows and took " + (elapsed/1000000) + "ms");
+							final long elapsed = TimeUtil.toMillies(System.nanoTime(), start);
+							System.out.println(topic + "run() purge " + autoPurgeDays + " days deleted " + result + " rows and took " + elapsed + "ms");
 							purgeDayLast = purgeDayNow;
 						}
 					}
@@ -167,7 +168,7 @@ final class HistoryThread extends Thread
 					System.out.println(topic + "run() disconnecting");
 					final long disconnecting = System.nanoTime();
 					connectToken.returnIt();
-					System.out.println(topic + "run() disconnected (" + ((System.nanoTime() - disconnecting) / 1000000) + "ms)");
+					System.out.println(topic + "run() disconnected (" + TimeUtil.toMillies(System.nanoTime(), disconnecting) + "ms)");
 				}
 				else
 					System.out.println(topic + "run() not connected");
@@ -302,7 +303,7 @@ final class HistoryThread extends Thread
 		{
 			throw new RuntimeException(name, e);
 		}
-		System.out.println(topic + "stopAndJoin() joined (" + ((System.nanoTime() - joining) / 1000000) + "ms)");
+		System.out.println(topic + "stopAndJoin() joined (" + TimeUtil.toMillies(System.nanoTime(), joining) + "ms)");
 	}
 
 	@Override

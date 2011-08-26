@@ -28,6 +28,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.misc.TimeUtil;
 import com.exedio.cops.Cop;
 
 abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
@@ -131,15 +132,15 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		try
 		{
 			final int result = check(item);
-			info = new ResultInfo((System.nanoTime() - start) / 1000000, result);
+			info = new ResultInfo(TimeUtil.toMillies(System.nanoTime(), start), result);
 		}
 		catch(final Exception e)
 		{
-			info = new ExceptionInfo((System.nanoTime() - start) / 1000000, e);
+			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
 		}
 		catch(final AssertionError e)
 		{
-			info = new ExceptionInfo((System.nanoTime() - start) / 1000000, e);
+			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
 		}
 
 		final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();

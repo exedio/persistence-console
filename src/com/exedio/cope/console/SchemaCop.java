@@ -24,6 +24,7 @@ import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.misc.TimeUtil;
 import com.exedio.dsmf.Column;
 import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Schema;
@@ -157,7 +158,7 @@ final class SchemaCop extends ConsoleCop
 
 			public void afterExecute(final String statement, final int rows)
 			{
-				final long time = (System.nanoTime() - beforeExecuteTime) / 1000000;
+				final long time = TimeUtil.toMillies(System.nanoTime(), beforeExecuteTime);
 				out.writeRaw(" <span class=\"javaDecoration\">// ");
 				out.write(time);
 				out.writeRaw("ms, ");

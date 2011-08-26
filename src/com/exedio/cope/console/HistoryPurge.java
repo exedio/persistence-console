@@ -36,6 +36,7 @@ import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
+import com.exedio.cope.misc.TimeUtil;
 import com.exedio.dsmf.SQLRuntimeException;
 
 final class HistoryPurge extends Item
@@ -142,7 +143,7 @@ final class HistoryPurge extends Item
 		try
 		{
 			model.startTransaction("history analyze dates");
-			new HistoryPurge(type, limit, rows, (int)((end-start)/1000000));
+			new HistoryPurge(type, limit, rows, (int)TimeUtil.toMillies(end, start));
 			model.commit();
 		}
 		finally
