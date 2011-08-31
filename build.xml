@@ -156,6 +156,7 @@
 		</copy>
 		<copy todir="web/WEB-INF/lib">
 			<fileset file="lib/trove.jar" />
+			<fileset file="lib/log4j-bundle.jar" />
 			<fileset file="lib/exedio-cops.jar" />
 			<fileset file="lib/exedio-cope-util.jar" />
 			<fileset file="lib/exedio-cope.jar" />
