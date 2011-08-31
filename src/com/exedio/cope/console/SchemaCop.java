@@ -126,6 +126,9 @@ final class SchemaCop extends ConsoleCop
 	static final String CREATE_COLUMN     = "CREATE_COLUMN";
 	static final String CREATE_CONSTRAINT = "CREATE_CONSTRAINT";
 
+	static final String COLUMNS_CREATE_MISSING = "columns.create";
+	static final String COLUMNS_DROP_UNUSED    = "columns.drop";
+
 	static final String CATCH_CREATE = "catch.create";
 	static final String CATCH_DROP   = "catch.drop";
 	static final String CATCH_RESET  = "catch.reset";
@@ -171,6 +174,9 @@ final class SchemaCop extends ConsoleCop
 			getConstraint(schema, p).drop(listener);
 		for(final String p : getParameters(request, DROP_COLUMN))
 			getColumn    (schema, p).drop(listener);
+		if(request.getParameter(COLUMNS_DROP_UNUSED)!=null)
+			for(final Column c : getUnusedColumns(schema))
+				c.drop(listener);
 		if(request.getParameter(CATCH_DROP)!=null)
 			for(final Column c : getCatchColumns(schema))
 				if(c.exists())
@@ -231,6 +237,9 @@ final class SchemaCop extends ConsoleCop
 			for(final Column c : getCatchColumns(schema))
 				if(!c.exists())
 					c.create(listener);
+		if(request.getParameter(COLUMNS_CREATE_MISSING)!=null)
+			for(final Column c : getMissingColumns(schema))
+				c.create(listener);
 		for(final String p : getParameters(request, CREATE_COLUMN))
 			getColumn    (schema, p).create(listener);
 		for(final String p : getParameters(request, CREATE_CONSTRAINT))
@@ -243,6 +252,26 @@ final class SchemaCop extends ConsoleCop
 	{
 		final String[] result = (String[]) request.getParameterMap().get(name);
 		return result!=null ? result : EMPTY_STRINGS;
+	}
+
+	private static final ArrayList<Column> getUnusedColumns(final Schema schema)
+	{
+		final ArrayList<Column> result = new ArrayList<Column>();
+		for(final Table table : schema.getTables())
+			for(final Column column : table.getColumns())
+				if(!column.required() && column.exists())
+					result.add(column);
+		return result;
+	}
+
+	private static final ArrayList<Column> getMissingColumns(final Schema schema)
+	{
+		final ArrayList<Column> result = new ArrayList<Column>();
+		for(final Table table : schema.getTables())
+			for(final Column column : table.getColumns())
+				if(column.required() && !column.exists())
+					result.add(column);
+		return result;
 	}
 
 	private static final ArrayList<Column> getCatchColumns(final Schema schema)
