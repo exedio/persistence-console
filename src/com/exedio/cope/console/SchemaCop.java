@@ -128,6 +128,7 @@ final class SchemaCop extends ConsoleCop
 
 	static final String COLUMNS_CREATE_MISSING = "columns.create";
 	static final String COLUMNS_DROP_UNUSED    = "columns.drop";
+	static final String COLUMNS_MODIFY_MISMATCHING_TYPE = "columns.modify";
 
 	static final String CATCH_CREATE = "catch.create";
 	static final String CATCH_DROP   = "catch.drop";
@@ -212,6 +213,9 @@ final class SchemaCop extends ConsoleCop
 
 			getColumn(schema, sourceName).modify(targetType, listener);
 		}
+		if(request.getParameter(COLUMNS_MODIFY_MISMATCHING_TYPE)!=null)
+			for(final Column c : getColumnsWithMismatchingType(schema))
+				c.modify(c.getRequiredType(), listener);
 		for (final Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
 		{
 			final String p = (String) i.next();
@@ -270,6 +274,16 @@ final class SchemaCop extends ConsoleCop
 		for(final Table table : schema.getTables())
 			for(final Column column : table.getColumns())
 				if(column.required() && !column.exists())
+					result.add(column);
+		return result;
+	}
+
+	private static final ArrayList<Column> getColumnsWithMismatchingType(final Schema schema)
+	{
+		final ArrayList<Column> result = new ArrayList<Column>();
+		for(final Table table : schema.getTables())
+			for(final Column column : table.getColumns())
+				if(column.mismatchesType())
 					result.add(column);
 		return result;
 	}

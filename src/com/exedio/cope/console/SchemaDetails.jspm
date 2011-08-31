@@ -221,6 +221,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					Columns:
 					<input type="checkbox" name="<%= SchemaCop.COLUMNS_CREATE_MISSING %>" value="true"/>create missing
 					<input type="checkbox" name="<%= SchemaCop.COLUMNS_DROP_UNUSED    %>" value="true"/>drop unused
+					<input type="checkbox" name="<%= SchemaCop.COLUMNS_MODIFY_MISMATCHING_TYPE %>" value="true"/>modify mismatching type
 				</li><%
 				
 			if(!catchColumns.isEmpty())
