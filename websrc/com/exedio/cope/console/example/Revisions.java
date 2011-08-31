@@ -33,12 +33,14 @@ import com.exedio.cope.RevisionInfo;
 import com.exedio.cope.RevisionInfoCreate;
 import com.exedio.cope.RevisionInfoMutex;
 import com.exedio.cope.RevisionInfoRevise;
+import com.exedio.cope.RevisionsFuture;
 import com.exedio.cope.SchemaInfo;
+import com.exedio.cope.misc.DirectRevisionsFuture;
 import com.exedio.dsmf.SQLRuntimeException;
 
 public final class Revisions
 {
-	static final com.exedio.cope.Revisions revisions(final int length)
+	static final RevisionsFuture revisions(final int length)
 	{
 		final Revision[] result = new Revision[length];
 
@@ -87,7 +89,7 @@ public final class Revisions
 				body[j] = "sql " + revision + "/" + j;
 			result[i] = new Revision(revision, "comment " + revision, body);
 		}
-		return new com.exedio.cope.Revisions(result);
+		return DirectRevisionsFuture.make(new com.exedio.cope.Revisions(result));
 	}
 
 	static final void revisions(final Model model)

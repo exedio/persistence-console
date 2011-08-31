@@ -16,6 +16,7 @@
 	<taskdef resource="com/exedio/cope/instrument/ant.properties">
 		<classpath>
 			<pathelement location="lib/exedio-cope-instrument.jar" />
+			<pathelement location="lib/log4j-bundle.jar" />
 			<pathelement location="lib/servlet-api.jar" />
 		</classpath>
 	</taskdef>
@@ -116,6 +117,7 @@
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/trove.jar" />
+				<pathelement location="lib/log4j-bundle.jar" />
 				<pathelement location="lib/jdbc/hsqldb.jar" />
 				<pathelement location="lib/junit.jar" />
 			</classpath>

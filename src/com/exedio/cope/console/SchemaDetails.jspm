@@ -107,15 +107,6 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					%>
 					<ul id="tabBdy<%=tableCount%>" class="expand"><%
 					
-					final String options = table.getOptions();
-					if(options!=null)
-					{
-						%>
-						<li>
-							options: <pre><%=options%></pre>
-						</li><%
-					}
-					
 					int columnCount = 0;
 					for(final Column column : table.getColumns())
 					{

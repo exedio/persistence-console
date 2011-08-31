@@ -18,15 +18,19 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.EnvironmentInfo;
 import com.exedio.cope.Revision;
 import com.exedio.cope.Revisions;
+import com.exedio.cope.RevisionsFuture;
 
 /**
  * Currently works for MySQL only.
  */
-final class HistoryRevisions
+final class HistoryRevisions implements RevisionsFuture
 {
-	static final Revisions REVISIONS =
+	public Revisions get(final EnvironmentInfo environment)
+	{
+		return
 		new Revisions(
 			new Revision(4, "add guessedUrl",
 				"alter table `HistoryModel` add column `mediasGuessedUrl` integer",
@@ -64,9 +68,5 @@ final class HistoryRevisions
 					" change `itemsCleanedUp` `replacements` integer," +
 					" change `lastCleanup` `lastReplacementRun` bigint")
 		);
-
-	private HistoryRevisions()
-	{
-		// prevent instantiation
 	}
 }

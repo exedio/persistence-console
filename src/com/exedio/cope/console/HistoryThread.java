@@ -51,7 +51,7 @@ final class HistoryThread extends Thread
 {
 	static final Model HISTORY_MODEL =
 		new Model(
-			HistoryRevisions.REVISIONS,
+			new HistoryRevisions(),
 			HistoryModel.TYPE,
 			HistoryItemCache.TYPE,
 			HistoryClusterNode.TYPE,
