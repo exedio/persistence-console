@@ -250,6 +250,7 @@
 	<target name="jenkins" depends="all">
 		<copy todir="${basedir}/build/success">
 			<fileset file="${basedir}/build/exedio-cope-console.jar" />
+			<fileset file="${basedir}/exedio-cope-console-log.txt" />
 		</copy>
 		<copy file="ivy.xml" tofile="build/success/ivy.xml" overwrite="true">
 			<filterset>

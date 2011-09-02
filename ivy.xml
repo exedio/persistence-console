@@ -16,6 +16,7 @@
 	</configurations>
 	<publications>
 		<artifact name="exedio-cope-console" />
+		<artifact name="exedio-cope-console" type="log" ext="txt" />
 	</publications>
 	<dependencies>
 		<dependency org="javax.servlet" name="servlet-api" rev="2.4" />
