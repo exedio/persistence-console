@@ -23,5 +23,7 @@
 		<copy overwrite="true" file="artifacts/log4j-bundle.jar" tofile="../lib/log4j-bundle.jar" />
 		<copy overwrite="true" file="artifacts/hsqldb-jar.jar" tofile="../lib/jdbc/hsqldb.jar" />
 		<copy overwrite="true" file="artifacts/mysql-connector-java-jar.jar" tofile="../lib/jdbc/mysql-connector-java.jar" />
+		<copy overwrite="true" file="artifacts/findbugs-dist.tar.gz" tofile="../lib/findbugs.tar.gz" />
+		<copy overwrite="true" file="artifacts/findbugs-annotations-jar.jar" tofile="../lib/findbugs-annotations.jar" />
 	</target>
 </project>

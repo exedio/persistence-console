@@ -82,6 +82,7 @@
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/servlet-api.jar" />
+				<pathelement location="lib/findbugs-annotations.jar" />
 			</classpath>
 		</compile>
 	</target>
@@ -145,6 +146,7 @@
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/servlet-api.jar" />
+				<pathelement location="lib/findbugs-annotations.jar" />
 			</classpath>
 		</compile>
 	</target>
