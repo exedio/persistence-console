@@ -32,15 +32,15 @@ public class AnItem extends Item
 		A, B, C, D;
 	}
 
-	static final EnumField<Letter> letter = newEnumField(Letter.class);
-	static final EnumField<Letter> secondLetter = newEnumField(Letter.class);
+	static final EnumField<Letter> letter = EnumField.create(Letter.class);
+	static final EnumField<Letter> secondLetter = EnumField.create(Letter.class);
 
 	enum Color
 	{
 		red, green, yellow, @CopeSchemaValue(35) blue, pink;
 	}
 
-	static final EnumField<Color> color = newEnumField(Color.class);
+	static final EnumField<Color> color = EnumField.create(Color.class);
 
 
 	/**

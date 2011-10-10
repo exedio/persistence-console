@@ -38,7 +38,7 @@ import com.exedio.cope.UniqueConstraint;
 
 final class HistoryItemCache extends Item
 {
-	private static final ItemField<HistoryModel> model = newItemField(HistoryModel.class).toFinal();
+	private static final ItemField<HistoryModel> model = ItemField.create(HistoryModel.class).toFinal();
 	private static final StringField type = new StringField().toFinal();
 
 	private static final DateField date = new DateField().toFinal();

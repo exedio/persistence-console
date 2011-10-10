@@ -26,7 +26,7 @@ import com.exedio.cope.StringField;
 
 public final class CopyItem extends Item
 {
-	static final ItemField<CopyOriginItem> origin = newItemField(CopyOriginItem.class).toFinal();
+	static final ItemField<CopyOriginItem> origin = ItemField.create(CopyOriginItem.class).toFinal();
 
 	static final StringField string = new StringField().toFinal();
 	static final CopyConstraint copyConstraintString = new CopyConstraint(origin, string);
