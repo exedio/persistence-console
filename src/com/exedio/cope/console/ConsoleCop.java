@@ -130,6 +130,7 @@ abstract class ConsoleCop<S> extends Cop
 					new UpdateCounterCop(args, testArgs),
 					new SequenceCop(args, testArgs),
 					new TypeColumnCop(args, testArgs),
+					new TypeCompletenessCop(args, testArgs),
 					new CopyConstraintCop(args, testArgs),
 					new OptionalFieldCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
@@ -196,6 +197,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_SCHEMA = "schema";
 	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
 	static final String TAB_TYPE_COLUMNS = "typecolumns";
+	static final String TAB_TYPE_COMPLETENESS = "typecompleteness";
 	static final String TAB_UPDATE_COUNTERS = "updatecounters";
 	static final String TAB_COPY_CONSTRAINTS = "copyconstraints";
 	static final String TAB_OPTIONAL_FIELDS = "optional";
@@ -239,6 +241,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_TYPE_COLUMNS.equals(tab))
 			return new TypeColumnCop(args, new TestCop.TestArgs(request));
+		if(TAB_TYPE_COMPLETENESS.equals(tab))
+			return new TypeCompletenessCop(args, new TestCop.TestArgs(request));
 		if(TAB_UPDATE_COUNTERS.equals(tab))
 			return new UpdateCounterCop(args, new TestCop.TestArgs(request));
 		if(TAB_COPY_CONSTRAINTS.equals(tab))
