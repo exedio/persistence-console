@@ -91,18 +91,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 	@Override
 	Constraint forID(final Model model, final String id)
 	{
-		final int pos = id.indexOf('#');
-		assert pos>0 : id;
-		return getConstraint(
-				model.getType(id.substring(0, pos)),
-				model.getType(id.substring(pos+1)));
-	}
-
-	private static <T extends Item> Constraint getConstraint(final Type<T> superType, final Type subType)
-	{
-		return new Constraint<T>(
-				superType,
-				superType.asSubtype(subType));
+		return Constraint.forID(model, id);
 	}
 
 	@Override
@@ -125,6 +114,22 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 		String getID()
 		{
 			return superType.getID() + '#' + subType.getID();
+		}
+
+		static Constraint forID(final Model model, final String id)
+		{
+			final int pos = id.indexOf('#');
+			assert pos>0 : id;
+			return getConstraint(
+					model.getType(id.substring(0, pos)),
+					model.getType(id.substring(pos+1)));
+		}
+
+		private static <T extends Item> Constraint getConstraint(final Type<T> superType, final Type subType)
+		{
+			return new Constraint<T>(
+					superType,
+					superType.asSubtype(subType));
 		}
 
 		int check()
