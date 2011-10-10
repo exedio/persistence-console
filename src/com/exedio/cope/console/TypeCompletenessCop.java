@@ -113,12 +113,12 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 
 		String getID()
 		{
-			return superType.getID() + '#' + subType.getID();
+			return superType.getID() + ID_SEPARATOR + subType.getID();
 		}
 
 		static Constraint forID(final Model model, final String id)
 		{
-			final int pos = id.indexOf('#');
+			final int pos = id.indexOf(ID_SEPARATOR);
 			assert pos>0 : id;
 			return getConstraint(
 					model.getType(id.substring(0, pos)),
@@ -131,6 +131,8 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 					superType,
 					superType.asSubtype(subType));
 		}
+
+		private static final char ID_SEPARATOR = '#';
 
 		int check()
 		{
