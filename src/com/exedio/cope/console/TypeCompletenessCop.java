@@ -93,9 +93,33 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 	{
 		final int pos = id.indexOf('#');
 		assert pos>0 : id;
-		return new Constraint(
-				model.getType(id.substring(0, pos)),
-				model.getType(id.substring(pos+1)));
+		return getConstraint(
+				getType(model, id.substring(0, pos)),
+				getType(model, id.substring(pos+1)));
+	}
+
+	// TODO: inline when Model#getType returns Type<?> instead of Type
+	private static Type<?> getType(final Model model, final String id)
+	{
+		return model.getType(id);
+	}
+
+	private static <T extends Item> Constraint getConstraint(final Type<T> superType, final Type subType)
+	{
+		return new Constraint<T>(
+				superType,
+				asSubType(superType, subType));
+	}
+
+	// TODO: inline when available in cope
+	private static <T extends Item> Type<T> asSubType(final Type<T> superType, final Type subType)
+	{
+		if(!superType.isAssignableFrom(subType))
+			throw new IllegalArgumentException(superType.toString() + '#' + subType);
+
+		@SuppressWarnings("unchecked")
+		final Type<T> result = subType;
+		return result;
 	}
 
 	@Override
