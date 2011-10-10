@@ -50,11 +50,18 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 		final ArrayList<Constraint> result = new ArrayList<Constraint>();
 
 		for(final Type<?> superType : model.getTypes())
-			for(final Type<?> subType : superType.getTypesOfInstances())
-				if(!superType.equals(subType))
-					result.add(new Constraint(superType, subType));
+			addTypes(superType, result);
 
 		return result;
+	}
+
+	private static <T extends Item> void addTypes(
+			final Type<T> superType,
+			final ArrayList<Constraint> result)
+	{
+		for(final Type<? extends T> subType : superType.getTypesOfInstances())
+			if(!superType.equals(subType))
+				result.add(new Constraint<T>(superType, subType));
 	}
 
 	@Override
