@@ -42,7 +42,9 @@ final class SerializationCheck_Jspm
 			<tr>
 				<td class="text"><%=field.getDeclaringClass()%></td>
 				<td class="text"><%=field.getName()%></td>
-				<td class="text"<% if(type!=gType){%> title="<%=gType.toString()%>"<%} %>><%=type%></td>
+				<td class="text"<%
+					if(type!=gType){%> title="<%=gType.toString()%>"<%}
+					%>><%=type%></td>
 			</tr><%
 			}
 			%>
