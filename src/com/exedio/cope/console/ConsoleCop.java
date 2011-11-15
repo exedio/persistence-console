@@ -140,6 +140,7 @@ abstract class ConsoleCop<S> extends Cop
 					new TransactionCop(args),
 					new ItemCacheCop(args),
 					new QueryCacheCop(args),
+					new SerializationCheckCop(args),
 					new DataFieldCop(args),
 					new MediaStatsCop(args),
 					new MediaTypeCop(args, testArgs),
@@ -210,6 +211,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_QUERY_CACHE = "querycache";
 	static final String TAB_HISTORY = "history";
 	static final String TAB_SEQUENCE = "sequence";
+	static final String TAB_SERIALIZATION_CHECK = "serialization";
 	static final String TAB_DATA_FIELD = "datafield";
 	static final String TAB_MEDIA_STATS = "mediastats";
 	static final String TAB_MEDIA_TYPE = "mediatype";
@@ -269,6 +271,8 @@ abstract class ConsoleCop<S> extends Cop
 			return HistoryCop.getHistoryCop(args, request);
 		if(TAB_SEQUENCE.equals(tab))
 			return new SequenceCop(args, new TestCop.TestArgs(request));
+		if(TAB_SERIALIZATION_CHECK.equals(tab))
+			return new SerializationCheckCop(args);
 		if(TAB_DATA_FIELD.equals(tab))
 			return new DataFieldCop(args);
 		if(TAB_MEDIA_STATS.equals(tab))

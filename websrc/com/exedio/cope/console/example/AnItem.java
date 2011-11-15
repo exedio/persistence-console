@@ -18,6 +18,9 @@
 
 package com.exedio.cope.console.example;
 
+import java.util.List;
+import java.util.Map;
+
 import com.exedio.cope.CopeSchemaValue;
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Item;
@@ -41,6 +44,11 @@ public class AnItem extends Item
 	}
 
 	static final EnumField<Color> color = EnumField.create(Color.class);
+
+	// for serialization check
+	transient int transientField = 0;
+	int nonTransientField = 0;
+	Map<String, List<Integer>> nonTransientField2 = null;
 
 
 	/**
