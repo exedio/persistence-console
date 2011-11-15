@@ -49,6 +49,7 @@ public class AnItem extends Item
 	transient int transientField = 0;
 	int nonTransientField = 0;
 	Map<String, List<Integer>> nonTransientField2 = null;
+	Item serializable = null;
 
 
 	/**

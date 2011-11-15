@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.io.Serializable;
 import java.util.List;
 
 final class SerializationCheck_Jspm
@@ -38,8 +39,9 @@ final class SerializationCheck_Jspm
 			{
 				final Class type = field.getType();
 				final Type gType = field.getGenericType();
+				final boolean serializable = type.isPrimitive() || Serializable.class.isAssignableFrom(type);
 			%>
-			<tr>
+			<tr<% if(!serializable){%> class="inconsistent"<%}%>>
 				<td class="text"><%=field.getDeclaringClass()%></td>
 				<td class="text"><%=field.getName()%></td>
 				<td class="text"<%
