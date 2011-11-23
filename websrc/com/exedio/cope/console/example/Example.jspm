@@ -69,6 +69,15 @@ class Example_Jspm
 			<input type="submit" name="<%=ExampleServlet.MODIFICATION_LISTENER_ADD     %>" value="add" />
 			<input type="submit" name="<%=ExampleServlet.MODIFICATION_LISTENER_ADD_FAIL%>" value="add with exception in toString()" />
 		</form>
+		<h2>Feature Fields</h2>
+		<form method="POST">
+			<br>name:
+			<input name="<%=ExampleServlet.FEATURE_FIELD_FEATURE%>" size="40" value="<%=FeatureItem.intField1.   getID()%>" />
+			<br>items:
+			<input name="<%=ExampleServlet.FEATURE_FIELD_STRING %>" size="40" value="<%=FeatureItem.stringField1.getID()%>" />
+			<br>
+			<input name="<%=ExampleServlet.FEATURE_FIELD_SUBMIT %>" type="submit" value="create" />
+		</form>
 	</body>
 </html>
 <%

@@ -33,7 +33,8 @@ public final class Main
 				AHashItem.TYPE,
 				CopyItem.TYPE,
 				CopyOriginItem.TYPE,
-				AMediaItem.TYPE
+				AMediaItem.TYPE,
+				FeatureItem.TYPE
 		);
 
 	static

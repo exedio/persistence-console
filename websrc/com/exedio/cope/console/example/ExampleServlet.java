@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
+import com.exedio.cope.Feature;
 import com.exedio.cope.Item;
 import com.exedio.cope.Transaction;
 import com.exedio.cope.misc.ConnectToken;
@@ -60,6 +61,10 @@ public final class ExampleServlet extends CopsServlet
 
 	static final String MODIFICATION_LISTENER_ADD      = "modificationListener.add";
 	static final String MODIFICATION_LISTENER_ADD_FAIL = "modificationListener.addFail";
+
+	static final String FEATURE_FIELD_FEATURE = "featureField.feature";
+	static final String FEATURE_FIELD_STRING  = "featureField.string";
+	static final String FEATURE_FIELD_SUBMIT  = "featureField.submit";
 
 	private final ArrayList<ConnectToken> connectTokens = new ArrayList<ConnectToken>();
 	static int changeListenerNumber = 0;
@@ -114,6 +119,21 @@ public final class ExampleServlet extends CopsServlet
 			{
 				Main.model.addModificationListener(newModificationListener(true));
 			}
+			else if(request.getParameter(FEATURE_FIELD_SUBMIT)!=null)
+			{
+				Main.model.startTransaction("create feature");
+				try
+				{
+					new FeatureItem(
+						replaceNullName(request.getParameter(FEATURE_FIELD_FEATURE)),
+						replaceNullName(request.getParameter(FEATURE_FIELD_STRING)));
+					Main.model.commit();
+				}
+				finally
+				{
+					Main.model.rollbackIfNotCommitted();
+				}
+			}
 		}
 
 		final Out out = new Out(new PrintStream(response.getOutputStream(), false, UTF8));
@@ -158,6 +178,9 @@ public final class ExampleServlet extends CopsServlet
 				item.setContent(thisClass.getResourceAsStream("test.png"), "image/png");
 				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified()-(1000l*60*60*24*91))); // 91 days
 			}
+			new FeatureItem(FeatureItem.intField1, FeatureItem.stringField1);
+			new FeatureItem(FeatureItem.intField2, FeatureItem.stringField2);
+			new FeatureItem((Feature)null, null);
 
 			Main.model.commit();
 		}
