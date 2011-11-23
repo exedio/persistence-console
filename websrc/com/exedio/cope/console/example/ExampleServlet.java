@@ -19,6 +19,7 @@
 package com.exedio.cope.console.example;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -164,18 +165,18 @@ public final class ExampleServlet extends CopsServlet
 			new StringLengthItem("empty", "emptyOk", "normal", "normalOk", "min10xxxxx", "min10Okxxx");
 			new StringLengthItem("empty", "",        "normal", "x",        "min10xxxxx", "min10Okxxx");
 			new AMediaItem();
-			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "image/png");
-			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "unknownma/unknownmi");
-			new AMediaItem().setContent(thisClass.getResourceAsStream("test.png"), "image/jpeg"); // wrong content type by intention
-			new AMediaItem().setSecret (thisClass.getResourceAsStream("test.png"), "image/png");
+			new AMediaItem().setContent(resource("test.png"), "image/png");
+			new AMediaItem().setContent(resource("test.png"), "unknownma/unknownmi");
+			new AMediaItem().setContent(resource("test.png"), "image/jpeg"); // wrong content type by intention
+			new AMediaItem().setSecret (resource("test.png"), "image/png");
 			{
 				final AMediaItem item = new AMediaItem();
-				item.setContent(thisClass.getResourceAsStream("test.png"), "image/png");
+				item.setContent(resource("test.png"), "image/png");
 				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified()-(1000l*60*60*7))); // 7 hours
 			}
 			{
 				final AMediaItem item = new AMediaItem();
-				item.setContent(thisClass.getResourceAsStream("test.png"), "image/png");
+				item.setContent(resource("test.png"), "image/png");
 				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified()-(1000l*60*60*24*91))); // 91 days
 			}
 			new FeatureItem(FeatureItem.intField1, FeatureItem.stringField1);
@@ -283,6 +284,14 @@ public final class ExampleServlet extends CopsServlet
 	private static String replaceNullName(final String name)
 	{
 		return "nullName".equals(name) ? null : name;
+	}
+
+	private static InputStream resource(final String name)
+	{
+		final InputStream result = ExampleServlet.class.getResourceAsStream(name);
+		if(result==null)
+			throw new IllegalArgumentException(name);
+		return result;
 	}
 
 	@Override
