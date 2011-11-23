@@ -100,7 +100,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 		for(final Feature feature : field.getValues())
 			ids.add(feature.getID());
 
-		final Query query = field.getType().newQuery(field.getIdField().in(ids).not());
+		final Query query = field.getType().newQuery(field.getIdField().in(ids).not()); // TODO use FeatureField.isInvalid when available
 		final Model model = field.getType().getModel();
 		try
 		{
