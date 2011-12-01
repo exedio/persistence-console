@@ -58,8 +58,8 @@ abstract class ConsoleCop<S> extends Cop
 
 		void addParameters(final ConsoleCop cop)
 		{
-			cop.addParameterAccessor(HISTORY_MODEL_SHOWN, historyModelShown);
-			cop.addParameterAccessor(AUTO_REFRESH, autoRefresh, 0);
+			cop.addParameter(HISTORY_MODEL_SHOWN, historyModelShown);
+			cop.addParameter(AUTO_REFRESH, autoRefresh, 0);
 		}
 	}
 
@@ -77,16 +77,6 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	long start = 0;
-
-	void addParameterAccessor(final String key, final boolean value)
-	{
-		addParameter(key, value);
-	}
-
-	void addParameterAccessor(final String key, final int value, final int defaultValue)
-	{
-		addParameter(key, value, defaultValue);
-	}
 
 	/**
 	 * @param request used in subclasses
