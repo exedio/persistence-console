@@ -125,6 +125,7 @@ abstract class ConsoleCop<S> extends Cop
 		return
 			new ConsoleCop[]{
 					new ConnectCop(args),
+					new ConnectTokenCop(args),
 					new SchemaCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
 					new UpdateCounterCop(args, testArgs),
@@ -196,6 +197,7 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	static final String TAB_CONNECT = "connect";
+	static final String TAB_CONNECT_TOKEN = "connectToken";
 	static final String TAB_SCHEMA = "schema";
 	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
 	static final String TAB_TYPE_COLUMNS = "typecolumns";
@@ -253,6 +255,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new CopyConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_CONNECT.equals(tab))
 			return new ConnectCop(args);
+		if(TAB_CONNECT_TOKEN.equals(tab))
+			return new ConnectTokenCop(args);
 		if(TAB_OPTIONAL_FIELDS.equals(tab))
 			return new OptionalFieldCop(args, new TestCop.TestArgs(request));
 		if(TAB_MIN_LENGTH_STRING_FIELDS.equals(tab))

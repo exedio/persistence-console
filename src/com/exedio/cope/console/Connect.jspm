@@ -19,18 +19,14 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.Format.format;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.util.Properties;
 
 final class Connect_Jspm extends Console_Jspm
 {
 	final static void writeBody(
 				final Out out,
-				final ConnectCop cop,
 				final Properties properties,
 				final Model model,
 				final String sourceContent)
@@ -72,44 +68,6 @@ final class Connect_Jspm extends Console_Jspm
 				<td class="text"><%if(SchemaInfo.supportsUniqueViolation(model)){%>yes<%}else{%>no<%}%></td>
 			</tr>
 		</table>
-		<hr>
-		<form action="<%=cop%>" method="POST">
-			<input type="submit" name="<%=ConnectCop.RETURN_SELECTED%>" value="return selected" />
-			<table>
-				<caption>Tokens <small title="Model.getConnectDate()"><%=model.getConnectDate()%></small></caption>
-				<tr>
-					<th></th>
-					<th>#</th>
-					<th title="ConnectToken.getID()">ID</th>
-					<th title="ConnectToken.getIssueDate()">Issue Date</th>
-					<th title="ConnectToken.getName()">Name</th>
-				</tr><%
-				int number = 0;
-				for(final ConnectToken token : ConnectToken.getTokens(model))
-				{
-					final String name = token.getName();
-				%>
-				<tr>
-					<td><input type="checkbox" name="<%=cop.RETURN_CHECKBOX%>" value="<%=token.getID()%>" /></td>
-					<td><%
-						%><%=format(number++)%></td>
-					<td><%
-						if(token.didConnect())
-						{
-							%><span title="ConnectToken.didConnect()">&#187;</span>&nbsp;<%
-						}
-						if(token.wasConditional())
-						{
-							%><span title="ConnectToken.wasConditional()">c</span><%
-						}
-						%><%=format(token.getID())%></td>
-					<td class="text"><%=token.getIssueDate()%></td>
-					<td class="<% if(name!=null){%>text<%}else{%>notavailable<%} %>"><%=name%></td>
-				</tr><%
-				}
-			%>
-			</table>
-		</form>
 		<hr>
 		<table>
 			<caption>Properties Source</caption>
