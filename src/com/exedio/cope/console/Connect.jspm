@@ -92,15 +92,15 @@ final class Connect_Jspm extends Console_Jspm
 				<tr>
 					<td><input type="checkbox" name="<%=cop.RETURN_CHECKBOX%>" value="<%=token.getID()%>" /></td>
 					<td><%
-						if(token.wasConditional())
-						{
-							%><span title="ConnectToken.wasConditional()">c</span><%
-						}
 						%><%=format(number++)%></td>
 					<td><%
 						if(token.didConnect())
 						{
 							%><span title="ConnectToken.didConnect()">&#187;</span>&nbsp;<%
+						}
+						if(token.wasConditional())
+						{
+							%><span title="ConnectToken.wasConditional()">c</span><%
 						}
 						%><%=format(token.getID())%></td>
 					<td class="text"><%=token.getIssueDate()%></td>
