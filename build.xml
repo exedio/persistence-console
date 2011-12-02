@@ -82,6 +82,7 @@
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/servlet-api.jar" />
+				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="lib/findbugs-annotations.jar" />
 			</classpath>
 		</compile>
@@ -105,6 +106,7 @@
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/servlet-api.jar" />
 				<pathelement location="lib/junit.jar" />
+				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="lib/findbugs-annotations.jar" />
 			</classpath>
 		</compile>
@@ -147,6 +149,7 @@
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/servlet-api.jar" />
+				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="lib/findbugs-annotations.jar" />
 			</classpath>
 		</compile>
@@ -216,6 +219,7 @@
 				<pathelement location="lib/exedio-cope-util.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/servlet-api.jar" />
+				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="lib/findbugs-annotations.jar" />
 			</classpath>
 		</javadoc>
@@ -244,6 +248,7 @@
 				<pathelement location="${basedir}/lib/trove.jar" />
 				<pathelement location="${basedir}/lib/servlet-api.jar" />
 				<pathelement location="${basedir}/lib/junit.jar" />
+				<pathelement location="${basedir}/lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="${ant.core.lib}" />
 			</auxclasspath>
 		</findbugs>
