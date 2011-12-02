@@ -32,7 +32,6 @@ final class EnumCop extends ConsoleCop
 	{
 		super(TAB_ENUM, "Enum - " + clazz.getName(), args);
 		this.clazz = clazz;
-
 		addParameter(CLASS, clazz.getName());
 	}
 
