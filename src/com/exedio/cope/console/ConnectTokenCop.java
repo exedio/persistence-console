@@ -22,7 +22,6 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
 
@@ -71,12 +70,9 @@ final class ConnectTokenCop extends ConsoleCop
 			}
 		}
 
-		// TODO use ConnectToken.getProperties
-		final ConnectProperties props = model.getConnectProperties();
-
 		ConnectToken_Jspm.writeBody(
 				out, this,
-				props,
+				ConnectToken.getProperties(model),
 				model);
 	}
 }
