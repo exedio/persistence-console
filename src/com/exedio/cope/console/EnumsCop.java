@@ -23,7 +23,6 @@ import java.util.LinkedHashMap;
 
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Field;
-import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
 final class EnumsCop extends ConsoleCop
@@ -47,11 +46,9 @@ final class EnumsCop extends ConsoleCop
 	@Override
 	final void writeBody(final Out out)
 	{
-		final Model model = out.model;
-
 		final LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>> map =
 			new LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>>();
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : out.model.getTypes())
 			for(final Field field : type.getDeclaredFields())
 				if(field instanceof EnumField)
 				{
