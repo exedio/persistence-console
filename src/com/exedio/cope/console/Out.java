@@ -26,6 +26,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.util.XMLEncoder;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Resource;
@@ -35,12 +36,14 @@ final class Out extends OutBasic
 {
 	final HttpServletRequest request;
 	final Model model;
+	private final ConsoleServlet servlet;
 	final History history;
 	private int nextId = 0;
 
 	Out(
 			final HttpServletRequest request,
 			final Model model,
+			final ConsoleServlet servlet,
 			final History history,
 			final PrintStream bf)
 	{
@@ -48,6 +51,7 @@ final class Out extends OutBasic
 		assert request!=null;
 		this.request = request;
 		this.model = model;
+		this.servlet = servlet;
 		this.history = history;
 	}
 
@@ -138,6 +142,16 @@ final class Out extends OutBasic
 		// here we don't have to call HttpServletResponse.encodeURL
 		// since HttpSessions are not used at all
 		bf.print(XMLEncoder.encode(cop.getURL(request)));
+	}
+
+	void connect()
+	{
+		servlet.connect();
+	}
+
+	boolean willBeReturned(final ConnectToken token)
+	{
+		return servlet.willBeReturned(token);
 	}
 
 	/**

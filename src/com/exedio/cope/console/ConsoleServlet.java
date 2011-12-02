@@ -32,7 +32,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
-import com.exedio.cope.misc.ServletUtil;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import com.exedio.cops.Resource;
@@ -104,8 +103,7 @@ public final class ConsoleServlet extends CopsServlet
 		}
 
 		stores = new HashMap<Class<? extends ConsoleCop>, Store>();
-		connectToken = ServletUtil.getConnectedModel(this);
-		model = connectToken.getModel();
+		model = ServletUtilX.getConnectedModel(this);
 		history = new History(model);
 	}
 
@@ -113,11 +111,26 @@ public final class ConsoleServlet extends CopsServlet
 	public void destroy()
 	{
 		history.stop();
-		connectToken.returnIt();
-		connectToken = null;
+		if(connectToken!=null && !connectToken.isReturned())
+		{
+			System.out.println("--------------- RETURN");
+			connectToken.returnIt();
+			connectToken = null;
+		}
 		model = null;
 		stores = null;
 		super.destroy();
+	}
+
+	void connect()
+	{
+		if(connectToken==null || connectToken.isReturned())
+			connectToken = ConnectToken.issue(model, "servlet \"" + getServletName() + "\" (" + toString() + ')');
+	}
+
+	boolean willBeReturned(final ConnectToken token)
+	{
+		return connectToken==token;
 	}
 
 	@Override
@@ -171,7 +184,7 @@ public final class ConsoleServlet extends CopsServlet
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
 			if(ajax)
 				response.setContentType("text/xml; charset="+UTF8);
-			final Out out = new Out(request, model, history, new PrintStream(response.getOutputStream(), false, UTF8));
+			final Out out = new Out(request, model, this, history, new PrintStream(response.getOutputStream(), false, UTF8));
 			if(ajax)
 				cop.writeAjax(out);
 			else
