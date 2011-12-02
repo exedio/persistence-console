@@ -135,7 +135,7 @@
 	</target>
 	
 	<target name="web.instrument" unless="skip.instrument">
-		<instrument verify="${instrument.verify}" finalArgs="true" suppressUnusedWarningOnPrivateActivationConstructor="true" verbose="false">
+		<instrument verify="${instrument.verify}" finalArgs="true" verbose="false">
 			<fileset dir="websrc">
 				<include name="**/*.java" />
 			</fileset>
