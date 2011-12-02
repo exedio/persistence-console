@@ -19,31 +19,48 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.EnumCop.getColumnValue;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-final class Enum_Jspm extends Console_Jspm
+import com.exedio.cope.EnumField;
+
+final class Enums_Jspm extends Console_Jspm
 {
 	final static void write(
 			final Out out,
-			final Class<? extends Enum> clazz)
+			final EnumsCop cop,
+			final LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>> map)
 	{
 		%>
 		<table>
 			<tr>
-				<th>Name</th>
-				<th>Ordinal</th>
-				<th>Schema Number</th>
+				<th>Class</th>
+				<th>Fields</th>
 			</tr><%
 			
-		for(final Enum constant : clazz.getEnumConstants())
+	for(final Map.Entry<Class<? extends Enum>, ArrayList<EnumField<?>>> entry : map.entrySet())
+	{
+		boolean first = true;
+		final Class<? extends Enum> clazz = entry.getKey();
+		final ArrayList<EnumField<?>> list = entry.getValue();
+		final int size = list.size();
+		
+		for(final EnumField<?> field : list)
 		{
 			%>
-			<tr>
-				<td class="text"><%=constant.name()%></td>
-				<td><%=constant.ordinal()%></td>
-				<td><%=getColumnValue(constant)%></td>
+			<tr><%
+				if(first)
+				{
+					first = false;
+				%>
+				<td class="text"<% if(size>1){%> rowspan="<%=size%>"<%} %>><a href="<%=cop.toClass(clazz)%>"><%=clazz%></a></td><%
+				}
+				%>
+				<td class="text"><%=field.getID()%></td>
 			</tr><%
 		}
+	}
 			%>
 		</table><%
 	}

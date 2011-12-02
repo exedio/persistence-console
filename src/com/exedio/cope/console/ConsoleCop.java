@@ -139,7 +139,7 @@ abstract class ConsoleCop<S> extends Cop
 					new ClusterCop(args),
 					new ThreadCop(args),
 					new VmCop(args, false, false),
-					new EnumCop(args, null),
+					new EnumsCop(args),
 					new EnvironmentCop(args),
 					new HashCop(args),
 					new HiddenCop(args),
@@ -212,6 +212,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_CLUSTER = "cluster";
 	static final String TAB_THREAD = "thread";
 	static final String TAB_VM = "vm";
+	static final String TAB_ENUMS = "enums";
 	static final String TAB_ENUM = "enum";
 	static final String TAB_ENVIRONMENT = "environment";
 	static final String TAB_HASH = "hash";
@@ -283,6 +284,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new ThreadCop(args);
 		if(TAB_VM.equals(tab))
 			return VmCop.getVmCop(args, request);
+		if(TAB_ENUMS.equals(tab))
+			return new EnumsCop(args);
 		if(TAB_ENUM.equals(tab))
 			return EnumCop.getEnumCop(args, request);
 		if(TAB_ENVIRONMENT.equals(tab))

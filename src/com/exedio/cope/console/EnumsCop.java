@@ -18,44 +18,25 @@
 
 package com.exedio.cope.console;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
-import com.exedio.cope.SchemaInfo;
+import com.exedio.cope.EnumField;
+import com.exedio.cope.Field;
+import com.exedio.cope.Model;
+import com.exedio.cope.Type;
 
-final class EnumCop extends ConsoleCop
+final class EnumsCop extends ConsoleCop
 {
-	private static final String CLASS = "cs";
-
-	final Class<? extends Enum> clazz;
-
-	EnumCop(final Args args, final Class<? extends Enum> clazz)
+	EnumsCop(final Args args)
 	{
-		super(TAB_ENUM, "Enum - " + clazz.getName(), args);
-		this.clazz = clazz;
-
-			addParameter(CLASS, clazz.getName());
-	}
-
-	static final EnumCop getEnumCop(final Args args, final HttpServletRequest request)
-	{
-		final String classString = request.getParameter(CLASS);
-		final Class<? extends Enum> clazz;
-			try
-			{
-				clazz = Class.forName(classString).asSubclass(Enum.class);
-			}
-			catch(final ClassNotFoundException e)
-			{
-				throw new RuntimeException(e);
-			}
-
-		return new EnumCop(args, clazz);
+		super(TAB_ENUMS, "Enums", args);
 	}
 
 	@Override
-	protected EnumCop newArgs(final Args args)
+	protected EnumsCop newArgs(final Args args)
 	{
-		return new EnumCop(args, clazz);
+		return new EnumsCop(args);
 	}
 
 	EnumCop toClass(final Class<? extends Enum> clazz)
@@ -66,12 +47,24 @@ final class EnumCop extends ConsoleCop
 	@Override
 	final void writeBody(final Out out)
 	{
-		Enum_Jspm.write(out, clazz);
-	}
+			final Model model = out.model;
 
-	@SuppressWarnings("unchecked")
-	static int getColumnValue(final Enum constant)
-	{
-		return SchemaInfo.getColumnValue(constant);
+			final LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>> map =
+				new LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>>();
+			for(final Type<?> type : model.getTypes())
+				for(final Field field : type.getDeclaredFields())
+					if(field instanceof EnumField)
+					{
+						final EnumField<?> f = (EnumField)field;
+						final Class<? extends Enum> c = f.getValueClass();
+						ArrayList<EnumField<?>> list = map.get(c);
+						if(list==null)
+						{
+							list = new ArrayList<EnumField<?>>();
+							map.put(c, list);
+						}
+						list.add(f);
+					}
+			Enums_Jspm.write(out, this, map);
 	}
 }
