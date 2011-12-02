@@ -15,6 +15,7 @@
 		<copy overwrite="true" file="artifacts/exedio-cope-log.txt" tofile="../lib/exedio-cope.jar-CHANGELOG" />
 		<copy overwrite="true" file="artifacts/exedio-cope-src.zip" tofile="../lib/exedio-cope.jar-src.zip" />
 		<copy overwrite="true" file="artifacts/exedio-cope-instrument-jar.jar" tofile="../lib/exedio-cope-instrument.jar" />
+		<copy overwrite="true" file="artifacts/exedio-cope-instrument-annotations-jar.jar" tofile="../lib/exedio-cope-instrument-annotations.jar" />
 		<copy overwrite="true" file="artifacts/servlet-api-jar.jar" tofile="../lib/servlet-api.jar" />
 		<copy overwrite="true" file="artifacts/servlet-api-source.jar" tofile="../lib/../lib/servlet-api.jar-src.zip" />
 		<copy overwrite="true" file="artifacts/trove-jar.jar" tofile="../lib/trove.jar" />
