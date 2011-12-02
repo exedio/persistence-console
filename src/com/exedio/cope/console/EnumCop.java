@@ -33,21 +33,21 @@ final class EnumCop extends ConsoleCop
 		super(TAB_ENUM, "Enum - " + clazz.getName(), args);
 		this.clazz = clazz;
 
-			addParameter(CLASS, clazz.getName());
+		addParameter(CLASS, clazz.getName());
 	}
 
 	static final EnumCop getEnumCop(final Args args, final HttpServletRequest request)
 	{
 		final String classString = request.getParameter(CLASS);
 		final Class<? extends Enum> clazz;
-			try
-			{
-				clazz = Class.forName(classString).asSubclass(Enum.class);
-			}
-			catch(final ClassNotFoundException e)
-			{
-				throw new RuntimeException(e);
-			}
+		try
+		{
+			clazz = Class.forName(classString).asSubclass(Enum.class);
+		}
+		catch(final ClassNotFoundException e)
+		{
+			throw new RuntimeException(e);
+		}
 
 		return new EnumCop(args, clazz);
 	}

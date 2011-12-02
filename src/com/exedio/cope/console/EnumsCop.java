@@ -47,24 +47,24 @@ final class EnumsCop extends ConsoleCop
 	@Override
 	final void writeBody(final Out out)
 	{
-			final Model model = out.model;
+		final Model model = out.model;
 
-			final LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>> map =
-				new LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>>();
-			for(final Type<?> type : model.getTypes())
-				for(final Field field : type.getDeclaredFields())
-					if(field instanceof EnumField)
+		final LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>> map =
+			new LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>>();
+		for(final Type<?> type : model.getTypes())
+			for(final Field field : type.getDeclaredFields())
+				if(field instanceof EnumField)
+				{
+					final EnumField<?> f = (EnumField)field;
+					final Class<? extends Enum> c = f.getValueClass();
+					ArrayList<EnumField<?>> list = map.get(c);
+					if(list==null)
 					{
-						final EnumField<?> f = (EnumField)field;
-						final Class<? extends Enum> c = f.getValueClass();
-						ArrayList<EnumField<?>> list = map.get(c);
-						if(list==null)
-						{
-							list = new ArrayList<EnumField<?>>();
-							map.put(c, list);
-						}
-						list.add(f);
+						list = new ArrayList<EnumField<?>>();
+						map.put(c, list);
 					}
-			Enums_Jspm.write(out, this, map);
+					list.add(f);
+				}
+		Enums_Jspm.write(out, this, map);
 	}
 }
