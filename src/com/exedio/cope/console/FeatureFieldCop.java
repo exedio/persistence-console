@@ -96,11 +96,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	@Override
 	int check(final FeatureField<?> field)
 	{
-		final ArrayList<String> ids = new ArrayList<String>();
-		for(final Feature feature : field.getValues())
-			ids.add(feature.getID());
-
-		final Query query = field.getType().newQuery(field.getIdField().in(ids).not()); // TODO use FeatureField.isInvalid when available
+		final Query query = field.getType().newQuery(field.isInvalid());
 		final Model model = field.getType().getModel();
 		try
 		{
