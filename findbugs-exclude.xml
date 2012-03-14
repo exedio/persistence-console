@@ -64,4 +64,9 @@
 		</Or>
 		<Class name="com.exedio.cope.console.HistoryThread" />
 	</Match>
+	<Match>
+		<!-- Could be refactored into a named static inner class -->
+		<Bug pattern="NM_SAME_SIMPLE_NAME_AS_SUPERCLASS" />
+		<Class name="com.exedio.cope.console.DatabaseLogListener" />
+	</Match>
 </FindBugsFilter>
