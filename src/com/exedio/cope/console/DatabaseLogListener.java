@@ -19,69 +19,15 @@
 package com.exedio.cope.console;
 
 import java.io.PrintStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
-import com.exedio.cope.misc.DatabaseListener;
-
-final class DatabaseLogListener implements DatabaseListener
+/**
+ * @deprecated replaced by {@link com.exedio.cope.misc.DatabaseLogListener}
+ */
+@Deprecated
+final class DatabaseLogListener extends com.exedio.cope.misc.DatabaseLogListener
 {
-	private final long date;
-	final int threshold;
-	final String sql;
-	private final PrintStream out;
-
 	DatabaseLogListener(final int threshold, final String sql, final PrintStream out)
 	{
-		if(threshold<0)
-			throw new IllegalArgumentException("threshold must not be negative, but was " + threshold);
-		if(out==null)
-			throw new NullPointerException("out");
-
-		this.date = System.currentTimeMillis();
-		this.threshold = threshold;
-		this.sql = sql;
-		this.out = out;
-	}
-
-	Date getDate()
-	{
-		return new Date(date);
-	}
-
-	public void onStatement(
-			final String statement,
-			final List<Object> parameters,
-			final long durationPrepare,
-			final long durationExecute,
-			final long durationRead,
-			final long durationClose)
-	{
-		if(( (threshold==0) || ((durationPrepare+durationExecute+durationRead+durationClose)>=threshold) ) &&
-			( (sql==null)    || (statement.indexOf(sql)>=0) ))
-		{
-			final StringBuilder bf = new StringBuilder(
-					new SimpleDateFormat("yyyy/dd/MM HH:mm:ss.SSS").format(new Date()));
-
-			bf.append('|');
-			bf.append(durationPrepare);
-			bf.append('|');
-			bf.append(durationExecute);
-			bf.append('|');
-			bf.append(durationRead);
-			bf.append('|');
-			bf.append(durationClose);
-			bf.append('|');
-			bf.append(statement);
-
-			if(parameters!=null)
-			{
-				bf.append('|');
-				bf.append(parameters);
-			}
-
-			out.println(bf.toString());
-		}
+		super( threshold, sql, out );
 	}
 }

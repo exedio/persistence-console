@@ -18,17 +18,16 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.EnvironmentInfo;
 import com.exedio.cope.Revision;
 import com.exedio.cope.Revisions;
-import com.exedio.cope.RevisionsFuture;
 
 /**
  * Currently works for MySQL only.
  */
-final class HistoryRevisions implements RevisionsFuture
+final class HistoryRevisions implements Revisions.Factory
 {
-	public Revisions get(final EnvironmentInfo environment)
+
+	public Revisions create( Context ctx )
 	{
 		return
 		new Revisions(

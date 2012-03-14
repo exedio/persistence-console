@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.misc.DatabaseLogListener;
 import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
@@ -69,8 +70,8 @@ final class DatabaseLogCop extends ConsoleCop
 		DatabaseLog_Jspm.writeBody(this, out,
 				listener!=null ? listener.getClass() : null,
 				enabled,
-				enabled ? ((DatabaseLogListener)listener).getDate() : null,
-				enabled ? ((DatabaseLogListener)listener).threshold : 0,
-				enabled ? ((DatabaseLogListener)listener).sql       : null);
+				enabled ? ((DatabaseLogListener)listener).getDate()      : null,
+				enabled ? ((DatabaseLogListener)listener).getThreshold() : 0,
+				enabled ? ((DatabaseLogListener)listener).getSQL()       : null);
 	}
 }
