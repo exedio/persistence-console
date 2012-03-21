@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console.example;
 
-import com.exedio.cope.Revisions.Factory.Context;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -35,6 +34,7 @@ import com.exedio.cope.RevisionInfoCreate;
 import com.exedio.cope.RevisionInfoMutex;
 import com.exedio.cope.RevisionInfoRevise;
 import com.exedio.cope.SchemaInfo;
+import com.exedio.cope.misc.DirectRevisionsFactory;
 import com.exedio.dsmf.SQLRuntimeException;
 
 public final class Revisions
@@ -88,15 +88,7 @@ public final class Revisions
 				body[j] = "sql " + revision + "/" + j;
 			result[i] = new Revision(revision, "comment " + revision, body);
 		}
-		return new com.exedio.cope.Revisions.Factory()
-		{
-
-			public com.exedio.cope.Revisions create( Context ctx )
-			{
-				return new com.exedio.cope.Revisions(result);
-			}
-
-		};
+		return DirectRevisionsFactory.make(new com.exedio.cope.Revisions(result));
 	}
 
 	static final void revisions(final Model model)
