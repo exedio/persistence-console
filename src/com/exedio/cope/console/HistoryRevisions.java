@@ -26,8 +26,7 @@ import com.exedio.cope.Revisions;
  */
 final class HistoryRevisions implements Revisions.Factory
 {
-
-	public Revisions create( Context ctx )
+	public Revisions create(final Context ctx)
 	{
 		return
 		new Revisions(
