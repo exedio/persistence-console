@@ -10,3 +10,4 @@ TODO for cope console
 	* add stats about modification listeners
 - ensure complete consistency of class/-Type columns
 - prevent Cross-Site Request Forgery
+- remove ServletUtilX
