@@ -24,6 +24,7 @@ import java.util.HashSet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.ChangeListener;
+import com.exedio.cope.ChangeListenerDispatcherInfo;
 import com.exedio.cope.Model;
 
 final class ChangeListenerCop extends ConsoleCop
@@ -70,11 +71,16 @@ final class ChangeListenerCop extends ConsoleCop
 				model.getChangeListenersInfo(),
 				model.getChangeListeners(),
 				model.getChangeListenersInfo(),
-				model.getChangeListenerDispatcherInfo());
+				dispatcherInfo(model));
 	}
 
 	final String toID(final ChangeListener listener)
 	{
 		return listener.getClass().getName() + '@' + System.identityHashCode(listener);
+	}
+
+	private static final ChangeListenerDispatcherInfo dispatcherInfo(final Model model)
+	{
+		return isConnected(model) ? model.getChangeListenerDispatcherInfo() : null;
 	}
 }

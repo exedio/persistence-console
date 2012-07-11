@@ -54,9 +54,20 @@ final class ChangeListener_Jspm extends Console_Jspm
 		</table>
 		<table>
 			<caption>Dispatcher</caption>
+		<%
+		if(dispatcherInfo!=null)
+		{
+			%>
 			<tr><th>Overflow</td><td><%=format(dispatcherInfo.getOverflow())%></td></tr>
 			<tr><th>Exception</td><td><%=format(dispatcherInfo.getException())%></td></tr>
 			<tr><th>Pending</td><td><%=format(dispatcherInfo.getPending())%></td></tr>
+		<%}
+		else
+		{
+			%>
+			<tr><td class="notavailable"><% Console_Jspm.writeNotConnected(out); %></td></tr><%
+		}
+		%>
 		</table>
 		<hr>
 		<form action="<%=cop%>" method="POST"><%

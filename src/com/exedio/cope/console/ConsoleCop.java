@@ -386,4 +386,12 @@ abstract class ConsoleCop<S> extends Cop
 	{
 		args.servlet.putStore(this.getClass(), value);
 	}
+
+	/**
+	 * TODO to be replaced by a separate exception thrown when not connected.
+	 */
+	protected static final boolean isConnected(final Model model)
+	{
+		return model.isConnected();
+	}
 }

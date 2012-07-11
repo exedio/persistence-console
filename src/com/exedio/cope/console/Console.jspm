@@ -192,4 +192,9 @@ abstract class Console_Jspm
 			<b>Running now.</b><%
 		}
 	}
+	
+	static final void writeNotConnected(final Out out)
+	{
+		%>not yet connected<%
+	}
 }%>
