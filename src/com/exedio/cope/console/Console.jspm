@@ -193,8 +193,8 @@ abstract class Console_Jspm
 		}
 	}
 	
-	static final void writeNotConnected(final Out out)
+	static final void writeNotConnected(final Out out, final ConsoleCop cop)
 	{
-		%>not yet connected<%
+		%><form action="<%=cop%>" method="POST"><input type="submit" name="<%=ConsoleServlet.CONNECT%>" value="connect" /></form><%
 	}
 }%>

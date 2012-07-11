@@ -65,7 +65,7 @@ final class ChangeListener_Jspm extends Console_Jspm
 		else
 		{
 			%>
-			<tr><td class="notavailable"><% Console_Jspm.writeNotConnected(out); %></td></tr><%
+			<tr><td class="notavailable"><% Console_Jspm.writeNotConnected(out, cop); %></td></tr><%
 		}
 		%>
 		</table>

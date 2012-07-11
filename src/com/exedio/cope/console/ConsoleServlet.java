@@ -132,6 +132,8 @@ public final class ConsoleServlet extends CopsServlet
 		return connectToken==token;
 	}
 
+	static final String CONNECT = "connectByToken";
+
 	@Override
 	protected void doRequest(
 			final HttpServletRequest request,
@@ -187,12 +189,17 @@ public final class ConsoleServlet extends CopsServlet
 			if(ajax)
 				cop.writeAjax(out);
 			else
+			{
+				if(Cop.isPost(request) && request.getParameter(CONNECT)!=null)
+					connect();
+
 				Console_Jspm.write(
 						out, response, cop,
 						this.model.toString(),
 						this.model.getInitializeDate(),
 						authentication, hostname
 						);
+			}
 			out.close();
 		}
 		finally
