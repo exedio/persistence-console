@@ -53,15 +53,15 @@ final class ChangeListener_Jspm extends Console_Jspm
 			<tr><th>Failed</td><td><%=format(infoAfter.getFailed())%></td></tr>
 		</table>
 		<table>
-			<caption>Dispatcher</caption>
-		<%
+			<caption>Dispatcher</caption><%
+
 		if(dispatcherInfo!=null)
 		{
 			%>
 			<tr><th>Overflow</td><td><%=format(dispatcherInfo.getOverflow())%></td></tr>
 			<tr><th>Exception</td><td><%=format(dispatcherInfo.getException())%></td></tr>
-			<tr><th>Pending</td><td><%=format(dispatcherInfo.getPending())%></td></tr>
-		<%}
+			<tr><th>Pending</td><td><%=format(dispatcherInfo.getPending())%></td></tr><%
+		}
 		else
 		{
 			%>
