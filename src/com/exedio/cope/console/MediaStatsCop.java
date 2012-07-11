@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
+import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.MediaSummary;
 import com.exedio.cope.pattern.MediaImageMagickFilter;
 import com.exedio.cope.pattern.MediaInfo;
@@ -90,7 +91,7 @@ final class MediaStatsCop extends ConsoleCop
 
 		final boolean isUrlGuessingNotSecure =
 			isUrlGuessingPrevented &&
-			!MediaPath.isUrlGuessingPreventedSecurely(model.getConnectProperties());
+			!MediaPath.isUrlGuessingPreventedSecurely(ConnectToken.getProperties(model));
 
 		final MediaInfo[] infos = new MediaInfo[medias.size()];
 		int mediaIndex = 0;
