@@ -27,6 +27,7 @@ import com.exedio.cope.misc.ConnectToken;
 
 final class ConnectTokenCop extends ConsoleCop
 {
+	static final String ISSUE = "issue";
 	static final String RETURN_SELECTED = "returnSelected";
 	static final String RETURN_CHECKBOX = "rt";
 
@@ -55,6 +56,10 @@ final class ConnectTokenCop extends ConsoleCop
 
 		if(isPost(request))
 		{
+			if(request.getParameter(ISSUE)!=null)
+			{
+				out.connect();
+			}
 			if(request.getParameter(RETURN_SELECTED)!=null)
 			{
 				final String[] ids = request.getParameterValues(RETURN_CHECKBOX);

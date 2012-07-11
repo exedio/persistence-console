@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
+import static com.exedio.cope.console.ConnectTokenCop.ISSUE;
 import static com.exedio.cope.console.ConnectTokenCop.RETURN_SELECTED;
 import static com.exedio.cope.console.ConnectTokenCop.RETURN_CHECKBOX;
 
@@ -39,6 +40,7 @@ final class ConnectToken_Jspm extends Console_Jspm
 		%>
 		<hr>
 		<form action="<%=cop%>" method="POST">
+			<input type="submit" name="<%=ISSUE%>" value="issue" />
 			<input type="submit" name="<%=RETURN_SELECTED%>" value="return selected" />
 			<table>
 				<caption>Tokens <small title="Model.getConnectDate()"><%=model.getConnectDate()%></small></caption>
@@ -62,6 +64,10 @@ final class ConnectToken_Jspm extends Console_Jspm
 						if(token.didConnect())
 						{
 							%><span title="ConnectToken.didConnect()">&#187;</span>&nbsp;<%
+						}
+						if(out.willBeReturned(token))
+						{
+							%><span title="will be returned on console destroy">R</span>&nbsp;<%
 						}
 						if(token.wasConditional())
 						{
