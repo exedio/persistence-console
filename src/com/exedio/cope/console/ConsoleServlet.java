@@ -113,7 +113,6 @@ public final class ConsoleServlet extends CopsServlet
 		history.stop();
 		if(connectToken!=null && !connectToken.isReturned())
 		{
-			System.out.println("--------------- RETURN");
 			connectToken.returnIt();
 			connectToken = null;
 		}
