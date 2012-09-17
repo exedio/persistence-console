@@ -44,6 +44,12 @@ final class UpdateCounterCop extends TestCop<Type>
 	}
 
 	@Override
+	boolean toleratesNotConnected()
+	{
+		return false;
+	}
+
+	@Override
 	List<Type> getItems(final Model model)
 	{
 		final ArrayList<Type> result = new ArrayList<Type>();

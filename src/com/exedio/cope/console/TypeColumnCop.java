@@ -49,6 +49,12 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 	}
 
 	@Override
+	boolean toleratesNotConnected()
+	{
+		return false;
+	}
+
+	@Override
 	List<ItemFunction> getItems(final Model model)
 	{
 		final ArrayList<ItemFunction> result = new ArrayList<ItemFunction>();

@@ -104,7 +104,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 	{
 		final Model model = out.model;
 
-		if(!model.isConnected())
+		if(!toleratesNotConnected() && !model.isConnected())
 		{
 			Console_Jspm.writeNotConnectedMessage(out, this);
 			return;
@@ -345,6 +345,11 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		{
 			out.writeStackTrace(exception);
 		}
+	}
+
+	boolean toleratesNotConnected()
+	{
+		return true;
 	}
 
 	abstract List<I> getItems(Model model);

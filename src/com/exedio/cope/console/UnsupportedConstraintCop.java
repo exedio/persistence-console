@@ -46,6 +46,12 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	}
 
 	@Override
+	boolean toleratesNotConnected()
+	{
+		return false;
+	}
+
+	@Override
 	List<Constraint> getItems(final Model model)
 	{
 		final ArrayList<Constraint> result = new ArrayList<Constraint>();

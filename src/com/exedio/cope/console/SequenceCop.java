@@ -48,6 +48,12 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	}
 
 	@Override
+	boolean toleratesNotConnected()
+	{
+		return false;
+	}
+
+	@Override
 	List<SequenceInfo> getItems(final Model model)
 	{
 		return model.getSequenceInfo();
