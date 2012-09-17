@@ -51,6 +51,12 @@ final class ConnectCop extends ConsoleCop
 	{
 		final Model model = out.model;
 
+		if(!model.isConnected())
+		{
+			Console_Jspm.writeNotConnectedMessage(out, this);
+			return;
+		}
+
 		final ConnectProperties props = model.getConnectProperties();
 		final String source = props.getSource();
 		String sourceContent = null;

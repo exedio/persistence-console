@@ -306,6 +306,12 @@ final class QueryCacheCop extends ConsoleCop
 	{
 		final Model model = out.model;
 
+		if(!model.isConnected())
+		{
+			Console_Jspm.writeNotConnectedMessage(out, this);
+			return;
+		}
+
 		final QueryCacheHistogram[] histogram = model.getQueryCacheHistogram();
 		QueryCache_Jspm.writeBody(this, out,
 				model.getConnectProperties().getQueryCacheLimit(),

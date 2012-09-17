@@ -67,6 +67,12 @@ final class ClusterCop extends ConsoleCop
 	{
 		final Model model = out.model;
 
+		if(!model.isConnected())
+		{
+			Console_Jspm.writeNotConnectedMessage(out, this);
+			return;
+		}
+
 		final ClusterListenerInfo listenerInfo = model.getClusterListenerInfo();
 		if(listenerInfo!=null)
 			Cluster_Jspm.writeBody(

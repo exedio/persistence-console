@@ -197,4 +197,17 @@ abstract class Console_Jspm
 	{
 		%><form action="<%=cop%>" method="POST"><input type="submit" name="<%=ConsoleServlet.CONNECT%>" value="connect" /></form><%
 	}
+
+	static final void writeNotConnectedMessage(final Out out, final ConsoleCop cop)
+	{
+		%>
+		<table>
+			<caption>Not Connected</caption>
+			<tr><td class="text">
+				This information is not available,
+				because the model has not yet been connected.
+				<% writeNotConnected(out, cop); %>
+			</td></tr>
+		</table><%
+	}
 }%>

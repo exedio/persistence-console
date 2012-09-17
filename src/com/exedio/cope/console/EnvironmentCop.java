@@ -54,6 +54,12 @@ final class EnvironmentCop extends ConsoleCop
 	{
 		final Model model = out.model;
 
+		if(!model.isConnected())
+		{
+			Console_Jspm.writeNotConnectedMessage(out, this);
+			return;
+		}
+
 		final java.util.Properties current = model.getEnvironmentInfo().asProperties();
 		for(final Iterator i = current.keySet().iterator(); i.hasNext(); )
 		{
