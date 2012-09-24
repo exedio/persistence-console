@@ -34,7 +34,8 @@ public final class Main
 				CopyItem.TYPE,
 				CopyOriginItem.TYPE,
 				AMediaItem.TYPE,
-				FeatureItem.TYPE
+				FeatureItem.TYPE,
+				SequenceItem.TYPE
 		);
 
 	static
