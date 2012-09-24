@@ -25,7 +25,7 @@ import com.exedio.cope.Sequence;
 public class SequenceItem extends Item
 {
 	static final IntegerField defaultToNext = new IntegerField().defaultToNext(500);
-	static final Sequence sequnece = new Sequence(500);
+	static final Sequence sequence = new Sequence(500);
 
 	/**
 
