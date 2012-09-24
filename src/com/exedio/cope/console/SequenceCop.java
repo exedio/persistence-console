@@ -20,6 +20,8 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.exedio.cope.Feature;
@@ -56,7 +58,16 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	@Override
 	List<SequenceInfo> getItems(final Model model)
 	{
-		return model.getSequenceInfo();
+		final LinkedList<SequenceInfo> result = new LinkedList<SequenceInfo>(model.getSequenceInfo());
+		for(final Iterator<SequenceInfo> i = result.iterator(); i.hasNext(); )
+		{
+			final Feature feature = i.next().getFeature();
+			if(! (
+					feature instanceof This ||
+					feature instanceof IntegerField))
+				i.remove();
+		}
+		return result;
 	}
 
 	@Override
