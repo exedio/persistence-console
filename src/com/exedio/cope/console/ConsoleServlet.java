@@ -170,17 +170,6 @@ public final class ConsoleServlet extends CopsServlet
 
 			final ConsoleCop cop = ConsoleCop.getCop(this, model, request);
 			cop.initialize(request, model);
-			final Principal principal = request.getUserPrincipal();
-			final String authentication = principal!=null ? principal.getName() : null;
-			String hostname = null;
-			try
-			{
-				hostname = InetAddress.getLocalHost().getHostName();
-			}
-			catch(final UnknownHostException e)
-			{
-				// leave hostname==null
-			}
 			response.setStatus(cop.getResponseStatus());
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
 			if(ajax)
@@ -192,6 +181,18 @@ public final class ConsoleServlet extends CopsServlet
 			{
 				if(Cop.isPost(request) && request.getParameter(CONNECT)!=null)
 					connect();
+
+				final Principal principal = request.getUserPrincipal();
+				final String authentication = principal!=null ? principal.getName() : null;
+				String hostname = null;
+				try
+				{
+					hostname = InetAddress.getLocalHost().getHostName();
+				}
+				catch(final UnknownHostException e)
+				{
+					// leave hostname==null
+				}
 
 				Console_Jspm.write(
 						out, response, cop,
