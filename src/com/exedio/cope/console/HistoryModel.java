@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import com.exedio.cope.ActivationParameters;
@@ -53,9 +52,9 @@ final class HistoryModel extends Item
 	private static final IntegerField connectionPoolInvalidOnGet = new IntegerField().toFinal().min(0);
 	private static final IntegerField connectionPoolInvalidOnPut = new IntegerField().toFinal().min(0);
 
-	static List<SetValue<?>> map(final Pool.Info info)
+	static List<SetValue> map(final Pool.Info info)
 	{
-		return Arrays.asList((SetValue<?>)
+		return Arrays.asList((SetValue)
 			connectionPoolIdle.map(info.getIdleLevel()),
 			connectionPoolGet.map(info.getCounter().getGetCounter()),
 			connectionPoolPut.map(info.getCounter().getPutCounter()),
@@ -73,9 +72,9 @@ final class HistoryModel extends Item
 	private static final LongField rollbackWithoutConnection = new LongField().toFinal();
 	private static final LongField rollbackWithConnection = new LongField().toFinal();
 
-	static List<SetValue<?>> map(final TransactionCounters info)
+	static List<SetValue> map(final TransactionCounters info)
 	{
-		return Arrays.asList((SetValue<?>)
+		return Arrays.asList((SetValue)
 			commitWithoutConnection  .map(info.getCommitWithoutConnection()),
 			commitWithConnection     .map(info.getCommitWithConnection()),
 			rollbackWithoutConnection.map(info.getRollbackWithoutConnection()),
@@ -89,9 +88,9 @@ final class HistoryModel extends Item
 	private static final IntegerField itemCacheReplacementRuns = new IntegerField().toFinal().min(0);
 	private static final IntegerField itemCacheReplacements = new IntegerField().toFinal().min(0);
 
-	static List<SetValue<?>> map(final ItemCacheSummary info)
+	static List<SetValue> map(final ItemCacheSummary info)
 	{
-		return Arrays.asList((SetValue<?>)
+		return Arrays.asList((SetValue)
 			itemCacheHits  .map(info.getHits()),
 			itemCacheMisses.map(info.getMisses()),
 
@@ -106,9 +105,9 @@ final class HistoryModel extends Item
 	private static final LongField queryCacheReplacements = new LongField().toFinal();
 	private static final LongField queryCacheInvalidations = new LongField().toFinal();
 
-	static List<SetValue<?>> map(final QueryCacheInfo info)
+	static List<SetValue> map(final QueryCacheInfo info)
 	{
-		return Arrays.asList((SetValue<?>)
+		return Arrays.asList((SetValue)
 			queryCacheHits         .map(info.getHits()),
 			queryCacheMisses       .map(info.getMisses()),
 			queryCacheReplacements .map(info.getReplacements()),
@@ -129,9 +128,9 @@ final class HistoryModel extends Item
 	private static final IntegerField mediasNotModified   = new IntegerField().toFinal().min(0);
 	private static final IntegerField mediasDelivered     = new IntegerField().toFinal().min(0);
 
-	static List<SetValue<?>> map(final MediaSummary info)
+	static List<SetValue> map(final MediaSummary info)
 	{
-		return Arrays.asList((SetValue<?>)
+		return Arrays.asList((SetValue)
 			mediasRedirectFrom .map(info.getRedirectFrom()),
 			mediasException    .map(info.getException()),
 			mediasGuessedUrl   .map(info.getGuessedUrl()),
@@ -147,9 +146,9 @@ final class HistoryModel extends Item
 
 	private static final LongField clusterSenderInvalidationSplit = new LongField().toFinal();
 
-	static List<SetValue<Long>> map(final ClusterSenderInfo info)
+	static List<SetValue> map(final ClusterSenderInfo info)
 	{
-		return Collections.singletonList(
+		return Arrays.asList((SetValue)
 			clusterSenderInvalidationSplit.map(info!=null ? info.getInvalidationSplit() : 0));
 	}
 
@@ -159,9 +158,9 @@ final class HistoryModel extends Item
 	private static final LongField clusterListenerWrongSecret  = new LongField().toFinal();
 	private static final LongField clusterListenerFromMyself   = new LongField().toFinal();
 
-	static List<SetValue<?>> map(final ClusterListenerInfo info)
+	static List<SetValue> map(final ClusterListenerInfo info)
 	{
-		return Arrays.asList((SetValue<?>)
+		return Arrays.asList((SetValue)
 			clusterListenerException   .map(info!=null ? info.getException()    : 0),
 			clusterListenerMissingMagic.map(info!=null ? info.getMissingMagic() : 0),
 			clusterListenerWrongSecret .map(info!=null ? info.getWrongSecret()  : 0),

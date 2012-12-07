@@ -54,9 +54,9 @@ final class HistoryItemCache extends Item
 	@SuppressWarnings("unused") private static final CopyConstraint threadCC = new CopyConstraint(model, thread);
 	@SuppressWarnings("unused") private static final CopyConstraint runningCC = new CopyConstraint(model, running);
 
-	static List<SetValue<?>> map(final HistoryModel m)
+	static List<SetValue> map(final HistoryModel m)
 	{
-		return Arrays.asList((SetValue<?>)
+		return Arrays.asList((SetValue)
 			model         .map(m),
 			date          .map(HistoryModel.date.get(m)),
 			initializeDate.map(HistoryModel.initializeDate.get(m)),
@@ -80,9 +80,9 @@ final class HistoryItemCache extends Item
 	private static final LongField invalidationsOrdered = new LongField().toFinal();
 	private static final LongField invalidationsDone = new LongField().toFinal();
 
-	static List<SetValue<?>> map(final ItemCacheInfo info)
+	static List<SetValue> map(final ItemCacheInfo info)
 	{
-		return Arrays.asList((SetValue<?>)
+		return Arrays.asList((SetValue)
 			type  .map(info.getType().getID()),
 			limit .map(info.getLimit()),
 			level .map(info.getLevel()),
