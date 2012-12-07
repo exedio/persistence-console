@@ -53,9 +53,9 @@ final class HistoryClusterNode extends Item
 	@SuppressWarnings("unused") private static final CopyConstraint threadCC = new CopyConstraint(model, thread);
 	@SuppressWarnings("unused") private static final CopyConstraint runningCC = new CopyConstraint(model, running);
 
-	static List<SetValue> map(final HistoryModel m)
+	static List<SetValue<?>> map(final HistoryModel m)
 	{
-		return Arrays.asList((SetValue)
+		return Arrays.asList((SetValue<?>)
 			model         .map(m),
 			date          .map(HistoryModel.date.get(m)),
 			initializeDate.map(HistoryModel.initializeDate.get(m)),
@@ -72,9 +72,9 @@ final class HistoryClusterNode extends Item
 	private static final CompositeField<SequenceInfo> pong = CompositeField.create(SequenceInfo.class).toFinal();
 	private static final CompositeField<SequenceInfo> invalidate = CompositeField.create(SequenceInfo.class).toFinal();
 
-	static List<SetValue> map(final ClusterListenerInfo.Node node)
+	static List<SetValue<?>> map(final ClusterListenerInfo.Node node)
 	{
-		return Arrays.asList((SetValue)
+		return Arrays.asList((SetValue<?>)
 				id            .map(node.getID()),
 				firstEncounter.map(node.getFirstEncounter()),
 				fromAddress   .map(node.getAddress().toString()),

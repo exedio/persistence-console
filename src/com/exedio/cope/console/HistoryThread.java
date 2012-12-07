@@ -205,7 +205,7 @@ final class HistoryThread extends Thread
 		// process data
 		final ItemCacheSummary itemCacheSummary = new ItemCacheSummary(itemCacheInfos);
 		final MediaSummary mediaSummary = new MediaSummary(mediaInfos);
-		final ArrayList<SetValue> sv = new ArrayList<SetValue>();
+		final ArrayList<SetValue<?>> sv = new ArrayList<SetValue<?>>();
 
 		// save data
 		try
