@@ -24,7 +24,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 import com.exedio.cope.reflect.FeatureField;
 
-public class FeatureItem extends Item
+public final class FeatureItem extends Item
 {
 	/** @cope.initial */
 	static final FeatureField<Feature> feature = FeatureField.create().optional();
@@ -64,7 +64,7 @@ public class FeatureItem extends Item
 			throws
 				com.exedio.cope.StringLengthViolationException
 	{
-		this(new com.exedio.cope.SetValue[]{
+		this(new com.exedio.cope.SetValue<?>[]{
 			FeatureItem.feature.map(feature),
 			FeatureItem.string.map(string),
 		});

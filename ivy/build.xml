@@ -6,6 +6,9 @@
 		<copy overwrite="true" file="artifacts/exedio-cope-util-jar.jar" tofile="../lib/exedio-cope-util.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-util-log.txt" tofile="../lib/exedio-cope-util.jar-CHANGELOG" />
 		<copy overwrite="true" file="artifacts/exedio-cope-util-src.zip" tofile="../lib/exedio-cope-util.jar-src.zip" />
+		<copy overwrite="true" file="artifacts/exedio-cope-servletutil-jar.jar" tofile="../lib/exedio-cope-servletutil.jar" />
+		<copy overwrite="true" file="artifacts/exedio-cope-servletutil-log.txt" tofile="../lib/exedio-cope-servletutil-log.txt" />
+		<copy overwrite="true" file="artifacts/exedio-cope-servletutil-src.zip" tofile="../lib/exedio-cope-servletutil-src.zip" />
 		<copy overwrite="true" file="artifacts/exedio-cops-jar.jar" tofile="../lib/exedio-cops.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cops-log.txt" tofile="../lib/exedio-cops.jar-CHANGELOG" />
 		<copy overwrite="true" file="artifacts/exedio-cops-src.zip" tofile="../lib/exedio-cops.jar-src.zip" />
@@ -14,6 +17,7 @@
 		<copy overwrite="true" file="artifacts/exedio-cope-jar.jar" tofile="../lib/exedio-cope.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-log.txt" tofile="../lib/exedio-cope.jar-CHANGELOG" />
 		<copy overwrite="true" file="artifacts/exedio-cope-src.zip" tofile="../lib/exedio-cope.jar-src.zip" />
+		<copy overwrite="true" file="artifacts/exedio-cope-junit-jar.jar" tofile="../lib/exedio-cope-junit.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-instrument-jar.jar" tofile="../lib/exedio-cope-instrument.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-instrument-annotations-jar.jar" tofile="../lib/exedio-cope-instrument-annotations.jar" />
 		<copy overwrite="true" file="artifacts/servlet-api-jar.jar" tofile="../lib/servlet-api.jar" />
@@ -21,7 +25,7 @@
 		<copy overwrite="true" file="artifacts/trove-jar.jar" tofile="../lib/trove.jar" />
 		<copy overwrite="true" file="artifacts/cojen-jar.jar" tofile="../lib/cojen.jar" />
 		<copy overwrite="true" file="artifacts/bsh-core.jar" tofile="../lib/bsh-core.jar" />
-		<copy overwrite="true" file="artifacts/log4j-bundle.jar" tofile="../lib/log4j-bundle.jar" />
+		<copy overwrite="true" file="artifacts/slf4j-api-jar.jar" tofile="../lib/slf4j-api.jar" />
 		<copy overwrite="true" file="artifacts/hsqldb-jar.jar" tofile="../lib/jdbc/hsqldb.jar" />
 		<copy overwrite="true" file="artifacts/mysql-connector-java-jar.jar" tofile="../lib/jdbc/mysql-connector-java.jar" />
 		<copy overwrite="true" file="artifacts/findbugs-dist.tar.gz" tofile="../lib/findbugs.tar.gz" />

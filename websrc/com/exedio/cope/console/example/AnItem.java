@@ -74,7 +74,7 @@ public class AnItem extends Item
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
 	{
-		this(new com.exedio.cope.SetValue[]{
+		this(new com.exedio.cope.SetValue<?>[]{
 			AnItem.aField.map(aField),
 			AnItem.letter.map(letter),
 			AnItem.secondLetter.map(secondLetter),

@@ -57,7 +57,7 @@ public final class StringLengthItem extends Item
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
 	{
-		this(new com.exedio.cope.SetValue[]{
+		this(new com.exedio.cope.SetValue<?>[]{
 			StringLengthItem.empty.map(empty),
 			StringLengthItem.emptyOk.map(emptyOk),
 			StringLengthItem.normal.map(normal),

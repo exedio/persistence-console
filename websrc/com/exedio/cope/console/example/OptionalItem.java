@@ -48,7 +48,7 @@ public final class OptionalItem extends Item
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
 	{
-		this(new com.exedio.cope.SetValue[]{
+		this(new com.exedio.cope.SetValue<?>[]{
 			OptionalItem.mandatory.map(mandatory),
 			OptionalItem.optional.map(optional),
 			OptionalItem.optionalOk.map(optionalOk),

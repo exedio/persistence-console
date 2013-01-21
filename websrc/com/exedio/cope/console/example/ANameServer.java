@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.Condition;
 import com.exedio.cope.Item;
+import com.exedio.cope.Join;
 import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaPath;
@@ -111,7 +112,19 @@ public final class ANameServer extends MediaPath
 	}
 
 	@Override
-	public Condition isNotNull()
+	public Condition isNull(final Join join)
+	{
+		return source.isNull();
+	}
+
+	@Override
+	public final Condition isNotNull()
+	{
+		return source.isNotNull();
+	}
+
+	@Override
+	public Condition isNotNull(final Join join)
 	{
 		return source.isNotNull();
 	}

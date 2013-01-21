@@ -48,7 +48,7 @@ public final class ASubItem extends AnItem
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
 	{
-		this(new com.exedio.cope.SetValue[]{
+		this(new com.exedio.cope.SetValue<?>[]{
 			com.exedio.cope.console.example.AnItem.aField.map(aField),
 			com.exedio.cope.console.example.AnItem.letter.map(letter),
 			com.exedio.cope.console.example.AnItem.secondLetter.map(secondLetter),

@@ -55,7 +55,7 @@ public final class CopyItem extends Item
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
 	{
-		this(new com.exedio.cope.SetValue[]{
+		this(new com.exedio.cope.SetValue<?>[]{
 			CopyItem.origin.map(origin),
 			CopyItem.string.map(string),
 			CopyItem.integer.map(integer),
