@@ -221,12 +221,6 @@ final class MediaCop extends ConsoleCop implements Pageable
 
 		Media_Jspm.writeStats(out, this, media.getInfo());
 
-		if(!model.isConnected())
-		{
-			Console_Jspm.writeNotConnectedMessage(out, this);
-			return;
-		}
-
 		try
 		{
 			model.startTransaction(getClass().getName());

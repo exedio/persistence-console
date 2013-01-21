@@ -154,13 +154,6 @@ final class RevisionCop extends ConsoleCop implements Pageable
 	final void writeBody(final Out out)
 	{
 		final Model model = out.model;
-
-		if(!model.isConnected())
-		{
-			Console_Jspm.writeNotConnectedMessage(out, this);
-			return;
-		}
-
 		final Revisions revisions = model.getRevisions();
 
 		if(revisions==null)

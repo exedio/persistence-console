@@ -37,12 +37,6 @@ final class ItemCacheCop extends ConsoleCop
 	@Override
 	final void writeBody(final Out out)
 	{
-		if(!out.model.isConnected())
-		{
-			Console_Jspm.writeNotConnectedMessage(out, this);
-			return;
-		}
-
 		final ItemCacheInfo[] infos = out.model.getItemCacheInfo();
 		final ItemCacheSummary summary = new ItemCacheSummary(infos);
 		ItemCache_Jspm.writeBody(out, summary, infos);

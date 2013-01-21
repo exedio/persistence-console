@@ -23,6 +23,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.exedio.cope.Model.NotConnectedException;
 import com.exedio.cope.console.ConsoleServlet.Store;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
@@ -90,7 +91,16 @@ abstract class Console_Jspm
 		Menue_Jspm.write(out, cop);
 		%>
 		<h2><%=cop.name%></h2><%
-		cop.writeBody(out);
+		
+		try
+		{
+			cop.writeBody(out);
+		}
+		catch(final NotConnectedException e)
+		{
+			writeNotConnectedMessage(out, cop);
+		}
+		
 		%>
 		<hr><%
 		Menue_Jspm.write(out, cop);
@@ -193,7 +203,7 @@ abstract class Console_Jspm
 		%><form action="<%=cop%>" method="POST"><input type="submit" name="<%=ConsoleServlet.CONNECT%>" value="connect" /></form><%
 	}
 
-	static final void writeNotConnectedMessage(final Out out, final ConsoleCop cop)
+	private static final void writeNotConnectedMessage(final Out out, final ConsoleCop cop)
 	{
 		%>
 		<table>

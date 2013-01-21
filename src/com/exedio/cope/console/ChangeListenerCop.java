@@ -81,6 +81,13 @@ final class ChangeListenerCop extends ConsoleCop
 
 	private static final ChangeListenerDispatcherInfo dispatcherInfo(final Model model)
 	{
-		return isConnected(model) ? model.getChangeListenerDispatcherInfo() : null;
+		try
+		{
+			return model.getChangeListenerDispatcherInfo();
+		}
+		catch(final Model.NotConnectedException e)
+		{
+			return null;
+		}
 	}
 }

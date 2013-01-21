@@ -54,12 +54,7 @@ final class SchemaCop extends ConsoleCop
 	@Override
 	final void writeBody(final Out out)
 	{
-		if(!out.model.isConnected())
-		{
-			Console_Jspm.writeNotConnectedMessage(out, this);
-			return;
-		}
-
+		failIfNotConnected(out.model);
 		SchemaSchema_Jspm.writeBody(this, out);
 		SchemaConstraints_Jspm.writeBody(this, out);
 		SchemaDetails_Jspm.writeBody(this, out);

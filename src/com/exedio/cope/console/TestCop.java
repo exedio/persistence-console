@@ -104,11 +104,8 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 	{
 		final Model model = out.model;
 
-		if(!toleratesNotConnected() && !model.isConnected())
-		{
-			Console_Jspm.writeNotConnectedMessage(out, this);
-			return;
-		}
+		if(!toleratesNotConnected())
+			failIfNotConnected(out.model);
 
 		final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
 		Test_Jspm.writeBody(
