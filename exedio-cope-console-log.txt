@@ -7,4 +7,5 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* MediaTestable supported
 * History removed, use Sampler instead.

@@ -18,16 +18,15 @@
 
 package com.exedio.cope.console;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
-import com.exedio.cope.pattern.MediaImageMagickFilter;
+import com.exedio.cope.pattern.MediaTestable;
 
-final class MediaTestableCop extends TestCop<MediaImageMagickFilter>
+final class MediaTestableCop extends TestCop<MediaTestable>
 {
 	MediaTestableCop(final Args args, final TestArgs testArgs)
 	{
@@ -47,14 +46,14 @@ final class MediaTestableCop extends TestCop<MediaImageMagickFilter>
 	}
 
 	@Override
-	List<MediaImageMagickFilter> getItems(final Model model)
+	List<MediaTestable> getItems(final Model model)
 	{
-		final ArrayList<MediaImageMagickFilter> result = new ArrayList<MediaImageMagickFilter>();
+		final ArrayList<MediaTestable> result = new ArrayList<MediaTestable>();
 
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof MediaImageMagickFilter)
-					result.add((MediaImageMagickFilter)feature);
+				if(feature instanceof MediaTestable)
+					result.add((MediaTestable)feature);
 
 		return result;
 	}
@@ -66,37 +65,38 @@ final class MediaTestableCop extends TestCop<MediaImageMagickFilter>
 	}
 
 	@Override
-	void writeValue(final Out out, final MediaImageMagickFilter testable, final int h)
+	void writeValue(final Out out, final MediaTestable testable, final int h)
 	{
+		final Feature feature = (Feature)testable;
 		switch(h)
 		{
-			case 0: out.write(testable.getType().getID()); break;
-			case 1: out.write(testable.getName()); break;
+			case 0: out.write(feature.getType().getID()); break;
+			case 1: out.write(feature.getName()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		};
 	}
 
 	@Override
-	String getID(final MediaImageMagickFilter testable)
+	String getID(final MediaTestable testable)
 	{
-		return testable.getID();
+		return ((Feature)testable).getID();
 	}
 
 	@Override
-	MediaImageMagickFilter forID(final Model model, final String id)
+	MediaTestable forID(final Model model, final String id)
 	{
-		return (MediaImageMagickFilter)model.getFeature(id);
+		return (MediaTestable)model.getFeature(id);
 	}
 
 	@Override
-	int check(final MediaImageMagickFilter testable)
+	int check(final MediaTestable testable)
 	{
 		try
 		{
 			testable.test();
 		}
-		catch(final IOException e)
+		catch(final Exception e)
 		{
 			throw new RuntimeException(e);
 		}
