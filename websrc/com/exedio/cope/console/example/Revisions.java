@@ -37,6 +37,8 @@ import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.misc.DirectRevisionsFactory;
 import com.exedio.dsmf.SQLRuntimeException;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 public final class Revisions
 {
 	static final com.exedio.cope.Revisions.Factory revisions(final int length)
@@ -91,6 +93,7 @@ public final class Revisions
 		return DirectRevisionsFactory.make(new com.exedio.cope.Revisions(result));
 	}
 
+	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
 	static final void revisions(final Model model)
 	{
 		final java.util.Properties dbinfo = model.getEnvironmentInfo().asProperties();
@@ -187,6 +190,7 @@ public final class Revisions
 		}
 	}
 
+	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
 	static final void removeMutex(final Model model)
 	{
 		Connection con = null;

@@ -1,57 +1,5 @@
 <FindBugsFilter>
 	<Match>
-		<!-- Could be refactored into a named static inner class -->
-		<Bug pattern="SIC_INNER_SHOULD_BE_STATIC_ANON" />
-		<Or>
-			<Class name="com.exedio.cope.console.TransactionCop$1" />
-			<Class name="com.exedio.cope.console.QueryCacheCop$Content$1" />
-		</Or>
-	</Match>
-	<Match>
-		<Or>
-			<!-- A prepared statement is generated from a nonconstant String -->
-			<Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" />
-		</Or>
-		<Or>
-			<Class name="com.exedio.cope.console.example.Revisions" />
-		</Or>
-	</Match>
-	<Match>
-		<Or>
-			<!-- Passes a nonconstant String to an execute method on an SQL statement -->
-			<Bug pattern="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE" />
-		</Or>
-		<Or>
-			<Class name="com.exedio.cope.console.SchemaNice" />
-		</Or>
-	</Match>
-	<Match>
-		<Or>
-			<!-- Class extends Servlet class and uses instance variables -->
-			<Bug pattern="MTIA_SUSPECT_SERVLET_INSTANCE_FIELD" />
-			<!-- Mutable servlet field -->
-			<Bug pattern="MSF_MUTABLE_SERVLET_FIELD" />
-			<!-- Non-transient non-serializable instance field in serializable class -->
-			<Bug pattern="SE_BAD_FIELD" />
-		</Or>
-		<Or>
-			<Class name="com.exedio.cope.console.ConsoleServlet" />
-		</Or>
-	</Match>
-	<Match>
-		<!-- Inefficient use of keySet iterator instead of entrySet iterator -->
-		<Bug pattern="WMI_WRONG_MAP_ITERATOR" />
-		<Or>
-			<Class name="com.exedio.cope.console.EnvironmentCop" />
-			<Class name="com.exedio.cope.console.Environment_Jspm" />
-		</Or>
-	</Match>
-	<Match>
-		<!-- may fail to clean up java.io.InputStream -->
-		<Bug pattern="OBL_UNSATISFIED_OBLIGATION" />
-		<Class name="com.exedio.cope.console.example.ExampleServlet" />
-	</Match>
-	<Match>
 		<!-- Write to static field from instance method -->
 		<Bug pattern="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" />
 		<Or>

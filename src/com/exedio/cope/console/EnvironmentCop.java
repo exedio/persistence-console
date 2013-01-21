@@ -30,6 +30,7 @@ import java.util.TreeMap;
 import com.exedio.cope.Cope;
 import com.exedio.cope.Model;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 final class EnvironmentCop extends ConsoleCop
 {
@@ -71,6 +72,7 @@ final class EnvironmentCop extends ConsoleCop
 		Environment_Jspm.writeTest(out, current, makeTestedDatabases());
 	}
 
+	@SuppressFBWarnings("WMI_WRONG_MAP_ITERATOR")
 	private static final HashMap[] makeTestedDatabases()
 	{
 		final Properties p = new Properties();

@@ -30,6 +30,8 @@ import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Model;
 import com.exedio.cope.Transaction;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 final class TransactionCop extends ConsoleCop
 {
 	static final String ENABLE  = "txlistenerenable";
@@ -95,6 +97,7 @@ final class TransactionCop extends ConsoleCop
 		writeRecorded(out, model);
 	}
 
+	@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 	private void writeOpenTransations(
 			final Out out,
 			final Model model)

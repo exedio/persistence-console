@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.Model;
 import com.exedio.cope.QueryCacheHistogram;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 final class QueryCacheCop extends ConsoleCop
 {
 	static final String CLEAR  = "cache.clear";
@@ -102,6 +104,7 @@ final class QueryCacheCop extends ConsoleCop
 		final long maxHits;
 		final long minHits;
 
+		@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 		Content(final QueryCacheHistogram[] histogram, final boolean condense)
 		{
 			if(histogram.length>0)
