@@ -153,7 +153,6 @@ final class Media_Jspm extends Console_Jspm
 								%><b>disabled</b>, falling back to javax.imageio<%
 							}
 						}
-						%><form method="post" style="display:inline;"><input type="submit" value="test" style="font-size:70%;"><input type="hidden" name="<%=MediaStatsCop.TEST%>" value="<%=path.getID()%>"></form><%
 					}
 					if(path instanceof MediaFilter)
 					{

@@ -135,6 +135,7 @@ abstract class ConsoleCop<S> extends Cop
 					new SerializationCheckCop(args),
 					new DataFieldCop(args),
 					new MediaStatsCop(args),
+					new MediaTestableCop(args, testArgs),
 					new MediaTypeCop(args, testArgs),
 					new ClusterCop(args),
 					new ThreadCop(args),
@@ -208,6 +209,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_SERIALIZATION_CHECK = "serialization";
 	static final String TAB_DATA_FIELD = "datafield";
 	static final String TAB_MEDIA_STATS = "mediastats";
+	static final String TAB_MEDIA_TESTABLE = "mediatestable";
 	static final String TAB_MEDIA_TYPE = "mediatype";
 	static final String TAB_CLUSTER = "cluster";
 	static final String TAB_THREAD = "thread";
@@ -276,6 +278,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new DataFieldCop(args);
 		if(TAB_MEDIA_STATS.equals(tab))
 			return new MediaStatsCop(args);
+		if(TAB_MEDIA_TESTABLE.equals(tab))
+			return new MediaTestableCop(args, new TestCop.TestArgs(request));
 		if(TAB_MEDIA_TYPE.equals(tab))
 			return new MediaTypeCop(args, new TestCop.TestArgs(request));
 		if(TAB_CLUSTER.equals(tab))
