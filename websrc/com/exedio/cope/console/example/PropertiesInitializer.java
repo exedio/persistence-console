@@ -27,6 +27,7 @@ import javax.servlet.ServletContextListener;
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.ServletUtil;
+import com.exedio.cope.servletutil.ServletProperties;
 
 public class PropertiesInitializer implements ServletContextListener
 {
@@ -38,7 +39,7 @@ public class PropertiesInitializer implements ServletContextListener
 		ConnectToken.setProperties(Main.reducedModel,
 				new ConnectProperties(
 						new File(context.getRealPath("WEB-INF/cope-reduced.properties")),
-						ServletUtil.getPropertyContext(context)
+						ServletProperties.create(context)
 				)
 		);
 	}
