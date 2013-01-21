@@ -24,6 +24,7 @@ import static com.exedio.cope.console.Format.format;
 import java.util.List;
 
 import com.exedio.cope.pattern.Hash;
+import com.exedio.cope.pattern.HashAlgorithm;
 
 final class Hash_Jspm
 {
@@ -41,7 +42,6 @@ final class Hash_Jspm
 			<tr>
 				<th rowspan="2">Type</th>
 				<th rowspan="2">Name</th>
-				<th rowspan="2">Encoding</th>
 				<th colspan="2">Algorithm</th><%
 			
 			if(measure)
@@ -52,19 +52,18 @@ final class Hash_Jspm
 			%>
 			</tr>
 			<tr>
-				<th>Name</th>
-				<th>Length</th>
+				<th>ID</th>
+				<th>Description</th>
 			</tr><%
 			for(final Hash hash : hashes)
 			{
-				final Hash.Algorithm algorithm = hash.getAlgorithm();
+				final HashAlgorithm algorithm = hash.getAlgorithm2();
 			%>
 			<tr>
 				<td class="text"><%=hash.getType().getID()%></td>
 				<td class="text"><%=hash.getName()%></td>
-				<td class="text"><%=hash.getEncoding()%></td>
-				<td class="text"><%=algorithm.name()%></td>
-				<td><%=format(algorithm.length())%></td><%
+				<td class="text"><%=algorithm.getID()%></td>
+				<td class="text"><%=algorithm.getDescription()%></td><%
 			
 			if(measure)
 			{
