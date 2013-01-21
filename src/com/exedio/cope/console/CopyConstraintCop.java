@@ -49,8 +49,8 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	{
 		final ArrayList<CopyConstraint> result = new ArrayList<CopyConstraint>();
 
-		for(final Type<?> t : model.getTypes())
-			result.addAll(t.getDeclaredCopyConstraints());
+		for(final Type<?> type : model.getTypes())
+			result.addAll(type.getDeclaredCopyConstraints());
 
 		return result;
 	}
