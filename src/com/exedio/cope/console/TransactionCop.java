@@ -54,7 +54,7 @@ final class TransactionCop extends ConsoleCop
 
 		if(isPost(request))
 		{
-			if(request.getParameter(ENABLE)!=null && !model.getModificationListeners().contains(listener))
+			if(request.getParameter(ENABLE)!=null && !model.getChangeListeners().contains(listener))
 			{
 				model.addChangeListener(listener);
 			}
