@@ -19,9 +19,10 @@
 package com.exedio.cope.console;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
@@ -60,11 +61,11 @@ final class ConnectCop extends ConsoleCop
 		final ConnectProperties props = model.getConnectProperties();
 		final String source = props.getSource();
 		String sourceContent = null;
-		FileReader r = null;
+		InputStreamReader r = null;
 		try
 		{
 			final File f = new File(source);
-			r = new FileReader(f);
+			r = new InputStreamReader(new FileInputStream(f), "US-ASCII");
 			final StringBuilder bf = new StringBuilder();
 
 			final char[] b = new char[20*1024];
