@@ -5,7 +5,6 @@
 		<Or>
 			<Class name="com.exedio.cope.console.TransactionCop$1" />
 			<Class name="com.exedio.cope.console.QueryCacheCop$Content$1" />
-			<Class name="com.exedio.cope.console.HistoryTest$1" />
 		</Or>
 	</Match>
 	<Match>
@@ -14,7 +13,6 @@
 			<Bug pattern="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" />
 		</Or>
 		<Or>
-			<Class name="com.exedio.cope.console.HistoryPurge" />
 			<Class name="com.exedio.cope.console.example.Revisions" />
 		</Or>
 	</Match>
@@ -52,16 +50,5 @@
 		<!-- may fail to clean up java.io.InputStream -->
 		<Bug pattern="OBL_UNSATISFIED_OBLIGATION" />
 		<Class name="com.exedio.cope.console.example.ExampleServlet" />
-	</Match>
-	<Match>
-		<Or>
-			<!-- Using notify() rather than notifyAll() -->
-			<Bug pattern="NO_NOTIFY_NOT_NOTIFYALL" />
-			<!-- Unconditional wait -->
-			<Bug pattern="UW_UNCOND_WAIT" />
-			<!-- Wait not in loop -->
-			<Bug pattern="WA_NOT_IN_LOOP" />
-		</Or>
-		<Class name="com.exedio.cope.console.HistoryThread" />
 	</Match>
 </FindBugsFilter>

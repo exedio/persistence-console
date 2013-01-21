@@ -67,7 +67,6 @@ public final class ConsoleServlet extends CopsServlet
 	private HashMap<Class<? extends ConsoleCop>, Store> stores = null;
 	private ConnectToken connectToken = null;
 	private Model model = null;
-	private History history;
 
 	static final Resource stylesheet = new Resource("console.css");
 	static final Resource schemaScript = new Resource("schema.js");
@@ -104,13 +103,11 @@ public final class ConsoleServlet extends CopsServlet
 
 		stores = new HashMap<Class<? extends ConsoleCop>, Store>();
 		model = ServletUtilX.getConnectedModel(this);
-		history = new History(model);
 	}
 
 	@Override
 	public void destroy()
 	{
-		history.stop();
 		if(connectToken!=null && !connectToken.isReturned())
 		{
 			connectToken.returnIt();
@@ -141,29 +138,7 @@ public final class ConsoleServlet extends CopsServlet
 		throws IOException
 	{
 		final Model model;
-		final boolean historyModelShown = Cop.getBooleanParameter(request, ConsoleCop.Args.HISTORY_MODEL_SHOWN);
-		ConnectToken historyConnectToken = null;
-		try
 		{
-			if(history.isAvailable())
-			{
-				if(Cop.isPost(request))
-				{
-					if(request.getParameter(HISTORY_START)!=null)
-						history.start();
-					else if(request.getParameter(HISTORY_STOP)!=null)
-						history.stop();
-				}
-				model = historyModelShown ? HistoryThread.HISTORY_MODEL : this.model;
-				if(historyModelShown)
-				{
-					historyConnectToken =
-						ConnectToken.issue(
-								HistoryThread.HISTORY_MODEL,
-								"ConsoleServlet");
-				}
-			}
-			else
 			{
 				model = this.model;
 			}
@@ -174,7 +149,7 @@ public final class ConsoleServlet extends CopsServlet
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
 			if(ajax)
 				response.setContentType("text/xml; charset="+UTF8);
-			final Out out = new Out(request, model, this, history, new PrintStream(response.getOutputStream(), false, UTF8));
+			final Out out = new Out(request, model, this, new PrintStream(response.getOutputStream(), false, UTF8));
 			if(ajax)
 				cop.writeAjax(out);
 			else
@@ -203,16 +178,7 @@ public final class ConsoleServlet extends CopsServlet
 			}
 			out.close();
 		}
-		finally
-		{
-			if(historyConnectToken!=null)
-				historyConnectToken.returnIt();
-		}
 	}
-
-	static final String HISTORY_PROPERTY_FILE = "com.exedio.cope.console.log"; // TODO rename to history
-	static final String HISTORY_START = "history.start";
-	static final String HISTORY_STOP  = "history.stop";
 
 
 	static class Store<S>

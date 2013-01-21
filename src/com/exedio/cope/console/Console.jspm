@@ -85,11 +85,6 @@ abstract class Console_Jspm
 			}
 			%>
 		</div><%
-		if(cop.args.historyModelShown)
-		{
-		%>
-		<div class="authenticated">Showing model of COPE History (<a href="<%=cop.toHistoryModelShown(false)%>">off</a>).</div><%
-		}
 		%>
 		<br clear="right"><%
 		Menue_Jspm.write(out, cop);

@@ -37,14 +37,12 @@ final class Out extends OutBasic
 	final HttpServletRequest request;
 	final Model model;
 	private final ConsoleServlet servlet;
-	final History history;
 	private int nextId = 0;
 
 	Out(
 			final HttpServletRequest request,
 			final Model model,
 			final ConsoleServlet servlet,
-			final History history,
 			final PrintStream bf)
 	{
 		super(bf);
@@ -52,7 +50,6 @@ final class Out extends OutBasic
 		this.request = request;
 		this.model = model;
 		this.servlet = servlet;
-		this.history = history;
 	}
 
 	void writeRaw(final String s)

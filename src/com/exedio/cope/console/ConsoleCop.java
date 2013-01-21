@@ -35,30 +35,25 @@ abstract class ConsoleCop<S> extends Cop
 {
 	protected static class Args
 	{
-		static final String HISTORY_MODEL_SHOWN = "sh";
 		private static final String AUTO_REFRESH = "ar";
 
 		final ConsoleServlet servlet;
-		final boolean historyModelShown;
 		final int autoRefresh;
 
-		Args(final ConsoleServlet servlet, final boolean historyModelShown, final int autoRefresh)
+		Args(final ConsoleServlet servlet, final int autoRefresh)
 		{
 			this.servlet = servlet;
-			this.historyModelShown = historyModelShown;
 			this.autoRefresh = autoRefresh;
 		}
 
 		Args(final ConsoleServlet servlet, final HttpServletRequest request)
 		{
 			this.servlet = servlet;
-			this.historyModelShown = getBooleanParameter(request, HISTORY_MODEL_SHOWN);
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
 		}
 
 		void addParameters(final ConsoleCop cop)
 		{
-			cop.addParameter(HISTORY_MODEL_SHOWN, historyModelShown);
 			cop.addParameter(AUTO_REFRESH, autoRefresh, 0);
 		}
 	}
@@ -89,14 +84,9 @@ abstract class ConsoleCop<S> extends Cop
 
 	protected abstract ConsoleCop newArgs(final Args args);
 
-	final ConsoleCop toHistoryModelShown(final boolean historyModelShown)
-	{
-		return newArgs(new Args(args.servlet, historyModelShown, args.autoRefresh));
-	}
-
 	final ConsoleCop toAutoRefresh(final int autoRefresh)
 	{
-		return newArgs(new Args(args.servlet, args.historyModelShown, autoRefresh));
+		return newArgs(new Args(args.servlet, autoRefresh));
 	}
 
 	MediaCop toMedia(final MediaPath media)
@@ -146,7 +136,6 @@ abstract class ConsoleCop<S> extends Cop
 					new HiddenCop(args),
 					new ChangeListenerCop(args),
 					new ModificationListenerCop(args),
-					new HistoryCop(args),
 				};
 	}
 
@@ -204,7 +193,6 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_TRANSACTION = "transactions";
 	static final String TAB_ITEM_CACHE = "itemcache";
 	static final String TAB_QUERY_CACHE = "querycache";
-	static final String TAB_HISTORY = "history";
 	static final String TAB_SEQUENCE = "sequence";
 	static final String TAB_SERIALIZATION_CHECK = "serialization";
 	static final String TAB_DATA_FIELD = "datafield";
@@ -268,8 +256,6 @@ abstract class ConsoleCop<S> extends Cop
 			return new ItemCacheCop(args);
 		if(TAB_QUERY_CACHE.equals(tab))
 			return QueryCacheCop.getQueryCacheCop(args, request);
-		if(TAB_HISTORY.equals(tab))
-			return HistoryCop.getHistoryCop(args, request);
 		if(TAB_SEQUENCE.equals(tab))
 			return new SequenceCop(args, new TestCop.TestArgs(request));
 		if(TAB_SERIALIZATION_CHECK.equals(tab))

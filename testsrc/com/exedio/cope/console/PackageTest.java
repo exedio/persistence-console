@@ -30,7 +30,6 @@ public class PackageTest extends TestCase
 
 		suite.addTestSuite(MimeTypesTest.class);
 		suite.addTestSuite(QueryCacheTest.class);
-		suite.addTestSuite(HistoryTest.class);
 		suite.addTestSuite(RevisionLineTest.class);
 
 		return suite;

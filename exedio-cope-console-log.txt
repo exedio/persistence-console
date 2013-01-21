@@ -7,3 +7,4 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* History removed, use Sampler instead.
