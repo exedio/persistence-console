@@ -39,6 +39,8 @@ import com.exedio.cope.util.ModificationListener;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 public final class ExampleServlet extends CopsServlet
 {
 	private static final long serialVersionUID = 1l;
@@ -67,6 +69,7 @@ public final class ExampleServlet extends CopsServlet
 	static final String FEATURE_FIELD_STRING  = "featureField.string";
 	static final String FEATURE_FIELD_SUBMIT  = "featureField.submit";
 
+	@SuppressFBWarnings("SE_BAD_FIELD")
 	private final ArrayList<ConnectToken> connectTokens = new ArrayList<ConnectToken>();
 	static int changeListenerNumber = 0;
 	static int modificationListenerNumber = 0;

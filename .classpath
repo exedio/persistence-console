@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="lib/exedio-cope.jar" sourcepath="lib/exedio-cope.jar-src.zip"/>
 	<classpathentry kind="lib" path="lib/exedio-cope-junit.jar" sourcepath="lib/exedio-cope.jar-src.zip"/>
 	<classpathentry kind="lib" path="lib/exedio-cope-servletutil.jar" sourcepath="lib/exedio-cope-servletutil-src.zip"/>
+	<classpathentry kind="lib" path="lib/findbugs-annotations.jar"/>
 	<classpathentry kind="output" path=".eclipse-output"/>
 </classpath>
