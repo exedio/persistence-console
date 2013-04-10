@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console.example;
 
+import static com.exedio.cope.util.CharsetName.UTF8;
+
 import java.io.IOException;
 
 import javax.servlet.ServletOutputStream;
@@ -83,7 +85,7 @@ public final class ANameServer extends MediaPath
 		final long now = System.currentTimeMillis();
 		response.setDateHeader(RESPONSE_EXPIRES, now+EXPIRES_OFFSET);
 
-		final byte[] contentBytes = content.getBytes("utf-8");
+		final byte[] contentBytes = content.getBytes(UTF8);
 		final long contentLength = contentBytes.length;
 		//System.out.println("contentLength="+String.valueOf(contentLength));
 		response.setHeader(RESPONSE_CONTENT_LENGTH, String.valueOf(contentLength));

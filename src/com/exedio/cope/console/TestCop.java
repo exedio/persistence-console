@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.util.CharsetName.UTF8;
 import static com.exedio.cope.console.Format.format;
 
 import java.util.Date;
@@ -158,7 +159,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 
 		final int headingsLength = getHeadings().length;
 		out.writeRaw(
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+			"<?xml version=\"1.0\" encoding=\"" + UTF8 + "\" standalone=\"yes\"?>" +
 			"<response");
 		if(nextItem!=null)
 		{
