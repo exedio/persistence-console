@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console.example;
 
-import com.exedio.cope.CopyConstraint;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.ItemField;
@@ -28,11 +27,9 @@ public final class CopyItem extends Item
 {
 	static final ItemField<CopyOriginItem> origin = ItemField.create(CopyOriginItem.class).toFinal();
 
-	static final StringField string = new StringField().toFinal();
-	static final CopyConstraint copyConstraintString = new CopyConstraint(origin, string);
+	static final StringField string = new StringField().toFinal().copyFrom(origin);
 
-	static final IntegerField integer = new IntegerField().toFinal();
-	static final CopyConstraint copyConstraintInteger = new CopyConstraint(origin, integer);
+	static final IntegerField integer = new IntegerField().toFinal().copyFrom(origin);
 
 
 	/**
