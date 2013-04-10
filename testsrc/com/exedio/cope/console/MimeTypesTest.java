@@ -43,6 +43,6 @@ public class MimeTypesTest extends TestCase
 		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		final OutBasic out = new OutBasic(new PrintStream(baos, false, UTF8));
 		MediaStatsCop.printContentTypes(out, Arrays.asList(actual));
-		assertEquals(expected, new String(baos.toByteArray(), "UTF8"));
+		assertEquals(expected, new String(baos.toByteArray(), UTF8));
 	}
 }
