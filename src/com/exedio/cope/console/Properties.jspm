@@ -97,7 +97,7 @@ final class Properties_Jspm extends Console_Jspm
 					}
 					else if(field instanceof Properties.FileField)
 					{
-						final File file = ((Properties.FileField)field).fileValue();
+						final File file = ((Properties.FileField)field).get();
 						if(file!=null)
 						{
 							try
