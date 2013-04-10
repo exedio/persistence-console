@@ -108,6 +108,7 @@ abstract class ConsoleCop<S> extends Cop
 					new ConnectTokenCop(args),
 					new SchemaCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
+					new UnsupportedCheckConstraintCop(args, testArgs),
 					new UpdateCounterCop(args, testArgs),
 					new SequenceCop(args, testArgs),
 					new TypeColumnCop(args, testArgs),
@@ -180,6 +181,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_CONNECT_TOKEN = "connectToken";
 	static final String TAB_SCHEMA = "schema";
 	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
+	static final String TAB_UNSUPPORTED_CHECK_CONSTRAINTS = "unsupportedcheckconstraints";
 	static final String TAB_TYPE_COLUMNS = "typecolumns";
 	static final String TAB_TYPE_COMPLETENESS = "typecompleteness";
 	static final String TAB_UPDATE_COUNTERS = "updatecounters";
@@ -226,6 +228,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new SchemaCop(args);
 		if(TAB_UNSUPPORTED_CONSTRAINTS.equals(tab))
 			return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
+		if(TAB_UNSUPPORTED_CHECK_CONSTRAINTS.equals(tab))
+			return new UnsupportedCheckConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_TYPE_COLUMNS.equals(tab))
 			return new TypeColumnCop(args, new TestCop.TestArgs(request));
 		if(TAB_TYPE_COMPLETENESS.equals(tab))

@@ -7,5 +7,6 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* checking unsupported CheckConstraints supported
 * MediaTestable supported
 * History removed, use Sampler instead.

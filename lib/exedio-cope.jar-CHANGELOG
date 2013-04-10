@@ -7,6 +7,61 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* bugfix: CheckConstraints referring to super class supported
+* instrumentor supports referring to features of super class
+* cluster network can be enabled via source of ConnectProperties as well,
+	if context is null, up to now this was possible via context only.
+	You need the folowing two properties:
+
+			cluster=true
+			cluster.secret=nnn
+
+* nested properties supported by adding:
+	- ConnectProperties#factory()
+	- DispatcherProperties
+	- SamplerProperties
+* LongField#defaultToRandom added
+	- supports simple value ranges only: [MIN_VALUE,MAX_VALUE] and [0,MAX_VALUE]
+* PasswordRecovery constructor accepts SecureRandom
+* LongField#range checks for illegal range, where maximum is less or equal to minimum
+* ItemField supports copyTo as a supplement to FunctionField#copyFrom
+* FunctionField#copyFrom supports multiple constraints.
+	This breaks backwards API compatibility:
+	- Use field.copyFrom(targetA).copyFrom(targetB) for multiple constraints,
+		instead of overriding targetA with targetB.
+	- field.copyFrom(null) is no longer allowed, and throws a NullPointerException
+
+* Composite supports serialization of template features
+	This breaks backwards API compatibility for Feature#mount(String, AnnotatedElement)
+* Enum[Set|Map]Field supports @CopeSchemaName for enum facets
+* EnumAnnotatedElement added
+* Price#nullToZero added
+* allow overriding between defaultTo/defaultToNow/defaultToNext
+* FunctionField#hasDefault added
+* EnumSetField implements Settable
+* EnumMapField implements Settable
+* MapField does not allow optional value fields anymore.
+	This breaks backwards API compatibility.
+* CopeAssert#list, #listg and #map do return unmodifiable collections.
+	This breaks backwards API compatibility.
+* LimitedListField#get returns unmodifiable list.
+	This breaks backwards API compatibility.
+* MapField#getMap returns unmodifiable map.
+	This breaks backwards API compatibility.
+* ConnectProperties field cluster replaced by schema.primaryKeyGenerator:
+
+	cluster=false   ->   schema.primaryKeyGenerator=memory   (was and is the default)
+	cluster=true    ->   schema.primaryKeyGenerator=sequence
+
+* ConnectProperties changed behaviour for cluster fields:
+	Up to now, with cluster=false (the default), a configuration of
+	the cluster network (cluster.secret=nnn) has been silently ignored.
+	From now on such a configuration will fail to connect, throwing
+	an IllegalArgumentException.
+* exedio-cope-test.jar calls ConnectProperties#ensureValidity, because
+	ConnectProperties do not call Properties#ensureValidity anymore.
+* MediaType supports image/x-png
+* MediaImageMagickThumbnail#outputContentTypeSame() added
 * MediaTestable added and implemented by MediaImageMagickFilter
 * Price#add(Price) checks for overflow and throws ArithmeticException
 * classes in package com.exedio.cope.junit moved from exedio-cope.jar to exedio-cope-junit.jar
