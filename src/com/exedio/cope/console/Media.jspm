@@ -28,7 +28,6 @@ import java.util.Set;
 import com.exedio.cope.Item;
 import com.exedio.cope.Query;
 import com.exedio.cope.misc.MediaSummary;
-import com.exedio.cope.pattern.CachedMedia;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaFilter;
 import com.exedio.cope.pattern.MediaPath;
@@ -201,7 +200,6 @@ final class Media_Jspm extends Console_Jspm
 	{
 		final MediaPath media = cop.media;
 		final MediaPath other = cop.other;
-		final CachedMedia mediaLastModified = media instanceof CachedMedia ? (CachedMedia)media : null;
 		final Media mediaLength = media instanceof Media ? (Media)media : null;
 		final boolean mediaInline = cop.mediaInline;
 		final boolean otherInline = cop.otherInline;
@@ -229,12 +227,9 @@ final class Media_Jspm extends Console_Jspm
 			<tr>
 				<th>Item</th>
 				<th>URL <a href="<%=cop.toggleInlineMedia()%>">IN</a></th>
-				<th>Content Type</th><%
-				if(mediaLastModified!=null)
-				{
-				%>
+				<th>Content Type</th>
 				<th>Last Modified</th><%
-				}
+				
 				if(mediaLength!=null)
 				{
 				%>
@@ -257,11 +252,8 @@ final class Media_Jspm extends Console_Jspm
 			<tr>
 				<td class="text"><%=item.getCopeID()%></td>
 				<td class="text"><% writeURL(out, media.getURL(item), contentType, mediaInline); %></td>
-				<td class="text"><%if(contentType!=null){%><%=contentType%><%}%></td><%
-				if(mediaLastModified!=null)
-				{
-				%>
-				<td><%=new Date(mediaLastModified.getLastModified(item))%><%
+				<td class="text"><%if(contentType!=null){%><%=contentType%><%}%></td>
+				<td><%=new Date(media.getLastModified(item))%><%
 				
 				if(mediaTouch)
 					writeCheckbox(out, MediaCop.TOUCH,       item);
@@ -269,7 +261,7 @@ final class Media_Jspm extends Console_Jspm
 					writeCheckbox(out, MediaCop.TOUCH_OTHER, item);
 				
 				%></td><%
-				}
+				
 				if(mediaLength!=null)
 				{
 				%>
