@@ -182,6 +182,8 @@ public final class ExampleServlet extends CopsServlet
 				item.setContent(resource("test.png"), "image/png");
 				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified()-(1000l*60*60*24*91))); // 91 days
 			}
+			new AMediaItem().setName("someName");
+			new AMediaItem().setName("someName error");
 			new FeatureItem(FeatureItem.intField1, FeatureItem.stringField1);
 			new FeatureItem(FeatureItem.intField2, FeatureItem.stringField2);
 			new FeatureItem((Feature)null, null);

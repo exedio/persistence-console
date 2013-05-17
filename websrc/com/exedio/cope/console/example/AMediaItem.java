@@ -25,6 +25,7 @@ import com.exedio.cope.pattern.MediaImageMagickThumbnail;
 import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cope.pattern.MediaThumbnail;
 import com.exedio.cope.pattern.PreventUrlGuessing;
+import com.exedio.cope.pattern.RedirectFrom;
 
 public final class AMediaItem extends Item
 {
@@ -33,6 +34,7 @@ public final class AMediaItem extends Item
 	 */
 	static final StringField name = new StringField().optional();
 
+	@RedirectFrom("contentAlt")
 	static final Media content = new Media().optional();
 
 	static final Media large = new Media().optional().lengthMax(50*1000*1000);
