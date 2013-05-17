@@ -22,7 +22,6 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.ratio;
 
-import java.util.Date;
 import java.util.Set;
 
 import com.exedio.cope.Item;
@@ -253,7 +252,7 @@ final class Media_Jspm extends Console_Jspm
 				<td class="text"><%=item.getCopeID()%></td>
 				<td class="text"><% writeURL(out, media.getURL(item), contentType, mediaInline); %></td>
 				<td class="text"><%if(contentType!=null){%><%=contentType%><%}%></td>
-				<td><%=new Date(media.getLastModified(item))%><%
+				<td><%=media.getLastModified(item)%><%
 				
 				if(mediaTouch)
 					writeCheckbox(out, MediaCop.TOUCH,       item);

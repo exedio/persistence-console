@@ -175,12 +175,12 @@ public final class ExampleServlet extends CopsServlet
 			{
 				final AMediaItem item = new AMediaItem();
 				item.setContent(resource("test.png"), "image/png");
-				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified()-(1000l*60*60*7))); // 7 hours
+				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified().getTime()-(1000l*60*60*7))); // 7 hours
 			}
 			{
 				final AMediaItem item = new AMediaItem();
 				item.setContent(resource("test.png"), "image/png");
-				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified()-(1000l*60*60*24*91))); // 91 days
+				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified().getTime()-(1000l*60*60*24*91))); // 91 days
 			}
 			new FeatureItem(FeatureItem.intField1, FeatureItem.stringField1);
 			new FeatureItem(FeatureItem.intField2, FeatureItem.stringField2);
