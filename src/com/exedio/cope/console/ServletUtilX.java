@@ -22,8 +22,8 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 
-import com.exedio.cope.Cope;
 import com.exedio.cope.Model;
+import com.exedio.cope.misc.ModelByString;
 
 /**
  * Partial copy of {@link com.exedio.cope.misc.ServletUtil}.
@@ -106,7 +106,7 @@ final class ServletUtilX
 		final Model result;
 		try
 		{
-			result = Cope.getModel(modelName);
+			result = ModelByString.get(modelName);
 		}
 		catch(final IllegalArgumentException e)
 		{

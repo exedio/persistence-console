@@ -30,7 +30,6 @@ import com.exedio.cope.Condition;
 import com.exedio.cope.Item;
 import com.exedio.cope.Join;
 import com.exedio.cope.StringField;
-import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaPath;
 
 /**
@@ -67,15 +66,18 @@ public final class ANameServer extends MediaPath
 	private static final String RESPONSE_CONTENT_LENGTH = "Content-Length";
 
 	@Override
-	public Media.Log doGet(
+	public void doGetAndCommit(
 			final HttpServletRequest request, final HttpServletResponse response,
 			final Item item)
-		throws IOException
+		throws IOException, NotFound
 	{
 		final String content = source.get(item);
+
+		commit();
+
 		//System.out.println("contentType="+contentType);
 		if(content==null)
-			return isNull;
+			throw notFoundIsNull();
 
 		if(content.endsWith(" error"))
 			throw new RuntimeException("test error in ANameServer");
@@ -104,7 +106,6 @@ public final class ANameServer extends MediaPath
 			if(out!=null)
 				out.close();
 		}
-		return delivered;
 	}
 
 	@Override
