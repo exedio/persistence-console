@@ -100,6 +100,8 @@ public final class Revisions
 		final HashMap<String, String> environment = new HashMap<String, String>();
 		for(final Map.Entry<Object, Object> entry : dbinfo.entrySet())
 			environment.put((String)entry.getKey(), (String)entry.getValue());
+		final String environmentKeyRemoved = "key.removed";
+		environment.put(environmentKeyRemoved, "Removed value");
 
 		final Iterator<Revision> revisions = model.getRevisions().getList().iterator();
 
@@ -137,6 +139,8 @@ public final class Revisions
 					{
 						environment.put("database.name",    environment.get("database.name")    + " - Changed");
 						environment.put("database.version", environment.get("database.version") + " - Changed");
+						environment.put("key.added", "Added value");
+						environment.remove(environmentKeyRemoved);
 					}
 				}
 				{
