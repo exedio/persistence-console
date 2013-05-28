@@ -201,10 +201,10 @@ final class Revision_Jspm extends Console_Jspm
 			<tr id="e<%=number%>b<%=currentBodyNumber%>b" class="env">
 				<td rowspan="2" class="sql"></td>
 				<th colspan="2" rowspan="2"><%=key%></th>
-				<td class="<% if(before!=null){%>text<%}else{%>notavailable<%} %>" colspan="3"><% if(before!=null){%><%=before%><%}else{%>n/a<%} %></td>
+				<td class="<% if(after !=null){%>text<%}else{%>notavailable<%} %>" colspan="3"><% if(after !=null){%><%=after %><%}else{%>n/a<%} %></td>
 			</tr>
 			<tr id="e<%=number%>b<%=currentBodyNumber%>a" class="env">
-				<td class="<% if(after !=null){%>text<%}else{%>notavailable<%} %>" colspan="3"><% if(after !=null){%><%=after %><%}else{%>n/a<%} %></td>
+				<td class="<% if(before!=null){%>text<%}else{%>notavailable<%} %>" colspan="3"><% if(before!=null){%><%=before%><%}else{%>n/a<%} %></td>
 			</tr><%
 						currentBodyNumber++;
 					}
