@@ -25,7 +25,7 @@ final class Enum_Jspm extends Console_Jspm
 {
 	final static void write(
 			final Out out,
-			final Class<? extends Enum> clazz)
+			final Class<? extends Enum<?>> clazz)
 	{
 		%>
 		<table>
@@ -35,7 +35,7 @@ final class Enum_Jspm extends Console_Jspm
 				<th>Schema Number</th>
 			</tr><%
 			
-		for(final Enum constant : clazz.getEnumConstants())
+		for(final Enum<?> constant : clazz.getEnumConstants())
 		{
 			%>
 			<tr>
