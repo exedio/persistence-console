@@ -18,8 +18,8 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.util.CharsetName.UTF8;
 import static com.exedio.cope.console.Format.format;
+import static com.exedio.cope.util.CharsetName.UTF8;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +29,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.console.Stores.Store;
 import com.exedio.cope.misc.TimeUtil;
 import com.exedio.cops.Cop;
 
@@ -108,7 +109,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		if(!toleratesNotConnected())
 			failIfNotConnected(out.model);
 
-		final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
+		final Store<HashMap<String, Info>> testStore = getStore();
 		Test_Jspm.writeBody(
 				this, out,
 				getHeadings(), getItems(model),
@@ -147,7 +148,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
 		}
 
-		final ConsoleServlet.Store<HashMap<String, Info>> testStore = getStore();
+		final Store<HashMap<String, Info>> testStore = getStore();
 		HashMap<String, Info> infos = testStore!=null ? testStore.value : null;
 		if(infos==null)
 			infos = new HashMap<String, Info>();

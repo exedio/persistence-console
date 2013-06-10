@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.Model;
-import com.exedio.cope.console.ConsoleServlet.Store;
+import com.exedio.cope.console.Stores.Store;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Pageable;
@@ -373,12 +373,12 @@ abstract class ConsoleCop<S> extends Cop
 	@SuppressWarnings("unchecked")
 	Store<S> getStore()
 	{
-		return args.servlet.getStore(this.getClass());
+		return args.servlet.stores.getStore(this.getClass());
 	}
 
 	void putStore(final S value)
 	{
-		args.servlet.putStore(this.getClass(), value);
+		args.servlet.stores.putStore(this.getClass(), value);
 	}
 
 	protected static final void failIfNotConnected(final Model model)

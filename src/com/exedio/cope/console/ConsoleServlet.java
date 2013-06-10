@@ -23,8 +23,6 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.Principal;
-import java.util.Date;
-import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +65,7 @@ public final class ConsoleServlet extends CopsServlet
 	private static final long serialVersionUID = 1l;
 
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
-	private HashMap<Class<? extends ConsoleCop>, Store> stores = null;
+	Stores stores = null;
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
 	private ConnectToken connectToken = null;
 	@SuppressFBWarnings({"MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
@@ -106,7 +104,7 @@ public final class ConsoleServlet extends CopsServlet
 			return;
 		}
 
-		stores = new HashMap<Class<? extends ConsoleCop>, Store>();
+		stores = new Stores();
 		model = ServletUtilX.getConnectedModel(this);
 	}
 
@@ -182,41 +180,6 @@ public final class ConsoleServlet extends CopsServlet
 						);
 			}
 			out.close();
-		}
-	}
-
-
-	static class Store<S>
-	{
-		final S value;
-		private final long date;
-
-		Store(final S value)
-		{
-			this.value = value;
-			this.date = System.currentTimeMillis();
-		}
-
-		Date getDate()
-		{
-			return new Date(date);
-		}
-	}
-
-	Store getStore(final Class<? extends ConsoleCop> clazz)
-	{
-		synchronized(stores)
-		{
-			return stores.get(clazz);
-		}
-	}
-
-	void putStore(final Class<? extends ConsoleCop> clazz, final Object value)
-	{
-		final Store store = new Store<Object>(value);
-		synchronized(stores)
-		{
-			stores.put(clazz, store);
 		}
 	}
 }
