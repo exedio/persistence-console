@@ -22,26 +22,26 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.SchemaInfo;
 
-final class EnumCop<E extends Enum<E>> extends ConsoleCop<Void>
+final class EnumCop extends ConsoleCop<Void>
 {
 	private static final String CLASS = "cs";
 
-	final Class<E> clazz;
+	final Class<? extends Enum<?>> clazz;
 
-	EnumCop(final Args args, final Class<E> clazz)
+	EnumCop(final Args args, final Class<? extends Enum<?>> clazz)
 	{
 		super(TAB_ENUM, "Enum - " + clazz.getName(), args);
 		this.clazz = clazz;
 		addParameter(CLASS, clazz.getName());
 	}
 
-	static final EnumCop<?> getEnumCop(final Args args, final HttpServletRequest request)
+	static final EnumCop getEnumCop(final Args args, final HttpServletRequest request)
 	{
 		final String classString = request.getParameter(CLASS);
-		final Class<? extends Enum> clazz;
+		final Class<? extends Enum<?>> clazz;
 		try
 		{
-			clazz = Class.forName(classString).asSubclass(Enum.class);
+			clazz = cast(Class.forName(classString).asSubclass(Enum.class));
 		}
 		catch(final ClassNotFoundException e)
 		{
@@ -51,10 +51,16 @@ final class EnumCop<E extends Enum<E>> extends ConsoleCop<Void>
 		return new EnumCop(args, clazz);
 	}
 
-	@Override
-	protected EnumCop<E> newArgs(final Args args)
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	private static final Class<? extends Enum<?>> cast(final Class<? extends Enum> clazz)
 	{
-		return new EnumCop<E>(args, clazz);
+		return (Class<? extends Enum<?>>)clazz;
+	}
+
+	@Override
+	protected EnumCop newArgs(final Args args)
+	{
+		return new EnumCop(args, clazz);
 	}
 
 	@Override

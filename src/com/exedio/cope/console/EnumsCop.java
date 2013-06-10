@@ -38,7 +38,7 @@ final class EnumsCop extends ConsoleCop<Void>
 		return new EnumsCop(args);
 	}
 
-	EnumCop toClass(final Class<? extends Enum> clazz)
+	EnumCop toClass(final Class<? extends Enum<?>> clazz)
 	{
 		return new EnumCop(args, clazz);
 	}
