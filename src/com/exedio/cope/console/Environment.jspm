@@ -65,7 +65,7 @@ final class Environment_Jspm extends Console_Jspm
 			"cope.properties",
 		};
 
-	final static void writeTest(final Out out, final java.util.Properties current, final HashMap[] properties)
+	final static void writeTest(final Out out, final java.util.Properties current, final HashMap<String,?>[] properties)
 	{
 		%>
 		<hr>
@@ -100,11 +100,11 @@ final class Environment_Jspm extends Console_Jspm
 	}
 
 	@SuppressFBWarnings("WMI_WRONG_MAP_ITERATOR")
-	final static void writeTestBody(final OutBasic out, final java.util.Properties current, final HashMap[] properties)
+	final static void writeTestBody(final OutBasic out, final java.util.Properties current, final HashMap<String,?>[] properties)
 	{
 			for(int i = 0; i<properties.length; i++)
 			{
-				final HashMap db = properties[i];
+				final HashMap<String,?> db = properties[i];
 			%>
 			<tr><%
 				for(int j = 0; j<TEST_INFO_KEYS.length; j++)
