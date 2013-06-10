@@ -34,7 +34,7 @@ final class Environment_Jspm extends Console_Jspm
 		%>
 		<table>
 			<caption>Current</caption><%
-			for(final String name : new TreeSet<String>(castTreeSet(properties.keySet())))
+			for(final String name : new TreeSet<String>(keySet(properties)))
 			{
 			%>
 			<tr>
@@ -49,11 +49,11 @@ final class Environment_Jspm extends Console_Jspm
 			</tr>
 		</table><%
 	}
-	
-	@SuppressWarnings("unchecked")
-	private static final Set<String> castTreeSet(final Set o)
+
+	@SuppressWarnings({"unchecked", "rawtypes"})
+	private static final Set<String> keySet(final java.util.Properties properties)
 	{
-		return o;
+		return (Set)properties.keySet();
 	}
 
 	private static final String[] TEST_INFO_KEYS = new String[] {
