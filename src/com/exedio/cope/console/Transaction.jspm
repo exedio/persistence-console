@@ -21,6 +21,9 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.ratio;
+import static com.exedio.cope.console.TransactionCop.CLEAR;
+import static com.exedio.cope.console.TransactionCop.DISABLE;
+import static com.exedio.cope.console.TransactionCop.ENABLE;
 
 import java.util.Date;
 
@@ -287,9 +290,9 @@ final class Transaction_Jspm extends Console_Jspm
 		%>
 		<form action="<%=cop%>" method="POST">
 			recording: <% if(recordCommits){%>enabled<%}else{%>disabled<%}%>
-			<input type="submit" name="<%=cop.ENABLE%>"  value="enable" />
-			<input type="submit" name="<%=cop.DISABLE%>" value="disable" />
-			<input type="submit" name="<%=cop.CLEAR%>"   value="clear" />
+			<input type="submit" name="<%=ENABLE%>"  value="enable" />
+			<input type="submit" name="<%=DISABLE%>" value="disable" />
+			<input type="submit" name="<%=CLEAR%>"   value="clear" />
 		</form><%
 	}
 }%>
