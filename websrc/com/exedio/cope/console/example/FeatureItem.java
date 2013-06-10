@@ -42,7 +42,7 @@ public final class FeatureItem extends Item
 		throws
 			com.exedio.cope.StringLengthViolationException
 	{
-		this(new com.exedio.cope.SetValue[]{
+		this(new com.exedio.cope.SetValue<?>[]{
 			FeatureItem.feature.getIdField().map(feature),
 			FeatureItem.string.getIdField().map(string),
 		});
