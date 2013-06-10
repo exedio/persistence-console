@@ -18,7 +18,7 @@
 
 package com.exedio.cope.console;
 
-final class ConnectionPoolCop extends ConsoleCop
+final class ConnectionPoolCop extends ConsoleCop<Void>
 {
 	ConnectionPoolCop(final Args args)
 	{

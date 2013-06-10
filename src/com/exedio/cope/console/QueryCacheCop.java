@@ -29,7 +29,7 @@ import com.exedio.cope.QueryCacheHistogram;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-final class QueryCacheCop extends ConsoleCop
+final class QueryCacheCop extends ConsoleCop<Void>
 {
 	static final String CLEAR  = "cache.clear";
 	static final String HISTOGRAM_LIMIT = "hl";

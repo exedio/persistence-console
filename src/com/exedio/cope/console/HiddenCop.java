@@ -18,7 +18,7 @@
 
 package com.exedio.cope.console;
 
-final class HiddenCop extends ConsoleCop
+final class HiddenCop extends ConsoleCop<Void>
 {
 	HiddenCop(final Args args)
 	{

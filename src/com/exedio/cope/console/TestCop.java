@@ -66,7 +66,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			this.iterate = Cop.getBooleanParameter(request, TestCop.ITERATE);
 		}
 
-		void addParameters(final TestCop cop)
+		void addParameters(final TestCop<?> cop)
 		{
 			cop.addParameter(ID, id);
 			cop.addParameter(ITERATE, iterate);
@@ -88,12 +88,12 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		testArgs.addParameters(this);
 	}
 
-	final TestCop toTest(final String id, final boolean iterate)
+	final TestCop<I> toTest(final String id, final boolean iterate)
 	{
 		return newTestArgs(testArgs.toTest(id, iterate));
 	}
 
-	abstract TestCop newTestArgs(TestArgs testArgs);
+	abstract TestCop<I> newTestArgs(TestArgs testArgs);
 
 	@Override
 	final void writeHead(final Out out)

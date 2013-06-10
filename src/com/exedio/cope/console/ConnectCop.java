@@ -28,7 +28,7 @@ import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.util.XMLEncoder;
 
-final class ConnectCop extends ConsoleCop
+final class ConnectCop extends ConsoleCop<Void>
 {
 	ConnectCop(final Args args)
 	{

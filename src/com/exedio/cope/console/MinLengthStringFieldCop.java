@@ -54,7 +54,7 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 
 		for(final Type<?> t : model.getTypes())
 		{
-			for(final Field f : t.getDeclaredFields())
+			for(final Field<?> f : t.getDeclaredFields())
 				if(f instanceof StringField)
 					result.add((StringField)f);
 		}

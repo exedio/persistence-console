@@ -25,7 +25,7 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class DataFieldCop extends ConsoleCop
+final class DataFieldCop extends ConsoleCop<Void>
 {
 	DataFieldCop(final Args args)
 	{

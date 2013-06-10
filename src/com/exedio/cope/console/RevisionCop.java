@@ -36,7 +36,7 @@ import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import com.exedio.dsmf.SQLRuntimeException;
 
-final class RevisionCop extends ConsoleCop implements Pageable
+final class RevisionCop extends ConsoleCop<Void> implements Pageable
 {
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
 	static final String REVISE  = "revise";

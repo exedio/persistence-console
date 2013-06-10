@@ -83,7 +83,7 @@ final class Media_Jspm extends Console_Jspm
 	
 	final static boolean write(
 				final Out out,
-				final ConsoleCop cop,
+				final ConsoleCop<?> cop,
 				final boolean isUrlGuessingNotSecure,
 				final MediaInfo info,
 				boolean firstMediaImageMagickFilter)

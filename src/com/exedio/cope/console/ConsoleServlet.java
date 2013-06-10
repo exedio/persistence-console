@@ -146,7 +146,7 @@ public final class ConsoleServlet extends CopsServlet
 				model = this.model;
 			}
 
-			final ConsoleCop cop = ConsoleCop.getCop(stores, model, request);
+			final ConsoleCop<?> cop = ConsoleCop.getCop(stores, model, request);
 			cop.initialize(request, model);
 			response.setStatus(cop.getResponseStatus());
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security

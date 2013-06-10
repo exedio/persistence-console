@@ -32,7 +32,7 @@ import com.exedio.cope.Transaction;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-final class TransactionCop extends ConsoleCop
+final class TransactionCop extends ConsoleCop<Void>
 {
 	static final String ENABLE  = "txlistenerenable";
 	static final String DISABLE = "txlistenerdisable";

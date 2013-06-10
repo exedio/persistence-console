@@ -24,7 +24,7 @@ import java.util.List;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class UpdateCounterCop extends TestCop<Type>
+final class UpdateCounterCop extends TestCop<Type<?>>
 {
 	UpdateCounterCop(final Args args, final TestArgs testArgs)
 	{
@@ -50,11 +50,11 @@ final class UpdateCounterCop extends TestCop<Type>
 	}
 
 	@Override
-	List<Type> getItems(final Model model)
+	List<Type<?>> getItems(final Model model)
 	{
-		final ArrayList<Type> result = new ArrayList<Type>();
+		final ArrayList<Type<?>> result = new ArrayList<Type<?>>();
 
-		for(final Type t : model.getTypes())
+		for(final Type<?> t : model.getTypes())
 			if(t.needsCheckUpdateCounter())
 				result.add(t);
 
@@ -68,7 +68,7 @@ final class UpdateCounterCop extends TestCop<Type>
 	}
 
 	@Override
-	void writeValue(final Out out, final Type type, final int h)
+	void writeValue(final Out out, final Type<?> type, final int h)
 	{
 		switch(h)
 		{
@@ -80,19 +80,19 @@ final class UpdateCounterCop extends TestCop<Type>
 	}
 
 	@Override
-	String getID(final Type type)
+	String getID(final Type<?> type)
 	{
 		return type.getID();
 	}
 
 	@Override
-	Type forID(final Model model, final String id)
+	Type<?> forID(final Model model, final String id)
 	{
 		return model.getType(id);
 	}
 
 	@Override
-	int check(final Type type)
+	int check(final Type<?> type)
 	{
 		final Model model = type.getModel();
 		try

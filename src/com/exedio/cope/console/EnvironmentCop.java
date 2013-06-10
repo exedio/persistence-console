@@ -34,7 +34,7 @@ import com.exedio.cope.Model;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-final class EnvironmentCop extends ConsoleCop
+final class EnvironmentCop extends ConsoleCop<Void>
 {
 	EnvironmentCop(final Args args)
 	{
@@ -57,7 +57,7 @@ final class EnvironmentCop extends ConsoleCop
 	{
 		final Model model = out.model;
 		final java.util.Properties current = model.getEnvironmentInfo().asProperties();
-		for(final Iterator i = current.keySet().iterator(); i.hasNext(); )
+		for(final Iterator<Object> i = current.keySet().iterator(); i.hasNext(); )
 		{
 			final String name = (String)i.next();
 			current.setProperty(name, replaceNull(current.getProperty(name)));
@@ -68,7 +68,7 @@ final class EnvironmentCop extends ConsoleCop
 	}
 
 	@SuppressFBWarnings("WMI_WRONG_MAP_ITERATOR")
-	private static final HashMap[] makeTestedDatabases()
+	private static final HashMap<String, Object>[] makeTestedDatabases()
 	{
 		final Properties p = new Properties();
 		InputStream in = null;
@@ -102,7 +102,7 @@ final class EnvironmentCop extends ConsoleCop
 		}
 
 		final TreeMap<String, HashMap<String, Object>> testedDatabases = new TreeMap<String, HashMap<String, Object>>();
-		for(final Iterator i = p.keySet().iterator(); i.hasNext(); )
+		for(final Iterator<Object> i = p.keySet().iterator(); i.hasNext(); )
 		{
 			final String name = (String)i.next();
 			final String value = replaceNull(p.getProperty(name));

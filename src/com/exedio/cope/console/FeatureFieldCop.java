@@ -56,7 +56,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 			for(final Feature feature : type.getDeclaredFeatures())
 			{
 				if(feature instanceof FeatureField)
-					result.add((FeatureField)feature);
+					result.add((FeatureField<?>)feature);
 			}
 		}
 		return result;
@@ -69,7 +69,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	}
 
 	@Override
-	void writeValue(final Out out, final FeatureField field, final int h)
+	void writeValue(final Out out, final FeatureField<?> field, final int h)
 	{
 		switch(h)
 		{
@@ -82,21 +82,21 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	}
 
 	@Override
-	String getID(final FeatureField field)
+	String getID(final FeatureField<?> field)
 	{
 		return field.getID();
 	}
 
 	@Override
-	FeatureField forID(final Model model, final String id)
+	FeatureField<?> forID(final Model model, final String id)
 	{
-		return (FeatureField)model.getFeature(id);
+		return (FeatureField<?>)model.getFeature(id);
 	}
 
 	@Override
 	int check(final FeatureField<?> field)
 	{
-		final Query query = field.getType().newQuery(field.isInvalid());
+		final Query<?> query = field.getType().newQuery(field.isInvalid());
 		final Model model = field.getType().getModel();
 		try
 		{

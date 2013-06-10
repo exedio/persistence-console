@@ -37,7 +37,7 @@ final class SerializationCheck_Jspm
 			</tr><%
 			for(final Field field : check)
 			{
-				final Class type = field.getType();
+				final Class<?> type = field.getType();
 				final Type gType = field.getGenericType();
 				final boolean serializable = type.isPrimitive() || Serializable.class.isAssignableFrom(type);
 			%>

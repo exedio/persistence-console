@@ -152,7 +152,7 @@ public final class ExampleServlet extends CopsServlet
 
 	private void createSampleData()
 	{
-		final Class thisClass = ExampleServlet.class;
+		final Class<?> thisClass = ExampleServlet.class;
 		connect(thisClass.getName() + "#createSampleData");
 		Main.model.createSchema();
 		try

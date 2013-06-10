@@ -52,7 +52,7 @@ abstract class ConsoleCop<S> extends Cop
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
 		}
 
-		void addParameters(final ConsoleCop cop)
+		void addParameters(final ConsoleCop<?> cop)
 		{
 			cop.addParameter(AUTO_REFRESH, autoRefresh, 0);
 		}
@@ -82,9 +82,9 @@ abstract class ConsoleCop<S> extends Cop
 		start = System.currentTimeMillis();
 	}
 
-	protected abstract ConsoleCop newArgs(final Args args);
+	protected abstract ConsoleCop<S> newArgs(final Args args);
 
-	final ConsoleCop toAutoRefresh(final int autoRefresh)
+	final ConsoleCop<S> toAutoRefresh(final int autoRefresh)
 	{
 		return newArgs(new Args(args.stores, autoRefresh));
 	}
@@ -99,7 +99,7 @@ abstract class ConsoleCop<S> extends Cop
 		return HttpServletResponse.SC_OK;
 	}
 
-	final ConsoleCop[] getTabs()
+	final ConsoleCop<?>[] getTabs()
 	{
 		final TestCop.TestArgs testArgs = new TestCop.TestArgs();
 		return
@@ -212,7 +212,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_CHANGE_LISTENER = "changelistener";
 	static final String TAB_MODIFICATION_LISTENER = "modificationlistener";
 
-	static final ConsoleCop getCop(final Stores stores, final Model model, final HttpServletRequest request)
+	static final ConsoleCop<?> getCop(final Stores stores, final Model model, final HttpServletRequest request)
 	{
 		final Args args = new Args(stores, request);
 		final String pathInfo = request.getPathInfo();
@@ -300,7 +300,7 @@ abstract class ConsoleCop<S> extends Cop
 		return new NotFound(args, pathInfo);
 	}
 
-	private final static class NotFound extends ConsoleCop
+	private final static class NotFound extends ConsoleCop<Void>
 	{
 		private final String pathInfo;
 
@@ -311,7 +311,7 @@ abstract class ConsoleCop<S> extends Cop
 		}
 
 		@Override
-		protected ConsoleCop newArgs(final Args args)
+		protected ConsoleCop<Void> newArgs(final Args args)
 		{
 			return new NotFound(args, pathInfo);
 		}

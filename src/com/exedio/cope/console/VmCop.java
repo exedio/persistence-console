@@ -25,7 +25,7 @@ import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 
-final class VmCop extends ConsoleCop
+final class VmCop extends ConsoleCop<Void>
 {
 	private static final String DETAILED = "dt";
 	private static final String ALL_PACKAGES = "ap";

@@ -27,7 +27,7 @@ import com.exedio.cope.FunctionField;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class OptionalFieldCop extends TestCop<FunctionField>
+final class OptionalFieldCop extends TestCop<FunctionField<?>>
 {
 	OptionalFieldCop(final Args args, final TestArgs testArgs)
 	{
@@ -47,16 +47,16 @@ final class OptionalFieldCop extends TestCop<FunctionField>
 	}
 
 	@Override
-	List<FunctionField> getItems(final Model model)
+	List<FunctionField<?>> getItems(final Model model)
 	{
-		final ArrayList<FunctionField> result = new ArrayList<FunctionField>();
+		final ArrayList<FunctionField<?>> result = new ArrayList<FunctionField<?>>();
 
 		for(final Type<?> t : model.getTypes())
 		{
-			for(final Field f : t.getDeclaredFields())
+			for(final Field<?> f : t.getDeclaredFields())
 				if(f instanceof FunctionField)
 				{
-					final FunctionField ff = (FunctionField)f;
+					final FunctionField<?> ff = (FunctionField<?>)f;
 					if(!ff.isMandatory())
 						result.add(ff);
 				}
@@ -72,7 +72,7 @@ final class OptionalFieldCop extends TestCop<FunctionField>
 	}
 
 	@Override
-	void writeValue(final Out out, final FunctionField field, final int h)
+	void writeValue(final Out out, final FunctionField<?> field, final int h)
 	{
 		switch(h)
 		{
@@ -83,21 +83,21 @@ final class OptionalFieldCop extends TestCop<FunctionField>
 	}
 
 	@Override
-	String getID(final FunctionField field)
+	String getID(final FunctionField<?> field)
 	{
 		return ((Feature)field).getID();
 	}
 
 	@Override
-	FunctionField forID(final Model model, final String id)
+	FunctionField<?> forID(final Model model, final String id)
 	{
-		return (FunctionField)model.getFeature(id);
+		return (FunctionField<?>)model.getFeature(id);
 	}
 
 	@Override
-	int check(final FunctionField field)
+	int check(final FunctionField<?> field)
 	{
-		final Type type = field.getType();
+		final Type<?> type = field.getType();
 		final Model model = type.getModel();
 		try
 		{

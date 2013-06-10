@@ -25,7 +25,7 @@ import com.exedio.cope.EnumField;
 import com.exedio.cope.Field;
 import com.exedio.cope.Type;
 
-final class EnumsCop extends ConsoleCop
+final class EnumsCop extends ConsoleCop<Void>
 {
 	EnumsCop(final Args args)
 	{
@@ -46,14 +46,14 @@ final class EnumsCop extends ConsoleCop
 	@Override
 	final void writeBody(final Out out)
 	{
-		final LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>> map =
-			new LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>>();
+		final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map =
+			new LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>>();
 		for(final Type<?> type : out.model.getTypes())
-			for(final Field field : type.getDeclaredFields())
+			for(final Field<?> field : type.getDeclaredFields())
 				if(field instanceof EnumField)
 				{
-					final EnumField<?> f = (EnumField)field;
-					final Class<? extends Enum> c = f.getValueClass();
+					final EnumField<?> f = (EnumField<?>)field;
+					final Class<? extends Enum<?>> c = f.getValueClass();
 					ArrayList<EnumField<?>> list = map.get(c);
 					if(list==null)
 					{

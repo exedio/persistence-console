@@ -58,7 +58,7 @@ final class SchemaNice
 
 				for(Type<?> superType = type; superType!=null; superType = superType.getSupertype())
 				{
-					for(final Field field : superType.getDeclaredFields())
+					for(final Field<?> field : superType.getDeclaredFields())
 					{
 						bf.append(',');
 						if(field instanceof EnumField)
@@ -151,22 +151,22 @@ final class SchemaNice
 		bf.setLength(0);
 	}
 
-	private String table(final Type type)
+	private String table(final Type<?> type)
 	{
 		return quoteName(model, SchemaInfo.getTableName(type));
 	}
 
-	private String view(final Type type)
+	private String view(final Type<?> type)
 	{
 		return quoteName(model, SchemaInfo.getTableName(type)+'V');
 	}
 
-	private String column(final Type type)
+	private String column(final Type<?> type)
 	{
 		return quoteName(model, SchemaInfo.getPrimaryKeyColumnName(type));
 	}
 
-	private String column(final Field field)
+	private String column(final Field<?> field)
 	{
 		return quoteName(model, SchemaInfo.getColumnName(field));
 	}

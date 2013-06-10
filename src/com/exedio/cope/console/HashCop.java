@@ -27,7 +27,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Hash;
 
-final class HashCop extends ConsoleCop
+final class HashCop extends ConsoleCop<Void>
 {
 	final static String MEASURE = "measure";
 

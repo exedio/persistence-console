@@ -26,7 +26,7 @@ final class DatabaseLog_Jspm
 	final static void writeBody(
 			final DatabaseLogCop cop,
 			final Out out,
-			final Class listenerClass,
+			final Class<?> listenerClass,
 			final boolean enable,
 			final Date date,
 			final int threshold,

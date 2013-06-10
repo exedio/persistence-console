@@ -20,7 +20,7 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.misc.SerializationCheck;
 
-final class SerializationCheckCop extends ConsoleCop
+final class SerializationCheckCop extends ConsoleCop<Void>
 {
 	SerializationCheckCop(final Args args)
 	{

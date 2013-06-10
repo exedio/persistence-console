@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
 
-final class ConnectTokenCop extends ConsoleCop
+final class ConnectTokenCop extends ConsoleCop<Void>
 {
 	static final String ISSUE = "issue";
 	static final String RETURN_SELECTED = "returnSelected";

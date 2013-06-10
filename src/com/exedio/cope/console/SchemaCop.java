@@ -32,7 +32,7 @@ import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.StatementListener;
 import com.exedio.dsmf.Table;
 
-final class SchemaCop extends ConsoleCop
+final class SchemaCop extends ConsoleCop<Void>
 {
 	SchemaCop(final Args args)
 	{

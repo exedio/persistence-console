@@ -72,7 +72,7 @@ final class Out extends OutBasic
 		bf.print(b);
 	}
 
-	void write(final Class c)
+	void write(final Class<?> c)
 	{
 		final String s = c.getName();
 		final int pos = s.lastIndexOf('.');

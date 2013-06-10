@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.Model;
 import com.exedio.cope.ThreadController;
 
-final class ThreadCop extends ConsoleCop
+final class ThreadCop extends ConsoleCop<Void>
 {
 	static final String RESTART = "restart";
 	static final String ID_HASH = "idhs";

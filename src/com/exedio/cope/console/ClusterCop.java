@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.ClusterListenerInfo;
 import com.exedio.cope.Model;
 
-final class ClusterCop extends ConsoleCop
+final class ClusterCop extends ConsoleCop<Void>
 {
 	static final String PING_COUNT = "ping.count";
 	static final String PING = "ping";

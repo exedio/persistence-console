@@ -23,12 +23,12 @@ final class Menue_Jspm
 {
 	static void write(
 			final Out out,
-			final ConsoleCop cop)
+			final ConsoleCop<?> cop)
 	{
 		%>
 		<div class="menu"><%
 		
-		for(final ConsoleCop tab : cop.getTabs())
+		for(final ConsoleCop<?> tab : cop.getTabs())
 		{
 			if(cop.name.equals(tab.name))
 			{

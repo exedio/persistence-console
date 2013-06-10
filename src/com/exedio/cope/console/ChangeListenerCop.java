@@ -27,7 +27,7 @@ import com.exedio.cope.ChangeListener;
 import com.exedio.cope.ChangeListenerDispatcherInfo;
 import com.exedio.cope.Model;
 
-final class ChangeListenerCop extends ConsoleCop
+final class ChangeListenerCop extends ConsoleCop<Void>
 {
 	static final String REMOVE_SELECTED = "removeSelected";
 	static final String REMOVE_CHECKBOX = "rm";

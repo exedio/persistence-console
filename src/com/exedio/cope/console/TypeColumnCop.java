@@ -29,7 +29,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.This;
 import com.exedio.cope.Type;
 
-final class TypeColumnCop extends TestCop<ItemFunction>
+final class TypeColumnCop extends TestCop<ItemFunction<?>>
 {
 	TypeColumnCop(final Args args, final TestArgs testArgs)
 	{
@@ -55,9 +55,9 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 	}
 
 	@Override
-	List<ItemFunction> getItems(final Model model)
+	List<ItemFunction<?>> getItems(final Model model)
 	{
-		final ArrayList<ItemFunction> result = new ArrayList<ItemFunction>();
+		final ArrayList<ItemFunction<?>> result = new ArrayList<ItemFunction<?>>();
 
 		for(final Type<?> t : model.getTypes())
 		{
@@ -65,10 +65,10 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 			if(tt.needsCheckTypeColumn())
 				result.add(tt);
 
-			for(final Field f : t.getDeclaredFields())
+			for(final Field<?> f : t.getDeclaredFields())
 				if(f instanceof ItemField)
 				{
-					final ItemField itf = (ItemField)f;
+					final ItemField<?> itf = (ItemField<?>)f;
 					if(itf.needsCheckTypeColumn())
 						result.add(itf);
 				}
@@ -84,7 +84,7 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 	}
 
 	@Override
-	void writeValue(final Out out, final ItemFunction function, final int h)
+	void writeValue(final Out out, final ItemFunction<?> function, final int h)
 	{
 		switch(h)
 		{
@@ -96,19 +96,19 @@ final class TypeColumnCop extends TestCop<ItemFunction>
 	}
 
 	@Override
-	String getID(final ItemFunction function)
+	String getID(final ItemFunction<?> function)
 	{
 		return ((Feature)function).getID();
 	}
 
 	@Override
-	ItemFunction forID(final Model model, final String id)
+	ItemFunction<?> forID(final Model model, final String id)
 	{
-		return (ItemFunction)model.getFeature(id);
+		return (ItemFunction<?>)model.getFeature(id);
 	}
 
 	@Override
-	int check(final ItemFunction function)
+	int check(final ItemFunction<?> function)
 	{
 		final Model model = function.getType().getModel();
 		try

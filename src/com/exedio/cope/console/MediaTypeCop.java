@@ -109,7 +109,7 @@ final class MediaTypeCop extends TestCop<Media>
 	int check(final Media media)
 	{
 		final Model model = media.getType().getModel();
-		final Query query = media.getType().newQuery(media.bodyMismatchesContentType());
+		final Query<?> query = media.getType().newQuery(media.bodyMismatchesContentType());
 		try
 		{
 			model.startTransaction("Console MediaType " + id);

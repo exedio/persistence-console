@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.Model;
 import com.exedio.cope.util.ModificationListener;
 
-final class ModificationListenerCop extends ConsoleCop
+final class ModificationListenerCop extends ConsoleCop<Void>
 {
 	static final String REMOVE_SELECTED = "removeSelected";
 	static final String REMOVE_CHECKBOX = "rm";

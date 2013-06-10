@@ -24,7 +24,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.misc.DatabaseListener;
 import com.exedio.cope.misc.DatabaseLogListener;
 
-final class DatabaseLogCop extends ConsoleCop
+final class DatabaseLogCop extends ConsoleCop<Void>
 {
 	static final String ENABLE = "dblogenable";
 	static final String THRESHOLD = "dblogthreshold";

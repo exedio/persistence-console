@@ -35,7 +35,7 @@ abstract class Console_Jspm
 	static final void write(
 				final Out out,
 				final HttpServletResponse response,
-				final ConsoleCop cop,
+				final ConsoleCop<?> cop,
 				final String modelName,
 				final Date modelDate,
 				final String authentication,
@@ -143,7 +143,7 @@ abstract class Console_Jspm
 	
 	static final void writeToggle(
 			final Out out,
-			final ConsoleCop cop,
+			final ConsoleCop<?> cop,
 			final boolean value)
 	{
 		%><a href="<%=cop%>"><img class="check" src="<%=
@@ -174,7 +174,7 @@ abstract class Console_Jspm
 	static final void write(
 			final Out out,
 			final boolean runNow,
-			final Store store)
+			final Store<?> store)
 	{
 		if(store==null)
 		{
@@ -200,12 +200,12 @@ abstract class Console_Jspm
 		}
 	}
 	
-	static final void writeNotConnected(final Out out, final ConsoleCop cop)
+	static final void writeNotConnected(final Out out, final ConsoleCop<?> cop)
 	{
 		%><form action="<%=cop%>" method="POST"><input type="submit" name="<%=ConsoleServlet.CONNECT%>" value="connect" /></form><%
 	}
 
-	private static final void writeNotConnectedMessage(final Out out, final ConsoleCop cop)
+	private static final void writeNotConnectedMessage(final Out out, final ConsoleCop<?> cop)
 	{
 		%>
 		<table>

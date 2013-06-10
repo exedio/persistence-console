@@ -34,7 +34,7 @@ import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 
-final class MediaCop extends ConsoleCop implements Pageable
+final class MediaCop extends ConsoleCop<Void> implements Pageable
 {
 	private static final String MEDIA = "m";
 	private static final String MEDIA_INLINE = "ilm";

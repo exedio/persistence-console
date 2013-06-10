@@ -30,7 +30,7 @@ final class Enums_Jspm extends Console_Jspm
 	final static void write(
 			final Out out,
 			final EnumsCop cop,
-			final LinkedHashMap<Class<? extends Enum>, ArrayList<EnumField<?>>> map)
+			final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map)
 	{
 		%>
 		<table>
@@ -39,10 +39,10 @@ final class Enums_Jspm extends Console_Jspm
 				<th>Fields</th>
 			</tr><%
 			
-	for(final Map.Entry<Class<? extends Enum>, ArrayList<EnumField<?>>> entry : map.entrySet())
+	for(final Map.Entry<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> entry : map.entrySet())
 	{
 		boolean first = true;
-		final Class<? extends Enum> clazz = entry.getKey();
+		final Class<? extends Enum<?>> clazz = entry.getKey();
 		final ArrayList<EnumField<?>> list = entry.getValue();
 		final int size = list.size();
 		

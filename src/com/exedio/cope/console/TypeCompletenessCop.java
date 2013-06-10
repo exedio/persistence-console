@@ -25,7 +25,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 
-final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
+final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?>>
 {
 	TypeCompletenessCop(final Args args, final TestArgs testArgs)
 	{
@@ -45,9 +45,9 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 	}
 
 	@Override
-	List<Constraint> getItems(final Model model)
+	List<Constraint<?>> getItems(final Model model)
 	{
-		final ArrayList<Constraint> result = new ArrayList<Constraint>();
+		final ArrayList<Constraint<?>> result = new ArrayList<Constraint<?>>();
 
 		for(final Type<?> superType : model.getTypes())
 			addTypes(superType, result);
@@ -57,7 +57,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 
 	private static <T extends Item> void addTypes(
 			final Type<T> superType,
-			final ArrayList<Constraint> result)
+			final ArrayList<Constraint<?>> result)
 	{
 		for(final Type<? extends T> subType : superType.getTypesOfInstances())
 			if(!superType.equals(subType))
@@ -71,7 +71,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 	}
 
 	@Override
-	void writeValue(final Out out, final Constraint constraint, final int h)
+	void writeValue(final Out out, final Constraint<?> constraint, final int h)
 	{
 		switch(h)
 		{
@@ -83,19 +83,19 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 	}
 
 	@Override
-	String getID(final Constraint constraint)
+	String getID(final Constraint<?> constraint)
 	{
 		return constraint.getID();
 	}
 
 	@Override
-	Constraint forID(final Model model, final String id)
+	Constraint<?> forID(final Model model, final String id)
 	{
 		return Constraint.forID(model, id);
 	}
 
 	@Override
-	int check(final Constraint constraint)
+	int check(final Constraint<?> constraint)
 	{
 		return constraint.check();
 	}
@@ -116,7 +116,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 			return superType.getID() + ID_SEPARATOR + subType.getID();
 		}
 
-		static Constraint forID(final Model model, final String id)
+		static Constraint<?> forID(final Model model, final String id)
 		{
 			final int pos = id.indexOf(ID_SEPARATOR);
 			assert pos>0 : id;
@@ -125,7 +125,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint>
 					model.getType(id.substring(pos+1)));
 		}
 
-		private static <T extends Item> Constraint getConstraint(final Type<T> superType, final Type subType)
+		private static <T extends Item> Constraint<?> getConstraint(final Type<T> superType, final Type<?> subType)
 		{
 			return new Constraint<T>(
 					superType,
