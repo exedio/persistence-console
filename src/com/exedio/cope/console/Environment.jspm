@@ -134,11 +134,12 @@ final class Environment_Jspm extends Console_Jspm
 					%>><%
 					if(value instanceof Map)
 					{
-						final Map valueMap = (Map)value;
-						for(Iterator k = valueMap.keySet().iterator(); k.hasNext(); )
+						@SuppressWarnings("unchecked")
+						final Map<String,String> valueMap = (Map<String,String>)value;
+						for(final Iterator<String> k = valueMap.keySet().iterator(); k.hasNext(); )
 						{
-							final String mapKey = (String)k.next();
-							final String mapValue = (String)valueMap.get(mapKey);
+							final String mapKey = k.next();
+							final String mapValue = valueMap.get(mapKey);
 							%><%=mapKey%>=<%=mapValue%><br><%
 						}
 					}
