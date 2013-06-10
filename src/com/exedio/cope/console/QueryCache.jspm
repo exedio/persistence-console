@@ -22,6 +22,8 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.formatAndHide;
 import static com.exedio.cope.console.Format.ratio;
+import static com.exedio.cope.console.QueryCacheCop.CLEAR;
+import static com.exedio.cope.console.QueryCacheCop.HISTOGRAM_LIMIT;
 
 import com.exedio.cope.QueryCacheHistogram;
 import com.exedio.cope.QueryCacheInfo;
@@ -69,7 +71,7 @@ final class QueryCache_Jspm extends Console_Jspm
 		%>
 		</table>
 		<form action="<%=cop%>" method="POST">
-			<input type="submit" name="<%=cop.CLEAR%>" value="clear all caches" 
+			<input type="submit" name="<%=CLEAR%>" value="clear all caches" 
 				onclick="return confirm('This operation will clear all global (cross-transactional) caches, such as item cache and query cache.\nDo you really want to do this?')" />
 		</form>
 		<hr>
@@ -108,7 +110,7 @@ final class QueryCache_Jspm extends Console_Jspm
 					Skipped display of <%=content.histogramCondensed.length-histogramLimit%> more queries because limited to <%=histogramLimit%> queries.
 					<form action="<%=cop%>" method="GET">
 						New limit:
-						<input type="text" name="<%=cop.HISTOGRAM_LIMIT%>" value="<%=histogramLimit%>">
+						<input type="text" name="<%=HISTOGRAM_LIMIT%>" value="<%=histogramLimit%>">
 						<input type="submit" value="set">
 					</form>
 				</td>
@@ -161,7 +163,7 @@ final class QueryCache_Jspm extends Console_Jspm
 					Skipped display of <%=content.histogram.length-histogramLimit%> more queries because limited to <%=histogramLimit%> queries.
 					<form action="<%=cop%>" method="GET">
 						New limit:
-						<input type="text" name="<%=cop.HISTOGRAM_LIMIT%>" value="<%=histogramLimit%>">
+						<input type="text" name="<%=HISTOGRAM_LIMIT%>" value="<%=histogramLimit%>">
 						<input type="submit" value="set">
 					</form>
 				</td>

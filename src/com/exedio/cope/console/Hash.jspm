@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
+import static com.exedio.cope.console.HashCop.MEASURE;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ final class Hash_Jspm
 	{
 		%>
 		<form action="<%=cop%>" method="POST">
-			<input type="submit" name="<%=cop.MEASURE%>" value="measure" />
+			<input type="submit" name="<%=MEASURE%>" value="measure" />
 		</form>
 		<table>
 			<tr>

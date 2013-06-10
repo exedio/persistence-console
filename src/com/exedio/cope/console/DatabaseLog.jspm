@@ -19,6 +19,10 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.DatabaseLogCop.ENABLE;
+import static com.exedio.cope.console.DatabaseLogCop.SQL;
+import static com.exedio.cope.console.DatabaseLogCop.THRESHOLD;
+
 import java.util.Date;
 
 final class DatabaseLog_Jspm
@@ -36,11 +40,11 @@ final class DatabaseLog_Jspm
 		active: <%= listenerClass!=null ? listenerClass.getName() : "NONE" %>
 		<br>since: <%= date %>
 		<form action="<%=cop%>" method="POST">
-			<input type="checkbox" name="<%=cop.ENABLE%>"<%if(enable){%> checked="checked"<%}%>> enable
+			<input type="checkbox" name="<%=ENABLE%>"<%if(enable){%> checked="checked"<%}%>> enable
 			<br>
-			<input type="text" name="<%=cop.THRESHOLD%>" value="<%=threshold%>"> threshold
+			<input type="text" name="<%=THRESHOLD%>" value="<%=threshold%>"> threshold
 			<br>
-			<input type="text" name="<%=cop.SQL%>" value="<%=sql!=null?sql:""%>"> sql
+			<input type="text" name="<%=SQL%>" value="<%=sql!=null?sql:""%>"> sql
 			<br>
 			<input type="submit" name="submit" value="submit">
 		</form><%

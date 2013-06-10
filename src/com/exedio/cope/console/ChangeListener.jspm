@@ -19,13 +19,14 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.ChangeListenerCop.REMOVE_CHECKBOX;
 import static com.exedio.cope.console.Format.format;
 
 import java.util.List;
 
 import com.exedio.cope.ChangeListener;
-import com.exedio.cope.ChangeListenerInfo;
 import com.exedio.cope.ChangeListenerDispatcherInfo;
+import com.exedio.cope.ChangeListenerInfo;
 
 final class ChangeListener_Jspm extends Console_Jspm
 {
@@ -95,7 +96,7 @@ final class ChangeListener_Jspm extends Console_Jspm
 				{
 				%>
 				<tr>
-					<td><input type="checkbox" name="<%=cop.REMOVE_CHECKBOX%>" value="<%=cop.toID(listener)%>" /></td>
+					<td><input type="checkbox" name="<%=REMOVE_CHECKBOX%>" value="<%=cop.toID(listener)%>" /></td>
 					<td><%=format(number++)%></td>
 					<td class="text"><%=listener.getClass().getName()%></td>
 					<td class="text"><%

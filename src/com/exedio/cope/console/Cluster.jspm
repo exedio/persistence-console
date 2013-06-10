@@ -19,6 +19,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.ClusterCop.PING;
+import static com.exedio.cope.console.ClusterCop.PING_COUNT;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.formatAndHide;
 
@@ -95,8 +97,8 @@ final class Cluster_Jspm
 			%>
 		</table>
 		<form action="<%=cop%>" method="POST">
-			<input type="text"   name="<%=cop.PING_COUNT%>" value="1" size="5">
-			<input type="submit" name="<%=cop.PING%>" value="ping">
+			<input type="text"   name="<%=PING_COUNT%>" value="1" size="5">
+			<input type="submit" name="<%=PING%>" value="ping">
 		</form><%
 		if(donePing>0)
 		{

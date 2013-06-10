@@ -19,16 +19,19 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.ConsoleCop.writePager;
+import static com.exedio.cope.console.Format.format;
+import static com.exedio.cope.console.RevisionCop.NICE_CREATE;
+import static com.exedio.cope.console.RevisionCop.NICE_DROP;
+import static com.exedio.cope.console.RevisionCop.REVISE;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.exedio.cope.RevisionInfoRevise.Body;
 import com.exedio.cope.RevisionInfoMutex;
-import com.exedio.cope.console.RevisionLine;
-
-import static com.exedio.cope.console.Format.format;
+import com.exedio.cope.RevisionInfoRevise.Body;
 
 final class Revision_Jspm extends Console_Jspm
 {
@@ -140,13 +143,13 @@ final class Revision_Jspm extends Console_Jspm
 		
 		%>
 		<form action="<%=cop%>" method="POST">
-			<input type="submit" name="<%=cop.REVISE%>" value="revise" />
+			<input type="submit" name="<%=REVISE%>" value="revise" />
 			Nice Views:
-			<input type="submit" name="<%=cop.NICE_CREATE%>" value="create" />
-			<input type="submit" name="<%=cop.NICE_DROP  %>" value="drop" />
+			<input type="submit" name="<%=NICE_CREATE%>" value="create" />
+			<input type="submit" name="<%=NICE_DROP  %>" value="drop" />
 		</form>
 		<table><%
-				cop.writePager(out, cop);
+				writePager(out, cop);
 			%>
 			<tr>
 				<th></th>
