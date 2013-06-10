@@ -47,18 +47,22 @@ final class ServletUtilX
 	{
 		return new Config()
 		{
+			@Override
 			public String getInitParameter(final String name)
 			{
 				return config.getInitParameter(name);
 			}
+			@Override
 			public String getName()
 			{
 				return config.getServletName();
 			}
+			@Override
 			public ServletContext getServletContext()
 			{
 				return config.getServletContext();
 			}
+			@Override
 			public String getKind()
 			{
 				return "servlet";

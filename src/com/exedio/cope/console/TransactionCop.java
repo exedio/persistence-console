@@ -106,6 +106,7 @@ final class TransactionCop extends ConsoleCop<Void>
 		final Transaction[] openTransactions = openTransactionsList.toArray(new Transaction[openTransactionsList.size()]);
 		Arrays.sort(openTransactions, new Comparator<Transaction>(){
 
+			@Override
 			public int compare(final Transaction tx1, final Transaction tx2)
 			{
 				final long id1 = tx1.getID();
@@ -160,6 +161,7 @@ final class TransactionCop extends ConsoleCop<Void>
 
 	private static final ChangeListener listener = new ChangeListener()
 	{
+		@Override
 		public void onChange(final ChangeEvent event)
 		{
 			final Commit commit = new Commit(event);

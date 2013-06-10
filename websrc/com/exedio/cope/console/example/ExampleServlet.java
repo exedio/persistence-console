@@ -247,6 +247,7 @@ public final class ExampleServlet extends CopsServlet
 		{
 			private final int count = changeListenerNumber++;
 
+			@Override
 			public void onChange(final ChangeEvent event)
 			{
 				// do nothing
@@ -270,6 +271,7 @@ public final class ExampleServlet extends CopsServlet
 			private final int count = modificationListenerNumber++;
 
 			@Deprecated
+			@Override
 			public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
 			{
 				// do nothing

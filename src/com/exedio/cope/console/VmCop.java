@@ -66,6 +66,7 @@ final class VmCop extends ConsoleCop<Void>
 
 	private static final Comparator<Package> COMPARATOR = new Comparator<Package>()
 	{
+		@Override
 		public int compare(final Package p1, final Package p2)
 		{
 			return p1.getName().compareTo(p2.getName());

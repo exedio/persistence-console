@@ -200,6 +200,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 					this.histogramCondensed = histogramCondensed.values().toArray(new Condense[histogramCondensed.size()]);
 					Arrays.sort(this.histogramCondensed, new Comparator<Condense>(){
 
+						@Override
 						public int compare(final Condense c1, final Condense c2)
 						{
 							if(c1==c2)

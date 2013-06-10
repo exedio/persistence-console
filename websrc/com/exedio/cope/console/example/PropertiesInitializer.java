@@ -31,6 +31,7 @@ import com.exedio.cope.servletutil.ServletProperties;
 
 public class PropertiesInitializer implements ServletContextListener
 {
+	@Override
 	public void contextInitialized(final ServletContextEvent sce)
 	{
 		final ServletContext context = sce.getServletContext();
@@ -44,6 +45,7 @@ public class PropertiesInitializer implements ServletContextListener
 		);
 	}
 
+	@Override
 	public void contextDestroyed(final ServletContextEvent sce)
 	{
 		ConnectToken.removeProperties(Main.model);

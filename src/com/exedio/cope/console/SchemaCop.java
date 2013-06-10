@@ -144,6 +144,7 @@ final class SchemaCop extends ConsoleCop<Void>
 		{
 			long beforeExecuteTime = Long.MIN_VALUE;
 
+			@Override
 			public boolean beforeExecute(final String statement)
 			{
 				out.writeRaw("\n\t\t<div><span class=\"javaDecoration\">\"</span>"); // TODO do java decoration by javascript
@@ -162,6 +163,7 @@ final class SchemaCop extends ConsoleCop<Void>
 				}
 			}
 
+			@Override
 			public void afterExecute(final String statement, final int rows)
 			{
 				final long time = TimeUtil.toMillies(System.nanoTime(), beforeExecuteTime);

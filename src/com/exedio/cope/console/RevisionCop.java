@@ -69,11 +69,13 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		return new RevisionCop(args, pager);
 	}
 
+	@Override
 	public Pager getPager()
 	{
 		return pager;
 	}
 
+	@Override
 	public RevisionCop toPage(final Pager pager)
 	{
 		return new RevisionCop(args, pager);

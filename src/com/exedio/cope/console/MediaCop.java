@@ -125,11 +125,13 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		return new MediaCop(args, media, mediaInline, otherInline, !contentTypeMismatch, pager);
 	}
 
+	@Override
 	public Pager getPager()
 	{
 		return pager;
 	}
 
+	@Override
 	public MediaCop toPage(final Pager pager)
 	{
 		return new MediaCop(args, media, mediaInline, otherInline, contentTypeMismatch, pager);
