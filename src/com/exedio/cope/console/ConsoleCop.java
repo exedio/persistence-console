@@ -37,18 +37,18 @@ abstract class ConsoleCop<S> extends Cop
 	{
 		private static final String AUTO_REFRESH = "ar";
 
-		final ConsoleServlet servlet;
+		final Stores stores;
 		final int autoRefresh;
 
-		Args(final ConsoleServlet servlet, final int autoRefresh)
+		Args(final Stores stores, final int autoRefresh)
 		{
-			this.servlet = servlet;
+			this.stores = stores;
 			this.autoRefresh = autoRefresh;
 		}
 
-		Args(final ConsoleServlet servlet, final HttpServletRequest request)
+		Args(final Stores stores, final HttpServletRequest request)
 		{
-			this.servlet = servlet;
+			this.stores = stores;
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
 		}
 
@@ -86,7 +86,7 @@ abstract class ConsoleCop<S> extends Cop
 
 	final ConsoleCop toAutoRefresh(final int autoRefresh)
 	{
-		return newArgs(new Args(args.servlet, autoRefresh));
+		return newArgs(new Args(args.stores, autoRefresh));
 	}
 
 	MediaCop toMedia(final MediaPath media)
@@ -212,9 +212,9 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_CHANGE_LISTENER = "changelistener";
 	static final String TAB_MODIFICATION_LISTENER = "modificationlistener";
 
-	static final ConsoleCop getCop(final ConsoleServlet servlet, final Model model, final HttpServletRequest request)
+	static final ConsoleCop getCop(final Stores stores, final Model model, final HttpServletRequest request)
 	{
-		final Args args = new Args(servlet, request);
+		final Args args = new Args(stores, request);
 		final String pathInfo = request.getPathInfo();
 
 		if("/".equals(pathInfo))
@@ -373,12 +373,12 @@ abstract class ConsoleCop<S> extends Cop
 	@SuppressWarnings("unchecked")
 	Store<S> getStore()
 	{
-		return args.servlet.stores.getStore(this.getClass());
+		return args.stores.getStore(this.getClass());
 	}
 
 	void putStore(final S value)
 	{
-		args.servlet.stores.putStore(this.getClass(), value);
+		args.stores.putStore(this.getClass(), value);
 	}
 
 	protected static final void failIfNotConnected(final Model model)

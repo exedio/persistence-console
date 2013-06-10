@@ -65,7 +65,7 @@ public final class ConsoleServlet extends CopsServlet
 	private static final long serialVersionUID = 1l;
 
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
-	Stores stores = null;
+	private Stores stores = null;
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
 	private ConnectToken connectToken = null;
 	@SuppressFBWarnings({"MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
@@ -146,7 +146,7 @@ public final class ConsoleServlet extends CopsServlet
 				model = this.model;
 			}
 
-			final ConsoleCop cop = ConsoleCop.getCop(this, model, request);
+			final ConsoleCop cop = ConsoleCop.getCop(stores, model, request);
 			cop.initialize(request, model);
 			response.setStatus(cop.getResponseStatus());
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
