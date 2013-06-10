@@ -136,7 +136,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		}
 
 		@SuppressWarnings({"rawtypes", "unchecked"})
-		final	HashMap<String, Object>[] result = testedDatabases.values().toArray(new HashMap[testedDatabases.size()]);
+		final HashMap<String, Object>[] result = testedDatabases.values().toArray(new HashMap[testedDatabases.size()]);
 		return result;
 	}
 
