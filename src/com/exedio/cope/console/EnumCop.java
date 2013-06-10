@@ -63,6 +63,7 @@ final class EnumCop<E extends Enum<E>> extends ConsoleCop<Void>
 		Enum_Jspm.write(out, clazz);
 	}
 
+	// TODO put into framework
 	static int getColumnValue(final Enum<?> constant)
 	{
 		@SuppressWarnings({"cast", "rawtypes"})
