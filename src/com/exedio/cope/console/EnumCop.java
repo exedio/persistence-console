@@ -22,20 +22,20 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.SchemaInfo;
 
-final class EnumCop extends ConsoleCop
+final class EnumCop<E extends Enum<E>> extends ConsoleCop<Void>
 {
 	private static final String CLASS = "cs";
 
-	final Class<? extends Enum> clazz;
+	final Class<E> clazz;
 
-	EnumCop(final Args args, final Class<? extends Enum> clazz)
+	EnumCop(final Args args, final Class<E> clazz)
 	{
 		super(TAB_ENUM, "Enum - " + clazz.getName(), args);
 		this.clazz = clazz;
 		addParameter(CLASS, clazz.getName());
 	}
 
-	static final EnumCop getEnumCop(final Args args, final HttpServletRequest request)
+	static final EnumCop<?> getEnumCop(final Args args, final HttpServletRequest request)
 	{
 		final String classString = request.getParameter(CLASS);
 		final Class<? extends Enum> clazz;
@@ -52,14 +52,14 @@ final class EnumCop extends ConsoleCop
 	}
 
 	@Override
-	protected EnumCop newArgs(final Args args)
+	protected EnumCop<E> newArgs(final Args args)
 	{
-		return new EnumCop(args, clazz);
+		return new EnumCop<E>(args, clazz);
 	}
 
-	EnumCop toClass(final Class<? extends Enum> clazz)
+	<X extends Enum<X>> EnumCop<X> toClass(final Class<X> clazz)
 	{
-		return new EnumCop(args, clazz);
+		return new EnumCop<X>(args, clazz);
 	}
 
 	@Override
