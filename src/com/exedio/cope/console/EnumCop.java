@@ -57,11 +57,6 @@ final class EnumCop<E extends Enum<E>> extends ConsoleCop<Void>
 		return new EnumCop<E>(args, clazz);
 	}
 
-	<X extends Enum<X>> EnumCop<X> toClass(final Class<X> clazz)
-	{
-		return new EnumCop<X>(args, clazz);
-	}
-
 	@Override
 	final void writeBody(final Out out)
 	{
