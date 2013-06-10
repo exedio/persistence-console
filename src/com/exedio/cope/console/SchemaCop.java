@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -188,9 +189,9 @@ final class SchemaCop extends ConsoleCop<Void>
 		for(final String p : getParameters(request, DROP_SEQUENCE))
 			getSequence  (schema, p).drop(listener);
 
-		for (final Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
+		for(final Iterator<String> i = parameterNames(request); i.hasNext(); )
 		{
-			final String p = (String) i.next();
+			final String p = i.next();
 			final String sourceName = strip(p, RENAME_TABLE_PREFIX);
 			if(sourceName==null)
 				continue;
@@ -201,9 +202,9 @@ final class SchemaCop extends ConsoleCop<Void>
 
 			getTable(schema, sourceName).renameTo(targetName, listener);
 		}
-		for (final Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
+		for(final Iterator<String> i = parameterNames(request); i.hasNext(); )
 		{
-			final String p = (String) i.next();
+			final String p = i.next();
 			final String sourceName = strip(p, MODIFY_COLUMN_PREFIX);
 			if(sourceName==null)
 				continue;
@@ -217,9 +218,9 @@ final class SchemaCop extends ConsoleCop<Void>
 		if(request.getParameter(COLUMNS_MODIFY_MISMATCHING_TYPE)!=null)
 			for(final Column c : getColumnsWithMismatchingType(schema))
 				c.modify(c.getRequiredType(), listener);
-		for (final Iterator i = request.getParameterMap().keySet().iterator(); i.hasNext(); )
+		for(final Iterator<String> i = parameterNames(request); i.hasNext(); )
 		{
-			final String p = (String) i.next();
+			final String p = i.next();
 			final String sourceName = strip(p, RENAME_COLUMN_PREFIX);
 			if(sourceName==null)
 				continue;
@@ -297,5 +298,12 @@ final class SchemaCop extends ConsoleCop<Void>
 				if("catch".equals(column.getName()))
 					result.add(column);
 		return result;
+	}
+
+	private static Iterator<String> parameterNames(final HttpServletRequest request)
+	{
+		@SuppressWarnings("unchecked") // OK: problem from servlet api
+		final Map<String, ?> result = request.getParameterMap();
+		return result.keySet().iterator();
 	}
 }
