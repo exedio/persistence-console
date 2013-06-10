@@ -146,9 +146,9 @@ final class TransactionCop extends ConsoleCop<Void>
 			final Model model)
 	{
 		final Commit[] commits;
-		synchronized(this.commits)
+		synchronized(TransactionCop.commits)
 		{
-			commits = this.commits.toArray(new Commit[this.commits.size()]);
+			commits = TransactionCop.commits.toArray(new Commit[TransactionCop.commits.size()]);
 		}
 		Transaction_Jspm.writeRecorded(
 				out, this,
