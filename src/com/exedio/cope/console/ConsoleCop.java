@@ -103,7 +103,7 @@ abstract class ConsoleCop<S> extends Cop
 	{
 		final TestCop.TestArgs testArgs = new TestCop.TestArgs();
 		return
-			new ConsoleCop[]{
+			new ConsoleCop<?>[]{
 					new ConnectCop(args),
 					new ConnectTokenCop(args),
 					new SchemaCop(args),
