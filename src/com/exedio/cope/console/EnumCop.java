@@ -63,9 +63,12 @@ final class EnumCop<E extends Enum<E>> extends ConsoleCop<Void>
 		Enum_Jspm.write(out, clazz);
 	}
 
-	@SuppressWarnings("unchecked")
-	static int getColumnValue(final Enum constant)
+	static int getColumnValue(final Enum<?> constant)
 	{
-		return SchemaInfo.getColumnValue(constant);
+		@SuppressWarnings({"cast", "rawtypes"})
+		final Enum constantRaw = (Enum)constant;
+		@SuppressWarnings("unchecked")
+		final int result = SchemaInfo.getColumnValue(constantRaw);
+		return result;
 	}
 }

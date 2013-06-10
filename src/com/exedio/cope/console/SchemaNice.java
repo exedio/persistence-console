@@ -66,10 +66,10 @@ final class SchemaNice
 							bf.append("case ").
 								append(table(superType)).append('.').append(column(field));
 
-							for(final Enum v : ((EnumField<?>)field).getValueClass().getEnumConstants())
+							for(final Enum<?> v : ((EnumField<?>)field).getValueClass().getEnumConstants())
 							{
 								@SuppressWarnings("unchecked")
-								final int columnValue = SchemaInfo.getColumnValue(v);
+								final int columnValue = EnumCop.getColumnValue(v);
 								bf.append(" when ").
 									append(columnValue).
 									append(" then '").
