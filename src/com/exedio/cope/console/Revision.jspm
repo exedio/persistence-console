@@ -222,7 +222,9 @@ final class Revision_Jspm extends Console_Jspm
 						%><img src="<%=ConsoleServlet.nodeFalse%>" onClick="toggleRev(this,<%=number%>,<%=bodyCount%>)">&nbsp;<%
 					}
 					%><%=bodyCount%></td>
-				<td><% if(line.isCurrent()){%>&#187;&nbsp;<%} %><%=number%></td>
+				<td<%
+					if(!hasRevision){%> class="revisionNotInApplication"<%}
+					%>><% if(line.isCurrent()){%>&#187;&nbsp;<%} %><%=number%></td>
 				<td<% if(!line.hasDate()){%> class="notavailable"<%} else if(date!=null && date.equals(lastDate)){%> class="grey"<%} %>><%=date%></td>
 				<td class="text" onClick="alert('<%
 				final String logString = line.getLogString();

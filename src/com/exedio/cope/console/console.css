@@ -128,6 +128,11 @@ td.notavailable
 	font-size:7pt;
 }
 
+td.revisionNotInApplication
+{
+	background-color:#eee;
+}
+
 table tr.inconsistent td
 {
 	background:#C00;
