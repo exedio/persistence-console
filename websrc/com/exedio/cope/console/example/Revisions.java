@@ -41,21 +41,23 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 public final class Revisions
 {
+	private static final int END_OF_APPLICATION = 7;
+
 	static final com.exedio.cope.Revisions.Factory revisions(final int length)
 	{
-		final Revision[] result = new Revision[length];
+		final ArrayList<Revision> result = new ArrayList<Revision>();
 
 		int i = 0;
 		int revision = length;
-		result[i++] =
+		result.add(
 			new Revision(revision--,
 					"not yet applied",
-					"drop table \"Item\"");
-		result[i++] =
+					"drop table \"Item\""));
+		result.add(
 			new Revision(revision--,
 					"not yet applied2",
-					"drop table \"Item\"");
-		result[i++] =
+					"drop table \"Item\""));
+		result.add(
 			new Revision(revision--,
 					"already applied together with its predecessor at the same time",
 					"create table Mail( " +
@@ -73,24 +75,24 @@ public final class Revisions
 					"constraint Mail_toSend_Ck check((toSend IS NOT NULL) AND (toSend IN (0,1))), " +
 					"constraint Mail_sentDate_Ck check(((sentDate>=-9223372036854775808) AND (sentDate<=9223372036854775807)) OR (sentDate IS NULL)), " +
 					"constraint Mail_failedDate_Ck check(((failedDate>=-9223372036854775808) AND (failedDate<=9223372036854775807)) OR (failedDate IS NULL)), " +
-					"constraint Mail_excepStack_Ck check((LENGTH(exceptionStacktrace)<=1500) OR (exceptionStacktrace IS NULL)))");
-		result[i++] =
+					"constraint Mail_excepStack_Ck check((LENGTH(exceptionStacktrace)<=1500) OR (exceptionStacktrace IS NULL)))"));
+		result.add(
 			new Revision(revision--, "with two sql statements",
 					"alter table Article add column imageContentType varchar(61) character set utf8 binary",
-					"update Article set imageContentType='image/jpeg' where image is not null");
-		result[i++] =
+					"update Article set imageContentType='image/jpeg' where image is not null"));
+		result.add(
 			new Revision(revision--,
 					"before change of environment",
-					"drop table \"Item\"");
+					"drop table \"Item\""));
 
-		for(; i<length; i++, revision--)
+		for(; revision>=END_OF_APPLICATION; i++, revision--)
 		{
 			final String[] body = new String[(i%4) + 1];
 			for(int j = 0; j<body.length; j++)
 				body[j] = "sql " + revision + "/" + j;
-			result[i] = new Revision(revision, "comment " + revision, body);
+			result.add(new Revision(revision, "comment " + revision, body));
 		}
-		return DirectRevisionsFactory.make(new com.exedio.cope.Revisions(result));
+		return DirectRevisionsFactory.make(new com.exedio.cope.Revisions(result.toArray(new Revision[result.size()])));
 	}
 
 	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
@@ -118,9 +120,11 @@ public final class Revisions
 				revisions.next();
 				revisions.next();
 
-				for(int i = 0; i<5; i++)
+				Revision lastRevision = null;
+				for(int i = 0; revisions.hasNext(); i++)
 				{
 					final Revision revision = revisions.next();
+					lastRevision = revision;
 					final ArrayList<RevisionInfoRevise.Body> body = new ArrayList<RevisionInfoRevise.Body>();
 					int j = 0;
 					for(final String sql : revision.getBody())
@@ -144,11 +148,21 @@ public final class Revisions
 					}
 				}
 				{
-					final Revision revision = revisions.next();
+					final Revision revision = lastRevision;
 					save(stat, new RevisionInfoCreate(
-							revision.getNumber(),
+							revision.getNumber() - 1,
 							new Date(),
 							environment));
+					for(int revisionNumber = revision.getNumber() - 2; revisionNumber>0; revisionNumber--)
+					{
+						save(stat, new RevisionInfoRevise(
+								revisionNumber,
+								new Date(),
+								environment,
+								"not in application " + revisionNumber,
+								new RevisionInfoRevise.Body("sql 1", 12, 102),
+								new RevisionInfoRevise.Body("sql 2", 13, 103)));
+					}
 				}
 				{
 					save(stat, new RevisionInfoMutex(
