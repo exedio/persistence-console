@@ -116,7 +116,7 @@ final class Media_Jspm extends Console_Jspm
 					}
 					else
 					{
-						%><%=className%><%
+						%><%=path.getClass()%><%
 					}
 					if(path instanceof Media)
 					{
