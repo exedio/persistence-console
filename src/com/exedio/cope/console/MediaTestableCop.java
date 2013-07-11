@@ -61,7 +61,7 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	@Override
 	String[] getHeadings()
 	{
-		return new String[]{"Type", "Name"};
+		return new String[]{"Type", "Name", "Class"};
 	}
 
 	@Override
@@ -72,6 +72,7 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 		{
 			case 0: out.write(feature.getType().getID()); break;
 			case 1: out.write(feature.getName()); break;
+			case 2: out.write(feature.getClass()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		};
