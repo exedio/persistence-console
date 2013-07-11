@@ -29,6 +29,7 @@ import com.exedio.cope.pattern.Hash;
 
 final class HashCop extends ConsoleCop<Void>
 {
+	final static String CHECKED = "checked";
 	final static String MEASURE = "measure";
 
 	HashCop(final Args args)
@@ -53,9 +54,22 @@ final class HashCop extends ConsoleCop<Void>
 			for(final Feature f : type.getDeclaredFeatures())
 				if(f instanceof Hash)
 					hashes.add((Hash)f);
+		final ArrayList<Hash> checkedHashes;
+		if(isPost(request))
+		{
+			checkedHashes = new ArrayList<Hash>();
+			final String[] values = request.getParameterValues(CHECKED);
+			if(values!=null)
+				for(final String value : values)
+					checkedHashes.add((Hash)model.getFeature(value));
+		}
+		else
+		{
+			checkedHashes = hashes;
+		}
 		Hash_Jspm.writeBody(
 				out, this,
-				hashes,
+				hashes, checkedHashes,
 				isPost(request) && request.getParameter(MEASURE)!=null);
 	}
 }

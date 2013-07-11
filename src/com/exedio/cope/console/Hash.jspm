@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
+import static com.exedio.cope.console.HashCop.CHECKED;
 import static com.exedio.cope.console.HashCop.MEASURE;
 
 import java.util.List;
@@ -33,14 +34,15 @@ final class Hash_Jspm
 			final Out out,
 			final HashCop cop,
 			final List<Hash> hashes,
+			final List<Hash> checkedHashes,
 			final boolean measure)
 	{
 		%>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=MEASURE%>" value="measure" />
-		</form>
 		<table>
 			<tr>
+				<th rowspan="2"></th>
 				<th rowspan="2">Type</th>
 				<th rowspan="2">Name</th>
 				<th colspan="2">Algorithm</th><%
@@ -58,9 +60,11 @@ final class Hash_Jspm
 			</tr><%
 			for(final Hash hash : hashes)
 			{
+				final boolean checked = checkedHashes.contains(hash);
 				final HashAlgorithm algorithm = hash.getAlgorithm2();
 			%>
 			<tr>
+				<td class="sql"><input type="checkbox" name="<%=CHECKED%>" value="<%=hash.getID()%>"<% if(checked){%> checked="true"<%} %>></td>
 				<td class="text"><%=hash.getType().getID()%></td>
 				<td class="text"><%=hash.getName()%></td>
 				<td class="text"><%=algorithm.getID()%></td>
@@ -68,17 +72,26 @@ final class Hash_Jspm
 			
 			if(measure)
 			{
-				out.flush();
-				final long start = System.nanoTime();
-				hash.blind("example password");
-				final long end = System.nanoTime();
+				if(checked)
+				{
+					out.flush();
+					final long start = System.nanoTime();
+					hash.blind("example password");
+					final long end = System.nanoTime();
 				%>
-				<td><%=format(end-start)%></th><%
+				<td><%=format(end-start)%></td><%
+				}
+				else
+				{
+				%>
+				<td class="notavailable">skipped</td><%
+				}
 			}
 			%>
 			</tr><%
 			}
 			%>
-		</table><%
+		</table>
+		</form><%
 	}
 }%>
