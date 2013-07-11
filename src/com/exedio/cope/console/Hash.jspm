@@ -21,6 +21,8 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.HashCop.CHECKED;
+import static com.exedio.cope.console.HashCop.COMPUTE;
+import static com.exedio.cope.console.HashCop.COMPUTE_PLAINTEXT;
 import static com.exedio.cope.console.HashCop.MEASURE;
 
 import java.util.List;
@@ -35,11 +37,15 @@ final class Hash_Jspm
 			final HashCop cop,
 			final List<Hash> hashes,
 			final List<Hash> checkedHashes,
+			final boolean compute,
+			final String computePlaintext,
 			final boolean measure)
 	{
 		%>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=MEASURE%>" value="measure" />
+			<input type="text"   name="<%=COMPUTE_PLAINTEXT%>" />
+			<input type="submit" name="<%=COMPUTE%>" value="hash" />
 		<table>
 			<tr>
 				<th rowspan="2"></th>
@@ -47,6 +53,11 @@ final class Hash_Jspm
 				<th rowspan="2">Name</th>
 				<th colspan="2">Algorithm</th><%
 			
+			if(compute)
+			{
+			%>
+				<th rowspan="2">Hash</th><%
+			}
 			if(measure)
 			{
 			%>
@@ -70,6 +81,20 @@ final class Hash_Jspm
 				<td class="text"><%=algorithm.getID()%></td>
 				<td class="text"><%=algorithm.getDescription()%></td><%
 			
+			if(compute)
+			{
+				if(checked)
+				{
+					out.flush();
+				%>
+				<td class="text"><%=algorithm.hash(computePlaintext)%></td><%
+				}
+				else
+				{
+				%>
+				<td class="notavailable">skipped</td><%
+				}
+			}
 			if(measure)
 			{
 				if(checked)
