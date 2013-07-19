@@ -50,31 +50,33 @@ final class ConnectionPool_Jspm extends Console_Jspm
 		<table>
 			<caption>Statistics</caption>
 			<tr>
-				<th>Idle Limit</th>
+				<th rowspan="3">Idle</th>
+				<th>Limit</th>
 				<td><%=format(info.getIdleLimit())%></td>
 			</tr>
 			<tr>
-				<th>Idle Initial</th>
+				<th>Initial</th>
 				<td><%=format(info.getIdleInitial())%></td>
 			</tr>
 			<tr>
-				<th>Idle Level</th>
+				<th>Level</th>
 				<td><%=format(info.getIdleLevel())%></td>
 			</tr>
 			<tr>
-				<th>Get</th>
+				<th colspan="2">Get</th>
 				<td><%=format(poolCounter.getGetCounter())%></td>
 			</tr>
 			<tr>
-				<th>Put</th>
+				<th colspan="2">Put</th>
 				<td><%=format(poolCounter.getPutCounter())%></td>
 			</tr>
 			<tr>
-				<th>Invalid On Get</th>
+				<th rowspan="2">Invalid On</th>
+				<th>Get</th>
 				<td><%=format(info.getInvalidOnGet())%></td>
 			</tr>
 			<tr>
-				<th>Invalid On Put</th>
+				<th>Put</th>
 				<td><%=format(info.getInvalidOnPut())%></td>
 			</tr>
 		</table>
