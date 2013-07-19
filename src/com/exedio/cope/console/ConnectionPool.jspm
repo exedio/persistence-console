@@ -50,15 +50,15 @@ final class ConnectionPool_Jspm extends Console_Jspm
 		<table>
 			<caption>Statistics</caption>
 			<tr>
-				<th>Limit</th>
+				<th>Idle Limit</th>
 				<td><%=format(info.getIdleLimit())%></td>
 			</tr>
 			<tr>
-				<th>Initial</th>
+				<th>Idle Initial</th>
 				<td><%=format(info.getIdleInitial())%></td>
 			</tr>
 			<tr>
-				<th>Idle</th>
+				<th>Idle Level</th>
 				<td><%=format(info.getIdleLevel())%></td>
 			</tr>
 			<tr>
