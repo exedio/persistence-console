@@ -61,6 +61,7 @@ public final class ExampleServlet extends CopsServlet
 
 	static final String CHANGE_LISTENER_ADD      = "changeListener.add";
 	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
+	static final String CHANGE_LISTENER_COUNT    = "changeListener.count";
 
 	static final String MODIFICATION_LISTENER_ADD      = "modificationListener.add";
 	static final String MODIFICATION_LISTENER_ADD_FAIL = "modificationListener.addFail";
@@ -84,6 +85,8 @@ public final class ExampleServlet extends CopsServlet
 
 		if(Cop.isPost(request))
 		{
+			final int changeListenerCount = Integer.parseInt(request.getParameter(CHANGE_LISTENER_COUNT));
+
 			if(request.getParameter(CREATE_SAMPLE_DATA)!=null)
 				createSampleData();
 			else if(request.getParameter(REMOVE_REVISION_MUTEX)!=null)
@@ -109,11 +112,13 @@ public final class ExampleServlet extends CopsServlet
 			}
 			else if(request.getParameter(CHANGE_LISTENER_ADD)!=null)
 			{
-				Main.model.addChangeListener(newChangeListener(false));
+				for(int i = 0; i<changeListenerCount; i++)
+					Main.model.addChangeListener(newChangeListener(false));
 			}
 			else if(request.getParameter(CHANGE_LISTENER_ADD_FAIL)!=null)
 			{
-				Main.model.addChangeListener(newChangeListener(true));
+				for(int i = 0; i<changeListenerCount; i++)
+					Main.model.addChangeListener(newChangeListener(true));
 			}
 			else if(request.getParameter(MODIFICATION_LISTENER_ADD)!=null)
 			{

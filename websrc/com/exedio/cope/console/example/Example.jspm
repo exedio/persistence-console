@@ -65,6 +65,8 @@ class Example_Jspm
 		<form method="POST">
 			<input type="submit" name="<%=ExampleServlet.CHANGE_LISTENER_ADD     %>" value="add" />
 			<input type="submit" name="<%=ExampleServlet.CHANGE_LISTENER_ADD_FAIL%>" value="add with exception in toString()" />
+			count:
+			<input               name="<%=ExampleServlet.CHANGE_LISTENER_COUNT   %>" value="1" size="5" />
 		</form>
 		<h2>Modification Listeners</h2>
 		<form method="POST">
