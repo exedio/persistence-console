@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -195,12 +194,6 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		final ArrayList<RevisionLine> lineList = new ArrayList<RevisionLine>(lines.values());
 		Collections.reverse(lineList);
 
-		final int offset = pager.getOffset();
-		final List<RevisionLine> lineListLimited =
-			lineList.subList(offset, Math.min(offset + pager.getLimit(), lineList.size()));
-
-		pager.init(lineListLimited.size(), lineList.size());
-
-		Revision_Jspm.writeBody(out, this, (RevisionInfoMutex)read(mutex), lineListLimited);
+		Revision_Jspm.writeBody(out, this, (RevisionInfoMutex)read(mutex), pager.init(lineList));
 	}
 }
