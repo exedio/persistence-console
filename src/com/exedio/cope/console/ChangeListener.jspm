@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ChangeListenerCop.REMOVE_CHECKBOX;
+import static com.exedio.cope.console.ConsoleCop.writePager;
 import static com.exedio.cope.console.Format.format;
 
 import java.util.List;
@@ -43,7 +44,6 @@ final class ChangeListener_Jspm extends Console_Jspm
 		%>
 		<table style="float:left;">
 			<caption>Listener</caption>
-			<tr><th>Size</td><td><%=format(listeners.size())%></td></tr>
 			<tr><th>Cleared</td><td><%=format(clearedBefore)%><%
 					if(clearedBefore!=clearedAfter)
 					{
@@ -76,6 +76,7 @@ final class ChangeListener_Jspm extends Console_Jspm
 		%>
 			<table>
 				<caption>Change Listeners</caption><%
+				writePager(out, cop);
 			
 			if(listeners.isEmpty())
 			{
@@ -87,17 +88,14 @@ final class ChangeListener_Jspm extends Console_Jspm
 				%>
 				<tr>
 					<th></th>
-					<th>#</th>
 					<th>getClass</th>
 					<th>toString</th>
 				</tr><%
-				int number = 0;
 				for(final ChangeListener listener : listeners)
 				{
 				%>
 				<tr>
 					<td><input type="checkbox" name="<%=REMOVE_CHECKBOX%>" value="<%=cop.toID(listener)%>" /></td>
-					<td><%=format(number++)%></td>
 					<td class="text"><%=listener.getClass()%></td>
 					<td class="text"><%
 						try

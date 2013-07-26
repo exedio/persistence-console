@@ -26,21 +26,51 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.ChangeListenerDispatcherInfo;
 import com.exedio.cope.Model;
+import com.exedio.cops.Pageable;
+import com.exedio.cops.Pager;
 
-final class ChangeListenerCop extends ConsoleCop<Void>
+final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 {
+	private static final Pager.Config PAGER_CONFIG = new Pager.Config(20, 100, 1000, 10000);
 	static final String REMOVE_SELECTED = "removeSelected";
 	static final String REMOVE_CHECKBOX = "rm";
 
+	private final Pager pager;
+
 	ChangeListenerCop(final Args args)
 	{
+		this(args, PAGER_CONFIG.newPager());
+	}
+
+	private ChangeListenerCop(final Args args, final Pager pager)
+	{
 		super(TAB_CHANGE_LISTENER, "Change Listeners", args);
+		this.pager = pager;
+
+		pager.addParameters(this);
+	}
+
+	ChangeListenerCop(final Args args, final HttpServletRequest request)
+	{
+		this(args, PAGER_CONFIG.newPager(request));
 	}
 
 	@Override
 	protected ChangeListenerCop newArgs(final Args args)
 	{
-		return new ChangeListenerCop(args);
+		return new ChangeListenerCop(args, pager);
+	}
+
+	@Override
+	public Pager getPager()
+	{
+		return pager;
+	}
+
+	@Override
+	public ChangeListenerCop toPage(final Pager pager)
+	{
+		return new ChangeListenerCop(args, pager);
 	}
 
 	@Override
@@ -69,7 +99,7 @@ final class ChangeListenerCop extends ConsoleCop<Void>
 
 		ChangeListener_Jspm.writeBody(this, out,
 				model.getChangeListenersInfo(),
-				model.getChangeListeners(),
+				pager.init(model.getChangeListeners()),
 				model.getChangeListenersInfo(),
 				dispatcherInfo(model));
 	}

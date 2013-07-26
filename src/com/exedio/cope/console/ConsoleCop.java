@@ -289,7 +289,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_HIDDEN.equals(tab))
 			return new HiddenCop(args);
 		if(TAB_CHANGE_LISTENER.equals(tab))
-			return new ChangeListenerCop(args);
+			return new ChangeListenerCop(args, request);
 		if(TAB_MODIFICATION_LISTENER.equals(tab))
 			return new ModificationListenerCop(args);
 
