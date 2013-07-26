@@ -43,7 +43,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 	static final String NICE_CREATE = "nice.create";
 	static final String NICE_DROP   = "nice.drop";
 
-	final Pager pager;
+	private final Pager pager;
 
 	private RevisionCop(final Args args, final Pager pager)
 	{

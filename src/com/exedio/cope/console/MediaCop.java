@@ -51,7 +51,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 	final boolean mediaInline;
 	final boolean otherInline;
 	final boolean contentTypeMismatch;
-	final Pager pager;
+	private final Pager pager;
 
 	MediaCop(final Args args, final MediaPath media)
 	{
