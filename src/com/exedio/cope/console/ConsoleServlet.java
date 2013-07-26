@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
+import com.exedio.cope.util.CharsetName;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import com.exedio.cops.Resource;
@@ -151,8 +152,8 @@ public final class ConsoleServlet extends CopsServlet
 			response.setStatus(cop.getResponseStatus());
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
 			if(ajax)
-				response.setContentType("text/xml; charset="+UTF8);
-			final Out out = new Out(request, model, this, new PrintStream(response.getOutputStream(), false, UTF8));
+				response.setContentType("text/xml; charset="+CharsetName.UTF8);
+			final Out out = new Out(request, model, this, new PrintStream(response.getOutputStream(), false, CharsetName.UTF8));
 			if(ajax)
 				cop.writeAjax(out);
 			else

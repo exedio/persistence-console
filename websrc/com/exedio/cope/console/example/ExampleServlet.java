@@ -35,6 +35,7 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Item;
 import com.exedio.cope.Transaction;
 import com.exedio.cope.misc.ConnectToken;
+import com.exedio.cope.util.CharsetName;
 import com.exedio.cope.util.ModificationListener;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
@@ -145,7 +146,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 		}
 
-		final Out out = new Out(new PrintStream(response.getOutputStream(), false, UTF8));
+		final Out out = new Out(new PrintStream(response.getOutputStream(), false, CharsetName.UTF8));
 		Example_Jspm.write(out);
 		out.close();
 	}
