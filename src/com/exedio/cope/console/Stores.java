@@ -21,7 +21,7 @@ package com.exedio.cope.console;
 import java.util.Date;
 import java.util.HashMap;
 
-public final class Stores
+final class Stores
 {
 	private final HashMap<Class<? extends ConsoleCop>, Store<?>> stores =
 			new HashMap<Class<? extends ConsoleCop>, Store<?>>();
