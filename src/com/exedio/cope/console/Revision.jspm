@@ -192,7 +192,23 @@ final class Revision_Jspm extends Console_Jspm
 						%><img src="<%=ConsoleServlet.nodeFalse%>" onClick="toggleEnv(this,<%=number%>,<%=bodyCount%>)">&nbsp;<%
 					}
 					%><%=bodyCount%></td>
-				<th colspan="5">Change of Environment</td>
+				<th colspan="5">Change of Environment <small>(<%
+				{
+					boolean first = true;
+					for(final String key : diff)
+					{
+						if(first)
+						{
+							first = false;
+						}
+						else
+						{
+							%>, <%
+						}
+						%><%=key%><%
+					}
+				}
+				%>)</small></th>
 			</tr><%
 						
 					int currentBodyNumber = 0;
