@@ -19,6 +19,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.ConsoleCop.writePager;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.ratio;
 import static com.exedio.cope.console.TransactionCop.CLEAR;
@@ -26,6 +27,7 @@ import static com.exedio.cope.console.TransactionCop.DISABLE;
 import static com.exedio.cope.console.TransactionCop.ENABLE;
 
 import java.util.Date;
+import java.util.List;
 
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeEvent.NotAvailableException;
@@ -176,25 +178,17 @@ final class Transaction_Jspm extends Console_Jspm
 			final Out out,
 			final TransactionCop cop,
 			final boolean recordCommits,
-			final Commit[] commits)
+			final List<Commit> commits)
 	{
 		%>
 		<hr><%
 		writeRecordingForm(out, cop, recordCommits);
 		%>
-		<table>
-			<caption>Changes</caption><%
-		
-		if(commits.length==0)
-		{
+		<table><%
+				writePager(out, cop);
 			%>
-			<tr><td class="text">There are no recorded changes.</td></tr><%
-		}
-		else
-		{
-			%>
+			<caption>Changes</caption>
 			<tr>
-				<th rowspan="2">#</th>
 				<th rowspan="2">Remote<br>Node</th>
 				<th colspan="4">Transaction</th>
 				<th rowspan="2">Items</th>
@@ -206,13 +200,11 @@ final class Transaction_Jspm extends Console_Jspm
 				<th>Name</th>
 			</tr><%
 			
-			for(int n = 0; n<commits.length; n++)
+			for(final Commit commit : commits)
 			{
-				final Commit commit = commits[n];
 				final ChangeEvent event = commit.event;
 			%>
-			<tr>
-				<td><%=format(n)%></td><%
+			<tr><%
 				
 			try
 			{
@@ -274,11 +266,10 @@ final class Transaction_Jspm extends Console_Jspm
 				<td class="text"><%commit.writeItems(out);%></td>
 			</tr><%
 			}
-		}
 		%>
 		</table><%
 		
-		if(commits.length!=0)
+		if(!commits.isEmpty())
 			writeRecordingForm(out, cop, recordCommits);
 	}
 	

@@ -29,24 +29,54 @@ import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Model;
 import com.exedio.cope.Transaction;
+import com.exedio.cops.Pageable;
+import com.exedio.cops.Pager;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-final class TransactionCop extends ConsoleCop<Void>
+final class TransactionCop extends ConsoleCop<Void> implements Pageable
 {
+	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 100, 1000, 10000);
 	static final String ENABLE  = "txlistenerenable";
 	static final String DISABLE = "txlistenerdisable";
 	static final String CLEAR   = "txlistenerclear";
 
-	TransactionCop(final Args args)
+	private final Pager pager;
+
+	private TransactionCop(final Args args, final Pager pager)
 	{
 		super(TAB_TRANSACTION, "Transactions", args);
+		this.pager = pager;
+
+		pager.addParameters(this);
+	}
+
+	TransactionCop(final Args args)
+	{
+		this(args, PAGER_CONFIG.newPager());
+	}
+
+	TransactionCop(final Args args, final HttpServletRequest request)
+	{
+		this(args, PAGER_CONFIG.newPager(request));
 	}
 
 	@Override
 	protected TransactionCop newArgs(final Args args)
 	{
 		return new TransactionCop(args);
+	}
+
+	@Override
+	public Pager getPager()
+	{
+		return pager;
+	}
+
+	@Override
+	public TransactionCop toPage(final Pager pager)
+	{
+		return new TransactionCop(args, pager);
 	}
 
 	@Override
@@ -154,7 +184,7 @@ final class TransactionCop extends ConsoleCop<Void>
 		Transaction_Jspm.writeRecorded(
 				out, this,
 				model.getChangeListeners().contains(listener),
-				commits);
+				pager.init(Arrays.asList(commits)));
 	}
 
 	static final ArrayList<Commit> commits = new ArrayList<Commit>();

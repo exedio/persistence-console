@@ -253,7 +253,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_CONNECTION_POOL.equals(tab))
 			return new ConnectionPoolCop(args);
 		if(TAB_TRANSACTION.equals(tab))
-			return new TransactionCop(args);
+			return new TransactionCop(args, request);
 		if(TAB_DATBASE_LOG.equals(tab))
 			return new DatabaseLogCop(args);
 		if(TAB_ITEM_CACHE.equals(tab))
