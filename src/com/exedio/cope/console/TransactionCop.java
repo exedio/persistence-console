@@ -197,7 +197,8 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 			final Commit commit = new Commit(event);
 			synchronized(commits)
 			{
-				commits.add(commit);
+				if(commits.size()<10000) // prevent indefinite accumulation TODO customize limit
+					commits.add(commit);
 			}
 		}
 
