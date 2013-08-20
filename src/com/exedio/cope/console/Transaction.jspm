@@ -212,50 +212,40 @@ final class Transaction_Jspm extends Console_Jspm
 				%>
 				<td><%=value%></td><%
 			}
-			catch(NotAvailableException e)
-			{
-				write(out, e);
-			}
+			catch(NotAvailableException e) { write(out, e); }
+			
 			try
 			{
 				final long value = event.getTransactionID();
 				%>
 				<td><%=format(value)%></td><%
 			}
-			catch(NotAvailableException e)
-			{
-				write(out, e);
-			}
+			catch(NotAvailableException e) { write(out, e); }
+			
 			try
 			{
 				final Date value = event.getTransactionStartDate();
 				%>
 				<td><%=value%></td><%
 			}
-			catch(NotAvailableException e)
-			{
-				write(out, e);
-			}
+			catch(NotAvailableException e) { write(out, e); }
+			
 			try
 			{
 				final long value = commit.getElapsed();
 				%>
 				<td><%=format(value)%></td><%
 			}
-			catch(NotAvailableException e)
-			{
-				write(out, e);
-			}
+			catch(NotAvailableException e) { write(out, e); }
+			
 			try
 			{
 				final String value = event.getTransactionName();
 				%>
 				<td<% if(value==null){%> class="notavailable"<%} %>><%=value%></td><%
 			}
-			catch(NotAvailableException e)
-			{
-				write(out, e);
-			}
+			catch(NotAvailableException e) { write(out, e); }
+			
 			
 				%>
 				<td class="text"><%commit.writeItems(out);%></td>
