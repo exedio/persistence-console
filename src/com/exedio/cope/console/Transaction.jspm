@@ -214,8 +214,7 @@ final class Transaction_Jspm extends Console_Jspm
 			}
 			catch(NotAvailableException e)
 			{
-				%>
-				<td class="notavailable"><%=e.getMessage()%></td><%
+				write(out, e);
 			}
 			try
 			{
@@ -225,8 +224,7 @@ final class Transaction_Jspm extends Console_Jspm
 			}
 			catch(NotAvailableException e)
 			{
-				%>
-				<td class="notavailable"><%=e.getMessage()%></td><%
+				write(out, e);
 			}
 			try
 			{
@@ -236,8 +234,7 @@ final class Transaction_Jspm extends Console_Jspm
 			}
 			catch(NotAvailableException e)
 			{
-				%>
-				<td class="notavailable"><%=e.getMessage()%></td><%
+				write(out, e);
 			}
 			try
 			{
@@ -247,8 +244,7 @@ final class Transaction_Jspm extends Console_Jspm
 			}
 			catch(NotAvailableException e)
 			{
-				%>
-				<td class="notavailable"><%=e.getMessage()%></td><%
+				write(out, e);
 			}
 			try
 			{
@@ -258,8 +254,7 @@ final class Transaction_Jspm extends Console_Jspm
 			}
 			catch(NotAvailableException e)
 			{
-				%>
-				<td class="notavailable"><%=e.getMessage()%></td><%
+				write(out, e);
 			}
 			
 				%>
@@ -285,5 +280,11 @@ final class Transaction_Jspm extends Console_Jspm
 			<input type="submit" name="<%=DISABLE%>" value="disable" />
 			<input type="submit" name="<%=CLEAR%>"   value="clear" />
 		</form><%
+	}
+	
+	private static void write(final Out out, final NotAvailableException e)
+	{
+				%>
+				<td class="notavailable"><%=e.getMessage()%></td><%
 	}
 }%>
