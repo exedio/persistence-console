@@ -132,6 +132,7 @@ abstract class ConsoleCop<S> extends Cop
 					new ThreadCop(args),
 					new VmCop(args, false, false),
 					new EnumsCop(args),
+					new MysqlSequenceCop(args),
 					new EnvironmentCop(args),
 					new HashCop(args),
 					new HiddenCop(args),
@@ -196,6 +197,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_ITEM_CACHE = "itemcache";
 	static final String TAB_QUERY_CACHE = "querycache";
 	static final String TAB_SEQUENCE = "sequence";
+	static final String TAB_MYSQL_SEQUENCE = "mysqlSequences";
 	static final String TAB_SERIALIZATION_CHECK = "serialization";
 	static final String TAB_DATA_FIELD = "datafield";
 	static final String TAB_MEDIA_STATS = "mediastats";
@@ -262,6 +264,8 @@ abstract class ConsoleCop<S> extends Cop
 			return QueryCacheCop.getQueryCacheCop(args, request);
 		if(TAB_SEQUENCE.equals(tab))
 			return new SequenceCop(args, new TestCop.TestArgs(request));
+		if(TAB_MYSQL_SEQUENCE.equals(tab))
+			return new MysqlSequenceCop(args);
 		if(TAB_SERIALIZATION_CHECK.equals(tab))
 			return new SerializationCheckCop(args);
 		if(TAB_DATA_FIELD.equals(tab))
