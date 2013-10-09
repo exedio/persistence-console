@@ -18,15 +18,14 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.exedio.cope.Condition;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Media;
+import java.util.ArrayList;
+import java.util.List;
 
 final class MediaTypeCop extends TestCop<Media>
 {

@@ -18,14 +18,13 @@
 
 package com.exedio.cope.console.example;
 
-import java.util.List;
-import java.util.Map;
-
 import com.exedio.cope.CopeSchemaValue;
 import com.exedio.cope.EnumField;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
+import java.util.List;
+import java.util.Map;
 
 public class AnItem extends Item
 {

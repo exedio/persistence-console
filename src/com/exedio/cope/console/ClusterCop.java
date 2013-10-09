@@ -18,10 +18,9 @@
 
 package com.exedio.cope.console;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.ClusterListenerInfo;
 import com.exedio.cope.Model;
+import javax.servlet.http.HttpServletRequest;
 
 final class ClusterCop extends ConsoleCop<Void>
 {

@@ -18,17 +18,6 @@
 
 package com.exedio.cope.console.example;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Feature;
@@ -39,8 +28,16 @@ import com.exedio.cope.util.CharsetName;
 import com.exedio.cope.util.ModificationListener;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public final class ExampleServlet extends CopsServlet
 {

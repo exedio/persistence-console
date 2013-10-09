@@ -18,21 +18,18 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Model;
 import com.exedio.cope.Transaction;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import javax.servlet.http.HttpServletRequest;
 
 final class TransactionCop extends ConsoleCop<Void> implements Pageable
 {

@@ -18,10 +18,6 @@
 
 package com.exedio.cope.console;
 
-import java.util.Date;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.DateField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
@@ -33,6 +29,8 @@ import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
+import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 
 final class MediaCop extends ConsoleCop<Void> implements Pageable
 {

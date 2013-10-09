@@ -18,13 +18,11 @@
 
 package com.exedio.cope.console;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.util.ModificationListener;
+import java.util.Arrays;
+import java.util.HashSet;
+import javax.servlet.http.HttpServletRequest;
 
 final class ModificationListenerCop extends ConsoleCop<Void>
 {

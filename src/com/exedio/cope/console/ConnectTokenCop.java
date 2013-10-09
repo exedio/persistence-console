@@ -18,12 +18,10 @@
 
 package com.exedio.cope.console;
 
-import java.util.HashMap;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
+import java.util.HashMap;
+import javax.servlet.http.HttpServletRequest;
 
 final class ConnectTokenCop extends ConsoleCop<Void>
 {

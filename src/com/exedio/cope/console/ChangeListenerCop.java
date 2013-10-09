@@ -18,16 +18,14 @@
 
 package com.exedio.cope.console;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.ChangeListenerDispatcherInfo;
 import com.exedio.cope.Model;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
+import java.util.Arrays;
+import java.util.HashSet;
+import javax.servlet.http.HttpServletRequest;
 
 final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 {

@@ -18,9 +18,8 @@
 
 package com.exedio.cope.console;
 
-import java.io.PrintStream;
-
 import com.exedio.cope.util.XMLEncoder;
+import java.io.PrintStream;
 
 class OutBasic
 {

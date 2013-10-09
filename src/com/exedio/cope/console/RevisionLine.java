@@ -18,6 +18,11 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Revision;
+import com.exedio.cope.RevisionInfo;
+import com.exedio.cope.RevisionInfoCreate;
+import com.exedio.cope.RevisionInfoRevise;
+import com.exedio.cope.RevisionInfoRevise.Body;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,12 +33,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
-import com.exedio.cope.Revision;
-import com.exedio.cope.RevisionInfo;
-import com.exedio.cope.RevisionInfoCreate;
-import com.exedio.cope.RevisionInfoRevise;
-import com.exedio.cope.RevisionInfoRevise.Body;
 
 final class RevisionLine
 {

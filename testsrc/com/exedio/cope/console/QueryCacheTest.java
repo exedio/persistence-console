@@ -20,11 +20,9 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.QueryCacheHistogramAccessor.newQueryCacheHistogram;
 
-import java.util.Arrays;
-
-import junit.framework.TestCase;
-
 import com.exedio.cope.QueryCacheHistogram;
+import java.util.Arrays;
+import junit.framework.TestCase;
 
 public class QueryCacheTest extends TestCase
 {

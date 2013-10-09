@@ -18,12 +18,11 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Field;
 import com.exedio.cope.Type;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 final class EnumsCop extends ConsoleCop<Void>
 {

@@ -18,16 +18,13 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Model;
+import com.exedio.cope.QueryCacheHistogram;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
-
-import com.exedio.cope.Model;
-import com.exedio.cope.QueryCacheHistogram;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 final class QueryCacheCop extends ConsoleCop<Void>
 {

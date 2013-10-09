@@ -24,7 +24,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
-
 import junit.framework.TestCase;
 
 public class MimeTypesTest extends TestCase

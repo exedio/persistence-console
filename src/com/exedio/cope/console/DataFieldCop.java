@@ -18,12 +18,11 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-
 import com.exedio.cope.DataField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
+import java.util.ArrayList;
 
 final class DataFieldCop extends ConsoleCop<Void>
 {

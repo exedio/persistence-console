@@ -18,15 +18,14 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.ConnectProperties;
+import com.exedio.cope.Model;
+import com.exedio.cope.util.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import com.exedio.cope.ConnectProperties;
-import com.exedio.cope.Model;
-import com.exedio.cope.util.XMLEncoder;
 
 final class ConnectCop extends ConsoleCop<Void>
 {

@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeSet;
-
 import javax.servlet.http.HttpServletRequest;
 
 final class VmCop extends ConsoleCop<Void>

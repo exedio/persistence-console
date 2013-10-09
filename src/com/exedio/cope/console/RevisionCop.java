@@ -18,14 +18,6 @@
 
 package com.exedio.cope.console;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.Revision;
 import com.exedio.cope.RevisionInfo;
@@ -34,6 +26,12 @@ import com.exedio.cope.Revisions;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import com.exedio.dsmf.SQLRuntimeException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.servlet.http.HttpServletRequest;
 
 final class RevisionCop extends ConsoleCop<Void> implements Pageable
 {

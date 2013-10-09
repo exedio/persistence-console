@@ -18,9 +18,6 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.ItemField;
@@ -28,6 +25,8 @@ import com.exedio.cope.ItemFunction;
 import com.exedio.cope.Model;
 import com.exedio.cope.This;
 import com.exedio.cope.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 final class TypeColumnCop extends TestCop<ItemFunction<?>>
 {

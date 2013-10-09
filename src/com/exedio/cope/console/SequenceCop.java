@@ -20,15 +20,14 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import com.exedio.cope.Feature;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Model;
 import com.exedio.cope.SequenceInfo;
 import com.exedio.cope.This;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 final class SequenceCop extends TestCop<SequenceInfo>
 {

@@ -20,16 +20,15 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.highlightSQL;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-
 import com.exedio.cope.Revision;
 import com.exedio.cope.RevisionInfoCreate;
 import com.exedio.cope.RevisionInfoRevise;
 import com.exedio.cope.RevisionInfoRevise.Body;
 import com.exedio.cope.junit.CopeAssert;
+import java.io.UnsupportedEncodingException;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 
 public class RevisionLineTest extends CopeAssert
 {

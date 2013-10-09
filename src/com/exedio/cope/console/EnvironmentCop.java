@@ -20,6 +20,9 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.util.CharsetName.UTF8;
 
+import com.exedio.cope.Cope;
+import com.exedio.cope.Model;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,11 +31,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.TreeMap;
-
-import com.exedio.cope.Cope;
-import com.exedio.cope.Model;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 final class EnvironmentCop extends ConsoleCop<Void>
 {

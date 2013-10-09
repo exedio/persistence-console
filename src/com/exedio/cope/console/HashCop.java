@@ -18,14 +18,12 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Hash;
+import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 
 final class HashCop extends ConsoleCop<Void>
 {

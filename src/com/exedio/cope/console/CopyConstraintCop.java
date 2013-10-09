@@ -18,12 +18,11 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.exedio.cope.CopyConstraint;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 final class CopyConstraintCop extends TestCop<CopyConstraint>
 {

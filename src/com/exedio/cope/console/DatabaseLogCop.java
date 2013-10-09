@@ -18,11 +18,10 @@
 
 package com.exedio.cope.console;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.DatabaseListener;
 import com.exedio.cope.misc.DatabaseLogListener;
+import javax.servlet.http.HttpServletRequest;
 
 final class DatabaseLogCop extends ConsoleCop<Void>
 {

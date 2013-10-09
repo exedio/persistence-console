@@ -18,13 +18,12 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.exedio.cope.Model;
 import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 final class UnsupportedConstraintCop extends TestCop<Constraint>
 {

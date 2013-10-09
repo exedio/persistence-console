@@ -20,18 +20,16 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.SchemaInfo.quoteName;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.exedio.cope.DateField;
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Field;
 import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.Type;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 final class SchemaNice
 {

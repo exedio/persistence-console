@@ -18,15 +18,6 @@
 
 package com.exedio.cope.console.example;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.Revision;
 import com.exedio.cope.RevisionInfo;
@@ -36,8 +27,15 @@ import com.exedio.cope.RevisionInfoRevise;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.misc.DirectRevisionsFactory;
 import com.exedio.dsmf.SQLRuntimeException;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public final class Revisions
 {

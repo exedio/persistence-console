@@ -18,19 +18,17 @@
 
 package com.exedio.cope.console;
 
-import java.io.PrintStream;
-import java.net.InetAddress;
-import java.util.Date;
-import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.util.XMLEncoder;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Resource;
 import com.exedio.dsmf.Constraint;
+import java.io.PrintStream;
+import java.net.InetAddress;
+import java.util.Date;
+import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
 
 final class Out extends OutBasic
 {

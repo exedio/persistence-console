@@ -21,17 +21,15 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.util.CharsetName.UTF8;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.console.Stores.Store;
 import com.exedio.cope.misc.TimeUtil;
 import com.exedio.cops.Cop;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 {

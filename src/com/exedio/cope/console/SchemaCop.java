@@ -18,12 +18,6 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.TimeUtil;
 import com.exedio.dsmf.Column;
@@ -32,6 +26,10 @@ import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.StatementListener;
 import com.exedio.dsmf.Table;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 
 final class SchemaCop extends ConsoleCop<Void>
 {

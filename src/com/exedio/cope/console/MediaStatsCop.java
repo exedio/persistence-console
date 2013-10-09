@@ -18,10 +18,6 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.TreeSet;
-
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
@@ -29,6 +25,9 @@ import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.MediaSummary;
 import com.exedio.cope.pattern.MediaInfo;
 import com.exedio.cope.pattern.MediaPath;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.TreeSet;
 
 final class MediaStatsCop extends ConsoleCop<Void>
 {

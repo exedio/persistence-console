@@ -18,14 +18,13 @@
 
 package com.exedio.cope.console;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.FunctionField;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 final class OptionalFieldCop extends TestCop<FunctionField<?>>
 {

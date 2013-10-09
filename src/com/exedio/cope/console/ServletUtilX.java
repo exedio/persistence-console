@@ -18,12 +18,11 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Model;
+import com.exedio.cope.misc.ModelByString;
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
-
-import com.exedio.cope.Model;
-import com.exedio.cope.misc.ModelByString;
 
 /**
  * Partial copy of {@link com.exedio.cope.misc.ServletUtil}.

@@ -18,9 +18,8 @@
 
 package com.exedio.cope.console;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.exedio.cope.SchemaInfo;
+import javax.servlet.http.HttpServletRequest;
 
 final class EnumCop extends ConsoleCop<Void>
 {
