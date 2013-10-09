@@ -35,15 +35,37 @@ import com.exedio.dsmf.Table;
 
 final class SchemaCop extends ConsoleCop<Void>
 {
+	private static final String DETAILED = "dt";
+
+	final boolean detailed;
+
 	SchemaCop(final Args args)
 	{
+		this(args, false);
+	}
+
+	private SchemaCop(final Args args, final boolean detailed)
+	{
 		super(TAB_SCHEMA, "Schema", args);
+		this.detailed = detailed;
+
+		addParameter(DETAILED, detailed);
+	}
+
+	static final SchemaCop getSchemaCop(final Args args, final HttpServletRequest request)
+	{
+		return new SchemaCop(args, getBooleanParameter(request, DETAILED));
 	}
 
 	@Override
 	protected SchemaCop newArgs(final Args args)
 	{
-		return new SchemaCop(args);
+		return new SchemaCop(args, detailed);
+	}
+
+	SchemaCop toToggleDetailed()
+	{
+		return new SchemaCop(args, !detailed);
 	}
 
 	@Override

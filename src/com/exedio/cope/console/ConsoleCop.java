@@ -227,7 +227,7 @@ abstract class ConsoleCop<S> extends Cop
 
 		final String tab = pathInfo.substring(1, pathInfo.length()-NAME_POSTFIX.length());
 		if(TAB_SCHEMA.equals(tab))
-			return new SchemaCop(args);
+			return SchemaCop.getSchemaCop(args, request);
 		if(TAB_UNSUPPORTED_CONSTRAINTS.equals(tab))
 			return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_UNSUPPORTED_CHECK_CONSTRAINTS.equals(tab))

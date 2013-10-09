@@ -45,10 +45,12 @@ final class SchemaDetails_Jspm extends Console_Jspm
 	{
 		final HttpServletRequest request = out.request;
 		final Model model = out.model;
+		final boolean detailed = cop.detailed;
 
 		%>
 		<hr>
 		<h4>Details</h4>
+		<% writeToggle(out, cop.toToggleDetailed(), cop.detailed); %> detailed
 		<form action="<%=cop%>#overall" method="POST"><%
 		
 			if(isPost(request))
@@ -79,6 +81,9 @@ final class SchemaDetails_Jspm extends Console_Jspm
 			for(final Table table : schema.getTables())
 			{
 				tableCount++;
+				if( !detailed && (table.getCumulativeColor()==Node.Color.OK) )
+					continue;
+
 				final String tableName = table.getName();
 				%>
 				<li>
@@ -114,6 +119,9 @@ final class SchemaDetails_Jspm extends Console_Jspm
 						final String columnName = column.getName();
 						if("catch".equals(columnName))
 							catchColumns.add(column);
+						
+						if( !detailed && (column.getCumulativeColor()==Node.Color.OK) )
+							continue;
 						%>
 						<li>
 							<img class="node" src="<%=leaf(column.getCumulativeColor())%>">
@@ -147,6 +155,9 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					for(final Constraint constraint : table.getConstraints())
 					{
 						constraintCount++;
+						if( !detailed && (constraint.getCumulativeColor()==Node.Color.OK) )
+							continue;
+						
 						final String constraintName = constraint.getName();
 						%>
 						<li>
@@ -190,6 +201,9 @@ final class SchemaDetails_Jspm extends Console_Jspm
 			for(final Sequence sequence : schema.getSequences())
 			{
 				sequenceCount++;
+				if( !detailed && (sequence.getCumulativeColor()==Node.Color.OK) )
+					continue;
+
 				final String sequenceName = sequence.getName();
 				%>
 				<li>
