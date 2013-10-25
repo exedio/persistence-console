@@ -23,6 +23,7 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.Type;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -97,6 +98,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 		}
 
 		@Override
+		@SuppressFBWarnings("EQ_COMPARETO_USE_OBJECT_EQUALS") // OK: name is unique
 		public int compareTo(final Table other)
 		{
 			final int sizeResult = compare(size, other.size);
