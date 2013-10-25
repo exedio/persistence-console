@@ -21,8 +21,12 @@ package com.exedio.cope.console;
 import com.exedio.cope.DataField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 final class DataFieldCop extends ConsoleCop<Void>
 {
@@ -55,6 +59,86 @@ final class DataFieldCop extends ConsoleCop<Void>
 						lengthMax = field.getMaximumLength();
 				}
 
-		DataField_Jspm.writeBody(out, fields, lengthMax);
+		final Collection<Table> tables = tableInfo(model);
+		long tablesMax = 0;
+		if(tables!=null)
+			for(final Table table : tables)
+				if(tablesMax<table.getSize())
+					tablesMax = table.getSize();
+
+		DataField_Jspm.writeBody(out, this, tables, tablesMax, fields, lengthMax);
+	}
+
+	static final class Table implements Comparable<Table>
+	{
+		final String name;
+		private long size = 0;
+		private int count = 0;
+
+		Table(final String name)
+		{
+			this.name = name;
+		}
+
+		void add(final long size)
+		{
+			this.size += size;
+			count++;
+		}
+
+		long getSize()
+		{
+			return size;
+		}
+
+		int getCount()
+		{
+			return count;
+		}
+
+		@Override
+		public int compareTo(final Table other)
+		{
+			final int sizeResult = compare(size, other.size);
+			if(sizeResult!=0)
+				return sizeResult;
+
+			return name.compareTo(other.name);
+		}
+
+		private static int compare(final long left, final long right)
+		{
+			return (left<right ? -1 : (left==right ? 0 : 1));
+		}
+	}
+
+	private static final Collection<Table> tableInfo(final Model model)
+	{
+		if(model.isConnected())
+		{
+			final HashMap<String, Table> result = new HashMap<String, Table>();
+
+			for(final Type<?> type : model.getTypes())
+				for(final Feature feature : type.getDeclaredFeatures())
+					if(feature instanceof DataField)
+					{
+						final DataField field = (DataField)feature;
+						final String tableName = SchemaInfo.getTableName(field.getType());
+						Table table = result.get(tableName);
+						if(table==null)
+						{
+							table = new Table(tableName);
+							if(result.put(tableName, table)!=null)
+								throw new RuntimeException(tableName);
+						}
+						table.add(field.getMaximumLength());
+					}
+
+			return new TreeSet<Table>(result.values());
+		}
+		else
+		{
+			return null;
+		}
 	}
 }
