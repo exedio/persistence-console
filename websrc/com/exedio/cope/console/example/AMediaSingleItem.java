@@ -19,13 +19,7 @@
 package com.exedio.cope.console.example;
 
 import com.exedio.cope.Item;
-import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.Media;
-import com.exedio.cope.pattern.MediaImageMagickThumbnail;
-import com.exedio.cope.pattern.MediaRedirect;
-import com.exedio.cope.pattern.MediaThumbnail;
-import com.exedio.cope.pattern.PreventUrlGuessing;
-import com.exedio.cope.pattern.RedirectFrom;
 
 public final class AMediaSingleItem extends Item
 {
