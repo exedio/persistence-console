@@ -25,8 +25,8 @@ import com.exedio.cope.Item;
 import com.exedio.cope.Join;
 import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.MediaPath;
+import com.exedio.cope.pattern.MediaUtil;
 import java.io.IOException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -61,7 +61,6 @@ public final class ANameServer extends MediaPath
 	private static final long EXPIRES_OFFSET = 1000 * 5; // 5 seconds
 
 	private static final String RESPONSE_EXPIRES = "Expires";
-	private static final String RESPONSE_CONTENT_LENGTH = "Content-Length";
 
 	@Override
 	public void doGetAndCommit(
@@ -80,30 +79,15 @@ public final class ANameServer extends MediaPath
 		if(content.endsWith(" error"))
 			throw new RuntimeException("test error in ANameServer");
 
-		response.setContentType("text/plain");
-
 		final long now = System.currentTimeMillis();
 		response.setDateHeader(RESPONSE_EXPIRES, now+EXPIRES_OFFSET);
 
 		final byte[] contentBytes = content.getBytes(UTF8);
-		final long contentLength = contentBytes.length;
-		//System.out.println("contentLength="+String.valueOf(contentLength));
-		response.setHeader(RESPONSE_CONTENT_LENGTH, String.valueOf(contentLength));
 		//response.setHeader("Cache-Control", "public");
 
-		System.out.println(request.getMethod()+' '+request.getProtocol()+" modified: "+contentLength);
+		System.out.println(request.getMethod()+' '+request.getProtocol()+" modified: "+contentBytes.length);
 
-		ServletOutputStream out = null;
-		try
-		{
-			out = response.getOutputStream();
-			out.write(contentBytes);
-		}
-		finally
-		{
-			if(out!=null)
-				out.close();
-		}
+		MediaUtil.send("text/plain", contentBytes, response);
 	}
 
 	@Override
