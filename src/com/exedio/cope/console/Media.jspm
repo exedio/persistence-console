@@ -25,6 +25,7 @@ import static com.exedio.cope.console.Format.ratio;
 import static com.exedio.cope.console.MediaStatsCop.format;
 
 import java.util.Set;
+import java.util.List;
 
 import com.exedio.cope.Item;
 import com.exedio.cope.Query;
@@ -36,6 +37,7 @@ import com.exedio.cope.pattern.MediaImageMagickThumbnail;
 import com.exedio.cope.pattern.MediaInfo;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaRedirect;
+import com.exedio.cope.pattern.MediaRequestLog;
 import com.exedio.cope.pattern.MediaThumbnail;
 import com.exedio.cope.pattern.PreventUrlGuessing;
 
@@ -313,5 +315,80 @@ final class Media_Jspm extends Console_Jspm
 			}
 			%></a><%
 		}
+	}
+	
+	static void writeErrorLogsFooter(final Out out)
+	{
+		%>
+		<hr><%
+	}
+	
+	static void writeErrorLogs(
+				final Out out,
+				final String caption,
+				final List<MediaRequestLog> logs)
+	{
+		if(logs.isEmpty())
+			return;
+		
+		%>
+		<table>
+			<caption><%=caption%></caption>
+			<tr>
+				<th>#</th>
+				<th>Date</th>
+				<th>Path Info</th>
+				<th>Query String</th>
+				<th>Host</th>
+				<th>Referer</th>
+				<th>User Agent</th>
+				<th>Exception</th>
+			</tr><%
+		
+		int n = 0;
+		for(final MediaRequestLog log : logs)
+		{
+			%>
+			<tr>
+				<td><%=n++%></td>
+				<td class="text"><%=log.getDate()%></td><%
+				writeLine(out, log.getPathInfo());
+				writeLine(out, log.getQueryString());
+				writeLine(out, log.getHost());
+				writeLine(out, log.getReferer());
+				writeLine(out, log.getUserAgent());
+				
+				final Exception exception = log.getException();
+				if(exception!=null)
+				{
+				%>
+				<td class="text"><% StackTrace_Jspm.write(out, exception.getStackTrace()); %></td><%
+				}
+				else
+				{
+				%>
+				<td class="notavailable">null</td><%
+				}
+			%>
+			</tr><%
+		}
+		%>
+		</table><%
+	}
+	
+	private static void writeLine(
+				final Out out,
+				final String line)
+	{
+			if(line!=null)
+			{
+				%>
+				<td class="text"><%=line%></td><%
+			}
+			else
+			{
+				%>
+				<td class="notavailable">null</td><%
+			}
 	}
 }%>
