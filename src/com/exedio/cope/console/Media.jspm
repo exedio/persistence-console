@@ -40,6 +40,7 @@ import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cope.pattern.MediaRequestLog;
 import com.exedio.cope.pattern.MediaThumbnail;
 import com.exedio.cope.pattern.PreventUrlGuessing;
+import com.exedio.cope.pattern.UrlFingerPrinting;
 
 final class Media_Jspm extends Console_Jspm
 {
@@ -107,6 +108,10 @@ final class Media_Jspm extends Console_Jspm
 					if(path.isUrlGuessingPrevented())
 					{
 						%><small>@<%=PreventUrlGuessing.class.getSimpleName()%><% writeFail(out, isUrlGuessingNotSecure); %></small><br><%
+					}
+					if(path.isUrlFingerPrinted())
+					{
+						%><small>@<%=UrlFingerPrinting.class.getSimpleName()%></small><br><%
 					}
 					
 					final String className = path.getClass().getName();
