@@ -81,6 +81,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	private static final String[] names = {
 			"Redirect From <small>(301)</small>",
 			"Exception <small>(500)</small>",
+			"Invalid Special <small>(404)</small>",
 			"Guessed Url <small>(404)</small>",
 			"Not An Item <small>(404)</small>",
 			"No Such Item <small>(404)</small>",
@@ -97,6 +98,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	private static final String[] shortNames = {
 			"rf",
 			"ex",
+			"is",
 			"gss",
 			"nai",
 			"nsi",
@@ -113,6 +115,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		return format(new int[]{
 				summary.getRedirectFrom(),
 				summary.getException(),
+				summary.getInvalidSpecial(),
 				summary.getGuessedUrl(),
 				summary.getNotAnItem(),
 				summary.getNoSuchItem(),
@@ -129,6 +132,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		return format(new int[]{
 				info.getRedirectFrom(),
 				info.getException(),
+				info.getInvalidSpecial(),
 				info.getGuessedUrl(),
 				info.getNotAnItem(),
 				info.getNoSuchItem(),
