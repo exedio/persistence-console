@@ -51,6 +51,7 @@ final class Hash_Jspm
 				<th rowspan="2"></th>
 				<th rowspan="2">Type</th>
 				<th rowspan="2">Name</th>
+				<th rowspan="2">Plain<br>Text<br>Limit</th>
 				<th colspan="2">Algorithm</th><%
 			
 			if(compute)
@@ -78,6 +79,7 @@ final class Hash_Jspm
 				<td class="sql"><input type="checkbox" name="<%=CHECKED%>" value="<%=hash.getID()%>"<% if(checked){%> checked="true"<%} %>></td>
 				<td class="text"><%=hash.getType().getID()%></td>
 				<td class="text"><%=hash.getName()%></td>
+				<td><%=hash.getPlainTextLimit()%></td>
 				<td class="text"><%=algorithm.getID()%></td>
 				<td class="text"><%=algorithm.getDescription()%></td><%
 			
