@@ -26,6 +26,7 @@ import com.exedio.cops.Resource;
 import com.exedio.dsmf.Constraint;
 import java.io.PrintStream;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
@@ -92,10 +93,27 @@ final class Out extends OutBasic
 		bf.print(s);
 	}
 
+	private final long now = System.currentTimeMillis();
+	private final SimpleDateFormat fullDateFormat = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
+	private final SimpleDateFormat yearFormat = new SimpleDateFormat("MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
+	private final SimpleDateFormat todayDateFormat = new SimpleDateFormat("HH:mm:ss'<small>'.SSS'</small>'");
+	private static final long yearInterval  = 1000l * 60 * 60 * 24 * 90; // 90 days
+	private static final long todayInterval = 1000l * 60 * 60 * 6; // 6 hours
+
 	void write(final Date date)
 	{
 		if(date!=null)
-			bf.print(Format.format(date));
+			bf.print(format(date));
+	}
+
+	private String format(final Date date)
+	{
+		final long dateMillis = date.getTime();
+		return (
+			( (now-todayInterval) < dateMillis && dateMillis < (now+todayInterval) )
+			? todayDateFormat :
+			( (now-yearInterval) < dateMillis && dateMillis < (now+yearInterval) )
+			? yearFormat : fullDateFormat).format(date);
 	}
 
 	void write(final Thread.State state)

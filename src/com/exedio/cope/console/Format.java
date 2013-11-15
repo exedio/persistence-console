@@ -20,8 +20,6 @@ package com.exedio.cope.console;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 final class Format
 {
@@ -30,32 +28,14 @@ final class Format
 		// prevent instantiation
 	}
 
-	private static SimpleDateFormat fullDateFormat, yearFormat, todayDateFormat;
 	private static DecimalFormat numberFormat;
 
 	static
 	{
-		fullDateFormat = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
-		yearFormat = new SimpleDateFormat("MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
-		todayDateFormat = new SimpleDateFormat("HH:mm:ss'<small>'.SSS'</small>'");
 		final DecimalFormatSymbols nfs = new DecimalFormatSymbols();
 		nfs.setDecimalSeparator(',');
 		nfs.setGroupingSeparator('\'');
 		numberFormat = new DecimalFormat("", nfs);
-	}
-
-	private static final long yearInterval  = 1000l * 60 * 60 * 24 * 90; // 90 days
-	private static final long todayInterval = 1000l * 60 * 60 * 6; // 6 hours
-
-	static final String format(final Date date)
-	{
-		final long dateMillis = date.getTime();
-		final long now = System.currentTimeMillis();
-		return (
-			( (now-todayInterval) < dateMillis && dateMillis < (now+todayInterval) )
-			? todayDateFormat :
-			( (now-yearInterval) < dateMillis && dateMillis < (now+yearInterval) )
-			? yearFormat : fullDateFormat).format(date);
 	}
 
 	static final String format(final long number)
