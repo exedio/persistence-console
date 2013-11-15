@@ -45,7 +45,7 @@ abstract class ConsoleCop<S> extends Cop
 		}
 	}
 
-	protected static class Args
+	protected static final class Args
 	{
 		private static final String AUTO_REFRESH = "ar";
 		private static final String DATE_PRECISION = "dp";
@@ -72,6 +72,16 @@ abstract class ConsoleCop<S> extends Cop
 		{
 			cop.addParameter(AUTO_REFRESH, autoRefresh, 0);
 			cop.addParameter(DATE_PRECISION, datePrecision, DatePrecision.m);
+		}
+
+		Args toAutoRefresh(final int autoRefresh)
+		{
+			return new Args(stores, autoRefresh, datePrecision);
+		}
+
+		Args toDatePrecision(final DatePrecision datePrecision)
+		{
+			return new Args(stores, autoRefresh, datePrecision);
 		}
 	}
 
@@ -103,12 +113,12 @@ abstract class ConsoleCop<S> extends Cop
 
 	final ConsoleCop<S> toAutoRefresh(final int autoRefresh)
 	{
-		return newArgs(new Args(args.stores, autoRefresh, args.datePrecision));
+		return newArgs(args.toAutoRefresh(autoRefresh));
 	}
 
 	final ConsoleCop<S> toDatePrecision(final DatePrecision datePrecision)
 	{
-		return newArgs(new Args(args.stores, args.autoRefresh, datePrecision));
+		return newArgs(args.toDatePrecision(datePrecision));
 	}
 
 	MediaCop toMedia(final MediaPath media)
