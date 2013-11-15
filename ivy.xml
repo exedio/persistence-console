@@ -22,7 +22,7 @@
 		<dependency org="javax.servlet" name="servlet-api" rev="2.4" />
 		<dependency org="junit" name="junit" rev="4.4" conf="build->default" />
 		<dependency org="com.exedio" name="cops" rev= "300" />
-		<dependency org="com.exedio" name="cope" rev="7717">
+		<dependency org="com.exedio" name="cope" rev="7762">
 			<conf name="runtime" mapped="runtime" />
 			<conf name="build" mapped="hsqldb,mysql,junit,sources" />
 		</dependency>

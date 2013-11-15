@@ -356,7 +356,7 @@ final class Media_Jspm extends Console_Jspm
 			%>
 			<tr>
 				<td><%=n++%></td>
-				<td class="text"><%=log.getDate()%></td><%
+				<td class="text"<% if(log.isSecure()){%> style="background-color:#ddf"<%} %>><%=log.getDate()%></td><%
 				writeLine(out, log.getPathInfo());
 				writeLine(out, log.getQueryString());
 				writeLine(out, log.getHost());
