@@ -42,6 +42,7 @@ final class Out extends OutBasic
 			final HttpServletRequest request,
 			final Model model,
 			final ConsoleServlet servlet,
+			final ConsoleCop.DatePrecision datePrecision,
 			final PrintStream bf)
 	{
 		super(bf);
@@ -49,6 +50,10 @@ final class Out extends OutBasic
 		this.request = request;
 		this.model = model;
 		this.servlet = servlet;
+
+		fullDateFormat  = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'" + datePrecision.pattern);
+		yearFormat      = new SimpleDateFormat(     "MM/dd'&nbsp;'" + datePrecision.pattern);
+		todayDateFormat = new SimpleDateFormat(                       datePrecision.pattern);
 	}
 
 	void writeRaw(final String s)
@@ -94,9 +99,9 @@ final class Out extends OutBasic
 	}
 
 	private final long now = System.currentTimeMillis();
-	private final SimpleDateFormat fullDateFormat  = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
-	private final SimpleDateFormat yearFormat      = new SimpleDateFormat(     "MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
-	private final SimpleDateFormat todayDateFormat = new SimpleDateFormat(                  "HH:mm:ss'<small>'.SSS'</small>'");
+	private final SimpleDateFormat fullDateFormat;
+	private final SimpleDateFormat yearFormat;
+	private final SimpleDateFormat todayDateFormat;
 	private static final long yearInterval  = 1000l * 60 * 60 * 24 * 90; // 90 days
 	private static final long todayInterval = 1000l * 60 * 60 * 6; // 6 hours
 

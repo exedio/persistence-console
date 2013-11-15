@@ -150,7 +150,7 @@ public final class ConsoleServlet extends CopsServlet
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
 			if(ajax)
 				response.setContentType("text/xml; charset="+CharsetName.UTF8);
-			final Out out = new Out(request, model, this, new PrintStream(response.getOutputStream(), false, CharsetName.UTF8));
+			final Out out = new Out(request, model, this, cop.args.datePrecision, new PrintStream(response.getOutputStream(), false, CharsetName.UTF8));
 			if(ajax)
 				cop.writeAjax(out);
 			else

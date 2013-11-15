@@ -31,28 +31,47 @@ import javax.servlet.http.HttpServletResponse;
 
 abstract class ConsoleCop<S> extends Cop
 {
+	enum DatePrecision
+	{
+		m ("HH:mm"),
+		s ("HH:mm:ss"),
+		ms("HH:mm:ss'<small>'.SSS'</small>'");
+
+		final String pattern;
+
+		DatePrecision(final String pattern)
+		{
+			this.pattern = pattern;
+		}
+	}
+
 	protected static class Args
 	{
 		private static final String AUTO_REFRESH = "ar";
+		private static final String DATE_PRECISION = "dp";
 
 		final Stores stores;
 		final int autoRefresh;
+		final DatePrecision datePrecision;
 
-		Args(final Stores stores, final int autoRefresh)
+		Args(final Stores stores, final int autoRefresh, final DatePrecision datePrecision)
 		{
 			this.stores = stores;
 			this.autoRefresh = autoRefresh;
+			this.datePrecision = datePrecision;
 		}
 
 		Args(final Stores stores, final HttpServletRequest request)
 		{
 			this.stores = stores;
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
+			this.datePrecision = getEnumParameter(request, DATE_PRECISION, DatePrecision.m);
 		}
 
 		void addParameters(final ConsoleCop<?> cop)
 		{
 			cop.addParameter(AUTO_REFRESH, autoRefresh, 0);
+			cop.addParameter(DATE_PRECISION, datePrecision, DatePrecision.m);
 		}
 	}
 
@@ -84,7 +103,12 @@ abstract class ConsoleCop<S> extends Cop
 
 	final ConsoleCop<S> toAutoRefresh(final int autoRefresh)
 	{
-		return newArgs(new Args(args.stores, autoRefresh));
+		return newArgs(new Args(args.stores, autoRefresh, args.datePrecision));
+	}
+
+	final ConsoleCop<S> toDatePrecision(final DatePrecision datePrecision)
+	{
+		return newArgs(new Args(args.stores, args.autoRefresh, datePrecision));
 	}
 
 	MediaCop toMedia(final MediaPath media)
