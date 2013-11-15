@@ -94,9 +94,9 @@ final class Out extends OutBasic
 	}
 
 	private final long now = System.currentTimeMillis();
-	private final SimpleDateFormat fullDateFormat = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
-	private final SimpleDateFormat yearFormat = new SimpleDateFormat("MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
-	private final SimpleDateFormat todayDateFormat = new SimpleDateFormat("HH:mm:ss'<small>'.SSS'</small>'");
+	private final SimpleDateFormat fullDateFormat  = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
+	private final SimpleDateFormat yearFormat      = new SimpleDateFormat(     "MM/dd'&nbsp;'HH:mm:ss'<small>'.SSS'</small>'");
+	private final SimpleDateFormat todayDateFormat = new SimpleDateFormat(                  "HH:mm:ss'<small>'.SSS'</small>'");
 	private static final long yearInterval  = 1000l * 60 * 60 * 24 * 90; // 90 days
 	private static final long todayInterval = 1000l * 60 * 60 * 6; // 6 hours
 
