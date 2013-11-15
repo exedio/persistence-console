@@ -47,11 +47,6 @@ final class Format
 	private static final long yearInterval  = 1000l * 60 * 60 * 24 * 90; // 90 days
 	private static final long todayInterval = 1000l * 60 * 60 * 6; // 6 hours
 
-	static final String formatAndHide(final Date date)
-	{
-		return date!=null ? format(date) : "";
-	}
-
 	static final String format(final Date date)
 	{
 		final long dateMillis = date.getTime();

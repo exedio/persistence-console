@@ -73,7 +73,7 @@ final class ItemCache_Jspm extends Console_Jspm
 				<td class="a"><%=formatAndHide(0, summary.getConcurrentLoads())%></td>
 				<td class="b"><%=formatAndHide(0, summary.getReplacementRuns())%></td>
 				<td class="b"><%=formatAndHide(0, summary.getReplacements())%></td>
-				<td class="b"><% out.writeRaw(formatAndHide(summary.getLastReplacementRun())); %></td>
+				<td class="b"><%=summary.getLastReplacementRun()%></td>
 				<td class="a"><%=formatAndHide(0, summary.getAgeMinimumMillis()/1000l)%></td>
 				<td class="a"><%=formatAndHide(0, summary.getAgeAverageMillis()/1000l)%></td>
 				<td class="a"><%=formatAndHide(0, summary.getAgeMaximumMillis()/1000l)%></td>
@@ -97,7 +97,7 @@ final class ItemCache_Jspm extends Console_Jspm
 				<td class="a"><%=formatAndHide(0, info.getConcurrentLoads())%></td>
 				<td class="b"><%=formatAndHide(0, info.getReplacementRuns())%></td>
 				<td class="b"><%=formatAndHide(0, info.getReplacements())%></td>
-				<td class="b"><% out.writeRaw(formatAndHide(info.getLastReplacementRun())); %></td>
+				<td class="b"><%=info.getLastReplacementRun()%></td>
 				<td class="a"><%=formatAndHide(Long.MAX_VALUE/1000l, info.getAgeMinimumMillis()/1000l)%></td>
 				<td class="a"><%=formatAndHide(0, info.getAgeAverageMillis()/1000l)%></td>
 				<td class="a"><%=formatAndHide(0, info.getAgeMaximumMillis()/1000l)%></td>
