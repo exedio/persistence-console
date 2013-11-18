@@ -30,6 +30,7 @@ import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 final class MediaCop extends ConsoleCop<Void> implements Pageable
@@ -230,7 +231,16 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		Media_Jspm.writeErrorLogs(out, "No Such Item"   , media.getNoSuchItemLogs());
 		Media_Jspm.writeErrorLogs(out, "Is Null"        , media.getIsNullLogs());
 		Media_Jspm.writeErrorLogs(out, "Not Computable" , media.getNotComputableLogs());
-		Media_Jspm.writeErrorLogsFooter(out);
+		Media_Jspm.writeHorizontalRule(out);
+
+		{
+			final List<String> prefixes = out.getMediaURLPrefixes();
+			if(!prefixes.isEmpty())
+			{
+				Media_Jspm.writeMediaURLPrefixes(out, this, args.mediaURLPrefix, prefixes);
+				Media_Jspm.writeHorizontalRule(out);
+			}
+		}
 
 		try
 		{
@@ -250,11 +260,5 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		{
 			model.rollbackIfNotCommitted();
 		}
-	}
-
-	static final String fn(final String url)
-	{
-		final int pos = url.lastIndexOf('/');
-		return (pos>0) ? url.substring(pos+1) : url;
 	}
 }

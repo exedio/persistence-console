@@ -30,6 +30,8 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.Principal;
+import java.util.Collections;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,8 +60,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ralf Wiebicke
  */
-public final class ConsoleServlet extends CopsServlet
+public class ConsoleServlet extends CopsServlet
 {
+	/**
+	 * May be overridden by subclasses to specify allowed prefixes of media urls.
+	 * These prefixes will be prepended to results of {@link com.exedio.cope.pattern.Media.Locator#getPath()}.
+	 * The default implementation returns an empty list.
+	 * @param request may be used for getting {@link HttpServletRequest#getContextPath()}.
+	 */
+	public List<String> getMediaURLPrefixes(final HttpServletRequest request)
+	{
+		return Collections.<String>emptyList();
+	}
+
+
 	private static final long serialVersionUID = 1l;
 
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
@@ -92,7 +106,7 @@ public final class ConsoleServlet extends CopsServlet
 	static final Resource imagebackground = new Resource("imagebackground.png");
 
 	@Override
-	public void init() throws ServletException
+	public final void init() throws ServletException
 	{
 		super.init();
 
@@ -107,7 +121,7 @@ public final class ConsoleServlet extends CopsServlet
 	}
 
 	@Override
-	public void destroy()
+	public final void destroy()
 	{
 		if(connectToken!=null && !connectToken.isReturned())
 		{
@@ -119,13 +133,13 @@ public final class ConsoleServlet extends CopsServlet
 		super.destroy();
 	}
 
-	void connect()
+	final void connect()
 	{
 		if(connectToken==null || connectToken.isReturned())
 			connectToken = ConnectToken.issue(model, "servlet \"" + getServletName() + "\" (" + toString() + ')');
 	}
 
-	boolean willBeReturned(final ConnectToken token)
+	final boolean willBeReturned(final ConnectToken token)
 	{
 		return connectToken==token;
 	}
@@ -133,7 +147,7 @@ public final class ConsoleServlet extends CopsServlet
 	static final String CONNECT = "connectByToken";
 
 	@Override
-	protected void doRequest(
+	protected final void doRequest(
 			final HttpServletRequest request,
 			final HttpServletResponse response)
 		throws IOException
@@ -144,13 +158,13 @@ public final class ConsoleServlet extends CopsServlet
 				model = this.model;
 			}
 
-			final ConsoleCop<?> cop = ConsoleCop.getCop(stores, model, request);
+			final ConsoleCop<?> cop = ConsoleCop.getCop(stores, model, request, this);
 			cop.initialize(request, model);
 			response.setStatus(cop.getResponseStatus());
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
 			if(ajax)
 				response.setContentType("text/xml; charset="+CharsetName.UTF8);
-			final Out out = new Out(request, model, this, cop.args.datePrecision, new PrintStream(response.getOutputStream(), false, CharsetName.UTF8));
+			final Out out = new Out(request, model, this, cop.args, new PrintStream(response.getOutputStream(), false, CharsetName.UTF8));
 			if(ajax)
 				cop.writeAjax(out);
 			else

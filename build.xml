@@ -144,9 +144,10 @@
 		</instrument>
 	</target>
 	
-	<target name="web.compile" depends="web.jspm, web.instrument">
+	<target name="web.compile" depends="src.compile, web.jspm, web.instrument">
 		<compile srcdir="websrc">
 			<classpath>
+				<pathelement location="build/classes/src" />
 				<pathelement location="lib/exedio-cope-util.jar" />
 				<pathelement location="lib/exedio-cope-servletutil.jar" />
 				<pathelement location="lib/exedio-cope.jar" />

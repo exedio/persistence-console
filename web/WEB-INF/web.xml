@@ -16,7 +16,7 @@
 	
 	<servlet>
 		<servlet-name>standard</servlet-name>
-		<servlet-class>com.exedio.cope.console.ConsoleServlet</servlet-class>
+		<servlet-class>com.exedio.cope.console.example.StandardConsole</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>standard</servlet-name>

@@ -26,6 +26,7 @@ import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -49,39 +50,69 @@ abstract class ConsoleCop<S> extends Cop
 	{
 		private static final String AUTO_REFRESH = "ar";
 		private static final String DATE_PRECISION = "dp";
+		private static final String MEDIA_URL_PREFIX = "mup";
 
 		final Stores stores;
 		final int autoRefresh;
 		final DatePrecision datePrecision;
+		final String mediaURLPrefix;
 
-		Args(final Stores stores, final int autoRefresh, final DatePrecision datePrecision)
+		Args(
+				final Stores stores,
+				final int autoRefresh,
+				final DatePrecision datePrecision,
+				final String mediaURLPrefix)
 		{
 			this.stores = stores;
 			this.autoRefresh = autoRefresh;
 			this.datePrecision = datePrecision;
+			this.mediaURLPrefix = mediaURLPrefix;
 		}
 
-		Args(final Stores stores, final HttpServletRequest request)
+		Args(
+				final Stores stores,
+				final HttpServletRequest request,
+				final ConsoleServlet servlet)
 		{
 			this.stores = stores;
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
 			this.datePrecision = getEnumParameter(request, DATE_PRECISION, DatePrecision.m);
+			this.mediaURLPrefix = request.getParameter(MEDIA_URL_PREFIX);
+			securityCheckMediaURLPrefix(servlet, request);
 		}
 
 		void addParameters(final ConsoleCop<?> cop)
 		{
 			cop.addParameter(AUTO_REFRESH, autoRefresh, 0);
 			cop.addParameter(DATE_PRECISION, datePrecision, DatePrecision.m);
+			cop.addParameter(MEDIA_URL_PREFIX, mediaURLPrefix);
+		}
+
+		/**
+		 * BEWARE !!!
+		 * Without this check this is probably a security vulnerability.
+		 */
+		private void securityCheckMediaURLPrefix(final ConsoleServlet servlet, final HttpServletRequest request)
+		{
+			final List<String> mediaURLPrefixes = servlet.getMediaURLPrefixes(request);
+			if(mediaURLPrefix!=null &&
+				!mediaURLPrefixes.contains(mediaURLPrefix))
+				throw new RuntimeException(">" + mediaURLPrefix + "<  " + mediaURLPrefixes);
 		}
 
 		Args toAutoRefresh(final int autoRefresh)
 		{
-			return new Args(stores, autoRefresh, datePrecision);
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
 		}
 
 		Args toDatePrecision(final DatePrecision datePrecision)
 		{
-			return new Args(stores, autoRefresh, datePrecision);
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
+		}
+
+		Args toMediaURLPrefix(final String mediaURLPrefix)
+		{
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
 		}
 	}
 
@@ -119,6 +150,11 @@ abstract class ConsoleCop<S> extends Cop
 	final ConsoleCop<S> toDatePrecision(final DatePrecision datePrecision)
 	{
 		return newArgs(args.toDatePrecision(datePrecision));
+	}
+
+	final ConsoleCop<S> toMediaURLPrefix(final String mediaURLPrefix)
+	{
+		return newArgs(args.toMediaURLPrefix(mediaURLPrefix));
 	}
 
 	MediaCop toMedia(final MediaPath media)
@@ -246,9 +282,13 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_CHANGE_LISTENER = "changelistener";
 	static final String TAB_MODIFICATION_LISTENER = "modificationlistener";
 
-	static final ConsoleCop<?> getCop(final Stores stores, final Model model, final HttpServletRequest request)
+	static final ConsoleCop<?> getCop(
+			final Stores stores,
+			final Model model,
+			final HttpServletRequest request,
+			final ConsoleServlet servlet)
 	{
-		final Args args = new Args(stores, request);
+		final Args args = new Args(stores, request, servlet);
 		final String pathInfo = request.getPathInfo();
 
 		if("/".equals(pathInfo))

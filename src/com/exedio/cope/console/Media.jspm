@@ -259,7 +259,7 @@ final class Media_Jspm extends Console_Jspm
 				%>
 			<tr>
 				<td class="text"><%=item.getCopeID()%></td>
-				<td class="text"><% writeURL(out, media.getURL(item), contentType, mediaInline); %></td>
+				<td class="text"><% writeLocator(out, media.getLocator(item), contentType, mediaInline); %></td>
 				<td class="text"><%if(contentType!=null){%><%=contentType%><%}%></td>
 				<td><%=media.getLastModified(item)%><%
 				
@@ -278,7 +278,7 @@ final class Media_Jspm extends Console_Jspm
 				if(other!=null)
 				{
 				%>
-				<td class="text"><% writeURL(out, other.getURL(item), other.getContentType(item), otherInline); %></td><%
+				<td class="text"><% writeLocator(out, other.getLocator(item), other.getContentType(item), otherInline); %></td><%
 				}
 				%>
 			</tr><%
@@ -305,24 +305,24 @@ final class Media_Jspm extends Console_Jspm
 		<input type="submit" value="touch"></input><%
 	}
 	
-	private static final void writeURL(final Out out, final String url, final String contentType, final boolean inline)
+	private static final void writeLocator(final Out out, final MediaPath.Locator locator, final String contentType, final boolean inline)
 	{
-		if(url!=null)
+		if(locator!=null)
 		{
-			%><a href="<%=url%>"><%
+			%><a href="<%=locator%>"><%
 			if(inline && contentType!=null && contentType.startsWith("image/"))
 			{
-				%><img src="<%=url%>" class="media"><%
+				%><img src="<%=locator%>" class="media"><%
 			}
 			else
 			{
-				%><%=MediaCop.fn(url)%><%
+				%><%=locator.getPath()%><%
 			}
 			%></a><%
 		}
 	}
 	
-	static void writeErrorLogsFooter(final Out out)
+	static void writeHorizontalRule(final Out out)
 	{
 		%>
 		<hr><%
@@ -395,5 +395,47 @@ final class Media_Jspm extends Console_Jspm
 				%>
 				<td class="notavailable">null</td><%
 			}
+	}
+	
+	static void writeMediaURLPrefixes(
+				final Out out,
+				final ConsoleCop cop,
+				final String activePrefix,
+				final List<String> prefixes)
+	{
+		%>
+		<h3>Media URL Prefix</h3>
+		<ul><%
+		
+			writeMediaURLPrefix(out, cop, activePrefix, null);
+		
+			for(final String prefix : prefixes)
+				writeMediaURLPrefix(out, cop, activePrefix, prefix);
+		
+		%>
+		</ul><%
+	}
+	
+	private static void writeMediaURLPrefix(
+				final Out out,
+				final ConsoleCop cop,
+				final String activePrefix,
+				final String prefix)
+	{
+			final boolean inActive = (activePrefix==null) ? (prefix!=null) : !activePrefix.equals(prefix);
+			final String prefixName = prefix!=null ? prefix : "getURLByConnect";
+			%>
+			<li><%
+				if(inActive)
+				{
+					%><a href="<%=cop.toMediaURLPrefix(prefix)%>"><%
+				}
+				%><%= prefixName %><%
+				
+				if(inActive)
+				{
+					%></a><%
+				}
+				%></li><%
 	}
 }%>

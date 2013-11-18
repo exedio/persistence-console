@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
+import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.util.XMLEncoder;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Resource;
@@ -28,6 +29,7 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,24 +38,27 @@ final class Out extends OutBasic
 	final HttpServletRequest request;
 	final Model model;
 	private final ConsoleServlet servlet;
+	private final String mediaURLPrefix;
 	private int nextId = 0;
 
 	Out(
 			final HttpServletRequest request,
 			final Model model,
 			final ConsoleServlet servlet,
-			final ConsoleCop.DatePrecision datePrecision,
+			final ConsoleCop.Args args,
 			final PrintStream bf)
 	{
 		super(bf);
 		assert request!=null;
 		this.request = request;
 		this.model = model;
+		this.mediaURLPrefix = args.mediaURLPrefix;
 		this.servlet = servlet;
 
-		fullDateFormat  = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'" + datePrecision.pattern);
-		yearFormat      = new SimpleDateFormat(     "MM/dd'&nbsp;'" + datePrecision.pattern);
-		todayDateFormat = new SimpleDateFormat(                       datePrecision.pattern);
+		final String datePattern = args.datePrecision.pattern;
+		fullDateFormat  = new SimpleDateFormat("yyyy/MM/dd'&nbsp;'" + datePattern);
+		yearFormat      = new SimpleDateFormat(     "MM/dd'&nbsp;'" + datePattern);
+		todayDateFormat = new SimpleDateFormat(                       datePattern);
 	}
 
 	void writeRaw(final String s)
@@ -160,6 +165,24 @@ final class Out extends OutBasic
 		// here we don't have to call HttpServletResponse.encodeURL
 		// since HttpSessions are not used at all
 		bf.print(XMLEncoder.encode(cop.getURL(request)));
+	}
+
+	void write(final MediaPath.Locator locator)
+	{
+		if(mediaURLPrefix!=null)
+		{
+			bf.print(mediaURLPrefix);
+			bf.print(locator.getPath());
+		}
+		else
+		{
+			bf.print(locator.getURLByConnect());
+		}
+	}
+
+	List<String> getMediaURLPrefixes()
+	{
+		return servlet.getMediaURLPrefixes(request);
 	}
 
 	void connect()
