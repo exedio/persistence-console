@@ -259,7 +259,7 @@ final class Media_Jspm extends Console_Jspm
 				%>
 			<tr>
 				<td class="text"><%=item.getCopeID()%></td>
-				<td class="text"><% writeLocator(out, media.getLocator(item), contentType, mediaInline); %></td>
+				<td class="text"><% writeLocator(out, media.getLocator(item), mediaInline); %></td>
 				<td class="text"><%if(contentType!=null){%><%=contentType%><%}%></td>
 				<td><%=media.getLastModified(item)%><%
 				
@@ -278,7 +278,7 @@ final class Media_Jspm extends Console_Jspm
 				if(other!=null)
 				{
 				%>
-				<td class="text"><% writeLocator(out, other.getLocator(item), other.getContentType(item), otherInline); %></td><%
+				<td class="text"><% writeLocator(out, other.getLocator(item), otherInline); %></td><%
 				}
 				%>
 			</tr><%
@@ -305,10 +305,12 @@ final class Media_Jspm extends Console_Jspm
 		<input type="submit" value="touch"></input><%
 	}
 	
-	private static final void writeLocator(final Out out, final MediaPath.Locator locator, final String contentType, final boolean inline)
+	private static final void writeLocator(final Out out, final MediaPath.Locator locator, final boolean inline)
 	{
 		if(locator!=null)
 		{
+			final String contentType = locator.getContentType();
+			
 			%><a href="<%=locator%>"><%
 			if(inline && contentType!=null && contentType.startsWith("image/"))
 			{
