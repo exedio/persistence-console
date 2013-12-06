@@ -64,7 +64,7 @@ public class ConsoleServlet extends CopsServlet
 {
 	/**
 	 * May be overridden by subclasses to specify allowed prefixes of media urls.
-	 * These prefixes will be prepended to results of {@link com.exedio.cope.pattern.Media.Locator#getPath()}.
+	 * These prefixes will be prepended to results of {@link com.exedio.cope.pattern.MediaPath.Locator#getPath()}.
 	 * The default implementation returns an empty list.
 	 * @param request may be used for getting {@link HttpServletRequest#getContextPath()}.
 	 */
