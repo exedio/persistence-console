@@ -7,6 +7,23 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* final Media and MediaFilter do get an Expires time of one year
+	instead of the value configured by media.offsetExpires.
+	This breaks backwards API compatibility, but probably will not cause problems.
+* Model.purgeSchema added.
+	It is recommended to call this method once a day to give cope the chance
+	to purge sequence tables on MySQL.
+* MediaPath.Locator supports getContentType
+* MediaPath.Locator supports equals/hashCode
+* fix deadlock in copetest on JDK 1.7
+* Extend MediaType 
+	allow multiple extentions; first is default
+		MIGRATION	MediaType.getExtension()->MediaType.getDefaultExtension() or MediaType.getExtensions()
+	add ".jpeg" to JPG extensions
+	new constants for JAR and fonts
+	change default mime for TTF font/ttf->application/x-font-ttf
+	change default mime for WOFF application/font-woff->application/x-font-woff
+	add DOCX mediatype
 * MediaRequestLog#isSecure() added
 * HashInterface#isNull(Item) added
 	This breaks backwards API compatibility, causes compiler error.

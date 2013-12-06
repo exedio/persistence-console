@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.misc.HiddenFeatures;
+
 final class HiddenCop extends ConsoleCop<Void>
 {
 	HiddenCop(final Args args)
@@ -34,6 +36,6 @@ final class HiddenCop extends ConsoleCop<Void>
 	@Override
 	final void writeBody(final Out out)
 	{
-		Hidden_Jspm.writeBody(out, out.model.getHiddenFeatures());
+		Hidden_Jspm.writeBody(out, HiddenFeatures.get(out.model));
 	}
 }
