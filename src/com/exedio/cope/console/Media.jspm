@@ -405,7 +405,7 @@ final class Media_Jspm extends Console_Jspm
 	
 	static void writeMediaURLPrefixes(
 				final Out out,
-				final ConsoleCop cop,
+				final ConsoleCop<?> cop,
 				final String activePrefix,
 				final List<String> prefixes)
 	{
@@ -424,7 +424,7 @@ final class Media_Jspm extends Console_Jspm
 	
 	private static void writeMediaURLPrefix(
 				final Out out,
-				final ConsoleCop cop,
+				final ConsoleCop<?> cop,
 				final String activePrefix,
 				final String prefix)
 	{
