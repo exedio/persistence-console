@@ -49,12 +49,15 @@ final class RevisionSheet_Jspm extends Console_Jspm
 			int bodyNumber = 0;
 			for(final Body body : revision.getBody())
 			{
+				String sql = body.getSQL();
+				if(sql.length()>1000)
+					sql = sql.substring(0, 1000) + " SHORTENED";
 			%>
 			<tr>
 				<td><%=revision.getNumber()%></td>
 				<td><%=revision.getDate()%></td>
 				<td><%=bodyNumber%></td>
-				<td class="text"><%=body.getSQL()%>
+				<td class="text"><%=sql%>
 				<td><%=body.getRows()%></td>
 				<td><%=body.getElapsed()%></td>
 			</tr><%
