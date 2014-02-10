@@ -186,6 +186,7 @@ abstract class ConsoleCop<S> extends Cop
 					new MinLengthStringFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
 					new RevisionCop(args),
+					new RevisionSheetCop(args),
 					new DatabaseLogCop(args),
 					new ConnectionPoolCop(args),
 					new TransactionCop(args),
@@ -259,6 +260,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_MIN_LENGTH_STRING_FIELDS = "minlength";
 	static final String TAB_FEATURE_FIELD = "feature";
 	static final String TAB_REVISION = "revision";
+	static final String TAB_REVISION_SHEET = "revisionSheet";
 	static final String TAB_DATBASE_LOG = "dblogs";
 	static final String TAB_CONNECTION_POOL = "connections";
 	static final String TAB_TRANSACTION = "transactions";
@@ -324,6 +326,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new FeatureFieldCop(args, new TestCop.TestArgs(request));
 		if(TAB_REVISION.equals(tab))
 			return new RevisionCop(args, request);
+		if(TAB_REVISION_SHEET.equals(tab))
+			return new RevisionSheetCop(args);
 		if(TAB_CONNECTION_POOL.equals(tab))
 			return new ConnectionPoolCop(args);
 		if(TAB_TRANSACTION.equals(tab))
