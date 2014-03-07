@@ -36,9 +36,9 @@ final class RevisionSheet_Jspm extends Console_Jspm
 				<th colspan="4">Body</th>
 			</tr>
 			<tr>
-				<th>Number</th>
+				<th title="Number">#</th>
 				<th>Date</th>
-				<th>Number</th>
+				<th title="Number">#</th>
 				<th>SQL</th>
 				<th>Rows</th>
 				<th title="Elapsed Time (milliseconds)">Elpsd</th>
