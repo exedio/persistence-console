@@ -39,9 +39,9 @@ final class RevisionSheet_Jspm extends Console_Jspm
 				<th title="Number">#</th>
 				<th>Date</th>
 				<th title="Number">#</th>
-				<th>SQL</th>
 				<th>Rows</th>
 				<th title="Elapsed Time (milliseconds)">Elpsd</th>
+				<th>SQL</th>
 			</tr><%
 			
 		for(final RevisionInfoRevise revision : revisions.values())
@@ -57,9 +57,9 @@ final class RevisionSheet_Jspm extends Console_Jspm
 				<td><%=revision.getNumber()%></td>
 				<td><%=revision.getDate()%></td>
 				<td><%=bodyNumber%></td>
-				<td class="text"><%=sql%>
 				<td><%=body.getRows()%></td>
 				<td><%=body.getElapsed()%></td>
+				<td class="text"><%=sql%>
 			</tr><%
 				bodyNumber++;
 			}
