@@ -450,10 +450,9 @@ abstract class ConsoleCop<S> extends Cop
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	Store<S> getStore()
 	{
-		return args.stores.getStore(this.getClass());
+		return args.stores.getStore(this);
 	}
 
 	void putStore(final S value)

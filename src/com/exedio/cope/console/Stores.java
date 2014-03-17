@@ -43,11 +43,12 @@ final class Stores
 		}
 	}
 
-	Store getStore(final Class<? extends ConsoleCop> clazz)
+	@SuppressWarnings("unchecked")
+	<S> Store<S> getStore(final ConsoleCop<S> clazz)
 	{
 		synchronized(stores)
 		{
-			return stores.get(clazz);
+			return (Store<S>)stores.get(clazz.getClass());
 		}
 	}
 
