@@ -23,8 +23,8 @@ import java.util.HashMap;
 
 final class Stores
 {
-	private final HashMap<Class<? extends ConsoleCop>, Store<?>> stores =
-			new HashMap<Class<? extends ConsoleCop>, Store<?>>();
+	private final HashMap<Class<? extends ConsoleCop<?>>, Store<?>> stores =
+			new HashMap<Class<? extends ConsoleCop<?>>, Store<?>>();
 
 	static class Store<S>
 	{
@@ -51,12 +51,13 @@ final class Stores
 		}
 	}
 
-	void putStore(final Class<? extends ConsoleCop> clazz, final Object value)
+	@SuppressWarnings("unchecked")
+	<S> void putStore(final ConsoleCop<? extends S> clazz, final S value)
 	{
 		final Store<?> store = new Store<Object>(value);
 		synchronized(stores)
 		{
-			stores.put(clazz, store);
+			stores.put((Class<? extends ConsoleCop<?>>)(clazz.getClass()), store);
 		}
 	}
 }

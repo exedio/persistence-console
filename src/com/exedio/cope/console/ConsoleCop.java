@@ -458,7 +458,7 @@ abstract class ConsoleCop<S> extends Cop
 
 	void putStore(final S value)
 	{
-		args.stores.putStore(this.getClass(), value);
+		args.stores.putStore(this, value);
 	}
 
 	protected static final void failIfNotConnected(final Model model)
