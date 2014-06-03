@@ -26,7 +26,7 @@ import com.exedio.cope.util.PoolCounter;
 
 final class ConnectionPool_Jspm extends Console_Jspm
 {
-	final static void writeBody(
+	static final void writeBody(
 			final Out out,
 			final Info info)
 	{

@@ -31,7 +31,7 @@ import com.exedio.cope.util.SequenceChecker;
 
 final class Cluster_Jspm
 {
-	final static void writeBody(
+	static final void writeBody(
 			final ClusterCop cop,
 			final Out out,
 			final Properties properties,
@@ -107,7 +107,7 @@ final class Cluster_Jspm
 		}
 	}
 	
-	private final static void writeSequenceCheckerHead(final Out out)
+	private static final void writeSequenceCheckerHead(final Out out)
 	{
 				%>
 				<th title="Pending">pnd</th>
@@ -118,7 +118,7 @@ final class Cluster_Jspm
 				<th title="Late">lte</th><%
 	}
 	
-	private final static void write(final Out out, final SequenceChecker.Info ic)
+	private static final void write(final Out out, final SequenceChecker.Info ic)
 	{
 				%>
 				<td><%=formatAndHide(0, ic.getPending())%></td>
@@ -129,7 +129,7 @@ final class Cluster_Jspm
 				<td><%=formatAndHide(0, ic.getLate())%></td><%
 	}
 	
-	final static void writeBodyDisabled(final Out out)
+	static final void writeBodyDisabled(final Out out)
 	{
 		%>
 		<table>

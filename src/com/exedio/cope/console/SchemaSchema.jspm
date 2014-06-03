@@ -34,7 +34,7 @@ final class SchemaSchema_Jspm extends Console_Jspm
 	private static final String DROP_AND_CREATE = "schema.drop.create";
 	private static final String DELETE = "schema.delete";
 	
-	final static void writeBody(
+	static final void writeBody(
 			final SchemaCop cop,
 			final Out out)
 	{

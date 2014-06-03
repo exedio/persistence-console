@@ -26,7 +26,7 @@ import com.exedio.cope.util.Properties;
 
 final class Properties_Jspm extends Console_Jspm
 {
-	final static void writeHead(final Out out)
+	static final void writeHead(final Out out)
 	{
 	%>
 		<script>
@@ -59,7 +59,7 @@ final class Properties_Jspm extends Console_Jspm
 		</script><%
 	}
 	
-	final static void writeBody(
+	static final void writeBody(
 				final Out out,
 				final Properties properties)
 	{

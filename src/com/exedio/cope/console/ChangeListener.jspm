@@ -31,7 +31,7 @@ import com.exedio.cope.ChangeListenerInfo;
 
 final class ChangeListener_Jspm extends Console_Jspm
 {
-	final static void writeBody(
+	static final void writeBody(
 			final ChangeListenerCop cop,
 			final Out out,
 			final ChangeListenerInfo infoBefore,

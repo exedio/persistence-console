@@ -156,7 +156,7 @@ final class SchemaCop extends ConsoleCop<Void>
 	static final String CATCH_DROP   = "catch.drop";
 	static final String CATCH_RESET  = "catch.reset";
 
-	final static void writeApply(final Out out,
+	static final void writeApply(final Out out,
 			final HttpServletRequest request, final Model model, final boolean dryRun)
 	{
 		final Schema schema = model.getVerifiedSchema();

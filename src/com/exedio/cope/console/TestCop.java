@@ -33,9 +33,9 @@ import javax.servlet.http.HttpServletRequest;
 
 abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 {
-	final static String ID = "testajax";
-	final static String ITERATE = "iterate";
-	final static String SUCCESS_CLASS = "success";
+	static final String ID = "testajax";
+	static final String ITERATE = "iterate";
+	static final String SUCCESS_CLASS = "success";
 
 	protected final TestArgs testArgs;
 	protected final String id;

@@ -35,7 +35,7 @@ import com.exedio.cope.RevisionInfoRevise.Body;
 
 final class Revision_Jspm extends Console_Jspm
 {
-	final static void writeHead(final Out out)
+	static final void writeHead(final Out out)
 	{
 		%>
 		<style>
@@ -117,7 +117,7 @@ final class Revision_Jspm extends Console_Jspm
 		</script><%
 	}
 	
-	final static void writeBody(
+	static final void writeBody(
 			final Out out,
 			final RevisionCop cop,
 			final RevisionInfoMutex mutex,
@@ -288,7 +288,7 @@ final class Revision_Jspm extends Console_Jspm
 		</table><%
 	}
 	
-	final static void writeBodyDisabled(final Out out)
+	static final void writeBodyDisabled(final Out out)
 	{
 		%>
 		<table>

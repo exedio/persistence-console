@@ -27,7 +27,7 @@ import java.util.TreeSet;
 
 final class Vm_Jspm extends Console_Jspm
 {
-	private final static void write(final Out out, final String key, final String title, final String version, final String vendor)
+	private static final void write(final Out out, final String key, final String title, final String version, final String vendor)
 	{
 		final LinkedHashMap<String, String> values = new LinkedHashMap<String, String>();
 		if(title!=null)
@@ -60,7 +60,7 @@ final class Vm_Jspm extends Console_Jspm
 		}
 	}
 
-	private final static void writeDetailed(final Out out, final TreeSet<Package> jar)
+	private static final void writeDetailed(final Out out, final TreeSet<Package> jar)
 	{
 			final Package p = jar.iterator().next();
 			
@@ -97,7 +97,7 @@ final class Vm_Jspm extends Console_Jspm
 			</tr><%
 	}
 
-	private final static void writeShort(final Out out, final TreeSet<Package> jar)
+	private static final void writeShort(final Out out, final TreeSet<Package> jar)
 	{
 			final Package p = jar.iterator().next();
 			final String spec = p.getSpecificationVersion();
@@ -124,7 +124,7 @@ final class Vm_Jspm extends Console_Jspm
 			</tr><%
 	}
 
-	final static void writeBody(final Out out, final VmCop cop, final ArrayList<TreeSet<Package>> jars)
+	static final void writeBody(final Out out, final VmCop cop, final ArrayList<TreeSet<Package>> jars)
 	{
 		%>
 		<table>

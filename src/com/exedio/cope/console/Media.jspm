@@ -44,7 +44,7 @@ import com.exedio.cope.pattern.UrlFingerPrinting;
 
 final class Media_Jspm extends Console_Jspm
 {
-	final static void writeBody(
+	static final void writeBody(
 			final MediaStatsCop cop,
 			final Out out,
 			final int tableColumns,
@@ -86,7 +86,7 @@ final class Media_Jspm extends Console_Jspm
 		</table><%
 	}
 	
-	final static boolean write(
+	static final boolean write(
 				final Out out,
 				final ConsoleCop<?> cop,
 				final boolean isUrlGuessingNotSecure,
@@ -177,7 +177,7 @@ final class Media_Jspm extends Console_Jspm
 			return firstMediaImageMagickFilter;
 	}
 	
-	final static void writeHead(
+	static final void writeHead(
 				final Out out)
 	{
 		%>
@@ -190,7 +190,7 @@ final class Media_Jspm extends Console_Jspm
 		</style><%
 	}
 	
-	final static void writeStats(
+	static final void writeStats(
 				final Out out,
 				final MediaCop cop,
 				final MediaInfo info)
@@ -205,7 +205,7 @@ final class Media_Jspm extends Console_Jspm
 		<hr><%
 	}
 	
-	final static void writeBody(
+	static final void writeBody(
 				final MediaCop cop,
 				final Out out,
 				final Query.Result<? extends Item> items)

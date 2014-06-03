@@ -23,7 +23,7 @@ import static com.exedio.cope.console.EnumCop.getColumnValue;
 
 final class Enum_Jspm extends Console_Jspm
 {
-	final static void write(
+	static final void write(
 			final Out out,
 			final Class<? extends Enum<?>> clazz)
 	{

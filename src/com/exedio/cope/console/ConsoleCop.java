@@ -384,7 +384,7 @@ abstract class ConsoleCop<S> extends Cop
 		return new NotFound(args, pathInfo);
 	}
 
-	private final static class NotFound extends ConsoleCop<Void>
+	private static final class NotFound extends ConsoleCop<Void>
 	{
 		private final String pathInfo;
 

@@ -48,7 +48,7 @@ final class SchemaConstraints_Jspm extends Console_Jspm
 	private static final String TEARDOWN = "constraint.teardown";
 	private static final String DROP = "constraint.drop";
 	
-	final static void writeBody(
+	static final void writeBody(
 			final SchemaCop cop,
 			final Out out)
 	{

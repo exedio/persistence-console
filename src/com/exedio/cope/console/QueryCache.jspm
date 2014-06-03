@@ -30,7 +30,7 @@ import com.exedio.cope.QueryCacheInfo;
 
 final class QueryCache_Jspm extends Console_Jspm
 {
-	final static void writeBody(
+	static final void writeBody(
 			final QueryCacheCop cop,
 			final Out out,
 			final int limit,

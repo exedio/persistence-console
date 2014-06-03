@@ -139,7 +139,7 @@ abstract class Console_Jspm
 		
 	}
 	
-	final static void writeNotFound(final Out out, final String pathInfo)
+	static final void writeNotFound(final Out out, final String pathInfo)
 	{
 		%>
 		<div class="message">

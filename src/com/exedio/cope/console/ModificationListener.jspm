@@ -28,7 +28,7 @@ import com.exedio.cope.util.ModificationListener;
 
 final class ModificationListener_Jspm extends Console_Jspm
 {
-	final static void writeBody(
+	static final void writeBody(
 			final ModificationListenerCop cop,
 			final Out out,
 			final int clearedBefore,

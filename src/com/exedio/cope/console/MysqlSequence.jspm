@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 final class MysqlSequence_Jspm extends Console_Jspm
 {
-	final static void write(
+	static final void write(
 			final Out out,
 			final ArrayList<String> sequences)
 	{

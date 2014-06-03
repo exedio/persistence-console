@@ -39,7 +39,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 	private static final String APPLY = "details.apply";
 	private static final String APPLY_DRY = "details.dry";
 	
-	final static void writeBody(
+	static final void writeBody(
 			final SchemaCop cop,
 			final Out out)
 	{
@@ -253,7 +253,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 		</form><%
 	}
 	
-	private final static Resource node(final Node.Color color)
+	private static final Resource node(final Node.Color color)
 	{
 		switch(color)
 		{
@@ -265,7 +265,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 		}
 	}
 	
-	private final static Resource leaf(final Node.Color color)
+	private static final Resource leaf(final Node.Color color)
 	{
 		switch(color)
 		{
@@ -277,7 +277,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 		}
 	}
 	
-	private final static void write(final Node.Color color, final Out out)
+	private static final void write(final Node.Color color, final Out out)
 	{
 		switch(color)
 		{
@@ -294,7 +294,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 		}
 	}
 	
-	private final static void writeEdit(
+	private static final void writeEdit(
 			final String text, final boolean editable, final String name,
 			final Out out)
 	{

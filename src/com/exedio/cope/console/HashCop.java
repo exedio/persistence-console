@@ -27,10 +27,10 @@ import javax.servlet.http.HttpServletRequest;
 
 final class HashCop extends ConsoleCop<Void>
 {
-	final static String CHECKED = "checked";
-	final static String COMPUTE = "compute";
-	final static String COMPUTE_PLAINTEXT = "compute.plaintext";
-	final static String MEASURE = "measure";
+	static final String CHECKED = "checked";
+	static final String COMPUTE = "compute";
+	static final String COMPUTE_PLAINTEXT = "compute.plaintext";
+	static final String MEASURE = "measure";
 
 	HashCop(final Args args)
 	{

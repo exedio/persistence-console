@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class PurgeCop extends ConsoleCop<Void>
 {
-	final static String PURGE = "purge";
+	static final String PURGE = "purge";
 
 	PurgeCop(final Args args)
 	{

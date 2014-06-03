@@ -27,7 +27,7 @@ import java.util.Date;
 
 final class DatabaseLog_Jspm
 {
-	final static void writeBody(
+	static final void writeBody(
 			final DatabaseLogCop cop,
 			final Out out,
 			final Class<?> listenerClass,

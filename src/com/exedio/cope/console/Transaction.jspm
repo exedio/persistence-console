@@ -36,7 +36,7 @@ import com.exedio.cope.TransactionCounters;
 
 final class Transaction_Jspm extends Console_Jspm
 {
-	final static void writeHead(final Out out)
+	static final void writeHead(final Out out)
 	{
 	%>
 		<style>
@@ -47,7 +47,7 @@ final class Transaction_Jspm extends Console_Jspm
 		</style><%
 	}
 	
-	final static void writeStats(
+	static final void writeStats(
 			final Out out,
 			final long nextId,
 			final Date lastStartDate)
@@ -61,7 +61,7 @@ final class Transaction_Jspm extends Console_Jspm
 		<%
 	}
 	
-	final static void writeCounters(
+	static final void writeCounters(
 			final Out out,
 			final TransactionCounters transactionCounters)
 	{
@@ -96,7 +96,7 @@ final class Transaction_Jspm extends Console_Jspm
 		<%
 	}
 	
-	final static void writeOpen(
+	static final void writeOpen(
 			final Out out,
 			final Transaction[] openTransactions,
 			final Thread[] threads,
@@ -174,7 +174,7 @@ final class Transaction_Jspm extends Console_Jspm
 		<%
 	}
 	
-	final static void writeRecorded(
+	static final void writeRecorded(
 			final Out out,
 			final TransactionCop cop,
 			final boolean recordCommits,
