@@ -37,6 +37,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 {
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
 	static final String REVISE  = "revise";
+	static final String SAVEPOINT = "savepoint";
 	static final String NICE_CREATE = "nice.create";
 	static final String NICE_DROP   = "nice.drop";
 
@@ -78,6 +79,9 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		return new RevisionCop(args, pager);
 	}
 
+	private String savepoint = null;
+	private String savepointFailure = null;
+
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
 	{
@@ -87,6 +91,17 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		{
 			if(request.getParameter(REVISE)!=null)
 				model.revise();
+			if(request.getParameter(SAVEPOINT)!=null)
+			{
+				try
+				{
+					savepoint = model.getSchemaSavepoint();
+				}
+				catch(final SQLException e)
+				{
+					savepointFailure = e.getMessage();
+				}
+			}
 			if(request.getParameter(NICE_CREATE)!=null)
 			{
 				try
@@ -192,6 +207,10 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		final ArrayList<RevisionLine> lineList = new ArrayList<RevisionLine>(lines.values());
 		Collections.reverse(lineList);
 
-		Revision_Jspm.writeBody(out, this, (RevisionInfoMutex)read(mutex), pager.init(lineList));
+		Revision_Jspm.writeBody(
+				out, this,
+				(RevisionInfoMutex)read(mutex),
+				savepoint, savepointFailure,
+				pager.init(lineList));
 	}
 }

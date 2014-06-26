@@ -24,6 +24,7 @@ import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.RevisionCop.NICE_CREATE;
 import static com.exedio.cope.console.RevisionCop.NICE_DROP;
 import static com.exedio.cope.console.RevisionCop.REVISE;
+import static com.exedio.cope.console.RevisionCop.SAVEPOINT;
 
 import java.util.Date;
 import java.util.List;
@@ -121,6 +122,8 @@ final class Revision_Jspm extends Console_Jspm
 			final Out out,
 			final RevisionCop cop,
 			final RevisionInfoMutex mutex,
+			final String savepoint,
+			final String savepointFailure,
 			final List<RevisionLine> lines)
 	{
 		if(mutex!=null)
@@ -140,6 +143,35 @@ final class Revision_Jspm extends Console_Jspm
 			</tr>
 		</table><%
 		}
+		
+		%>
+		<table>
+			<caption>Schema Savepoint</caption><%
+			
+			if(savepoint!=null)
+			{
+			%>
+			<tr>
+				<td class="text"><%=savepoint%></td>
+			</tr><%
+			}
+			if(savepointFailure!=null)
+			{
+			%>
+			<tr>
+				<td class="notavailable"><%=savepointFailure%></td>
+			</tr><%
+			}
+			%>
+			<tr>
+				<td class="text">
+					You may get a current schema savepoint here.
+					<form action="<%=cop%>" method="POST">
+						<input type="submit" name="<%=SAVEPOINT%>" value="get" />
+					</form>
+				</td>
+			</tr>
+		</table><%
 		
 		%>
 		<form action="<%=cop%>" method="POST">
