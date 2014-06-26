@@ -137,7 +137,7 @@ final class Revision_Jspm extends Console_Jspm
 					<br>
 					Revising from number <%=mutex.getActualNumber()%> to <%=mutex.getExpectedNumber()%> started at <%=mutex.getDate()%>.
 				</td>
-			</td>
+			</tr>
 		</table><%
 		}
 		
