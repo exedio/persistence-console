@@ -23,6 +23,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.NoSuchIDException;
 import com.exedio.cope.Query;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaFilter;
 import com.exedio.cope.pattern.MediaPath;
@@ -173,19 +174,13 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 			final String[] touchOtherIds = request.getParameterValues(TOUCH_OTHER);
 			if(touchIds!=null || touchOtherIds!=null)
 			{
-				try
+				try(TransactionTry tx = model.startTransactionTry("Console Media touch"))
 				{
-					model.startTransaction(getClass().getName() + "#touch");
-
 					final Date now = new Date();
 					touchInternal(model, now, media, touchIds);
 					touchInternal(model, now, other, touchOtherIds);
 
-					model.commit();
-				}
-				finally
-				{
-					model.rollbackIfNotCommitted();
+					tx.commit();
 				}
 			}
 		}
@@ -242,10 +237,8 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 			}
 		}
 
-		try
+		try(TransactionTry tx = model.startTransactionTry("Console Media list"))
 		{
-			model.startTransaction(getClass().getName());
-
 			final Query<? extends Item> q = media.getType().newQuery(media.isNotNull());
 			if(contentTypeMismatch)
 				q.narrow(((Media)media).bodyMismatchesContentType());
@@ -254,11 +247,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 			final Query.Result<? extends Item> items = q.searchAndTotal();
 			pager.init(items.getData().size(), items.getTotal());
 			Media_Jspm.writeBody(this, out, items);
-			model.commit();
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
+			tx.commit();
 		}
 	}
 }

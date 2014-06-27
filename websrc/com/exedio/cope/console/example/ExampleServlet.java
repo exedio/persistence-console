@@ -21,6 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Feature;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.util.CharsetName;
 import com.exedio.cops.Cop;
@@ -113,17 +114,12 @@ public final class ExampleServlet extends CopsServlet
 			}
 			else if(request.getParameter(FEATURE_FIELD_SUBMIT)!=null)
 			{
-				Main.model.startTransaction("create feature");
-				try
+				try(TransactionTry tx = Main.model.startTransactionTry("create feature"))
 				{
 					new FeatureItem(
 						replaceNullName(request.getParameter(FEATURE_FIELD_FEATURE)),
 						replaceNullName(request.getParameter(FEATURE_FIELD_STRING)));
-					Main.model.commit();
-				}
-				finally
-				{
-					Main.model.rollbackIfNotCommitted();
+					tx.commit();
 				}
 			}
 		}
@@ -143,9 +139,8 @@ public final class ExampleServlet extends CopsServlet
 		final Class<?> thisClass = ExampleServlet.class;
 		connect(thisClass.getName() + "#createSampleData");
 		Main.model.createSchema();
-		try
+		try(TransactionTry tx = Main.model.startTransactionTry(thisClass.getName() + "#createSampleData"))
 		{
-			Main.model.startTransaction(thisClass.getName() + "#createSampleData");
 			new AnItem("aField1", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
 			new AnItem("aField2", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
 			new ASubItem("aField1s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue, "aSubField1s");
@@ -177,56 +172,44 @@ public final class ExampleServlet extends CopsServlet
 			new FeatureItem(FeatureItem.intField2, FeatureItem.stringField2);
 			new FeatureItem((Feature)null, null);
 
-			Main.model.commit();
+			tx.commit();
 		}
 		catch(final IOException e)
 		{
 			throw new RuntimeException(e);
-		}
-		finally
-		{
-			Main.model.rollbackIfNotCommitted();
 		}
 		Revisions.revisions(Main.model);
 	}
 
 	private static void doTransaction(final String name, final int items, final long sleep)
 	{
-		try
+		try(TransactionTry tx = Main.model.startTransactionTry(replaceNullName(name)))
 		{
-			Main.model.startTransaction(replaceNullName(name));
 			for(int i = 0; i<items; i++)
 				new AnItem(name + "#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
 			if(sleep>0)
 				Thread.sleep(sleep);
-			Main.model.commit();
+			tx.commit();
 		}
 		catch(final InterruptedException e)
 		{
 			throw new RuntimeException(e);
 		}
-		finally
-		{
-			Main.model.rollbackIfNotCommitted();
-		}
 	}
 
 	private static void replaceItemCache()
 	{
-		try
+		try(TransactionTry tx = Main.model.startTransactionTry("ItemCache create"))
 		{
-			Main.model.startTransaction("ItemCache create");
 			for(int i = 0; i<30000; i++)
 				new AnItem("ItemCache#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
-			Main.model.commit();
-			Main.model.startTransaction("ItemCache read");
+			tx.commit();
+		}
+		try(TransactionTry tx = Main.model.startTransactionTry("ItemCache read"))
+		{
 			for(final AnItem i : AnItem.TYPE.search())
 				i.getAField();
-			Main.model.commit();
-		}
-		finally
-		{
-			Main.model.rollbackIfNotCommitted();
+			tx.commit();
 		}
 	}
 

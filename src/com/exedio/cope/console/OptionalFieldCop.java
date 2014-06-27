@@ -22,6 +22,7 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.FunctionField;
 import com.exedio.cope.Model;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,19 +98,14 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 	int check(final FunctionField<?> field)
 	{
 		final Type<?> type = field.getType();
-		final Model model = type.getModel();
-		try
+		try(TransactionTry tx = type.getModel().
+				startTransactionTry("Console OptionalField " + id))
 		{
-			model.startTransaction("Optional Field " + id);
 			final boolean result =
 				(type.newQuery(field.isNull()).total()==0) &&
 				(type.newQuery().total()>0);
-			model.commit();
+			tx.commit();
 			return result ? 1 : 0;
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
 		}
 	}
 }

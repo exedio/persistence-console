@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.CopyConstraint;
 import com.exedio.cope.Model;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,17 +88,11 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	@Override
 	int check(final CopyConstraint constraint)
 	{
-		final Model model = constraint.getType().getModel();
-		try
+		try(TransactionTry tx = constraint.getType().getModel().
+				startTransactionTry("Console CopyConstraint " + id))
 		{
-			model.startTransaction("Console CopyConstraint " + id);
-			final int result = constraint.check();
-			model.commit();
-			return result;
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
+			return tx.commit(
+					constraint.check());
 		}
 	}
 }

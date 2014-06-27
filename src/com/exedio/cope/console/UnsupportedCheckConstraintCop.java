@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.CheckConstraint;
 import com.exedio.cope.Model;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,17 +98,11 @@ final class UnsupportedCheckConstraintCop extends TestCop<CheckConstraint>
 	@Override
 	int check(final CheckConstraint constraint)
 	{
-		final Model model = constraint.getType().getModel();
-		try
+		try(TransactionTry tx = constraint.getType().getModel().
+				startTransactionTry("Console CheckConstraint " + id))
 		{
-			model.startTransaction("Console CheckConstraint " + id);
-			final int result = constraint.check();
-			model.commit();
-			return result;
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
+			return tx.commit(
+					constraint.check());
 		}
 	}
 }

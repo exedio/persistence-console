@@ -24,6 +24,7 @@ import com.exedio.cope.ItemField;
 import com.exedio.cope.ItemFunction;
 import com.exedio.cope.Model;
 import com.exedio.cope.This;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,17 +110,11 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	@Override
 	int check(final ItemFunction<?> function)
 	{
-		final Model model = function.getType().getModel();
-		try
+		try(TransactionTry tx = function.getType().getModel().
+				startTransactionTry("Console TypeColumn " + id))
 		{
-			model.startTransaction("Console TypeColumn " + id);
-			final int result = function.checkTypeColumn();
-			model.commit();
-			return result;
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
+			return tx.commit(
+					function.checkTypeColumn());
 		}
 	}
 }

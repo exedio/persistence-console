@@ -23,6 +23,7 @@ import com.exedio.cope.Field;
 import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.StringField;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,22 +95,18 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	@Override
 	int check(final StringField field)
 	{
-		final Model model = field.getType().getModel();
 		final Query<Integer> q = new Query<Integer>(field.length().min());
-		try
+
+		try(TransactionTry tx = field.getType().getModel().
+				startTransactionTry("Console MinLengthStringField " + id))
 		{
-			model.startTransaction("Min Length String Field " + id);
 			final Integer result = q.searchSingleton();
-			model.commit();
+			tx.commit();
 
 			return
 				(result!=null)
 				? (result.intValue() - field.getMinimumLength())
 				: 0;
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
 		}
 	}
 }

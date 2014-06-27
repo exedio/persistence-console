@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,17 +94,11 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	@Override
 	int check(final Type<?> type)
 	{
-		final Model model = type.getModel();
-		try
+		try(TransactionTry tx = type.getModel().
+				startTransactionTry("Console UpdateCounter " + id))
 		{
-			model.startTransaction("Console UpdateCounter " + id);
-			final int result = type.checkUpdateCounter();
-			model.commit();
-			return result;
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
+			return tx.commit(
+					type.checkUpdateCounter());
 		}
 	}
 }

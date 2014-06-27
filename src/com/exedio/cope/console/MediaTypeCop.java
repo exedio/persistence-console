@@ -22,6 +22,7 @@ import com.exedio.cope.Condition;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Query;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Media;
 import java.util.ArrayList;
@@ -107,18 +108,13 @@ final class MediaTypeCop extends TestCop<Media>
 	@Override
 	int check(final Media media)
 	{
-		final Model model = media.getType().getModel();
 		final Query<?> query = media.getType().newQuery(media.bodyMismatchesContentType());
-		try
+
+		try(TransactionTry tx = media.getType().getModel().
+				startTransactionTry("Console MediaType " + id))
 		{
-			model.startTransaction("Console MediaType " + id);
-			final int result = query.total();
-			model.commit();
-			return result;
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
+			return tx.commit(
+					query.total());
 		}
 	}
 }

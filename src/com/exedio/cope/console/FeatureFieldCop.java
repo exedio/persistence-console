@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Query;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.reflect.FeatureField;
 import java.util.ArrayList;
@@ -96,17 +97,11 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	int check(final FeatureField<?> field)
 	{
 		final Query<?> query = field.getType().newQuery(field.isInvalid());
-		final Model model = field.getType().getModel();
-		try
+		try(TransactionTry tx = field.getType().getModel().
+				startTransactionTry("Console FeatureField " + id))
 		{
-			model.startTransaction("Console FeatureField " + id);
-			final int result = query.total();
-			model.commit();
-			return result;
-		}
-		finally
-		{
-			model.rollbackIfNotCommitted();
+			return tx.commit(
+					query.total());
 		}
 	}
 }
