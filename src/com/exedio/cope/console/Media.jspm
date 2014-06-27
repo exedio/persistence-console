@@ -348,6 +348,7 @@ final class Media_Jspm extends Console_Jspm
 			<tr>
 				<th>#</th>
 				<th>Date</th>
+				<th>Remote Address</th>
 				<th>Path Info</th>
 				<th>Query String</th>
 				<th>Host</th>
@@ -363,6 +364,7 @@ final class Media_Jspm extends Console_Jspm
 			<tr>
 				<td><%=n++%></td>
 				<td class="text"<% if(log.isSecure()){%> style="background-color:#ddf"<%} %>><%=log.getDate()%></td><%
+				writeLine(out, log.getRemoteAddr());
 				writeLine(out, log.getPathInfo());
 				writeLine(out, log.getQueryString());
 				writeLine(out, log.getHost());
