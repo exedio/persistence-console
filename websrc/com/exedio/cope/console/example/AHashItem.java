@@ -22,11 +22,12 @@ import com.exedio.cope.Item;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.MessageDigestAlgorithm;
 import com.exedio.cope.pattern.MessageDigestHash;
+import java.nio.charset.Charset;
 
 public final class AHashItem extends Item
 {
 	static final Hash md8 = new Hash(MessageDigestHash.algorithm(8));
-	static final Hash md8x6latin = new Hash(MessageDigestHash.algorithm(80000), "ISO-8859-1");
+	static final Hash md8x6latin = new Hash(MessageDigestHash.algorithm(80000), Charset.forName("ISO-8859-1"));
 	static final Hash md5 = new Hash(new MessageDigestAlgorithm("MD5", 2, 5000));
 	static final Hash deterministic = new Hash(new MessageDigestAlgorithm("MD5", 0, 1));
 
