@@ -20,14 +20,14 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ChangeListenerCop.REMOVE_CHECKBOX;
+import static com.exedio.cope.console.ChangeListenerCop.REMOVE_SELECTED;
 import static com.exedio.cope.console.ConsoleCop.writePager;
 import static com.exedio.cope.console.Format.format;
-
-import java.util.List;
 
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.ChangeListenerDispatcherInfo;
 import com.exedio.cope.ChangeListenerInfo;
+import java.util.List;
 
 final class ChangeListener_Jspm extends Console_Jspm
 {
@@ -123,6 +123,6 @@ final class ChangeListener_Jspm extends Console_Jspm
 	private static final void writeButtons(final Out out)
 	{
 			%>
-			<input type="submit" name="<%=ChangeListenerCop.REMOVE_SELECTED%>" value="remove selected" /><%
+			<input type="submit" name="<%=REMOVE_SELECTED%>" value="remove selected" /><%
 	}
 }%>
