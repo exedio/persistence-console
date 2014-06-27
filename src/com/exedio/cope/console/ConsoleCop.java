@@ -207,7 +207,6 @@ abstract class ConsoleCop<S> extends Cop
 					new HashCop(args),
 					new HiddenCop(args),
 					new ChangeListenerCop(args),
-					new ModificationListenerCop(args),
 				};
 	}
 
@@ -284,7 +283,6 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_HASH = "hash";
 	static final String TAB_HIDDEN = "hidden";
 	static final String TAB_CHANGE_LISTENER = "changelistener";
-	static final String TAB_MODIFICATION_LISTENER = "modificationlistener";
 
 	static final ConsoleCop<?> getCop(
 			final Stores stores,
@@ -374,8 +372,6 @@ abstract class ConsoleCop<S> extends Cop
 			return new HiddenCop(args);
 		if(TAB_CHANGE_LISTENER.equals(tab))
 			return new ChangeListenerCop(args, request);
-		if(TAB_MODIFICATION_LISTENER.equals(tab))
-			return new ModificationListenerCop(args);
 
 		final MediaCop mediaCop = MediaCop.getMediaCop(model, args, request);
 		if(mediaCop!=null)
