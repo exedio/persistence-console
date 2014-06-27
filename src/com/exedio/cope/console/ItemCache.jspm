@@ -41,7 +41,7 @@ final class ItemCache_Jspm extends Console_Jspm
 				<th colspan="3">Replacement</th>
 				<th colspan="3">Age <small>/seconds</small></th>
 				<th colspan="2">Invalidations</th>
-				<th colspan="3">Invalidate Last</th>
+				<th colspan="3">Stamps</th>
 				<th rowspan="2">Type</th>
 			</tr>
 			<tr>
@@ -59,9 +59,9 @@ final class ItemCache_Jspm extends Console_Jspm
 				<th title="Maximum Age (s)">Max</th>
 				<th title="Invalidations Ordered">Ordrd</th>
 				<th title="Invalidations Done">Done</th>
-				<th title="Invalidate Last Size">Size</th>
-				<th title="Invalidate Last Hits">Hit</th>
-				<th title="Invalidate Last Purged">Purg</th>
+				<th title="Stamps Size">Size</th>
+				<th title="Stamps Hits">Hit</th>
+				<th title="Stamps Purged">Purg</th>
 			</tr>
 			<tr>
 				<td class="a"><%=formatAndHide(0, summary.getLimit())%></td>
@@ -79,9 +79,9 @@ final class ItemCache_Jspm extends Console_Jspm
 				<td class="a"><%=formatAndHide(0, summary.getAgeMaximumMillis()/1000l)%></td>
 				<td class="b"><%=formatAndHide(0, summary.getInvalidationsOrdered())%></td>
 				<td class="b"><%=formatAndHide(0, summary.getInvalidationsDone())%></td>
-				<td class="a"><%=formatAndHide(0, summary.getInvalidateLastSize())%></td>
-				<td class="a"><%=formatAndHide(0, summary.getInvalidateLastHits())%></td>
-				<td class="a"><%=formatAndHide(0, summary.getInvalidateLastPurged())%></td>
+				<td class="a"><%=formatAndHide(0, summary.getStampsSize())%></td>
+				<td class="a"><%=formatAndHide(0, summary.getStampsHits())%></td>
+				<td class="a"><%=formatAndHide(0, summary.getStampsPurged())%></td>
 				<th>Summary</th>
 			</tr><%
 			for(final ItemCacheInfo info : infos)
@@ -103,9 +103,9 @@ final class ItemCache_Jspm extends Console_Jspm
 				<td class="a"><%=formatAndHide(0, info.getAgeMaximumMillis()/1000l)%></td>
 				<td class="b"><%=formatAndHide(0, info.getInvalidationsOrdered())%></td>
 				<td class="b"><%=formatAndHide(0, info.getInvalidationsDone())%></td>
-				<td class="a"><%=formatAndHide(0, info.getInvalidateLastSize())%></td>
-				<td class="a"><%=formatAndHide(0, info.getInvalidateLastHits())%></td>
-				<td class="a"><%=formatAndHide(0, info.getInvalidateLastPurged())%></td>
+				<td class="a"><%=formatAndHide(0, info.getStampsSize())%></td>
+				<td class="a"><%=formatAndHide(0, info.getStampsHits())%></td>
+				<td class="a"><%=formatAndHide(0, info.getStampsPurged())%></td>
 				<td class="text"><%=info.getType().getID()%></td>
 			</tr><%
 			}
