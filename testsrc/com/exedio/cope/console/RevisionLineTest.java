@@ -117,7 +117,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
 
-		l.setInfo(new RevisionInfoRevise(55, DATE, Collections.<String, String>emptyMap(), "comment55",
+		l.setInfo(new RevisionInfoRevise(55, null, DATE, Collections.<String, String>emptyMap(), "comment55",
 				new Body("sql55.1", 126, 567),
 				new Body("sql55.2", 127, 568)).toBytes());
 		assertTrue(l.getLogString(), l.getLogString().startsWith("#migrationlogv01"+lineSeparator()));
@@ -160,7 +160,7 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals(-1, l.getRows());
 		assertEquals(-1, l.getElapsed());
 
-		l.setInfo(new RevisionInfoRevise(55, DATE, Collections.<String, String>emptyMap(), "comment55",
+		l.setInfo(new RevisionInfoRevise(55, null, DATE, Collections.<String, String>emptyMap(), "comment55",
 				new Body("sql55.1", 126, 567),
 				new Body("sql55.2", 127, 568)).toBytes());
 		assertTrue(l.getLogString(), l.getLogString().startsWith("#migrationlogv01"+lineSeparator()));
