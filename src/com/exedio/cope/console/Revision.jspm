@@ -138,7 +138,17 @@ final class Revision_Jspm extends Console_Jspm
 					This means, either revisions are executed right now,
 					or the execution of revisions has failed.
 					<br>
-					Revising from number <%=mutex.getActualNumber()%> to <%=mutex.getExpectedNumber()%> started at <%=mutex.getDate()%>.
+					Revising from number <%=mutex.getActualNumber()%> to <%=mutex.getExpectedNumber()%> started at <%=mutex.getDate()%>.<%
+				
+				final String mutexSavepoint = mutex.getSavepoint();
+				if(mutexSavepoint!=null)
+				{
+					%>
+					<br>
+					There is a schema savepoint for the mutex: <b><%=mutexSavepoint%></b><%
+				}
+				
+				%>
 				</td>
 			</tr>
 		</table><%

@@ -132,6 +132,7 @@ public final class Revisions
 					}
 					save(stat, new RevisionInfoRevise(
 							revision.getNumber(),
+							"SAVEPOINT REVISE " + revision.getNumber() + " END",
 							new Date(),
 							environment,
 							revision.getComment(),
@@ -155,6 +156,7 @@ public final class Revisions
 					{
 						save(stat, new RevisionInfoRevise(
 								revisionNumber,
+								null, // savepoint
 								new Date(),
 								environment,
 								"not in application " + revisionNumber,
@@ -164,6 +166,7 @@ public final class Revisions
 				}
 				{
 					save(stat, new RevisionInfoMutex(
+							"SAVEPOINT MUTEX",
 							new Date(),
 							environment,
 							63, 60));
