@@ -32,6 +32,7 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(20, 100, 1000, 10000);
 	static final String REMOVE_SELECTED = "removeSelected";
 	static final String REMOVE_CHECKBOX = "rm";
+	static final String REMOVE_ALL      = "removeAll";
 
 	private final Pager pager;
 
@@ -92,6 +93,10 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 							model.removeChangeListener(listener);
 					}
 				}
+			}
+			if(request.getParameter(REMOVE_ALL)!=null)
+			{
+				model.removeAllChangeListeners();
 			}
 		}
 

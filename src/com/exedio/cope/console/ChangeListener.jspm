@@ -19,6 +19,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.ChangeListenerCop.REMOVE_ALL;
 import static com.exedio.cope.console.ChangeListenerCop.REMOVE_CHECKBOX;
 import static com.exedio.cope.console.ChangeListenerCop.REMOVE_SELECTED;
 import static com.exedio.cope.console.ConsoleCop.writePager;
@@ -123,6 +124,7 @@ final class ChangeListener_Jspm extends Console_Jspm
 	private static final void writeButtons(final Out out)
 	{
 			%>
-			<input type="submit" name="<%=REMOVE_SELECTED%>" value="remove selected" /><%
+			<input type="submit" name="<%=REMOVE_SELECTED%>" value="remove selected" />
+			<input type="submit" name="<%=REMOVE_ALL     %>" value="remove all" onclick="return confirm('This operation will remove all Change Listeners. This may affect the proper function of your application.\nDo you really want to do this?')" /><%
 	}
 }%>
