@@ -21,11 +21,8 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Feature;
-import com.exedio.cope.Item;
-import com.exedio.cope.Transaction;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.util.CharsetName;
-import com.exedio.cope.util.ModificationListener;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -33,7 +30,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
@@ -60,9 +56,6 @@ public final class ExampleServlet extends CopsServlet
 	static final String CHANGE_LISTENER_ADD      = "changeListener.add";
 	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
 	static final String CHANGE_LISTENER_COUNT    = "changeListener.count";
-
-	static final String MODIFICATION_LISTENER_ADD      = "modificationListener.add";
-	static final String MODIFICATION_LISTENER_ADD_FAIL = "modificationListener.addFail";
 
 	static final String FEATURE_FIELD_FEATURE = "featureField.feature";
 	static final String FEATURE_FIELD_STRING  = "featureField.string";
@@ -117,14 +110,6 @@ public final class ExampleServlet extends CopsServlet
 				final int changeListenerCount = Integer.parseInt(request.getParameter(CHANGE_LISTENER_COUNT));
 				for(int i = 0; i<changeListenerCount; i++)
 					Main.model.addChangeListener(newChangeListener(true));
-			}
-			else if(request.getParameter(MODIFICATION_LISTENER_ADD)!=null)
-			{
-				Main.model.addModificationListener(newModificationListener(false));
-			}
-			else if(request.getParameter(MODIFICATION_LISTENER_ADD_FAIL)!=null)
-			{
-				Main.model.addModificationListener(newModificationListener(true));
 			}
 			else if(request.getParameter(FEATURE_FIELD_SUBMIT)!=null)
 			{
@@ -264,30 +249,6 @@ public final class ExampleServlet extends CopsServlet
 					throw new RuntimeException("Exception in toString of ChangeListener " + count);
 				else
 					return "toString of ChangeListener " + count;
-			}
-		};
-	}
-
-	private static ModificationListener newModificationListener(final boolean toStringFails)
-	{
-		return new ModificationListener()
-		{
-			private final int count = modificationListenerNumber++;
-
-			@Deprecated
-			@Override
-			public void onModifyingCommit(final Collection<Item> modifiedItems, final Transaction transaction)
-			{
-				// do nothing
-			}
-
-			@Override
-			public String toString()
-			{
-				if(toStringFails)
-					throw new RuntimeException("Exception in toString of ModificationListener " + count);
-				else
-					return "toString of ModificationListener " + count;
 			}
 		};
 	}
