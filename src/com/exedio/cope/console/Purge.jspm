@@ -20,8 +20,10 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.PurgeCop.PURGE;
+import static com.exedio.cope.console.PurgeCop.REVISION_STATISTICS;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.revstat.RevisionStatistics;
 import com.exedio.cope.util.JobContext;
 
 final class Purge_Jspm
@@ -31,11 +33,21 @@ final class Purge_Jspm
 			final Model model,
 			final PurgeCop cop,
 			final boolean purge,
+			final boolean revisionStatisticsEnabled,
+			final boolean revisionStatistics,
 			final JobContext ctx)
 	{
 		%>
 		<form action="<%=cop%>" method="POST">
-			<input type="submit" name="<%=PURGE%>" value="Purge Schema" />
+			<input type="submit" name="<%=PURGE%>" value="Purge Schema" /><%
+			
+		if(revisionStatisticsEnabled)
+		{
+			%>
+			<br>
+			<input type="submit" name="<%=REVISION_STATISTICS%>" value="Write Revision Statistics" /><%
+		}
+		%>
 		</form><%
 		
 		if(purge)
@@ -43,6 +55,15 @@ final class Purge_Jspm
 		%>
 		<ul><%
 			model.purgeSchema(ctx);
+		%>
+		</ul><%
+		}
+		
+		if(revisionStatistics)
+		{
+		%>
+		<ul><%
+			RevisionStatistics.write(model, ctx);
 		%>
 		</ul><%
 		}

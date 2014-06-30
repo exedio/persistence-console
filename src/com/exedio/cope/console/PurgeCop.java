@@ -19,12 +19,14 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.revstat.RevisionStatistics;
 import com.exedio.cope.util.EmptyJobContext;
 import javax.servlet.http.HttpServletRequest;
 
 final class PurgeCop extends ConsoleCop<Void>
 {
 	static final String PURGE = "purge";
+	static final String REVISION_STATISTICS = "revisionStatistics";
 
 	PurgeCop(final Args args)
 	{
@@ -46,11 +48,14 @@ final class PurgeCop extends ConsoleCop<Void>
 		final HttpServletRequest request = out.request;
 		final boolean post = isPost(request);
 		final boolean purge = post && request.getParameter(PURGE)!=null;
+		final boolean revisionStatistics = post && request.getParameter(REVISION_STATISTICS)!=null;
 
 		Purge_Jspm.writeBody(
 				out, model, this,
 				purge,
-				purge ? new Context(out) : null);
+				model.contains(RevisionStatistics.types),
+				revisionStatistics,
+				(purge||revisionStatistics) ? new Context(out) : null);
 	}
 
 	private static final class Context extends EmptyJobContext

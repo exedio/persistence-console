@@ -19,12 +19,17 @@
 package com.exedio.cope.console.example;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.TypeSet;
+import com.exedio.cope.revstat.RevisionStatistics;
 
 public final class Main
 {
 	public static final Model model =
 		new Model(
 				Revisions.revisions(64),
+				new TypeSet[] {
+					RevisionStatistics.types,
+				},
 				AnItem.TYPE,
 				ASubItem.TYPE,
 				OptionalItem.TYPE,
