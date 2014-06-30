@@ -24,6 +24,7 @@ import com.exedio.cope.FunctionField;
 import com.exedio.cope.Model;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +96,7 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 	}
 
 	@Override
+	@SuppressFBWarnings({"NP_LOAD_OF_KNOWN_NULL_VALUE","RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE"}) // OK: caused by try-with-resources
 	int check(final FunctionField<?> field)
 	{
 		final Type<?> type = field.getType();

@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import com.exedio.cope.Model;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +93,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
+	@SuppressFBWarnings("NP_LOAD_OF_KNOWN_NULL_VALUE") // OK: caused by try-with-resources
 	int check(final Type<?> type)
 	{
 		try(TransactionTry tx = type.getModel().
