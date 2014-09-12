@@ -278,7 +278,7 @@ final class Test_Jspm
 			final boolean complete,
 			final int elapsed,
 			final Date date,
-			final int failures,
+			final long failures,
 			final String cellClass,
 			final boolean isError)
 	{

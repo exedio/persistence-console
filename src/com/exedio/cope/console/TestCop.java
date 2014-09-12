@@ -208,7 +208,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 	{
 		int elapsed = 0;
 		Info date = null;
-		int failures = 0;
+		long failures = 0;
 		boolean isError = false;
 
 		for(final Info info : infos.values())
