@@ -176,6 +176,7 @@ abstract class ConsoleCop<S> extends Cop
 					new ConnectTokenCop(args),
 					new PurgeCop(args),
 					new SchemaCop(args),
+					new SavepointCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
 					new UnsupportedCheckConstraintCop(args, testArgs),
 					new UpdateCounterCop(args, testArgs),
@@ -250,6 +251,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_CONNECT_TOKEN = "connectToken";
 	static final String TAB_PURGE = "purge";
 	static final String TAB_SCHEMA = "schema";
+	static final String TAB_SAVEPOINT = "savepoint";
 	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
 	static final String TAB_UNSUPPORTED_CHECK_CONSTRAINTS = "unsupportedcheckconstraints";
 	static final String TAB_TYPE_COLUMNS = "typecolumns";
@@ -302,6 +304,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new PurgeCop(args);
 		else if(TAB_SCHEMA.equals(tab))
 			return SchemaCop.getSchemaCop(args, request);
+		else if(TAB_SAVEPOINT.equals(tab))
+			return new SavepointCop(args);
 		if(TAB_UNSUPPORTED_CONSTRAINTS.equals(tab))
 			return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_UNSUPPORTED_CHECK_CONSTRAINTS.equals(tab))
