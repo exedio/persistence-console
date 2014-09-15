@@ -19,10 +19,14 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.console.Stores.Store;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-final class SavepointCop extends ConsoleCop<Void>
+final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 {
 	static final String SAVEPOINT = "savepoint";
 
@@ -37,9 +41,6 @@ final class SavepointCop extends ConsoleCop<Void>
 		return new SavepointCop(args);
 	}
 
-	private String savepoint = null;
-	private String savepointFailure = null;
-
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
 	{
@@ -49,14 +50,16 @@ final class SavepointCop extends ConsoleCop<Void>
 		{
 			if(request.getParameter(SAVEPOINT)!=null)
 			{
+				final List<Point> list = getList();
 				try
 				{
-					savepoint = model.getSchemaSavepoint();
+					list.add(new Point(model.getSchemaSavepoint()));
 				}
 				catch(final SQLException e)
 				{
-					savepointFailure = e.getMessage();
+					list.add(new Point(e));
 				}
+				putStore(list);
 			}
 		}
 	}
@@ -66,6 +69,46 @@ final class SavepointCop extends ConsoleCop<Void>
 	{
 		Savepoint_Jspm.writeBody(
 				out, this,
-				savepoint, savepointFailure);
+				getList());
+	}
+
+	public static final class Point
+	{
+		private final long date;
+		final String message;
+		private final boolean success;
+
+		public Point(final String result)
+		{
+			this.date = System.currentTimeMillis();
+			this.message = result;
+			this.success = true;
+		}
+
+		public Point(final SQLException exception)
+		{
+			this.date = System.currentTimeMillis();
+			this.message = exception.getMessage();
+			this.success = false;
+		}
+
+		Date getDate()
+		{
+			return new Date(date);
+		}
+
+		String getCssClass()
+		{
+			return success ? "text" : "notavailable";
+		}
+	}
+
+	private List<Point> getList()
+	{
+		final Store<List<Point>> store = getStore();
+		List<Point> list = store!=null ? store.value : null;
+		if(list==null)
+			list = new ArrayList<>();
+		return list;
 	}
 }

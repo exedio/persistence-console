@@ -21,41 +21,43 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.SavepointCop.SAVEPOINT;
 
+import java.util.List;
+
 final class Savepoint_Jspm extends Console_Jspm
 {
 	static final void writeBody(
 			final Out out,
 			final SavepointCop cop,
-			final String savepoint,
-			final String savepointFailure)
+			final List<SavepointCop.Point> points)
 	{
 		%>
 		<table>
-			<caption>Schema Savepoint</caption><%
-			
-			if(savepoint!=null)
-			{
-			%>
+			<caption>Schema Savepoint</caption>
 			<tr>
-				<td class="text"><%=savepoint%></td>
-			</tr><%
-			}
-			if(savepointFailure!=null)
-			{
-			%>
-			<tr>
-				<td class="notavailable"><%=savepointFailure%></td>
-			</tr><%
-			}
-			%>
-			<tr>
-				<td class="text">
+				<td colspan="3" class="text">
 					You may get a current schema savepoint here.
 					<form action="<%=cop%>" method="POST">
 						<input type="submit" name="<%=SAVEPOINT%>" value="get" />
 					</form>
 				</td>
 			</tr>
+			<tr>
+				<th>#</th>
+				<th>Date</th>
+				<th>Savepoint</th>
+			</tr><%
+			
+		int n = 0;
+		for(final SavepointCop.Point point : points)
+		{
+			%>
+			<tr>
+				<td><%=n++%></td>
+				<td><%=point.getDate()%></td>
+				<td class="<%=point.getCssClass()%>"><%=point.message%></td>
+			</tr><%
+		}
+		%>
 		</table><%
 	}
 }%>
