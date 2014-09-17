@@ -36,9 +36,6 @@ import javax.servlet.http.HttpServletRequest;
 final class RevisionCop extends ConsoleCop<Void> implements Pageable
 {
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
-	static final String REVISE  = "revise";
-	static final String NICE_CREATE = "nice.create";
-	static final String NICE_DROP   = "nice.drop";
 
 	private final Pager pager;
 
@@ -77,6 +74,10 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 	{
 		return new RevisionCop(args, pager);
 	}
+
+	static final String REVISE  = "revise";
+	static final String NICE_CREATE = "nice.create";
+	static final String NICE_DROP   = "nice.drop";
 
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)

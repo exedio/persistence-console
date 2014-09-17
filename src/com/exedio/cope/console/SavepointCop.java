@@ -28,8 +28,6 @@ import javax.servlet.http.HttpServletRequest;
 
 final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 {
-	static final String SAVEPOINT = "savepoint";
-
 	SavepointCop(final Args args)
 	{
 		super(TAB_SAVEPOINT, "Savepoints", args);
@@ -40,6 +38,8 @@ final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 	{
 		return new SavepointCop(args);
 	}
+
+	static final String SAVEPOINT = "savepoint";
 
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)

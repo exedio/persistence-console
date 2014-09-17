@@ -28,7 +28,6 @@ import javax.servlet.http.HttpServletRequest;
 
 final class QueryCacheCop extends ConsoleCop<Void>
 {
-	static final String CLEAR  = "cache.clear";
 	static final String HISTOGRAM_LIMIT = "hl";
 	private static final int HISTOGRAM_LIMIT_DEFAULT = 100;
 	private static final String CONDENSE = "condense";
@@ -67,6 +66,8 @@ final class QueryCacheCop extends ConsoleCop<Void>
 	{
 		return new QueryCacheCop(args, histogramLimit, !condense);
 	}
+
+	static final String CLEAR = "cache.clear";
 
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
