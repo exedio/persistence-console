@@ -18,6 +18,9 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Model;
+import javax.servlet.http.HttpServletRequest;
+
 final class ConnectionPoolCop extends ConsoleCop<Void>
 {
 	ConnectionPoolCop(final Args args)
@@ -31,9 +34,26 @@ final class ConnectionPoolCop extends ConsoleCop<Void>
 		return new ConnectionPoolCop(args);
 	}
 
+	static final String FLUSH = "connectionPool.flush";
+
+	@Override
+	void initialize(final HttpServletRequest request, final Model model)
+	{
+		super.initialize(request, model);
+
+		if(isPost(request))
+		{
+			if(request.getParameter(FLUSH)!=null)
+			{
+				System.out.println("ConnectionPoolCop#flush");
+				model.flushConnectionPool();
+			}
+		}
+	}
+
 	@Override
 	final void writeBody(final Out out)
 	{
-		ConnectionPool_Jspm.writeBody(out, out.model.getConnectionPoolInfo());
+		ConnectionPool_Jspm.writeBody(out, this, out.model.getConnectionPoolInfo());
 	}
 }

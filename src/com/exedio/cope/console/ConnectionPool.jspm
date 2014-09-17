@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
+import static com.exedio.cope.console.ConnectionPoolCop.FLUSH;
 
 import com.exedio.cope.util.Pool.Info;
 import com.exedio.cope.util.PoolCounter;
@@ -28,6 +29,7 @@ final class ConnectionPool_Jspm extends Console_Jspm
 {
 	static final void writeBody(
 			final Out out,
+			final ConnectionPoolCop cop,
 			final Info info)
 	{
 		final PoolCounter poolCounter = info.getCounter();
@@ -47,7 +49,7 @@ final class ConnectionPool_Jspm extends Console_Jspm
 			"dy",
 		};
 		%>
-		<table>
+		<table style="float:left;">
 			<caption>Statistics</caption>
 			<tr>
 				<th rowspan="3">Idle</th>
@@ -80,6 +82,10 @@ final class ConnectionPool_Jspm extends Console_Jspm
 				<td><%=format(info.getInvalidOnPut())%></td>
 			</tr>
 		</table>
+		<form action="<%=cop%>" method="POST">
+			<input type="submit" name="<%=FLUSH%>" value="flush"
+					onclick="return confirm('This operation will flush the global connection pool.\nDo you really want to do this?')" />
+		</form>
 		<hr>
 		<table id="coloredTable">
 			<caption>Hypothetical</caption><%
