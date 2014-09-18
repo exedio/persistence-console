@@ -249,4 +249,9 @@ span.textedit input
 	display:none;
 }
 
+span.textedit span.label
+{
+	display:inline-block;
+}
+
 span.javaDecoration { color:#ccc; }

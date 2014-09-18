@@ -302,7 +302,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 		{
 							%>
 							<span class="textedit" onClick="edit(this)">
-								<%=text%><img class="write" src="<%=ConsoleServlet.write%>">
+								<span class="label"><%=text%></span><img class="write" src="<%=ConsoleServlet.write%>">
 								<input name="<%=name%>" size="<%=text.length()%>">
 							</span><%
 		}
