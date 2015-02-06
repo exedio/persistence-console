@@ -184,6 +184,7 @@ abstract class ConsoleCop<S> extends Cop
 					new TypeColumnCop(args, testArgs),
 					new TypeCompletenessCop(args, testArgs),
 					new CopyConstraintCop(args, testArgs),
+					new CharacterNulCop(args, testArgs),
 					new OptionalFieldCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
@@ -258,6 +259,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_TYPE_COMPLETENESS = "typecompleteness";
 	static final String TAB_UPDATE_COUNTERS = "updatecounters";
 	static final String TAB_COPY_CONSTRAINTS = "copyconstraints";
+	static final String TAB_CHARACTER_NUL = "characterNul";
 	static final String TAB_OPTIONAL_FIELDS = "optional";
 	static final String TAB_MIN_LENGTH_STRING_FIELDS = "minlength";
 	static final String TAB_FEATURE_FIELD = "feature";
@@ -318,6 +320,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new UpdateCounterCop(args, new TestCop.TestArgs(request));
 		if(TAB_COPY_CONSTRAINTS.equals(tab))
 			return new CopyConstraintCop(args, new TestCop.TestArgs(request));
+		if(TAB_CHARACTER_NUL.equals(tab))
+			return new CharacterNulCop(args, new TestCop.TestArgs(request));
 		if(TAB_CONNECT.equals(tab))
 			return new ConnectCop(args);
 		if(TAB_CONNECT_TOKEN.equals(tab))

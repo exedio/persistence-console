@@ -68,6 +68,10 @@ class Example_Jspm
 			count:
 			<input               name="<%=ExampleServlet.CHANGE_LISTENER_COUNT   %>" value="1" size="5" />
 		</form>
+		<h2>NUL Characters</h2>
+		<form method="POST">
+			<input name="<%=ExampleServlet.NUL_CHARACTER%>" type="submit" value="add" />
+		</form>
 		<h2>Feature Fields</h2>
 		<form method="POST">
 			<br>name:

@@ -58,6 +58,8 @@ public final class ExampleServlet extends CopsServlet
 	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
 	static final String CHANGE_LISTENER_COUNT    = "changeListener.count";
 
+	static final String NUL_CHARACTER    = "nulChar";
+
 	static final String FEATURE_FIELD_FEATURE = "featureField.feature";
 	static final String FEATURE_FIELD_STRING  = "featureField.string";
 	static final String FEATURE_FIELD_SUBMIT  = "featureField.submit";
@@ -111,6 +113,16 @@ public final class ExampleServlet extends CopsServlet
 				final int changeListenerCount = Integer.parseInt(request.getParameter(CHANGE_LISTENER_COUNT));
 				for(int i = 0; i<changeListenerCount; i++)
 					Main.model.addChangeListener(newChangeListener(true));
+			}
+			else if(request.getParameter(NUL_CHARACTER)!=null)
+			{
+				try(TransactionTry tx = Main.model.startTransactionTry("nulChar"))
+				{
+					new AnItem("\0start" , AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.red   );
+					new AnItem("mid\0dle", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.green );
+					new AnItem("end\0"   , AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.yellow);
+					tx.commit();
+				}
 			}
 			else if(request.getParameter(FEATURE_FIELD_SUBMIT)!=null)
 			{
