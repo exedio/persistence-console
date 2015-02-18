@@ -68,7 +68,7 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 						map.put(token.getID(), token);
 
 					for(final String id : ids)
-						map.get(Integer.valueOf(id)).returnIt();
+						map.get(Integer.valueOf(id)).returnStrictly();
 				}
 			}
 		}
