@@ -123,19 +123,22 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		{
 			final MediaFingerprintOffset offset =
 					model.getConnectProperties().mediaFingerprintOffset();
+
 			if(request.getParameter(FINGER_OFFSET_RESET)!=null)
-				offset.reset();
-			if(request.getParameter(FINGER_OFFSET_SET_VALUE)!=null)
 			{
-				final int value = parseInt(request.getParameter(FINGER_OFFSET_SET_VALUE_PARAM));
-				offset.setValueAndResetRamp(value);
+				offset.reset();
+			}
+			else if(request.getParameter(FINGER_OFFSET_SET_VALUE)!=null)
+			{
+				offset.setValueAndResetRamp(
+						parseInt(request.getParameter(FINGER_OFFSET_SET_VALUE_PARAM)));
 			}
 			else if(
 					request.getParameter(FINGER_OFFSET_RAMP_DOWN)!=null ||
 					request.getParameter(FINGER_OFFSET_RAMP_UP  )!=null)
 			{
-				final double value = parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
-				offset.setRamp(value);
+				offset.setRamp(
+						parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE)));
 			}
 		}
 	}
