@@ -51,12 +51,12 @@ final class MediaFingerprint_Jspm extends Console_Jspm
 		Ramp:
 		<form action="<%=cop%>" method="post" style="display:inline;">
 			<input type="hidden" name="<%=FINGER_OFFSET_RAMP_VALUE%>" value="<%=rampDown%>">
-			<input type="submit" name="<%=FINGER_OFFSET_RAMP_DOWN %>" value="<%=formatRamp(rampDown)%> &lt;&lt;">
+			<input type="submit" name="<%=FINGER_OFFSET_RAMP_DOWN %>" value="<%=formatRamp(rampDown)%> &lt;&lt;"<% if(rampDown==rampCurrent){%> disabled="true"<%} %>>
 		</form>
 		<b><%=formatRamp(rampCurrent)%></b>
 		<form action="<%=cop%>" method="post" style="display:inline;">
 			<input type="hidden" name="<%=FINGER_OFFSET_RAMP_VALUE%>" value="<%=rampUp%>">
-			<input type="submit" name="<%=FINGER_OFFSET_RAMP_UP   %>" value="&gt;&gt; <%=formatRamp(rampUp)%>">
+			<input type="submit" name="<%=FINGER_OFFSET_RAMP_UP   %>" value="&gt;&gt; <%=formatRamp(rampUp)  %>"<% if(rampUp  ==rampCurrent){%> disabled="true"<%} %>>
 		</form><%
 	}
 }%>
