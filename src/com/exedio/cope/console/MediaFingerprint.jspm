@@ -24,19 +24,17 @@ import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE_PARAM;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_WARNING;
 
-import com.exedio.cope.pattern.MediaFingerprintOffset;
-
 final class MediaFingerprint_Jspm extends Console_Jspm
 {
 	static final void write(
 			final MediaStatsCop cop,
 			final Out out,
-			final MediaFingerprintOffset offset,
+			final String info,
 			final boolean initial)
 	{
 		%>
 		<form action="<%=cop%>" method="post">
-			<span<%  if(!initial){%> style="color:red;"<%} %>><%= offset.getInfo() %></span>
+			<span<%  if(!initial){%> style="color:red;"<%} %>><%= info %></span>
 			<input<% if( initial){%> disabled="true"<%} %> type="submit" name="<%=FINGER_OFFSET_RESET%>" value="Reset" onclick="return confirm('<%=FINGER_OFFSET_WARNING%>')">
 			<br>
 			<input name="<%=FINGER_OFFSET_SET_VALUE_PARAM%>" size="3" value="">

@@ -132,7 +132,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 			case fingerprint:
 				final MediaFingerprintOffset offset =
 						model.getConnectProperties().mediaFingerprintOffset();
-				MediaFingerprint_Jspm.write(this, out, offset, offset.isInitial());
+				MediaFingerprint_Jspm.write(this, out, offset.getInfo(), offset.isInitial());
 				break;
 			default:
 				// disable warning about incomplete switch
