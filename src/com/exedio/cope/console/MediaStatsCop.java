@@ -130,12 +130,9 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				final int value = parseInt(request.getParameter(FINGER_OFFSET_SET_VALUE_PARAM));
 				offset.setValueAndResetRamp(value);
 			}
-			else if(request.getParameter(FINGER_OFFSET_RAMP_DOWN)!=null)
-			{
-				final double value = parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
-				offset.setRamp(value);
-			}
-			else if(request.getParameter(FINGER_OFFSET_RAMP_UP)!=null)
+			else if(
+					request.getParameter(FINGER_OFFSET_RAMP_DOWN)!=null ||
+					request.getParameter(FINGER_OFFSET_RAMP_UP  )!=null)
 			{
 				final double value = parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
 				offset.setRamp(value);
