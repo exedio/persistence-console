@@ -122,7 +122,9 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	static final String FINGER_OFFSET_RAMP_DOWN        = "fingerprintOffset.ramp.down";
 	static final String FINGER_OFFSET_RAMP_VALUE       = "fingerprintOffset.ramp.value";
 	static final String FINGER_OFFSET_RAMP_UP          = "fingerprintOffset.ramp.up";
-	static final String FINGER_OFFSET_WARNING = "This operation invalidates media caches on all levels.\\nDo you really want to do this?";
+	static final String FINGER_OFFSET_WARNING =
+			"This operation invalidates media caches on all levels.\\n" +
+			"Do you really want to do this?";
 
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
