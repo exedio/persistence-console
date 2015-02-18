@@ -19,11 +19,9 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_CURRENT;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_DOWN;
-import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_DOWN_SUBMIT;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_UP;
-import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_UP_SUBMIT;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_VALUE;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RESET;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE_PARAM;
@@ -48,14 +46,17 @@ final class MediaFingerprint_Jspm extends Console_Jspm
 			<br>
 			<input name="<%=FINGER_OFFSET_SET_VALUE_PARAM%>" size="3" value="">
 			<input type="submit" name="<%=FINGER_OFFSET_SET_VALUE%>" value="Set Value And Reset Ramp" onclick="return confirm('<%=FINGER_OFFSET_WARNING%>')">
-			<br>
-			Ramp:
-			<input name="<%=FINGER_OFFSET_RAMP_DOWN%>" size="7" value="<%=formatRamp(rampDown)%>">
-			<input type="submit" name="<%=FINGER_OFFSET_RAMP_DOWN_SUBMIT%>" value="&lt;&lt;">
-			<b><%=formatRamp(rampCurrent)%></b>
-			<input type="hidden" name="<%=FINGER_OFFSET_RAMP_CURRENT    %>" value="<%=formatRamp(rampCurrent)%>">
-			<input type="submit" name="<%=FINGER_OFFSET_RAMP_UP_SUBMIT  %>" value="&gt;&gt;">
-			<input name="<%=FINGER_OFFSET_RAMP_UP  %>" size="7" value="<%=formatRamp(rampUp)  %>">
+		</form>
+		<br>
+		Ramp:
+		<form action="<%=cop%>" method="post" style="display:inline;">
+			<input type="hidden" name="<%=FINGER_OFFSET_RAMP_VALUE%>" value="<%=rampDown%>">
+			<input type="submit" name="<%=FINGER_OFFSET_RAMP_DOWN %>" value="<%=formatRamp(rampDown)%> &lt;&lt;">
+		</form>
+		<b><%=formatRamp(rampCurrent)%></b>
+		<form action="<%=cop%>" method="post" style="display:inline;">
+			<input type="hidden" name="<%=FINGER_OFFSET_RAMP_VALUE%>" value="<%=rampUp%>">
+			<input type="submit" name="<%=FINGER_OFFSET_RAMP_UP   %>" value="&gt;&gt; <%=formatRamp(rampUp)%>">
 		</form><%
 	}
 }%>

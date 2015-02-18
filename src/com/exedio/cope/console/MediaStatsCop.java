@@ -27,7 +27,6 @@ import com.exedio.cope.pattern.MediaFingerprintOffset;
 import com.exedio.cope.pattern.MediaInfo;
 import com.exedio.cope.pattern.MediaPath;
 import java.text.DecimalFormat;
-import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeSet;
@@ -36,17 +35,43 @@ import javax.servlet.http.HttpServletRequest;
 final class MediaStatsCop extends ConsoleCop<Void>
 {
 	private final Variant variant;
+	private final double fingerprintRampStep;
 
-	MediaStatsCop(final Args args, final Variant variant)
+	private static final String FINGER_OFFSET_RAMP_STEP = "fors";
+	private static final double FINGER_OFFSET_RAMP_STEP_DEFAULT = 0.002;
+
+	public MediaStatsCop(final Args args, final Variant variant)
+	{
+		this(args, variant, FINGER_OFFSET_RAMP_STEP_DEFAULT);
+	}
+
+	private MediaStatsCop(final Args args, final Variant variant, final double fingerprintRampStep)
 	{
 		super(variant.tab, variant.name, args);
 		this.variant = variant;
+		this.fingerprintRampStep = fingerprintRampStep;
+	}
+
+	static MediaStatsCop getMediaStatsCop(final Args args, final Variant variant, final HttpServletRequest request)
+	{
+		return new MediaStatsCop(
+				args, variant,
+				getDoubleParameter(request, FINGER_OFFSET_RAMP_STEP, FINGER_OFFSET_RAMP_STEP_DEFAULT));
+	}
+
+	private static double getDoubleParameter(
+			final HttpServletRequest request,
+			final String name,
+			final double defaultValue)
+	{
+		final String value = request.getParameter(name);
+		return (value==null) ? defaultValue : Double.parseDouble(value);
 	}
 
 	@Override
 	protected MediaStatsCop newArgs(final Args args)
 	{
-		return new MediaStatsCop(args, variant);
+		return new MediaStatsCop(args, variant, fingerprintRampStep);
 	}
 
 	enum Variant
@@ -83,12 +108,8 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	static final String FINGER_OFFSET_SET_VALUE       = "fingerprintOffset.setValueAndResetRamp";
 	static final String FINGER_OFFSET_WARNING = "This operation invalidates media caches on all levels.\nDo you really want to do this?";
 	static final String FINGER_OFFSET_RAMP_DOWN        = "fingerprintOffset.ramp.down";
-	static final String FINGER_OFFSET_RAMP_DOWN_SUBMIT = "fingerprintOffset.ramp.down.submit";
+	static final String FINGER_OFFSET_RAMP_VALUE       = "fingerprintOffset.ramp.value";
 	static final String FINGER_OFFSET_RAMP_UP          = "fingerprintOffset.ramp.up";
-	static final String FINGER_OFFSET_RAMP_UP_SUBMIT   = "fingerprintOffset.ramp.up.submit";
-	static final String FINGER_OFFSET_RAMP_CURRENT     = "fingerprintOffset.ramp.current";
-
-	private double rampStep = 0.002;
 
 	@Override
 	void initialize(final HttpServletRequest request, final Model model)
@@ -104,17 +125,15 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				final int value = Integer.parseInt(request.getParameter(FINGER_OFFSET_SET_VALUE_PARAM));
 				model.getConnectProperties().mediaFingerprintOffset().setValueAndResetRamp(value);
 			}
-			else if(request.getParameter(FINGER_OFFSET_RAMP_DOWN_SUBMIT)!=null)
+			else if(request.getParameter(FINGER_OFFSET_RAMP_DOWN)!=null)
 			{
-				final double value = parseRamp(request.getParameter(FINGER_OFFSET_RAMP_DOWN));
+				final double value = Double.parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
 				model.getConnectProperties().mediaFingerprintOffset().setRamp(value);
-				rampStep = parseRamp(request.getParameter(FINGER_OFFSET_RAMP_CURRENT)) - value;
 			}
-			else if(request.getParameter(FINGER_OFFSET_RAMP_UP_SUBMIT)!=null)
+			else if(request.getParameter(FINGER_OFFSET_RAMP_UP)!=null)
 			{
-				final double value = parseRamp(request.getParameter(FINGER_OFFSET_RAMP_UP));
+				final double value = Double.parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
 				model.getConnectProperties().mediaFingerprintOffset().setRamp(value);
-				rampStep = value - parseRamp(request.getParameter(FINGER_OFFSET_RAMP_CURRENT));
 			}
 		}
 	}
@@ -122,11 +141,6 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	static String formatRamp(final double ramp)
 	{
 		return new DecimalFormat("0.0000").format(ramp);
-	}
-
-	private static double parseRamp(final String ramp)
-	{
-		return new DecimalFormat("0.0000").parse(ramp, new ParsePosition(0)).doubleValue();
 	}
 
 	@Override
@@ -168,9 +182,9 @@ final class MediaStatsCop extends ConsoleCop<Void>
 						this, out,
 						offset.getInfo(),
 						offset.isInitial(),
-						limitRamp(rampCurrent - rampStep),
-						offset.getRamp(),
-						limitRamp(rampCurrent + rampStep)
+						limitRamp(rampCurrent - fingerprintRampStep),
+						rampCurrent,
+						limitRamp(rampCurrent + fingerprintRampStep)
 				);
 				break;
 			default:

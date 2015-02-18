@@ -355,9 +355,9 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_DATA_FIELD.equals(tab))
 			return new DataFieldCop(args);
 		if(TAB_MEDIA_STATS.equals(tab))
-			return new MediaStatsCop(args, MediaStatsCop.Variant.all);
+			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.all, request);
 		if(TAB_MEDIA_FINGERPRINTING.equals(tab))
-			return new MediaStatsCop(args, MediaStatsCop.Variant.fingerprint);
+			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.fingerprint, request);
 		if(TAB_MEDIA_TESTABLE.equals(tab))
 			return new MediaTestableCop(args, new TestCop.TestArgs(request));
 		if(TAB_MEDIA_TYPE.equals(tab))
