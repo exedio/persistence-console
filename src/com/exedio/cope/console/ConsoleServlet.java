@@ -123,9 +123,9 @@ public class ConsoleServlet extends CopsServlet
 	@Override
 	public final void destroy()
 	{
-		if(connectToken!=null && !connectToken.isReturned())
+		if(connectToken!=null)
 		{
-			connectToken.returnIt();
+			connectToken.returnItConditionally();
 			connectToken = null;
 		}
 		model = null;
