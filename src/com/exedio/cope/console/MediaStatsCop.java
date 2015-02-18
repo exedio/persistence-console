@@ -135,7 +135,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				MediaFingerprint_Jspm.write(this, out, offset, offset.isInitial());
 				break;
 			default:
-				// disable warnings about incomplete switch
+				// disable warning about incomplete switch
 				break;
 		}
 		Media_Jspm.writeBody(this, out, shortNames.length+1, isUrlGuessingNotSecure, infos, summary);
