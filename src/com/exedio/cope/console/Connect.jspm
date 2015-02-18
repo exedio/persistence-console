@@ -37,10 +37,6 @@ final class Connect_Jspm extends Console_Jspm
 		<table style="float:left;">
 			<caption>Capabilities</caption>
 			<tr>
-				<th>Nulls Are Sorted</th>
-				<td class="text"><%if(model.nullsAreSortedLow()){%>low<%}else{%>high<%}%></td>
-			</tr>
-			<tr>
 				<th>Supports Empty Strings</th>
 				<td class="text"><%if(model.supportsEmptyStrings()){%>yes<%}else{%>no<%}%></td>
 			</tr>
