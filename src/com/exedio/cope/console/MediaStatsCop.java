@@ -18,6 +18,9 @@
 
 package com.exedio.cope.console;
 
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
@@ -124,17 +127,17 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				offset.reset();
 			if(request.getParameter(FINGER_OFFSET_SET_VALUE)!=null)
 			{
-				final int value = Integer.parseInt(request.getParameter(FINGER_OFFSET_SET_VALUE_PARAM));
+				final int value = parseInt(request.getParameter(FINGER_OFFSET_SET_VALUE_PARAM));
 				offset.setValueAndResetRamp(value);
 			}
 			else if(request.getParameter(FINGER_OFFSET_RAMP_DOWN)!=null)
 			{
-				final double value = Double.parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
+				final double value = parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
 				offset.setRamp(value);
 			}
 			else if(request.getParameter(FINGER_OFFSET_RAMP_UP)!=null)
 			{
-				final double value = Double.parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
+				final double value = parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE));
 				offset.setRamp(value);
 			}
 		}
