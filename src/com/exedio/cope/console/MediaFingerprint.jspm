@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_DOWN;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_STEP;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_UP;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_VALUE;
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RESET;
@@ -57,6 +58,12 @@ final class MediaFingerprint_Jspm extends Console_Jspm
 		<form action="<%=cop%>" method="post" style="display:inline;">
 			<input type="hidden" name="<%=FINGER_OFFSET_RAMP_VALUE%>" value="<%=rampUp%>">
 			<input type="submit" name="<%=FINGER_OFFSET_RAMP_UP   %>" value="&gt;&gt; <%=formatRamp(rampUp)  %>"<% if(rampUp  ==rampCurrent){%> disabled="true"<%} %>>
+		</form>
+		<br>
+		<form action="<%=cop%>" method="get">
+			Ramp Step:
+			<input name="<%=FINGER_OFFSET_RAMP_STEP%>" value="<%=cop.fingerprintRampStep%>" size="6">
+			<input type="submit" value="Set">
 		</form><%
 	}
 }%>

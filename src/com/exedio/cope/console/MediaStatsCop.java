@@ -38,9 +38,9 @@ import javax.servlet.http.HttpServletRequest;
 final class MediaStatsCop extends ConsoleCop<Void>
 {
 	private final Variant variant;
-	private final double fingerprintRampStep;
+	final double fingerprintRampStep;
 
-	private static final String FINGER_OFFSET_RAMP_STEP = "fors";
+	static final String FINGER_OFFSET_RAMP_STEP = "fors";
 	private static final double FINGER_OFFSET_RAMP_STEP_DEFAULT = 0.002;
 
 	public MediaStatsCop(final Args args, final Variant variant)
@@ -53,6 +53,8 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		super(variant.tab, variant.name, args);
 		this.variant = variant;
 		this.fingerprintRampStep = fingerprintRampStep;
+
+		addParameter(FINGER_OFFSET_RAMP_STEP, fingerprintRampStep, FINGER_OFFSET_RAMP_STEP_DEFAULT);
 	}
 
 	static MediaStatsCop getMediaStatsCop(final Args args, final Variant variant, final HttpServletRequest request)
@@ -60,6 +62,14 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		return new MediaStatsCop(
 				args, variant,
 				getDoubleParameter(request, FINGER_OFFSET_RAMP_STEP, FINGER_OFFSET_RAMP_STEP_DEFAULT));
+	}
+
+	private void addParameter(final String key, final double value, final double defaultValue)
+	{
+		if(value==defaultValue)
+			return;
+
+		addParameter(key, String.valueOf(value));
 	}
 
 	private static double getDoubleParameter(
