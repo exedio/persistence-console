@@ -119,9 +119,9 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	static final String FINGER_OFFSET_RESET           = "fingerprintOffset.reset";
 	static final String FINGER_OFFSET_SET_VALUE_PARAM = "fingerprintOffset.setValueAndResetRamp.param";
 	static final String FINGER_OFFSET_SET_VALUE       = "fingerprintOffset.setValueAndResetRamp";
-	static final String FINGER_OFFSET_RAMP_DOWN        = "fingerprintOffset.ramp.down";
-	static final String FINGER_OFFSET_RAMP_VALUE       = "fingerprintOffset.ramp.value";
-	static final String FINGER_OFFSET_RAMP_UP          = "fingerprintOffset.ramp.up";
+	static final String FINGER_OFFSET_RAMP_DOWN       = "fingerprintOffset.ramp.down";
+	static final String FINGER_OFFSET_RAMP_VALUE      = "fingerprintOffset.ramp.value";
+	static final String FINGER_OFFSET_RAMP_UP         = "fingerprintOffset.ramp.up";
 	static final String FINGER_OFFSET_WARNING =
 			"This operation invalidates media caches on all levels.\\n" +
 			"Do you really want to do this?";
