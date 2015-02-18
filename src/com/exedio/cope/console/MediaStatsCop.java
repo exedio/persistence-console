@@ -18,28 +18,146 @@
 
 package com.exedio.cope.console;
 
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.MediaSummary;
+import com.exedio.cope.pattern.MediaFingerprintOffset;
 import com.exedio.cope.pattern.MediaInfo;
 import com.exedio.cope.pattern.MediaPath;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeSet;
+import javax.servlet.http.HttpServletRequest;
 
 final class MediaStatsCop extends ConsoleCop<Void>
 {
-	MediaStatsCop(final Args args)
+	private final Variant variant;
+	final double fingerprintRampStep;
+
+	static final String FINGER_OFFSET_RAMP_STEP = "fors";
+	private static final double FINGER_OFFSET_RAMP_STEP_DEFAULT = 0.002;
+
+	public MediaStatsCop(final Args args, final Variant variant)
 	{
-		super(TAB_MEDIA_STATS, "Media", args);
+		this(args, variant, FINGER_OFFSET_RAMP_STEP_DEFAULT);
+	}
+
+	private MediaStatsCop(final Args args, final Variant variant, final double fingerprintRampStep)
+	{
+		super(variant.tab, variant.name, args);
+		this.variant = variant;
+		this.fingerprintRampStep = fingerprintRampStep;
+
+		addParameter(FINGER_OFFSET_RAMP_STEP, fingerprintRampStep, FINGER_OFFSET_RAMP_STEP_DEFAULT);
+	}
+
+	static MediaStatsCop getMediaStatsCop(final Args args, final Variant variant, final HttpServletRequest request)
+	{
+		return new MediaStatsCop(
+				args, variant,
+				getDoubleParameter(request, FINGER_OFFSET_RAMP_STEP, FINGER_OFFSET_RAMP_STEP_DEFAULT));
+	}
+
+	private void addParameter(final String key, final double value, final double defaultValue)
+	{
+		if(value==defaultValue)
+			return;
+
+		addParameter(key, String.valueOf(value));
+	}
+
+	private static double getDoubleParameter(
+			final HttpServletRequest request,
+			final String name,
+			final double defaultValue)
+	{
+		final String value = request.getParameter(name);
+		return (value==null) ? defaultValue : Double.parseDouble(value);
 	}
 
 	@Override
 	protected MediaStatsCop newArgs(final Args args)
 	{
-		return new MediaStatsCop(args);
+		return new MediaStatsCop(args, variant, fingerprintRampStep);
+	}
+
+	enum Variant
+	{
+		all(TAB_MEDIA_STATS, "Media"),
+		fingerprint(TAB_MEDIA_FINGERPRINTING, "Media Fingerprinting")
+		{
+			@Override boolean accepts(final MediaPath path)
+			{
+				return path.isUrlFingerPrinted();
+			}
+		};
+
+		final String tab;
+		final String name;
+
+		Variant(final String tab, final String name)
+		{
+			this.tab = tab;
+			this.name = name;
+		}
+
+		/**
+		 * @param path used by subclasses
+		 */
+		boolean accepts(final MediaPath path)
+		{
+			return true;
+		}
+	}
+
+	static final String FINGER_OFFSET_RESET           = "fingerprintOffset.reset";
+	static final String FINGER_OFFSET_SET_VALUE_PARAM = "fingerprintOffset.setValueAndResetRamp.param";
+	static final String FINGER_OFFSET_SET_VALUE       = "fingerprintOffset.setValueAndResetRamp";
+	static final String FINGER_OFFSET_RAMP_DOWN       = "fingerprintOffset.ramp.down";
+	static final String FINGER_OFFSET_RAMP_VALUE      = "fingerprintOffset.ramp.value";
+	static final String FINGER_OFFSET_RAMP_UP         = "fingerprintOffset.ramp.up";
+	static final String FINGER_OFFSET_WARNING =
+			"This operation invalidates media caches on all levels.\\n" +
+			"Do you really want to do this?";
+
+	@Override
+	void initialize(final HttpServletRequest request, final Model model)
+	{
+		super.initialize(request, model);
+
+		if(isPost(request))
+		{
+			final MediaFingerprintOffset offset =
+					model.getConnectProperties().mediaFingerprintOffset();
+
+			if(request.getParameter(FINGER_OFFSET_RESET)!=null)
+			{
+				offset.reset();
+			}
+			else if(request.getParameter(FINGER_OFFSET_SET_VALUE)!=null)
+			{
+				offset.setValueAndResetRamp(
+						parseInt(request.getParameter(FINGER_OFFSET_SET_VALUE_PARAM)));
+			}
+			else if(
+					request.getParameter(FINGER_OFFSET_RAMP_DOWN)!=null ||
+					request.getParameter(FINGER_OFFSET_RAMP_UP  )!=null)
+			{
+				offset.setRamp(
+						parseDouble(request.getParameter(FINGER_OFFSET_RAMP_VALUE)));
+			}
+		}
+	}
+
+	static String formatRamp(final double ramp)
+	{
+		return new DecimalFormat("0.0000").format(ramp);
 	}
 
 	@Override
@@ -55,7 +173,8 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				if(feature instanceof MediaPath)
 				{
 					final MediaPath path = (MediaPath)feature;
-					medias.add(path);
+					if(variant.accepts(path))
+						medias.add(path);
 					if(!isUrlGuessingPrevented && path.isUrlGuessingPrevented())
 						isUrlGuessingPrevented = true;
 				}
@@ -70,7 +189,36 @@ final class MediaStatsCop extends ConsoleCop<Void>
 			infos[mediaIndex++] = media.getInfo();
 		final MediaSummary summary = new MediaSummary(infos);
 
+		switch(variant)
+		{
+			case fingerprint:
+				final MediaFingerprintOffset offset =
+						model.getConnectProperties().mediaFingerprintOffset();
+				final double rampCurrent = offset.getRamp();
+				MediaFingerprint_Jspm.write(
+						this, out,
+						offset.getInfo(),
+						offset.isInitial(),
+						limitRamp(rampCurrent - fingerprintRampStep),
+						rampCurrent,
+						limitRamp(rampCurrent + fingerprintRampStep)
+				);
+				break;
+			default:
+				// disable warning about incomplete switch
+				break;
+		}
 		Media_Jspm.writeBody(this, out, shortNames.length+1, isUrlGuessingNotSecure, infos, summary);
+	}
+
+	private static double limitRamp(final double ramp)
+	{
+		if(ramp<0.0)
+			return 0.0;
+		if(ramp>1.0)
+			return 1.0;
+
+		return ramp;
 	}
 
 	static void writeTableHeader(final Out out)

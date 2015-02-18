@@ -1,0 +1,69 @@
+<%
+/*
+ * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_DOWN;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_STEP;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_UP;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RAMP_VALUE;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RESET;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE_PARAM;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_WARNING;
+import static com.exedio.cope.console.MediaStatsCop.formatRamp;
+
+final class MediaFingerprint_Jspm extends Console_Jspm
+{
+	static final void write(
+			final MediaStatsCop cop,
+			final Out out,
+			final String info,
+			final boolean initial,
+			final double rampDown,
+			final double rampCurrent,
+			final double rampUp)
+	{
+		%>
+		<form action="<%=cop%>" method="post">
+			<span<%  if(!initial){%> style="font-weight:bold;"<%} %>><%= info %></span>
+			<input<% if( initial){%> disabled="true"<%} %> type="submit" name="<%=FINGER_OFFSET_RESET%>" value="Reset" onclick="return confirm('<%=FINGER_OFFSET_WARNING%>')">
+			<br>
+			<input name="<%=FINGER_OFFSET_SET_VALUE_PARAM%>" size="3" value="">
+			<input type="submit" name="<%=FINGER_OFFSET_SET_VALUE%>" value="Set Value And Reset Ramp" onclick="return confirm('<%=FINGER_OFFSET_WARNING%>')">
+		</form>
+		<br>
+		Ramp:
+		<form action="<%=cop%>" method="post" style="display:inline;">
+			<input type="hidden" name="<%=FINGER_OFFSET_RAMP_VALUE%>" value="<%=rampDown%>">
+			<input type="submit" name="<%=FINGER_OFFSET_RAMP_DOWN %>" value="<%=formatRamp(rampDown)%> &lt;&lt;"<% if(rampDown==rampCurrent){%> disabled="true"<%} %>>
+		</form>
+		<b><%=formatRamp(rampCurrent)%></b>
+		<form action="<%=cop%>" method="post" style="display:inline;">
+			<input type="hidden" name="<%=FINGER_OFFSET_RAMP_VALUE%>" value="<%=rampUp%>">
+			<input type="submit" name="<%=FINGER_OFFSET_RAMP_UP   %>" value="&gt;&gt; <%=formatRamp(rampUp)  %>"<% if(rampUp  ==rampCurrent){%> disabled="true"<%} %>>
+		</form>
+		<br>
+		<form action="<%=cop%>" method="get">
+			Ramp Step:
+			<input name="<%=FINGER_OFFSET_RAMP_STEP%>" value="<%=cop.fingerprintRampStep%>" size="6">
+			<input type="submit" value="Set">
+		</form><%
+	}
+}%>

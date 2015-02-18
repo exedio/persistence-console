@@ -197,7 +197,8 @@ abstract class ConsoleCop<S> extends Cop
 					new QueryCacheCop(args),
 					new SerializationCheckCop(args),
 					new DataFieldCop(args),
-					new MediaStatsCop(args),
+					new MediaStatsCop(args, MediaStatsCop.Variant.all),
+					new MediaStatsCop(args, MediaStatsCop.Variant.fingerprint),
 					new MediaTestableCop(args, testArgs),
 					new MediaTypeCop(args, testArgs),
 					new ClusterCop(args),
@@ -274,6 +275,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_SERIALIZATION_CHECK = "serialization";
 	static final String TAB_DATA_FIELD = "datafield";
 	static final String TAB_MEDIA_STATS = "mediastats";
+	static final String TAB_MEDIA_FINGERPRINTING = "mediafinger";
 	static final String TAB_MEDIA_TESTABLE = "mediatestable";
 	static final String TAB_MEDIA_TYPE = "mediatype";
 	static final String TAB_CLUSTER = "cluster";
@@ -353,7 +355,9 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_DATA_FIELD.equals(tab))
 			return new DataFieldCop(args);
 		if(TAB_MEDIA_STATS.equals(tab))
-			return new MediaStatsCop(args);
+			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.all, request);
+		if(TAB_MEDIA_FINGERPRINTING.equals(tab))
+			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.fingerprint, request);
 		if(TAB_MEDIA_TESTABLE.equals(tab))
 			return new MediaTestableCop(args, new TestCop.TestArgs(request));
 		if(TAB_MEDIA_TYPE.equals(tab))
