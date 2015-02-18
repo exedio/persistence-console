@@ -1,0 +1,46 @@
+<%
+/*
+ * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_RESET;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE_PARAM;
+import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_WARNING;
+
+import com.exedio.cope.pattern.MediaFingerprintOffset;
+
+final class MediaFingerprint_Jspm extends Console_Jspm
+{
+	static final void write(
+			final MediaStatsCop cop,
+			final Out out,
+			final MediaFingerprintOffset offset,
+			final boolean initial)
+	{
+		%>
+		<form action="<%=cop%>" method="post">
+			<span<%  if(!initial){%> style="color:red;"<%} %>><%= offset.getInfo() %></span>
+			<input<% if( initial){%> disabled="true"<%} %> type="submit" name="<%=FINGER_OFFSET_RESET%>" value="Reset" onclick="return confirm('<%=FINGER_OFFSET_WARNING%>')">
+			<br>
+			<input name="<%=FINGER_OFFSET_SET_VALUE_PARAM%>" size="3" value="">
+			<input type="submit" name="<%=FINGER_OFFSET_SET_VALUE%>" value="Set Value And Reset Ramp" onclick="return confirm('<%=FINGER_OFFSET_WARNING%>')">
+		</form><%
+	}
+}%>
