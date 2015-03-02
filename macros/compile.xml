@@ -4,20 +4,18 @@
 
 	<macrodef name="compile">
 		<attribute name="srcdir" />
-		<attribute name="includeAntRuntime" default="false" />
 		<element name="classpath" optional="true" implicit="true" />
 		<sequential>
 			<!--echo message="local compile @{srcdir}" /-->
 			<mkdir dir="build/classes/@{srcdir}" />
 			<javac srcdir="@{srcdir}"
 					 destdir="build/classes/@{srcdir}"
-					 includeAntRuntime="@{includeAntRuntime}"
-					 source="1.7"
+					 includeAntRuntime="false"
 					 deprecation="on"
 					 debug="on"
 					 optimize="off">
 				<classpath />
-				<compilerarg value="-Xlint" />
+				<compilerarg value="-Xlint:all,-path" />
 				<compilerarg value="-encoding" />
 				<compilerarg value="ascii" />
 				<compilerarg value="-Xmaxwarns" />
@@ -36,9 +34,9 @@
 			</copy>
 		</sequential>
 	</macrodef>
-	
+
 	<target name="fail">
 		<fail message="This file contains helper macros only. There are no targets." />
 	</target>
-	
+
 </project>
