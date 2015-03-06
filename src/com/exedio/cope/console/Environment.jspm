@@ -62,7 +62,7 @@ final class Environment_Jspm extends Console_Jspm
 			"database.version",
 			"driver.name",
 			"driver.version",
-			"cope.properties",
+			"connect.properties",
 		};
 
 	static final void writeTest(final Out out, final java.util.Properties current, final HashMap<String,?>[] properties)
