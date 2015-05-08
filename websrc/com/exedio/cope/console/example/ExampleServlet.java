@@ -95,8 +95,8 @@ public final class ExampleServlet extends CopsServlet
 			{
 				doTransaction(
 						request.getParameter(TRANSACTION_NAME),
-						Integer.valueOf(request.getParameter(TRANSACTION_ITEMS)),
-						Integer.valueOf(request.getParameter(TRANSACTION_SLEEP)));
+						Integer.parseInt(request.getParameter(TRANSACTION_ITEMS)),
+						Integer.parseInt(request.getParameter(TRANSACTION_SLEEP)));
 			}
 			else if(request.getParameter(ITEM_CACHE_REPLACE)!=null)
 			{
