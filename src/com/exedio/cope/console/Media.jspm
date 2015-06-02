@@ -121,7 +121,7 @@ final class Media_Jspm extends Console_Jspm
 					final String className = path.getClass().getName();
 					if(className.startsWith("com.exedio.cope.pattern."))
 					{
-						%><a href="http://cope.sourceforge.net/api/<%=
+						%><a href="http://exedio.github.io/api/<%=
 							className.replace('.', '/')%>.html" target="_blank"><%=
 							path.getClass().getSimpleName()%></a><%
 					}
