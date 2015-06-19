@@ -121,11 +121,11 @@ final class EnvironmentCop extends ConsoleCop<Void>
 			final String key = name.substring(nameDot+1);
 			if(key.startsWith("cope."))
 			{
-				TreeMap<String, String> previousValue = castTreeMap(database.get("cope.properties"));
+				TreeMap<String, String> previousValue = castTreeMap(database.get(TEST_INFO_KEY_CONNECT_PROPERTIES));
 				if(previousValue==null)
 				{
 					previousValue = new TreeMap<String, String>();
-					database.put("cope.properties", previousValue);
+					database.put(TEST_INFO_KEY_CONNECT_PROPERTIES, previousValue);
 				}
 				previousValue.put(key.substring("cope.".length()), value);
 			}
@@ -143,6 +143,8 @@ final class EnvironmentCop extends ConsoleCop<Void>
 	{
 		return (TreeMap<String, String>)o;
 	}
+
+	static final String TEST_INFO_KEY_CONNECT_PROPERTIES = "connect.properties";
 
 	public static final void main(final String[] args)
 	{

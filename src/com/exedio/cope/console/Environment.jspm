@@ -19,6 +19,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.EnvironmentCop.TEST_INFO_KEY_CONNECT_PROPERTIES;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -62,7 +64,7 @@ final class Environment_Jspm extends Console_Jspm
 			"database.version",
 			"driver.name",
 			"driver.version",
-			"connect.properties",
+			TEST_INFO_KEY_CONNECT_PROPERTIES,
 		};
 
 	static final void writeTest(final Out out, final java.util.Properties current, final HashMap<String,?>[] properties)
