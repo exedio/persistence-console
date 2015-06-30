@@ -41,7 +41,7 @@ final class CharacterNulCop extends TestCop<StringField>
 {
 	CharacterNulCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_CHARACTER_NUL, "Character Nul", args, testArgs);
+		super(TAB_CHARACTER_NUL, "Character Nul (MySQL only)", args, testArgs);
 	}
 
 	@Override
