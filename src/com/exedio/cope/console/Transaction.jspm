@@ -159,7 +159,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<td class="text"><%=threadNames[n]%></td>
 				<td><%=threadPriorities[n]%></td>
 				<td class="text"><%=threadStates[n]%></td>
-				<td class="text"><% StackTrace_Jspm.write(out, thread.getStackTrace());
+				<td class="text"><% StackTrace_Jspm.write(out, stacktraces[n]);
 				}
 				else
 				{
