@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Condition;
 import com.exedio.cope.DateField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
@@ -239,7 +240,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 
 		try(TransactionTry tx = model.startTransactionTry("Console Media list"))
 		{
-			final Query<? extends Item> q = media.getType().newQuery(media.isNotNull());
+			final Query<? extends Item> q = media.getType().newQuery(isNotNull());
 			if(contentTypeMismatch)
 				q.narrow(((Media)media).bodyMismatchesContentType());
 			q.setLimit(pager.getOffset(), pager.getLimit());
@@ -248,6 +249,18 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 			pager.init(items.getData().size(), items.getTotal());
 			Media_Jspm.writeBody(this, out, items);
 			tx.commit();
+		}
+	}
+
+	private Condition isNotNull()
+	{
+		try
+		{
+			return media.isNotNull();
+		}
+		catch(final UnsupportedOperationException e)
+		{
+			return null;
 		}
 	}
 }

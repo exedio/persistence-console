@@ -72,6 +72,8 @@ public final class AMediaItem extends Item
 
 	static final ANameServer nameServer = new ANameServer(name);
 
+	static final ConditionUnsupported conditionUnsupported = new ConditionUnsupported();
+
 
 	AMediaItem()
 	{
