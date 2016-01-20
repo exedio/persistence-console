@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="exedio-cope-instrument">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/exedio-cope-instrument.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
