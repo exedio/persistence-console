@@ -27,6 +27,7 @@ import com.exedio.cops.Resource;
 import com.exedio.dsmf.Constraint;
 import java.io.PrintStream;
 import java.net.InetAddress;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -84,6 +85,11 @@ final class Out extends OutBasic
 	void write(final boolean b)
 	{
 		bf.print(b);
+	}
+
+	void write(final Charset cs)
+	{
+		bf.print(cs.name());
 	}
 
 	void write(final Class<?> c)

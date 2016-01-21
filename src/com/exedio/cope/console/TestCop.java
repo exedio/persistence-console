@@ -19,7 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
-import static com.exedio.cope.util.CharsetName.UTF8;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.console.Stores.Store;
@@ -158,7 +158,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 
 		final int headingsLength = getHeadings().length;
 		out.writeRaw(
-			"<?xml version=\"1.0\" encoding=\"" + UTF8 + "\" standalone=\"yes\"?>" +
+			"<?xml version=\"1.0\" encoding=\"" + UTF_8.name() + "\" standalone=\"yes\"?>" +
 			"<response");
 		if(nextItem!=null)
 		{

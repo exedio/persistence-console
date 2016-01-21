@@ -20,6 +20,7 @@ package com.exedio.cope.console.example;
 
 import com.exedio.cope.util.XMLEncoder;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
 
 final class Out
 {
@@ -39,6 +40,11 @@ final class Out
 	void write(final String s)
 	{
 		bf.print(XMLEncoder.encode(s));
+	}
+
+	void write(final Charset cs)
+	{
+		bf.print(cs.name());
 	}
 
 	void close()

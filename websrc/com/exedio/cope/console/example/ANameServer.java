@@ -18,7 +18,7 @@
 
 package com.exedio.cope.console.example;
 
-import static com.exedio.cope.util.CharsetName.UTF8;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Condition;
 import com.exedio.cope.Item;
@@ -82,7 +82,7 @@ public final class ANameServer extends MediaPath
 		final long now = System.currentTimeMillis();
 		response.setDateHeader(RESPONSE_EXPIRES, now+EXPIRES_OFFSET);
 
-		final byte[] contentBytes = content.getBytes(UTF8);
+		final byte[] contentBytes = content.getBytes(UTF_8);
 		//response.setHeader("Cache-Control", "public");
 
 		System.out.println(request.getMethod()+' '+request.getProtocol()+" modified: "+contentBytes.length);
