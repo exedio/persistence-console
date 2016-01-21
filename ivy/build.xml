@@ -2,6 +2,9 @@
 <project name="ivy" default="copy">
 	<import file="common.xml" />
 	<target name="copy" depends="resolve">
+		<delete dir="../lib">
+			<include name="*" />
+		</delete>
 		<copy overwrite="true" file="artifacts/junit-jar.jar" tofile="../lib/junit.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-util-jar.jar" tofile="../lib/exedio-cope-util.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-util-log.txt" tofile="../lib/exedio-cope-util.jar-CHANGELOG" />
@@ -30,5 +33,6 @@
 		<copy overwrite="true" file="artifacts/mysql-connector-java-jar.jar" tofile="../lib/jdbc/mysql-connector-java.jar" />
 		<copy overwrite="true" file="artifacts/findbugs-dist.tar.gz" tofile="../lib/findbugs.tar.gz" />
 		<copy overwrite="true" file="artifacts/findbugs-annotations-jar.jar" tofile="../lib/findbugs-annotations.jar" />
+		<copy overwrite="true" file="artifacts/apache-tomcat-dist.tar.gz" tofile="../lib/apache-tomcat.tar.gz" />
 	</target>
 </project>
