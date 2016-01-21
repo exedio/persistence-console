@@ -139,7 +139,7 @@
 	</target>
 	
 	<target name="web.instrument" unless="skip.instrument">
-		<instrument verify="${instrument.verify}" finalArgs="true" verbose="false">
+		<instrument verify="${instrument.verify}" annotateGenerated="false">
 			<fileset dir="websrc">
 				<include name="**/*.java" />
 			</fileset>
@@ -258,8 +258,10 @@
 			<auxclasspath>
 				<pathelement location="${basedir}/lib/exedio-cope.jar" />
 				<pathelement location="${basedir}/lib/exedio-cope-util.jar" />
+				<pathelement location="${basedir}/lib/exedio-cope-servletutil.jar" />
+				<pathelement location="${basedir}/lib/exedio-cope-junit.jar" />
 				<pathelement location="${basedir}/lib/exedio-cops.jar" />
-				<pathelement location="${basedir}/lib/trove.jar" />
+				<pathelement location="${basedir}/lib/trove4j.jar" />
 				<pathelement location="${basedir}/lib/servlet-api.jar" />
 				<pathelement location="${basedir}/lib/junit.jar" />
 				<pathelement location="${basedir}/lib/exedio-cope-instrument-annotations.jar" />

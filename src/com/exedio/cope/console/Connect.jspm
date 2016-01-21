@@ -56,10 +56,6 @@ final class Connect_Jspm extends Console_Jspm
 				<td class="text"><%if(SchemaInfo.supportsNativeDate(model)){%>yes<%}else{%>no<%}%></td>
 			</tr>
 			<tr>
-				<th>Supports not-null</th>
-				<td class="text"><%if(SchemaInfo.supportsNotNull(model)){%>yes<%}else{%>no<%}%></td>
-			</tr>
-			<tr>
 				<th>Supports Unique Violation</th>
 				<td class="text"><%if(SchemaInfo.supportsUniqueViolation(model)){%>yes<%}else{%>no<%}%></td>
 			</tr>

@@ -21,7 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.ServletUtil;
-import com.exedio.cope.servletutil.ServletProperties;
+import com.exedio.cope.servletutil.ServletSource;
 import java.io.File;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -38,7 +38,7 @@ public class PropertiesInitializer implements ServletContextListener
 		ConnectToken.setProperties(Main.reducedModel,
 				new ConnectProperties(
 						new File(context.getRealPath("WEB-INF/cope-reduced.properties")),
-						ServletProperties.create(context)
+						ServletSource.create(context)
 				)
 		);
 	}

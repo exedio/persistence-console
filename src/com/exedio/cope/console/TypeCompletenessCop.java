@@ -130,7 +130,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 		{
 			return new Constraint<T>(
 					superType,
-					superType.asSubtype(subType));
+					superType.castTypeExtends(subType));
 		}
 
 		private static final char ID_SEPARATOR = '#';

@@ -25,7 +25,7 @@
 		<copy overwrite="true" file="artifacts/exedio-cope-instrument-annotations-jar.jar" tofile="../lib/exedio-cope-instrument-annotations.jar" />
 		<copy overwrite="true" file="artifacts/servlet-api-jar.jar" tofile="../lib/servlet-api.jar" />
 		<copy overwrite="true" file="artifacts/servlet-api-source.jar" tofile="../lib/../lib/servlet-api.jar-src.zip" />
-		<copy overwrite="true" file="artifacts/trove-jar.jar" tofile="../lib/trove.jar" />
+		<copy overwrite="true" file="artifacts/trove4j-jar.jar" tofile="../lib/trove4j.jar" />
 		<copy overwrite="true" file="artifacts/cojen-jar.jar" tofile="../lib/cojen.jar" />
 		<copy overwrite="true" file="artifacts/bsh-core.jar" tofile="../lib/bsh-core.jar" />
 		<copy overwrite="true" file="artifacts/slf4j-api-jar.jar" tofile="../lib/slf4j-api.jar" />
