@@ -18,7 +18,7 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.util.CharsetName.UTF8;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -40,8 +40,8 @@ public class MimeTypesTest extends TestCase
 	private void assertIt(final String expected, final String... actual) throws UnsupportedEncodingException
 	{
 		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		final OutBasic out = new OutBasic(new PrintStream(baos, false, UTF8));
+		final OutBasic out = new OutBasic(new PrintStream(baos, false, UTF_8.name()));
 		MediaStatsCop.printContentTypes(out, Arrays.asList(actual));
-		assertEquals(expected, new String(baos.toByteArray(), UTF8));
+		assertEquals(expected, new String(baos.toByteArray(), UTF_8));
 	}
 }

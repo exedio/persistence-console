@@ -18,7 +18,7 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.util.CharsetName.UTF8;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Cope;
 import com.exedio.cope.Model;
@@ -153,7 +153,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		{
 			out = new FileOutputStream(args[0]);
 			Environment_Jspm.writeTestBody(
-					new OutBasic(new PrintStream(out, false, UTF8)),
+					new OutBasic(new PrintStream(out, false, UTF_8.name())),
 					new java.util.Properties(),
 					makeTestedDatabases());
 		}

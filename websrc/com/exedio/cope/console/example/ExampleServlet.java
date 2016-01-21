@@ -18,12 +18,13 @@
 
 package com.exedio.cope.console.example;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Feature;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.misc.ConnectToken;
-import com.exedio.cope.util.CharsetName;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -136,7 +137,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 		}
 
-		final Out out = new Out(new PrintStream(response.getOutputStream(), false, CharsetName.UTF8));
+		final Out out = new Out(new PrintStream(response.getOutputStream(), false, UTF_8.name()));
 		Example_Jspm.write(out);
 		out.close();
 	}
