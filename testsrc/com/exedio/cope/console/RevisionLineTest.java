@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.highlightSQL;
+import static java.lang.System.lineSeparator;
 
 import com.exedio.cope.Revision;
 import com.exedio.cope.RevisionInfoCreate;
@@ -298,10 +299,5 @@ public class RevisionLineTest extends CopeAssert
 		assertEquals("<b>select</b> selected <b>from</b> fromage <b>where</b> x=1", highlightSQL("select selected from fromage where x=1"));
 		assertEquals("<b>insert</b> <b>into</b> bing <b>values</b> (a,b,c)", highlightSQL("insert into bing values (a,b,c)"));
 		assertEquals("<b>update</b> bong <b>set</b> bing = 1", highlightSQL("update bong set bing = 1"));
-	}
-
-	private String lineSeparator()
-	{
-		return System.getProperty("line.separator");
 	}
 }
