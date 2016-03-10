@@ -124,7 +124,7 @@
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/exedio-cope-junit.jar" />
-				<pathelement location="lib/trove.jar" />
+				<pathelement location="lib/trove4j.jar" />
 				<pathelement location="lib/slf4j-api.jar" />
 				<pathelement location="lib/jdbc/hsqldb.jar" />
 				<pathelement location="lib/junit.jar" />
@@ -167,7 +167,7 @@
 			<fileset dir="build/classes/websrc" />
 		</copy>
 		<copy todir="web/WEB-INF/lib">
-			<fileset file="lib/trove.jar" />
+			<fileset file="lib/trove4j.jar" />
 			<fileset file="lib/slf4j-api.jar" />
 			<fileset file="lib/exedio-cops.jar" />
 			<fileset file="lib/exedio-cope-servletutil.jar" />

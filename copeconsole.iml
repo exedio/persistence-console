@@ -3,7 +3,7 @@
   <component name="EclipseModuleManager">
     <libelement value="jar://$MODULE_DIR$/lib/junit.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/servlet-api.jar!/" />
-    <libelement value="jar://$MODULE_DIR$/lib/trove.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/trove4j.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/exedio-cope-util.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/exedio-cops.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/jdbc/hsqldb.jar!/" />
@@ -49,9 +49,9 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="trove.jar">
+      <library name="trove4j.jar">
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/trove.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/trove4j.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
