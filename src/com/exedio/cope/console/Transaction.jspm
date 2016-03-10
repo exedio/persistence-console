@@ -46,7 +46,7 @@ final class Transaction_Jspm extends Console_Jspm
 			}
 		</style><%
 	}
-	
+
 	static final void writeStats(
 			final Out out,
 			final long nextId,
@@ -60,7 +60,7 @@ final class Transaction_Jspm extends Console_Jspm
 		</table>
 		<%
 	}
-	
+
 	static final void writeCounters(
 			final Out out,
 			final TransactionCounters transactionCounters)
@@ -95,7 +95,7 @@ final class Transaction_Jspm extends Console_Jspm
 		</table>
 		<%
 	}
-	
+
 	static final void writeOpen(
 			final Out out,
 			final Transaction[] openTransactions,
@@ -116,7 +116,7 @@ final class Transaction_Jspm extends Console_Jspm
 		<hr>
 		<table>
 			<caption>Open</caption><%
-			
+
 		if(openTransactions.length==0)
 		{
 			%>
@@ -140,7 +140,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<th>State</th>
 				<th>Stacktrace</th>
 			</tr><%
-			
+
 			for(int n = 0; n<openTransactions.length; n++)
 			{
 				final Transaction t = openTransactions[n];
@@ -173,7 +173,7 @@ final class Transaction_Jspm extends Console_Jspm
 		</table>
 		<%
 	}
-	
+
 	static final void writeRecorded(
 			final Out out,
 			final TransactionCop cop,
@@ -199,13 +199,13 @@ final class Transaction_Jspm extends Console_Jspm
 				<th>Elpsd.</th>
 				<th>Name</th>
 			</tr><%
-			
+
 			for(final Commit commit : commits)
 			{
 				final ChangeEvent event = commit.event;
 			%>
 			<tr><%
-				
+
 			try
 			{
 				final String value = event.getRemoteNodeIDString();
@@ -213,7 +213,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<td><%=value%></td><%
 			}
 			catch(NotAvailableException e) { write(out, e); }
-			
+
 			try
 			{
 				final long value = event.getTransactionID();
@@ -221,7 +221,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<td><%=format(value)%></td><%
 			}
 			catch(NotAvailableException e) { write(out, e); }
-			
+
 			try
 			{
 				final Date value = event.getTransactionStartDate();
@@ -229,7 +229,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<td><%=value%></td><%
 			}
 			catch(NotAvailableException e) { write(out, e); }
-			
+
 			try
 			{
 				final long value = commit.getElapsed();
@@ -237,7 +237,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<td><%=format(value)%></td><%
 			}
 			catch(NotAvailableException e) { write(out, e); }
-			
+
 			try
 			{
 				final String value = event.getTransactionName();
@@ -245,19 +245,19 @@ final class Transaction_Jspm extends Console_Jspm
 				<td<% if(value==null){%> class="notavailable"<%} %>><%=value%></td><%
 			}
 			catch(NotAvailableException e) { write(out, e); }
-			
-			
+
+
 				%>
 				<td class="text"><%commit.writeItems(out);%></td>
 			</tr><%
 			}
 		%>
 		</table><%
-		
+
 		if(!commits.isEmpty())
 			writeRecordingForm(out, cop, recordCommits);
 	}
-	
+
 	private static final void writeRecordingForm(
 					final Out out,
 					final TransactionCop cop,
@@ -271,7 +271,7 @@ final class Transaction_Jspm extends Console_Jspm
 			<input type="submit" name="<%=CLEAR%>"   value="clear" />
 		</form><%
 	}
-	
+
 	private static void write(final Out out, final NotAvailableException e)
 	{
 				%>

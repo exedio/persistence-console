@@ -55,7 +55,7 @@ final class Media_Jspm extends Console_Jspm
 			<caption>Statistics</caption>
 			<tr><th colspan="<%=tableColumns%>">No Such Path <small>(404)</small></th><td><%=format(MediaPath.getNoSuchPath())%></td></tr><%
 			MediaStatsCop.writeTableHeader(out);
-			
+
 			if(isUrlGuessingNotSecure)
 			{
 			%>
@@ -68,7 +68,7 @@ final class Media_Jspm extends Console_Jspm
 				<% writeFail(out, true); %>
 			</div><%
 			}
-			
+
 			%>
 			<tr><%
 				ColoredTable_Jspm.writeData(out, format(summary));
@@ -76,13 +76,13 @@ final class Media_Jspm extends Console_Jspm
 				<td class="color1"><%=ratio(summary.getNotModified(), summary.getDelivered())%></td>
 				<th colspan="3">Summary</th>
 			</tr><%
-			
+
 			for(final MediaInfo info : infos)
 				write(out, cop, isUrlGuessingNotSecure, info);
 		%>
 		</table><%
 	}
-	
+
 	static final void write(
 				final Out out,
 				final ConsoleCop<?> cop,
@@ -100,7 +100,7 @@ final class Media_Jspm extends Console_Jspm
 				<td class="text"><%=type%></td>
 				<td class="text"><a href="<%=cop.toMedia(path)%>"><%=name%></a></td>
 				<td class="text"><%
-					
+
 					if(path.isUrlGuessingPrevented())
 					{
 						%><small>@<%=PreventUrlGuessing.class.getSimpleName()%><% writeFail(out, isUrlGuessingNotSecure); %></small><br><%
@@ -113,7 +113,7 @@ final class Media_Jspm extends Console_Jspm
 					{
 						%><small>final </small><%
 					}
-					
+
 					final String className = path.getClass().getName();
 					if(className.startsWith("com.exedio.cope.pattern."))
 					{
@@ -149,7 +149,7 @@ final class Media_Jspm extends Console_Jspm
 				%></td>
 			</tr><%
 	}
-	
+
 	static final void writeHead(
 				final Out out)
 	{
@@ -162,7 +162,7 @@ final class Media_Jspm extends Console_Jspm
 			}
 		</style><%
 	}
-	
+
 	static final void writeStats(
 				final Out out,
 				final MediaCop cop,
@@ -177,7 +177,7 @@ final class Media_Jspm extends Console_Jspm
 		</table>
 		<hr><%
 	}
-	
+
 	static final void writeBody(
 				final MediaCop cop,
 				final Out out,
@@ -191,20 +191,20 @@ final class Media_Jspm extends Console_Jspm
 		final boolean mediaTouch = cop.canTouch();
 		final boolean otherTouch = cop.canTouchOther();
 		final boolean form = mediaTouch||otherTouch;
-		
+
 	if(cop.canContentTypeMismatch())
 	{
 		%>
 		<% writeToggle(out, cop.toggleContentTypeMismatch(), cop.contentTypeMismatch); %> Show Mismatching Content-Type only<%
 	}
-	
+
 	if(form)
 	{
 		%>
 		<form action="<%=cop%>" method="post"><%
 		writeButton(out);
 	}
-		
+
 		%>
 		<table><%
 				writePager(out, cop);
@@ -214,7 +214,7 @@ final class Media_Jspm extends Console_Jspm
 				<th>URL <a href="<%=cop.toggleInlineMedia()%>">IN</a></th>
 				<th>Content Type</th>
 				<th>Last Modified</th><%
-				
+
 				if(mediaLength!=null)
 				{
 				%>
@@ -229,7 +229,7 @@ final class Media_Jspm extends Console_Jspm
 				}
 			%>
 			</tr><%
-	
+
 			for(final Item item : items.getData())
 			{
 				final String contentType = media.getContentType(item);
@@ -239,14 +239,14 @@ final class Media_Jspm extends Console_Jspm
 				<td class="text"><% writeLocator(out, media.getLocator(item), mediaInline); %></td>
 				<td class="text"><%if(contentType!=null){%><%=contentType%><%}%></td>
 				<td><%=media.getLastModified(item)%><%
-				
+
 				if(mediaTouch)
 					writeCheckbox(out, MediaCop.TOUCH,       item);
 				if(otherTouch)
 					writeCheckbox(out, MediaCop.TOUCH_OTHER, item);
-				
+
 				%></td><%
-				
+
 				if(mediaLength!=null)
 				{
 				%>
@@ -262,7 +262,7 @@ final class Media_Jspm extends Console_Jspm
 			}
 		%>
 		</table><%
-		
+
 	if(form)
 	{
 		writeButton(out);
@@ -270,24 +270,24 @@ final class Media_Jspm extends Console_Jspm
 		</form><%
 	}
 	}
-	
+
 	private static void writeCheckbox(final Out out, final String name, final Item item)
 	{
 		%><input type="checkbox" name="<%=name%>" value="<%=item.getCopeID()%>"></input><%
 	}
-	
+
 	private static void writeButton(final Out out)
 	{
 		%>
 		<input type="submit" value="touch"></input><%
 	}
-	
+
 	private static final void writeLocator(final Out out, final MediaPath.Locator locator, final boolean inline)
 	{
 		if(locator!=null)
 		{
 			final String contentType = locator.getContentType();
-			
+
 			%><a href="<%=locator%>"><%
 			if(inline && contentType!=null && contentType.startsWith("image/"))
 			{
@@ -300,13 +300,13 @@ final class Media_Jspm extends Console_Jspm
 			%></a><%
 		}
 	}
-	
+
 	static void writeHorizontalRule(final Out out)
 	{
 		%>
 		<hr><%
 	}
-	
+
 	static void writeErrorLogs(
 				final Out out,
 				final String caption,
@@ -314,7 +314,7 @@ final class Media_Jspm extends Console_Jspm
 	{
 		if(logs.isEmpty())
 			return;
-		
+
 		%>
 		<table>
 			<caption><%=caption%></caption>
@@ -329,7 +329,7 @@ final class Media_Jspm extends Console_Jspm
 				<th>User Agent</th>
 				<th>Exception</th>
 			</tr><%
-		
+
 		int n = 0;
 		for(final MediaRequestLog log : logs)
 		{
@@ -343,7 +343,7 @@ final class Media_Jspm extends Console_Jspm
 				writeLine(out, log.getHost());
 				writeLine(out, log.getReferer());
 				writeLine(out, log.getUserAgent());
-				
+
 				final Exception exception = log.getException();
 				if(exception!=null)
 				{
@@ -361,7 +361,7 @@ final class Media_Jspm extends Console_Jspm
 		%>
 		</table><%
 	}
-	
+
 	private static void writeLine(
 				final Out out,
 				final String line)
@@ -377,7 +377,7 @@ final class Media_Jspm extends Console_Jspm
 				<td class="notavailable">null</td><%
 			}
 	}
-	
+
 	static void writeMediaURLPrefixes(
 				final Out out,
 				final ConsoleCop<?> cop,
@@ -387,16 +387,16 @@ final class Media_Jspm extends Console_Jspm
 		%>
 		<h3>Media URL Prefix</h3>
 		<ul><%
-		
+
 			writeMediaURLPrefix(out, cop, activePrefix, null);
-		
+
 			for(final String prefix : prefixes)
 				writeMediaURLPrefix(out, cop, activePrefix, prefix);
-		
+
 		%>
 		</ul><%
 	}
-	
+
 	private static void writeMediaURLPrefix(
 				final Out out,
 				final ConsoleCop<?> cop,
@@ -412,7 +412,7 @@ final class Media_Jspm extends Console_Jspm
 					%><a href="<%=cop.toMediaURLPrefix(prefix)%>"><%
 				}
 				%><%= prefixName %><%
-				
+
 				if(inActive)
 				{
 					%></a><%

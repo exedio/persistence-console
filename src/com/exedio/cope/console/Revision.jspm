@@ -116,7 +116,7 @@ final class Revision_Jspm extends Console_Jspm
 			}
 		</script><%
 	}
-	
+
 	static final void writeBody(
 			final Out out,
 			final RevisionCop cop,
@@ -136,7 +136,7 @@ final class Revision_Jspm extends Console_Jspm
 					or the execution of revisions has failed.
 					<br>
 					Revising from number <%=mutex.getActualNumber()%> to <%=mutex.getExpectedNumber()%> started at <%=mutex.getDate()%>.<%
-				
+
 				final String mutexSavepoint = mutex.getSavepoint();
 				if(mutexSavepoint!=null)
 				{
@@ -144,13 +144,13 @@ final class Revision_Jspm extends Console_Jspm
 					<br>
 					There is a schema savepoint for the mutex: <b><%=mutexSavepoint%></b><%
 				}
-				
+
 				%>
 				</td>
 			</tr>
 		</table><%
 		}
-		
+
 		%>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=REVISE%>" value="revise" />
@@ -169,18 +169,18 @@ final class Revision_Jspm extends Console_Jspm
 				<th>Rows</th>
 				<th title="Elapsed Time (milliseconds)">Elpsd</th>
 			</tr><%
-			
+
 			boolean lastHasRevision = true;
 			Date lastDate = null;
 			Map<String, String> lastEnvironment = null;
-			
+
 			for(final RevisionLine line : lines)
 			{
 				final int number = line.number;
 				final boolean hasRevision = line.hasRevision();
 				final Date date = line.getDate();
 				final Map<String, String> environment = line.getEnvironment();
-				
+
 				if(lastHasRevision!=hasRevision)
 				{
 			%>
@@ -189,7 +189,7 @@ final class Revision_Jspm extends Console_Jspm
 				<th colspan="5"><% if(hasRevision){%>Start<%}else{%>End<%} %> of Revisions in Application</td>
 			</tr><%
 				}
-			
+
 				if(lastEnvironment!=null && environment!=null && !environment.equals(lastEnvironment))
 				{
 			%>
@@ -220,7 +220,7 @@ final class Revision_Jspm extends Console_Jspm
 				}
 				%>)</small></th>
 			</tr><%
-						
+
 					int currentBodyNumber = 0;
 					for(final String key : diff)
 					{
@@ -238,7 +238,7 @@ final class Revision_Jspm extends Console_Jspm
 						currentBodyNumber++;
 					}
 				}
-			
+
 			%>
 			<tr>
 				<td class="sql"><%
@@ -297,7 +297,7 @@ final class Revision_Jspm extends Console_Jspm
 			%>
 		</table><%
 	}
-	
+
 	static final void writeBodyDisabled(final Out out)
 	{
 		%>

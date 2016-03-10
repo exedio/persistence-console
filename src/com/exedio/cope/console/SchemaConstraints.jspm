@@ -42,12 +42,12 @@ final class SchemaConstraints_Jspm extends Console_Jspm
 				throw new RuntimeException(type.name());
 		}
 	}
-	
+
 	private static final String TYPE = "constraint.type";
 	private static final String CREATE = "constraint.create";
 	private static final String TEARDOWN = "constraint.teardown";
 	private static final String DROP = "constraint.drop";
-	
+
 	static final void writeBody(
 			final SchemaCop cop,
 			final Out out)
@@ -59,7 +59,7 @@ final class SchemaConstraints_Jspm extends Console_Jspm
 		<hr>
 		<h4>Constraints</h4>
 		<form action="<%=cop%>#overall" method="POST"><%
-			
+
 			for(final Constraint.Type type : Constraint.Type.values())
 			{
 			%>
@@ -70,7 +70,7 @@ final class SchemaConstraints_Jspm extends Console_Jspm
 			<input type="submit" name="<%=CREATE  %>" value="create" />
 			<input type="submit" name="<%=TEARDOWN%>" value="tear down"/>
 			<input type="submit" name="<%=DROP    %>" value="drop"/><%
-			
+
 			if(isPost(request))
 			{
 				final EnumSet<Constraint.Type> constraintTypes = EnumSet.noneOf(Constraint.Type.class);
@@ -78,7 +78,7 @@ final class SchemaConstraints_Jspm extends Console_Jspm
 				if(constraintTypeParameterValues!=null)
 					for(String s : constraintTypeParameterValues)
 						constraintTypes.add(Constraint.Type.valueOf(s));
-					
+
 				if(request.getParameter(CREATE)!=null)
 				{
 					model.createSchemaConstraints(constraintTypes);

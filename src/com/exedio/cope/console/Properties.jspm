@@ -58,7 +58,7 @@ final class Properties_Jspm extends Console_Jspm
 			}
 		</script><%
 	}
-	
+
 	static final void writeBody(
 				final Out out,
 				final Properties properties)
@@ -130,7 +130,7 @@ final class Properties_Jspm extends Console_Jspm
 			%>
 		</table><%
 	}
-	
+
 	private static void write(final Out out, final Object o)
 	{
 		if(o==null)

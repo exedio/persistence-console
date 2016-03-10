@@ -45,7 +45,7 @@ abstract class Console_Jspm
 		{
 			final int autoRefresh = cop.args.autoRefresh;
 			final ConsoleCop.DatePrecision datePrecision = cop.args.datePrecision;
-			
+
 %><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -54,7 +54,7 @@ abstract class Console_Jspm
 		<link rel="shortcut icon" href="<%=ConsoleServlet.shortcutIcon%>" type="image/png">
 		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet%>"><%
 		cop.writeHead(out);
-		
+
 		if(autoRefresh>0)
 		{
 		%>
@@ -103,7 +103,7 @@ abstract class Console_Jspm
 		Menue_Jspm.write(out, cop);
 		%>
 		<h2><%=cop.name%></h2><%
-		
+
 		try
 		{
 			cop.writeBody(out);
@@ -112,7 +112,7 @@ abstract class Console_Jspm
 		{
 			writeNotConnectedMessage(out, cop);
 		}
-		
+
 		%>
 		<hr><%
 		Menue_Jspm.write(out, cop);
@@ -136,9 +136,9 @@ abstract class Console_Jspm
 			%>
 			</pre><%
 		}
-		
+
 	}
-	
+
 	static final void writeNotFound(final Out out, final String pathInfo)
 	{
 		%>
@@ -150,7 +150,7 @@ abstract class Console_Jspm
 			You may want to choose an item from the menu instead.
 		</div><%
 	}
-	
+
 	static final void writeToggle(
 			final Out out,
 			final ConsoleCop<?> cop,
@@ -159,7 +159,7 @@ abstract class Console_Jspm
 		%><a href="<%=cop%>"><img class="check" src="<%=
 			(value ? ConsoleServlet.checkTrue : ConsoleServlet.checkFalse)%>"></a><%
 	}
-	
+
 	static final void writePagerButton(
 			final Out out,
 			final Pageable cop,
@@ -170,7 +170,7 @@ abstract class Console_Jspm
 				%>
 				<a href="<%=cop.toPage(href)%>"<% if(href.isNeutral()){%> class="<%=neutralClass%>"<%}%>><%=text%></a><%
 	}
-	
+
 	static final void writeFail(
 			final Out out,
 			final boolean condition)
@@ -180,7 +180,7 @@ abstract class Console_Jspm
 			%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
 		}
 	}
-	
+
 	static final void write(
 			final Out out,
 			final boolean runNow,
@@ -190,7 +190,7 @@ abstract class Console_Jspm
 		{
 			%>
 			Not yet run.<%
-			
+
 			if(!runNow)
 			{
 			%>
@@ -202,14 +202,14 @@ abstract class Console_Jspm
 			%>
 			Last run on <%=store.getDate()%>.<%
 		}
-		
+
 		if(runNow)
 		{
 			%>
 			<b>Running now.</b><%
 		}
 	}
-	
+
 	static final void writeNotConnected(final Out out, final ConsoleCop<?> cop)
 	{
 		%><form action="<%=cop%>" method="POST"><input type="submit" name="<%=ConsoleServlet.CONNECT%>" value="connect" /></form><%

@@ -33,7 +33,7 @@ final class SchemaSchema_Jspm extends Console_Jspm
 	private static final String DROP = "schema.drop";
 	private static final String DROP_AND_CREATE = "schema.drop.create";
 	private static final String DELETE = "schema.delete";
-	
+
 	static final void writeBody(
 			final SchemaCop cop,
 			final Out out)
@@ -51,7 +51,7 @@ final class SchemaSchema_Jspm extends Console_Jspm
 			<input type="submit" name="<%=    DROP_AND_CREATE%>" value="drop &amp; create" onclick="return confirm('This operation will drop all your database tables.\nDo you really want to do this?\nAfterwards all tables will be recreated.')" />
 			&nbsp;
 			<input type="submit" name="<%=DELETE%>" value="delete" onclick="return confirm('This operation will delete the contents of your database tables.\nDo you really want to do this?')" /><%
-			
+
 			if(isPost(request))
 			{
 				if(request.getParameter(TEARDOWN)!=null || request.getParameter(TEARDOWN_AND_CREATE)!=null)

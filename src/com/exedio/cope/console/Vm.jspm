@@ -36,7 +36,7 @@ final class Vm_Jspm extends Console_Jspm
 			values.put("Version", version);
 		if(vendor!=null)
 			values.put("Vendor", vendor);
-			
+
 		if(!values.isEmpty())
 		{
 			final Iterator<Map.Entry<String, String>> i = values.entrySet().iterator();
@@ -47,7 +47,7 @@ final class Vm_Jspm extends Console_Jspm
 				<th><%=first.getKey()%></th>
 				<td class="text"><%=first.getValue()%></td>
 			</tr><%
-			
+
 			while(i.hasNext())
 			{
 				final Map.Entry<String, String> next = i.next();
@@ -63,7 +63,7 @@ final class Vm_Jspm extends Console_Jspm
 	private static final void writeDetailed(final Out out, final TreeSet<Package> jar)
 	{
 			final Package p = jar.iterator().next();
-			
+
 			final String name;
 			if(p.getSpecificationTitle()!=null)
 				name = p.getSpecificationTitle();
@@ -90,7 +90,7 @@ final class Vm_Jspm extends Console_Jspm
 						first = false;
 					else
 						{%>, <%}
-						
+
 					%><%=pack.getName()%><%
 				}
 				%></td>
@@ -105,7 +105,7 @@ final class Vm_Jspm extends Console_Jspm
 			%>
 			<tr>
 				<th><%
-				
+
 					if(p.getSpecificationTitle()!=null)
 					{
 						%><%=p.getSpecificationTitle()%><%
@@ -134,7 +134,7 @@ final class Vm_Jspm extends Console_Jspm
 					<% writeToggle(out, cop.toToggleAllPackages(), cop.allPackages); %> show packages not by exedio as well
 				</th>
 			</tr><%
-			
+
 			if(cop.detailed)
 			{
 				for(final TreeSet<Package> jar : jars)
@@ -144,7 +144,7 @@ final class Vm_Jspm extends Console_Jspm
 			{
 			%>
 			<tr><th>Package</th><th>Spec</th><th>Impl</th></tr><%
-			
+
 				for(final TreeSet<Package> jar : jars)
 					writeShort(out, jar);
 			}

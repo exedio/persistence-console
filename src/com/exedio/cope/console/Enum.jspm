@@ -34,7 +34,7 @@ final class Enum_Jspm extends Console_Jspm
 				<th>Ordinal</th>
 				<th>Schema Number</th>
 			</tr><%
-			
+
 		for(final Enum<?> constant : clazz.getEnumConstants())
 		{
 			%>

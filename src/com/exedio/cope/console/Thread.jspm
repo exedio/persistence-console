@@ -45,7 +45,7 @@ final class Thread_Jspm
 				<th>Stacktrace</th>
 				<th>Start</th>
 			</tr><%
-			
+
 			for(final ThreadController thread : threads)
 			{
 			%>

@@ -38,7 +38,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 {
 	private static final String APPLY = "details.apply";
 	private static final String APPLY_DRY = "details.dry";
-	
+
 	static final void writeBody(
 			final SchemaCop cop,
 			final Out out)
@@ -52,7 +52,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 		<h4>Details</h4>
 		<% writeToggle(out, cop.toToggleDetailed(), cop.detailed); %> detailed
 		<form action="<%=cop%>#overall" method="POST"><%
-		
+
 			if(isPost(request))
 			{
 				if(request.getParameter(APPLY)!=null || request.getParameter(APPLY_DRY)!=null)
@@ -75,7 +75,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 			<input id="schApp" class="expand" type="submit" name="<%=APPLY%>" value="apply"/>
 			<input id="schAppDry" class="expand" type="submit" name="<%=APPLY_DRY%>" value="dry run"/>
 			<ul id="schBdy" class="expand"><%
-			
+
 			int tableCount = 0;
 			final ArrayList<Column> catchColumns = new ArrayList<Column>();
 			for(final Table table : schema.getTables())
@@ -89,9 +89,9 @@ final class SchemaDetails_Jspm extends Console_Jspm
 				<li>
 					<img class="node" onClick="togTab(this,<%=tableCount%>)" src="<%=node(table.getCumulativeColor())%>">
 					<small>tab<%=tableCount%></small><%
-					
+
 					writeEdit(tableName, table.exists(), SchemaCop.RENAME_TABLE_PREFIX + tableName, out);
-				
+
 					final String tableError = table.getError();
 					if(tableError!=null)
 					{
@@ -108,10 +108,10 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					%>,
 					<input type="checkbox" name="<%=SchemaCop.CREATE_TABLE%>" value="<%=tableName%>"/>create<%
 					}
-					
+
 					%>
 					<ul id="tabBdy<%=tableCount%>" class="expand"><%
-					
+
 					int columnCount = 0;
 					for(final Column column : table.getColumns())
 					{
@@ -119,17 +119,17 @@ final class SchemaDetails_Jspm extends Console_Jspm
 						final String columnName = column.getName();
 						if("catch".equals(columnName))
 							catchColumns.add(column);
-						
+
 						if( !detailed && (column.getCumulativeColor()==Node.Color.OK) )
 							continue;
 						%>
 						<li>
 							<img class="node" src="<%=leaf(column.getCumulativeColor())%>">
 							<small>col<%=columnCount%></small><%
-							
+
 							writeEdit(columnName,       column.exists(), SchemaCop.RENAME_COLUMN_PREFIX + tableName + '#' + columnName, out);
 							writeEdit(column.getType(), column.exists(), SchemaCop.MODIFY_COLUMN_PREFIX + tableName + '#' + columnName, out);
-						
+
 							final String error = column.getError();
 							if(error!=null)
 							{
@@ -150,28 +150,28 @@ final class SchemaDetails_Jspm extends Console_Jspm
 						%>
 						</li><%
 					}
-					
+
 					int constraintCount = 0;
 					for(final Constraint constraint : table.getConstraints())
 					{
 						constraintCount++;
 						if( !detailed && (constraint.getCumulativeColor()==Node.Color.OK) )
 							continue;
-						
+
 						final String constraintName = constraint.getName();
 						%>
 						<li>
 							<img class="node" src="<%=leaf(constraint.getCumulativeColor())%>">
 							<small><%=constraint.getType()%><%=constraintCount%></small>
 							<%=constraintName%><%
-						
+
 							final String constraintCondition = constraint.getRequiredCondition();
 							if(constraintCondition!=null)
 							{
 							%>
 							<small><%=constraintCondition%></small><%
 							}
-						
+
 							final String constraintError = constraint.getError();
 							if(constraintError!=null)
 							{
@@ -210,7 +210,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					<img class="node" src="<%=leaf(sequence.getCumulativeColor())%>">
 					<small>seq<%=sequenceCount%></small>
 					<%=sequenceName%> (<%=sequence.getStartWith()%>)<%
-					
+
 					final String sequenceError = sequence.getError();
 					if(sequenceError!=null)
 					{
@@ -237,7 +237,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					<input type="checkbox" name="<%= SchemaCop.COLUMNS_DROP_UNUSED    %>" value="true"/>drop unused
 					<input type="checkbox" name="<%= SchemaCop.COLUMNS_MODIFY_MISMATCHING_TYPE %>" value="true"/>modify mismatching type
 				</li><%
-				
+
 			if(!catchColumns.isEmpty())
 			{
 				%>
@@ -252,7 +252,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 			</ul>
 		</form><%
 	}
-	
+
 	private static final Resource node(final Node.Color color)
 	{
 		switch(color)
@@ -264,7 +264,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 				throw new RuntimeException(color.toString());
 		}
 	}
-	
+
 	private static final Resource leaf(final Node.Color color)
 	{
 		switch(color)
@@ -276,7 +276,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 				throw new RuntimeException(color.toString());
 		}
 	}
-	
+
 	private static final void write(final Node.Color color, final Out out)
 	{
 		switch(color)
@@ -293,7 +293,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 				throw new RuntimeException(color.toString());
 		}
 	}
-	
+
 	private static final void writeEdit(
 			final String text, final boolean editable, final String name,
 			final Out out)

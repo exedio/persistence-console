@@ -37,14 +37,14 @@ final class Test_Jspm
 			/*
 				This is the JavaScript file for the AJAX Suggest Tutorial
 
-				You may use this code in your own projects as long as this 
+				You may use this code in your own projects as long as this
 				copyright is left	in place.  All code is provided AS-IS.
 				This code is distributed in the hope that it will be useful,
 				but WITHOUT ANY WARRANTY; without even the implied warranty of
 				MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-				
+
 				For the rest of the code visit http://www.DynamicAJAX.com
-				
+
 				Copyright 2006 Ryan Smith / 345 Technical / 345 Group.
 
 			*/
@@ -64,7 +64,7 @@ final class Test_Jspm
 			function doTest(url,anchor)
 			{
 				//alert('toTest >' + url + '<');
-				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
+				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0))
 				{
 					anchor.style.display = "none";
 					testRequest.open("POST", url, true);
@@ -81,7 +81,7 @@ final class Test_Jspm
 			function doTest(url)
 			{
 				//alert('toTest >' + url + '<');
-				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0)) 
+				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0))
 				{
 					testRequest.open("POST", url, true);
 					testRequest.onreadystatechange = handleTest;
@@ -94,7 +94,7 @@ final class Test_Jspm
 				}
 			}
 
-			function handleTest() 
+			function handleTest()
 			{
 				if(testRequest.readyState == 4)
 				{
@@ -103,7 +103,7 @@ final class Test_Jspm
 						if(testRequest.status != null && testRequest.status == 200)
 						{
 							var responseXML = testRequest.responseXML;
-							
+
 							var responseNode = responseXML.childNodes[0];
 							if(responseNode==null || responseNode.nodeName!="response")
 							{
@@ -111,7 +111,7 @@ final class Test_Jspm
 								stopAll = true;
 								return;
 							}
-							
+
 							for(var i=0; i<responseNode.childNodes.length; i++)
 							{
 								var updateNode = responseNode.childNodes[i];
@@ -131,7 +131,7 @@ final class Test_Jspm
 									row.innerHTML = content;
 								}
 							}
-							
+
 							var iterateURL = responseNode.getAttribute("iterate");
 							if(iterateURL!=null)
 								doTest(iterateURL);
@@ -174,7 +174,7 @@ final class Test_Jspm
 			}
 		</script><%
 	}
-	
+
 	static final <I> void writeBody(
 			final TestCop<I> cop,
 			final Out out,
@@ -194,9 +194,9 @@ final class Test_Jspm
 			</table><%
 			return;
 		}
-		
+
 		final int headingsLength = headings.length;
-		
+
 		%>
 		<table id="test_table">
 			<tr id="summary"><%
@@ -205,7 +205,7 @@ final class Test_Jspm
 				<img class="check" onClick="toggleSuccess(this)" src="<%=ConsoleServlet.checkFalse%>"> hide success
 			</tr>
 			<tr><%
-				
+
 				for(final String heading : headings)
 				{
 				%>
@@ -217,7 +217,7 @@ final class Test_Jspm
 				<th>Failures</th>
 				<th>Elapsed<small>/ms<small></th>
 			</tr><%
-		
+
 		for(final I item : items)
 		{
 			final String id = cop.getID(item);
@@ -232,7 +232,7 @@ final class Test_Jspm
 		%>
 		</table><%
 	}
-	
+
 	static final <I> void writeRow(
 			final Out out,
 			final TestCop<I> cop,
@@ -246,15 +246,15 @@ final class Test_Jspm
 				%>
 				<td class="text"><% cop.writeValue(out, item, h); %></td><%
 			}
-			
+
 				%>
 				<td><a href="#" onclick="return doTest('<%=cop.toTest(id, false)%>', this);">Test</a></td><%
-				
+
 			if(info!=null)
 			{
 				%>
 				<td><%=info.getDate()%></td><%
-				
+
 				final String cellClass = info.getCellClass();
 				%>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
@@ -269,7 +269,7 @@ final class Test_Jspm
 				<td class="notavailable" colspan="3">not yet tested</td><%
 			}
 	}
-	
+
 	static final <I> void writeSummary(
 			final Out out,
 			final TestCop<I> cop,

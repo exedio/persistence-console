@@ -53,7 +53,7 @@ final class Hash_Jspm
 				<th rowspan="2">Name</th>
 				<th rowspan="2">Plain<br>Text<br>Limit</th>
 				<th colspan="2">Algorithm</th><%
-			
+
 			if(compute)
 			{
 			%>
@@ -82,7 +82,7 @@ final class Hash_Jspm
 				<td><%=hash.getPlainTextLimit()%></td>
 				<td class="text"><%=algorithm.getID()%></td>
 				<td class="text"><%=algorithm.getDescription()%></td><%
-			
+
 			if(compute)
 			{
 				if(checked)

@@ -46,7 +46,7 @@ final class Savepoint_Jspm extends Console_Jspm
 				<th>Date</th>
 				<th>Savepoint</th>
 			</tr><%
-			
+
 		int n = 0;
 		for(final SavepointCop.Point point : points)
 		{

@@ -24,17 +24,17 @@ import java.util.Arrays;
 abstract class ColoredTable_Jspm
 {
 	private static final int COLORS = 2;
-	
+
 	static final void writeHeader(final Out out, final String[] names, final String[] shortNames)
 	{
 			if(names.length<=shortNames.length)
 				throw new RuntimeException(Arrays.toString(names) + Arrays.toString(shortNames));
-			
+
 			%>
 			<tr style="display:none;">
 				<th colspan="<%= names.length %>" class="color0"><% out.writeRaw(names[0]); %></th>
 			</tr><%
-	
+
 			for(int i = 1; i<shortNames.length; i++)
 			{
 			%>
@@ -79,7 +79,7 @@ abstract class ColoredTable_Jspm
 			%>
 			</tr><%
 	}
-	
+
 	static final void writeData(final Out out, final String[] data)
 	{
 			for(int i = 0; i<data.length; i++)

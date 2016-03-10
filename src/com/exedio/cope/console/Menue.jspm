@@ -27,7 +27,7 @@ final class Menue_Jspm
 	{
 		%>
 		<div class="menu"><%
-		
+
 		for(final ConsoleCop<?> tab : cop.getTabs())
 		{
 			if(cop.name.equals(tab.name))

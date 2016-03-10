@@ -71,15 +71,15 @@ final class QueryCache_Jspm extends Console_Jspm
 		%>
 		</table>
 		<form action="<%=cop%>" method="POST">
-			<input type="submit" name="<%=CLEAR%>" value="clear all caches" 
+			<input type="submit" name="<%=CLEAR%>" value="clear all caches"
 				onclick="return confirm('This operation will clear all global (cross-transactional) caches, such as item cache and query cache.\nDo you really want to do this?')" />
 		</form>
 		<hr>
 		<% writeToggle(out, cop.toToggleCondense(), cop.condense); %> condense<%
-		
+
 		if(cop.condense)
 		{
-		
+
 		final String[] names = {
 			"Recent Usage (LRU) (Average)",
 			"Count",
@@ -97,9 +97,9 @@ final class QueryCache_Jspm extends Console_Jspm
 		<table id="coloredTable">
 			<caption>Histogram</caption><%
 			ColoredTable_Jspm.writeHeader(out, names, shortNames);
-		
+
 		final int histogramLimit = cop.histogramLimit;
-		
+
 		for(int i = 0; i<content.histogramCondensed.length; i++)
 		{
 			if(i>=histogramLimit)
@@ -130,11 +130,11 @@ final class QueryCache_Jspm extends Console_Jspm
 				<td class="text"><% out.writeSQL(condense.query); %></td>
 			</tr><%
 		}
-		
+
 		}
 		else
 		{
-		
+
 		final String[] names = {
 			"Recent Usage (LRU)",
 			"Result Size",
@@ -150,9 +150,9 @@ final class QueryCache_Jspm extends Console_Jspm
 		<table id="coloredTable">
 			<caption>Histogram</caption><%
 			ColoredTable_Jspm.writeHeader(out, names, shortNames);
-		
+
 		final int histogramLimit = cop.histogramLimit;
-		
+
 		for(int i = 0; i<content.histogram.length; i++)
 		{
 			if(i>=histogramLimit)
@@ -182,7 +182,7 @@ final class QueryCache_Jspm extends Console_Jspm
 				<td class="text"><% out.writeSQL(histogram.getQuery()); %></td>
 			</tr><%
 		}
-		
+
 		}
 		%>
 		</table><%

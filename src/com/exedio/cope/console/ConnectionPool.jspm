@@ -93,7 +93,7 @@ final class ConnectionPool_Jspm extends Console_Jspm
 			for(final PoolCounter.Pool pool : poolCounter.getPools())
 			{
 				final boolean inconsistent = !pool.isConsistent();
-				
+
 				final String[] data = {
 						format(pool.getLoss()),
 						format(pool.getIdleCount()),

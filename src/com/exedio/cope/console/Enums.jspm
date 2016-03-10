@@ -38,14 +38,14 @@ final class Enums_Jspm extends Console_Jspm
 				<th>Class</th>
 				<th>Fields</th>
 			</tr><%
-			
+
 	for(final Map.Entry<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> entry : map.entrySet())
 	{
 		boolean first = true;
 		final Class<? extends Enum<?>> clazz = entry.getKey();
 		final ArrayList<EnumField<?>> list = entry.getValue();
 		final int size = list.size();
-		
+
 		for(final EnumField<?> field : list)
 		{
 			%>

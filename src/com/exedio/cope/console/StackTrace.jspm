@@ -48,7 +48,7 @@ final class StackTrace_Jspm
 			}
 		</script><%
 	}
-	
+
 	static final void write(
 			final Out out,
 			final StackTraceElement[] stackTrace)
@@ -60,7 +60,7 @@ final class StackTrace_Jspm
 					<img class="node" onClick="toggleStacktrace(this,'more<%=n%>')" src="<%=ConsoleServlet.nodeFalse%>"
 					>&nbsp;<%=stackTrace[0].toString()%>
 					<span id="more<%=n%>" class="expand"><%
-						
+
 					for(int i = 1; i<stackTrace.length; i++)
 					{
 						final StackTraceElement element = stackTrace[i];

@@ -78,7 +78,7 @@ final class ChangeListener_Jspm extends Console_Jspm
 			<table>
 				<caption>Change Listeners</caption><%
 				writePager(out, cop);
-			
+
 			if(listeners.isEmpty())
 			{
 				%>
@@ -113,14 +113,14 @@ final class ChangeListener_Jspm extends Console_Jspm
 			}
 			%>
 			</table><%
-		
+
 		if(!listeners.isEmpty())
 			writeButtons(out);
-		
+
 		%>
 		</form><%
 	}
-	
+
 	private static final void writeButtons(final Out out)
 	{
 			%>

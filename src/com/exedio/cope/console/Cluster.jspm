@@ -79,7 +79,7 @@ final class Cluster_Jspm
 				writeSequenceCheckerHead(out);
 				%>
 			</tr><%
-			
+
 			for(final ClusterListenerInfo.Node node : listenerInfo.getNodes())
 			{
 			%>
@@ -106,7 +106,7 @@ final class Cluster_Jspm
 		<div><%=donePing%> ping packets sent.</div><%
 		}
 	}
-	
+
 	private static final void writeSequenceCheckerHead(final Out out)
 	{
 				%>
@@ -117,7 +117,7 @@ final class Cluster_Jspm
 				<th title="Lost">lst</th>
 				<th title="Late">lte</th><%
 	}
-	
+
 	private static final void write(final Out out, final SequenceChecker.Info ic)
 	{
 				%>
@@ -128,7 +128,7 @@ final class Cluster_Jspm
 				<td><%=formatAndHide(0, ic.getLost())%></td>
 				<td><%=formatAndHide(0, ic.getLate())%></td><%
 	}
-	
+
 	static final void writeBodyDisabled(final Out out)
 	{
 		%>

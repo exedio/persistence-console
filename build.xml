@@ -4,17 +4,17 @@
 
 	<property file="local.properties" />
 	<property file="project.properties" />
-	
+
 	<import>
 		<fileset dir="macros">
 			<include name="*.xml" />
 		</fileset>
 	</import>
-	
+
 	<taskdef
 			resource="com/exedio/jspm/ant.properties"
 			classpath="lib/exedio-jspm.jar" />
-	
+
 	<taskdef resource="com/exedio/cope/instrument/ant.properties">
 		<classpath>
 			<pathelement location="lib/exedio-cope-instrument.jar" />
@@ -22,7 +22,7 @@
 			<pathelement location="lib/servlet-api.jar" />
 		</classpath>
 	</taskdef>
-	
+
 	<macrodef name="ljunit">
 		<attribute name="test" />
 		<attribute name="env" default="N" />
@@ -41,7 +41,7 @@
 			</junit>
 		</sequential>
 	</macrodef>
-	
+
 	<target name="catalina">
 		<property name="catalina.root" value="apache-tomcat-6.0.16" />
 		<untar src="lib/apache-tomcat.tar.gz"
@@ -70,13 +70,13 @@
 			</filterset>
 		</copy>
 	</target>
-	
+
 	<target name="src.jspm">
 		<jspm>
 			<fileset dir="src" includes="**/*.jspm" />
 		</jspm>
 	</target>
-	
+
 	<target name="src.compile" depends="src.jspm">
 		<compile srcdir="src">
 			<classpath>
@@ -89,7 +89,7 @@
 			</classpath>
 		</compile>
 	</target>
-	
+
 	<target name="jar" depends="src.compile">
 		<jar-exedio
 				name="cope console"
@@ -98,7 +98,7 @@
 			<fileset dir="build/classes/src" />
 		</jar-exedio>
 	</target>
-	
+
 	<target name="testsrc.compile" depends="src.compile">
 		<compile srcdir="testsrc">
 			<classpath>
@@ -114,7 +114,7 @@
 			</classpath>
 		</compile>
 	</target>
-	
+
 	<target name="test" depends="src.compile, testsrc.compile">
 		<ljunit test="com.exedio.cope.console.PackageTest">
 			<classpath>
@@ -131,13 +131,13 @@
 			</classpath>
 		</ljunit>
 	</target>
-	
+
 	<target name="web.jspm">
 		<jspm>
 			<fileset dir="websrc" includes="**/*.jspm" />
 		</jspm>
 	</target>
-	
+
 	<target name="web.instrument" unless="skip.instrument">
 		<instrument verify="${instrument.verify}" annotateGenerated="false">
 			<fileset dir="websrc">
@@ -145,7 +145,7 @@
 			</fileset>
 		</instrument>
 	</target>
-	
+
 	<target name="web.compile" depends="src.compile, web.jspm, web.instrument">
 		<compile srcdir="websrc">
 			<classpath>
@@ -160,7 +160,7 @@
 			</classpath>
 		</compile>
 	</target>
-		
+
 	<target name="web" depends="web.compile, src.compile">
 		<copy todir="web/WEB-INF/classes">
 			<fileset dir="build/classes/src" />
@@ -179,13 +179,13 @@
 			<fileset dir="web" />
 		</copy>
 	</target>
-	
+
 	<target name="tomcat" depends="web, catalina">
 		<copy tofile="tomcat/conf/Catalina/localhost/cope-console.xml" file="context.xml"/>
 		<copy tofile="tomcat/conf/Catalina/localhost/cope-console-cluster.xml" file="context-cluster.xml"/>
 		<copy todir="tomcat/bin" file="cluster.cope.properties"/>
 	</target>
-	
+
 	<target name="clean">
 		<delete dir="build" />
 		<delete dir="web/WEB-INF/classes" />
@@ -200,13 +200,13 @@
 			</fileset>
 		</delete>
 	</target>
-	
+
 	<target name="src" depends="src.jspm, web.jspm" description="creates all sources, so the IDE does not complain" />
-	
+
 	<target name="instrument" depends="web.instrument" />
-	
+
 	<target name="compile" depends="src.compile, testsrc.compile, web.compile" />
-	
+
 	<target name="api">
 		<delete dir="build/api" />
 
@@ -238,9 +238,9 @@
 			</classpath>
 		</javadoc>
 	</target>
-	
+
 	<target name="build" depends="compile, test, jar, tomcat" />
-	
+
 	<target name="findbugs" depends="compile, findbugs.taskdef">
 		<findbugs
 					home="${basedir}/build/findbugs-home"
@@ -269,9 +269,9 @@
 			</auxclasspath>
 		</findbugs>
 	</target>
-	
+
 	<target name="all" depends="build, api, findbugs" />
-	
+
 	<target name="jenkins" depends="all">
 		<copy todir="${basedir}/build/success">
 			<fileset file="${basedir}/build/exedio-cope-console.jar" />

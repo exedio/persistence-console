@@ -40,7 +40,7 @@ final class Purge_Jspm
 		%>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=PURGE%>" value="Purge Schema" /><%
-			
+
 		if(revisionStatisticsEnabled)
 		{
 			%>
@@ -49,7 +49,7 @@ final class Purge_Jspm
 		}
 		%>
 		</form><%
-		
+
 		if(purge)
 		{
 		%>
@@ -58,7 +58,7 @@ final class Purge_Jspm
 		%>
 		</ul><%
 		}
-		
+
 		if(revisionStatistics)
 		{
 		%>
