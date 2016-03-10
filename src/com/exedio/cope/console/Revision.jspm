@@ -308,7 +308,7 @@ final class Revision_Jspm extends Console_Jspm
 					Revisions are not enabled for this model.
 					<br>
 					Use the <a
-						href="http://cope.sourceforge.net/api/com/exedio/cope/Model.html#Model(com.exedio.cope.Revision[], com.exedio.cope.Type...)"
+						href="https://exedio.github.io/api/com/exedio/cope/Model.html#Model(com.exedio.cope.Revision[], com.exedio.cope.Type...)"
 						target="_blank">revision constructor</a> to enable.
 				</td>
 			</td>

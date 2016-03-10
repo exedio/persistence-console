@@ -72,7 +72,7 @@ final class Environment_Jspm extends Console_Jspm
 		%>
 		<hr>
 		<table>
-			<caption>Tested (<a href="http://cope.sourceforge.net/testprotocol.html" target="_blank">more...</a>)</caption><%
+			<caption>Tested (<a href="https://exedio.github.io/testprotocol.html" target="_blank">more...</a>)</caption><%
 		if(properties!=null)
 		{
 			%>
