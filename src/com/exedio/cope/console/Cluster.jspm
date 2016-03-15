@@ -67,6 +67,9 @@ final class Cluster_Jspm
 				<th rowspan="2">ID</th>
 				<th rowspan="2">First<br>Encounter</th>
 				<th colspan="2">From</th>
+				<th colspan="2">Last Round Trip</th>
+				<th colspan="2">Min Round Trip</th>
+				<th colspan="2">Max Round Trip</th>
 				<th colspan="6">Invalidate</th>
 				<th colspan="6">Ping</th>
 				<th colspan="6">Pong</th>
@@ -74,6 +77,9 @@ final class Cluster_Jspm
 			<tr>
 				<th>Address</th>
 				<th>Port</th><%
+				writeRoundTripHead(out);
+				writeRoundTripHead(out);
+				writeRoundTripHead(out);
 				writeSequenceCheckerHead(out);
 				writeSequenceCheckerHead(out);
 				writeSequenceCheckerHead(out);
@@ -88,6 +94,9 @@ final class Cluster_Jspm
 				<td><%=node.getFirstEncounter()%></td>
 				<td><%=node.getAddress()%></td>
 				<td><%=format(node.getPort())%></td><%
+				write(out, node.getLastRoundTrip());
+				write(out, node.getMinimumRoundTrip());
+				write(out, node.getMaximumRoundTrip());
 				write(out, node.getInvalidateInfo());
 				write(out, node.getPingInfo());
 				write(out, node.getPongInfo());
@@ -105,6 +114,28 @@ final class Cluster_Jspm
 		%>
 		<div><%=donePing%> ping packets sent.</div><%
 		}
+	}
+
+	private static final void writeRoundTripHead(final Out out)
+	{
+				%>
+				<th>Date</th>
+				<th>Nanos</th><%
+	}
+
+	private static final void write(final Out out, ClusterListenerInfo.RoundTrip roundTrip)
+	{
+			if(roundTrip!=null)
+			{
+				%>
+				<td><%=roundTrip.getDate()%></td>
+				<td><%=format(roundTrip.getNanos())%></td><%
+			}
+			else
+			{
+				%>
+				<td class="notavailable" colspan="2">n/a</td><%
+			}
 	}
 
 	private static final void writeSequenceCheckerHead(final Out out)

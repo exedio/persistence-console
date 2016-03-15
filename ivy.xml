@@ -23,7 +23,7 @@
 		<dependency org="javax.servlet" name="servlet-api" rev="2.4" conf="runtime->default; build->sources" />
 		<dependency org="junit" name="junit" rev="4.4" conf="build->default" />
 		<dependency org="com.exedio" name="cops" rev="379" conf="runtime->runtime; build->runtime,sources,changelog" />
-		<dependency org="com.exedio" name="cope" rev="8613" conf="runtime->runtime; build->hsqldb,mysql,junit,sources,changelog" />
+		<dependency org="com.exedio" name="cope" rev="8697" conf="runtime->runtime; build->hsqldb,mysql,junit,sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="483" conf="runtime->runtime; build->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="copeservletutil" rev="66" conf="runtime->runtime; build->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="jspm" rev="123" conf="build->runtime,changelog" />
