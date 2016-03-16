@@ -1,9 +1,9 @@
 
 <Context
-		path="/copeconsole-cluster"
-		docBase="../../build/clusterweb"
+		path="/copeconsole-cluster@NODE@"
+		docBase="../../build/clusterweb@NODE@"
 		debug="0"
 		privileged="true">
-	<Parameter name="cope-console-cluster.cluster.secret" value="5476" />
-	<Parameter name="cope-console-cluster.cluster.listenThreads" value="2" />
+	<Parameter name="cope-console-cluster@NODE@.cluster.secret" value="5476" />
+	<Parameter name="cope-console-cluster@NODE@.cluster.listenThreads" value="2" />
 </Context>

@@ -4,6 +4,7 @@
 	<target name="copy" depends="resolve">
 		<delete dir="../lib">
 			<include name="*" />
+			<exclude name="ant-contrib.jar" />
 		</delete>
 		<copy overwrite="true" file="artifacts/junit-jar.jar" tofile="../lib/junit.jar" />
 		<copy overwrite="true" file="artifacts/exedio-cope-util-jar.jar" tofile="../lib/exedio-cope-util.jar" />

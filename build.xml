@@ -12,6 +12,10 @@
 	</import>
 
 	<taskdef
+			resource="net/sf/antcontrib/antcontrib.properties"
+			classpath="lib/ant-contrib.jar" />
+
+	<taskdef
 			resource="com/exedio/jspm/ant.properties"
 			classpath="lib/exedio-jspm.jar" />
 
@@ -175,16 +179,38 @@
 			<fileset file="lib/exedio-cope.jar" />
 			<fileset file="lib/jdbc/*.jar" />
 		</copy>
-		<copy todir="build/clusterweb">
-			<fileset dir="web" />
-		</copy>
+		<foreachClusterNode>
+			<copy todir="build/clusterweb@{node}">
+				<fileset dir="web" />
+			</copy>
+		</foreachClusterNode>
 	</target>
 
 	<target name="tomcat" depends="web, catalina">
 		<copy tofile="tomcat/conf/Catalina/localhost/cope-console.xml" file="context.xml"/>
-		<copy tofile="tomcat/conf/Catalina/localhost/cope-console-cluster.xml" file="context-cluster.xml"/>
+		<foreachClusterNode>
+			<copy
+					tofile="tomcat/conf/Catalina/localhost/cope-console-cluster@{node}.xml"
+					file="context-cluster.xml"
+					overwrite="true">
+				<filterset>
+					<filter token="NODE" value="@{node}" />
+				</filterset>
+			</copy>
+		</foreachClusterNode>
 		<copy todir="tomcat/bin" file="cluster.cope.properties"/>
 	</target>
+
+	<macrodef name="foreachClusterNode">
+		<element name="body" optional="false" implicit="true" />
+		<sequential>
+			<for param="node" list="${clusterNodes}">
+				<sequential>
+					<body />
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
 
 	<target name="clean">
 		<delete dir="build" />
