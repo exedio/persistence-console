@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.ClusterListenerInfo;
 import com.exedio.cope.Model;
 import javax.servlet.http.HttpServletRequest;
 
@@ -65,13 +64,12 @@ final class ClusterCop extends ConsoleCop<Void>
 	final void writeBody(final Out out)
 	{
 		final Model model = out.model;
-		final ClusterListenerInfo listenerInfo = model.getClusterListenerInfo();
-		if(listenerInfo!=null)
+		if(model.isClusterNetworkEnabled())
 			Cluster_Jspm.writeBody(
 					this, out,
 					model.getClusterProperties(),
 					model.getClusterSenderInfo(),
-					listenerInfo,
+					model.getClusterListenerInfo(),
 					donePing);
 		else
 			Cluster_Jspm.writeBodyDisabled(out);
