@@ -64,7 +64,7 @@ final class ClusterCop extends ConsoleCop<Void>
 	final void writeBody(final Out out)
 	{
 		final Model model = out.model;
-		if(model.isClusterNetworkEnabled())
+		if(model.isClusterEnabled())
 			Cluster_Jspm.writeBody(
 					this, out,
 					model.getClusterProperties(),
