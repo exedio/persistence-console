@@ -13,8 +13,6 @@
 				<globmapper from="*" to="*" />
 			</firstmatchmapper>
 			<fileset dir="artifacts/lib">
-				<exclude name="hsqldb-jar.jar" />
-				<exclude name="mysql-connector-java-jar.jar" />
 			</fileset>
 		</copy>
 	</target>

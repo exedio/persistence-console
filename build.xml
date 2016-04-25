@@ -130,7 +130,7 @@
 				<pathelement location="lib/exedio-cope-junit.jar" />
 				<pathelement location="lib/trove4j.jar" />
 				<pathelement location="lib/slf4j-api.jar" />
-				<pathelement location="lib/jdbc/hsqldb.jar" />
+				<pathelement location="lib/hsqldb.jar" />
 				<pathelement location="lib/junit.jar" />
 			</classpath>
 		</ljunit>
@@ -177,7 +177,8 @@
 			<fileset file="lib/exedio-cope-servletutil.jar" />
 			<fileset file="lib/exedio-cope-util.jar" />
 			<fileset file="lib/exedio-cope.jar" />
-			<fileset file="lib/jdbc/*.jar" />
+			<fileset file="lib/hsqldb.jar" />
+			<fileset file="lib/mysql-connector-java.jar" />
 		</copy>
 		<foreachClusterNode>
 			<copy todir="build/clusterweb@{node}">
