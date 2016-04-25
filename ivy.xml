@@ -20,14 +20,17 @@
 		<artifact name="exedio-cope-console" conf="changelog" type="log" ext="txt" />
 	</publications>
 	<dependencies>
-		<dependency org="javax.servlet" name="servlet-api" rev="2.4" conf="runtime->default; build->sources" />
+		<dependency org="javax.servlet" name="javax.servlet-api" rev="3.0.1" conf="runtime->default; build->sources" />
 		<dependency org="junit" name="junit" rev="4.4" conf="build->default" />
-		<dependency org="com.exedio" name="cops" rev="379" conf="runtime->runtime; build->runtime,sources,changelog" />
-		<dependency org="com.exedio" name="cope" rev="8697" conf="runtime->runtime; build->hsqldb,mysql,junit,sources,changelog" />
+		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; build->runtime,sources,changelog" />
+		<dependency org="com.exedio" name="cope" rev="8697" conf="runtime->runtime; build->hsqldb,mysql,junit,sources,changelog">
+			<!-- we use servlet-api 3.0, which goes in a different 'module' (javax.servlet-api) -->
+			<exclude org="javax.servlet" module="servlet-api"/> <!-- for servlet API < 3.0 -->
+		</dependency>
 		<dependency org="com.exedio" name="copeutil" rev="483" conf="runtime->runtime; build->runtime,sources,changelog" />
-		<dependency org="com.exedio" name="copeservletutil" rev="66" conf="runtime->runtime; build->runtime,sources,changelog" />
+		<dependency org="com.exedio" name="copeservletutil" rev="71" conf="runtime->runtime; build->runtime,sources,changelog"/>
 		<dependency org="com.exedio" name="jspm" rev="123" conf="build->runtime,changelog" />
-		<dependency org="org.apache" name="apache-tomcat" rev="6.0.16" conf="build->default" />
+		<dependency org="org.apache" name="apache-tomcat" rev="7.0.67" conf="build->default" />
 		<dependency org="findbugs-x" name="findbugs" rev="3.0.0" conf="build->default" />
 	</dependencies>
 </ivy-module>

@@ -278,7 +278,7 @@ final class SchemaCop extends ConsoleCop<Void>
 
 	private static final String[] getParameters(final HttpServletRequest request, final String name)
 	{
-		final String[] result = (String[]) request.getParameterMap().get(name);
+		final String[] result = request.getParameterMap().get(name);
 		return result!=null ? result : EMPTY_STRINGS;
 	}
 
