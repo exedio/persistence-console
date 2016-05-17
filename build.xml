@@ -143,7 +143,7 @@
 	</target>
 
 	<target name="web.instrument" unless="skip.instrument">
-		<instrument verify="${instrument.verify}" annotateGenerated="false">
+		<instrument verify="${instrument.verify}">
 			<fileset dir="websrc">
 				<include name="**/*.java" />
 			</fileset>
