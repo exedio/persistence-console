@@ -19,7 +19,7 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.EnumCop.getColumnValue;
+import static com.exedio.cope.SchemaInfo.getColumnValue;
 
 final class Enum_Jspm extends Console_Jspm
 {

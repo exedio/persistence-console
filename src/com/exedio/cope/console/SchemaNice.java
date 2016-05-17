@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.SchemaInfo.getColumnValue;
 import static com.exedio.cope.SchemaInfo.quoteName;
 
 import com.exedio.cope.DateField;
@@ -66,8 +67,7 @@ final class SchemaNice
 
 							for(final Enum<?> v : ((EnumField<?>)field).getValueClass().getEnumConstants())
 							{
-								@SuppressWarnings("unchecked")
-								final int columnValue = EnumCop.getColumnValue(v);
+								final int columnValue = getColumnValue(v);
 								bf.append(" when ").
 									append(columnValue).
 									append(" then '").

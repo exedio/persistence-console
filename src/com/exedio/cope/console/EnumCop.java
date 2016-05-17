@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.SchemaInfo;
 import javax.servlet.http.HttpServletRequest;
 
 final class EnumCop extends ConsoleCop<Void>
@@ -66,15 +65,5 @@ final class EnumCop extends ConsoleCop<Void>
 	final void writeBody(final Out out)
 	{
 		Enum_Jspm.write(out, clazz);
-	}
-
-	// TODO put into framework
-	static int getColumnValue(final Enum<?> constant)
-	{
-		@SuppressWarnings({"cast", "rawtypes"})
-		final Enum constantRaw = (Enum)constant;
-		@SuppressWarnings("unchecked")
-		final int result = SchemaInfo.getColumnValue(constantRaw);
-		return result;
 	}
 }
