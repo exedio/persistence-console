@@ -41,6 +41,10 @@ final class Connect_Jspm extends Console_Jspm
 				<td class="text"><%if(model.supportsEmptyStrings()){%>yes<%}else{%>no<%}%></td>
 			</tr>
 			<tr>
+				<th>Supports UTF8mb4</th>
+				<td class="text"><%if(model.supportsUTF8mb4()){%>yes<%}else{%>no<%}%></td>
+			</tr>
+			<tr>
 				<th>Supports Random</th>
 				<td class="text"><%if(model.supportsRandom()){%>yes<%}else{%>no<%}%></td>
 			</tr>
