@@ -107,7 +107,7 @@ final class Media_Jspm extends Console_Jspm
 					}
 					if(path.isUrlFingerPrinted())
 					{
-						%><small>@<%=UrlFingerPrinting.class.getSimpleName()%><% writeFail(out, path.isFinal()); %></small><br><%
+						%><small>@<%=UrlFingerPrinting.class.getSimpleName()%></small><br><%
 					}
 					if(path.isFinal())
 					{
