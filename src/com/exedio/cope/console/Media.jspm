@@ -78,7 +78,7 @@ final class Media_Jspm extends Console_Jspm
 			</tr><%
 
 			for(final MediaInfo info : infos)
-				write(out, cop, isUrlGuessingNotSecure, info);
+				write(out, cop, isUrlGuessingNotSecure, cop.variant.writeUrlFingerPrinted(), info);
 		%>
 		</table><%
 	}
@@ -87,6 +87,7 @@ final class Media_Jspm extends Console_Jspm
 				final Out out,
 				final ConsoleCop<?> cop,
 				final boolean isUrlGuessingNotSecure,
+				final boolean writeUrlFingerPrinted,
 				final MediaInfo info)
 	{
 				final MediaPath path = info.getPath();
@@ -105,7 +106,7 @@ final class Media_Jspm extends Console_Jspm
 					{
 						%><small>@<%=PreventUrlGuessing.class.getSimpleName()%><% writeFail(out, isUrlGuessingNotSecure); %></small><br><%
 					}
-					if(path.isUrlFingerPrinted())
+					if(writeUrlFingerPrinted && path.isUrlFingerPrinted())
 					{
 						%><small>@<%=UrlFingerPrinting.class.getSimpleName()%></small><br><%
 					}
@@ -172,7 +173,7 @@ final class Media_Jspm extends Console_Jspm
 		<table id="coloredTable">
 			<caption>Statistics</caption><%
 			MediaStatsCop.writeTableHeader(out);
-			write(out, cop, false, info);
+			write(out, cop, false, true, info);
 		%>
 		</table>
 		<hr><%

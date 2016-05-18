@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class MediaStatsCop extends ConsoleCop<Void>
 {
-	private final Variant variant;
+	final Variant variant;
 	final double fingerprintRampStep;
 
 	static final String FINGER_OFFSET_RAMP_STEP = "fors";
@@ -96,6 +96,11 @@ final class MediaStatsCop extends ConsoleCop<Void>
 			{
 				return path.isUrlFingerPrinted();
 			}
+
+			@Override boolean writeUrlFingerPrinted()
+			{
+				return false;
+			}
 		};
 
 		final String tab;
@@ -111,6 +116,11 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		 * @param path used by subclasses
 		 */
 		boolean accepts(final MediaPath path)
+		{
+			return true;
+		}
+
+		boolean writeUrlFingerPrinted()
 		{
 			return true;
 		}
