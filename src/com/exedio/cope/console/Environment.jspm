@@ -109,6 +109,8 @@ final class Environment_Jspm extends Console_Jspm
 				final HashMap<String,?> db = properties[i];
 			%>
 			<tr><%
+				int rowspanBefore = Integer.MIN_VALUE;
+
 				for(int j = 0; j<TEST_INFO_KEYS.length; j++)
 				{
 					final String key = TEST_INFO_KEYS[j];
@@ -148,6 +150,12 @@ final class Environment_Jspm extends Console_Jspm
 					else
 					{
 						%><%=(String)value%><%
+
+						if(rowspan!=1 && rowspanBefore!=rowspan)
+						{
+							%> <small>(<%=rowspan%>x)</small><%
+						}
+						rowspanBefore = rowspan;
 					}
 					%></td><%
 					}
