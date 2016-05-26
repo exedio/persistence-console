@@ -129,8 +129,8 @@ final class CharacterNulCop extends TestCop<StringField>
 	int check(final StringField field, final Model model)
 	{
 		try(
-			final Connection con = newConnection(model);
-			final Statement st = con.createStatement())
+			Connection con = newConnection(model);
+			Statement st = con.createStatement())
 		{
 			// drop NO_BACKSLASH_ESCAPES, otherwise \0 will not work
 			st.execute(
@@ -141,7 +141,7 @@ final class CharacterNulCop extends TestCop<StringField>
 					"NO_ZERO_DATE," +
 					"NO_ENGINE_SUBSTITUTION'");
 
-			try(final ResultSet rs = st.executeQuery(getSQL(field)))
+			try(ResultSet rs = st.executeQuery(getSQL(field)))
 			{
 				rs.next();
 				return rs.getInt(1);
