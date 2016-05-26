@@ -88,10 +88,9 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 
 	@Override
 	@SuppressFBWarnings("NP_LOAD_OF_KNOWN_NULL_VALUE") // OK: caused by try-with-resources
-	int check(final CopyConstraint constraint)
+	int check(final CopyConstraint constraint, final Model model)
 	{
-		try(TransactionTry tx = constraint.getType().getModel().
-				startTransactionTry("Console CopyConstraint " + id))
+		try(TransactionTry tx = model.startTransactionTry("Console CopyConstraint " + id))
 		{
 			return tx.commit(
 					constraint.check());

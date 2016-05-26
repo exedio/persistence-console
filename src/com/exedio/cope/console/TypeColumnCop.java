@@ -110,10 +110,9 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 
 	@Override
 	@SuppressFBWarnings("NP_LOAD_OF_KNOWN_NULL_VALUE") // OK: caused by try-with-resources
-	int check(final ItemFunction<?> function)
+	int check(final ItemFunction<?> function, final Model model)
 	{
-		try(TransactionTry tx = function.getType().getModel().
-				startTransactionTry("Console TypeColumn " + id))
+		try(TransactionTry tx = model.startTransactionTry("Console TypeColumn " + id))
 		{
 			return tx.commit(
 					function.checkTypeColumn());

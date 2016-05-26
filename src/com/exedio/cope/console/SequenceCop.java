@@ -114,7 +114,7 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	}
 
 	@Override
-	int check(final SequenceInfo info)
+	int check(final SequenceInfo info, final Model model)
 	{
 		final Feature feature = info.getFeature();
 		if(feature instanceof This)

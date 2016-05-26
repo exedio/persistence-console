@@ -94,7 +94,7 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
-	int check(final MediaTestable testable)
+	int check(final MediaTestable testable, final Model model)
 	{
 		try
 		{

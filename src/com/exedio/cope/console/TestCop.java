@@ -134,7 +134,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		Info info;
 		try
 		{
-			final int result = check(item);
+			final int result = check(item, out.model);
 			info = new ResultInfo(TimeUtil.toMillies(System.nanoTime(), start), result);
 		}
 		catch(final Exception e)
@@ -354,5 +354,5 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 	abstract void writeValue(Out out, I item, int h);
 	abstract String getID(I item);
 	abstract I forID(Model model, String id);
-	abstract int check(I item);
+	abstract int check(I item, Model model);
 }
