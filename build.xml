@@ -237,15 +237,9 @@
 	<target name="api">
 		<delete dir="build/api" />
 
-		<condition property="api.doclint" value="-Xdoclint:all,-missing" else="-nosince"> <!-- nosince is just a dummy -->
-			<available classname="java.util.Optional" /> <!-- available since JDK 1.8 -->
-		</condition>
-		<echo message="doclint //${api.doclint}//" />
-
 		<javadoc
 				destdir="build/api"
 				maxmemory="60m"
-				source="1.7"
 				private="on"
 				author="off"
 				use="off"
@@ -254,7 +248,7 @@
 				noindex="true"
 				failonerror="true">
 			<fileset file="src/com" includes="**/*.java" />
-			<arg value="${api.doclint}" />
+			<arg value="-Xdoclint:all,-missing" />
 			<classpath>
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/exedio-cope-util.jar" />
