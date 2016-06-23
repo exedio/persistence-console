@@ -95,7 +95,7 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 
 	@Override
 	@SuppressFBWarnings({"NP_LOAD_OF_KNOWN_NULL_VALUE","RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE"}) // OK: caused by try-with-resources
-	int check(final StringField field, final Model model)
+	long check(final StringField field, final Model model)
 	{
 		final Query<Integer> q = new Query<Integer>(field.length().min());
 

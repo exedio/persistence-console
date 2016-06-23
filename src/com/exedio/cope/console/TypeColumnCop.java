@@ -110,7 +110,7 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 
 	@Override
 	@SuppressFBWarnings("NP_LOAD_OF_KNOWN_NULL_VALUE") // OK: caused by try-with-resources
-	int check(final ItemFunction<?> function, final Model model)
+	long check(final ItemFunction<?> function, final Model model)
 	{
 		try(TransactionTry tx = model.startTransactionTry("Console TypeColumn " + id))
 		{

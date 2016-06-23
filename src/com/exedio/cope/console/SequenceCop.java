@@ -84,12 +84,12 @@ final class SequenceCop extends TestCop<SequenceInfo>
 		{
 			case 0: out.write(feature.getType().getID()); break;
 			case 1: out.write(feature.getName()); break;
-			case 2: out.write(format(info.getStart())); break;
-			case 3: out.write(format(info.getMinimum())); break;
-			case 4: out.write(format(info.getMaximum())); break;
-			case 5: out.write(format(info.getCount())); break;
-			case 6: if(known) out.write(format(info.getFirst())); break;
-			case 7: if(known) out.write(format(info.getLast())); break;
+			case 2: out.write(format(info.getStartL())); break;
+			case 3: out.write(format(info.getMinimumL())); break;
+			case 4: out.write(format(info.getMaximumL())); break;
+			case 5: out.write(format(info.getCountL())); break;
+			case 6: if(known) out.write(format(info.getFirstL())); break;
+			case 7: if(known) out.write(format(info.getLastL())); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		}
@@ -114,13 +114,13 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	}
 
 	@Override
-	int check(final SequenceInfo info, final Model model)
+	long check(final SequenceInfo info, final Model model)
 	{
 		final Feature feature = info.getFeature();
 		if(feature instanceof This)
-			return ((This<?>)feature).getType().checkPrimaryKey();
+			return ((This<?>)feature).getType().checkSequenceBehindPrimaryKey().isBehindByL();
 		else if(feature instanceof IntegerField)
-			return ((IntegerField)feature).checkDefaultToNext();
+			return ((IntegerField)feature).checkSequenceBehindDefaultToNext().isBehindByL();
 		else
 			throw new RuntimeException(feature.toString());
 	}

@@ -98,7 +98,7 @@ final class UnsupportedCheckConstraintCop extends TestCop<CheckConstraint>
 
 	@Override
 	@SuppressFBWarnings("NP_LOAD_OF_KNOWN_NULL_VALUE") // OK: caused by try-with-resources
-	int check(final CheckConstraint constraint, final Model model)
+	long check(final CheckConstraint constraint, final Model model)
 	{
 		try(TransactionTry tx = model.startTransactionTry("Console CheckConstraint " + id))
 		{

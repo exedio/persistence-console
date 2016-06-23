@@ -96,7 +96,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 
 	@Override
 	@SuppressFBWarnings({"NP_LOAD_OF_KNOWN_NULL_VALUE","RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE"}) // OK: caused by try-with-resources
-	int check(final FeatureField<?> field, final Model model)
+	long check(final FeatureField<?> field, final Model model)
 	{
 		final Query<?> query = field.getType().newQuery(field.isInvalid());
 		try(TransactionTry tx = model.startTransactionTry("Console FeatureField " + id))

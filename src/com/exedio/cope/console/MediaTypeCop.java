@@ -108,7 +108,7 @@ final class MediaTypeCop extends TestCop<Media>
 
 	@Override
 	@SuppressFBWarnings({"NP_LOAD_OF_KNOWN_NULL_VALUE","RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE"}) // OK: caused by try-with-resources
-	int check(final Media media, final Model model)
+	long check(final Media media, final Model model)
 	{
 		final Query<?> query = media.getType().newQuery(media.bodyMismatchesContentType());
 

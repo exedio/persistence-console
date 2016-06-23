@@ -150,7 +150,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 
 	@Override
 	@SuppressFBWarnings("SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE")
-	int check(final Table table, final Model model)
+	long check(final Table table, final Model model)
 	{
 		final StringBuilder bf = new StringBuilder();
 		bf.append("SELECT COUNT(*) FROM ").
@@ -166,7 +166,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 			try(ResultSet rs = st.executeQuery(bf.toString()))
 			{
 				rs.next();
-				return rs.getInt(1);
+				return rs.getLong(1);
 			}
 		}
 		catch(final SQLException e)

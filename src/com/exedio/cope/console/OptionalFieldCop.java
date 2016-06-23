@@ -97,7 +97,7 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 
 	@Override
 	@SuppressFBWarnings({"NP_LOAD_OF_KNOWN_NULL_VALUE","RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE"}) // OK: caused by try-with-resources
-	int check(final FunctionField<?> field, final Model model)
+	long check(final FunctionField<?> field, final Model model)
 	{
 		final Type<?> type = field.getType();
 		try(TransactionTry tx = model.startTransactionTry("Console OptionalField " + id))

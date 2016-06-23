@@ -96,7 +96,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	}
 
 	@Override
-	int check(final Constraint<?> constraint, final Model model)
+	long check(final Constraint<?> constraint, final Model model)
 	{
 		return constraint.check(model);
 	}

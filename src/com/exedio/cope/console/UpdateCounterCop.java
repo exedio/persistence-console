@@ -94,7 +94,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 
 	@Override
 	@SuppressFBWarnings("NP_LOAD_OF_KNOWN_NULL_VALUE") // OK: caused by try-with-resources
-	int check(final Type<?> type, final Model model)
+	long check(final Type<?> type, final Model model)
 	{
 		try(TransactionTry tx = model.startTransactionTry("Console UpdateCounter " + id))
 		{

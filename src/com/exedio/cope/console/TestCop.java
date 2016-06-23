@@ -134,7 +134,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		Info info;
 		try
 		{
-			final int result = check(item, out.model);
+			final long result = check(item, out.model);
 			info = new ResultInfo(TimeUtil.toMillies(System.nanoTime(), start), result);
 		}
 		catch(final Exception e)
@@ -255,7 +255,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			return date<=other.date ? this : other;
 		}
 
-		abstract int failures();
+		abstract long failures();
 		abstract String getRowClass();
 		abstract String getCellClass();
 		abstract boolean isError();
@@ -264,16 +264,16 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 
 	static final class ResultInfo extends Info
 	{
-		final int result;
+		final long result;
 
-		ResultInfo(final long elapsed, final int result)
+		ResultInfo(final long elapsed, final long result)
 		{
 			super(elapsed);
 			this.result = result;
 		}
 
 		@Override
-		int failures()
+		long failures()
 		{
 			return result;
 		}
@@ -314,7 +314,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		}
 
 		@Override
-		int failures()
+		long failures()
 		{
 			return 1;
 		}
@@ -354,5 +354,5 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 	abstract void writeValue(Out out, I item, int h);
 	abstract String getID(I item);
 	abstract I forID(Model model, String id);
-	abstract int check(I item, Model model);
+	abstract long check(I item, Model model);
 }

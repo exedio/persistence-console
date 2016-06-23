@@ -126,7 +126,7 @@ final class CharacterNulCop extends TestCop<StringField>
 	 */
 	@Override
 	@SuppressFBWarnings("SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE")
-	int check(final StringField field, final Model model)
+	long check(final StringField field, final Model model)
 	{
 		try(
 			Connection con = newConnection(model);
@@ -144,7 +144,7 @@ final class CharacterNulCop extends TestCop<StringField>
 			try(ResultSet rs = st.executeQuery(getSQL(field)))
 			{
 				rs.next();
-				return rs.getInt(1);
+				return rs.getLong(1);
 			}
 		}
 		catch(final SQLException e)

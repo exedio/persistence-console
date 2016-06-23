@@ -75,13 +75,13 @@
                 </context-menu>
             </view>
         </general-data>
-        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/1">
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/4">
             <compilation-unit>
                 <package-root>src</package-root>
                 <package-root>websrc</package-root>
                 <package-root>testsrc</package-root>
-                <classpath mode="compile">lib/bsh-core.jar:lib/cojen.jar:lib/exedio-cope-instrument.jar:lib/exedio-cope-util.jar:lib/exedio-cope-util.jar-src.zip:lib/exedio-cope.jar:lib/exedio-cope.jar-src.zip:lib/exedio-cops.jar:lib/exedio-cops.jar-src.zip:lib/exedio-jspm.jar:lib/junit.jar:lib/servlet-api.jar:lib/servlet-api.jar-src.zip:lib/trove.jar</classpath>
-                <source-level>1.5</source-level>
+                <classpath mode="compile">lib/bsh-core.jar:lib/cojen.jar:lib/exedio-cope-instrument.jar:lib/exedio-cope-util.jar:lib/exedio-cope-util.jar-src.zip:lib/exedio-cope.jar:lib/exedio-cope-src.zip:lib/exedio-cops.jar:lib/exedio-cops.jar-src.zip:lib/exedio-jspm.jar:lib/junit.jar:lib/javax.servlet-api.jar:lib/javax.servlet-api.jar-source.zip:lib/trove.jar:lib/findbugs-annotations.jar:lib/exedio-cope-servletutil.jar:lib/exedio-cope-servletutil-src.zip:lib/exedio-cope-junit.jar</classpath>
+                <source-level>1.8</source-level>
             </compilation-unit>
         </java-data>
     </configuration>
