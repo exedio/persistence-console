@@ -206,7 +206,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			final List<I> items,
 			final HashMap<String, Info> infos)
 	{
-		int elapsed = 0;
+		long elapsed = 0;
 		Info date = null;
 		long failures = 0;
 		boolean isError = false;

@@ -276,7 +276,7 @@ final class Test_Jspm
 			final int headingsLength,
 			final String firstId,
 			final boolean complete,
-			final int elapsed,
+			final long elapsed,
 			final Date date,
 			final long failures,
 			final String cellClass,
