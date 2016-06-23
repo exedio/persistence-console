@@ -33,6 +33,12 @@ public final class ConditionUnsupported extends MediaPath
 	private static final long serialVersionUID = 1l;
 
 	@Override
+	public boolean isMandatory()
+	{
+		return true;
+	}
+
+	@Override
 	public String getContentType(final Item item)
 	{
 		return "text/plain";
