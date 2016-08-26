@@ -59,11 +59,11 @@ final class Environment_Jspm extends Console_Jspm
 	}
 
 	private static final String[] TEST_INFO_KEYS = new String[] {
-			"name",
 			"database.name",
 			"database.version",
 			"driver.name",
 			"driver.version",
+			"name",
 			TEST_INFO_KEY_CONNECT_PROPERTIES,
 		};
 
