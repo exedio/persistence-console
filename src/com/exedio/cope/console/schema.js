@@ -45,16 +45,11 @@ function setDisplay(element, display)
 		element.style.display = display;
 }
 
-function edit(span)
+function edit(span, name)
 {
-	var childs = span.childNodes;
-	for(i = 0; i<childs.length; i++)
-	{
-		var child = childs[i];
-		var childName = child.nodeName;
-		if(childName=="IMG")
-			child.style.display = "none";
-		else if(childName=="INPUT")
-			child.style.display = "inline";
-	}
+	var parentNode = span.parentNode;
+	var input = document.createElement("input");
+	input.setAttribute('name', name);
+	input.setAttribute('value', span.innerHTML);
+	parentNode.replaceChild(input, span);
 }

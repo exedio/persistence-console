@@ -244,14 +244,15 @@ img.node
 	display:none;
 }
 
-span.textedit input
-{
-	display:none;
-}
-
-span.textedit span.label
+span.textedit
 {
 	display:inline-block;
+	color:#005;
+}
+
+span.textedit:hover
+{
+	background:#ccf;
 }
 
 span.javaDecoration { color:#ccc; }

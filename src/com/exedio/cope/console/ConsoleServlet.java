@@ -103,7 +103,6 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource error  = new Resource("error.png");
 	static final Resource warning2 = new Resource("warning2.png");
 	static final Resource error2  = new Resource("error2.png");
-	static final Resource write  = new Resource("write.png");
 	static final Resource imagebackground = new Resource("imagebackground.png");
 
 	@Override

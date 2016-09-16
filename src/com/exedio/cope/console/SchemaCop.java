@@ -222,7 +222,11 @@ final class SchemaCop extends ConsoleCop<Void>
 			if(targetName.isEmpty())
 				continue;
 
-			getTable(schema, sourceName).renameTo(targetName, listener);
+			final Table table = getTable(schema, sourceName);
+			if(table.getName().equals(targetName))
+				continue;
+
+			table.renameTo(targetName, listener);
 		}
 		for(final Iterator<String> i = parameterNames(request); i.hasNext(); )
 		{
@@ -251,7 +255,11 @@ final class SchemaCop extends ConsoleCop<Void>
 			if(targetName.isEmpty())
 				continue;
 
-			getColumn(schema, sourceName).renameTo(targetName, listener);
+			final Column column = getColumn(schema, sourceName);
+			if(column.getName().equals(targetName))
+				continue;
+
+			column.renameTo(targetName, listener);
 		}
 		if(request.getParameter(CATCH_RESET)!=null)
 			for(final Column c : getCatchColumns(schema))
