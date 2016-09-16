@@ -219,7 +219,7 @@ final class SchemaCop extends ConsoleCop<Void>
 				continue;
 
 			final String targetName = request.getParameter(p).trim();
-			if (targetName.length() == 0)
+			if(targetName.isEmpty())
 				continue;
 
 			getTable(schema, sourceName).renameTo(targetName, listener);
@@ -232,7 +232,7 @@ final class SchemaCop extends ConsoleCop<Void>
 				continue;
 
 			final String targetType = request.getParameter(p).trim();
-			if (targetType.length() == 0)
+			if(targetType.isEmpty())
 				continue;
 
 			getColumn(schema, sourceName).modify(targetType, listener);
@@ -248,7 +248,7 @@ final class SchemaCop extends ConsoleCop<Void>
 				continue;
 
 			final String targetName = request.getParameter(p).trim();
-			if (targetName.length() == 0)
+			if(targetName.isEmpty())
 				continue;
 
 			getColumn(schema, sourceName).renameTo(targetName, listener);
