@@ -92,13 +92,13 @@ final class SchemaDetails_Jspm extends Console_Jspm
 
 					if(table.exists())
 					{
-							%>
-							<span class="textedit" onClick="tabName(this)"><%=tableName%></span><%
+					%>
+					<span class="textedit" onClick="tabName(this)"><%=tableName%></span><%
 					}
 					else
 					{
-							%>
-							<%=tableName%><%
+					%>
+					<%=tableName%><%
 					}
 
 					final String tableError = table.getError();
