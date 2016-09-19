@@ -69,3 +69,22 @@ function tabName(span)
 	input.setAttribute('value', span.innerHTML);
 	parentNode.insertBefore(input, dropBox);
 }
+
+function colName(span, tableName)
+{
+	var parentNode = span.parentNode;
+
+	var dropText = document.createTextNode("drop");
+	parentNode.replaceChild(dropText, span);
+
+	var dropBox = document.createElement("input");
+	dropBox.setAttribute('type', 'checkbox');
+	dropBox.setAttribute('name', 'DROP_COLUMN');
+	dropBox.setAttribute('value', tableName + '#' + span.innerHTML);
+	parentNode.insertBefore(dropBox, dropText);
+
+	var input = document.createElement("input");
+	input.setAttribute('name', 'RENAME_COLUMN__' + tableName + '#' + span.innerHTML);
+	input.setAttribute('value', span.innerHTML);
+	parentNode.insertBefore(input, dropBox);
+}

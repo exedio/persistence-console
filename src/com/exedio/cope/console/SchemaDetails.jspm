@@ -131,7 +131,17 @@ final class SchemaDetails_Jspm extends Console_Jspm
 							<img class="node" src="<%=leaf(column.getCumulativeColor())%>">
 							<small>col<%=columnCount%></small><%
 
-							writeEdit(columnName,       column.exists(), SchemaCop.RENAME_COLUMN_PREFIX + tableName + '#' + columnName, out);
+							if(column.exists())
+							{
+							%>
+							<span class="textedit" onClick="colName(this,'<%=tableName%>')"><%=columnName%></span><%
+							}
+							else
+							{
+							%>
+							<%=columnName%><%
+							}
+
 							writeEdit(column.getType(), column.exists(), SchemaCop.MODIFY_COLUMN_PREFIX + tableName + '#' + columnName, out);
 
 							final String error = column.getError();
@@ -140,12 +150,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 							%>
 							<% write(column.getParticularColor(), out); %> <%=error%></span><%
 							}
-							if(column.exists())
-							{
-							%>
-							<input type="checkbox" name="<%=SchemaCop.DROP_COLUMN%>" value="<%=tableName%>#<%=columnName%>"/>drop<%
-							}
-							else if(column.required() &&
+							if(!column.exists() && column.required() &&
 									column.getTable().exists() )
 							{
 							%>,
