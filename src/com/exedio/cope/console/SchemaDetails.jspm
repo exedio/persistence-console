@@ -90,7 +90,16 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					<img class="node" onClick="togTab(this,<%=tableCount%>)" src="<%=node(table.getCumulativeColor())%>">
 					<small>tab<%=tableCount%></small><%
 
-					writeEdit(tableName, table.exists(), SchemaCop.RENAME_TABLE_PREFIX + tableName, out);
+					if(table.exists())
+					{
+							%>
+							<span class="textedit" onClick="tabName(this)"><%=tableName%></span><%
+					}
+					else
+					{
+							%>
+							<%=tableName%><%
+					}
 
 					final String tableError = table.getError();
 					if(tableError!=null)

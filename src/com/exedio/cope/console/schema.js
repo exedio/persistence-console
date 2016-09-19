@@ -53,3 +53,12 @@ function edit(span, name)
 	input.setAttribute('value', span.innerHTML);
 	parentNode.replaceChild(input, span);
 }
+
+function tabName(span)
+{
+	var parentNode = span.parentNode;
+	var input = document.createElement("input");
+	input.setAttribute('name', 'RENAME_TABLE_' + span.innerHTML);
+	input.setAttribute('value', span.innerHTML);
+	parentNode.replaceChild(input, span);
+}
