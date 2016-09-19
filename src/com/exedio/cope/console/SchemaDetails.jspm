@@ -224,7 +224,17 @@ final class SchemaDetails_Jspm extends Console_Jspm
 				<li>
 					<img class="node" src="<%=leaf(sequence.getCumulativeColor())%>">
 					<small>seq<%=sequenceCount%></small>
-					<%=sequenceName%> (<%=sequence.getStartL()%>)<%
+					<%
+					if(sequence.exists())
+					{
+						%><span class="textedit" onClick="seqName(this)"><%=sequenceName%></span><%
+					}
+					else
+					{
+						%><%=sequenceName%><%
+					}
+
+					%> (<%=sequence.getStartL()%>)<%
 
 					final String sequenceError = sequence.getError();
 					if(sequenceError!=null)
@@ -232,12 +242,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					%>
 					<% write(sequence.getParticularColor(), out); %> <%=sequenceError%><%
 					}
-					if(sequence.exists())
-					{
-					%>
-					<input type="checkbox" name="<%=SchemaCop.DROP_SEQUENCE%>" value="<%=sequenceName%>"/>drop<%
-					}
-					else if(sequence.required())
+					if(!sequence.exists() && sequence.required())
 					{
 					%>,
 					<input type="checkbox" name="<%=SchemaCop.CREATE_SEQUENCE%>" value="<%=sequenceName%>"/>create<%

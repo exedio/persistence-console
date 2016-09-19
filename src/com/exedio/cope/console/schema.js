@@ -106,3 +106,20 @@ function conName(span, tableName)
 	var nameText = document.createTextNode(span.innerHTML);
 	parentNode.insertBefore(nameText, dropBox);
 }
+
+function seqName(span)
+{
+	var parentNode = span.parentNode;
+
+	var dropText = document.createTextNode("drop");
+	parentNode.replaceChild(dropText, span);
+
+	var dropBox = document.createElement("input");
+	dropBox.setAttribute('type', 'checkbox');
+	dropBox.setAttribute('name', 'DROP_SEQUENCE');
+	dropBox.setAttribute('value', span.innerHTML);
+	parentNode.insertBefore(dropBox, dropText);
+
+	var nameText = document.createTextNode(span.innerHTML);
+	parentNode.insertBefore(nameText, dropBox);
+}
