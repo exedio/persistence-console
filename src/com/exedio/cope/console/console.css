@@ -233,6 +233,15 @@ img.node
 	height:9px;
 }
 
+div.nodeLeaf
+{
+	display:inline-block;
+	width:9px;
+	height:9px;
+	border:0;
+	padding:0;
+}
+
 .expand
 {
 	display:none;

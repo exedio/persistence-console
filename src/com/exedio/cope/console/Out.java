@@ -25,6 +25,7 @@ import com.exedio.cope.util.XMLEncoder;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Resource;
 import com.exedio.dsmf.Constraint;
+import com.exedio.dsmf.Node;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
@@ -112,6 +113,11 @@ final class Out extends OutBasic
 	void write(final InetAddress s)
 	{
 		bf.print(s);
+	}
+
+	void write(final Node.Color c)
+	{
+		bf.print(c.name());
 	}
 
 	private final long now = System.currentTimeMillis();

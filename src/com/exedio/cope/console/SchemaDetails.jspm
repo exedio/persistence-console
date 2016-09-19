@@ -128,7 +128,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 							continue;
 						%>
 						<li>
-							<img class="node" src="<%=leaf(column.getCumulativeColor())%>">
+							<div class="nodeLeaf <%=column.getCumulativeColor()%>"></div>
 							<small>col<%=columnCount%></small><%
 
 							if(column.exists())
@@ -170,7 +170,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 						final String constraintName = constraint.getName();
 						%>
 						<li>
-							<img class="node" src="<%=leaf(constraint.getCumulativeColor())%>">
+							<div class="nodeLeaf <%=constraint.getCumulativeColor()%>"></div>
 							<small><%=constraint.getType()%><%=constraintCount%></small><%
 
 							if(constraint.exists())
@@ -222,7 +222,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 				final String sequenceName = sequence.getName();
 				%>
 				<li>
-					<img class="node" src="<%=leaf(sequence.getCumulativeColor())%>">
+					<div class="nodeLeaf <%=sequence.getCumulativeColor()%>"></div>
 					<small>seq<%=sequenceCount%></small>
 					<%
 					if(sequence.exists())
@@ -280,18 +280,6 @@ final class SchemaDetails_Jspm extends Console_Jspm
 			case OK:      return ConsoleServlet.nodeFalse;
 			case WARNING: return ConsoleServlet.nodeWarningFalse;
 			case ERROR:   return ConsoleServlet.nodeErrorFalse;
-			default:
-				throw new RuntimeException(color.toString());
-		}
-	}
-
-	private static final Resource leaf(final Node.Color color)
-	{
-		switch(color)
-		{
-			case OK:      return ConsoleServlet.nodeLeaf;
-			case WARNING: return ConsoleServlet.nodeLeafWarning;
-			case ERROR:   return ConsoleServlet.nodeLeafError;
 			default:
 				throw new RuntimeException(color.toString());
 		}
