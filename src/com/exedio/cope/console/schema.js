@@ -42,15 +42,6 @@ function setDisplay(element, display)
 		element.style.display = display;
 }
 
-function edit(span, name)
-{
-	var parentNode = span.parentNode;
-	var input = document.createElement("input");
-	input.setAttribute('name', name);
-	input.setAttribute('value', span.innerHTML);
-	parentNode.replaceChild(input, span);
-}
-
 function tabName(span)
 {
 	var parentNode = span.parentNode;
@@ -87,4 +78,14 @@ function colName(span, tableName)
 	input.setAttribute('name', 'RENAME_COLUMN__' + tableName + '#' + span.innerHTML);
 	input.setAttribute('value', span.innerHTML);
 	parentNode.insertBefore(input, dropBox);
+}
+
+function colType(span, tableName, columnName)
+{
+	var parentNode = span.parentNode;
+
+	var input = document.createElement("input");
+	input.setAttribute('name', 'MODIFY_COLUMN__' + tableName + '#' + columnName);
+	input.setAttribute('value', span.innerHTML);
+	parentNode.replaceChild(input, span);
 }
