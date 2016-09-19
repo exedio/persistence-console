@@ -107,12 +107,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					%>
 					<% write(table.getParticularColor(), out); %> <%=tableError%><%
 					}
-					if(table.exists())
-					{
-					%>
-					<span id="tabDrp<%=tableCount%>" class="expand">, <input type="checkbox" name="<%=SchemaCop.DROP_TABLE%>" value="<%=tableName%>"/>drop</span><%
-					}
-					else if(table.required())
+					if(!table.exists() && table.required())
 					{
 					%>,
 					<input type="checkbox" name="<%=SchemaCop.CREATE_TABLE%>" value="<%=tableName%>"/>create<%

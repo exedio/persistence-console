@@ -23,18 +23,15 @@ function togSch(switchElement)
 function togTab(switchElement,table)
 {
 	var bodyElement = document.getElementById("tabBdy" + table);
-	var dropElement = document.getElementById("tabDrp" + table);
 	var switchSrc = switchElement.src;
 	if(switchSrc.substring(switchSrc.length-8)=="true.png")
 	{
 		setDisplay(bodyElement, "none");
-		setDisplay(dropElement, "none");
 		switchElement.src = switchSrc.substring(0, switchSrc.length-8) + "false.png";
 	}
 	else
 	{
 		setDisplay(bodyElement, "block");
-		setDisplay(dropElement, "inline");
 		switchElement.src = switchSrc.substring(0, switchSrc.length-9) + "true.png";
 	}
 }
@@ -57,8 +54,18 @@ function edit(span, name)
 function tabName(span)
 {
 	var parentNode = span.parentNode;
+
+	var dropText = document.createTextNode("drop");
+	parentNode.replaceChild(dropText, span);
+
+	var dropBox = document.createElement("input");
+	dropBox.setAttribute('type', 'checkbox');
+	dropBox.setAttribute('name', 'DROP_TABLE');
+	dropBox.setAttribute('value', span.innerHTML);
+	parentNode.insertBefore(dropBox, dropText);
+
 	var input = document.createElement("input");
 	input.setAttribute('name', 'RENAME_TABLE_' + span.innerHTML);
 	input.setAttribute('value', span.innerHTML);
-	parentNode.replaceChild(input, span);
+	parentNode.insertBefore(input, dropBox);
 }
