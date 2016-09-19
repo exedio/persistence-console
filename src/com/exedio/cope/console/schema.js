@@ -89,3 +89,20 @@ function colType(span, tableName, columnName)
 	input.setAttribute('value', span.innerHTML);
 	parentNode.replaceChild(input, span);
 }
+
+function conName(span, tableName)
+{
+	var parentNode = span.parentNode;
+
+	var dropText = document.createTextNode("drop");
+	parentNode.replaceChild(dropText, span);
+
+	var dropBox = document.createElement("input");
+	dropBox.setAttribute('type', 'checkbox');
+	dropBox.setAttribute('name', 'DROP_CONSTRAINT');
+	dropBox.setAttribute('value', tableName + '#' + span.innerHTML);
+	parentNode.insertBefore(dropBox, dropText);
+
+	var nameText = document.createTextNode(span.innerHTML);
+	parentNode.insertBefore(nameText, dropBox);
+}

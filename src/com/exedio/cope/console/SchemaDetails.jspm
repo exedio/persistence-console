@@ -171,8 +171,18 @@ final class SchemaDetails_Jspm extends Console_Jspm
 						%>
 						<li>
 							<img class="node" src="<%=leaf(constraint.getCumulativeColor())%>">
-							<small><%=constraint.getType()%><%=constraintCount%></small>
+							<small><%=constraint.getType()%><%=constraintCount%></small><%
+
+							if(constraint.exists())
+							{
+							%>
+							<span class="textedit" onClick="conName(this,'<%=tableName%>')"><%=constraintName%></span><%
+							}
+							else
+							{
+							%>
 							<%=constraintName%><%
+							}
 
 							final String constraintCondition = constraint.getRequiredCondition();
 							if(constraintCondition!=null)
@@ -187,12 +197,8 @@ final class SchemaDetails_Jspm extends Console_Jspm
 							%>
 							<% write(constraint.getParticularColor(), out); %> <%=constraintError%><%
 							}
-							if(constraint.exists())
-							{
-							%>
-							<input type="checkbox" name="<%=SchemaCop.DROP_CONSTRAINT%>" value="<%=tableName%>#<%=constraintName%>"/>drop<%
-							}
-							else if( constraint.required() &&
+							if(!constraint.exists() &&
+									constraint.required() &&
 									constraint.isSupported() &&
 									constraint.getTable().exists() )
 							{
