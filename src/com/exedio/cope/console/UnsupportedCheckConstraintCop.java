@@ -78,7 +78,7 @@ final class UnsupportedCheckConstraintCop extends TestCop<CheckConstraint>
 		switch(h)
 		{
 			case 0: out.write(constraint.toString()); break;
-			case 1: out.write(constraint.getCondition().toString()); break;
+			case 1: writeValueLong(out, constraint.getCondition().toString()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		};

@@ -99,7 +99,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 			case 1:
 				final StringBuilder bf = new StringBuilder();
 				appendSQL(table, bf);
-				out.write(bf.toString());
+				writeValueLong(out, bf.toString());
 				break;
 			default:
 				throw new RuntimeException(String.valueOf(h));

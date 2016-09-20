@@ -131,6 +131,15 @@ td.notavailable
 	font-size:7pt;
 }
 
+table td div.long
+{
+	margin:0;
+	padding:0;
+	overflow:auto;
+	max-height:5em;
+	font-size:small;
+}
+
 td.revisionNotInApplication
 {
 	background-color:#eee;

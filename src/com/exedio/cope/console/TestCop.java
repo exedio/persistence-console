@@ -349,6 +349,19 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		return true;
 	}
 
+	static final void writeValueLong(final Out out, final String s)
+	{
+		if(s.length()<=80)
+		{
+			out.write(s);
+			return;
+		}
+
+		out.writeStatic("<div class=\"long\">");
+		out.write(s.replaceAll(",", ", ")); // allow word wrap
+		out.writeStatic("</div>");
+	}
+
 	abstract List<I> getItems(Model model);
 	abstract String[] getHeadings();
 	abstract void writeValue(Out out, I item, int h);
