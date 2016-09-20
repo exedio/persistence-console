@@ -30,6 +30,9 @@ final class Schema_Jspm extends Console_Jspm
 			{
 				list-style:none;
 			}
+			div.OK      { background: url(<%= ConsoleServlet.nodeLeaf        %>); }
+			div.WARNING { background: url(<%= ConsoleServlet.nodeLeafWarning %>); }
+			div.ERROR   { background: url(<%= ConsoleServlet.nodeLeafError   %>); }
 		</style><%
 	}
 }
