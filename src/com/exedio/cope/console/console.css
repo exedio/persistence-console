@@ -73,6 +73,9 @@ div.notauthenticated
 
 div.menu
 {
+	position:sticky;
+	top:0;
+	background:#eee;
 	font-size:90%;
 }
 

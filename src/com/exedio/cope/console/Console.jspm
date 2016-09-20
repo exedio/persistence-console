@@ -114,9 +114,6 @@ abstract class Console_Jspm
 		}
 
 		%>
-		<hr><%
-		Menue_Jspm.write(out, cop);
-		%>
 		<hr>
 		<div class="footer"><%=cop.getStart()%> (<%=cop.getDuration()%>ms)</div>
 	</body>
