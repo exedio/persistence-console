@@ -70,10 +70,12 @@ final class SchemaDetails_Jspm extends Console_Jspm
 
 			final Schema schema = model.getVerifiedSchema();
 			%>
+			<div class="schemaApply">
+				<input type="submit" name="<%= APPLY     %>" value="apply"/>
+				<input type="submit" name="<%= APPLY_DRY %>" value="dry run"/>
+			</div>
 			<img class="node" onClick="togSch(this)" src="<%=node(schema.getCumulativeColor())%>">
 			Schema
-			<input id="schApp" class="expand" type="submit" name="<%=APPLY%>" value="apply"/>
-			<input id="schAppDry" class="expand" type="submit" name="<%=APPLY_DRY%>" value="dry run"/>
 			<ul id="schBdy" class="expand"><%
 
 			int tableCount = 0;

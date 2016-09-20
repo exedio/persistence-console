@@ -79,7 +79,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 		{
 			case 0: out.write(constraint.getTable().getName()); break;
 			case 1: out.write(constraint.getName()); break;
-			case 2: out.write(constraint.getRequiredCondition()); break;
+			case 2: writeValueLong(out, constraint.getRequiredCondition()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		};

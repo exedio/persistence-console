@@ -73,6 +73,9 @@ div.notauthenticated
 
 div.menu
 {
+	position:sticky;
+	top:0;
+	background:#eee;
 	font-size:90%;
 }
 
@@ -126,6 +129,15 @@ td.notavailable
 	background:#eee;
 	padding:1px 3px;
 	font-size:7pt;
+}
+
+table td div.long
+{
+	margin:0;
+	padding:0;
+	overflow:auto;
+	max-height:5em;
+	font-size:small;
 }
 
 td.revisionNotInApplication
@@ -240,6 +252,16 @@ div.nodeLeaf
 	height:9px;
 	border:0;
 	padding:0;
+}
+
+div.schemaApply
+{
+	float:right;
+	margin:0.5em 0 0.5em 0.5em;
+	position:sticky;
+	top:7em;
+	background:#ccf;
+	padding:0.5em;
 }
 
 .expand

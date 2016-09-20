@@ -76,7 +76,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 		{
 			case 0: out.write(field.getType().getID()); break;
 			case 1: out.write(field.getName()); break;
-			case 2: out.write(field.getValues().toString()); break;
+			case 2: writeValueLong(out, field.getValues().toString()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		};
