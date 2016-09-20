@@ -245,6 +245,16 @@ div.nodeLeaf
 	padding:0;
 }
 
+div.schemaApply
+{
+	float:right;
+	margin:0.5em 0 0.5em 0.5em;
+	position:sticky;
+	top:7em;
+	background:#ccf;
+	padding:0.5em;
+}
+
 .expand
 {
 	display:none;
