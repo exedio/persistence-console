@@ -167,14 +167,17 @@ abstract class ConsoleCop<S> extends Cop
 		return HttpServletResponse.SC_OK;
 	}
 
-	final ConsoleCop<?>[] getTabs()
+	final ConsoleCop<?>[][] getMenu()
 	{
 		final TestCop.TestArgs testArgs = new TestCop.TestArgs();
 		return
-			new ConsoleCop<?>[]{
+			new ConsoleCop<?>[][]{
+				new ConsoleCop<?>[]{
 					new ConnectCop(args),
 					new ConnectTokenCop(args),
 					new PurgeCop(args),
+				},
+				new ConsoleCop<?>[]{
 					new SchemaCop(args),
 					new SavepointCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
@@ -186,31 +189,45 @@ abstract class ConsoleCop<S> extends Cop
 					new TypeCompletenessCop(args, testArgs),
 					new CopyConstraintCop(args, testArgs),
 					new CharacterNulCop(args, testArgs),
+				},
+				new ConsoleCop<?>[]{
 					new OptionalFieldCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
 					new RevisionCop(args),
 					new RevisionSheetCop(args),
+				},
+				new ConsoleCop<?>[]{
 					new DatabaseLogCop(args),
+				},
+				new ConsoleCop<?>[]{
 					new ConnectionPoolCop(args),
 					new TransactionCop(args),
+				},
+				new ConsoleCop<?>[]{
 					new ItemCacheCop(args),
 					new QueryCacheCop(args),
 					new SerializationCheckCop(args),
 					new DataFieldCop(args),
+				},
+				new ConsoleCop<?>[]{
 					new MediaStatsCop(args, MediaStatsCop.Variant.all),
 					new MediaStatsCop(args, MediaStatsCop.Variant.fingerprint),
 					new MediaTestableCop(args, testArgs),
 					new MediaTypeCop(args, testArgs),
+				},
+				new ConsoleCop<?>[]{
 					new ClusterCop(args),
 					new ThreadCop(args),
 					new VmCop(args, false, false),
 					new EnumsCop(args),
 					new EnvironmentCop(args),
+				},
+				new ConsoleCop<?>[]{
 					new HashCop(args),
 					new HiddenCop(args),
 					new ChangeListenerCop(args),
-				};
+				}};
 	}
 
 	final String getStart()
