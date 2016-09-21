@@ -26,22 +26,41 @@ final class Menue_Jspm
 			final ConsoleCop<?> cop)
 	{
 		%>
-		<div class="menu"><%
+		<ul class="menu"><%
 
-		for(final ConsoleCop<?> tab : cop.getTabs())
+		for(final ConsoleCop<?>[] dropdown : cop.getMenu())
 		{
-			if(cop.name.equals(tab.name))
-			{
 			%>
-			| <%=tab.name%><%
-			}
-			else
-			{
+			<li>
+				<% write(out, cop, dropdown[0]); %><%
+
+				if(dropdown.length>1)
+				{
+				%>
+				<ul><%
+
+				for(int i = 1; i<dropdown.length; i++)
+				{
+					%>
+					<li><% write(out, cop, dropdown[i]); %></li><%
+				}
+				%>
+				</ul><%
+				}
 			%>
-			| <a href="<%=tab%>"><%=tab.name%></a><%
-			}
+			</li><%
 		}
 		%>
-		</div><%
+		</ul><%
+	}
+
+	private static void write(
+			final Out out,
+			final ConsoleCop<?> cop,
+			final ConsoleCop<?> target)
+	{
+		%><a href="<%=target%>"<%
+			if(cop.name.equals(target.name)){%> class="active"<%}
+			%>><%=target.name%></a><%
 	}
 }%>

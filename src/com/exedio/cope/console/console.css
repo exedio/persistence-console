@@ -24,6 +24,8 @@ h1
 
 h2
 {
+	clear:left;
+	margin-top:2.5em;
 	font-family:sans-serif;
 	font-size:140%;
 }
@@ -71,13 +73,63 @@ div.notauthenticated
 	color:#e00;
 }
 
-div.menu
+
+ul.menu
 {
 	position:sticky;
 	top:0;
-	background:#eee;
+	margin:0;
+	padding:0;
 	font-size:90%;
+	list-style:none;
 }
+
+ul.menu > li
+{
+	float:left;
+	background:#eee;
+}
+
+ul.menu > li > ul
+{
+	display:none;
+	list-style:none;
+	padding:0;
+	border:solid 1px #005;
+	border-top:none;
+}
+
+ul.menu a
+{
+	display:block;
+	white-space:nowrap;
+	padding:0.5em;
+	text-decoration:none;
+	color:#005;
+}
+
+ul.menu > li:hover > ul
+{
+	display:block;
+	position:absolute;
+}
+
+ul.menu > li > ul > li
+{
+	position:relative;
+	background:#eee;
+}
+
+ul.menu li:hover
+{
+	background:#ccc;
+}
+
+ul.menu a.active
+{
+	background:#ccf;
+}
+
 
 hr
 {
