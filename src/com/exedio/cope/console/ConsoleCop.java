@@ -175,11 +175,10 @@ abstract class ConsoleCop<S> extends Cop
 				new ConsoleCop<?>[]{
 					new ConnectCop(args),
 					new ConnectTokenCop(args),
-					new PurgeCop(args),
+					new EnvironmentCop(args),
 				},
 				new ConsoleCop<?>[]{
 					new SchemaCop(args),
-					new SavepointCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
 					new UnsupportedCheckConstraintByTableCop(args, testArgs),
 					new UnsupportedCheckConstraintCop(args, testArgs),
@@ -188,12 +187,14 @@ abstract class ConsoleCop<S> extends Cop
 					new TypeColumnCop(args, testArgs),
 					new TypeCompletenessCop(args, testArgs),
 					new CopyConstraintCop(args, testArgs),
-					new CharacterNulCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
 					new OptionalFieldCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
+					new CharacterNulCop(args, testArgs),
+					new SavepointCop(args),
+					new PurgeCop(args),
 					new RevisionCop(args),
 					new RevisionSheetCop(args),
 				},
@@ -201,14 +202,13 @@ abstract class ConsoleCop<S> extends Cop
 					new DatabaseLogCop(args),
 				},
 				new ConsoleCop<?>[]{
-					new ConnectionPoolCop(args),
 					new TransactionCop(args),
-				},
-				new ConsoleCop<?>[]{
+					new ConnectionPoolCop(args),
 					new ItemCacheCop(args),
 					new QueryCacheCop(args),
-					new SerializationCheckCop(args),
-					new DataFieldCop(args),
+					new ThreadCop(args),
+					new ChangeListenerCop(args),
+					new ClusterCop(args),
 				},
 				new ConsoleCop<?>[]{
 					new MediaStatsCop(args, MediaStatsCop.Variant.all),
@@ -217,16 +217,12 @@ abstract class ConsoleCop<S> extends Cop
 					new MediaTypeCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
-					new ClusterCop(args),
-					new ThreadCop(args),
 					new VmCop(args, false, false),
 					new EnumsCop(args),
-					new EnvironmentCop(args),
-				},
-				new ConsoleCop<?>[]{
-					new HashCop(args),
 					new HiddenCop(args),
-					new ChangeListenerCop(args),
+					new DataFieldCop(args),
+					new SerializationCheckCop(args),
+					new HashCop(args),
 				}};
 	}
 
