@@ -81,15 +81,6 @@ abstract class Console_Jspm
 		}
 		%></div>
 		<div class="authenticated">
-			Auto Refresh:<%
-			for(final int a : ConsoleCop.AUTO_REFRESHS)
-			{
-			%>
-			<a href="<%=cop.toAutoRefresh(a)%>"<%if(a==autoRefresh){%> class="selected"<%}%>><% if(a==0){%>off<%}else{%><%=a%>s<%} %></a><%
-			}
-			%>
-		</div>
-		<div class="authenticated">
 			Date Precision:<%
 			for(final ConsoleCop.DatePrecision a : ConsoleCop.DatePrecision.values())
 			{
