@@ -25,7 +25,7 @@ final class Stores
 	private final HashMap<Class<? extends ConsoleCop<?>>, Store<?>> stores =
 			new HashMap<Class<? extends ConsoleCop<?>>, Store<?>>();
 
-	static class Store<S>
+	static final class Store<S>
 	{
 		final S value;
 
