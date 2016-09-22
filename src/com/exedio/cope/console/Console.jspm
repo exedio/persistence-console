@@ -44,7 +44,6 @@ abstract class Console_Jspm
 		try
 		{
 			final int autoRefresh = cop.args.autoRefresh;
-			final ConsoleCop.DatePrecision datePrecision = cop.args.datePrecision;
 
 %><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -80,25 +79,6 @@ abstract class Console_Jspm
 			%> on <%=hostname%><%
 		}
 		%></div>
-		<div class="authenticated">
-			Auto Refresh:<%
-			for(final int a : ConsoleCop.AUTO_REFRESHS)
-			{
-			%>
-			<a href="<%=cop.toAutoRefresh(a)%>"<%if(a==autoRefresh){%> class="selected"<%}%>><% if(a==0){%>off<%}else{%><%=a%>s<%} %></a><%
-			}
-			%>
-		</div>
-		<div class="authenticated">
-			Date Precision:<%
-			for(final ConsoleCop.DatePrecision a : ConsoleCop.DatePrecision.values())
-			{
-			%>
-			<a href="<%=cop.toDatePrecision(a)%>"<%if(a==datePrecision){%> class="selected"<%}%>><%= a.name() %></a><%
-			}
-			%>
-		</div><%
-		%>
 		<br clear="right"><%
 		Menue_Jspm.write(out, cop);
 		%>

@@ -19,6 +19,8 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.console.ConsoleCop.DatePrecision;
+
 final class Menue_Jspm
 {
 	static void write(
@@ -50,6 +52,41 @@ final class Menue_Jspm
 			%>
 			</li><%
 		}
+			final int autoRefresh = cop.args.autoRefresh;
+			%>
+			<li>
+				<a href="<%=cop.toAutoRefresh(0)%>">AR<%
+						if(autoRefresh!=0){ %> <small>(<%=autoRefresh%>)</small><% } %></a>
+				<ul><%
+
+				for(final int a : ConsoleCop.AUTO_REFRESHS)
+				{
+					%>
+					<li><a href="<%=cop.toAutoRefresh(a)%>"<%
+						if(autoRefresh==a){%> class="active"<%}
+						%>><%
+						if(a==0){ %>Auto Refresh off<% } else { %><%=a%> seconds<% } %></a></li><%
+				}
+				%>
+				</ul>
+			</li><%
+
+			final DatePrecision datePrecision = cop.args.datePrecision;
+			%>
+			<li>
+				<a href="<%=cop.toDatePrecision(DatePrecision.m)%>">DP</a>
+				<ul><%
+
+				for(final DatePrecision d : DatePrecision.values())
+				{
+					%>
+					<li><a href="<%=cop.toDatePrecision(d)%>"<%
+						if(datePrecision==d){%> class="active"<%}
+						%>>Date Precision <%=d.menuText%></a></li><%
+				}
+				%>
+				</ul>
+			</li><%
 		%>
 		</ul><%
 	}

@@ -34,15 +34,17 @@ abstract class ConsoleCop<S> extends Cop
 {
 	enum DatePrecision
 	{
-		m ("HH:mm"),
-		s ("HH:mm:ss"),
-		ms("HH:mm:ss'<small>'.SSS'</small>'");
+		m ("HH:mm", "Minutes"),
+		s ("HH:mm:ss", "Seconds"),
+		ms("HH:mm:ss'<small>'.SSS'</small>'", "Milliseconds");
 
 		final String pattern;
+		final String menuText;
 
-		DatePrecision(final String pattern)
+		DatePrecision(final String pattern, final String menuText)
 		{
 			this.pattern = pattern;
+			this.menuText = menuText;
 		}
 	}
 
