@@ -65,7 +65,7 @@ final class Media_Jspm extends Console_Jspm
 				but not securely.
 				This should not happen on production systems.
 				To fix this, set cope property <tt>media.url.secret</tt> to an arbitrary unguessable value.
-				<% writeFail(out, true); %>
+				<% writeError(out, true); %>
 			</div><%
 			}
 
@@ -104,7 +104,7 @@ final class Media_Jspm extends Console_Jspm
 
 					if(path.isUrlGuessingPrevented())
 					{
-						%><small>@<%=PreventUrlGuessing.class.getSimpleName()%><% writeFail(out, isUrlGuessingNotSecure); %></small><br><%
+						%><small>@<%=PreventUrlGuessing.class.getSimpleName()%><% writeError(out, isUrlGuessingNotSecure); %></small><br><%
 					}
 					if(writeUrlFingerPrinted && path.isUrlFingerPrinted())
 					{

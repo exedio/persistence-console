@@ -19,7 +19,7 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.Console_Jspm.writeFail;
+import static com.exedio.cope.console.Console_Jspm.writeError;
 import static com.exedio.cope.console.Format.format;
 
 import java.util.Date;
@@ -258,7 +258,7 @@ final class Test_Jspm
 				final String cellClass = info.getCellClass();
 				%>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
-				writeFail(out, info.isError());
+				writeError(out, info.isError());
 				%><% info.writeCellContent(out); %><%
 				%></td>
 				<td><%=format(info.elapsed)%></td><%
@@ -285,9 +285,9 @@ final class Test_Jspm
 				%>
 				<th style="text-align:right;" colspan="<%=headingsLength%>">Summary</th>
 				<td><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">Test</a></td>
-				<td><% writeFail(out, !complete); %><%=date%></td>
+				<td><% writeError(out, !complete); %><%=date%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
-				writeFail(out, isError);
+				writeError(out, isError);
 				%><%=failures%><%
 				%></td>
 				<td><%=format(elapsed)%></td><%

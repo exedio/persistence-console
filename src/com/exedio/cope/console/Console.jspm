@@ -147,7 +147,7 @@ abstract class Console_Jspm
 				<a href="<%=cop.toPage(href)%>"<% if(href.isNeutral()){%> class="<%=neutralClass%>"<%}%>><%=text%></a><%
 	}
 
-	static final void writeFail(
+	static final void writeError(
 			final Out out,
 			final boolean condition)
 	{
