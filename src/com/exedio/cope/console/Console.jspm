@@ -26,7 +26,6 @@ import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.Model.NotConnectedException;
-import com.exedio.cope.console.Stores.Store;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 
@@ -155,35 +154,6 @@ abstract class Console_Jspm
 		if(condition)
 		{
 			%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
-		}
-	}
-
-	static final void write(
-			final Out out,
-			final boolean runNow,
-			final Store<?> store)
-	{
-		if(store==null)
-		{
-			%>
-			Not yet run.<%
-
-			if(!runNow)
-			{
-			%>
-			<img class="check2" src="<%=ConsoleServlet.warning2%>"><%
-			}
-		}
-		else
-		{
-			%>
-			Last run on <%=store.getDate()%>.<%
-		}
-
-		if(runNow)
-		{
-			%>
-			<b>Running now.</b><%
 		}
 	}
 

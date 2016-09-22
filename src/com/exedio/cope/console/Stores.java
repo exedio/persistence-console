@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import java.util.Date;
 import java.util.HashMap;
 
 final class Stores
@@ -29,17 +28,10 @@ final class Stores
 	static class Store<S>
 	{
 		final S value;
-		private final long date;
 
 		Store(final S value)
 		{
 			this.value = value;
-			this.date = System.currentTimeMillis();
-		}
-
-		Date getDate()
-		{
-			return new Date(date);
 		}
 	}
 
