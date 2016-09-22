@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.exedio.cope.Model.NotConnectedException;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
+import com.exedio.cops.Resource;
 
 abstract class Console_Jspm
 {
@@ -147,13 +148,28 @@ abstract class Console_Jspm
 				<a href="<%=cop.toPage(href)%>"<% if(href.isNeutral()){%> class="<%=neutralClass%>"<%}%>><%=text%></a><%
 	}
 
+	static final void writeWarning(
+			final Out out,
+			final boolean condition)
+	{
+		writeProblem(out, condition, ConsoleServlet.warning2);
+	}
+
 	static final void writeError(
 			final Out out,
 			final boolean condition)
 	{
+		writeProblem(out, condition, ConsoleServlet.error2);
+	}
+
+	private static final void writeProblem(
+			final Out out,
+			final boolean condition,
+			final Resource resource)
+	{
 		if(condition)
 		{
-			%><img class="check2" src="<%=ConsoleServlet.error2%>"><%
+			%><img class="check2" src="<%=resource%>"><%
 		}
 	}
 

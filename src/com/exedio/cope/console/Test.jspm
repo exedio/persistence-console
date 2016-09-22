@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Console_Jspm.writeError;
+import static com.exedio.cope.console.Console_Jspm.writeWarning;
 import static com.exedio.cope.console.Format.format;
 
 import java.util.Date;
@@ -285,7 +286,7 @@ final class Test_Jspm
 				%>
 				<th style="text-align:right;" colspan="<%=headingsLength%>">Summary</th>
 				<td><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">Test</a></td>
-				<td><% writeError(out, !complete); %><%=date%></td>
+				<td><% writeWarning(out, !complete); %><%=date%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
 				writeError(out, isError);
 				%><%=failures%><%
