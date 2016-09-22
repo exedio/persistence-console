@@ -58,8 +58,11 @@ final class Checklists_Jspm
 
 		for(ConsoleCop<?> target : targets)
 		{
+			final ChecklistIcon icon = target.getChecklistIcon(out.model);
 			%>
-			<li><a href="<%=target%>"><%=target.name%></a></li><%
+			<li><a href="<%=target%>"><%=target.name%></a><%
+				if(icon!=null) { %> <% icon.write(out); }
+				%></li><%
 		}
 		%>
 		</ul><%

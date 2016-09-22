@@ -100,6 +100,7 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource nodeLeaf        = new Resource("nodeleaf.png");
 	static final Resource nodeLeafWarning = new Resource("nodewarningleaf.png");
 	static final Resource nodeLeafError   = new Resource("nodeerrorleaf.png");
+	static final Resource ok      = new Resource("silk_accept.png");
 	static final Resource warning = new Resource("silk_error.png");
 	static final Resource error   = new Resource("silk_exclamation.png");
 	static final Resource help    = new Resource("silk_help.png");

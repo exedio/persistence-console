@@ -253,6 +253,14 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	/**
+	 * @param model used in subclasses
+	 */
+	ChecklistIcon getChecklistIcon(final Model model)
+	{
+		return null;
+	}
+
+	/**
 	 * @param out used in subclasses
 	 */
 	void writeHead(final Out out)

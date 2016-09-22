@@ -99,6 +99,19 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	abstract TestCop<I> newTestArgs(TestArgs testArgs);
 
 	@Override
+	ChecklistIcon getChecklistIcon(final Model model)
+	{
+		if(!toleratesNotConnected() && !model.isConnected())
+			return ChecklistIcon.warning;
+
+		final List<I> items = getItems(model);
+		if(items.isEmpty())
+			return ChecklistIcon.ok;
+
+		return store().getChecklistIcon(items.size());
+	}
+
+	@Override
 	final void writeHead(final Out out)
 	{
 		Test_Jspm.writeHead(out);
@@ -346,6 +359,20 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 			{
 				infos.put(id, info);
 			}
+		}
+
+		ChecklistIcon getChecklistIcon(final int itemsSize)
+		{
+			synchronized(infos)
+			{
+				for(final Info info : infos.values())
+					if(info.isError())
+						return ChecklistIcon.error;
+
+				if(itemsSize!=infos.size())
+					return ChecklistIcon.warning; // incomplete
+			}
+			return ChecklistIcon.ok;
 		}
 
 		Summary summarize(final int itemsSize)
