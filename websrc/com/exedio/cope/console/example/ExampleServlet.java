@@ -51,6 +51,7 @@ public final class ExampleServlet extends CopsServlet
 	static final String TRANSACTION_NAME   = "transaction.name";
 	static final String TRANSACTION_ITEMS  = "transaction.items";
 	static final String TRANSACTION_SLEEP  = "transaction.sleep";
+	static final String TRANSACTION_POSTHK = "transaction.postCommitHooks";
 	static final String TRANSACTION_SUBMIT = "transaction.submit";
 
 	static final String ITEM_CACHE_REPLACE = "itemCache.replace";
@@ -97,7 +98,8 @@ public final class ExampleServlet extends CopsServlet
 				doTransaction(
 						request.getParameter(TRANSACTION_NAME),
 						Integer.parseInt(request.getParameter(TRANSACTION_ITEMS)),
-						Integer.parseInt(request.getParameter(TRANSACTION_SLEEP)));
+						Integer.parseInt(request.getParameter(TRANSACTION_SLEEP)),
+						Integer.parseInt(request.getParameter(TRANSACTION_POSTHK)));
 			}
 			else if(request.getParameter(ITEM_CACHE_REPLACE)!=null)
 			{
@@ -194,12 +196,26 @@ public final class ExampleServlet extends CopsServlet
 		Revisions.revisions(Main.model);
 	}
 
-	private static void doTransaction(final String name, final int items, final long sleep)
+	private static void doTransaction(
+			final String name,
+			final int items,
+			final long sleep,
+			final int postCommitHooks)
 	{
 		try(TransactionTry tx = Main.model.startTransactionTry(replaceNullName(name)))
 		{
 			for(int i = 0; i<items; i++)
 				new AnItem(name + "#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
+
+			for(int i = 0; i<postCommitHooks; i++)
+			{
+				final int currentI = i;
+				Main.model.addCommitHook(() ->
+				{
+					System.out.println("POST COMMIT HOOK " + currentI);
+				});
+			}
+
 			if(sleep>0)
 				Thread.sleep(sleep);
 			tx.commit();

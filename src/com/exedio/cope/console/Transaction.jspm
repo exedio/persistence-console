@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ConsoleCop.writePager;
 import static com.exedio.cope.console.Format.format;
+import static com.exedio.cope.console.Format.formatAndHide;
 import static com.exedio.cope.console.Format.ratio;
 import static com.exedio.cope.console.TransactionCop.CLEAR;
 import static com.exedio.cope.console.TransactionCop.DISABLE;
@@ -126,13 +127,14 @@ final class Transaction_Jspm extends Console_Jspm
 		{
 			%>
 			<tr>
-				<th colspan="4">Transaction</th>
+				<th colspan="5">Transaction</th>
 				<th colspan="5">Bound Thread</th>
 			</tr>
 			<tr>
 				<th>#</th>
 				<th>ID</th>
 				<th>Started</th>
+				<th title="Number of Post Commit Hooks">Post</th>
 				<th>Name</th>
 				<th>ID</th>
 				<th>Name</th>
@@ -151,6 +153,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<td><%=format(n)%></td>
 				<td><%=format(t.getID())%></td>
 				<td><%=t.getStartDate()%></td>
+				<td><%=formatAndHide(0, t.getCommitHookCount())%></td>
 				<td class="<% if(name!=null){%>text<%}else{%>notavailable<%} %>"><%=name%></td>
 				<%
 				if(thread!=null)

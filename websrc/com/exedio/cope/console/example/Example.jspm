@@ -54,6 +54,8 @@ class Example_Jspm
 			<input name="<%=ExampleServlet.TRANSACTION_ITEMS %>" value="1" />
 			<br>sleep:
 			<input name="<%=ExampleServlet.TRANSACTION_SLEEP %>" value="0" />
+			<br>post commit hooks:
+			<input name="<%=ExampleServlet.TRANSACTION_POSTHK%>" value="0" />
 			<br>
 			<input name="<%=ExampleServlet.TRANSACTION_SUBMIT%>" type="submit" value="do" />
 		</form>
