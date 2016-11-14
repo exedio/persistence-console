@@ -18,8 +18,7 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.ItemCacheInfo;
-import com.exedio.cope.misc.ItemCacheSummary;
+import com.exedio.cope.ItemCacheStatistics;
 
 final class ItemCacheCop extends ConsoleCop<Void>
 {
@@ -37,8 +36,7 @@ final class ItemCacheCop extends ConsoleCop<Void>
 	@Override
 	final void writeBody(final Out out)
 	{
-		final ItemCacheInfo[] infos = out.model.getItemCacheInfo();
-		final ItemCacheSummary summary = new ItemCacheSummary(infos);
-		ItemCache_Jspm.writeBody(out, summary, infos);
+		final ItemCacheStatistics statistics = out.model.getItemCacheStatistics();
+		ItemCache_Jspm.writeBody(out, statistics);
 	}
 }
