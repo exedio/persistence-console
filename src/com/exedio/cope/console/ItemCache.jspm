@@ -28,11 +28,13 @@ import com.exedio.cope.ItemCacheStatistics;
 final class ItemCache_Jspm extends Console_Jspm
 {
 	static final void writeBody(
+			final ItemCacheCop cop,
 			final Out out,
 			final ItemCacheStatistics statistics)
 	{
 		final ItemCacheInfo[] infos = statistics.getDetails();
 		%>
+		<% writeToggle(out, cop.toToggleDetailed(), cop.detailed); %> detailed
 		<table class="matrixTable">
 			<tr>
 				<th colspan="3">Current</th>
@@ -74,6 +76,8 @@ final class ItemCache_Jspm extends Console_Jspm
 			</tr><%
 			for(final ItemCacheInfo info : infos)
 			{
+				if (cop.showInfo(info))
+				{
 			%>
 			<tr>
 				<td class="notavailable"></td>
@@ -91,6 +95,7 @@ final class ItemCache_Jspm extends Console_Jspm
 				<td class="b"><%=formatAndHide(0, info.getStampsPurged())%></td>
 				<td class="text"><%=info.getType().getID()%></td>
 			</tr><%
+				}
 			}
 		%>
 		</table><%
