@@ -20,6 +20,8 @@ package com.exedio.cope.console.example;
 
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
+import com.exedio.cope.instrument.WrapperIgnore;
+import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cope.pattern.MediaThumbnail;
@@ -29,9 +31,7 @@ import com.exedio.cope.pattern.UrlFingerPrinting;
 
 public final class AMediaItem extends Item
 {
-	/**
-	 * @cope.initial
-	 */
+	@WrapperInitial
 	static final StringField name = new StringField().optional();
 
 	@RedirectFrom("contentAlt")
@@ -49,11 +49,13 @@ public final class AMediaItem extends Item
 	@UrlFingerPrinting()
 	static final Media finger = new Media().optional();
 
+	@WrapperIgnore
 	@Deprecated
 	static final MediaRedirect redirect = new MediaRedirect(content);
 
 	static final MediaThumbnail thumbnail = new MediaThumbnail(content, 150, 150);
 
+	@WrapperIgnore
 	@Deprecated
 	static final MediaRedirect thumbnailRedirect = new MediaRedirect(thumbnail);
 

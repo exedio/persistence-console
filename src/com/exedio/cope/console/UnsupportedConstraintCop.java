@@ -107,6 +107,6 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	@Override
 	long check(final Constraint constraint, final Model model)
 	{
-		return constraint.check();
+		return constraint.checkL();
 	}
 }

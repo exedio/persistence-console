@@ -153,7 +153,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<td><%=format(n)%></td>
 				<td><%=format(t.getID())%></td>
 				<td><%=t.getStartDate()%></td>
-				<td><%=formatAndHide(0, t.getCommitHookCount())%></td>
+				<td><%=formatAndHide(0, t.getPostCommitHookCount())%></td>
 				<td class="<% if(name!=null){%>text<%}else{%>notavailable<%} %>"><%=name%></td>
 				<%
 				if(thread!=null)

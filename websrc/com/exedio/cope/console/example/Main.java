@@ -25,11 +25,12 @@ import com.exedio.cope.revstat.RevisionStatistics;
 public final class Main
 {
 	public static final Model model =
-		new Model(
-				Revisions.revisions(64),
-				new TypeSet[] {
+		Model.builder()
+			.add(Revisions.revisions(64))
+			.add( new TypeSet[] {
 					RevisionStatistics.types,
-				},
+				} )
+			.add(
 				AnItem.TYPE,
 				ASubItem.TYPE,
 				LongName1.TYPE,
@@ -47,7 +48,8 @@ public final class Main
 				AMediaSingleItem.TYPE,
 				FeatureItem.TYPE,
 				SequenceItem.TYPE
-		);
+			)
+			.build();
 
 	static
 	{

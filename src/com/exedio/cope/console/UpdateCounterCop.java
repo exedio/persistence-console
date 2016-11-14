@@ -99,7 +99,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 		try(TransactionTry tx = model.startTransactionTry("Console UpdateCounter " + id))
 		{
 			return tx.commit(
-					type.checkUpdateCounter());
+					type.checkUpdateCounterL());
 		}
 	}
 }

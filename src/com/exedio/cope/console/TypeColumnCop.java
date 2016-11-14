@@ -115,7 +115,7 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 		try(TransactionTry tx = model.startTransactionTry("Console TypeColumn " + id))
 		{
 			return tx.commit(
-					function.checkTypeColumn());
+					function.checkTypeColumnL());
 		}
 	}
 }
