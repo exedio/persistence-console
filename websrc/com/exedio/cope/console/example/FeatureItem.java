@@ -22,13 +22,14 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
+import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.reflect.FeatureField;
 
 public final class FeatureItem extends Item
 {
-	/** @cope.initial */
+	@WrapperInitial
 	static final FeatureField<Feature> feature = FeatureField.create().optional();
-	/** @cope.initial */
+	@WrapperInitial
 	static final FeatureField<StringField> string = FeatureField.create(StringField.class).optional();
 
 	static final StringField stringField1 = new StringField().optional();
