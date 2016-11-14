@@ -44,6 +44,7 @@ final class QueryCache_Jspm extends Console_Jspm
 			<caption>Statistics</caption>
 			<tr><th colspan="2">Limit</th><td><%= format(limit)%></td></tr>
 			<tr><th colspan="2">Level</th><td><%= format(info.getLevel()) %></td></tr>
+			<tr><th colspan="2">Concurrent Loads</th><td><%=format(info.getConcurrentLoads())%></td></tr>
 			<tr><th colspan="2">Replacements</th><td><%=format(info.getReplacements())%></td></tr>
 			<tr><th colspan="2">Invalidations</th><td><%=format(info.getInvalidations())%></td></tr>
 			<tr><th colspan="2">log<sub>10</sub> Hits/Misses</th><td><%=ratio(hits, misses)%></td></tr>
