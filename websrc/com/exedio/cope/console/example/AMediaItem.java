@@ -49,11 +49,13 @@ public final class AMediaItem extends Item
 	@UrlFingerPrinting()
 	static final Media finger = new Media().optional();
 
+	/** @cope.ignore */
 	@Deprecated
 	static final MediaRedirect redirect = new MediaRedirect(content);
 
 	static final MediaThumbnail thumbnail = new MediaThumbnail(content, 150, 150);
 
+	/** @cope.ignore */
 	@Deprecated
 	static final MediaRedirect thumbnailRedirect = new MediaRedirect(thumbnail);
 
