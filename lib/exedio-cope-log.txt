@@ -7,6 +7,41 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* item cache is now global (rather than split into separate segments for each type)
+  * @CopeCacheWeight is no longer applicable, and therefore deprecated;
+    use @CopeExternal instead of @CopeCacheWeight(0) to disable caching of a type
+  * reconsider cache limits:
+    With the same limit, the global cache will end up having more entries (and
+    using more memory) than the per-type cache.
+    Cache limit is now controlled by property "cache.item.globalLimit", which falls
+    back to the old "cope.cache.item.limit".
+* ConnectProperties: renamed several keys:
+
+	changeListeners.threads     -> changeListeners.threads.initial
+	changeListeners.threadsMax  -> changeListeners.threads.max
+	changeListeners.prioritySet -> changeListeners.threads.priority.set
+	changeListeners.priority    -> changeListeners.threads.priority.value
+	cluster.listenThreads       -> cluster.listen.threads.initial
+	cluster.listenThreadsMax    -> cluster.listen.threads.max
+	cluster.listenPrioritySet   -> cluster.listen.threads.priority.set
+	cluster.listenPriority      -> cluster.listen.threads.priority.value
+
+	This breaks backwards API compatibility, check your deployed systems!
+	Probably these keys is at their defaults, then you don't have to do anything.
+
+* ConnectProperties: key "dialect" changes its meaning.
+	This breaks backwards API compatibility, check your deployed systems!
+	Probably this key is at its default, then you don't have to do anything.
+* ConnectToken becomes AutoCloseable
+* @CopeExternal can be used to mark types whose instances are modified by other systems;
+	disables item and query cache for that type;
+	consider replacing @CopeCacheWeight(0) with @CopeExternal
+* ModelBuilder#name added.
+* dsmf.Column#getCumulativeColor considers Column#getConstraints()
+* cleaner instrument classpath handling:
+  * <taskdef> classpath: COPE libs (and required libs)
+  * <instrument> classpath: project-specific feature classes (and required libs)
+  -> in projects, the <taskdef> usually does not depend on any compilation
 * QueryCacheInfo#getConcurrentLoads added.
 * instrumentor supports importing item types from classpath
 * dsmf.Column#getExistingType() added.
