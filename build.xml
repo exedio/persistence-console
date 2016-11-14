@@ -19,14 +19,6 @@
 			resource="com/exedio/jspm/ant.properties"
 			classpath="lib/exedio-jspm.jar" />
 
-	<taskdef resource="com/exedio/cope/instrument/ant.properties">
-		<classpath>
-			<pathelement location="lib/exedio-cope-instrument.jar" />
-			<pathelement location="lib/slf4j-api.jar" />
-			<pathelement location="lib/javax.servlet-api.jar" />
-		</classpath>
-	</taskdef>
-
 	<macrodef name="ljunit">
 		<attribute name="test" />
 		<attribute name="env" default="N" />
@@ -142,7 +134,21 @@
 		</jspm>
 	</target>
 
-	<target name="web.instrument" unless="skip.instrument" depends="web.jspm">
+	<target name="instrument.taskdef" depends="web.jspm, src.compile">
+		<taskdef resource="com/exedio/cope/instrument/ant.properties">
+			<classpath>
+				<pathelement location="build/classes/src" />
+				<pathelement location="lib/exedio-cope-instrument.jar" />
+				<pathelement location="lib/exedio-cope-servletutil.jar" />
+				<pathelement location="lib/exedio-cops.jar" />
+				<pathelement location="lib/findbugs-annotations.jar" />
+				<pathelement location="lib/slf4j-api.jar" />
+				<pathelement location="lib/javax.servlet-api.jar" />
+			</classpath>
+		</taskdef>
+	</target>
+
+	<target name="web.instrument" unless="skip.instrument" depends="instrument.taskdef">
 		<instrument dir="websrc" verify="${instrument.verify}" configByTags="error" hintFormat="forTags" parenthesesOnEmptyMemberAnnotations="true">
 		</instrument>
 	</target>

@@ -210,7 +210,7 @@ public final class ExampleServlet extends CopsServlet
 			for(int i = 0; i<postCommitHooks; i++)
 			{
 				final int currentI = i;
-				Main.model.addCommitHook(() ->
+				Main.model.addPostCommitHook(() ->
 				{
 					System.out.println("POST COMMIT HOOK " + currentI);
 				});

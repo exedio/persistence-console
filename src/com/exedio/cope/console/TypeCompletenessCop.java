@@ -136,12 +136,12 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 		private static final char ID_SEPARATOR = '#';
 
 		@SuppressFBWarnings("NP_LOAD_OF_KNOWN_NULL_VALUE") // OK: caused by try-with-resources
-		int check(final Model model)
+		long check(final Model model)
 		{
 			try(TransactionTry tx = model.startTransactionTry("Console TypeCompleteness " + superType + ' ' + subType))
 			{
 				return tx.commit(
-						superType.checkCompleteness(subType));
+						superType.checkCompletenessL(subType));
 			}
 		}
 	}
