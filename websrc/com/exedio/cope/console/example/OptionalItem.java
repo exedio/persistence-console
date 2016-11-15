@@ -18,9 +18,11 @@
 
 package com.exedio.cope.console.example;
 
+import com.exedio.cope.CopeCreateLimit;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 
+@CopeCreateLimit(Long.MAX_VALUE)
 public final class OptionalItem extends Item
 {
 	static final StringField mandatory = new StringField().toFinal();
