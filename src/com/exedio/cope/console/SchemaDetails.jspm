@@ -236,7 +236,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 						%><%=sequenceName%><%
 					}
 
-					%> (<%=sequence.getStartL()%>)<%
+					%> (<%=sequence.getStartL()%>,<%=sequence.getType()%>)<%
 
 					final String sequenceError = sequence.getError();
 					if(sequenceError!=null)

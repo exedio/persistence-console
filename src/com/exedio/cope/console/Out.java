@@ -88,6 +88,11 @@ final class Out extends OutBasic
 		bf.print(b);
 	}
 
+	void write(final Enum<?> e)
+	{
+		bf.print(e.name());
+	}
+
 	void write(final Charset cs)
 	{
 		bf.print(cs.name());
