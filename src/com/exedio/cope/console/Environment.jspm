@@ -31,7 +31,11 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 final class Environment_Jspm extends Console_Jspm
 {
-	static final void writeCurrent(final Out out, final String dialect, final java.util.Properties properties)
+	static final void writeCurrent(
+			final Out out,
+			final String catalog,
+			final String dialect,
+			final java.util.Properties properties)
 	{
 		%>
 		<table>
@@ -45,6 +49,10 @@ final class Environment_Jspm extends Console_Jspm
 			</tr><%
 			}
 			%>
+			<tr>
+				<th>catalog</th>
+				<td class="text"><%=catalog%></td>
+			</tr>
 			<tr>
 				<th>dialect</th>
 				<td class="text"><%=dialect%></td>

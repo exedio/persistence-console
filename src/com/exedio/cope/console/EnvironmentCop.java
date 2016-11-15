@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Cope;
+import com.exedio.cope.EnvironmentInfo;
 import com.exedio.cope.Model;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.FileOutputStream;
@@ -54,14 +55,18 @@ final class EnvironmentCop extends ConsoleCop<Void>
 	final void writeBody(final Out out)
 	{
 		final Model model = out.model;
-		final java.util.Properties current = model.getEnvironmentInfo().asProperties();
+		final EnvironmentInfo env = model.getEnvironmentInfo();
+		final java.util.Properties current = env.asProperties();
 		for(final Iterator<Object> i = current.keySet().iterator(); i.hasNext(); )
 		{
 			final String name = (String)i.next();
 			current.setProperty(name, replaceNull(current.getProperty(name)));
 		}
 
-		Environment_Jspm.writeCurrent(out, model.getConnectProperties().getDialect(), current);
+		Environment_Jspm.writeCurrent(out,
+				env.getCatalog(),
+				model.getConnectProperties().getDialect(),
+				current);
 		Environment_Jspm.writeTest(out, current, makeTestedDatabases());
 	}
 
