@@ -149,7 +149,7 @@
 	</target>
 
 	<target name="web.instrument" unless="skip.instrument" depends="instrument.taskdef">
-		<instrument dir="websrc" verify="${instrument.verify}" configByTags="error" hintFormat="forTags" parenthesesOnEmptyMemberAnnotations="true">
+		<instrument dir="websrc" verify="${instrument.verify}" configByTags="error">
 		</instrument>
 	</target>
 
