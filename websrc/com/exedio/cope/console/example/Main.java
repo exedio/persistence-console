@@ -19,7 +19,6 @@
 package com.exedio.cope.console.example;
 
 import com.exedio.cope.Model;
-import com.exedio.cope.TypeSet;
 import com.exedio.cope.revstat.RevisionStatistics;
 
 public final class Main
@@ -27,9 +26,9 @@ public final class Main
 	public static final Model model =
 		Model.builder()
 			.add(Revisions.revisions(64))
-			.add( new TypeSet[] {
-					RevisionStatistics.types,
-				} )
+			.add(
+				RevisionStatistics.types
+			)
 			.add(
 				AnItem.TYPE,
 				ASubItem.TYPE,
