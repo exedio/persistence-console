@@ -11,6 +11,7 @@
 	<classpathentry kind="lib" path="lib/exedio-cops.jar" sourcepath="lib/exedio-cops-src.zip"/>
 	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
 	<classpathentry kind="lib" path="lib/exedio-cope.jar" sourcepath="lib/exedio-cope-src.zip"/>
+	<classpathentry kind="lib" path="lib/exedio-cope-instrument-annotations.jar" sourcepath="lib/exedio-cope-src.zip"/>
 	<classpathentry kind="lib" path="lib/exedio-cope-junit.jar" sourcepath="lib/exedio-cope-src.zip"/>
 	<classpathentry kind="lib" path="lib/exedio-cope-servletutil.jar" sourcepath="lib/exedio-cope-servletutil-src.zip"/>
 	<classpathentry kind="lib" path="lib/findbugs-annotations.jar"/>
