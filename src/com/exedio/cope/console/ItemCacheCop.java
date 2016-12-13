@@ -64,7 +64,7 @@ final class ItemCacheCop extends ConsoleCop<Void>
 		return new ItemCacheCop(args, !detailed);
 	}
 
-	boolean showInfo(ItemCacheInfo info)
+	boolean showInfo(final ItemCacheInfo info)
 	{
 		return detailed
 			|| info.getLevel()!=0
