@@ -364,7 +364,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_DATBASE_LOG.equals(tab))
 			return new DatabaseLogCop(args);
 		if(TAB_ITEM_CACHE.equals(tab))
-			return new ItemCacheCop(args);
+			return ItemCacheCop.getItemCacheCop(args, request);
 		if(TAB_QUERY_CACHE.equals(tab))
 			return QueryCacheCop.getQueryCacheCop(args, request);
 		if(TAB_SEQUENCE.equals(tab))
