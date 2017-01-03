@@ -51,7 +51,9 @@ public final class ExampleServlet extends CopsServlet
 	static final String TRANSACTION_NAME   = "transaction.name";
 	static final String TRANSACTION_ITEMS  = "transaction.items";
 	static final String TRANSACTION_SLEEP  = "transaction.sleep";
-	static final String TRANSACTION_POSTHK = "transaction.postCommitHooks";
+	static final String TRANSACTION_HOOK_PRE       = "transaction.preCommitHooks";
+	static final String TRANSACTION_HOOK_POST      = "transaction.postCommitHooks";
+	static final String TRANSACTION_HOOK_DUPLICATE = "transaction.duplicateCommitHooks";
 	static final String TRANSACTION_SUBMIT = "transaction.submit";
 
 	static final String ITEM_CACHE_REPLACE = "itemCache.replace";
@@ -99,7 +101,9 @@ public final class ExampleServlet extends CopsServlet
 						request.getParameter(TRANSACTION_NAME),
 						Integer.parseInt(request.getParameter(TRANSACTION_ITEMS)),
 						Integer.parseInt(request.getParameter(TRANSACTION_SLEEP)),
-						Integer.parseInt(request.getParameter(TRANSACTION_POSTHK)));
+						Integer.parseInt(request.getParameter(TRANSACTION_HOOK_PRE)),
+						Integer.parseInt(request.getParameter(TRANSACTION_HOOK_POST)),
+						request.getParameter(TRANSACTION_HOOK_DUPLICATE)!=null);
 			}
 			else if(request.getParameter(ITEM_CACHE_REPLACE)!=null)
 			{
@@ -200,17 +204,35 @@ public final class ExampleServlet extends CopsServlet
 			final String name,
 			final int items,
 			final long sleep,
-			final int postCommitHooks)
+			final int preCommitHooks,
+			final int postCommitHooks,
+			final boolean duplicateCommitHooks)
 	{
 		try(TransactionTry tx = Main.model.startTransactionTry(replaceNullName(name)))
 		{
 			for(int i = 0; i<items; i++)
 				new AnItem(name + "#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
 
+			final Runnable duplicatePre = () ->
+			{
+				System.out.println("PRE COMMIT HOOK DUPLICATE");
+			};
+			final Runnable duplicatePost = () ->
+			{
+				System.out.println("POST COMMIT HOOK DUPLICATE");
+			};
+			for(int i = 0; i<preCommitHooks; i++)
+			{
+				final int currentI = i;
+				Main.model.addPreCommitHookIfAbsent(duplicateCommitHooks ? duplicatePre : () ->
+				{
+					System.out.println("PRE COMMIT HOOK " + currentI);
+				});
+			}
 			for(int i = 0; i<postCommitHooks; i++)
 			{
 				final int currentI = i;
-				Main.model.addPostCommitHookIfAbsent(() ->
+				Main.model.addPostCommitHookIfAbsent(duplicateCommitHooks ? duplicatePost : () ->
 				{
 					System.out.println("POST COMMIT HOOK " + currentI);
 				});

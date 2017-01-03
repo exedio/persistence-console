@@ -54,8 +54,10 @@ class Example_Jspm
 			<input name="<%=ExampleServlet.TRANSACTION_ITEMS %>" value="1" />
 			<br>sleep:
 			<input name="<%=ExampleServlet.TRANSACTION_SLEEP %>" value="0" />
-			<br>post commit hooks:
-			<input name="<%=ExampleServlet.TRANSACTION_POSTHK%>" value="0" />
+			<br>commit hooks:
+			pre:       <input name="<%=ExampleServlet.TRANSACTION_HOOK_PRE %>" value="0" size="3" />
+			post:      <input name="<%=ExampleServlet.TRANSACTION_HOOK_POST%>" value="0" size="3" />
+			duplicate: <input name="<%=ExampleServlet.TRANSACTION_HOOK_DUPLICATE%>" type="checkbox" />
 			<br>
 			<input name="<%=ExampleServlet.TRANSACTION_SUBMIT%>" type="submit" value="do" />
 		</form>

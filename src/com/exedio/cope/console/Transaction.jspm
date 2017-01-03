@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ConsoleCop.writePager;
 import static com.exedio.cope.console.Format.format;
-import static com.exedio.cope.console.Format.formatAndHide;
 import static com.exedio.cope.console.Format.ratio;
 import static com.exedio.cope.console.TransactionCop.CLEAR;
 import static com.exedio.cope.console.TransactionCop.DISABLE;
@@ -134,7 +133,7 @@ final class Transaction_Jspm extends Console_Jspm
 				<th>#</th>
 				<th>ID</th>
 				<th>Started</th>
-				<th title="Number of Post Commit Hooks">Post</th>
+				<th title="Number of Pre/Post Commit Hooks (.Duplicates)">Hks</th>
 				<th>Name</th>
 				<th>ID</th>
 				<th>Name</th>
@@ -153,7 +152,20 @@ final class Transaction_Jspm extends Console_Jspm
 				<td><%=format(n)%></td>
 				<td><%=format(t.getID())%></td>
 				<td><%=t.getStartDate()%></td>
-				<td><%=formatAndHide(0, t.getPostCommitHookCount())%></td>
+				<td><%
+				{
+					final int pre    = t.getPreCommitHookCount();
+					final int preDup = t.getPreCommitHookDuplicates();
+					final int post    = t.getPostCommitHookCount();
+					final int postDup = t.getPostCommitHookDuplicates();
+					if( pre!=0 || preDup!=0 || post!=0 || postDup!=0 )
+					{
+						writeNumberAndDuplicates(out, pre, preDup);
+						%>/<%
+						writeNumberAndDuplicates(out, post, postDup);
+					}
+				}
+				%></td>
 				<td class="<% if(name!=null){%>text<%}else{%>notavailable<%} %>"><%=name%></td>
 				<%
 				if(thread!=null)
@@ -175,6 +187,18 @@ final class Transaction_Jspm extends Console_Jspm
 		%>
 		</table>
 		<%
+	}
+
+	private static void writeNumberAndDuplicates(
+			final Out out,
+			final int number,
+			final int duplicates)
+	{
+		%><%=format(number)%><%
+		if(duplicates!=0)
+		{
+			%><small>,<%=format(duplicates)%></small><%
+		}
 	}
 
 	static final void writeRecorded(
