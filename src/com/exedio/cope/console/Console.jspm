@@ -156,14 +156,14 @@ abstract class Console_Jspm
 			final Out out,
 			final boolean condition)
 	{
-		writeProblem(out, condition, ConsoleServlet.warning2);
+		writeProblem(out, condition, ConsoleServlet.warning);
 	}
 
 	static final void writeError(
 			final Out out,
 			final boolean condition)
 	{
-		writeProblem(out, condition, ConsoleServlet.error2);
+		writeProblem(out, condition, ConsoleServlet.error);
 	}
 
 	private static final void writeProblem(
