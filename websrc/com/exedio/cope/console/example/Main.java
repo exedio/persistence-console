@@ -45,6 +45,7 @@ public final class Main
 				CopyOriginItem.TYPE,
 				AMediaItem.TYPE,
 				AMediaSingleItem.TYPE,
+				UniqueHashedMediaItem.TYPE,
 				FeatureItem.TYPE,
 				SequenceItem.TYPE
 			)

@@ -217,6 +217,7 @@ abstract class ConsoleCop<S> extends Cop
 					new MediaStatsCop(args, MediaStatsCop.Variant.fingerprint),
 					new MediaTestableCop(args, testArgs),
 					new MediaTypeCop(args, testArgs),
+					new UniqueHashedMediaCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
 					new VmCop(args, false, false),
@@ -295,6 +296,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_MEDIA_FINGERPRINTING = "mediafinger";
 	static final String TAB_MEDIA_TESTABLE = "mediatestable";
 	static final String TAB_MEDIA_TYPE = "mediatype";
+	static final String TAB_UNIQUE_HASHED_MEDIA = "uniquemedia";
 	static final String TAB_CLUSTER = "cluster";
 	static final String TAB_THREAD = "thread";
 	static final String TAB_VM = "vm";
@@ -381,6 +383,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new MediaTestableCop(args, new TestCop.TestArgs(request));
 		if(TAB_MEDIA_TYPE.equals(tab))
 			return new MediaTypeCop(args, new TestCop.TestArgs(request));
+		if(TAB_UNIQUE_HASHED_MEDIA.equals(tab))
+			return new UniqueHashedMediaCop(args, new TestCop.TestArgs(request));
 		if(TAB_CLUSTER.equals(tab))
 			return new ClusterCop(args);
 		if(TAB_THREAD.equals(tab))

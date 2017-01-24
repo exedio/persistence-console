@@ -76,6 +76,10 @@ class Example_Jspm
 		<form method="POST">
 			<input name="<%=ExampleServlet.NUL_CHARACTER%>" type="submit" value="add" />
 		</form>
+		<h2>Unique Media Hash</h2>
+		<form method="POST">
+			<input name="<%=ExampleServlet.BREAK_MEDIA_HASH%>" type="submit" value="break" />
+		</form>
 		<h2>Feature Fields</h2>
 		<form method="POST">
 			<br>name:

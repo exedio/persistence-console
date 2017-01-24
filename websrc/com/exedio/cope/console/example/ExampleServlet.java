@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console.example;
 
+import static java.lang.System.nanoTime;
+import static java.nio.charset.StandardCharsets.US_ASCII;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.ChangeEvent;
@@ -25,12 +27,17 @@ import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Feature;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.misc.ConnectToken;
+import com.exedio.cope.pattern.Media;
+import com.exedio.cope.pattern.UniqueHashedMedia;
+import com.exedio.cope.util.Hex;
+import com.exedio.cope.util.MessageDigestUtil;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -63,6 +70,7 @@ public final class ExampleServlet extends CopsServlet
 	static final String CHANGE_LISTENER_COUNT    = "changeListener.count";
 
 	static final String NUL_CHARACTER    = "nulChar";
+	static final String BREAK_MEDIA_HASH = "breakMediaHash";
 
 	static final String FEATURE_FIELD_FEATURE = "featureField.feature";
 	static final String FEATURE_FIELD_STRING  = "featureField.string";
@@ -131,6 +139,19 @@ public final class ExampleServlet extends CopsServlet
 					tx.commit();
 				}
 			}
+			else if(request.getParameter(BREAK_MEDIA_HASH)!=null)
+			{
+				try(TransactionTry tx = Main.model.startTransactionTry("breakMediaHash"))
+				{
+					final UniqueHashedMedia feature = UniqueHashedMediaItem.feature;
+					final MessageDigest digest = MessageDigestUtil.getInstance(feature.getMessageDigestAlgorithm());
+					UniqueHashedMediaItem.TYPE.newItem(
+							feature.getMedia().map(Media.toValue(resource("test.png"), "image/png")),
+							feature.getHash().map(Hex.encodeLower(
+											digest.digest(("" + nanoTime()).getBytes(US_ASCII)))));
+					tx.commit();
+				}
+			}
 			else if(request.getParameter(FEATURE_FIELD_SUBMIT)!=null)
 			{
 				try(TransactionTry tx = Main.model.startTransactionTry("create feature"))
@@ -187,6 +208,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 			new AMediaItem().setName("someName");
 			new AMediaItem().setName("someName error");
+			new UniqueHashedMediaItem(Media.toValue(resource("test.png"), "image/png"));
 			new FeatureItem(FeatureItem.intField1, FeatureItem.stringField1);
 			new FeatureItem(FeatureItem.intField2, FeatureItem.stringField2);
 			new FeatureItem((Feature)null, null);
