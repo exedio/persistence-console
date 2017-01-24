@@ -104,9 +104,9 @@ final class CharacterNulCop extends TestCop<StringField>
 			return "NOT YET CONNECTED";
 
 		return
-				"select count(*) " +
-				"from "  + quoteName(model, getTableName(type)) + " " +
-				"where " + quoteName(model, getColumnName(field)) + " like '%\\0%'";
+				"SELECT COUNT(*) " +
+				"FROM "  + quoteName(model, getTableName(type)) + " " +
+				"WHERE " + quoteName(model, getColumnName(field)) + " LIKE '%\\0%'";
 	}
 
 	@Override

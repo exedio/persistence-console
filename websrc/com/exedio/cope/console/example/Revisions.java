@@ -112,7 +112,7 @@ public final class Revisions
 			PreparedStatement stat = null;
 			try
 			{
-				stat = con.prepareStatement("insert into " + q(model, "while") + " (" + q(model, "v") + "," + q(model, "i") + ") values (?,?)");
+				stat = con.prepareStatement("INSERT INTO " + q(model, "while") + " (" + q(model, "v") + "," + q(model, "i") + ") VALUES (?,?)");
 
 				// skip first two revisions not yet applied
 				revisions.next();
@@ -219,7 +219,7 @@ public final class Revisions
 			PreparedStatement stat = null;
 			try
 			{
-				stat = con.prepareStatement("delete from " + q(model, "while") + " where " + q(model, "v") + "=?");
+				stat = con.prepareStatement("DELETE FROM " + q(model, "while") + " WHERE " + q(model, "v") + "=?");
 				stat.setInt(1, -1);
 				stat.execute();
 			}

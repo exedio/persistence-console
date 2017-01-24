@@ -50,9 +50,9 @@ final class SchemaNice
 
 			for(final Type<?> type : model.getTypes())
 			{
-				bf.append("create view ").
+				bf.append("CREATE VIEW ").
 					append(view(type)).
-					append(" as (select ").
+					append(" AS (SELECT ").
 					append(table(type)).append('.').append(column(type));
 
 				for(Type<?> superType = type; superType!=null; superType = superType.getSupertype())
@@ -62,25 +62,25 @@ final class SchemaNice
 						bf.append(',');
 						if(field instanceof EnumField)
 						{
-							bf.append("case ").
+							bf.append("CASE ").
 								append(table(superType)).append('.').append(column(field));
 
 							for(final Enum<?> v : ((EnumField<?>)field).getValueClass().getEnumConstants())
 							{
 								final int columnValue = getColumnValue(v);
-								bf.append(" when ").
+								bf.append(" WHEN ").
 									append(columnValue).
-									append(" then '").
+									append(" THEN '").
 									append(v.name()).
 									append('\'');
 							}
-							bf.append(" end as ").append(column(field));
+							bf.append(" END AS ").append(column(field));
 						}
 						else if(field instanceof DateField && !SchemaInfo.supportsNativeDate(model))
 						{
-							bf.append("from_unixtime(").
+							bf.append("FROM_UNIXTIME(").
 								append(table(superType)).append('.').append(column(field)).
-								append("/1000) as ").append(column(field));
+								append("/1000) AS ").append(column(field));
 						}
 						else
 						{
@@ -89,14 +89,14 @@ final class SchemaNice
 					}
 				}
 
-				bf.append(" from ").
+				bf.append(" FROM ").
 					append(table(type));
 
 				for(Type<?> superType = type.getSupertype(); superType!=null; superType=superType.getSupertype())
 				{
-					bf.append(" join ").
+					bf.append(" JOIN ").
 						append(table(superType)).
-						append(" on ").
+						append(" ON ").
 						append(table(superType)).append('.').append(column(superType)).
 						append('=').
 						append(table(type)).append('.').append(column(type));
@@ -122,7 +122,7 @@ final class SchemaNice
 
 			for(final Type<?> type : model.getTypes())
 			{
-				bf.append("drop view if exists ").
+				bf.append("DROP VIEW IF EXISTS ").
 					append(view(type));
 				execute(connection, bf);
 			}
