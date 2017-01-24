@@ -75,6 +75,7 @@ final class DataField_Jspm extends Console_Jspm
 		</table>
 		<hr>
 		<table>
+			<caption>Fields</caption>
 			<tr>
 				<th>Type</th>
 				<th>Name</th>
