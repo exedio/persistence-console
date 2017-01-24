@@ -232,6 +232,11 @@ abstract class ConsoleCop<S> extends Cop
 				}};
 	}
 
+	String getHeadingHelp()
+	{
+		return null;
+	}
+
 	final String getStart()
 	{
 		if(start==0)

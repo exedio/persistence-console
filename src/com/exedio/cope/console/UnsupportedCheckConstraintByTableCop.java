@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.SchemaInfo.newConnection;
 import static com.exedio.cope.SchemaInfo.quoteName;
+import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
 
 import com.exedio.cope.Model;
 import com.exedio.dsmf.CheckConstraint;
@@ -55,6 +56,18 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	protected UnsupportedCheckConstraintByTableCop newTestArgs(final TestArgs testArgs)
 	{
 		return new UnsupportedCheckConstraintByTableCop(args, testArgs);
+	}
+
+	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Verifies for databases not supporting check constraints (MySQL), " +
+				"whether data complies with these unsupported check constraints. " +
+				HELP_IMPACT_FATAL + " " +
+				"NOTE: Here all constraints of a table are checked at once. " +
+				"If you want to check each constraint individually (typically if you found an error), " +
+				"use \"Unsupported Constraints\".";
 	}
 
 	@Override

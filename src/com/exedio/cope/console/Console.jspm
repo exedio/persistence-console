@@ -51,7 +51,8 @@ abstract class Console_Jspm
 		<meta http-equiv="content-type" content="text/html; charset=<%=UTF_8%>">
 		<title>COPE Console - <%=cop.name%></title>
 		<link rel="shortcut icon" href="<%=ConsoleServlet.shortcutIcon%>" type="image/png">
-		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet%>"><%
+		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet%>">
+		<script src="<%=ConsoleServlet.script%>" type="text/javascript"></script><%
 		cop.writeHead(out);
 
 		if(autoRefresh>0)
@@ -81,8 +82,25 @@ abstract class Console_Jspm
 		%></div>
 		<br clear="right"><%
 		Menue_Jspm.write(out, cop);
+
+		final String help = cop.getHeadingHelp();
+		final int helpId = out.nextId();
 		%>
-		<h2><%=cop.name%></h2><%
+		<h2><%=cop.name%><%
+
+			if(help!=null)
+			{
+				%><img class="check2" onClick="return onHelp(<%=helpId%>);" src="<%=ConsoleServlet.help%>"><%
+			}
+			%></h2><%
+
+		if(help!=null)
+		{
+		%>
+		<div id="help<%=helpId%>" class="help">
+			<%=help%>
+		</div><%
+		}
 
 		try
 		{

@@ -41,7 +41,7 @@ final class CharacterNulCop extends TestCop<StringField>
 {
 	CharacterNulCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_CHARACTER_NUL, "Character Nul (MySQL only)", args, testArgs);
+		super(TAB_CHARACTER_NUL, "Character Nul", args, testArgs);
 	}
 
 	@Override
@@ -54,6 +54,17 @@ final class CharacterNulCop extends TestCop<StringField>
 	protected CharacterNulCop newTestArgs(final TestArgs testArgs)
 	{
 		return new CharacterNulCop(args, testArgs);
+	}
+
+	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Checks string fields for character NUL. " +
+				"This character is not supported by PostgreSQL. " +
+				"This check currently works on MySQL only. " +
+				"IMPACT: " +
+				"A failure here means that you cannot migrate your data to PostgreSQL.";
 	}
 
 	@Override

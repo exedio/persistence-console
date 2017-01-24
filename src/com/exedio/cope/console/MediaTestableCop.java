@@ -46,6 +46,17 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Runs MediaTestable#test on all features of the model implementing MediaTestable. " +
+				"IMPACT: " +
+				"A failure here means that the affected feature may fail to work. " +
+				"In particular MediaServlet may repond with code 500 Internal Server Error. " +
+				"DANGER ZONE.";
+	}
+
+	@Override
 	List<MediaTestable> getItems(final Model model)
 	{
 		final ArrayList<MediaTestable> result = new ArrayList<MediaTestable>();

@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
+
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.TransactionTry;
@@ -43,6 +45,14 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	protected TypeCompletenessCop newTestArgs(final TestArgs testArgs)
 	{
 		return new TypeCompletenessCop(args, testArgs);
+	}
+
+	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Checks whether all tables for type hierarchy do have corresponding rows. " +
+				HELP_IMPACT_FATAL;
 	}
 
 	@Override

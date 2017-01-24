@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
+
 import com.exedio.cope.CopyConstraint;
 import com.exedio.cope.Model;
 import com.exedio.cope.TransactionTry;
@@ -43,6 +45,15 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	protected CopyConstraintCop newTestArgs(final TestArgs testArgs)
 	{
 		return new CopyConstraintCop(args, testArgs);
+	}
+
+	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Verifies whether data complies with copy constraints. " +
+				"Copy constraints cannot be declared in any database. " +
+				HELP_IMPACT_FATAL;
 	}
 
 	@Override

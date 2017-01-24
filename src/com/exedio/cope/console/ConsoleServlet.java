@@ -85,6 +85,7 @@ public class ConsoleServlet extends CopsServlet
 	private Model model = null;
 
 	static final Resource stylesheet = new Resource("console.css");
+	static final Resource script     = new Resource("console.js");
 	static final Resource schemaScript = new Resource("schema.js");
 	static final Resource logo = new Resource("logo.png");
 	static final Resource shortcutIcon = new Resource("shortcutIcon.png");
@@ -101,6 +102,7 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource nodeLeafError   = new Resource("nodeerrorleaf.png");
 	static final Resource warning = new Resource("silk_error.png");
 	static final Resource error   = new Resource("silk_exclamation.png");
+	static final Resource help    = new Resource("silk_help.png");
 	static final Resource imagebackground = new Resource("imagebackground.png");
 
 	@Override

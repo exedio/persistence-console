@@ -29,11 +29,6 @@ final class Checklists_Jspm
 			final ConsoleCop<?>[] operations)
 	{
 		%>
-		<div>
-			Organizes menu items into checklists for certain conditions.
-			Items listed here can be found somewhere else in the menu as well.
-		</div>
-
 		<h3>Database Schema Checklist</h3>
 		<div>Verifies consistency between application and database schema.</div><%
 		write(out, schema);

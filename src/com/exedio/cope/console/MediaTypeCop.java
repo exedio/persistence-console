@@ -49,6 +49,17 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Verifies whether content type of Media is consistent to its body. " +
+				"This is done by usual mime-magic. " +
+				"IMPACT: " +
+				"Failures here do cause MediaServlet to send wrong Content-Type headers in http responses, " +
+				"which may confuse browsers and cause broken web pages.";
+	}
+
+	@Override
 	List<Media> getItems(final Model model)
 	{
 		final ArrayList<Media> result = new ArrayList<>();

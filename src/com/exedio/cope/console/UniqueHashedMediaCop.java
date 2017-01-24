@@ -56,6 +56,17 @@ final class UniqueHashedMediaCop extends TestCop<UniqueHashedMedia>
 	}
 
 	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Verifies whether hash of UniqueHashedMedia is consistent to its actual data. " +
+				"IMPACT: " +
+				"Any failures here invalidate all contracts of UniqueHashedMedia. " +
+				"Your application may either fail with errors or silently destroy your data stored in UniqueHashedMedia. " +
+				"DANGER ZONE.";
+	}
+
+	@Override
 	List<UniqueHashedMedia> getItems(final Model model)
 	{
 		final ArrayList<UniqueHashedMedia> result = new ArrayList<>();

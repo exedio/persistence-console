@@ -67,6 +67,24 @@ final class SchemaCop extends ConsoleCop<Void>
 	}
 
 	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Here you can create and drop the database schema - tables, sequences and constraints. " +
+				"\"Tear down\" is similar to \"drop\" but ignores errors, " +
+				"caused for instance by non-existing tables or sequences. " +
+				"Section \"Details\" verifies, that tables, columns, constraints etc. do exist and " +
+				"have correct types (columns), check clauses (check constraints) etc. " +
+				HELP_IMPACT_FATAL;
+	}
+
+	static final String HELP_IMPACT_FATAL =
+			"IMPACT: " +
+			"Any failures here invalidate all contracts of the cope framework. " +
+			"Your application may either fail with errors or silently destroy your data. " +
+			"DANGER ZONE.";
+
+	@Override
 	void writeHead(final Out out)
 	{
 		Schema_Jspm.writeHead(out);

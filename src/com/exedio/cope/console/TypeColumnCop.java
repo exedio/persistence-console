@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
+
 import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.ItemField;
@@ -47,6 +49,14 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	protected TypeColumnCop newTestArgs(final TestArgs testArgs)
 	{
 		return new TypeColumnCop(args, testArgs);
+	}
+
+	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Checks consistency of type columns to the \"class\"-column of their target. " +
+				HELP_IMPACT_FATAL;
 	}
 
 	@Override

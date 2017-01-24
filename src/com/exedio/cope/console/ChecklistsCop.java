@@ -32,6 +32,14 @@ final class ChecklistsCop extends ConsoleCop<Void>
 	}
 
 	@Override
+	String getHeadingHelp()
+	{
+		return
+				"Organizes menu items into checklists for certain situations. " +
+				"Items listed here can be found somewhere else in the menu as well.";
+	}
+
+	@Override
 	final void writeBody(final Out out)
 	{
 		final TestCop.TestArgs testArgs = new TestCop.TestArgs();

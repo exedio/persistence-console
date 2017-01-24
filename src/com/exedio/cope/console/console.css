@@ -73,6 +73,14 @@ div.notauthenticated
 	color:#e00;
 }
 
+div.help
+{
+	display:none;
+	margin:1em 0;
+	padding:0.5em;
+	background:#ddf;
+}
+
 
 ul.menu
 {
