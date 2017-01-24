@@ -51,7 +51,7 @@ final class MediaTypeCop extends TestCop<Media>
 	@Override
 	List<Media> getItems(final Model model)
 	{
-		final ArrayList<Media> result = new ArrayList<Media>();
+		final ArrayList<Media> result = new ArrayList<>();
 
 		for(final Type<?> type : model.getTypes())
 		{
