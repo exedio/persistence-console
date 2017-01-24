@@ -95,7 +95,11 @@ abstract class Console_Jspm
 
 		%>
 		<hr>
-		<div class="footer"><%=cop.getStart()%> (<%=cop.getDuration()%>ms)</div>
+		<div class="footer">
+			<%=cop.getStart()%> (<%=cop.getDuration()%>ms)
+			<br>
+			Silk icons from <a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank">famfamfam.com</a>.
+		</div>
 	</body>
 </html>
 <%
