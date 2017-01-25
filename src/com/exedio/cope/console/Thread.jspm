@@ -37,10 +37,10 @@ final class Thread_Jspm
 			<caption>Thread Controllers</caption>
 			<tr>
 				<th>Name</th>
-				<th>Daemon</th>
-				<th>Priority</th>
+				<th title="Daemon">Dn</th>
+				<th title="Priority">Prio</th>
 				<th>Id</th>
-				<th>Alive</th>
+				<th title="Alive">Av</th>
 				<th>State</th>
 				<th>Stacktrace</th>
 				<th>Start</th>
