@@ -226,6 +226,9 @@ abstract class ConsoleCop<S> extends Cop
 					new DataFieldCop(args),
 					new SerializationCheckCop(args),
 					new HashCop(args),
+				},
+				new ConsoleCop<?>[]{
+					new ChecklistsCop(args),
 				}};
 	}
 
@@ -306,6 +309,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_HASH = "hash";
 	static final String TAB_HIDDEN = "hidden";
 	static final String TAB_CHANGE_LISTENER = "changelistener";
+	static final String TAB_CHECKLISTS = "checklists";
 
 	static final ConsoleCop<?> getCop(
 			final Stores stores,
@@ -403,6 +407,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new HiddenCop(args);
 		if(TAB_CHANGE_LISTENER.equals(tab))
 			return new ChangeListenerCop(args, request);
+		if(TAB_CHECKLISTS.equals(tab))
+			return new ChecklistsCop(args);
 
 		final MediaCop mediaCop = MediaCop.getMediaCop(model, args, request);
 		if(mediaCop!=null)
