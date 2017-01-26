@@ -150,8 +150,8 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
 		}
 
-		final HashMap<String, Info> infos = store();
-		infos.put(id, info);
+		final HashMap<String, Info> store = store();
+		store.put(id, info);
 
 		final List<I> items = getItems(out.model);
 		final I nextItem = nextItem(items, id);
@@ -182,7 +182,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		out.writeRaw(
 			"]]></update>" +
 			"<update id=\"summary\"><![CDATA[");
-		writeSummary(out, headingsLength, items, infos);
+		writeSummary(out, headingsLength, items, store);
 		out.writeRaw(
 			"]]></update>" +
 			"</response>");
@@ -204,14 +204,14 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			final Out out,
 			final int headingsLength,
 			final List<I> items,
-			final HashMap<String, Info> infos)
+			final HashMap<String, Info> store)
 	{
 		long elapsed = 0;
 		Info date = null;
 		long failures = 0;
 		boolean isError = false;
 
-		for(final Info info : infos.values())
+		for(final Info info : store.values())
 		{
 			elapsed  += info.elapsed;
 			date      = info.oldest(date);
@@ -224,7 +224,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 				this,
 				headingsLength,
 				getID(items.get(0)),
-				items.size()==infos.size(),
+				items.size()==store.size(),
 				elapsed,
 				date!=null ? date.getDate() : null,
 				failures,
