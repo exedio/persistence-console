@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
-import com.exedio.cope.console.Stores.Store;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Pageable;
@@ -492,7 +491,7 @@ abstract class ConsoleCop<S> extends Cop
 		}
 	}
 
-	Store<S> getStore()
+	S getStore()
 	{
 		return args.stores.getStore(this);
 	}

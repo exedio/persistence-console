@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
-import com.exedio.cope.console.Stores.Store;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -120,8 +119,7 @@ final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 
 	private List<Point> getList()
 	{
-		final Store<List<Point>> store = getStore();
-		List<Point> list = store!=null ? store.value : null;
+		List<Point> list = getStore();
 		if(list==null)
 			list = new ArrayList<>();
 		return list;

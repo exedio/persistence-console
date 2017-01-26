@@ -22,35 +22,24 @@ import java.util.HashMap;
 
 final class Stores
 {
-	private final HashMap<Class<? extends ConsoleCop<?>>, Store<?>> stores =
-			new HashMap<Class<? extends ConsoleCop<?>>, Store<?>>();
-
-	static final class Store<S>
-	{
-		final S value;
-
-		Store(final S value)
-		{
-			this.value = value;
-		}
-	}
+	private final HashMap<Class<? extends ConsoleCop<?>>, Object> stores =
+			new HashMap<Class<? extends ConsoleCop<?>>, Object>();
 
 	@SuppressWarnings("unchecked")
-	<S> Store<S> getStore(final ConsoleCop<S> clazz)
+	<S> S getStore(final ConsoleCop<S> clazz)
 	{
 		synchronized(stores)
 		{
-			return (Store<S>)stores.get(clazz.getClass());
+			return (S)stores.get(clazz.getClass());
 		}
 	}
 
 	@SuppressWarnings("unchecked")
 	<S> void putStore(final ConsoleCop<? extends S> clazz, final S value)
 	{
-		final Store<?> store = new Store<Object>(value);
 		synchronized(stores)
 		{
-			stores.put((Class<? extends ConsoleCop<?>>)(clazz.getClass()), store);
+			stores.put((Class<? extends ConsoleCop<?>>)(clazz.getClass()), value);
 		}
 	}
 }

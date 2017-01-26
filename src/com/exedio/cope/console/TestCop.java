@@ -22,7 +22,6 @@ import static com.exedio.cope.console.Format.format;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Model;
-import com.exedio.cope.console.Stores.Store;
 import com.exedio.cope.misc.TimeUtil;
 import com.exedio.cops.Cop;
 import java.util.Date;
@@ -107,11 +106,11 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		if(!toleratesNotConnected())
 			failIfNotConnected(out.model);
 
-		final Store<HashMap<String, Info>> testStore = getStore();
+		final HashMap<String, Info> testStore = getStore();
 		Test_Jspm.writeBody(
 				this, out,
 				getHeadings(), getItems(model),
-				testStore!=null ? testStore.value : new HashMap<String, Info>());
+				testStore!=null ? testStore : new HashMap<String, Info>());
 	}
 
 	@Override
@@ -146,8 +145,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
 		}
 
-		final Store<HashMap<String, Info>> testStore = getStore();
-		HashMap<String, Info> infos = testStore!=null ? testStore.value : null;
+		HashMap<String, Info> infos = getStore();
 		if(infos==null)
 			infos = new HashMap<String, Info>();
 		infos.put(id, info);
