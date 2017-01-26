@@ -31,16 +31,11 @@ final class Savepoint_Jspm extends Console_Jspm
 			final List<SavepointCop.Point> points)
 	{
 		%>
+		<form action="<%=cop%>" method="POST">
+			<input type="submit" name="<%=SAVEPOINT%>" value="get" />
+		</form>
 		<table>
 			<caption>Schema Savepoint</caption>
-			<tr>
-				<td colspan="3" class="text">
-					You may get a current schema savepoint here.
-					<form action="<%=cop%>" method="POST">
-						<input type="submit" name="<%=SAVEPOINT%>" value="get" />
-					</form>
-				</td>
-			</tr>
 			<tr>
 				<th>#</th>
 				<th>Date</th>

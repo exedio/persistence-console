@@ -39,6 +39,21 @@ final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 		return new SavepointCop(args);
 	}
 
+	@Override
+	String getHeadingHelp()
+	{
+		return
+				"You may get a current schema savepoint here. " +
+				"All savepoints fetched here are listed in the table below. " +
+				"A savepoint is an arbitrary string suitable for " +
+				"rolling back the whole database to the state of the savepoint. " +
+				"NOTE: " +
+				"Your database may not be set up to support savepoints, " +
+				"or may not support savepoints at all, " +
+				"or the database user may not be allowed to fetch savepoints. " +
+				"Savepoints are provided via Model#getSchemaSavepoint().";
+	}
+
 	static final String SAVEPOINT = "savepoint";
 
 	@Override
