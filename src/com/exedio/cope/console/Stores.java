@@ -26,20 +26,24 @@ final class Stores
 			new HashMap<Class<? extends ConsoleCop<?>>, Object>();
 
 	@SuppressWarnings("unchecked")
-	<S> S getStore(final ConsoleCop<S> clazz)
+	<S> S getStore(final ConsoleCop<S> cop)
 	{
+		final Class<?> clazz = cop.getClass(); // move out of synchronized
+
 		synchronized(stores)
 		{
-			return (S)stores.get(clazz.getClass());
+			return (S)stores.get(clazz);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	<S> void putStore(final ConsoleCop<? extends S> clazz, final S value)
+	<S> void putStore(final ConsoleCop<? extends S> cop, final S value)
 	{
+		final Class<?> clazz = cop.getClass(); // move out of synchronized
+
 		synchronized(stores)
 		{
-			stores.put((Class<? extends ConsoleCop<?>>)(clazz.getClass()), value);
+			stores.put((Class<? extends ConsoleCop<?>>)clazz, value);
 		}
 	}
 }
