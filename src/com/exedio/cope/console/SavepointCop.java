@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import com.exedio.cope.Model;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +55,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	}
 
 	@Override
-	final ArrayList<SavepointCop.Point> initialStore()
+	final ArrayList<Point> initialStore()
 	{
 		return new ArrayList<>();
 	}
@@ -70,14 +71,13 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 		{
 			if(request.getParameter(SAVEPOINT)!=null)
 			{
-				final List<Point> list = store();
 				try
 				{
-					list.add(new Point(model.getSchemaSavepoint()));
+					storeAdd(new Point(model.getSchemaSavepoint()));
 				}
 				catch(final SQLException e)
 				{
-					list.add(new Point(e));
+					storeAdd(new Point(e));
 				}
 			}
 		}
@@ -88,7 +88,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	{
 		Savepoint_Jspm.writeBody(
 				out, this,
-				store());
+				storeGet());
 	}
 
 	public static final class Point
@@ -120,5 +120,25 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 		{
 			return success ? "text" : "notavailable";
 		}
+	}
+
+	private void storeAdd(final Point point)
+	{
+		final ArrayList<Point> store = store();
+		synchronized(store)
+		{
+			store.add(point);
+		}
+	}
+
+	private List<? extends Point> storeGet()
+	{
+		final ArrayList<Point> store = store();
+		final ArrayList<Point> result;
+		synchronized(store)
+		{
+			result = new ArrayList<>(store);
+		}
+		return Collections.unmodifiableList(result);
 	}
 }
