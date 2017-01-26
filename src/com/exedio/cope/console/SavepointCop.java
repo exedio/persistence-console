@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
+final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 {
 	SavepointCop(final Args args)
 	{
@@ -53,6 +53,12 @@ final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 				"Savepoints are provided via Model#getSchemaSavepoint().";
 	}
 
+	@Override
+	final ArrayList<SavepointCop.Point> initialStore()
+	{
+		return new ArrayList<>();
+	}
+
 	static final String SAVEPOINT = "savepoint";
 
 	@Override
@@ -64,7 +70,7 @@ final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 		{
 			if(request.getParameter(SAVEPOINT)!=null)
 			{
-				final List<Point> list = getList();
+				final List<Point> list = store();
 				try
 				{
 					list.add(new Point(model.getSchemaSavepoint()));
@@ -73,7 +79,6 @@ final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 				{
 					list.add(new Point(e));
 				}
-				putStore(list);
 			}
 		}
 	}
@@ -83,7 +88,7 @@ final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 	{
 		Savepoint_Jspm.writeBody(
 				out, this,
-				getList());
+				store());
 	}
 
 	public static final class Point
@@ -115,13 +120,5 @@ final class SavepointCop extends ConsoleCop<List<SavepointCop.Point>>
 		{
 			return success ? "text" : "notavailable";
 		}
-	}
-
-	private List<Point> getList()
-	{
-		List<Point> list = getStore();
-		if(list==null)
-			list = new ArrayList<>();
-		return list;
 	}
 }

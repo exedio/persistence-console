@@ -25,24 +25,22 @@ final class Stores
 	private final HashMap<Class<? extends ConsoleCop<?>>, Object> stores = new HashMap<>();
 
 	@SuppressWarnings("unchecked")
-	<S> S getStore(final ConsoleCop<S> cop)
+	<S> S store(final ConsoleCop<S> cop)
 	{
 		final Class<?> clazz = cop.getClass(); // move out of synchronized
 
 		synchronized(stores)
 		{
-			return (S)stores.get(clazz);
-		}
-	}
+			final S existing = (S)stores.get(clazz);
+			if(existing!=null)
+				return existing;
 
-	@SuppressWarnings("unchecked")
-	<S> void putStore(final ConsoleCop<? extends S> cop, final S value)
-	{
-		final Class<?> clazz = cop.getClass(); // move out of synchronized
+			final S initial = cop.initialStore();
+			if(initial==null)
+				throw new IllegalArgumentException(clazz.getName());
 
-		synchronized(stores)
-		{
-			stores.put((Class<? extends ConsoleCop<?>>)clazz, value);
+			stores.put((Class<? extends ConsoleCop<?>>)clazz, initial);
+			return initial;
 		}
 	}
 }

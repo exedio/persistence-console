@@ -491,14 +491,17 @@ abstract class ConsoleCop<S> extends Cop
 		}
 	}
 
-	S getStore()
+	S store()
 	{
-		return args.stores.getStore(this);
+		return args.stores.store(this);
 	}
 
-	void putStore(final S value)
+	/**
+	 * Must be implemented when using {@link #store()}
+	 */
+	S initialStore()
 	{
-		args.stores.putStore(this, value);
+		throw new IllegalArgumentException(getClass().getName());
 	}
 
 	protected static final void failIfNotConnected(final Model model)

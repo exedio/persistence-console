@@ -90,6 +90,12 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		return newTestArgs(testArgs.toTest(id, iterate));
 	}
 
+	@Override
+	final HashMap<String, Info> initialStore()
+	{
+		return new HashMap<>();
+	}
+
 	abstract TestCop<I> newTestArgs(TestArgs testArgs);
 
 	@Override
@@ -106,11 +112,10 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		if(!toleratesNotConnected())
 			failIfNotConnected(out.model);
 
-		final HashMap<String, Info> testStore = getStore();
 		Test_Jspm.writeBody(
 				this, out,
 				getHeadings(), getItems(model),
-				testStore!=null ? testStore : new HashMap<String, Info>());
+				store());
 	}
 
 	@Override
@@ -145,11 +150,8 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
 		}
 
-		HashMap<String, Info> infos = getStore();
-		if(infos==null)
-			infos = new HashMap<>();
+		final HashMap<String, Info> infos = store();
 		infos.put(id, info);
-		putStore(infos);
 
 		final List<I> items = getItems(out.model);
 		final I nextItem = nextItem(items, id);
