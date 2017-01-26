@@ -43,7 +43,7 @@ public final class Revisions
 
 	static final com.exedio.cope.Revisions.Factory revisions(final int length)
 	{
-		final ArrayList<Revision> result = new ArrayList<Revision>();
+		final ArrayList<Revision> result = new ArrayList<>();
 
 		int i = 0;
 		int revision = length;
@@ -97,7 +97,7 @@ public final class Revisions
 	static final void revisions(final Model model)
 	{
 		final java.util.Properties dbinfo = model.getEnvironmentInfo().asProperties();
-		final HashMap<String, String> environment = new HashMap<String, String>();
+		final HashMap<String, String> environment = new HashMap<>();
 		for(final Map.Entry<Object, Object> entry : dbinfo.entrySet())
 			environment.put((String)entry.getKey(), (String)entry.getValue());
 		final String environmentKeyRemoved = "key.removed";
@@ -123,7 +123,7 @@ public final class Revisions
 				{
 					final Revision revision = revisions.next();
 					lastRevision = revision;
-					final ArrayList<RevisionInfoRevise.Body> body = new ArrayList<RevisionInfoRevise.Body>();
+					final ArrayList<RevisionInfoRevise.Body> body = new ArrayList<>();
 					int j = 0;
 					for(final String sql : revision.getBody())
 					{

@@ -58,7 +58,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	@Override
 	List<Constraint<?>> getItems(final Model model)
 	{
-		final ArrayList<Constraint<?>> result = new ArrayList<Constraint<?>>();
+		final ArrayList<Constraint<?>> result = new ArrayList<>();
 
 		for(final Type<?> superType : model.getTypes())
 			addTypes(superType, result);
@@ -72,7 +72,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	{
 		for(final Type<? extends T> subType : superType.getTypesOfInstances())
 			if(!superType.equals(subType))
-				result.add(new Constraint<T>(superType, subType));
+				result.add(new Constraint<>(superType, subType));
 	}
 
 	@Override
@@ -138,7 +138,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 
 		private static <T extends Item> Constraint<?> getConstraint(final Type<T> superType, final Type<?> subType)
 		{
-			return new Constraint<T>(
+			return new Constraint<>(
 					superType,
 					superType.castTypeExtends(subType));
 		}

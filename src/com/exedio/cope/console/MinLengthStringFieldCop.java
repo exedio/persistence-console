@@ -51,7 +51,7 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	@Override
 	List<StringField> getItems(final Model model)
 	{
-		final ArrayList<StringField> result = new ArrayList<StringField>();
+		final ArrayList<StringField> result = new ArrayList<>();
 
 		for(final Type<?> t : model.getTypes())
 		{
@@ -97,7 +97,7 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	@SuppressFBWarnings({"NP_LOAD_OF_KNOWN_NULL_VALUE","RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE"}) // OK: caused by try-with-resources
 	long check(final StringField field, final Model model)
 	{
-		final Query<Integer> q = new Query<Integer>(field.length().min());
+		final Query<Integer> q = new Query<>(field.length().min());
 
 		try(TransactionTry tx = model.startTransactionTry("Console MinLengthStringField " + id))
 		{

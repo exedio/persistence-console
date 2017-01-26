@@ -79,7 +79,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 			<ul id="schBdy" class="expand"><%
 
 			int tableCount = 0;
-			final ArrayList<Column> catchColumns = new ArrayList<Column>();
+			final ArrayList<Column> catchColumns = new ArrayList<>();
 			for(final Table table : schema.getTables())
 			{
 				tableCount++;

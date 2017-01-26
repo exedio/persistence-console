@@ -46,7 +46,7 @@ final class EnumsCop extends ConsoleCop<Void>
 	final void writeBody(final Out out)
 	{
 		final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map =
-			new LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>>();
+			new LinkedHashMap<>();
 		for(final Type<?> type : out.model.getTypes())
 			for(final Field<?> field : type.getDeclaredFields())
 				if(field instanceof EnumField)
@@ -56,7 +56,7 @@ final class EnumsCop extends ConsoleCop<Void>
 					ArrayList<EnumField<?>> list = map.get(c);
 					if(list==null)
 					{
-						list = new ArrayList<EnumField<?>>();
+						list = new ArrayList<>();
 						map.put(c, list);
 					}
 					list.add(f);

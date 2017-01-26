@@ -147,7 +147,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 
 		HashMap<String, Info> infos = getStore();
 		if(infos==null)
-			infos = new HashMap<String, Info>();
+			infos = new HashMap<>();
 		infos.put(id, info);
 		putStore(infos);
 

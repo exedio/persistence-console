@@ -83,7 +83,7 @@ final class RevisionLine
 		assert this.revision==null;
 		this.revision = revision;
 		this.content = revision.getComment();
-		final ArrayList<Body> body = new ArrayList<Body>();
+		final ArrayList<Body> body = new ArrayList<>();
 		for(final String sql : revision.getBody())
 			body.add(new Body(sql, 0, 0));
 		this.body = body;
@@ -164,7 +164,7 @@ final class RevisionLine
 		final Properties infoProperties = RevisionInfo.parse(infoBytes);
 		if(infoProperties!=null)
 		{
-			final TreeMap<String, String> map = new TreeMap<String, String>();
+			final TreeMap<String, String> map = new TreeMap<>();
 			for(final Map.Entry<Object, Object> entry : infoProperties.entrySet())
 				map.put((String)entry.getKey(), (String)entry.getValue());
 			this.logProperties = map;
@@ -213,7 +213,7 @@ final class RevisionLine
 
 	static final <K,V> Set<K> diff(final Map<K,V> left, final Map<K,V> right)
 	{
-		final TreeSet<K> result = new TreeSet<K>();
+		final TreeSet<K> result = new TreeSet<>();
 		for(final Map.Entry<K,V> e : left.entrySet())
 		{
 			final K key = e.getKey();

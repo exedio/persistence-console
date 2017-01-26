@@ -59,7 +59,7 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	@Override
 	List<MediaTestable> getItems(final Model model)
 	{
-		final ArrayList<MediaTestable> result = new ArrayList<MediaTestable>();
+		final ArrayList<MediaTestable> result = new ArrayList<>();
 
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())

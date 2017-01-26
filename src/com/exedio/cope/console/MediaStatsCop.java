@@ -175,7 +175,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	{
 		final Model model = out.model;
 
-		final ArrayList<MediaPath> medias = new ArrayList<MediaPath>();
+		final ArrayList<MediaPath> medias = new ArrayList<>();
 		boolean isUrlGuessingPrevented = false;
 
 		for(final Type<?> type : model.getTypes())
@@ -323,7 +323,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 
 	static final void printContentTypes(final OutBasic out, final Collection<String> contentTypes)
 	{
-		final TreeSet<String> sorted = new TreeSet<String>(contentTypes);
+		final TreeSet<String> sorted = new TreeSet<>(contentTypes);
 		collapse(sorted, "image/[p]jpeg", "image/jpeg", "image/pjpeg");
 		collapse(sorted, "image/[x-]png", "image/png", "image/x-png");
 

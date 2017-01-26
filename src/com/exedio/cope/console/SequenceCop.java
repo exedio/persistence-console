@@ -72,7 +72,7 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	@Override
 	List<SequenceInfo> getItems(final Model model)
 	{
-		final LinkedList<SequenceInfo> result = new LinkedList<SequenceInfo>(model.getSequenceInfo());
+		final LinkedList<SequenceInfo> result = new LinkedList<>(model.getSequenceInfo());
 		for(final Iterator<SequenceInfo> i = result.iterator(); i.hasNext(); )
 		{
 			final Feature feature = i.next().getFeature();

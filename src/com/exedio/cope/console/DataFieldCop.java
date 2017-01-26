@@ -47,7 +47,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 	{
 		final Model model = out.model;
 
-		final ArrayList<DataField> fields = new ArrayList<DataField>();
+		final ArrayList<DataField> fields = new ArrayList<>();
 		long lengthMax = 0;
 
 		for(final Type<?> type : model.getTypes())
@@ -118,7 +118,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 	{
 		if(model.isConnected())
 		{
-			final HashMap<String, Table> result = new HashMap<String, Table>();
+			final HashMap<String, Table> result = new HashMap<>();
 
 			for(final Type<?> type : model.getTypes())
 				for(final Feature feature : type.getDeclaredFeatures())
@@ -136,7 +136,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 						table.add(field.getMaximumLength());
 					}
 
-			return new TreeSet<Table>(result.values());
+			return new TreeSet<>(result.values());
 		}
 		else
 		{

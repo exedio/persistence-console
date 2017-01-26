@@ -50,7 +50,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	@Override
 	List<FeatureField<?>> getItems(final Model model)
 	{
-		final ArrayList<FeatureField<?>> result = new ArrayList<FeatureField<?>>();
+		final ArrayList<FeatureField<?>> result = new ArrayList<>();
 
 		for(final Type<?> type : model.getTypes())
 		{

@@ -79,7 +79,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	@Override
 	List<Table> getItems(final Model model)
 	{
-		final ArrayList<Table> result = new ArrayList<Table>();
+		final ArrayList<Table> result = new ArrayList<>();
 
 		final Schema schema = model.getSchema();
 		for(final Table table : schema.getTables())

@@ -50,7 +50,7 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 	@Override
 	List<FunctionField<?>> getItems(final Model model)
 	{
-		final ArrayList<FunctionField<?>> result = new ArrayList<FunctionField<?>>();
+		final ArrayList<FunctionField<?>> result = new ArrayList<>();
 
 		for(final Type<?> t : model.getTypes())
 		{

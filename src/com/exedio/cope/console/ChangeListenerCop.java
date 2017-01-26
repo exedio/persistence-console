@@ -86,7 +86,7 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 
 				if(toDeleteArray!=null)
 				{
-					final HashSet<String> toDelete = new HashSet<String>(Arrays.asList(toDeleteArray));
+					final HashSet<String> toDelete = new HashSet<>(Arrays.asList(toDeleteArray));
 					for(final ChangeListener listener : model.getChangeListeners())
 					{
 						if(toDelete.contains(toID(listener)))

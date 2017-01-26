@@ -40,7 +40,7 @@ final class Environment_Jspm extends Console_Jspm
 		%>
 		<table>
 			<caption>Current</caption><%
-			for(final String name : new TreeSet<String>(keySet(properties)))
+			for(final String name : new TreeSet<>(keySet(properties)))
 			{
 			%>
 			<tr>

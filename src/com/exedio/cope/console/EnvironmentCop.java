@@ -104,7 +104,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 			}
 		}
 
-		final TreeMap<String, HashMap<String, Object>> testedDatabases = new TreeMap<String, HashMap<String, Object>>();
+		final TreeMap<String, HashMap<String, Object>> testedDatabases = new TreeMap<>();
 		for(final Iterator<Object> i = p.keySet().iterator(); i.hasNext(); )
 		{
 			final String name = (String)i.next();
@@ -118,7 +118,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 			HashMap<String, Object> database = testedDatabases.get(databaseName);
 			if(database==null)
 			{
-				database = new HashMap<String, Object>();
+				database = new HashMap<>();
 				database.put("name", databaseName);
 				testedDatabases.put(databaseName, database);
 			}
@@ -129,7 +129,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 				TreeMap<String, String> previousValue = castTreeMap(database.get(TEST_INFO_KEY_CONNECT_PROPERTIES));
 				if(previousValue==null)
 				{
-					previousValue = new TreeMap<String, String>();
+					previousValue = new TreeMap<>();
 					database.put(TEST_INFO_KEY_CONNECT_PROPERTIES, previousValue);
 				}
 				previousValue.put(key.substring("cope.".length()), value);

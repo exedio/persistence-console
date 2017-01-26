@@ -69,7 +69,7 @@ public class RevisionLineTest extends CopeAssert
 
 		l.setInfo("#migrationlogv01\nkey1=value1\nkey2=value2".getBytes("latin1"));
 		assertEquals("#migrationlogv01\nkey1=value1\nkey2=value2", l.getLogString());
-		final HashMap<String, String> map = new HashMap<String, String>();
+		final HashMap<String, String> map = new HashMap<>();
 		map.put("key1", "value1");
 		map.put("key2", "value2");
 		assertEquals(true, l.hasRevision());
@@ -122,7 +122,7 @@ public class RevisionLineTest extends CopeAssert
 				new Body("sql55.1", 126, 567),
 				new Body("sql55.2", 127, 568)).toBytes());
 		assertTrue(l.getLogString(), l.getLogString().startsWith("#migrationlogv01"+lineSeparator()));
-		final HashMap<String, String> map = new HashMap<String, String>();
+		final HashMap<String, String> map = new HashMap<>();
 		map.put("comment", "comment55");
 		map.put("dateUTC", DATE_STRING);
 		map.put("revision", "55");
@@ -165,7 +165,7 @@ public class RevisionLineTest extends CopeAssert
 				new Body("sql55.1", 126, 567),
 				new Body("sql55.2", 127, 568)).toBytes());
 		assertTrue(l.getLogString(), l.getLogString().startsWith("#migrationlogv01"+lineSeparator()));
-		final HashMap<String, String> map = new HashMap<String, String>();
+		final HashMap<String, String> map = new HashMap<>();
 		map.put("comment", "comment55");
 		map.put("dateUTC", DATE_STRING);
 		map.put("revision", "55");
@@ -223,7 +223,7 @@ public class RevisionLineTest extends CopeAssert
 
 		l.setInfo(new RevisionInfoCreate(55, DATE, Collections.<String, String>emptyMap()).toBytes());
 		assertTrue(l.getLogString(), l.getLogString().startsWith("#migrationlogv01"+lineSeparator()));
-		final HashMap<String, String> map = new HashMap<String, String>();
+		final HashMap<String, String> map = new HashMap<>();
 		map.put("create", "true");
 		map.put("dateUTC", DATE_STRING);
 		map.put("revision", "55");
@@ -258,7 +258,7 @@ public class RevisionLineTest extends CopeAssert
 
 		l.setInfo(new RevisionInfoCreate(55, DATE, Collections.<String, String>emptyMap()).toBytes());
 		assertTrue(l.getLogString(), l.getLogString().startsWith("#migrationlogv01"+lineSeparator()));
-		final HashMap<String, String> map = new HashMap<String, String>();
+		final HashMap<String, String> map = new HashMap<>();
 		map.put("create", "true");
 		map.put("dateUTC", DATE_STRING);
 		map.put("revision", "55");
@@ -274,11 +274,11 @@ public class RevisionLineTest extends CopeAssert
 
 	public void testDiff()
 	{
-		final HashMap<String, String> left = new HashMap<String, String>();
+		final HashMap<String, String> left = new HashMap<>();
 		left.put("leftOnly", "true");
 		left.put("equal", "equalValue");
 		left.put("nonEqual", "left");
-		final HashMap<String, String> right = new HashMap<String, String>();
+		final HashMap<String, String> right = new HashMap<>();
 		right.put("rightOnly", "true");
 		right.put("equal", "equalValue");
 		right.put("nonEqual", "right");

@@ -75,7 +75,7 @@ final class VmCop extends ConsoleCop<Void>
 	@Override
 	final void writeBody(final Out out)
 	{
-		final HashMap<String, TreeSet<Package>> jarMap = new HashMap<String, TreeSet<Package>>();
+		final HashMap<String, TreeSet<Package>> jarMap = new HashMap<>();
 
 		for(final Package pack : Package.getPackages())
 		{
@@ -102,13 +102,13 @@ final class VmCop extends ConsoleCop<Void>
 
 			if(jar==null)
 			{
-				jar = new TreeSet<Package>(COMPARATOR);
+				jar = new TreeSet<>(COMPARATOR);
 				jarMap.put(key, jar);
 			}
 			jar.add(pack);
 		}
 
-		final ArrayList<TreeSet<Package>> jars = new ArrayList<TreeSet<Package>>();
+		final ArrayList<TreeSet<Package>> jars = new ArrayList<>();
 		jars.addAll(jarMap.values());
 
 		Vm_Jspm.writeBody(out, this, jars);

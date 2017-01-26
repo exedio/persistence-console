@@ -77,7 +77,7 @@ public final class ExampleServlet extends CopsServlet
 	static final String FEATURE_FIELD_SUBMIT  = "featureField.submit";
 
 	@SuppressFBWarnings("SE_BAD_FIELD")
-	private final ArrayList<ConnectToken> connectTokens = new ArrayList<ConnectToken>();
+	private final ArrayList<ConnectToken> connectTokens = new ArrayList<>();
 	static int changeListenerNumber = 0;
 	static int modificationListenerNumber = 0;
 

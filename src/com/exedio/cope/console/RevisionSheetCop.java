@@ -48,7 +48,7 @@ final class RevisionSheetCop extends ConsoleCop<Void>
 			return;
 		}
 
-		final TreeMap<Integer, RevisionInfoRevise> revisions = new TreeMap<Integer, RevisionInfoRevise>();
+		final TreeMap<Integer, RevisionInfoRevise> revisions = new TreeMap<>();
 
 		for(final Map.Entry<Integer, byte[]> e : model.getRevisionLogs().entrySet())
 		{

@@ -65,7 +65,7 @@ final class UnsupportedCheckConstraintCop extends TestCop<CheckConstraint>
 	@Override
 	List<CheckConstraint> getItems(final Model model)
 	{
-		final ArrayList<CheckConstraint> result = new ArrayList<CheckConstraint>();
+		final ArrayList<CheckConstraint> result = new ArrayList<>();
 
 		for(final Type<?> type : model.getTypes())
 		{

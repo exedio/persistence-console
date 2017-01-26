@@ -63,7 +63,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	@Override
 	List<Type<?>> getItems(final Model model)
 	{
-		final ArrayList<Type<?>> result = new ArrayList<Type<?>>();
+		final ArrayList<Type<?>> result = new ArrayList<>();
 
 		for(final Type<?> t : model.getTypes())
 			if(t.needsCheckUpdateCounter())

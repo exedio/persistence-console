@@ -22,8 +22,7 @@ import java.util.HashMap;
 
 final class Stores
 {
-	private final HashMap<Class<? extends ConsoleCop<?>>, Object> stores =
-			new HashMap<Class<? extends ConsoleCop<?>>, Object>();
+	private final HashMap<Class<? extends ConsoleCop<?>>, Object> stores = new HashMap<>();
 
 	@SuppressWarnings("unchecked")
 	<S> S getStore(final ConsoleCop<S> cop)

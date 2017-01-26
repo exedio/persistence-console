@@ -49,7 +49,7 @@ final class HashCop extends ConsoleCop<Void>
 		final HttpServletRequest request = out.request;
 		final Model model = out.model;
 
-		final ArrayList<Hash> hashes = new ArrayList<Hash>();
+		final ArrayList<Hash> hashes = new ArrayList<>();
 		for(final Type<?> type : model.getTypes())
 			for(final Feature f : type.getDeclaredFeatures())
 				if(f instanceof Hash)
@@ -58,7 +58,7 @@ final class HashCop extends ConsoleCop<Void>
 		final ArrayList<Hash> checkedHashes;
 		if(post)
 		{
-			checkedHashes = new ArrayList<Hash>();
+			checkedHashes = new ArrayList<>();
 			final String[] values = request.getParameterValues(CHECKED);
 			if(values!=null)
 				for(final String value : values)

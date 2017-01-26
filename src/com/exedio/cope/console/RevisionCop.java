@@ -162,7 +162,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 			return;
 		}
 
-		final TreeMap<Integer, RevisionLine> lines = new TreeMap<Integer, RevisionLine>();
+		final TreeMap<Integer, RevisionLine> lines = new TreeMap<>();
 
 		register(lines, revisions.getNumber()).setCurrent();
 		for(final Revision m : revisions.getList())
@@ -190,7 +190,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 			}
 		}
 
-		final ArrayList<RevisionLine> lineList = new ArrayList<RevisionLine>(lines.values());
+		final ArrayList<RevisionLine> lineList = new ArrayList<>(lines.values());
 		Collections.reverse(lineList);
 
 		Revision_Jspm.writeBody(

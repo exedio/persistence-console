@@ -109,7 +109,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 			{
 				this.histogram = histogram;
 
-				final HashMap<String, Condense> histogramCondensed = condense ? new HashMap<String, Condense>() : null;
+				final HashMap<String, Condense> histogramCondensed = condense ? new HashMap<>() : null;
 
 				int sumKeyLength = 0;
 				int maxKeyLength = 0;

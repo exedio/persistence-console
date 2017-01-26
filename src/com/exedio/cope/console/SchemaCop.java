@@ -310,7 +310,7 @@ final class SchemaCop extends ConsoleCop<Void>
 
 	private static final ArrayList<Column> getUnusedColumns(final Schema schema)
 	{
-		final ArrayList<Column> result = new ArrayList<Column>();
+		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())
 			for(final Column column : table.getColumns())
 				if(!column.required() && column.exists())
@@ -320,7 +320,7 @@ final class SchemaCop extends ConsoleCop<Void>
 
 	private static final ArrayList<Column> getMissingColumns(final Schema schema)
 	{
-		final ArrayList<Column> result = new ArrayList<Column>();
+		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())
 			for(final Column column : table.getColumns())
 				if(column.required() && !column.exists())
@@ -330,7 +330,7 @@ final class SchemaCop extends ConsoleCop<Void>
 
 	private static final ArrayList<Column> getColumnsWithMismatchingType(final Schema schema)
 	{
-		final ArrayList<Column> result = new ArrayList<Column>();
+		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())
 			for(final Column column : table.getColumns())
 				if(column.mismatchesType())
@@ -340,7 +340,7 @@ final class SchemaCop extends ConsoleCop<Void>
 
 	private static final ArrayList<Column> getCatchColumns(final Schema schema)
 	{
-		final ArrayList<Column> result = new ArrayList<Column>();
+		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())
 			for(final Column column : table.getColumns())
 				if("catch".equals(column.getName()))

@@ -68,7 +68,7 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	@Override
 	List<ItemFunction<?>> getItems(final Model model)
 	{
-		final ArrayList<ItemFunction<?>> result = new ArrayList<ItemFunction<?>>();
+		final ArrayList<ItemFunction<?>> result = new ArrayList<>();
 
 		for(final Type<?> t : model.getTypes())
 		{

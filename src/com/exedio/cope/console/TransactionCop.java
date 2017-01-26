@@ -184,7 +184,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 				pager.init(Arrays.asList(commits)));
 	}
 
-	static final ArrayList<Commit> commits = new ArrayList<Commit>();
+	static final ArrayList<Commit> commits = new ArrayList<>();
 
 	private static final ChangeListener listener = new ChangeListener()
 	{

@@ -63,7 +63,7 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 				final String[] ids = request.getParameterValues(RETURN_CHECKBOX);
 				if(ids!=null)
 				{
-					final HashMap<Integer, ConnectToken> map = new HashMap<Integer, ConnectToken>();
+					final HashMap<Integer, ConnectToken> map = new HashMap<>();
 					for(final ConnectToken token : ConnectToken.getTokens(model))
 						map.put(token.getID(), token);
 
