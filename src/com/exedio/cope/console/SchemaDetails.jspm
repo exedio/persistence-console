@@ -60,7 +60,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 					%><hr>
 			<a href="<%=cop%>">flush log</a>
 			<ol><%
-				SchemaCop.writeApply(out, request, model, request.getParameter(APPLY_DRY)!=null);
+				cop.writeApply(out, request, model, request.getParameter(APPLY_DRY)!=null);
 			%>
 			</ol>
 			<a href="<%=cop%>">flush log</a>
@@ -68,7 +68,7 @@ final class SchemaDetails_Jspm extends Console_Jspm
 				}
 			}
 
-			final Schema schema = model.getVerifiedSchema();
+			final Schema schema = cop.getVerifiedSchema(model);
 			%>
 			<div class="schemaApply">
 				<input type="submit" name="<%= APPLY     %>" value="apply"/>

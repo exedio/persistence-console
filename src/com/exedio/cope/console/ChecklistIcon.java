@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.dsmf.Node;
+
 enum ChecklistIcon
 {
 	empty    { @Override void write(final Out out) { Connect_Jspm.writeOkGrey (out, true); }},
@@ -26,4 +28,16 @@ enum ChecklistIcon
 	error    { @Override void write(final Out out) { Connect_Jspm.writeError  (out, true); }};
 
 	abstract void write(Out out);
+
+	static ChecklistIcon forColor(final Node.Color color)
+	{
+		switch(color)
+		{
+			case OK:      return ok;
+			case WARNING: return warning;
+			case ERROR:   return error;
+			default:
+				throw new RuntimeException("" + color);
+		}
+	}
 }

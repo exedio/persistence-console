@@ -26,12 +26,14 @@ import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.StatementListener;
 import com.exedio.dsmf.Table;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletRequest;
 
-final class SchemaCop extends ConsoleCop<Void>
+final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 {
 	private static final String DETAILED = "dt";
 
@@ -83,6 +85,25 @@ final class SchemaCop extends ConsoleCop<Void>
 			"Any failures here invalidate all contracts of the cope framework. " +
 			"Your application may either fail with errors or silently destroy your data. " +
 			"DANGER ZONE.";
+
+	@Override
+	ChecklistIcon getChecklistIcon(final Model model)
+	{
+		return store().get();
+	}
+
+	@Override
+	AtomicReference<ChecklistIcon> initialStore()
+	{
+		return new AtomicReference<>(ChecklistIcon.warning);
+	}
+
+	Schema getVerifiedSchema(final Model model)
+	{
+		final Schema result = model.getVerifiedSchema();
+		store().set(ChecklistIcon.forColor(result.getCumulativeColor()));
+		return result;
+	}
 
 	@Override
 	void writeHead(final Out out)
@@ -174,10 +195,11 @@ final class SchemaCop extends ConsoleCop<Void>
 	static final String CATCH_DROP   = "catch.drop";
 	static final String CATCH_RESET  = "catch.reset";
 
-	static final void writeApply(final Out out,
+	@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
+	void writeApply(final Out out,
 			final HttpServletRequest request, final Model model, final boolean dryRun)
 	{
-		final Schema schema = model.getVerifiedSchema();
+		final Schema schema = getVerifiedSchema(model);
 		final StatementListener listener = new StatementListener()
 		{
 			long beforeExecuteTime = Long.MIN_VALUE;
