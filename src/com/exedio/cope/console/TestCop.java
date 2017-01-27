@@ -99,7 +99,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	abstract TestCop<I> newTestArgs(TestArgs testArgs);
 
 	@Override
-	ChecklistIcon getChecklistIcon(final Model model)
+	final ChecklistIcon getChecklistIcon(final Model model)
 	{
 		if(!toleratesNotConnected() && !model.isConnected())
 			return ChecklistIcon.warning;
@@ -132,13 +132,13 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	}
 
 	@Override
-	boolean isAjax()
+	final boolean isAjax()
 	{
 		return id!=null;
 	}
 
 	@Override
-	void writeAjax(final Out out)
+	final void writeAjax(final Out out)
 	{
 		if(id==null)
 			throw new IllegalArgumentException();
@@ -213,7 +213,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		return null;
 	}
 
-	void writeSummary(
+	final void writeSummary(
 			final Out out,
 			final int headingsLength,
 			final List<I> items,
