@@ -30,7 +30,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
-abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
+abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 {
 	static final String ID = "testajax";
 	static final String ITERATE = "iterate";
@@ -91,9 +91,9 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 	}
 
 	@Override
-	final HashMap<String, Info> initialStore()
+	final Store initialStore()
 	{
-		return new HashMap<>();
+		return new Store();
 	}
 
 	abstract TestCop<I> newTestArgs(TestArgs testArgs);
@@ -150,7 +150,7 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
 		}
 
-		final HashMap<String, Info> store = store();
+		final Store store = store();
 		store.put(id, info);
 
 		final List<I> items = getItems(out.model);
@@ -204,32 +204,16 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 			final Out out,
 			final int headingsLength,
 			final List<I> items,
-			final HashMap<String, Info> store)
+			final Store store)
 	{
-		long elapsed = 0;
-		Info date = null;
-		long failures = 0;
-		boolean isError = false;
-
-		for(final Info info : store.values())
-		{
-			elapsed  += info.elapsed;
-			date      = info.oldest(date);
-			failures += info.failures();
-			isError  |= info.isError();
-		}
-
+		final Store.Summary summary = store.summarize(items.size());
 		Test_Jspm.writeSummary(
 				out,
 				this,
 				headingsLength,
 				getID(items.get(0)),
-				items.size()==store.size(),
-				elapsed,
-				date!=null ? date.getDate() : null,
-				failures,
-				(failures>0) ? "failure" : null,
-				isError);
+				summary,
+				(summary.failures>0) ? "failure" : null);
 	}
 
 	static abstract class Info
@@ -341,6 +325,79 @@ abstract class TestCop<I> extends ConsoleCop<HashMap<String, TestCop.Info>>
 		void writeCellContent(final Out out)
 		{
 			out.writeStackTrace(exception);
+		}
+	}
+
+	static final class Store
+	{
+		private final HashMap<String, Info> infos = new HashMap<>();
+
+		Info get(final String id)
+		{
+			synchronized(infos)
+			{
+				return infos.get(id);
+			}
+		}
+
+		void put(final String id, final Info info)
+		{
+			synchronized(infos)
+			{
+				infos.put(id, info);
+			}
+		}
+
+		Summary summarize(final int itemsSize)
+		{
+			final boolean complete;
+			long elapsed = 0;
+			Info date = null;
+			long failures = 0;
+			boolean isError = false;
+
+			synchronized(infos)
+			{
+				complete = itemsSize==infos.size();
+
+				for(final Info info : infos.values())
+				{
+					elapsed  += info.elapsed;
+					date      = info.oldest(date);
+					failures += info.failures();
+					isError  |= info.isError();
+				}
+			}
+
+			return new Summary(complete, elapsed, date, failures, isError);
+		}
+
+		static final class Summary
+		{
+			final boolean complete;
+			final long elapsed;
+			private final Info date;
+			final long failures;
+			final boolean isError;
+
+			Summary(
+					final boolean complete,
+					final long elapsed,
+					final Info date,
+					final long failures,
+					final boolean isError)
+			{
+				this.complete = complete;
+				this.elapsed = elapsed;
+				this.date = date;
+				this.failures = failures;
+				this.isError = isError;
+			}
+
+			Date date()
+			{
+				return date!=null ? date.getDate() : null;
+			}
 		}
 	}
 

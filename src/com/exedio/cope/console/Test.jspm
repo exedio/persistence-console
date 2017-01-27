@@ -23,11 +23,10 @@ import static com.exedio.cope.console.Console_Jspm.writeError;
 import static com.exedio.cope.console.Console_Jspm.writeWarning;
 import static com.exedio.cope.console.Format.format;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import com.exedio.cope.console.TestCop.Info;
+import com.exedio.cope.console.TestCop.Store;
 
 final class Test_Jspm
 {
@@ -181,7 +180,7 @@ final class Test_Jspm
 			final Out out,
 			final String[] headings,
 			final List<I> items,
-			final HashMap<String, Info> infos)
+			final Store store)
 	{
 		if(items.isEmpty())
 		{
@@ -201,7 +200,7 @@ final class Test_Jspm
 		%>
 		<table id="test_table">
 			<tr id="summary"><%
-				cop.writeSummary(out, headingsLength, items, infos);
+				cop.writeSummary(out, headingsLength, items, store);
 			%>
 				<img class="check" onClick="toggleSuccess(this)" src="<%=ConsoleServlet.checkFalse%>"> hide success
 			</tr>
@@ -222,7 +221,7 @@ final class Test_Jspm
 		for(final I item : items)
 		{
 			final String id = cop.getID(item);
-			final Info info = infos.get(id);
+			final Info info = store.get(id);
 			final String rowClass = info!=null ? info.getRowClass() : null;
 			%>
 			<tr id="<%=id%>"<% if(rowClass!=null){%> class="<%=rowClass%>"<%} %>><%
@@ -276,21 +275,17 @@ final class Test_Jspm
 			final TestCop<I> cop,
 			final int headingsLength,
 			final String firstId,
-			final boolean complete,
-			final long elapsed,
-			final Date date,
-			final long failures,
-			final String cellClass,
-			final boolean isError)
+			final Store.Summary summary,
+			final String cellClass)
 	{
 				%>
 				<th style="text-align:right;" colspan="<%=headingsLength%>">Summary</th>
 				<td><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">Test</a></td>
-				<td><% writeWarning(out, !complete); %><%=date%></td>
+				<td><% writeWarning(out, !summary.complete); %><%=summary.date()%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
-				writeError(out, isError);
-				%><%=failures%><%
+				writeError(out, summary.isError);
+				%><%=summary.failures%><%
 				%></td>
-				<td><%=format(elapsed)%></td><%
+				<td><%=format(summary.elapsed)%></td><%
 	}
 }%>
