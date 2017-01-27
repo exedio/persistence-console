@@ -90,7 +90,7 @@ abstract class Console_Jspm
 
 			if(help!=null)
 			{
-				%><img class="check2" onClick="return onHelp(<%=helpId%>);" src="<%=ConsoleServlet.help%>"><%
+				%><img class="icon" onClick="return onHelp(<%=helpId%>);" src="<%=ConsoleServlet.help%>"><%
 			}
 			%></h2><%
 
@@ -212,7 +212,7 @@ abstract class Console_Jspm
 	{
 		if(condition)
 		{
-			%><img class="check2" src="<%=resource%>"><%
+			%><img class="icon" src="<%=resource%>"><%
 		}
 	}
 

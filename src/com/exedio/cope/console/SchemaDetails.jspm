@@ -294,10 +294,10 @@ final class SchemaDetails_Jspm extends Console_Jspm
 			case OK:
 				break;
 			case WARNING:
-				%><img class="check2" src="<%=ConsoleServlet.warning%>"><%
+				%><img class="icon" src="<%=ConsoleServlet.warning%>"><%
 				break;
 			case ERROR:
-				%><img class="check2" src="<%=ConsoleServlet.error%>"><%
+				%><img class="icon" src="<%=ConsoleServlet.error%>"><%
 				break;
 			default:
 				throw new RuntimeException(color.toString());
