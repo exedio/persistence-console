@@ -174,45 +174,46 @@ abstract class Console_Jspm
 			final Out out,
 			final boolean condition)
 	{
-		writeIcon(out, condition, ConsoleServlet.ok);
+		writeIcon(out, condition, ConsoleServlet.ok, "Ok");
 	}
 
 	static final void writeOkGrey(
 			final Out out,
 			final boolean condition)
 	{
-		writeIcon(out, condition, ConsoleServlet.okGrey);
+		writeIcon(out, condition, ConsoleServlet.okGrey, "Ok because empty");
 	}
 
 	static final void writeWarning(
 			final Out out,
 			final boolean condition)
 	{
-		writeIcon(out, condition, ConsoleServlet.warning);
+		writeIcon(out, condition, ConsoleServlet.warning, "Warning");
 	}
 
 	static final void writeError(
 			final Out out,
 			final boolean condition)
 	{
-		writeIcon(out, condition, ConsoleServlet.error);
+		writeIcon(out, condition, ConsoleServlet.error, "Error");
 	}
 
 	static final void writeUnknown(
 			final Out out,
 			final boolean condition)
 	{
-		writeIcon(out, condition, ConsoleServlet.unknown);
+		writeIcon(out, condition, ConsoleServlet.unknown, "Insufficient Information");
 	}
 
 	private static final void writeIcon(
 			final Out out,
 			final boolean condition,
-			final Resource resource)
+			final Resource resource,
+			final String title)
 	{
 		if(condition)
 		{
-			%><img class="icon" src="<%=resource%>"><%
+			%><img class="icon" src="<%=resource%>" title="<%=title%>"><%
 		}
 	}
 
