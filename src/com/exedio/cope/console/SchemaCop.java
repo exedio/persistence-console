@@ -95,7 +95,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 	@Override
 	AtomicReference<ChecklistIcon> initialStore()
 	{
-		return new AtomicReference<>(ChecklistIcon.warning);
+		return new AtomicReference<>(ChecklistIcon.unknown);
 	}
 
 	Schema getVerifiedSchema(final Model model)

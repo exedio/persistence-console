@@ -104,6 +104,7 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource okGrey  = new Resource("silk_accept_grey.png");
 	static final Resource warning = new Resource("silk_error.png");
 	static final Resource error   = new Resource("silk_exclamation.png");
+	static final Resource unknown = new Resource("silk_help_yellow.png");
 	static final Resource help    = new Resource("silk_help.png");
 	static final Resource imagebackground = new Resource("imagebackground.png");
 

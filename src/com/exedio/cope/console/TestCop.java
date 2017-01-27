@@ -102,7 +102,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	final ChecklistIcon getChecklistIcon(final Model model)
 	{
 		if(!toleratesNotConnected() && !model.isConnected())
-			return ChecklistIcon.warning;
+			return ChecklistIcon.unknown;
 
 		final List<I> items = getItems(model);
 		if(items.isEmpty())
@@ -370,7 +370,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 						return ChecklistIcon.error;
 
 				if(itemsSize!=infos.size())
-					return ChecklistIcon.warning; // incomplete
+					return ChecklistIcon.unknown;
 			}
 			return ChecklistIcon.ok;
 		}

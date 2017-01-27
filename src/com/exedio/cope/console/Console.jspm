@@ -198,6 +198,13 @@ abstract class Console_Jspm
 		writeProblem(out, condition, ConsoleServlet.error);
 	}
 
+	static final void writeUnknown(
+			final Out out,
+			final boolean condition)
+	{
+		writeProblem(out, condition, ConsoleServlet.unknown);
+	}
+
 	private static final void writeProblem(
 			final Out out,
 			final boolean condition,
