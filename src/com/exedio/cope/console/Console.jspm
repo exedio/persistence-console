@@ -174,38 +174,38 @@ abstract class Console_Jspm
 			final Out out,
 			final boolean condition)
 	{
-		writeProblem(out, condition, ConsoleServlet.ok);
+		writeIcon(out, condition, ConsoleServlet.ok);
 	}
 
 	static final void writeOkGrey(
 			final Out out,
 			final boolean condition)
 	{
-		writeProblem(out, condition, ConsoleServlet.okGrey);
+		writeIcon(out, condition, ConsoleServlet.okGrey);
 	}
 
 	static final void writeWarning(
 			final Out out,
 			final boolean condition)
 	{
-		writeProblem(out, condition, ConsoleServlet.warning);
+		writeIcon(out, condition, ConsoleServlet.warning);
 	}
 
 	static final void writeError(
 			final Out out,
 			final boolean condition)
 	{
-		writeProblem(out, condition, ConsoleServlet.error);
+		writeIcon(out, condition, ConsoleServlet.error);
 	}
 
 	static final void writeUnknown(
 			final Out out,
 			final boolean condition)
 	{
-		writeProblem(out, condition, ConsoleServlet.unknown);
+		writeIcon(out, condition, ConsoleServlet.unknown);
 	}
 
-	private static final void writeProblem(
+	private static final void writeIcon(
 			final Out out,
 			final boolean condition,
 			final Resource resource)
