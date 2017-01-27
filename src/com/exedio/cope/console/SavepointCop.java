@@ -55,7 +55,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	}
 
 	@Override
-	final ArrayList<Point> initialStore()
+	ArrayList<Point> initialStore()
 	{
 		return new ArrayList<>();
 	}
@@ -84,7 +84,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		Savepoint_Jspm.writeBody(
 				out, this,
