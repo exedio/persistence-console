@@ -177,6 +177,13 @@ abstract class Console_Jspm
 		writeProblem(out, condition, ConsoleServlet.ok);
 	}
 
+	static final void writeOkGrey(
+			final Out out,
+			final boolean condition)
+	{
+		writeProblem(out, condition, ConsoleServlet.okGrey);
+	}
+
 	static final void writeWarning(
 			final Out out,
 			final boolean condition)

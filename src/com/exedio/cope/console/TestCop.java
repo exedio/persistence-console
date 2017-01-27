@@ -106,7 +106,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 
 		final List<I> items = getItems(model);
 		if(items.isEmpty())
-			return ChecklistIcon.ok;
+			return ChecklistIcon.empty;
 
 		return store().getChecklistIcon(items.size());
 	}

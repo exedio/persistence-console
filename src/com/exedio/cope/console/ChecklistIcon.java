@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 enum ChecklistIcon
 {
+	empty    { @Override void write(final Out out) { Connect_Jspm.writeOkGrey (out, true); }},
 	ok       { @Override void write(final Out out) { Connect_Jspm.writeOk     (out, true); }},
 	warning  { @Override void write(final Out out) { Connect_Jspm.writeWarning(out, true); }},
 	error    { @Override void write(final Out out) { Connect_Jspm.writeError  (out, true); }};
