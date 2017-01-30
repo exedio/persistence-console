@@ -118,6 +118,7 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	private static final String NAME_POSTFIX = ".html";
+	private static final String[] EMPTY_STRING_ARRAY = new String[0];
 	final String name;
 	final Args args;
 	static final int[] AUTO_REFRESHS = new int[]{0, 2, 5, 15, 60};
@@ -231,9 +232,9 @@ abstract class ConsoleCop<S> extends Cop
 				}};
 	}
 
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return null;
+		return EMPTY_STRING_ARRAY;
 	}
 
 	final String getStart()

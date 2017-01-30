@@ -48,12 +48,14 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Verifies that data complies with check constraints that cannot be declared in the database " +
-				"because they span multiple tables (implementing a type hierarchy). " +
-				HELP_IMPACT_FATAL;
+		return new String[]
+		{
+			"Verifies that data complies with check constraints that cannot be declared in the database " +
+				"because they span multiple tables (implementing a type hierarchy).",
+			HELP_IMPACT_FATAL
+		};
 	}
 
 	@Override

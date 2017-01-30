@@ -83,22 +83,24 @@ abstract class Console_Jspm
 		<br clear="right"><%
 		Menue_Jspm.write(out, cop);
 
-		final String help = cop.getHeadingHelp();
+		final String[] help = cop.getHeadingHelp();
 		final int helpId = out.nextId();
 		%>
 		<h2><%=cop.name%><%
 
-			if(help!=null)
+			if(help.length>0)
 			{
 				%><img class="icon" onClick="return onHelp(<%=helpId%>);" src="<%=ConsoleServlet.help%>"><%
 			}
 			%></h2><%
 
-		if(help!=null)
+		if(help.length>0)
 		{
 		%>
 		<div id="help<%=helpId%>" class="help">
-			<%=help%>
+			<% for (final String helpLine: help) { %>
+				<div class="helpline"><%=helpLine%></div>
+			<% } %>
 		</div><%
 		}
 

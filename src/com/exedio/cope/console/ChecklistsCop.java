@@ -32,11 +32,13 @@ final class ChecklistsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Organizes menu items into checklists for certain situations. " +
-				"All items listed here can be found somewhere else in the menu as well.";
+		return new String[]
+		{
+			"Organizes menu items into checklists for certain situations. " +
+				"All items listed here can be found somewhere else in the menu as well."
+		};
 	}
 
 	@Override

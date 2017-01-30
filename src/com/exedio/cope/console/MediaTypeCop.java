@@ -49,14 +49,16 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Verifies whether the content type of Media is consistent to their body (i.e., binary data). " +
-				"This is done by usual mime-magic. " +
-				"IMPACT: " +
+		return new String[]
+		{
+			"Verifies whether the content type of Media is consistent to their body (i.e., binary data). " +
+				"This is done by usual mime-magic.",
+			"IMPACT: " +
 				"Failures here do cause MediaServlet to send wrong Content-Type headers in http responses, " +
-				"which may confuse browsers and cause broken web pages.";
+				"which may confuse browsers and cause broken web pages."
+		};
 	}
 
 	@Override

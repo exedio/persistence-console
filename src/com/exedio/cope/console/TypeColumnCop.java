@@ -52,11 +52,13 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Checks consistency of type columns to the \"class\"-column of their target. " +
-				HELP_IMPACT_FATAL;
+		return new String[]
+		{
+			"Checks consistency of type columns to the \"class\"-column of their target.",
+			HELP_IMPACT_FATAL
+		};
 	}
 
 	@Override

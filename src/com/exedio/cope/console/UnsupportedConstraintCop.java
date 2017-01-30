@@ -49,16 +49,18 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"For databases not supporting check constraints (MySQL), " +
-				"checks whether data complies with these unsupported check constraints. " +
-				HELP_IMPACT_FATAL + " " +
-				"NOTE: This screen and the screen \""+UnsupportedCheckConstraintByTableCop.NAME+"\" apply the same checks. " +
+		return new String[]
+		{
+			"For databases not supporting check constraints (MySQL), " +
+				"checks whether data complies with these unsupported check constraints.",
+			HELP_IMPACT_FATAL,
+			"NOTE: This screen and the screen \""+UnsupportedCheckConstraintByTableCop.NAME+"\" apply the same checks. " +
 				"Here, each constraint is checked individually. " +
 				"If you want to check all constraints of a table at once (much faster), " +
-				"use \""+UnsupportedCheckConstraintByTableCop.NAME+"\".";
+				"use \""+UnsupportedCheckConstraintByTableCop.NAME+"\"."
+		};
 	}
 
 	@Override
