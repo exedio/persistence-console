@@ -36,7 +36,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 	{
 		return
 				"Organizes menu items into checklists for certain situations. " +
-				"Items listed here can be found somewhere else in the menu as well.";
+				"All items listed here can be found somewhere else in the menu as well.";
 	}
 
 	@Override

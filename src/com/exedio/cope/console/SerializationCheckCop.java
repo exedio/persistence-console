@@ -38,7 +38,7 @@ final class SerializationCheckCop extends ConsoleCop<Void>
 	{
 		return
 				"Checks classes of Items, Composites, and Blocks for fields that may obstruct serialization. " +
-				"Serialization is typically used for making a HttpSession survive a redeployment of the application. " +
+				"Serialization is typically used for making an HttpSession survive a redeployment of the application. " +
 				"The table lists all non-static and non-transient fields. " +
 				"Fields with a non-Serializable type are shown in red. " +
 				"IMPACT: " +

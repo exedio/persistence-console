@@ -51,8 +51,8 @@ final class UnsupportedCheckConstraintCop extends TestCop<CheckConstraint>
 	String getHeadingHelp()
 	{
 		return
-				"Verifies whether data complies with check constraints that cannot be declared in the database, " +
-				"because they span multiple tables implementing type hierarchy. " +
+				"Verifies that data complies with check constraints that cannot be declared in the database " +
+				"because they span multiple tables (implementing a type hierarchy). " +
 				HELP_IMPACT_FATAL;
 	}
 

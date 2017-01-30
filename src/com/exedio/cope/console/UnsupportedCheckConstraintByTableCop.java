@@ -62,10 +62,11 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	String getHeadingHelp()
 	{
 		return
-				"Verifies for databases not supporting check constraints (MySQL), " +
-				"whether data complies with these unsupported check constraints. " +
+				"For databases not supporting check constraints (MySQL), " +
+				"checks whether data complies with these unsupported check constraints. " +
 				HELP_IMPACT_FATAL + " " +
-				"NOTE: Here all constraints of a table are checked at once. " +
+				"NOTE: This screen and the screen \"Unsupported Constraints\" apply the same checks. " +
+				"Here, all constraints of a table are checked at once. " +
 				"If you want to check each constraint individually (typically if you found an error), " +
 				"use \"Unsupported Constraints\".";
 	}

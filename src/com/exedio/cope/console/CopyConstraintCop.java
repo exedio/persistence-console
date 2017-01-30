@@ -51,7 +51,7 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	String getHeadingHelp()
 	{
 		return
-				"Verifies whether data complies with copy constraints. " +
+				"Verifies that data complies with copy constraints. " +
 				"Copy constraints cannot be declared in any database. " +
 				HELP_IMPACT_FATAL;
 	}

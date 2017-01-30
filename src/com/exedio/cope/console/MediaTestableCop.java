@@ -52,7 +52,7 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 				"Runs MediaTestable#test on all features of the model implementing MediaTestable. " +
 				"IMPACT: " +
 				"A failure here means that the affected feature may fail to work. " +
-				"In particular MediaServlet may repond with code 500 Internal Server Error. " +
+				"In particular, MediaServlet may repond with code 500 Internal Server Error. " +
 				"DANGER ZONE.";
 	}
 

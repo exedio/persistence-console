@@ -51,7 +51,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	String getHeadingHelp()
 	{
 		return
-				"Checks whether all tables for type hierarchy do have corresponding rows. " +
+				"For type hierarchies, verifies that each item has a row in all relevant tables. " +
 				HELP_IMPACT_FATAL;
 	}
 

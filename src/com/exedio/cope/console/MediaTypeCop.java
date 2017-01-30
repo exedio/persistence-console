@@ -52,7 +52,7 @@ final class MediaTypeCop extends TestCop<Media>
 	String getHeadingHelp()
 	{
 		return
-				"Verifies whether content type of Media is consistent to its body. " +
+				"Verifies whether the content type of Media is consistent to their body (i.e., binary data). " +
 				"This is done by usual mime-magic. " +
 				"IMPACT: " +
 				"Failures here do cause MediaServlet to send wrong Content-Type headers in http responses, " +
