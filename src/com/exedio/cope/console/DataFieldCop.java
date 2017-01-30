@@ -43,6 +43,17 @@ final class DataFieldCop extends ConsoleCop<Void>
 	}
 
 	@Override
+	String[] getHeadingHelp()
+	{
+		return new String[]
+		{
+			"Here you can see sizes of data fields (blob columns). " +
+				"Table \"Tables\" aggregates sizes of multiple columns within a table.",
+			"This helps to configure your database, such as max_allowed_packet on MySQL.",
+		};
+	}
+
+	@Override
 	final void writeBody(final Out out)
 	{
 		final Model model = out.model;
