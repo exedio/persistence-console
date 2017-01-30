@@ -28,23 +28,23 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.List;
 
-final class UnsupportedCheckConstraintCop extends TestCop<CheckConstraint>
+final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 {
-	UnsupportedCheckConstraintCop(final Args args, final TestArgs testArgs)
+	MultiTableCheckConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_UNSUPPORTED_CHECK_CONSTRAINTS, "Unsupported Check Constraints", args, testArgs);
+		super(TAB_MULTI_TABLE_CHECK_CONSTRAINTS, "Multi-Table Check Constraints", args, testArgs);
 	}
 
 	@Override
-	protected UnsupportedCheckConstraintCop newArgs(final Args args)
+	protected MultiTableCheckConstraintCop newArgs(final Args args)
 	{
-		return new UnsupportedCheckConstraintCop(args, testArgs);
+		return new MultiTableCheckConstraintCop(args, testArgs);
 	}
 
 	@Override
-	protected UnsupportedCheckConstraintCop newTestArgs(final TestArgs testArgs)
+	protected MultiTableCheckConstraintCop newTestArgs(final TestArgs testArgs)
 	{
-		return new UnsupportedCheckConstraintCop(args, testArgs);
+		return new MultiTableCheckConstraintCop(args, testArgs);
 	}
 
 	@Override

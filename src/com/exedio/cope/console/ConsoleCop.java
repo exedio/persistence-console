@@ -182,7 +182,7 @@ abstract class ConsoleCop<S> extends Cop
 					new SchemaCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
 					new UnsupportedCheckConstraintByTableCop(args, testArgs),
-					new UnsupportedCheckConstraintCop(args, testArgs),
+					new MultiTableCheckConstraintCop(args, testArgs),
 					new UpdateCounterCop(args, testArgs),
 					new SequenceCop(args, testArgs),
 					new TypeColumnCop(args, testArgs),
@@ -288,7 +288,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_SAVEPOINT = "savepoint";
 	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
 	static final String TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE = "unsupportedcheckconstraintsbytable";
-	static final String TAB_UNSUPPORTED_CHECK_CONSTRAINTS = "unsupportedcheckconstraints";
+	static final String TAB_MULTI_TABLE_CHECK_CONSTRAINTS = "multitablecheckconstraints";
 	static final String TAB_TYPE_COLUMNS = "typecolumns";
 	static final String TAB_TYPE_COMPLETENESS = "typecompleteness";
 	static final String TAB_UPDATE_COUNTERS = "updatecounters";
@@ -349,8 +349,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE.equals(tab))
 			return new UnsupportedCheckConstraintByTableCop(args, new TestCop.TestArgs(request));
-		if(TAB_UNSUPPORTED_CHECK_CONSTRAINTS.equals(tab))
-			return new UnsupportedCheckConstraintCop(args, new TestCop.TestArgs(request));
+		if(TAB_MULTI_TABLE_CHECK_CONSTRAINTS.equals(tab))
+			return new MultiTableCheckConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_TYPE_COLUMNS.equals(tab))
 			return new TypeColumnCop(args, new TestCop.TestArgs(request));
 		if(TAB_TYPE_COMPLETENESS.equals(tab))
