@@ -82,6 +82,7 @@
 				<pathelement location="lib/javax.servlet-api.jar" />
 				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="lib/findbugs-annotations.jar" />
+				<pathelement location="lib/slf4j-api.jar" />
 			</classpath>
 		</compile>
 	</target>
@@ -107,6 +108,7 @@
 				<pathelement location="lib/junit.jar" />
 				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="lib/findbugs-annotations.jar" />
+				<pathelement location="lib/sl4j-api.jar" />
 			</classpath>
 		</compile>
 	</target>
@@ -289,6 +291,7 @@
 				<pathelement location="${basedir}/lib/javax.servlet-api.jar" />
 				<pathelement location="${basedir}/lib/junit.jar" />
 				<pathelement location="${basedir}/lib/exedio-cope-instrument-annotations.jar" />
+				<pathelement location="${basedir}/lib/slf4j-api.jar" />
 				<pathelement location="${ant.core.lib}" />
 			</auxclasspath>
 		</findbugs>
