@@ -45,13 +45,15 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Checks consistency of update counters between tables implementing type inheritance. " +
-				"IMPACT: " +
+		return new String[]
+		{
+			"Checks consistency of update counters between tables implementing type inheritance.",
+			"IMPACT: " +
 				"Any failures here causes errors when trying to load affected items into memory. " +
-				"DANGER ZONE.";
+				"DANGER ZONE."
+		};
 	}
 
 	@Override

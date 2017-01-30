@@ -48,11 +48,13 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Checks whether all tables for type hierarchy do have corresponding rows. " +
-				HELP_IMPACT_FATAL;
+		return new String[]
+		{
+			"For type hierarchies, verifies that each item has a row in all relevant tables.",
+			HELP_IMPACT_FATAL
+		};
 	}
 
 	@Override

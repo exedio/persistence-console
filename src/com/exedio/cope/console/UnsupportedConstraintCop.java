@@ -29,9 +29,11 @@ import java.util.List;
 
 final class UnsupportedConstraintCop extends TestCop<Constraint>
 {
+	static final String NAME = "Unsupported Constraints";
+
 	UnsupportedConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_UNSUPPORTED_CONSTRAINTS, "Unsupported Constraints", args, testArgs);
+		super(TAB_UNSUPPORTED_CONSTRAINTS, NAME, args, testArgs);
 	}
 
 	@Override
@@ -47,15 +49,18 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Verifies for databases not supporting check constraints (MySQL), " +
-				"whether data complies with these unsupported check constraints. " +
-				HELP_IMPACT_FATAL + " " +
-				"NOTE: Here each constraint is checked individually. " +
+		return new String[]
+		{
+			"For databases not supporting check constraints (MySQL), " +
+				"checks whether data complies with these unsupported check constraints.",
+			HELP_IMPACT_FATAL,
+			"NOTE: This screen and the screen \""+UnsupportedCheckConstraintByTableCop.NAME+"\" apply the same checks. " +
+				"Here, each constraint is checked individually. " +
 				"If you want to check all constraints of a table at once (much faster), " +
-				"use \"Unsupported Check Constraints By Table\".";
+				"use \""+UnsupportedCheckConstraintByTableCop.NAME+"\"."
+		};
 	}
 
 	@Override

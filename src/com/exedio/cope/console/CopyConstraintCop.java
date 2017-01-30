@@ -48,12 +48,14 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Verifies whether data complies with copy constraints. " +
-				"Copy constraints cannot be declared in any database. " +
-				HELP_IMPACT_FATAL;
+		return new String[]
+		{
+			"Verifies that data complies with copy constraints. " +
+				"Copy constraints cannot be declared in any database.",
+			HELP_IMPACT_FATAL
+		};
 	}
 
 	@Override

@@ -57,14 +57,16 @@ final class CharacterNulCop extends TestCop<StringField>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Checks string fields for character NUL. " +
+		return new String[]
+		{
+			"Checks string fields for character NUL. " +
 				"This character is not supported by PostgreSQL. " +
-				"This check currently works on MySQL only. " +
-				"IMPACT: " +
-				"A failure here means that you cannot migrate your data to PostgreSQL.";
+				"This check currently works on MySQL only.",
+			"IMPACT: " +
+				"A failure here means that you cannot migrate your data to PostgreSQL."
+		};
 	}
 
 	@Override

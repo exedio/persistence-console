@@ -32,11 +32,13 @@ final class ChecklistsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Organizes menu items into checklists for certain situations. " +
-				"Items listed here can be found somewhere else in the menu as well.";
+		return new String[]
+		{
+			"Organizes menu items into checklists for certain situations. " +
+				"All items listed here can be found somewhere else in the menu as well."
+		};
 	}
 
 	@Override
@@ -47,7 +49,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 				new ConsoleCop<?>[]{ // schema
 						new SchemaCop(args),
 						new UnsupportedCheckConstraintByTableCop(args, testArgs),
-						new UnsupportedCheckConstraintCop(args, testArgs),
+						new MultiTableCheckConstraintCop(args, testArgs),
 						new UpdateCounterCop(args, testArgs),
 						new SequenceCop(args, testArgs),
 						new TypeColumnCop(args, testArgs),

@@ -35,14 +35,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 {
+	private static final Logger logger = LoggerFactory.getLogger(UnsupportedCheckConstraintByTableCop.class);
+
+	static final String NAME = "Unsupported Check Constraints By Table";
+
 	UnsupportedCheckConstraintByTableCop(final Args args, final TestArgs testArgs)
 	{
 		super(
 				TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE,
-				"Unsupported Check Constraints By Table",
+				NAME,
 				args, testArgs);
 	}
 
@@ -59,15 +65,18 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Verifies for databases not supporting check constraints (MySQL), " +
-				"whether data complies with these unsupported check constraints. " +
-				HELP_IMPACT_FATAL + " " +
-				"NOTE: Here all constraints of a table are checked at once. " +
+		return new String[]
+		{
+			"For databases not supporting check constraints (MySQL), " +
+				"checks whether data complies with these unsupported check constraints.",
+			HELP_IMPACT_FATAL,
+			"NOTE: This screen and the screen \""+UnsupportedConstraintCop.NAME+"\" apply the same checks. " +
+				"Here, all constraints of a table are checked at once. " +
 				"If you want to check each constraint individually (typically if you found an error), " +
-				"use \"Unsupported Constraints\".";
+				"use \""+UnsupportedConstraintCop.NAME+"\"."
+		};
 	}
 
 	@Override
@@ -141,7 +150,21 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 
 	private static boolean isRelevant(final Constraint constraint)
 	{
-		return !constraint.isSupported() && constraint instanceof CheckConstraint;
+		if(constraint.isSupported())
+			return false;
+		if(constraint instanceof CheckConstraint)
+		{
+			return true;
+		}
+		else
+		{
+			logger.warn(
+				"found unsupported Constraint that is not a CheckConstraint -> " +
+				UnsupportedConstraintCop.class.getSimpleName()+" and "+UnsupportedCheckConstraintByTableCop.class.getSimpleName() +
+				" don't show the same constraints"
+			);
+			return false;
+		}
 	}
 
 	@Override

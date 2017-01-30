@@ -34,16 +34,18 @@ final class SerializationCheckCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	String getHeadingHelp()
+	String[] getHeadingHelp()
 	{
-		return
-				"Checks classes of Items, Composites, and Blocks for fields that may obstruct serialization. " +
-				"Serialization is typically used for making a HttpSession survive a redeployment of the application. " +
+		return new String[]
+		{
+			"Checks classes of Items, Composites, and Blocks for fields that may obstruct serialization.",
+			"Serialization is typically used for making an HttpSession survive a redeployment of the application. " +
 				"The table lists all non-static and non-transient fields. " +
-				"Fields with a non-Serializable type are shown in red. " +
-				"IMPACT: " +
+				"Fields with a non-Serializable type are shown in red.",
+			"IMPACT: " +
 				"A failure here means that serialization/deserialization may either fail and/or " +
-				"render deserialized objects corrupt or useless.";
+				"render deserialized objects corrupt or useless."
+		};
 	}
 
 	@Override
