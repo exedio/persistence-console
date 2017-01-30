@@ -29,9 +29,11 @@ import java.util.List;
 
 final class UnsupportedConstraintCop extends TestCop<Constraint>
 {
+	static final String NAME = "Unsupported Constraints";
+
 	UnsupportedConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_UNSUPPORTED_CONSTRAINTS, "Unsupported Constraints", args, testArgs);
+		super(TAB_UNSUPPORTED_CONSTRAINTS, NAME, args, testArgs);
 	}
 
 	@Override
@@ -55,7 +57,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 				HELP_IMPACT_FATAL + " " +
 				"NOTE: Here, each constraint is checked individually. " +
 				"If you want to check all constraints of a table at once (much faster), " +
-				"use \"Unsupported Check Constraints By Table\".";
+				"use \""+UnsupportedCheckConstraintByTableCop.NAME+"\".";
 	}
 
 	@Override
