@@ -35,9 +35,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 {
+	private static final Logger logger = LoggerFactory.getLogger(UnsupportedCheckConstraintByTableCop.class);
+
 	static final String NAME = "Unsupported Check Constraints By Table";
 
 	UnsupportedCheckConstraintByTableCop(final Args args, final TestArgs testArgs)
@@ -144,7 +148,21 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 
 	private static boolean isRelevant(final Constraint constraint)
 	{
-		return !constraint.isSupported() && constraint instanceof CheckConstraint;
+		if(constraint.isSupported())
+			return false;
+		if(constraint instanceof CheckConstraint)
+		{
+			return true;
+		}
+		else
+		{
+			logger.warn(
+				"found unsupported Constraint that is not a CheckConstraint -> " +
+				UnsupportedConstraintCop.class.getSimpleName()+" and "+UnsupportedCheckConstraintByTableCop.class.getSimpleName() +
+				" don't show the same constraints"
+			);
+			return false;
+		}
 	}
 
 	@Override
