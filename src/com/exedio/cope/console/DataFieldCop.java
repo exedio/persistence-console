@@ -101,16 +101,11 @@ final class DataFieldCop extends ConsoleCop<Void>
 		@SuppressFBWarnings("EQ_COMPARETO_USE_OBJECT_EQUALS") // OK: name is unique
 		public int compareTo(final Table other)
 		{
-			final int sizeResult = compare(size, other.size);
+			final int sizeResult = Long.compare(size, other.size);
 			if(sizeResult!=0)
 				return sizeResult;
 
 			return name.compareTo(other.name);
-		}
-
-		private static int compare(final long left, final long right)
-		{
-			return (left<right ? -1 : (left==right ? 0 : 1));
 		}
 	}
 
