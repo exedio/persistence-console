@@ -53,7 +53,7 @@ final class Media_Jspm extends Console_Jspm
 		%>
 		<table id="coloredTable">
 			<caption>Statistics</caption>
-			<tr><th colspan="<%=tableColumns%>">No Such Path <small>(404)</small></th><td><%=format(MediaPath.getNoSuchPath())%></td></tr><%
+			<tr><th colspan="<%=tableColumns%>">No Such Path (404)</th><td><%=format(MediaPath.getNoSuchPath())%></td></tr><%
 			MediaStatsCop.writeTableHeader(out);
 
 			if(isUrlGuessingNotSecure)
