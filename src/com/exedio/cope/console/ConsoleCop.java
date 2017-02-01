@@ -192,6 +192,7 @@ abstract class ConsoleCop<S> extends Cop
 				},
 				new ConsoleCop<?>[]{
 					new OptionalFieldCop(args, testArgs),
+					new EmptyStringFieldCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
 					new CharacterNulCop(args, testArgs),
@@ -296,6 +297,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_COPY_CONSTRAINTS = "copyconstraints";
 	static final String TAB_CHARACTER_NUL = "characterNul";
 	static final String TAB_OPTIONAL_FIELDS = "optional";
+	static final String TAB_EMPTY_STRING_FIELDS = "emptystring";
 	static final String TAB_MIN_LENGTH_STRING_FIELDS = "minlength";
 	static final String TAB_FEATURE_FIELD = "feature";
 	static final String TAB_REVISION = "revision";
@@ -368,6 +370,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new ConnectTokenCop(args);
 		if(TAB_OPTIONAL_FIELDS.equals(tab))
 			return new OptionalFieldCop(args, new TestCop.TestArgs(request));
+		if(TAB_EMPTY_STRING_FIELDS.equals(tab))
+			return new EmptyStringFieldCop(args, new TestCop.TestArgs(request));
 		if(TAB_MIN_LENGTH_STRING_FIELDS.equals(tab))
 			return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
 		if(TAB_FEATURE_FIELD.equals(tab))
