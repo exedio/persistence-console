@@ -93,20 +93,20 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 				storeGet());
 	}
 
-	public static final class Point
+	static final class Point
 	{
 		private final long date;
 		final String message;
 		private final boolean success;
 
-		public Point(final String result)
+		Point(final String result)
 		{
 			this.date = System.currentTimeMillis();
 			this.message = result;
 			this.success = true;
 		}
 
-		public Point(final SQLException exception)
+		Point(final SQLException exception)
 		{
 			this.date = System.currentTimeMillis();
 			this.message = exception.getMessage();
