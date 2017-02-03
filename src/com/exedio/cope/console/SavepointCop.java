@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.ListIterator;
 import javax.servlet.http.HttpServletRequest;
 
 final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
@@ -54,6 +55,43 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 				"or the database user may not be allowed to fetch savepoints. " +
 				"Savepoints are provided via Model#getSchemaSavepoint()."
 		};
+	}
+
+	@Override
+	final ChecklistIcon getChecklistIcon(final Model model)
+	{
+		final ArrayList<Point> store = store();
+		synchronized(store)
+		{
+			return getChecklistIcon(store);
+		}
+	}
+
+	static final ChecklistIcon getChecklistIcon(final ArrayList<Point> store)
+	{
+		final int size = store.size();
+
+		if(size<1)
+			return ChecklistIcon.unknown;
+		final Point latest = store.get(size-1);
+		if(!latest.success)
+			return ChecklistIcon.error;
+
+		String lastSuccessMessage = null;
+		for(final ListIterator<Point> iter = store.listIterator(store.size()); iter.hasPrevious(); )
+		{
+			final Point point = iter.previous();
+
+			if(!point.success)
+				return ChecklistIcon.unknown;
+
+			final String message = point.message;
+			if(lastSuccessMessage!=null && !lastSuccessMessage.equals(message))
+				return ChecklistIcon.ok;
+
+			lastSuccessMessage = message;
+		}
+		return ChecklistIcon.unknown;
 	}
 
 	@Override
@@ -97,7 +135,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	{
 		private final long date;
 		final String message;
-		private final boolean success;
+		final boolean success;
 
 		Point(final String result)
 		{

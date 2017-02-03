@@ -31,6 +31,7 @@ public class PackageTest extends TestCase
 		suite.addTestSuite(MimeTypesTest.class);
 		suite.addTestSuite(QueryCacheTest.class);
 		suite.addTestSuite(RevisionLineTest.class);
+		suite.addTestSuite(SavepointChecklistIconTest.class);
 
 		return suite;
 	}

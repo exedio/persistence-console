@@ -59,6 +59,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new UniqueHashedMediaCop(args, testArgs)
 				},
 				new ConsoleCop<?>[]{ // machine
+						new SavepointCop(args),
 						new MediaTestableCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{ // application
