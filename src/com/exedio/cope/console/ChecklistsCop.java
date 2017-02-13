@@ -60,6 +60,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 				},
 				new ConsoleCop<?>[]{ // machine
 						new SavepointCop(args),
+						new MediaStatsCop(args, MediaStatsCop.Variant.guessingPrevented),
 						new MediaTestableCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{ // application

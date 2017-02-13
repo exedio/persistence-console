@@ -215,6 +215,7 @@ abstract class ConsoleCop<S> extends Cop
 				},
 				new ConsoleCop<?>[]{
 					new MediaStatsCop(args, MediaStatsCop.Variant.all),
+					new MediaStatsCop(args, MediaStatsCop.Variant.guessingPrevented),
 					new MediaStatsCop(args, MediaStatsCop.Variant.fingerprint),
 					new MediaTestableCop(args, testArgs),
 					new MediaTypeCop(args, testArgs),
@@ -311,6 +312,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_SERIALIZATION_CHECK = "serialization";
 	static final String TAB_DATA_FIELD = "datafield";
 	static final String TAB_MEDIA_STATS = "mediastats";
+	static final String TAB_MEDIA_GUESSUNGPREVENTED = "mediaguess";
 	static final String TAB_MEDIA_FINGERPRINTING = "mediafinger";
 	static final String TAB_MEDIA_TESTABLE = "mediatestable";
 	static final String TAB_MEDIA_TYPE = "mediatype";
@@ -398,6 +400,8 @@ abstract class ConsoleCop<S> extends Cop
 			return new DataFieldCop(args);
 		if(TAB_MEDIA_STATS.equals(tab))
 			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.all, request);
+		if(TAB_MEDIA_GUESSUNGPREVENTED.equals(tab))
+			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.guessingPrevented, request);
 		if(TAB_MEDIA_FINGERPRINTING.equals(tab))
 			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.fingerprint, request);
 		if(TAB_MEDIA_TESTABLE.equals(tab))

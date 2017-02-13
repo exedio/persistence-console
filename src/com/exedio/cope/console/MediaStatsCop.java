@@ -87,9 +87,41 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		return new MediaStatsCop(args, variant, fingerprintRampStep);
 	}
 
+	@Override
+	final ChecklistIcon getChecklistIcon(final Model model)
+	{
+		return variant.getChecklistIcon(model);
+	}
+
 	enum Variant
 	{
 		all(TAB_MEDIA_STATS, "Media"),
+		guessingPrevented(TAB_MEDIA_GUESSUNGPREVENTED, "Media Url Guessing")
+		{
+			@Override boolean accepts(final MediaPath path)
+			{
+				return path.isUrlGuessingPrevented();
+			}
+
+			@Override ChecklistIcon getChecklistIcon(final Model model)
+			{
+				for(final Type<?> type : model.getTypes())
+					for(final Feature feature : type.getDeclaredFeatures())
+						if(feature instanceof MediaPath &&
+							((MediaPath)feature).isUrlGuessingPrevented())
+								return
+									MediaPath.isUrlGuessingPreventedSecurely(ConnectToken.getProperties(model))
+									? ChecklistIcon.ok
+									: ChecklistIcon.error;
+
+				return ChecklistIcon.empty;
+			}
+
+			@Override boolean writeUrlGuessingPrevented()
+			{
+				return false;
+			}
+		},
 		fingerprint(TAB_MEDIA_FINGERPRINTING, "Media Fingerprinting")
 		{
 			@Override boolean accepts(final MediaPath path)
@@ -116,6 +148,19 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		 * @param path used by subclasses
 		 */
 		boolean accepts(final MediaPath path)
+		{
+			return true;
+		}
+
+		/**
+		 * @param model used by subclasses
+		 */
+		ChecklistIcon getChecklistIcon(final Model model)
+		{
+			return null;
+		}
+
+		boolean writeUrlGuessingPrevented()
 		{
 			return true;
 		}
@@ -176,7 +221,6 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		final Model model = out.model;
 
 		final ArrayList<MediaPath> medias = new ArrayList<>();
-		boolean isUrlGuessingPrevented = false;
 
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
@@ -185,12 +229,11 @@ final class MediaStatsCop extends ConsoleCop<Void>
 					final MediaPath path = (MediaPath)feature;
 					if(variant.accepts(path))
 						medias.add(path);
-					if(!isUrlGuessingPrevented && path.isUrlGuessingPrevented())
-						isUrlGuessingPrevented = true;
 				}
 
 		final boolean isUrlGuessingNotSecure =
-			isUrlGuessingPrevented &&
+			variant==Variant.guessingPrevented &&
+			!medias.isEmpty() &&
 			!MediaPath.isUrlGuessingPreventedSecurely(ConnectToken.getProperties(model));
 
 		final MediaInfo[] infos = new MediaInfo[medias.size()];
