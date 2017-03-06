@@ -78,7 +78,7 @@ final class Media_Jspm extends Console_Jspm
 			</tr><%
 
 			for(final MediaInfo info : infos)
-				write(out, cop, isUrlGuessingNotSecure, cop.variant.writeUrlGuessingPrevented(), cop.variant.writeUrlFingerPrinted(), info);
+				write(out, cop, cop.variant.writeUrlGuessingPrevented(), cop.variant.writeUrlFingerPrinted(), info);
 		%>
 		</table><%
 	}
@@ -86,7 +86,6 @@ final class Media_Jspm extends Console_Jspm
 	static final void write(
 				final Out out,
 				final ConsoleCop<?> cop,
-				final boolean isUrlGuessingNotSecure,
 				final boolean writeUrlGuessingPrevented,
 				final boolean writeUrlFingerPrinted,
 				final MediaInfo info)
@@ -174,7 +173,7 @@ final class Media_Jspm extends Console_Jspm
 		<table id="coloredTable">
 			<caption>Statistics</caption><%
 			MediaStatsCop.writeTableHeader(out);
-			write(out, cop, false, true, true, info);
+			write(out, cop, true, true, info);
 		%>
 		</table>
 		<hr><%
