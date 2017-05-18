@@ -258,7 +258,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		{
 			return media.isNotNull();
 		}
-		catch(final UnsupportedOperationException e)
+		catch(final UnsupportedOperationException ignored)
 		{
 			return null;
 		}

@@ -108,7 +108,7 @@ abstract class Console_Jspm
 		{
 			cop.writeBody(out);
 		}
-		catch(final NotConnectedException e)
+		catch(final NotConnectedException ignored)
 		{
 			writeNotConnectedMessage(out, cop);
 		}

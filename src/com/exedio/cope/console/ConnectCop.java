@@ -72,7 +72,7 @@ final class ConnectCop extends ConsoleCop<Void>
 				}
 			}
 		}
-		catch(final FileNotFoundException e)
+		catch(final FileNotFoundException ignored)
 		{
 			// sourceContent is still null
 		}

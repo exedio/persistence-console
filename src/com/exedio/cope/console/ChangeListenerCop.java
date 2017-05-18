@@ -118,7 +118,7 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 		{
 			return model.getChangeListenerDispatcherInfo();
 		}
-		catch(final Model.NotConnectedException e)
+		catch(final Model.NotConnectedException ignored)
 		{
 			return null;
 		}
