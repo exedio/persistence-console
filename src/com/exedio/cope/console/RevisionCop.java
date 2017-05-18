@@ -121,13 +121,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 
 	private static RevisionLine register(final TreeMap<Integer, RevisionLine> lines, final int revision)
 	{
-		RevisionLine result = lines.get(revision);
-		if(result==null)
-		{
-			result = new RevisionLine(revision);
-			lines.put(revision, result);
-		}
-		return result;
+		return lines.computeIfAbsent(revision, RevisionLine::new);
 	}
 
 	static RevisionInfo read(final byte[] bytes)

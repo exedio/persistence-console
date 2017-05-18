@@ -98,14 +98,7 @@ final class VmCop extends ConsoleCop<Void>
 				pack.getImplementationVersion() + '|' +
 				pack.getImplementationVendor();
 
-			TreeSet<Package> jar = jarMap.get(key);
-
-			if(jar==null)
-			{
-				jar = new TreeSet<>(COMPARATOR);
-				jarMap.put(key, jar);
-			}
-			jar.add(pack);
+			jarMap.computeIfAbsent(key, k -> new TreeSet<>(COMPARATOR)).add(pack);
 		}
 
 		Vm_Jspm.writeBody(out, this, new ArrayList<>(jarMap.values()));

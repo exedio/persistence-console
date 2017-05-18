@@ -53,13 +53,7 @@ final class EnumsCop extends ConsoleCop<Void>
 				{
 					final EnumField<?> f = (EnumField<?>)field;
 					final Class<? extends Enum<?>> c = f.getValueClass();
-					ArrayList<EnumField<?>> list = map.get(c);
-					if(list==null)
-					{
-						list = new ArrayList<>();
-						map.put(c, list);
-					}
-					list.add(f);
+					map.computeIfAbsent(c, k -> new ArrayList<>()).add(f);
 				}
 		Enums_Jspm.write(out, this, map);
 	}
