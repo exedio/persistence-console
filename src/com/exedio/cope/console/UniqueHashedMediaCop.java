@@ -113,7 +113,7 @@ final class UniqueHashedMediaCop extends TestCop<UniqueHashedMedia>
 		}
 	}
 
-	private String getSQL(final UniqueHashedMedia field)
+	private static String getSQL(final UniqueHashedMedia field)
 	{
 		final Type<?> type = field.getType();
 		final Model model = type.getModel();

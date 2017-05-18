@@ -125,7 +125,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
-	private void writeOpenTransations(
+	private static void writeOpenTransations(
 			final Out out,
 			final Model model)
 	{

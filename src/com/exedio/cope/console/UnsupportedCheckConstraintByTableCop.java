@@ -128,7 +128,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 		};
 	}
 
-	private void appendSQL(final Table table, final StringBuilder bf)
+	private static void appendSQL(final Table table, final StringBuilder bf)
 	{
 		boolean first = true;
 

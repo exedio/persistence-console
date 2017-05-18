@@ -109,7 +109,7 @@ final class CharacterNulCop extends TestCop<StringField>
 		};
 	}
 
-	private String getSQL(final StringField field)
+	private static String getSQL(final StringField field)
 	{
 		final Type<?> type = field.getType();
 		final Model model = type.getModel();
