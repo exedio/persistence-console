@@ -59,8 +59,8 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 
 		TestArgs(final HttpServletRequest request)
 		{
-			this.id = request.getParameter(TestCop.ID);
-			this.iterate = Cop.getBooleanParameter(request, TestCop.ITERATE);
+			this.id = request.getParameter(ID);
+			this.iterate = Cop.getBooleanParameter(request, ITERATE);
 		}
 
 		void addParameters(final TestCop<?> cop)
