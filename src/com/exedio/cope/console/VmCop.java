@@ -108,9 +108,6 @@ final class VmCop extends ConsoleCop<Void>
 			jar.add(pack);
 		}
 
-		final ArrayList<TreeSet<Package>> jars = new ArrayList<>();
-		jars.addAll(jarMap.values());
-
-		Vm_Jspm.writeBody(out, this, jars);
+		Vm_Jspm.writeBody(out, this, new ArrayList<>(jarMap.values()));
 	}
 }
