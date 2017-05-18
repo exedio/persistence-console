@@ -11,6 +11,8 @@
 		</fileset>
 	</import>
 
+	<taskdef name="LoadFile" classname="org.apache.tools.ant.taskdefs.LoadFile" />
+
 	<taskdef
 			resource="net/sf/antcontrib/antcontrib.properties"
 			classpath="lib/ant-contrib.jar" />
@@ -297,7 +299,35 @@
 		</findbugs>
 	</target>
 
-	<target name="all" depends="build, api, findbugs" />
+	<target name="testprotocol" depends="src.compile">
+		<mkdir dir="build" />
+		<java classname="com.exedio.cope.console.EnvironmentCop" taskname="testprotocol"
+				fork="yes" failonerror="yes">
+			<classpath>
+				<pathelement location="build/classes/src" />
+				<pathelement location="lib/exedio-cope.jar" />
+				<pathelement location="lib/trove4j.jar" />
+				<pathelement location="lib/exedio-cope-util.jar" />
+				<pathelement location="lib/exedio-cops.jar" />
+				<pathelement location="lib/javax.servlet-api.jar" />
+				<pathelement location="lib/slf4j-api.jar" />
+			</classpath>
+			<arg value="build/testprotocol.html"/>
+			<assertions><enable/></assertions>
+		</java>
+		<LoadFile srcFile="build/testprotocol.html" property="testprotocol.html" />
+		<copy file="testprotocol-template.html"
+				tofile="build/testprotocol.html"
+				overwrite="true">
+			<filterset>
+				<filter token="BUILD_TAG" value="${build.tag}" />
+				<filter token="TABLE" value="${testprotocol.html}" />
+			</filterset>
+		</copy>
+		<copy file="testprotocol.css" todir="build" />
+	</target>
+
+	<target name="all" depends="build, api, findbugs, testprotocol" />
 
 	<target name="jenkins" depends="all">
 		<copy todir="${basedir}/build/success">
