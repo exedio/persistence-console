@@ -149,9 +149,9 @@ final class RevisionLine
 	void setInfo(final byte[] infoBytes)
 	{
 		assert infoBytes!=null;
-		assert this.logString==null;
-		assert this.logProperties==null;
-		assert this.date==null;
+		assert logString==null;
+		assert logProperties==null;
+		assert date==null;
 
 		try
 		{
@@ -193,7 +193,7 @@ final class RevisionLine
 				this.body = infoRevise.getBody();
 				int rows = 0;
 				long elapsed = 0;
-				for(final Body body : this.body)
+				for(final Body body : body)
 				{
 					rows += body.getRows();
 					elapsed += body.getElapsed();
