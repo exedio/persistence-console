@@ -126,7 +126,7 @@ final class SchemaNice
 	@SuppressFBWarnings("SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE")
 	private static void execute(final Connection connection, final StringBuilder bf) throws SQLException
 	{
-		System.out.println(bf.toString());
+		System.out.println(bf);
 		try(Statement statement = connection.createStatement())
 		{
 			statement.execute(bf.toString());
