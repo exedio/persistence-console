@@ -125,7 +125,7 @@ final class CharacterNulCop extends TestCop<StringField>
 	@Override
 	String getID(final StringField field)
 	{
-		return ((Feature)field).getID();
+		return field.getID();
 	}
 
 	@Override

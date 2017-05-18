@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.Model;
 import com.exedio.cope.Query;
@@ -84,7 +83,7 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	@Override
 	String getID(final StringField field)
 	{
-		return ((Feature)field).getID();
+		return field.getID();
 	}
 
 	@Override
