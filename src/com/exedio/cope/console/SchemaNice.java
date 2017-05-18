@@ -43,8 +43,7 @@ final class SchemaNice
 
 	void create() throws SQLException
 	{
-		final Connection connection = SchemaInfo.newConnection(model);
-		try
+		try(Connection connection = SchemaInfo.newConnection(model))
 		{
 			final StringBuilder bf = new StringBuilder();
 
@@ -107,16 +106,11 @@ final class SchemaNice
 				execute(connection, bf);
 			}
 		}
-		finally
-		{
-			connection.close();
-		}
 	}
 
 	void drop() throws SQLException
 	{
-		final Connection connection = SchemaInfo.newConnection(model);
-		try
+		try(Connection connection = SchemaInfo.newConnection(model))
 		{
 			final StringBuilder bf = new StringBuilder();
 
@@ -127,24 +121,15 @@ final class SchemaNice
 				execute(connection, bf);
 			}
 		}
-		finally
-		{
-			connection.close();
-		}
 	}
 
 	@SuppressFBWarnings("SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE")
 	private static void execute(final Connection connection, final StringBuilder bf) throws SQLException
 	{
 		System.out.println(bf.toString());
-		final Statement statement = connection.createStatement();
-		try
+		try(Statement statement = connection.createStatement())
 		{
 			statement.execute(bf.toString());
-		}
-		finally
-		{
-			statement.close();
 		}
 		bf.setLength(0);
 	}

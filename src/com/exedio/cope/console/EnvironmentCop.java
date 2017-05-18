@@ -74,34 +74,16 @@ final class EnvironmentCop extends ConsoleCop<Void>
 	private static final HashMap<String, Object>[] makeTestedDatabases()
 	{
 		final Properties p = new Properties();
-		InputStream in = null;
-		try
+		try(InputStream in = Cope.class.getResourceAsStream("testprotocol.properties"))
 		{
-			in = Cope.class.getResourceAsStream("testprotocol.properties");
 			if(in==null)
 				return null;
 
 			p.load(in);
-			in.close();
-			in = null;
 		}
 		catch(final IOException e)
 		{
 			throw new RuntimeException(e);
-		}
-		finally
-		{
-			if(in!=null)
-			{
-				try
-				{
-					in.close();
-				}
-				catch(final IOException e)
-				{
-					// oops
-				}
-			}
 		}
 
 		final TreeMap<String, HashMap<String, Object>> testedDatabases = new TreeMap<>();
@@ -153,10 +135,8 @@ final class EnvironmentCop extends ConsoleCop<Void>
 
 	public static final void main(final String[] args)
 	{
-		FileOutputStream out = null;
-		try
+		try(FileOutputStream out = new FileOutputStream(args[0]))
 		{
-			out = new FileOutputStream(args[0]);
 			Environment_Jspm.writeTestBody(
 					new OutBasic(new PrintStream(out, false, UTF_8.name())),
 					new java.util.Properties(),

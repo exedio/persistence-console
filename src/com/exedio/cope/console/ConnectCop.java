@@ -53,11 +53,9 @@ final class ConnectCop extends ConsoleCop<Void>
 		final ConnectProperties props = model.getConnectProperties();
 		final String source = props.getSource();
 		String sourceContent = null;
-		InputStreamReader r = null;
-		try
+		final File f = new File(source);
+		try(InputStreamReader r = new InputStreamReader(new FileInputStream(f), "US-ASCII"))
 		{
-			final File f = new File(source);
-			r = new InputStreamReader(new FileInputStream(f), "US-ASCII");
 			final StringBuilder bf = new StringBuilder();
 
 			final char[] b = new char[20*1024];
@@ -81,20 +79,6 @@ final class ConnectCop extends ConsoleCop<Void>
 		catch(final IOException e)
 		{
 			throw new RuntimeException(source, e);
-		}
-		finally
-		{
-			if(r!=null)
-			{
-				try
-				{
-					r.close();
-				}
-				catch(final IOException e)
-				{
-					throw new RuntimeException(e);
-				}
-			}
 		}
 
 		Connect_Jspm.writeBody(

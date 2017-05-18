@@ -105,158 +105,89 @@ public final class Revisions
 
 		final Iterator<Revision> revisions = model.getRevisions().getList().iterator();
 
-		Connection con = null;
-		try
+		try(
+			Connection con = SchemaInfo.newConnection(model);
+			PreparedStatement stat = con.prepareStatement(
+				"INSERT INTO " + q(model, "while") + " (" + q(model, "v") + "," + q(model, "i") + ") VALUES (?,?)"))
 		{
-			con = SchemaInfo.newConnection(model);
-			PreparedStatement stat = null;
-			try
+			// skip first two revisions not yet applied
+			revisions.next();
+			revisions.next();
+
+			Revision lastRevision = null;
+			for(int i = 0; revisions.hasNext(); i++)
 			{
-				stat = con.prepareStatement("INSERT INTO " + q(model, "while") + " (" + q(model, "v") + "," + q(model, "i") + ") VALUES (?,?)");
-
-				// skip first two revisions not yet applied
-				revisions.next();
-				revisions.next();
-
-				Revision lastRevision = null;
-				for(int i = 0; revisions.hasNext(); i++)
+				final Revision revision = revisions.next();
+				lastRevision = revision;
+				final ArrayList<RevisionInfoRevise.Body> body = new ArrayList<>();
+				int j = 0;
+				for(final String sql : revision.getBody())
 				{
-					final Revision revision = revisions.next();
-					lastRevision = revision;
-					final ArrayList<RevisionInfoRevise.Body> body = new ArrayList<>();
-					int j = 0;
-					for(final String sql : revision.getBody())
-					{
-						body.add(new RevisionInfoRevise.Body(sql, (100*i)+j+1000, (100*i)+(10*j)+10000));
-						j++;
-					}
-					save(stat, new RevisionInfoRevise(
-							revision.getNumber(),
-							"SAVEPOINT REVISE " + revision.getNumber() + " END",
-							new Date(),
-							environment,
-							revision.getComment(),
-							body.toArray(new RevisionInfoRevise.Body[body.size()])));
-
-					if("before change of environment".equals(revision.getComment()))
-					{
-						environment.put("database.name",    environment.get("database.name")    + " - Changed");
-						environment.put("database.version", environment.get("database.version") + " - Changed");
-						environment.put("key.added", "Added value");
-						environment.remove(environmentKeyRemoved);
-					}
+					body.add(new RevisionInfoRevise.Body(sql, (100*i)+j+1000, (100*i)+(10*j)+10000));
+					j++;
 				}
+				save(stat, new RevisionInfoRevise(
+						revision.getNumber(),
+						"SAVEPOINT REVISE " + revision.getNumber() + " END",
+						new Date(),
+						environment,
+						revision.getComment(),
+						body.toArray(new RevisionInfoRevise.Body[body.size()])));
+
+				if("before change of environment".equals(revision.getComment()))
 				{
-					final Revision revision = lastRevision;
-					save(stat, new RevisionInfoCreate(
-							revision.getNumber() - 1,
-							new Date(),
-							environment));
-					for(int revisionNumber = revision.getNumber() - 2; revisionNumber>0; revisionNumber--)
-					{
-						save(stat, new RevisionInfoRevise(
-								revisionNumber,
-								null, // savepoint
-								new Date(),
-								environment,
-								"not in application " + revisionNumber,
-								new RevisionInfoRevise.Body("sql 1", 12, 102),
-								new RevisionInfoRevise.Body("sql 2", 13, 103)));
-					}
-				}
-				{
-					save(stat, new RevisionInfoMutex(
-							"SAVEPOINT MUTEX",
-							new Date(),
-							environment,
-							63, 60));
+					environment.put("database.name",    environment.get("database.name")    + " - Changed");
+					environment.put("database.version", environment.get("database.version") + " - Changed");
+					environment.put("key.added", "Added value");
+					environment.remove(environmentKeyRemoved);
 				}
 			}
-			finally
 			{
-				if(stat!=null)
+				final Revision revision = lastRevision;
+				save(stat, new RevisionInfoCreate(
+						revision.getNumber() - 1,
+						new Date(),
+						environment));
+				for(int revisionNumber = revision.getNumber() - 2; revisionNumber>0; revisionNumber--)
 				{
-					try
-					{
-						stat.close();
-						stat = null;
-					}
-					catch(final SQLException e)
-					{
-						throw new SQLRuntimeException(e, "close");
-					}
+					save(stat, new RevisionInfoRevise(
+							revisionNumber,
+							null, // savepoint
+							new Date(),
+							environment,
+							"not in application " + revisionNumber,
+							new RevisionInfoRevise.Body("sql 1", 12, 102),
+							new RevisionInfoRevise.Body("sql 2", 13, 103)));
 				}
+			}
+			{
+				save(stat, new RevisionInfoMutex(
+						"SAVEPOINT MUTEX",
+						new Date(),
+						environment,
+						63, 60));
 			}
 		}
 		catch(final SQLException e)
 		{
 			throw new SQLRuntimeException(e, "create");
-		}
-		finally
-		{
-			if(con!=null)
-			{
-				try
-				{
-					con.close();
-					con = null;
-				}
-				catch(final SQLException e)
-				{
-					throw new SQLRuntimeException(e, "close");
-				}
-			}
 		}
 	}
 
 	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
 	static final void removeMutex(final Model model)
 	{
-		Connection con = null;
-		try
+		try(
+			Connection con = SchemaInfo.newConnection(model);
+			PreparedStatement stat = con.prepareStatement(
+					"DELETE FROM " + q(model, "while") + " WHERE " + q(model, "v") + "=?"))
 		{
-			con = SchemaInfo.newConnection(model);
-			PreparedStatement stat = null;
-			try
-			{
-				stat = con.prepareStatement("DELETE FROM " + q(model, "while") + " WHERE " + q(model, "v") + "=?");
-				stat.setInt(1, -1);
-				stat.execute();
-			}
-			finally
-			{
-				if(stat!=null)
-				{
-					try
-					{
-						stat.close();
-						stat = null;
-					}
-					catch(final SQLException e)
-					{
-						throw new SQLRuntimeException(e, "close");
-					}
-				}
-			}
+			stat.setInt(1, -1);
+			stat.execute();
 		}
 		catch(final SQLException e)
 		{
 			throw new SQLRuntimeException(e, "create");
-		}
-		finally
-		{
-			if(con!=null)
-			{
-				try
-				{
-					con.close();
-					con = null;
-				}
-				catch(final SQLException e)
-				{
-					throw new SQLRuntimeException(e, "close");
-				}
-			}
 		}
 	}
 
