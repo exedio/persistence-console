@@ -42,7 +42,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final TestCop.TestArgs testArgs = new TestCop.TestArgs();
 		Checklists_Jspm.writeBody(out,

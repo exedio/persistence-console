@@ -40,7 +40,7 @@ final class PurgeCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final Model model = out.model;
 		model.getConnectProperties(); // check whether it is connected

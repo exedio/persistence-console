@@ -109,7 +109,7 @@ public final class ANameServer extends MediaPath
 	}
 
 	@Override
-	public final Condition isNotNull()
+	public Condition isNotNull()
 	{
 		return source.isNotNull();
 	}

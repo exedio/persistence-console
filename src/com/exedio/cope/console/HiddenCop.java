@@ -34,7 +34,7 @@ final class HiddenCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		Hidden_Jspm.writeBody(out, HiddenFeatures.get(out.model));
 	}

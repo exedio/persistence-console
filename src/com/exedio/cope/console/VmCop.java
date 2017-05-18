@@ -42,7 +42,7 @@ final class VmCop extends ConsoleCop<Void>
 		addParameter(ALL_PACKAGES, allPackages);
 	}
 
-	static final VmCop getVmCop(final Args args, final HttpServletRequest request)
+	static VmCop getVmCop(final Args args, final HttpServletRequest request)
 	{
 		return new VmCop(args, getBooleanParameter(request, DETAILED), getBooleanParameter(request, ALL_PACKAGES));
 	}
@@ -73,7 +73,7 @@ final class VmCop extends ConsoleCop<Void>
 	};
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final HashMap<String, TreeSet<Package>> jarMap = new HashMap<>();
 

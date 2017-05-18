@@ -42,7 +42,7 @@ final class ServletUtilX
 		String getKind();
 	}
 
-	private static final Config wrap(final ServletConfig config)
+	private static Config wrap(final ServletConfig config)
 	{
 		return new Config()
 		{
@@ -69,14 +69,14 @@ final class ServletUtilX
 		};
 	}
 
-	public static final Model getConnectedModel(final Servlet servlet)
+	public static Model getConnectedModel(final Servlet servlet)
 	{
 		return getModel(
 				wrap(servlet.getServletConfig()),
 				servlet);
 	}
 
-	private static final Model getModel(
+	private static Model getModel(
 					final Config config,
 					final Object nameObject)
 	{

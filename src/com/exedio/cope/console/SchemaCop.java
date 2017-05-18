@@ -52,7 +52,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		addParameter(DETAILED, detailed);
 	}
 
-	static final SchemaCop getSchemaCop(final Args args, final HttpServletRequest request)
+	static SchemaCop getSchemaCop(final Args args, final HttpServletRequest request)
 	{
 		return new SchemaCop(args, getBooleanParameter(request, DETAILED));
 	}
@@ -114,7 +114,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		failIfNotConnected(out.model);
 		SchemaSchema_Jspm.writeBody(this, out);
@@ -122,12 +122,12 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		SchemaDetails_Jspm.writeBody(this, out);
 	}
 
-	private static final String strip(final String s, final String prefix)
+	private static String strip(final String s, final String prefix)
 	{
 		return s.startsWith(prefix) ? s.substring(prefix.length()) : null;
 	}
 
-	private static final Sequence getSequence(final Schema schema, final String param)
+	private static Sequence getSequence(final Schema schema, final String param)
 	{
 		final Sequence result = schema.getSequence(param);
 		if(result==null)
@@ -135,7 +135,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return result;
 	}
 
-	private static final Table getTable(final Schema schema, final String param)
+	private static Table getTable(final Schema schema, final String param)
 	{
 		final Table result = schema.getTable(param);
 		if(result==null)
@@ -143,7 +143,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return result;
 	}
 
-	private static final Column getColumn(final Schema schema, final String param)
+	private static Column getColumn(final Schema schema, final String param)
 	{
 		final int pos = param.indexOf('#');
 		if(pos<=0)
@@ -160,7 +160,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return result;
 	}
 
-	private static final Constraint getConstraint(final Schema schema, final String param)
+	private static Constraint getConstraint(final Schema schema, final String param)
 	{
 		final int pos = param.indexOf('#');
 		if(pos<=0)
@@ -326,13 +326,13 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 
 	private static final String[] EMPTY_STRINGS = new String[]{};
 
-	private static final String[] getParameters(final HttpServletRequest request, final String name)
+	private static String[] getParameters(final HttpServletRequest request, final String name)
 	{
 		final String[] result = request.getParameterMap().get(name);
 		return result!=null ? result : EMPTY_STRINGS;
 	}
 
-	private static final ArrayList<Column> getUnusedColumns(final Schema schema)
+	private static ArrayList<Column> getUnusedColumns(final Schema schema)
 	{
 		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())
@@ -342,7 +342,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return result;
 	}
 
-	private static final ArrayList<Column> getMissingColumns(final Schema schema)
+	private static ArrayList<Column> getMissingColumns(final Schema schema)
 	{
 		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())
@@ -352,7 +352,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return result;
 	}
 
-	private static final ArrayList<Column> getColumnsWithMismatchingType(final Schema schema)
+	private static ArrayList<Column> getColumnsWithMismatchingType(final Schema schema)
 	{
 		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())
@@ -362,7 +362,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return result;
 	}
 
-	private static final ArrayList<Column> getCatchColumns(final Schema schema)
+	private static ArrayList<Column> getCatchColumns(final Schema schema)
 	{
 		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())

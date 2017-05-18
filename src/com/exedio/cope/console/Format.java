@@ -38,7 +38,7 @@ final class Format
 		numberFormat = new DecimalFormat("", nfs);
 	}
 
-	static final String format(final long number)
+	static String format(final long number)
 	{
 		if(number==Integer.MIN_VALUE)
 			return "min32";
@@ -52,7 +52,7 @@ final class Format
 		return /*"fm" +*/ numberFormat.format(number);
 	}
 
-	static final String formatAndHide(final long hidden, final long number)
+	static String formatAndHide(final long hidden, final long number)
 	{
 		return /*("["+hidden+']') +*/ (number!=hidden ? format(number) : "");
 	}
@@ -69,7 +69,7 @@ final class Format
 		return RATIO_FORMAT.format(Math.log10(((double)dividend) / ((double)divisor)));
 	}
 
-	private static final String hs(String s, final String... keywords)
+	private static String hs(String s, final String... keywords)
 	{
 		for(final String keyword : keywords)
 			s = s.replaceAll("\\b(" + keyword +")\\b", "<b>" + keyword +"</b>");

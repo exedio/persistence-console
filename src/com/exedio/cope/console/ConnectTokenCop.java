@@ -47,7 +47,7 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final HttpServletRequest request = out.request;
 		final Model model = out.model;

@@ -73,7 +73,7 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final HttpServletRequest request = out.request;
 		final Model model = out.model;
@@ -107,12 +107,12 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 				dispatcherInfo(model));
 	}
 
-	final String toID(final ChangeListener listener)
+	String toID(final ChangeListener listener)
 	{
 		return listener.getClass().getName() + '@' + System.identityHashCode(listener);
 	}
 
-	private static final ChangeListenerDispatcherInfo dispatcherInfo(final Model model)
+	private static ChangeListenerDispatcherInfo dispatcherInfo(final Model model)
 	{
 		try
 		{

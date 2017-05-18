@@ -46,13 +46,13 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		return new EnvironmentCop(args);
 	}
 
-	private static final String replaceNull(final String s)
+	private static String replaceNull(final String s)
 	{
 		return (s==null) ? "n/a" : s;
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final Model model = out.model;
 		final EnvironmentInfo env = model.getEnvironmentInfo();
@@ -71,7 +71,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 	}
 
 	@SuppressFBWarnings("WMI_WRONG_MAP_ITERATOR")
-	private static final HashMap<String, Object>[] makeTestedDatabases()
+	private static HashMap<String, Object>[] makeTestedDatabases()
 	{
 		final Properties p = new Properties();
 		try(InputStream in = Cope.class.getResourceAsStream("testprotocol.properties"))
@@ -126,14 +126,14 @@ final class EnvironmentCop extends ConsoleCop<Void>
 	}
 
 	@SuppressWarnings("unchecked") // TODO testedDatabases contains Strings and Maps
-	private static final TreeMap<String, String> castTreeMap(final Object o)
+	private static TreeMap<String, String> castTreeMap(final Object o)
 	{
 		return (TreeMap<String, String>)o;
 	}
 
 	static final String TEST_INFO_KEY_CONNECT_PROPERTIES = "connect.properties";
 
-	public static final void main(final String[] args)
+	public static void main(final String[] args)
 	{
 		try(FileOutputStream out = new FileOutputStream(args[0]))
 		{

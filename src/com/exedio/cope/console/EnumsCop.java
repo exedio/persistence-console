@@ -43,7 +43,7 @@ final class EnumsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map =
 			new LinkedHashMap<>();

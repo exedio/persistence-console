@@ -61,7 +61,7 @@ final class ClusterCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final Model model = out.model;
 		if(model.isClusterEnabled())

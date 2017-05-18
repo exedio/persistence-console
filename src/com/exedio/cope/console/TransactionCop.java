@@ -109,7 +109,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final Model model = out.model;
 

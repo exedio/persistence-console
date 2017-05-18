@@ -88,7 +88,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final ChecklistIcon getChecklistIcon(final Model model)
+	ChecklistIcon getChecklistIcon(final Model model)
 	{
 		return variant.getChecklistIcon(model);
 	}
@@ -216,7 +216,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final Model model = out.model;
 
@@ -311,7 +311,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 			"ratio",
 		};
 
-	static final String[] format(final MediaSummary summary)
+	static String[] format(final MediaSummary summary)
 	{
 		return format(new int[]{
 				summary.getRedirectFrom(),
@@ -328,7 +328,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		});
 	}
 
-	static final String[] format(final MediaInfo info)
+	static String[] format(final MediaInfo info)
 	{
 		return format(new int[]{
 				info.getRedirectFrom(),
@@ -345,7 +345,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		});
 	}
 
-	private static final String[] format(final int[] numbers)
+	private static String[] format(final int[] numbers)
 	{
 		final int length = numbers.length;
 		final String[] result = new String[length];
@@ -354,7 +354,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		return result;
 	}
 
-	private static final void collapse(final TreeSet<String> contentTypes, final String r, final String a, final String b)
+	private static void collapse(final TreeSet<String> contentTypes, final String r, final String a, final String b)
 	{
 		if(contentTypes.contains(a) && contentTypes.contains(b))
 		{
@@ -364,7 +364,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		}
 	}
 
-	static final void printContentTypes(final OutBasic out, final Collection<String> contentTypes)
+	static void printContentTypes(final OutBasic out, final Collection<String> contentTypes)
 	{
 		final TreeSet<String> sorted = new TreeSet<>(contentTypes);
 		collapse(sorted, "image/[p]jpeg", "image/jpeg", "image/pjpeg");

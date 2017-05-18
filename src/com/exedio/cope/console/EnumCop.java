@@ -33,7 +33,7 @@ final class EnumCop extends ConsoleCop<Void>
 		addParameter(CLASS, clazz.getName());
 	}
 
-	static final EnumCop getEnumCop(final Args args, final HttpServletRequest request)
+	static EnumCop getEnumCop(final Args args, final HttpServletRequest request)
 	{
 		final String classString = request.getParameter(CLASS);
 		final Class<? extends Enum<?>> clazz;
@@ -50,7 +50,7 @@ final class EnumCop extends ConsoleCop<Void>
 	}
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	private static final Class<? extends Enum<?>> cast(final Class<? extends Enum> clazz)
+	private static Class<? extends Enum<?>> cast(final Class<? extends Enum> clazz)
 	{
 		return (Class<? extends Enum<?>>)clazz;
 	}
@@ -62,7 +62,7 @@ final class EnumCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		Enum_Jspm.write(out, clazz);
 	}

@@ -130,7 +130,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		return result;
 	}
 
-	static final RevisionInfo read(final byte[] bytes)
+	static RevisionInfo read(final byte[] bytes)
 	{
 		if(bytes==null)
 			return null;
@@ -151,7 +151,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final Model model = out.model;
 		final Revisions revisions = model.getRevisions();

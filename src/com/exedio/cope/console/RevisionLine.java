@@ -211,7 +211,7 @@ final class RevisionLine
 		}
 	}
 
-	static final <K,V> Set<K> diff(final Map<K,V> left, final Map<K,V> right)
+	static <K,V> Set<K> diff(final Map<K,V> left, final Map<K,V> right)
 	{
 		final TreeSet<K> result = new TreeSet<>();
 		for(final Map.Entry<K,V> e : left.entrySet())

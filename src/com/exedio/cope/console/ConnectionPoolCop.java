@@ -52,7 +52,7 @@ final class ConnectionPoolCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		ConnectionPool_Jspm.writeBody(out, this, out.model.getConnectionPoolInfo());
 	}

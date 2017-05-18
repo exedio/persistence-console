@@ -461,7 +461,7 @@ abstract class ConsoleCop<S> extends Cop
 		}
 
 		@Override
-		final void writeBody(final Out out)
+		void writeBody(final Out out)
 		{
 			Console_Jspm.writeNotFound(out, pathInfo);
 		}

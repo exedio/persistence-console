@@ -41,7 +41,7 @@ public final class Revisions
 {
 	private static final int END_OF_APPLICATION = 7;
 
-	static final com.exedio.cope.Revisions.Factory revisions(final int length)
+	static com.exedio.cope.Revisions.Factory revisions(final int length)
 	{
 		final ArrayList<Revision> result = new ArrayList<>();
 
@@ -94,7 +94,7 @@ public final class Revisions
 	}
 
 	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
-	static final void revisions(final Model model)
+	static void revisions(final Model model)
 	{
 		final java.util.Properties dbinfo = model.getEnvironmentInfo().asProperties();
 		final HashMap<String, String> environment = new HashMap<>();
@@ -175,7 +175,7 @@ public final class Revisions
 	}
 
 	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
-	static final void removeMutex(final Model model)
+	static void removeMutex(final Model model)
 	{
 		try(
 			Connection con = SchemaInfo.newConnection(model);
@@ -191,12 +191,12 @@ public final class Revisions
 		}
 	}
 
-	private static final String q(final Model model, final String name)
+	private static String q(final Model model, final String name)
 	{
 		return SchemaInfo.quoteName(model, name);
 	}
 
-	private static final void save(final PreparedStatement stat, final RevisionInfo info) throws SQLException
+	private static void save(final PreparedStatement stat, final RevisionInfo info) throws SQLException
 	{
 		stat.setInt(1, info.getNumber());
 		stat.setBytes(2, info.toBytes());

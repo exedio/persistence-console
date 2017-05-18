@@ -58,7 +58,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	}
 
 	@Override
-	final ChecklistIcon getChecklistIcon(final Model model)
+	ChecklistIcon getChecklistIcon(final Model model)
 	{
 		final ArrayList<Point> store = store();
 		synchronized(store)
@@ -67,7 +67,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 		}
 	}
 
-	static final ChecklistIcon getChecklistIcon(final ArrayList<Point> store)
+	static ChecklistIcon getChecklistIcon(final ArrayList<Point> store)
 	{
 		final int size = store.size();
 

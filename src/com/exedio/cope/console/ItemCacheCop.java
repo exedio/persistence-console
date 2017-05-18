@@ -53,7 +53,7 @@ final class ItemCacheCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final ItemCacheStatistics statistics = out.model.getItemCacheStatistics();
 		ItemCache_Jspm.writeBody(this, out, statistics);

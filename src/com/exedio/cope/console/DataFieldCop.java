@@ -54,7 +54,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	final void writeBody(final Out out)
+	void writeBody(final Out out)
 	{
 		final Model model = out.model;
 
@@ -120,7 +120,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 		}
 	}
 
-	private static final Collection<Table> tableInfo(final Model model)
+	private static Collection<Table> tableInfo(final Model model)
 	{
 		if(model.isConnected())
 		{
