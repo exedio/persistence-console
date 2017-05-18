@@ -27,7 +27,7 @@ import com.exedio.cope.EnumField;
 
 final class Enums_Jspm extends Console_Jspm
 {
-	static final void write(
+	static void write(
 			final Out out,
 			final EnumsCop cop,
 			final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map)

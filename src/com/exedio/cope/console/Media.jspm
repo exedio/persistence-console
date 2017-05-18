@@ -42,7 +42,7 @@ import com.exedio.cope.pattern.UrlFingerPrinting;
 
 final class Media_Jspm extends Console_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final MediaStatsCop cop,
 			final Out out,
 			final int tableColumns,
@@ -83,7 +83,7 @@ final class Media_Jspm extends Console_Jspm
 		</table><%
 	}
 
-	static final void write(
+	static void write(
 				final Out out,
 				final ConsoleCop<?> cop,
 				final boolean writeUrlGuessingPrevented,
@@ -151,7 +151,7 @@ final class Media_Jspm extends Console_Jspm
 			</tr><%
 	}
 
-	static final void writeHead(
+	static void writeHead(
 				final Out out)
 	{
 		%>
@@ -164,7 +164,7 @@ final class Media_Jspm extends Console_Jspm
 		</style><%
 	}
 
-	static final void writeStats(
+	static void writeStats(
 				final Out out,
 				final MediaCop cop,
 				final MediaInfo info)
@@ -179,7 +179,7 @@ final class Media_Jspm extends Console_Jspm
 		<hr><%
 	}
 
-	static final void writeBody(
+	static void writeBody(
 				final MediaCop cop,
 				final Out out,
 				final Query.Result<? extends Item> items)
@@ -283,7 +283,7 @@ final class Media_Jspm extends Console_Jspm
 		<input type="submit" value="touch"></input><%
 	}
 
-	private static final void writeLocator(final Out out, final MediaPath.Locator locator, final boolean inline)
+	private static void writeLocator(final Out out, final MediaPath.Locator locator, final boolean inline)
 	{
 		if(locator!=null)
 		{

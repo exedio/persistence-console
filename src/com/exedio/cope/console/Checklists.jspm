@@ -21,7 +21,7 @@ package com.exedio.cope.console;
 
 final class Checklists_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final Out out,
 			final ConsoleCop<?>[] schema,
 			final ConsoleCop<?>[] machine,
@@ -49,7 +49,7 @@ final class Checklists_Jspm
 		write(out, operations);
 	}
 
-	private static final void write(
+	private static void write(
 			final Out out,
 			final ConsoleCop<?>[] targets)
 	{

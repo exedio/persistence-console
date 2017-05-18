@@ -32,7 +32,7 @@ import com.exedio.cope.pattern.HashAlgorithm;
 
 final class Hash_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final Out out,
 			final HashCop cop,
 			final List<Hash> hashes,

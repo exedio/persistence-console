@@ -27,7 +27,7 @@ import com.exedio.cope.ItemCacheStatistics;
 
 final class ItemCache_Jspm extends Console_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final ItemCacheCop cop,
 			final Out out,
 			final ItemCacheStatistics statistics)

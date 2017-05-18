@@ -32,7 +32,7 @@ import java.util.List;
 
 final class ChangeListener_Jspm extends Console_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final ChangeListenerCop cop,
 			final Out out,
 			final ChangeListenerInfo infoBefore,
@@ -121,7 +121,7 @@ final class ChangeListener_Jspm extends Console_Jspm
 		</form><%
 	}
 
-	private static final void writeButtons(final Out out)
+	private static void writeButtons(final Out out)
 	{
 			%>
 			<input type="submit" name="<%=REMOVE_SELECTED%>" value="remove selected" />

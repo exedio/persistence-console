@@ -21,7 +21,7 @@ package com.exedio.cope.console;
 
 final class StackTrace_Jspm
 {
-	static final void writeHead(final Out out)
+	static void writeHead(final Out out)
 	{
 	%>
 		<style>
@@ -49,7 +49,7 @@ final class StackTrace_Jspm
 		</script><%
 	}
 
-	static final void write(
+	static void write(
 			final Out out,
 			final StackTraceElement[] stackTrace)
 	{

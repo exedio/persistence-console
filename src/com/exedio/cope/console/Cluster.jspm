@@ -31,7 +31,7 @@ import com.exedio.cope.util.SequenceChecker;
 
 final class Cluster_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final ClusterCop cop,
 			final Out out,
 			final Properties properties,
@@ -116,14 +116,14 @@ final class Cluster_Jspm
 		}
 	}
 
-	private static final void writeRoundTripHead(final Out out)
+	private static void writeRoundTripHead(final Out out)
 	{
 				%>
 				<th>Date</th>
 				<th>Nanos</th><%
 	}
 
-	private static final void write(final Out out, ClusterListenerInfo.RoundTrip roundTrip)
+	private static void write(final Out out, ClusterListenerInfo.RoundTrip roundTrip)
 	{
 			if(roundTrip!=null)
 			{
@@ -138,7 +138,7 @@ final class Cluster_Jspm
 			}
 	}
 
-	private static final void writeSequenceCheckerHead(final Out out)
+	private static void writeSequenceCheckerHead(final Out out)
 	{
 				%>
 				<th title="Pending">pnd</th>
@@ -149,7 +149,7 @@ final class Cluster_Jspm
 				<th title="Late">lte</th><%
 	}
 
-	private static final void write(final Out out, final SequenceChecker.Info ic)
+	private static void write(final Out out, final SequenceChecker.Info ic)
 	{
 				%>
 				<td><%=formatAndHide(0, ic.getPending())%></td>
@@ -160,7 +160,7 @@ final class Cluster_Jspm
 				<td><%=formatAndHide(0, ic.getLate())%></td><%
 	}
 
-	static final void writeBodyDisabled(final Out out)
+	static void writeBodyDisabled(final Out out)
 	{
 		%>
 		<table>

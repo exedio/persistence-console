@@ -31,7 +31,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 final class Environment_Jspm extends Console_Jspm
 {
-	static final void writeCurrent(
+	static void writeCurrent(
 			final Out out,
 			final String catalog,
 			final String dialect,
@@ -61,7 +61,7 @@ final class Environment_Jspm extends Console_Jspm
 	}
 
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	private static final Set<String> keySet(final java.util.Properties properties)
+	private static Set<String> keySet(final java.util.Properties properties)
 	{
 		return (Set)properties.keySet();
 	}
@@ -75,7 +75,7 @@ final class Environment_Jspm extends Console_Jspm
 			TEST_INFO_KEY_CONNECT_PROPERTIES,
 		};
 
-	static final void writeTest(final Out out, final java.util.Properties current, final HashMap<String,?>[] properties)
+	static void writeTest(final Out out, final java.util.Properties current, final HashMap<String,?>[] properties)
 	{
 		%>
 		<hr>
@@ -110,7 +110,7 @@ final class Environment_Jspm extends Console_Jspm
 	}
 
 	@SuppressFBWarnings("WMI_WRONG_MAP_ITERATOR")
-	static final void writeTestBody(final OutBasic out, final java.util.Properties current, final HashMap<String,?>[] properties)
+	static void writeTestBody(final OutBasic out, final java.util.Properties current, final HashMap<String,?>[] properties)
 	{
 			for(int i = 0; i<properties.length; i++)
 			{

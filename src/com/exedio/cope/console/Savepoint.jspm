@@ -25,7 +25,7 @@ import java.util.List;
 
 final class Savepoint_Jspm extends Console_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final Out out,
 			final SavepointCop cop,
 			final List<? extends SavepointCop.Point> points)

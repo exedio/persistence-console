@@ -30,7 +30,7 @@ import com.exedio.cope.console.TestCop.Store;
 
 final class Test_Jspm
 {
-	static final void writeHead(final Out out)
+	static void writeHead(final Out out)
 	{
 		%>
 		<script>
@@ -175,7 +175,7 @@ final class Test_Jspm
 		</script><%
 	}
 
-	static final <I> void writeBody(
+	static <I> void writeBody(
 			final TestCop<I> cop,
 			final Out out,
 			final String[] headings,
@@ -233,7 +233,7 @@ final class Test_Jspm
 		</table><%
 	}
 
-	static final <I> void writeRow(
+	static <I> void writeRow(
 			final Out out,
 			final TestCop<I> cop,
 			final int headingsLength,
@@ -270,7 +270,7 @@ final class Test_Jspm
 			}
 	}
 
-	static final <I> void writeSummary(
+	static <I> void writeSummary(
 			final Out out,
 			final TestCop<I> cop,
 			final int headingsLength,

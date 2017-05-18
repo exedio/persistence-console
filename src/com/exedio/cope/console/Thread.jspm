@@ -28,7 +28,7 @@ import com.exedio.cope.ThreadController;
 
 final class Thread_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final Out out,
 			final List<ThreadController> threads)
 	{

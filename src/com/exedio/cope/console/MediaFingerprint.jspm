@@ -31,7 +31,7 @@ import static com.exedio.cope.console.MediaStatsCop.formatRamp;
 
 final class MediaFingerprint_Jspm extends Console_Jspm
 {
-	static final void write(
+	static void write(
 			final MediaStatsCop cop,
 			final Out out,
 			final String info,

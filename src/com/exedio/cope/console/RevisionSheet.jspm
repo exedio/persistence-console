@@ -25,7 +25,7 @@ import java.util.TreeMap;
 
 final class RevisionSheet_Jspm extends Console_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final Out out,
 			final TreeMap<Integer, RevisionInfoRevise> revisions)
 	{

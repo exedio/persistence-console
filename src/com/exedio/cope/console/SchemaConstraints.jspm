@@ -30,7 +30,7 @@ import com.exedio.dsmf.Constraint;
 
 final class SchemaConstraints_Jspm extends Console_Jspm
 {
-	private static final String type(final Constraint.Type type)
+	private static String type(final Constraint.Type type)
 	{
 		switch(type)
 		{
@@ -48,7 +48,7 @@ final class SchemaConstraints_Jspm extends Console_Jspm
 	private static final String TEARDOWN = "constraint.teardown";
 	private static final String DROP = "constraint.drop";
 
-	static final void writeBody(
+	static void writeBody(
 			final SchemaCop cop,
 			final Out out)
 	{

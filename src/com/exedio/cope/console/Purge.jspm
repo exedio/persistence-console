@@ -28,7 +28,7 @@ import com.exedio.cope.util.JobContext;
 
 final class Purge_Jspm
 {
-	static final void writeBody(
+	static void writeBody(
 			final Out out,
 			final Model model,
 			final PurgeCop cop,
