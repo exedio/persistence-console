@@ -442,7 +442,7 @@ abstract class ConsoleCop<S> extends Cop
 	{
 		private final String pathInfo;
 
-		protected NotFound(final Args args, final String pathInfo)
+		NotFound(final Args args, final String pathInfo)
 		{
 			super("Not Found", "Not Found", args);
 			this.pathInfo = pathInfo;
