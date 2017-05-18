@@ -67,4 +67,9 @@ final class Checklists_Jspm
 		%>
 		</ul><%
 	}
+
+	private Checklists_Jspm()
+	{
+		// prevent instantiation
+	}
 }%>
