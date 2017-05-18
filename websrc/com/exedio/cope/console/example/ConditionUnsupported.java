@@ -18,9 +18,7 @@
 
 package com.exedio.cope.console.example;
 
-import com.exedio.cope.Condition;
 import com.exedio.cope.Item;
-import com.exedio.cope.Join;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaUtil;
 import java.io.IOException;
@@ -58,22 +56,5 @@ public final class ConditionUnsupported extends MediaPath
 				"ConditionUnsupported", response);
 	}
 
-	// TODO remove the following methods once this is the default implementation in MediaPath
-
-	@Override
-	public Condition isNull() { throw unsupportedCondition(); }
-
-	@Override
-	public Condition isNull(final Join join) { throw unsupportedCondition(); }
-
-	@Override
-	public Condition isNotNull() { throw unsupportedCondition(); }
-
-	@Override
-	public Condition isNotNull(final Join join) { throw unsupportedCondition(); }
-
-	private  UnsupportedOperationException unsupportedCondition()
-	{
-		return new UnsupportedOperationException("condition not supported by " + getID() + " of " + getClass().getName());
-	}
+	// does not implement Condition methods isNull / isNotNull
 }
