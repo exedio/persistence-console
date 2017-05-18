@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.TreeMap;
 
@@ -57,11 +56,8 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		final Model model = out.model;
 		final EnvironmentInfo env = model.getEnvironmentInfo();
 		final java.util.Properties current = env.asProperties();
-		for(final Iterator<Object> i = current.keySet().iterator(); i.hasNext(); )
-		{
-			final String name = (String)i.next();
+		for(final String name : current.stringPropertyNames())
 			current.setProperty(name, replaceNull(current.getProperty(name)));
-		}
 
 		Environment_Jspm.writeCurrent(out,
 				env.getCatalog(),
@@ -87,9 +83,8 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		}
 
 		final TreeMap<String, HashMap<String, Object>> testedDatabases = new TreeMap<>();
-		for(final Iterator<Object> i = p.keySet().iterator(); i.hasNext(); )
+		for(final String name : p.stringPropertyNames())
 		{
-			final String name = (String)i.next();
 			final String value = replaceNull(p.getProperty(name));
 
 			final int nameDot = name.indexOf('.');

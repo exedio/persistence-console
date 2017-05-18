@@ -22,7 +22,6 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.EnvironmentCop.TEST_INFO_KEY_CONNECT_PROPERTIES;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -85,10 +84,10 @@ final class Environment_Jspm extends Console_Jspm
 		{
 			%>
 			<tr><%
-				for(int j = 0; j<TEST_INFO_KEYS.length; j++)
+				for(final String key : TEST_INFO_KEYS)
 				{
 				%>
-				<th><%=TEST_INFO_KEYS[j]%></th><%
+				<th><%=key%></th><%
 				}
 				%>
 			</tr><%
@@ -119,9 +118,8 @@ final class Environment_Jspm extends Console_Jspm
 			<tr><%
 				int rowspanBefore = Integer.MIN_VALUE;
 
-				for(int j = 0; j<TEST_INFO_KEYS.length; j++)
+				for(final String key : TEST_INFO_KEYS)
 				{
-					final String key = TEST_INFO_KEYS[j];
 					Object value = db.get(key);
 					if(value==null)
 						value = "";
@@ -148,9 +146,8 @@ final class Environment_Jspm extends Console_Jspm
 					{
 						@SuppressWarnings("unchecked")
 						final Map<String,String> valueMap = (Map<String,String>)value;
-						for(final Iterator<String> k = valueMap.keySet().iterator(); k.hasNext(); )
+						for(final String mapKey : valueMap.keySet())
 						{
-							final String mapKey = k.next();
 							final String mapValue = valueMap.get(mapKey);
 							%><%=mapKey%>=<%=mapValue%><br><%
 						}
