@@ -22,11 +22,11 @@ import com.exedio.dsmf.Node;
 
 enum ChecklistIcon
 {
-	empty    { @Override void write(final Out out) { Connect_Jspm.writeOkGrey (out, true); }},
-	ok       { @Override void write(final Out out) { Connect_Jspm.writeOk     (out, true); }},
-	warning  { @Override void write(final Out out) { Connect_Jspm.writeWarning(out, true); }},
-	error    { @Override void write(final Out out) { Connect_Jspm.writeError  (out, true); }},
-	unknown  { @Override void write(final Out out) { Connect_Jspm.writeUnknown(out, true); }};
+	empty    { @Override void write(final Out out) { Console_Jspm.writeOkGrey (out, true); }},
+	ok       { @Override void write(final Out out) { Console_Jspm.writeOk     (out, true); }},
+	warning  { @Override void write(final Out out) { Console_Jspm.writeWarning(out, true); }},
+	error    { @Override void write(final Out out) { Console_Jspm.writeError  (out, true); }},
+	unknown  { @Override void write(final Out out) { Console_Jspm.writeUnknown(out, true); }};
 
 	abstract void write(Out out);
 
