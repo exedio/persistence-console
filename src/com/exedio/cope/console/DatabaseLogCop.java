@@ -52,8 +52,8 @@ final class DatabaseLogCop extends ConsoleCop<Void>
 			model.setDatabaseListener(
 					enable
 					? new DatabaseLogListener(
-							threshold.length()>0 ? Integer.parseInt(threshold) : 0,
-							sql.length()>0 ? sql : null,
+							!threshold.isEmpty() ? Integer.parseInt(threshold) : 0,
+							!sql.isEmpty() ? sql : null,
 							System.out)
 					: null);
 		}
