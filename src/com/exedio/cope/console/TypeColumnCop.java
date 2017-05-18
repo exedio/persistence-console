@@ -105,7 +105,7 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 			case 1: out.write(function.getValueType().getID()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	@Override

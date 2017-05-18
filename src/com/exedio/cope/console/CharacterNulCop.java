@@ -106,7 +106,7 @@ final class CharacterNulCop extends TestCop<StringField>
 			case 2: out.write(getSQL(field)); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	private static String getSQL(final StringField field)

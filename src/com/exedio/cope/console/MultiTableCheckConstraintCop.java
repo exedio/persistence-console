@@ -94,7 +94,7 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 			case 1: writeValueLong(out, constraint.getCondition().toString()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	@Override

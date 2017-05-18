@@ -89,7 +89,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 			case 0: out.write(type.getID()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	@Override

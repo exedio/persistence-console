@@ -79,7 +79,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 			case 2: writeValueLong(out, field.getValues().toString()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	@Override

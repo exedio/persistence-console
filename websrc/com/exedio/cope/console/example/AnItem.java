@@ -32,7 +32,7 @@ public class AnItem extends Item
 
 	enum Letter
 	{
-		A, B, C, D;
+		A, B, C, D
 	}
 
 	static final EnumField<Letter> letter = EnumField.create(Letter.class);
@@ -40,7 +40,7 @@ public class AnItem extends Item
 
 	enum Color
 	{
-		red, green, yellow, @CopeSchemaValue(35) blue, pink;
+		red, green, yellow, @CopeSchemaValue(35) blue, pink
 	}
 
 	static final EnumField<Color> color = EnumField.create(Color.class);

@@ -101,7 +101,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 			case 2: writeValueLong(out, constraint.getRequiredCondition()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	@Override

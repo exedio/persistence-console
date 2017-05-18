@@ -89,7 +89,7 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 			case 2: out.write(feature.getClass()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	@Override

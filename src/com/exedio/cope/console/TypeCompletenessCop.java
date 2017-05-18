@@ -92,7 +92,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 			case 1: out.write(constraint.subType.toString()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	@Override

@@ -80,7 +80,7 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 			case 0: out.write(field.toString()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	@Override

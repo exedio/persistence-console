@@ -125,7 +125,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 				break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
-		};
+		}
 	}
 
 	private static void appendSQL(final Table table, final StringBuilder bf)
