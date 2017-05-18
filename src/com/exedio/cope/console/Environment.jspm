@@ -66,7 +66,7 @@ final class Environment_Jspm extends Console_Jspm
 		return (Set)properties.keySet();
 	}
 
-	private static final String[] TEST_INFO_KEYS = new String[] {
+	private static final String[] TEST_INFO_KEYS = {
 			"database.name",
 			"database.version",
 			"driver.name",

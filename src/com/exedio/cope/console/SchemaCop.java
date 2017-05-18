@@ -324,7 +324,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 			getConstraint(schema, p).create(listener);
 	}
 
-	private static final String[] EMPTY_STRINGS = new String[]{};
+	private static final String[] EMPTY_STRINGS = {};
 
 	private static String[] getParameters(final HttpServletRequest request, final String name)
 	{

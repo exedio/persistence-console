@@ -38,7 +38,7 @@ public class QueryCacheTest extends TestCase
 			assertEquals(null, e.getMessage());
 		}
 		{
-			final QueryCacheHistogram[] histogram = new QueryCacheHistogram[]{};
+			final QueryCacheHistogram[] histogram = {};
 			final QueryCacheCop.Content content = new QueryCacheCop.Content(histogram, false);
 			assertSame(histogram, content.histogram);
 			assertNull(content.histogramCondensed);
@@ -54,7 +54,7 @@ public class QueryCacheTest extends TestCase
 			assertEquals(-1, content.maxHits);
 		}
 		{
-			final QueryCacheHistogram[] histogram = new QueryCacheHistogram[]{
+			final QueryCacheHistogram[] histogram = {
 					newQueryCacheHistogram("query1",   3, 101),
 					newQueryCacheHistogram("query2xx", 7, 103),
 			};
@@ -73,7 +73,7 @@ public class QueryCacheTest extends TestCase
 			assertEquals(103, content.maxHits);
 		}
 		{
-			final QueryCacheHistogram[] histogram = new QueryCacheHistogram[]{
+			final QueryCacheHistogram[] histogram = {
 					newQueryCacheHistogram("query1 'hallo' and 'bello' order by",   11, 31),
 					newQueryCacheHistogram("query1 'knollo' and 'knallo' order by", 13, 33),
 					newQueryCacheHistogram("query2 nixus",                          14, 34),
