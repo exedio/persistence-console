@@ -42,10 +42,10 @@ public final class AMediaItem extends Item
 
 	static final Media stylesheet = new Media().optional().contentType("text/css");
 
-	@PreventUrlGuessing()
+	@PreventUrlGuessing
 	static final Media secret = new Media().optional();
 
-	@UrlFingerPrinting()
+	@UrlFingerPrinting
 	static final Media finger = new Media().optional();
 
 	@Deprecated
