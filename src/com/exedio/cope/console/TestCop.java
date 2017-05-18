@@ -229,7 +229,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 				(summary.failures>0) ? "failure" : null);
 	}
 
-	static abstract class Info
+	abstract static class Info
 	{
 		private final long date = System.currentTimeMillis();
 		final long elapsed;
