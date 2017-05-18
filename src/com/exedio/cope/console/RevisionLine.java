@@ -174,11 +174,7 @@ final class RevisionLine
 		{
 			info = RevisionInfo.read(infoBytes);
 		}
-		catch(final Exception e)
-		{
-			info = null;
-		}
-		catch(final AssertionError e)
+		catch(final Exception | AssertionError e)
 		{
 			info = null;
 		}

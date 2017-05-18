@@ -139,11 +139,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		{
 			return RevisionInfo.read(bytes);
 		}
-		catch(final Exception e)
-		{
-			e.printStackTrace();
-		}
-		catch(final AssertionError e)
+		catch(final Exception | AssertionError e)
 		{
 			e.printStackTrace();
 		}

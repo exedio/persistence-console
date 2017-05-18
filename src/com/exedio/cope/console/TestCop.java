@@ -154,11 +154,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 			final long result = check(item, out.model);
 			info = new ResultInfo(TimeUtil.toMillies(System.nanoTime(), start), result);
 		}
-		catch(final Exception e)
-		{
-			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
-		}
-		catch(final AssertionError e)
+		catch(final Exception | AssertionError e)
 		{
 			info = new ExceptionInfo(TimeUtil.toMillies(System.nanoTime(), start), e);
 		}
