@@ -28,7 +28,7 @@ final class Format
 		// prevent instantiation
 	}
 
-	private static DecimalFormat numberFormat;
+	private static final DecimalFormat numberFormat;
 
 	static
 	{
