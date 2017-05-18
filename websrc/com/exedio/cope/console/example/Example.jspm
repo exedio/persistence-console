@@ -21,9 +21,9 @@ package com.exedio.cope.console.example;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-class Example_Jspm
+final class Example_Jspm
 {
-	static final void write(final Out out)
+	static void write(final Out out)
 	{
 %><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
 <html>

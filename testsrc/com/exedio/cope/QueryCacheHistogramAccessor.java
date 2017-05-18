@@ -18,9 +18,9 @@
 
 package com.exedio.cope;
 
-public class QueryCacheHistogramAccessor
+public final class QueryCacheHistogramAccessor
 {
-	public static final QueryCacheHistogram newQueryCacheHistogram(
+	public static QueryCacheHistogram newQueryCacheHistogram(
 			final String query,
 			final int resultSize,
 			final long hits)
