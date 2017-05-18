@@ -202,4 +202,9 @@ public final class Revisions
 		stat.setBytes(2, info.toBytes());
 		stat.execute();
 	}
+
+	private Revisions()
+	{
+		// prevent instantiation
+	}
 }

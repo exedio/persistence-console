@@ -172,4 +172,9 @@ final class Cluster_Jspm
 			</td>
 		</table><%
 	}
+
+	private Cluster_Jspm()
+	{
+		// prevent instantiation
+	}
 }%>

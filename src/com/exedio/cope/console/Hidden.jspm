@@ -48,4 +48,9 @@ final class Hidden_Jspm
 			%>
 		</table><%
 	}
+
+	private Hidden_Jspm()
+	{
+		// prevent instantiation
+	}
 }%>

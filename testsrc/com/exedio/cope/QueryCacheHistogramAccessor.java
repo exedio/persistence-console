@@ -27,4 +27,9 @@ public final class QueryCacheHistogramAccessor
 	{
 		return new QueryCacheHistogram(query, resultSize, hits);
 	}
+
+	private QueryCacheHistogramAccessor()
+	{
+		// prevent instantiation
+	}
 }

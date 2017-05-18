@@ -100,4 +100,9 @@ final class Menue_Jspm
 			if(cop.name.equals(target.name)){%> class="active"<%}
 			%>><%=target.name%></a><%
 	}
+
+	private Menue_Jspm()
+	{
+		// prevent instantiation
+	}
 }%>

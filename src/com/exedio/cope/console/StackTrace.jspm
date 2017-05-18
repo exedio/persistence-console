@@ -72,4 +72,9 @@ final class StackTrace_Jspm
 					<%
 				}
 	}
+
+	private StackTrace_Jspm()
+	{
+		// prevent instantiation
+	}
 }%>

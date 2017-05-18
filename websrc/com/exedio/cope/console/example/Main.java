@@ -65,4 +65,9 @@ public final class Main
 	{
 		reducedModel.enableSerialization(Main.class, "reducedModel");
 	}
+
+	private Main()
+	{
+		// prevent instantiation
+	}
 }

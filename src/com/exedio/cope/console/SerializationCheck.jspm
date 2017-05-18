@@ -52,4 +52,9 @@ final class SerializationCheck_Jspm
 			%>
 		</table><%
 	}
+
+	private SerializationCheck_Jspm()
+	{
+		// prevent instantiation
+	}
 }%>

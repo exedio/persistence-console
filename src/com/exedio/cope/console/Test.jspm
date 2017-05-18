@@ -288,4 +288,9 @@ final class Test_Jspm
 				%></td>
 				<td><%=format(summary.elapsed)%></td><%
 	}
+
+	private Test_Jspm()
+	{
+		// prevent instantiation
+	}
 }%>

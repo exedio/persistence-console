@@ -121,4 +121,9 @@ final class Hash_Jspm
 		</table>
 		</form><%
 	}
+
+	private Hash_Jspm()
+	{
+		// prevent instantiation
+	}
 }%>
