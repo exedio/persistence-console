@@ -78,7 +78,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 			final double defaultValue)
 	{
 		final String value = request.getParameter(name);
-		return (value==null) ? defaultValue : Double.parseDouble(value);
+		return (value==null) ? defaultValue : parseDouble(value);
 	}
 
 	@Override

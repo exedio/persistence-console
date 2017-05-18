@@ -95,7 +95,7 @@ final class Media_Jspm extends Console_Jspm
 				final String name = path.getName();
 				%>
 			<tr><%
-				ColoredTable_Jspm.writeData(out, MediaStatsCop.format(info));
+				ColoredTable_Jspm.writeData(out, format(info));
 				%>
 				<td class="color1"><%=ratio(info.getNotModified(), info.getDelivered())%></td>
 				<td class="text"><%=type%></td>
