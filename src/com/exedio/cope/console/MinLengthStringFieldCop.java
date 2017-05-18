@@ -106,7 +106,7 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 
 			return
 				(result!=null)
-				? (result.intValue() - field.getMinimumLength())
+				? (result - field.getMinimumLength())
 				: 0;
 		}
 	}

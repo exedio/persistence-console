@@ -179,7 +179,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		{
 			for(final Map.Entry<Integer, byte[]> e : logsRaw.entrySet())
 			{
-				if(e.getKey().intValue()==-1)
+				if(e.getKey()==-1)
 					mutex = e.getValue();
 				else
 					register(lines, e.getKey()).setInfo(e.getValue());
