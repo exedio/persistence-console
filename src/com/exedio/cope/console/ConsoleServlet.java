@@ -71,7 +71,7 @@ public class ConsoleServlet extends CopsServlet
 	 */
 	public List<String> getMediaURLPrefixes(final HttpServletRequest request)
 	{
-		return Collections.<String>emptyList();
+		return Collections.emptyList();
 	}
 
 

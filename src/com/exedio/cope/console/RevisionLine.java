@@ -47,7 +47,7 @@ final class RevisionLine
 	private Date date = null;
 	private Map<String, String> environment = null;
 	private String content;
-	private List<Body> body = Collections.<Body>emptyList();
+	private List<Body> body = Collections.emptyList();
 	private int  rows    = -1;
 	private long elapsed = -1;
 
