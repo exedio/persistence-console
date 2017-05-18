@@ -43,7 +43,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	static final String FINGER_OFFSET_RAMP_STEP = "fors";
 	private static final double FINGER_OFFSET_RAMP_STEP_DEFAULT = 0.002;
 
-	public MediaStatsCop(final Args args, final Variant variant)
+	MediaStatsCop(final Args args, final Variant variant)
 	{
 		this(args, variant, FINGER_OFFSET_RAMP_STEP_DEFAULT);
 	}
