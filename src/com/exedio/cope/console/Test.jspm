@@ -270,6 +270,7 @@ final class Test_Jspm
 			}
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static <I> void writeSummary(
 			final Out out,
 			final TestCop<I> cop,

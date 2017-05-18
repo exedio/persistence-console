@@ -28,6 +28,7 @@ import com.exedio.cope.pattern.PreventUrlGuessing;
 import com.exedio.cope.pattern.RedirectFrom;
 import com.exedio.cope.pattern.UrlFingerPrinting;
 
+@SuppressWarnings("unused")
 public final class AMediaItem extends Item
 {
 	@WrapperInitial

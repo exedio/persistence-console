@@ -115,6 +115,7 @@ public final class Revisions
 			revisions.next();
 
 			Revision lastRevision = null;
+			//noinspection ForLoopThatDoesntUseLoopVariable
 			for(int i = 0; revisions.hasNext(); i++)
 			{
 				final Revision revision = revisions.next();
@@ -143,6 +144,7 @@ public final class Revisions
 				}
 			}
 			{
+				//noinspection ConstantConditions // OK: there is at least one revision
 				save(stat, new RevisionInfoCreate(
 						lastRevision.getNumber() - 1,
 						new Date(),

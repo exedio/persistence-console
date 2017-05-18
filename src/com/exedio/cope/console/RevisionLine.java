@@ -106,6 +106,7 @@ final class RevisionLine
 
 	Date getDate()
 	{
+		//noinspection ReturnOfDateField
 		return date;
 	}
 
@@ -213,6 +214,7 @@ final class RevisionLine
 		for(final Map.Entry<K,V> e : left.entrySet())
 		{
 			final K key = e.getKey();
+			//noinspection IfStatementWithNegatedCondition
 			if(!right.containsKey(key))
 			{
 				result.add(key);

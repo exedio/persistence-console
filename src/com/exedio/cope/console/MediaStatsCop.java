@@ -66,6 +66,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 
 	private void addParameter(final String key, final double value, final double defaultValue)
 	{
+		//noinspection FloatingPointEquality
 		if(value==defaultValue)
 			return;
 
@@ -210,6 +211,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		}
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static String formatRamp(final double ramp)
 	{
 		return new DecimalFormat("0.0000").format(ramp);

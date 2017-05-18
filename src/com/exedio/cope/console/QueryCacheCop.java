@@ -101,11 +101,15 @@ final class QueryCacheCop extends ConsoleCop<Void>
 		final long maxHits;
 		final long minHits;
 
+		@SuppressWarnings({
+				"ZeroLengthArrayAllocation", // OK: is rarely called
+				"ConstantConditions"}) // too complex to analyze
 		@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 		Content(final QueryCacheHistogram[] histogram, final boolean condense)
 		{
 			if(histogram.length>0)
 			{
+				//noinspection AssignmentToCollectionOrArrayFieldFromParameter
 				this.histogram = histogram;
 
 				final HashMap<String, Condense> histogramCondensed = condense ? new HashMap<>() : null;
@@ -141,6 +145,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 
 							qxbuf.append('?');
 
+							//noinspection AssignmentToForLoopParameter
 							pos = q.indexOf('\'', pos+1);
 							if(pos<0)
 							{
@@ -232,6 +237,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 			}
 			else
 			{
+				//noinspection AssignmentToCollectionOrArrayFieldFromParameter
 				this.histogram = histogram;
 				this.histogramCondensed = condense ? new Condense[0] : null;
 

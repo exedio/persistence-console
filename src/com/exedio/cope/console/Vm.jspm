@@ -99,6 +99,7 @@ final class Vm_Jspm
 			</tr><%
 	}
 
+	@SuppressWarnings("SuspiciousIndentAfterControlStatement")
 	private static void writeShort(final Out out, final TreeSet<Package> jar)
 	{
 			final Package p = jar.iterator().next();

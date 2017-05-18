@@ -61,6 +61,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	ChecklistIcon getChecklistIcon(final Model model)
 	{
 		final ArrayList<Point> store = store();
+		//noinspection SynchronizationOnLocalVariableOrMethodParameter OK: comes from global store
 		synchronized(store)
 		{
 			return getChecklistIcon(store);
@@ -165,6 +166,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	private void storeAdd(final Point point)
 	{
 		final ArrayList<Point> store = store();
+		//noinspection SynchronizationOnLocalVariableOrMethodParameter OK: comes from global store
 		synchronized(store)
 		{
 			store.add(point);
@@ -175,6 +177,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	{
 		final ArrayList<Point> store = store();
 		final ArrayList<Point> result;
+		//noinspection SynchronizationOnLocalVariableOrMethodParameter OK: comes from global store
 		synchronized(store)
 		{
 			result = new ArrayList<>(store);

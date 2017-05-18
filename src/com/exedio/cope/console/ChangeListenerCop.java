@@ -46,6 +46,7 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 		super(TAB_CHANGE_LISTENER, "Change Listeners", args);
 		this.pager = pager;
 
+		//noinspection ThisEscapedInObjectConstruction
 		pager.addParameters(this);
 	}
 

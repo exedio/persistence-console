@@ -59,6 +59,7 @@ final class Properties_Jspm
 		</script><%
 	}
 
+	@SuppressWarnings("SuspiciousIndentAfterControlStatement")
 	static void writeBody(
 				final Out out,
 				final Properties properties)

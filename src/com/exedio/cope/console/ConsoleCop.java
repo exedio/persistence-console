@@ -128,6 +128,7 @@ abstract class ConsoleCop<S> extends Cop
 		super(tab + NAME_POSTFIX);
 		this.name = name;
 		this.args = args;
+		//noinspection ThisEscapedInObjectConstruction
 		args.addParameters(this);
 	}
 
@@ -244,6 +245,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(start==0)
 			throw new RuntimeException();
 
+		//noinspection SimpleDateFormatWithoutLocale timezone is in output, reports server time
 		return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS Z (z)").format(new Date(start));
 	}
 

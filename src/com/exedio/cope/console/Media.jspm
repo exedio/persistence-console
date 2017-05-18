@@ -166,6 +166,7 @@ final class Media_Jspm
 		</style><%
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static void writeStats(
 				final Out out,
 				final MediaCop cop,
@@ -304,6 +305,7 @@ final class Media_Jspm
 		}
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static void writeHorizontalRule(final Out out)
 	{
 		%>

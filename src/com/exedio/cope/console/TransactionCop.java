@@ -44,6 +44,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 		super(TAB_TRANSACTION, "Transactions", args);
 		this.pager = pager;
 
+		//noinspection ThisEscapedInObjectConstruction
 		pager.addParameters(this);
 	}
 
