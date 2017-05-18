@@ -201,7 +201,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 			"</response>");
 	}
 
-	private final I nextItem(final List<I> items, final String id)
+	private I nextItem(final List<I> items, final String id)
 	{
 		if(!iterate)
 			return null;

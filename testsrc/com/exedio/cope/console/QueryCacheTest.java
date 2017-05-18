@@ -97,7 +97,7 @@ public class QueryCacheTest extends TestCase
 		}
 	}
 
-	private static final void assertInfo(
+	private static void assertInfo(
 			final QueryCacheCop.Condense actual,
 			final int count,
 			final int recentUsage,
@@ -112,7 +112,7 @@ public class QueryCacheTest extends TestCase
 		assertEquals(query, actual.query);
 	}
 
-	private static final void assertEquals(final int[] expected, final int[] actual)
+	private static void assertEquals(final int[] expected, final int[] actual)
 	{
 		if(!Arrays.equals(expected, actual))
 			fail("expected " + Arrays.toString(expected) + ", but was " + Arrays.toString(actual));

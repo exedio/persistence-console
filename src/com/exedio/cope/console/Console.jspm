@@ -207,7 +207,7 @@ abstract class Console_Jspm
 		writeIcon(out, condition, ConsoleServlet.unknown, "Insufficient Information");
 	}
 
-	private static final void writeIcon(
+	private static void writeIcon(
 			final Out out,
 			final boolean condition,
 			final Resource resource,
@@ -224,7 +224,7 @@ abstract class Console_Jspm
 		%><form action="<%=cop%>" method="POST"><input type="submit" name="<%=ConsoleServlet.CONNECT%>" value="connect" /></form><%
 	}
 
-	private static final void writeNotConnectedMessage(final Out out, final ConsoleCop<?> cop)
+	private static void writeNotConnectedMessage(final Out out, final ConsoleCop<?> cop)
 	{
 		%>
 		<table>
