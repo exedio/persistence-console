@@ -79,7 +79,6 @@ public final class ExampleServlet extends CopsServlet
 	@SuppressFBWarnings("SE_BAD_FIELD")
 	private final ArrayList<ConnectToken> connectTokens = new ArrayList<>();
 	static int changeListenerNumber = 0;
-	static int modificationListenerNumber = 0;
 
 	@Override
 	protected void doRequest(

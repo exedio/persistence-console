@@ -47,11 +47,6 @@ public final class ANameServer extends MediaPath
 			addSource(source, "Source");
 	}
 
-	StringField getSource()
-	{
-		return source;
-	}
-
 	@Override
 	public boolean isMandatory()
 	{
