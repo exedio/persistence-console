@@ -159,10 +159,9 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 		else
 		{
 			logger.warn(
-				"found unsupported Constraint that is not a CheckConstraint -> " +
-				UnsupportedConstraintCop.class.getSimpleName()+" and "+UnsupportedCheckConstraintByTableCop.class.getSimpleName() +
-				" don't show the same constraints"
-			);
+					"found unsupported Constraint that is not a CheckConstraint -> {} and {} don't show the same constraints",
+					UnsupportedConstraintCop.class.getSimpleName(),
+					UnsupportedCheckConstraintByTableCop.class.getSimpleName());
 			return false;
 		}
 	}
