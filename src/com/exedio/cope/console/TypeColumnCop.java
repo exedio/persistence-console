@@ -62,9 +62,9 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	}
 
 	@Override
-	boolean toleratesNotConnected()
+	boolean requiresConnect()
 	{
-		return false;
+		return true;
 	}
 
 	@Override

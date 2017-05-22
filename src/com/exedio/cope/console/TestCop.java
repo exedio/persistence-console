@@ -101,7 +101,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	@Override
 	final ChecklistIcon getChecklistIcon(final Model model)
 	{
-		if(!toleratesNotConnected() && !model.isConnected())
+		if(requiresConnect() && !model.isConnected())
 			return ChecklistIcon.unknown;
 
 		final List<I> items = getItems(model);
@@ -122,7 +122,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	{
 		final Model model = out.model;
 
-		if(!toleratesNotConnected())
+		if(requiresConnect())
 			failIfNotConnected(out.model);
 
 		Test_Jspm.writeBody(
@@ -424,9 +424,9 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		}
 	}
 
-	boolean toleratesNotConnected()
+	boolean requiresConnect()
 	{
-		return true;
+		return false;
 	}
 
 	static final void writeValueLong(final Out out, final String s)

@@ -57,9 +57,9 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
-	boolean toleratesNotConnected()
+	boolean requiresConnect()
 	{
-		return false;
+		return true;
 	}
 
 	@Override

@@ -66,9 +66,9 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	}
 
 	@Override
-	boolean toleratesNotConnected()
+	boolean requiresConnect()
 	{
-		return false;
+		return true;
 	}
 
 	@Override

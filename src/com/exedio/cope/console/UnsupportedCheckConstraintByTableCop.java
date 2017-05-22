@@ -80,9 +80,9 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	}
 
 	@Override
-	boolean toleratesNotConnected()
+	boolean requiresConnect()
 	{
-		return false;
+		return true;
 	}
 
 	@Override

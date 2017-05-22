@@ -64,9 +64,9 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	}
 
 	@Override
-	boolean toleratesNotConnected()
+	boolean requiresConnect()
 	{
-		return false;
+		return true;
 	}
 
 	@Override

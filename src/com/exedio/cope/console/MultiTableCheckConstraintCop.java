@@ -59,9 +59,9 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 	}
 
 	@Override
-	boolean toleratesNotConnected()
+	boolean requiresConnect()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
