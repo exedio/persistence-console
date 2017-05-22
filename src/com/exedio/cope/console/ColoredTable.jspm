@@ -21,11 +21,11 @@ package com.exedio.cope.console;
 
 import java.util.Arrays;
 
-abstract class ColoredTable_Jspm
+final class ColoredTable_Jspm
 {
 	private static final int COLORS = 2;
 
-	static final void writeHeader(final Out out, final String[] names, final String[] shortNames)
+	static void writeHeader(final Out out, final String[] names, final String[] shortNames)
 	{
 			if(names.length<=shortNames.length)
 				throw new RuntimeException(Arrays.toString(names) + Arrays.toString(shortNames));
@@ -80,12 +80,17 @@ abstract class ColoredTable_Jspm
 			</tr><%
 	}
 
-	static final void writeData(final Out out, final String[] data)
+	static void writeData(final Out out, final String[] data)
 	{
 			for(int i = 0; i<data.length; i++)
 			{
 			%>
 				<td class="color<%= i%COLORS %>"><% out.writeRaw(data[i]); %></td><%
 			}
+	}
+
+	private ColoredTable_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>
