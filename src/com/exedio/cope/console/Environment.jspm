@@ -140,7 +140,7 @@ final class Environment_Jspm extends Console_Jspm
 				%>
 				<td class="text"<%
 					if(rowspan!=1){ %> rowspan="<%=rowspan%>"<% }
-					if(value.equals(current.get(key))){ %> bgcolor="#cff"<% }
+					if(value.equals(current.getProperty(key))){ %> bgcolor="#cff"<% }
 					%>><%
 					if(value instanceof Map)
 					{
