@@ -171,7 +171,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 		}
 	}
 
-	private List<? extends Point> storeGet()
+	private List<Point> storeGet()
 	{
 		final ArrayList<Point> store = store();
 		final ArrayList<Point> result;

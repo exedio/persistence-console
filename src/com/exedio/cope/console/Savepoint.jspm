@@ -28,7 +28,7 @@ final class Savepoint_Jspm extends Console_Jspm
 	static void writeBody(
 			final Out out,
 			final SavepointCop cop,
-			final List<? extends SavepointCop.Point> points)
+			final List<SavepointCop.Point> points)
 	{
 		%>
 		<form action="<%=cop%>" method="POST">
