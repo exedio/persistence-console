@@ -22,7 +22,6 @@ import com.exedio.cope.Model;
 import com.exedio.cope.QueryCacheHistogram;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 
@@ -196,25 +195,21 @@ final class QueryCacheCop extends ConsoleCop<Void>
 				if(histogramCondensed!=null)
 				{
 					this.histogramCondensed = histogramCondensed.values().toArray(new Condense[histogramCondensed.size()]);
-					Arrays.sort(this.histogramCondensed, new Comparator<Condense>(){
+					Arrays.sort(this.histogramCondensed, (c1, c2) ->
+					{
+						if(c1==c2)
+							return 0;
 
-						@Override
-						public int compare(final Condense c1, final Condense c2)
 						{
-							if(c1==c2)
-								return 0;
-
-							{
-								final int r1 = c1.getRecentUsage();
-								final int r2 = c2.getRecentUsage();
-								if(r1<r2)
-									return -1;
-								else if(r1>r2)
-									return 1;
-							}
-
-							return c1.query.compareTo(c2.query);
+							final int r1 = c1.getRecentUsage();
+							final int r2 = c2.getRecentUsage();
+							if(r1<r2)
+								return -1;
+							else if(r1>r2)
+								return 1;
 						}
+
+						return c1.query.compareTo(c2.query);
 					});
 				}
 				else
