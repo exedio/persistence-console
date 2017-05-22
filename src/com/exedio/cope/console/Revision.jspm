@@ -266,10 +266,6 @@ final class Revision_Jspm
 				{
 					%><%=logString%><%
 				}
-				else
-				{
-					// ok
-				}
 				final String content = line.getContent();
 				%>');"><% if(content!=null){%><%=content%><%}else{%>-<%} %></td>
 				<td<% if(!line.hasRows   ()){%> class="notavailable"<%} %>><%=format(line.getRows   ())%></td>
