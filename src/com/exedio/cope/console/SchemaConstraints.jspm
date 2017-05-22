@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.exedio.cope.Model;
 import com.exedio.dsmf.Constraint;
 
-final class SchemaConstraints_Jspm extends Console_Jspm
+final class SchemaConstraints_Jspm
 {
 	private static String type(final Constraint.Type type)
 	{
@@ -97,6 +97,11 @@ final class SchemaConstraints_Jspm extends Console_Jspm
 			}
 			%>
 		</form><%
+	}
+
+	private SchemaConstraints_Jspm()
+	{
+		// prevent instantiation
 	}
 }
 %>

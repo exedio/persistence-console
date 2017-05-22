@@ -28,7 +28,7 @@ import java.util.TreeSet;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-final class Environment_Jspm extends Console_Jspm
+final class Environment_Jspm
 {
 	static void writeCurrent(
 			final Out out,
@@ -168,5 +168,10 @@ final class Environment_Jspm extends Console_Jspm
 				%>
 			</tr><%
 			}
+	}
+
+	private Environment_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

@@ -33,7 +33,7 @@ import java.util.Set;
 import com.exedio.cope.RevisionInfoMutex;
 import com.exedio.cope.RevisionInfoRevise.Body;
 
-final class Revision_Jspm extends Console_Jspm
+final class Revision_Jspm
 {
 	static void writeHead(final Out out)
 	{
@@ -313,5 +313,10 @@ final class Revision_Jspm extends Console_Jspm
 				</td>
 			</td>
 		</table><%
+	}
+
+	private Revision_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

@@ -30,7 +30,7 @@ import com.exedio.cope.ChangeListenerDispatcherInfo;
 import com.exedio.cope.ChangeListenerInfo;
 import java.util.List;
 
-final class ChangeListener_Jspm extends Console_Jspm
+final class ChangeListener_Jspm
 {
 	static void writeBody(
 			final ChangeListenerCop cop,
@@ -126,5 +126,10 @@ final class ChangeListener_Jspm extends Console_Jspm
 			%>
 			<input type="submit" name="<%=REMOVE_SELECTED%>" value="remove selected" />
 			<input type="submit" name="<%=REMOVE_ALL     %>" value="remove all" onclick="return confirm('This operation will remove all Change Listeners. This may affect the proper function of your application.\nDo you really want to do this?')" /><%
+	}
+
+	private ChangeListener_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

@@ -28,7 +28,7 @@ import com.exedio.cope.DataField;
 
 import com.exedio.cope.console.DataFieldCop.Table;
 
-final class DataField_Jspm extends Console_Jspm
+final class DataField_Jspm
 {
 	static void writeBody(
 			final Out out,
@@ -107,5 +107,10 @@ final class DataField_Jspm extends Console_Jspm
 				<td><%=format(lengthMax)%></td>
 			</tr>
 		</table><%
+	}
+
+	private DataField_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

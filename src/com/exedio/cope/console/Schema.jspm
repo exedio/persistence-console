@@ -19,7 +19,7 @@
 
 package com.exedio.cope.console;
 
-final class Schema_Jspm extends Console_Jspm
+final class Schema_Jspm
 {
 	static void writeHead(final Out out)
 	{
@@ -34,6 +34,11 @@ final class Schema_Jspm extends Console_Jspm
 			div.WARNING { background: url(<%= ConsoleServlet.nodeLeafWarning %>); }
 			div.ERROR   { background: url(<%= ConsoleServlet.nodeLeafError   %>); }
 		</style><%
+	}
+
+	private Schema_Jspm()
+	{
+		// prevent instantiation
 	}
 }
 %>

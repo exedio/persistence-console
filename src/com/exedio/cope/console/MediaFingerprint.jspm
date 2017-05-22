@@ -29,7 +29,7 @@ import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_SET_VALUE_PARA
 import static com.exedio.cope.console.MediaStatsCop.FINGER_OFFSET_WARNING;
 import static com.exedio.cope.console.MediaStatsCop.formatRamp;
 
-final class MediaFingerprint_Jspm extends Console_Jspm
+final class MediaFingerprint_Jspm
 {
 	static void write(
 			final MediaStatsCop cop,
@@ -65,5 +65,10 @@ final class MediaFingerprint_Jspm extends Console_Jspm
 			<input name="<%=FINGER_OFFSET_RAMP_STEP%>" value="<%=cop.fingerprintRampStep%>" size="6">
 			<input type="submit" value="Set">
 		</form><%
+	}
+
+	private MediaFingerprint_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

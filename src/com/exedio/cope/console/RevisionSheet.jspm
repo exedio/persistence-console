@@ -23,7 +23,7 @@ import com.exedio.cope.RevisionInfoRevise;
 import com.exedio.cope.RevisionInfoRevise.Body;
 import java.util.TreeMap;
 
-final class RevisionSheet_Jspm extends Console_Jspm
+final class RevisionSheet_Jspm
 {
 	static void writeBody(
 			final Out out,
@@ -66,5 +66,10 @@ final class RevisionSheet_Jspm extends Console_Jspm
 		}
 		%>
 		</table><%
+	}
+
+	private RevisionSheet_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

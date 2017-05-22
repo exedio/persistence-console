@@ -19,6 +19,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Console_Jspm.writeError;
+import static com.exedio.cope.console.Console_Jspm.writeToggle;
 import static com.exedio.cope.console.ConsoleCop.writePager;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.ratio;
@@ -40,7 +42,7 @@ import com.exedio.cope.pattern.MediaThumbnail;
 import com.exedio.cope.pattern.PreventUrlGuessing;
 import com.exedio.cope.pattern.UrlFingerPrinting;
 
-final class Media_Jspm extends Console_Jspm
+final class Media_Jspm
 {
 	static void writeBody(
 			final MediaStatsCop cop,
@@ -419,5 +421,10 @@ final class Media_Jspm extends Console_Jspm
 					%></a><%
 				}
 				%></li><%
+	}
+
+	private Media_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

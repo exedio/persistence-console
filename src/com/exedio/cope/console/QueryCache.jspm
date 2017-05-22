@@ -19,6 +19,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Console_Jspm.writeToggle;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.formatAndHide;
 import static com.exedio.cope.console.Format.ratio;
@@ -28,7 +29,7 @@ import static com.exedio.cope.console.QueryCacheCop.HISTOGRAM_LIMIT;
 import com.exedio.cope.QueryCacheHistogram;
 import com.exedio.cope.QueryCacheInfo;
 
-final class QueryCache_Jspm extends Console_Jspm
+final class QueryCache_Jspm
 {
 	static void writeBody(
 			final QueryCacheCop cop,
@@ -187,5 +188,10 @@ final class QueryCache_Jspm extends Console_Jspm
 		}
 		%>
 		</table><%
+	}
+
+	private QueryCache_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

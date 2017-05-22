@@ -25,7 +25,7 @@ import java.util.Map;
 
 import com.exedio.cope.EnumField;
 
-final class Enums_Jspm extends Console_Jspm
+final class Enums_Jspm
 {
 	static void write(
 			final Out out,
@@ -63,5 +63,10 @@ final class Enums_Jspm extends Console_Jspm
 	}
 			%>
 		</table><%
+	}
+
+	private Enums_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

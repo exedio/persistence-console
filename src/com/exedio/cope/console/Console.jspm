@@ -30,9 +30,9 @@ import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import com.exedio.cops.Resource;
 
-abstract class Console_Jspm
+final class Console_Jspm
 {
-	static final void write(
+	static void write(
 				final Out out,
 				final HttpServletResponse response,
 				final ConsoleCop<?> cop,
@@ -140,7 +140,7 @@ abstract class Console_Jspm
 
 	}
 
-	static final void writeNotFound(final Out out, final String pathInfo)
+	static void writeNotFound(final Out out, final String pathInfo)
 	{
 		%>
 		<div class="message">
@@ -152,7 +152,7 @@ abstract class Console_Jspm
 		</div><%
 	}
 
-	static final void writeToggle(
+	static void writeToggle(
 			final Out out,
 			final ConsoleCop<?> cop,
 			final boolean value)
@@ -161,7 +161,7 @@ abstract class Console_Jspm
 			(value ? ConsoleServlet.checkTrue : ConsoleServlet.checkFalse)%>"></a><%
 	}
 
-	static final void writePagerButton(
+	static void writePagerButton(
 			final Out out,
 			final Pageable cop,
 			final Pager href,
@@ -172,35 +172,35 @@ abstract class Console_Jspm
 				<a href="<%=cop.toPage(href)%>"<% if(href.isNeutral()){%> class="<%=neutralClass%>"<%}%>><%=text%></a><%
 	}
 
-	static final void writeOk(
+	static void writeOk(
 			final Out out,
 			final boolean condition)
 	{
 		writeIcon(out, condition, ConsoleServlet.ok, "Ok");
 	}
 
-	static final void writeOkGrey(
+	static void writeOkGrey(
 			final Out out,
 			final boolean condition)
 	{
 		writeIcon(out, condition, ConsoleServlet.okGrey, "Ok because empty");
 	}
 
-	static final void writeWarning(
+	static void writeWarning(
 			final Out out,
 			final boolean condition)
 	{
 		writeIcon(out, condition, ConsoleServlet.warning, "Warning");
 	}
 
-	static final void writeError(
+	static void writeError(
 			final Out out,
 			final boolean condition)
 	{
 		writeIcon(out, condition, ConsoleServlet.error, "Error");
 	}
 
-	static final void writeUnknown(
+	static void writeUnknown(
 			final Out out,
 			final boolean condition)
 	{
@@ -219,7 +219,7 @@ abstract class Console_Jspm
 		}
 	}
 
-	static final void writeNotConnected(final Out out, final ConsoleCop<?> cop)
+	static void writeNotConnected(final Out out, final ConsoleCop<?> cop)
 	{
 		%><form action="<%=cop%>" method="POST"><input type="submit" name="<%=ConsoleServlet.CONNECT%>" value="connect" /></form><%
 	}
@@ -235,5 +235,10 @@ abstract class Console_Jspm
 				<% writeNotConnected(out, cop); %>
 			</td></tr>
 		</table><%
+	}
+
+	private Console_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

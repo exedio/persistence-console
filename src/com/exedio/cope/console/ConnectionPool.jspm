@@ -25,7 +25,7 @@ import static com.exedio.cope.console.ConnectionPoolCop.FLUSH;
 import com.exedio.cope.util.Pool.Info;
 import com.exedio.cope.util.PoolCounter;
 
-final class ConnectionPool_Jspm extends Console_Jspm
+final class ConnectionPool_Jspm
 {
 	static void writeBody(
 			final Out out,
@@ -110,5 +110,10 @@ final class ConnectionPool_Jspm extends Console_Jspm
 			}
 		%>
 		</table><%
+	}
+
+	private ConnectionPool_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

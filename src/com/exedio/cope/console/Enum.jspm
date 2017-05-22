@@ -21,7 +21,7 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.SchemaInfo.getColumnValue;
 
-final class Enum_Jspm extends Console_Jspm
+final class Enum_Jspm
 {
 	static void write(
 			final Out out,
@@ -46,5 +46,10 @@ final class Enum_Jspm extends Console_Jspm
 		}
 			%>
 		</table><%
+	}
+
+	private Enum_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

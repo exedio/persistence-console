@@ -19,13 +19,14 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Console_Jspm.writeToggle;
 import static com.exedio.cope.console.Format.formatAndHide;
 import static com.exedio.cope.console.Format.ratio;
 
 import com.exedio.cope.ItemCacheInfo;
 import com.exedio.cope.ItemCacheStatistics;
 
-final class ItemCache_Jspm extends Console_Jspm
+final class ItemCache_Jspm
 {
 	static void writeBody(
 			final ItemCacheCop cop,
@@ -99,5 +100,10 @@ final class ItemCache_Jspm extends Console_Jspm
 			}
 		%>
 		</table><%
+	}
+
+	private ItemCache_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

@@ -24,7 +24,7 @@ import java.net.MalformedURLException;
 
 import com.exedio.cope.util.Properties;
 
-final class Properties_Jspm extends Console_Jspm
+final class Properties_Jspm
 {
 	static void writeHead(final Out out)
 	{
@@ -161,5 +161,9 @@ final class Properties_Jspm extends Console_Jspm
 			throw new RuntimeException(o.getClass().getName());
 	}
 
+	private Properties_Jspm()
+	{
+		// prevent instantiation
+	}
 }
 %>

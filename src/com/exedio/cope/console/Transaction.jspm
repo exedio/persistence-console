@@ -34,7 +34,7 @@ import com.exedio.cope.ChangeEvent.NotAvailableException;
 import com.exedio.cope.Transaction;
 import com.exedio.cope.TransactionCounters;
 
-final class Transaction_Jspm extends Console_Jspm
+final class Transaction_Jspm
 {
 	static void writeHead(final Out out)
 	{
@@ -303,5 +303,10 @@ final class Transaction_Jspm extends Console_Jspm
 	{
 				%>
 				<td class="notavailable"><%=e.getMessage()%></td><%
+	}
+
+	private Transaction_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

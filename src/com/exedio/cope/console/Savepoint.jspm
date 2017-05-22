@@ -23,7 +23,7 @@ import static com.exedio.cope.console.SavepointCop.SAVEPOINT;
 
 import java.util.List;
 
-final class Savepoint_Jspm extends Console_Jspm
+final class Savepoint_Jspm
 {
 	static void writeBody(
 			final Out out,
@@ -54,5 +54,10 @@ final class Savepoint_Jspm extends Console_Jspm
 		}
 		%>
 		</table><%
+	}
+
+	private Savepoint_Jspm()
+	{
+		// prevent instantiation
 	}
 }%>

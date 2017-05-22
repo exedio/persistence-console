@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
 
-final class SchemaSchema_Jspm extends Console_Jspm
+final class SchemaSchema_Jspm
 {
 	private static final String CREATE = "schema.create";
 	private static final String TEARDOWN = "schema.teardown";
@@ -80,6 +80,11 @@ final class SchemaSchema_Jspm extends Console_Jspm
 			}
 		%>
 		</form><%
+	}
+
+	private SchemaSchema_Jspm()
+	{
+		// prevent instantiation
 	}
 }
 %>

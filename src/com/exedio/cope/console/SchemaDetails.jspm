@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cops.Cop.isPost;
+import static com.exedio.cope.console.Console_Jspm.writeToggle;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.Table;
 
-final class SchemaDetails_Jspm extends Console_Jspm
+final class SchemaDetails_Jspm
 {
 	private static final String APPLY = "details.apply";
 	private static final String APPLY_DRY = "details.dry";
@@ -302,6 +303,11 @@ final class SchemaDetails_Jspm extends Console_Jspm
 			default:
 				throw new RuntimeException(color.toString());
 		}
+	}
+
+	private SchemaDetails_Jspm()
+	{
+		// prevent instantiation
 	}
 }
 %>
