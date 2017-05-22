@@ -31,22 +31,22 @@ class OutBasic
 		this.bf = bf;
 	}
 
-	void writeStatic(final String s)
+	final void writeStatic(final String s)
 	{
 		bf.print(s);
 	}
 
-	void write(final String s)
+	final void write(final String s)
 	{
 		bf.print(XMLEncoder.encode(s));
 	}
 
-	void write(final char c)
+	final void write(final char c)
 	{
 		bf.print(c); // TODO encode this as well
 	}
 
-	void write(final int i)
+	final void write(final int i)
 	{
 		bf.print(i);
 	}
