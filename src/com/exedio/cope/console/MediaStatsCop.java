@@ -257,7 +257,8 @@ final class MediaStatsCop extends ConsoleCop<Void>
 						limitRamp(rampCurrent + fingerprintRampStep)
 				);
 				break;
-			default:
+			case all:
+			case guessingPrevented:
 				// disable warning about incomplete switch
 				break;
 		}
