@@ -109,7 +109,7 @@ final class Properties_Jspm extends Console_Jspm
 									file.getAbsolutePath()
 									%></a><br><small>(link works only if the server is running locally).</small><%
 							}
-							catch(MalformedURLException ignored)
+							catch(final MalformedURLException ignored)
 							{
 								%><b>n/a</b><%
 							}

@@ -56,7 +56,7 @@ final class Checklists_Jspm
 		%>
 		<ul><%
 
-		for(ConsoleCop<?> target : targets)
+		for(final ConsoleCop<?> target : targets)
 		{
 			final ChecklistIcon icon = target.getChecklistIcon(out.model);
 			%>

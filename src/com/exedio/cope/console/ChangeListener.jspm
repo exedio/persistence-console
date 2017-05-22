@@ -103,7 +103,7 @@ final class ChangeListener_Jspm extends Console_Jspm
 						{
 							%><%=listener.toString()%><%
 						}
-						catch(RuntimeException e)
+						catch(final RuntimeException e)
 						{
 							out.writeStackTrace(e);
 						}

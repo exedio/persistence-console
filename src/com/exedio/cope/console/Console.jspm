@@ -124,7 +124,7 @@ abstract class Console_Jspm
 </html>
 <%
 		}
-		catch(Throwable t)
+		catch(final Throwable t)
 		{
 			// an exception occuring after writing to HttpResponse.getOutputStream
 			// does not cause the stacktrace to be displayed in the web page,

@@ -76,7 +76,7 @@ final class SchemaConstraints_Jspm extends Console_Jspm
 				final EnumSet<Constraint.Type> constraintTypes = EnumSet.noneOf(Constraint.Type.class);
 				final String[] constraintTypeParameterValues = request.getParameterValues(TYPE);
 				if(constraintTypeParameterValues!=null)
-					for(String s : constraintTypeParameterValues)
+					for(final String s : constraintTypeParameterValues)
 						constraintTypes.add(Constraint.Type.valueOf(s));
 
 				if(request.getParameter(CREATE)!=null)
