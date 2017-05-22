@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.HashMap;
 
 final class Stores
@@ -27,20 +29,12 @@ final class Stores
 	@SuppressWarnings("unchecked")
 	<S> S store(final ConsoleCop<S> cop)
 	{
-		final Class<?> clazz = cop.getClass(); // move out of synchronized
+		@SuppressWarnings("rawtypes")
+		final Class<? extends ConsoleCop<?>> clazz = (Class)cop.getClass(); // move out of synchronized
 
 		synchronized(stores)
 		{
-			final S existing = (S)stores.get(clazz);
-			if(existing!=null)
-				return existing;
-
-			final S initial = cop.initialStore();
-			if(initial==null)
-				throw new IllegalArgumentException(clazz.getName());
-
-			stores.put((Class<? extends ConsoleCop<?>>)clazz, initial);
-			return initial;
+			return (S)stores.computeIfAbsent(clazz, k -> requireNonNull(cop.initialStore()));
 		}
 	}
 }
