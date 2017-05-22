@@ -143,11 +143,11 @@ final class Properties_Jspm extends Console_Jspm
 		}
 		else if(o instanceof Long)
 		{
-			%><%=Format.format(((Long)o).longValue())%><%
+			%><%=Format.format((Long)o)%><%
 		}
 		else if(o instanceof Boolean)
 		{
-			%><%=((Boolean)o).booleanValue()%><%
+			%><%=(Boolean)o%><%
 		}
 		else if(o instanceof String)
 		{
