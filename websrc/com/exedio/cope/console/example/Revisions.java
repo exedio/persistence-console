@@ -143,12 +143,11 @@ public final class Revisions
 				}
 			}
 			{
-				final Revision revision = lastRevision;
 				save(stat, new RevisionInfoCreate(
-						revision.getNumber() - 1,
+						lastRevision.getNumber() - 1,
 						new Date(),
 						environment));
-				for(int revisionNumber = revision.getNumber() - 2; revisionNumber>0; revisionNumber--)
+				for(int revisionNumber = lastRevision.getNumber() - 2; revisionNumber>0; revisionNumber--)
 				{
 					save(stat, new RevisionInfoRevise(
 							revisionNumber,
