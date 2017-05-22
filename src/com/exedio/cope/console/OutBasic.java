@@ -50,4 +50,14 @@ class OutBasic
 	{
 		bf.print(i);
 	}
+
+	final void write(final long i)
+	{
+		bf.print(i);
+	}
+
+	final void write(final double d)
+	{
+		bf.print(d);
+	}
 }

@@ -73,16 +73,6 @@ final class Out extends OutBasic
 		bf.print(c);
 	}
 
-	void write(final long i)
-	{
-		bf.print(i);
-	}
-
-	void write(final double d)
-	{
-		bf.print(d);
-	}
-
 	void write(final boolean b)
 	{
 		bf.print(b);
