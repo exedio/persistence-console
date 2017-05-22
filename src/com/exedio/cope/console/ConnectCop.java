@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
+import com.exedio.cope.util.Properties;
 import com.exedio.cope.util.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
@@ -63,7 +64,7 @@ final class ConnectCop extends ConsoleCop<Void>
 				bf.append(b, 0, len);
 
 			sourceContent = XMLEncoder.encode(bf.toString());
-			for(final ConnectProperties.Field field : props.getFields())
+			for(final Properties.Field field : props.getFields())
 			{
 				if(field.hasHiddenValue())
 				{
