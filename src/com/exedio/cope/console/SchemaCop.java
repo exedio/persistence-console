@@ -202,40 +202,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 			final HttpServletRequest request, final Model model, final boolean dryRun)
 	{
 		final Schema schema = getVerifiedSchema(model);
-		final StatementListener listener = new StatementListener()
-		{
-			long beforeExecuteTime = Long.MIN_VALUE;
-
-			@Override
-			public boolean beforeExecute(final String statement)
-			{
-				out.writeRaw("\n\t\t<div><span class=\"javaDecoration\">\"</span>"); // TODO do java decoration by javascript
-				out.writeSQL(statement.replace("\"", "\\\""));
-				out.writeRaw("<span class=\"javaDecoration\">\",</span>");
-				if(dryRun)
-				{
-					out.writeRaw("</div>");
-					return false;
-				}
-				else
-				{
-					out.flush();
-					beforeExecuteTime = System.nanoTime();
-					return true;
-				}
-			}
-
-			@Override
-			public void afterExecute(final String statement, final int rows)
-			{
-				final long time = TimeUtil.toMillies(System.nanoTime(), beforeExecuteTime);
-				out.writeRaw(" <span class=\"javaDecoration\">// ");
-				out.write(time);
-				out.writeRaw("ms, ");
-				out.write(rows);
-				out.writeRaw(" rows</span></div>");
-			}
-		};
+		final StatementListener listener = new OutStatementListener(out, dryRun);
 
 		for(final String p : getParameters(request, DROP_CONSTRAINT))
 			getConstraint(schema, p).drop(listener);
@@ -377,5 +344,48 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		@SuppressWarnings("unchecked") // OK: problem from servlet api
 		final Map<String, ?> result = request.getParameterMap();
 		return result.keySet().iterator();
+	}
+
+	private static final class OutStatementListener implements StatementListener
+	{
+		private final Out out;
+		private final boolean dryRun;
+		long beforeExecuteTime = Long.MIN_VALUE;
+
+		OutStatementListener(final Out out, final boolean dryRun)
+		{
+			this.out = out;
+			this.dryRun = dryRun;
+		}
+
+		@Override
+		public boolean beforeExecute(final String statement)
+		{
+			out.writeRaw("\n\t\t<div><span class=\"javaDecoration\">\"</span>"); // TODO do java decoration by javascript
+			out.writeSQL(statement.replace("\"", "\\\""));
+			out.writeRaw("<span class=\"javaDecoration\">\",</span>");
+			if(dryRun)
+			{
+				out.writeRaw("</div>");
+				return false;
+			}
+			else
+			{
+				out.flush();
+				beforeExecuteTime = System.nanoTime();
+				return true;
+			}
+		}
+
+		@Override
+		public void afterExecute(final String statement, final int rows)
+		{
+			final long time = TimeUtil.toMillies(System.nanoTime(), beforeExecuteTime);
+			out.writeRaw(" <span class=\"javaDecoration\">// ");
+			out.write(time);
+			out.writeRaw("ms, ");
+			out.write(rows);
+			out.writeRaw(" rows</span></div>");
+		}
 	}
 }
