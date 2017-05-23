@@ -64,6 +64,7 @@ final class SchemaNice
 							bf.append("CASE ").
 								append(table(superType)).append('.').append(column(field));
 
+							//noinspection OverlyStrongTypeCast bug in inspection
 							for(final Enum<?> v : ((EnumField<?>)field).getValueClass().getEnumConstants())
 							{
 								final int columnValue = getColumnValue(v);

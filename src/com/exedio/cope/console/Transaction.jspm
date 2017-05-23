@@ -47,6 +47,7 @@ final class Transaction_Jspm
 		</style><%
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static void writeStats(
 			final Out out,
 			final long nextId,
@@ -61,6 +62,7 @@ final class Transaction_Jspm
 		<%
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static void writeCounters(
 			final Out out,
 			final TransactionCounters transactionCounters)

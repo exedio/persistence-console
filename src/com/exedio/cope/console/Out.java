@@ -43,6 +43,7 @@ final class Out extends OutBasic
 	private final String mediaURLPrefix;
 	private int nextId = 0;
 
+	@SuppressWarnings("SimpleDateFormatWithoutLocale") // timezone is mentioned in page footer, reports server time
 	Out(
 			final HttpServletRequest request,
 			final Model model,

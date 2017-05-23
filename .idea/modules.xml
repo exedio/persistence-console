@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/copeconsole.iml" filepath="$PROJECT_DIR$/copeconsole.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ideamod.iml" filepath="$PROJECT_DIR$/ideamod.iml" />
     </modules>
   </component>
 </project>

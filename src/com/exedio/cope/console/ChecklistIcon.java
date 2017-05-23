@@ -30,6 +30,7 @@ enum ChecklistIcon
 
 	abstract void write(Out out);
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static ChecklistIcon forColor(final Node.Color color)
 	{
 		switch(color)

@@ -44,6 +44,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		super(TAB_REVISION, "Revisions", args);
 		this.pager = pager;
 
+		//noinspection ThisEscapedInObjectConstruction
 		pager.addParameters(this);
 	}
 

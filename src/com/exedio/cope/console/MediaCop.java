@@ -87,6 +87,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		addParameter(MEDIA_INLINE, mediaInline);
 		addParameter(OTHER_INLINE, otherInline);
 		addParameter(CONTENT_TYPE_MISMATCH, contentTypeMismatch);
+		//noinspection ThisEscapedInObjectConstruction
 		pager.addParameters(this);
 	}
 

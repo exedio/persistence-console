@@ -160,6 +160,7 @@ final class Cluster_Jspm
 				<td><%=formatAndHide(0, ic.getLate())%></td><%
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static void writeBodyDisabled(final Out out)
 	{
 		%>

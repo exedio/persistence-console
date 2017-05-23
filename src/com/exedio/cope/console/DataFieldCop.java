@@ -81,6 +81,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 		DataField_Jspm.writeBody(out, this, tables, tablesMax, fields, lengthMax);
 	}
 
+	@SuppressWarnings("ComparableImplementedButEqualsNotOverridden") // OK: name is unique
 	static final class Table implements Comparable<Table>
 	{
 		final String name;
@@ -112,6 +113,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 		@SuppressFBWarnings("EQ_COMPARETO_USE_OBJECT_EQUALS") // OK: name is unique
 		public int compareTo(final Table other)
 		{
+			@SuppressWarnings("CompareToUsesNonFinalVariable") // OK: is not modified anymore after has been put into TreeSet
 			final int sizeResult = Long.compare(size, other.size);
 			if(sizeResult!=0)
 				return sizeResult;

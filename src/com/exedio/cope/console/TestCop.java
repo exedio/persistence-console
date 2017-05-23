@@ -82,6 +82,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		this.id = testArgs.id;
 		this.iterate = testArgs.iterate;
 
+		//noinspection ThisEscapedInObjectConstruction
 		testArgs.addParameters(this);
 	}
 

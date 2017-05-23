@@ -77,8 +77,10 @@ public class ConsoleServlet extends CopsServlet
 
 	private static final long serialVersionUID = 1l;
 
+	@SuppressWarnings("NonSerializableFieldInSerializableClass")
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
 	private Stores stores = null;
+	@SuppressWarnings("NonSerializableFieldInSerializableClass")
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
 	private ConnectToken connectToken = null;
 	@SuppressFBWarnings({"MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
@@ -89,14 +91,22 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource schemaScript = new Resource("schema.js");
 	static final Resource logo = new Resource("logo.png");
 	static final Resource shortcutIcon = new Resource("shortcutIcon.png");
+
 	static final Resource checkFalse = new Resource("checkfalse.png");
 	static final Resource checkTrue  = new Resource("checktrue.png");
+
 	static final Resource nodeFalse = new Resource("nodefalse.png");
+	@SuppressWarnings("unused") // OK: url set by javascript
 	static final Resource nodeTrue  = new Resource("nodetrue.png");
+
 	static final Resource nodeWarningFalse = new Resource("nodewarningfalse.png");
+	@SuppressWarnings("unused") // OK: url set by javascript
 	static final Resource nodeWarningTrue  = new Resource("nodewarningtrue.png");
+
 	static final Resource nodeErrorFalse = new Resource("nodeerrorfalse.png");
+	@SuppressWarnings("unused") // OK: url set by javascript
 	static final Resource nodeErrorTrue  = new Resource("nodeerrortrue.png");
+
 	static final Resource nodeLeaf        = new Resource("nodeleaf.png");
 	static final Resource nodeLeafWarning = new Resource("nodewarningleaf.png");
 	static final Resource nodeLeafError   = new Resource("nodeerrorleaf.png");

@@ -22,6 +22,7 @@ import com.exedio.cope.CheckConstraint;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.StringField;
 
+@SuppressWarnings("unused")
 public final class ASubItem extends AnItem
 {
 	static final StringField aSubField = new StringField();

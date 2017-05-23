@@ -26,6 +26,7 @@ import com.exedio.cope.StringField;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class AnItem extends Item
 {
 	static final StringField aField = new StringField();
@@ -48,6 +49,7 @@ public class AnItem extends Item
 	static final IntegerField superInteger = new IntegerField().defaultTo(3);
 
 	// for serialization check
+	@SuppressWarnings("TransientFieldNotInitialized")
 	transient int transientField = 0;
 	int nonTransientField = 0;
 	Map<String, List<Integer>> nonTransientField2 = null;

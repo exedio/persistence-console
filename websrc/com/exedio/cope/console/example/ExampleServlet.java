@@ -44,6 +44,7 @@ import java.util.Iterator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@SuppressWarnings("ResultOfObjectAllocationIgnored") // persistent object
 public final class ExampleServlet extends CopsServlet
 {
 	private static final long serialVersionUID = 1l;
@@ -98,6 +99,7 @@ public final class ExampleServlet extends CopsServlet
 			{
 				final String name = replaceNullName(request.getParameter(CONNECT_NAME));
 				if(request.getParameter(CONNECT_COND)!=null)
+					//noinspection resource OK: ConnectTokens are registered for later return
 					ConnectToken.issueIfConnected(Main.model, name);
 				else
 					connect(name);
@@ -221,6 +223,7 @@ public final class ExampleServlet extends CopsServlet
 		Revisions.revisions(Main.model);
 	}
 
+	@SuppressWarnings("CodeBlock2Expr") // OK: explicit identity of hooks needed for testing duplicates
 	private static void doTransaction(
 			final String name,
 			final int items,
@@ -326,6 +329,7 @@ public final class ExampleServlet extends CopsServlet
 	{
 		for(final Iterator<ConnectToken> i = connectTokens.iterator(); i.hasNext(); )
 		{
+			//noinspection resource OK: ConnectTokens are registered for later return
 			i.next().returnItConditionally();
 			i.remove();
 		}

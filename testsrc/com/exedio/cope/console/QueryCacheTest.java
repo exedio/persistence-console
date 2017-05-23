@@ -24,6 +24,7 @@ import com.exedio.cope.QueryCacheHistogram;
 import java.util.Arrays;
 import junit.framework.TestCase;
 
+@SuppressWarnings({"ResultOfObjectAllocationIgnored", "ConstantConditions"})
 public class QueryCacheTest extends TestCase
 {
 	public void testIt()

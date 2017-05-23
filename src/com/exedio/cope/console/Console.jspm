@@ -140,6 +140,7 @@ final class Console_Jspm
 
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static void writeNotFound(final Out out, final String pathInfo)
 	{
 		%>
@@ -161,6 +162,7 @@ final class Console_Jspm
 			(value ? ConsoleServlet.checkTrue : ConsoleServlet.checkFalse)%>"></a><%
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static void writePagerButton(
 			final Out out,
 			final Pageable cop,
