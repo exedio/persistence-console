@@ -29,7 +29,6 @@ import com.exedio.dsmf.Table;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletRequest;
 
@@ -341,9 +340,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 
 	private static Iterator<String> parameterNames(final HttpServletRequest request)
 	{
-		@SuppressWarnings("unchecked") // OK: problem from servlet api
-		final Map<String, ?> result = request.getParameterMap();
-		return result.keySet().iterator();
+		return request.getParameterMap().keySet().iterator();
 	}
 
 	private static final class OutStatementListener implements StatementListener
