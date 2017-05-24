@@ -48,6 +48,12 @@ final class Connect_Jspm
 				<th>Random</th>
 				<td class="text"><%if(model.supportsRandom()){%>yes<%}else{%>no<%}%></td>
 			</tr>
+			<tr>
+				<th colspan="2">Data Hash Algorithms</th>
+			</tr>
+			<tr>
+				<td colspan="2" class="text"><%=model.getSupportedDataHashAlgorithms().toString()%></td>
+			</tr>
 		</table>
 		<table>
 			<caption>Supports (Schema)</caption>
