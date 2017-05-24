@@ -44,9 +44,12 @@ public final class Main
 				AHashItem.TYPE,
 				CopyItem.TYPE,
 				CopyOriginItem.TYPE,
+				HashConstraintItem.TYPE,
+				HashConstraintItemUnsupported.TYPE,
 				AMediaItem.TYPE,
 				AMediaSingleItem.TYPE,
 				UniqueHashedMediaItem.TYPE,
+				UniqueHashedMediaItemUnsupported.TYPE,
 				FeatureItem.TYPE,
 				SequenceItem.TYPE
 			)
