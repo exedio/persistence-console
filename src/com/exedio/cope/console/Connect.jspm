@@ -35,32 +35,32 @@ final class Connect_Jspm
 		%>
 		<hr>
 		<table style="float:left;">
-			<caption>Capabilities</caption>
+			<caption>Supports</caption>
 			<tr>
-				<th>Supports Empty Strings</th>
+				<th>Empty Strings</th>
 				<td class="text"><%if(model.supportsEmptyStrings()){%>yes<%}else{%>no<%}%></td>
 			</tr>
 			<tr>
-				<th>Supports UTF8mb4</th>
+				<th>UTF8mb4</th>
 				<td class="text"><%if(model.supportsUTF8mb4()){%>yes<%}else{%>no<%}%></td>
 			</tr>
 			<tr>
-				<th>Supports Random</th>
+				<th>Random</th>
 				<td class="text"><%if(model.supportsRandom()){%>yes<%}else{%>no<%}%></td>
 			</tr>
 		</table>
 		<table>
-			<caption>Schema Capabilities</caption>
+			<caption>Supports (Schema)</caption>
 			<tr>
-				<th>Supports Check Constraints</th>
+				<th>Check Constraints</th>
 				<td class="text"><%if(SchemaInfo.supportsCheckConstraints(model)){%>yes<%}else{%>no<%}%></td>
 			</tr>
 			<tr>
-				<th>Supports Native Date</th>
+				<th>Native Date</th>
 				<td class="text"><%if(SchemaInfo.supportsNativeDate(model)){%>yes<%}else{%>no<%}%></td>
 			</tr>
 			<tr>
-				<th>Supports Unique Violation</th>
+				<th>Unique Violation</th>
 				<td class="text"><%if(SchemaInfo.supportsUniqueViolation(model)){%>yes<%}else{%>no<%}%></td>
 			</tr>
 		</table>
