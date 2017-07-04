@@ -192,6 +192,8 @@
 				<fileset dir="web" />
 			</copy>
 		</foreachClusterNode>
+		<mkdir dir="vaultFileServiceRoot" />
+		<mkdir dir="vaultFileServiceRoot/.tempVaultFileService" />
 	</target>
 
 	<target name="tomcat" depends="web, catalina">

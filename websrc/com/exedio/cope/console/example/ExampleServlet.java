@@ -195,6 +195,7 @@ public final class ExampleServlet extends CopsServlet
 			new AMediaItem().setContent(resource("test.png"), "image/png");
 			new AMediaItem().setContent(resource("test.png"), "unknownma/unknownmi");
 			new AMediaItem().setContent(resource("test.png"), "image/jpeg"); // wrong content type by intention
+			new AMediaItem().setVault  (resource("test.png"), "image/png");
 			new AMediaItem().setSecret (resource("test.png"), "image/png");
 			new AMediaItem().setFinger (resource("test.png"), "image/png");
 			{

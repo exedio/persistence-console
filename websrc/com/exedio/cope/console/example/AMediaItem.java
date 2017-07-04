@@ -20,6 +20,7 @@ package com.exedio.cope.console.example;
 
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
+import com.exedio.cope.Vault;
 import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaRedirect;
@@ -42,6 +43,9 @@ public final class AMediaItem extends Item
 	static final Media isFinal = new Media().toFinal().optional();
 
 	static final Media stylesheet = new Media().optional().contentType("text/css");
+
+	@Vault
+	static final Media vault = new Media().optional().lengthMax(33*1000);
 
 	@PreventUrlGuessing
 	static final Media secret = new Media().optional();
@@ -733,6 +737,140 @@ public final class AMediaItem extends Item
 				java.io.IOException
 	{
 		AMediaItem.stylesheet.set(this,body,contentType);
+	}
+
+	/**
+	 * Returns a URL the content of {@link #vault} is available under.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getURL")
+	final java.lang.String getVaultURL()
+	{
+		return AMediaItem.vault.getURL(this);
+	}
+
+	/**
+	 * Returns a Locator the content of {@link #vault} is available under.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLocator")
+	final com.exedio.cope.pattern.MediaPath.Locator getVaultLocator()
+	{
+		return AMediaItem.vault.getLocator(this);
+	}
+
+	/**
+	 * Returns the content type of the media {@link #vault}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getContentType")
+	final java.lang.String getVaultContentType()
+	{
+		return AMediaItem.vault.getContentType(this);
+	}
+
+	/**
+	 * Returns whether media {@link #vault} is null.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isNull")
+	final boolean isVaultNull()
+	{
+		return AMediaItem.vault.isNull(this);
+	}
+
+	/**
+	 * Returns the last modification date of media {@link #vault}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLastModified")
+	final java.util.Date getVaultLastModified()
+	{
+		return AMediaItem.vault.getLastModified(this);
+	}
+
+	/**
+	 * Returns the body length of the media {@link #vault}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLength")
+	final long getVaultLength()
+	{
+		return AMediaItem.vault.getLength(this);
+	}
+
+	/**
+	 * Returns the body of the media {@link #vault}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getBody")
+	final byte[] getVaultBody()
+	{
+		return AMediaItem.vault.getBody(this);
+	}
+
+	/**
+	 * Writes the body of media {@link #vault} into the given stream.
+	 * Does nothing, if the media is null.
+	 * @throws java.io.IOException if accessing <tt>body</tt> throws an IOException.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getBody")
+	final void getVaultBody(final java.io.OutputStream body)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.vault.getBody(this,body);
+	}
+
+	/**
+	 * Writes the body of media {@link #vault} into the given file.
+	 * Does nothing, if the media is null.
+	 * @throws java.io.IOException if accessing <tt>body</tt> throws an IOException.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getBody")
+	final void getVaultBody(final java.io.File body)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.vault.getBody(this,body);
+	}
+
+	/**
+	 * Sets the content of media {@link #vault}.
+	 * @throws java.io.IOException if accessing <tt>body</tt> throws an IOException.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setVault(final com.exedio.cope.pattern.Media.Value vault)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.vault.set(this,vault);
+	}
+
+	/**
+	 * Sets the content of media {@link #vault}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setVault(final byte[] body,final java.lang.String contentType)
+	{
+		AMediaItem.vault.set(this,body,contentType);
+	}
+
+	/**
+	 * Sets the content of media {@link #vault}.
+	 * @throws java.io.IOException if accessing <tt>body</tt> throws an IOException.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setVault(final java.io.InputStream body,final java.lang.String contentType)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.vault.set(this,body,contentType);
+	}
+
+	/**
+	 * Sets the content of media {@link #vault}.
+	 * @throws java.io.IOException if accessing <tt>body</tt> throws an IOException.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setVault(final java.io.File body,final java.lang.String contentType)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.vault.set(this,body,contentType);
 	}
 
 	/**

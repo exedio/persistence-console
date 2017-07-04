@@ -211,6 +211,7 @@ abstract class ConsoleCop<S> extends Cop
 					new ItemCacheCop(args),
 					new QueryCacheCop(args),
 					new ThreadCop(args),
+					new DataVaultCop(args),
 					new ChangeListenerCop(args),
 					new ClusterCop(args),
 				},
@@ -310,6 +311,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_TRANSACTION = "transactions";
 	static final String TAB_ITEM_CACHE = "itemcache";
 	static final String TAB_QUERY_CACHE = "querycache";
+	static final String TAB_DATA_VAULT = "datavault";
 	static final String TAB_SEQUENCE = "sequence";
 	static final String TAB_SERIALIZATION_CHECK = "serialization";
 	static final String TAB_DATA_FIELD = "datafield";
@@ -394,6 +396,8 @@ abstract class ConsoleCop<S> extends Cop
 			return ItemCacheCop.getItemCacheCop(args, request);
 		if(TAB_QUERY_CACHE.equals(tab))
 			return QueryCacheCop.getQueryCacheCop(args, request);
+		if(TAB_DATA_VAULT.equals(tab))
+			return new DataVaultCop(args);
 		if(TAB_SEQUENCE.equals(tab))
 			return new SequenceCop(args, new TestCop.TestArgs(request));
 		if(TAB_SERIALIZATION_CHECK.equals(tab))

@@ -72,6 +72,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new ItemCacheCop(args),
 						new QueryCacheCop(args),
 						new ThreadCop(args),
+						new DataVaultCop(args),
 						new ChangeListenerCop(args),
 						new ClusterCop(args),
 						new MediaStatsCop(args, MediaStatsCop.Variant.all),

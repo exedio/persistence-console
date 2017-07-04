@@ -40,6 +40,7 @@ public final class Main
 				OptionalItem.TYPE,
 				OptionalNoneItem.TYPE,
 				StringLengthItem.TYPE,
+				ADataItem.TYPE,
 				AHashItem.TYPE,
 				CopyItem.TYPE,
 				CopyOriginItem.TYPE,
