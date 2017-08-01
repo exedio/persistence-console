@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Model;
 import com.exedio.cope.misc.SerializationCheck;
 
 final class SerializationCheckCop extends ConsoleCop<Void>
@@ -46,6 +47,15 @@ final class SerializationCheckCop extends ConsoleCop<Void>
 				"A failure here means that serialization/deserialization may either fail and/or " +
 				"render deserialized objects corrupt or useless."
 		};
+	}
+
+	@Override
+	ChecklistIcon getChecklistIcon(final Model model)
+	{
+		return
+				SerializationCheck.check(model).isEmpty()
+				? ChecklistIcon.ok
+				: ChecklistIcon.error;
 	}
 
 	@Override
