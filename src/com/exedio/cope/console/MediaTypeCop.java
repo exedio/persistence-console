@@ -86,7 +86,7 @@ final class MediaTypeCop extends TestCop<Media>
 	@Override
 	void writeValue(final Out out, final Media media, final int h)
 	{
-		final Condition c = media.bodyMismatchesContentType();
+		final Condition c = media.bodyMismatchesContentTypeIfSupported();
 		switch(h)
 		{
 			case 0: out.write(media.getType().getID()); break;
@@ -123,7 +123,7 @@ final class MediaTypeCop extends TestCop<Media>
 	@SuppressFBWarnings({"NP_LOAD_OF_KNOWN_NULL_VALUE","RCN_REDUNDANT_NULLCHECK_OF_NULL_VALUE"}) // OK: caused by try-with-resources
 	long check(final Media media, final Model model)
 	{
-		final Query<?> query = media.getType().newQuery(media.bodyMismatchesContentType());
+		final Query<?> query = media.getType().newQuery(media.bodyMismatchesContentTypeIfSupported());
 
 		try(TransactionTry tx = model.startTransactionTry("Console MediaType " + id))
 		{
