@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ConnectTokenCop extends ConsoleCop<Void>
 {
+	static final String PROBE = "probe";
 	static final String ISSUE = "issue";
 	static final String RETURN_SELECTED = "returnSelected";
 	static final String RETURN_CHECKBOX = "rt";
@@ -51,9 +53,17 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 	{
 		final HttpServletRequest request = out.request;
 		final Model model = out.model;
+		final ConnectProperties properties = ConnectToken.getProperties(model);
+		boolean probed = false;
+		String probe = null;
 
 		if(isPost(request))
 		{
+			if(request.getParameter(PROBE)!=null)
+			{
+				probed = true;
+				probe = properties.probe();
+			}
 			if(request.getParameter(ISSUE)!=null)
 			{
 				out.connect();
@@ -77,7 +87,8 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 
 		ConnectToken_Jspm.writeBody(
 				out, this,
-				ConnectToken.getProperties(model),
+				properties,
+				probed, probe,
 				model);
 	}
 }
