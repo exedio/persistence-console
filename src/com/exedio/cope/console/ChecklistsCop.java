@@ -56,7 +56,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new TypeCompletenessCop(args, testArgs),
 						new CopyConstraintCop(args, testArgs),
 						new MediaTypeCop(args, testArgs),
-						new UniqueHashedMediaCop(args, testArgs)
+						new HashConstraintCop(args, testArgs)
 				},
 				new ConsoleCop<?>[]{ // machine
 						new SavepointCop(args),

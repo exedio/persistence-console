@@ -35,23 +35,23 @@ import com.exedio.cope.pattern.MediaPath;
 import java.util.ArrayList;
 import java.util.List;
 
-final class UniqueHashedMediaCop extends TestCop<HashConstraint>
+final class HashConstraintCop extends TestCop<HashConstraint>
 {
-	UniqueHashedMediaCop(final Args args, final TestArgs testArgs)
+	HashConstraintCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_UNIQUE_HASHED_MEDIA, "Hash Constraints", args, testArgs);
 	}
 
 	@Override
-	protected UniqueHashedMediaCop newArgs(final Args args)
+	protected HashConstraintCop newArgs(final Args args)
 	{
-		return new UniqueHashedMediaCop(args, testArgs);
+		return new HashConstraintCop(args, testArgs);
 	}
 
 	@Override
-	protected UniqueHashedMediaCop newTestArgs(final TestArgs testArgs)
+	protected HashConstraintCop newTestArgs(final TestArgs testArgs)
 	{
-		return new UniqueHashedMediaCop(args, testArgs);
+		return new HashConstraintCop(args, testArgs);
 	}
 
 	@Override

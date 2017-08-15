@@ -221,7 +221,7 @@ abstract class ConsoleCop<S> extends Cop
 					new MediaStatsCop(args, MediaStatsCop.Variant.fingerprint),
 					new MediaTestableCop(args, testArgs),
 					new MediaTypeCop(args, testArgs),
-					new UniqueHashedMediaCop(args, testArgs),
+					new HashConstraintCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
 					new VmCop(args, false, false),
@@ -415,7 +415,7 @@ abstract class ConsoleCop<S> extends Cop
 		if(TAB_MEDIA_TYPE.equals(tab))
 			return new MediaTypeCop(args, new TestCop.TestArgs(request));
 		if(TAB_UNIQUE_HASHED_MEDIA.equals(tab))
-			return new UniqueHashedMediaCop(args, new TestCop.TestArgs(request));
+			return new HashConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_CLUSTER.equals(tab))
 			return new ClusterCop(args);
 		if(TAB_THREAD.equals(tab))
