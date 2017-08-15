@@ -39,7 +39,7 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 {
 	HashConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_UNIQUE_HASHED_MEDIA, "Hash Constraints", args, testArgs);
+		super(TAB_HASH_CONSTRAINT, "Hash Constraints", args, testArgs);
 	}
 
 	@Override

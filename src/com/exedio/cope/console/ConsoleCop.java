@@ -320,7 +320,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_MEDIA_FINGERPRINTING = "mediafinger";
 	static final String TAB_MEDIA_TESTABLE = "mediatestable";
 	static final String TAB_MEDIA_TYPE = "mediatype";
-	static final String TAB_UNIQUE_HASHED_MEDIA = "uniquemedia";
+	static final String TAB_HASH_CONSTRAINT = "uniquemedia";
 	static final String TAB_CLUSTER = "cluster";
 	static final String TAB_THREAD = "thread";
 	static final String TAB_VM = "vm";
@@ -414,7 +414,7 @@ abstract class ConsoleCop<S> extends Cop
 			return new MediaTestableCop(args, new TestCop.TestArgs(request));
 		if(TAB_MEDIA_TYPE.equals(tab))
 			return new MediaTypeCop(args, new TestCop.TestArgs(request));
-		if(TAB_UNIQUE_HASHED_MEDIA.equals(tab))
+		if(TAB_HASH_CONSTRAINT.equals(tab))
 			return new HashConstraintCop(args, new TestCop.TestArgs(request));
 		if(TAB_CLUSTER.equals(tab))
 			return new ClusterCop(args);
