@@ -87,9 +87,9 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	}
 
 	@Override
-	void writeValue(final Out out, final HashConstraint media, final int h)
+	void writeValue(final Out out, final HashConstraint constraint, final int h)
 	{
-		final Pattern pattern = media.getData().getPattern();
+		final Pattern pattern = constraint.getData().getPattern();
 		switch(h)
 		{
 			case 0:
@@ -100,7 +100,7 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 					out.writeRaw("\">");
 				}
 
-				out.write(media.getID());
+				out.write(constraint.getID());
 
 				if(pattern instanceof Media)
 					out.writeRaw("</a>");
@@ -112,9 +112,9 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 				break;
 			case 2:
 			{
-				final String algorithm = media.getAlgorithm();
+				final String algorithm = constraint.getAlgorithm();
 				out.write(algorithm);
-				final Model model = media.getType().getModel();
+				final Model model = constraint.getType().getModel();
 				writeError(out,
 						model.isConnected() &&
 						!model.getSupportedDataHashAlgorithms().contains(algorithm));
@@ -122,7 +122,7 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 			}
 			case 3:
 			{
-				final Query<?> query = getQuery(media);
+				final Query<?> query = getQuery(constraint);
 				if(!query.getType().getModel().isConnected())
 				{
 					out.writeRaw("not yet connected");
@@ -156,15 +156,15 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 		}
 	}
 
-	private static Query<?> getQuery(final HashConstraint field)
+	private static Query<?> getQuery(final HashConstraint constraint)
 	{
-		return field.getType().newQuery(field.hashDoesNotMatchIfSupported());
+		return constraint.getType().newQuery(constraint.hashDoesNotMatchIfSupported());
 	}
 
 	@Override
-	String getID(final HashConstraint media)
+	String getID(final HashConstraint constraint)
 	{
-		return media.getID();
+		return constraint.getID();
 	}
 
 	@Override
@@ -174,12 +174,12 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	}
 
 	@Override
-	long check(final HashConstraint media, final Model model)
+	long check(final HashConstraint constraint, final Model model)
 	{
 		try(TransactionTry tx = model.startTransactionTry("Console HashConstraint " + id))
 		{
 			return tx.commit(
-					getQuery(media).total());
+					getQuery(constraint).total());
 		}
 	}
 }
