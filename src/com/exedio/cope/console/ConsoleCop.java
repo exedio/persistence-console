@@ -190,6 +190,7 @@ abstract class ConsoleCop<S> extends Cop
 					new TypeColumnCop(args, testArgs),
 					new TypeCompletenessCop(args, testArgs),
 					new CopyConstraintCop(args, testArgs),
+					new HashConstraintCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
 					new OptionalFieldCop(args, testArgs),
@@ -221,7 +222,6 @@ abstract class ConsoleCop<S> extends Cop
 					new MediaStatsCop(args, MediaStatsCop.Variant.fingerprint),
 					new MediaTestableCop(args, testArgs),
 					new MediaTypeCop(args, testArgs),
-					new HashConstraintCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
 					new VmCop(args, false, false),
