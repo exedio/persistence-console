@@ -320,7 +320,7 @@ abstract class ConsoleCop<S> extends Cop
 	static final String TAB_MEDIA_FINGERPRINTING = "mediafinger";
 	static final String TAB_MEDIA_TESTABLE = "mediatestable";
 	static final String TAB_MEDIA_TYPE = "mediatype";
-	static final String TAB_HASH_CONSTRAINT = "uniquemedia";
+	static final String TAB_HASH_CONSTRAINT = "hashconstraint";
 	static final String TAB_CLUSTER = "cluster";
 	static final String TAB_THREAD = "thread";
 	static final String TAB_VM = "vm";
