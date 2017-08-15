@@ -59,10 +59,11 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	{
 		return new String[]
 		{
-			"Verifies that hash of UniqueHashedMedia is consistent to its actual data.",
+			"Verifies that hashes do match its actual data.",
 			"IMPACT: " +
-				"Any failures here invalidate all contracts of UniqueHashedMedia. " +
-				"Your application may either fail with errors or silently destroy your data stored in UniqueHashedMedia. " +
+				"Any failure may cause arbitrary problems in your application. " +
+				"If the HashConstraint was declared by a UniqueHashedMedia, all contracts of UniqueHashedMedia are void. " +
+				"Your application may either fail with errors or silently destroy your data. " +
 				"DANGER ZONE."
 		};
 	}
