@@ -22,9 +22,10 @@ import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletRequest;
 
-final class ConnectTokenCop extends ConsoleCop<Void>
+final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 {
 	static final String PROBE = "probe";
 	static final String ISSUE = "issue";
@@ -43,6 +44,18 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 	}
 
 	@Override
+	ChecklistIcon getChecklistIcon(final Model model)
+	{
+		return store().get();
+	}
+
+	@Override
+	AtomicReference<ChecklistIcon> initialStore()
+	{
+		return new AtomicReference<>(ChecklistIcon.unknown);
+	}
+
+	@Override
 	void writeHead(final Out out)
 	{
 		Properties_Jspm.writeHead(out);
@@ -54,6 +67,7 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 		final HttpServletRequest request = out.request;
 		final Model model = out.model;
 		final ConnectProperties properties = ConnectToken.getProperties(model);
+		final AtomicReference<ChecklistIcon> store = store();
 		boolean probed = false;
 		String probe = null;
 
@@ -61,8 +75,17 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 		{
 			if(request.getParameter(PROBE)!=null)
 			{
-				probed = true;
-				probe = properties.probe();
+				try
+				{
+					probe = properties.probe();
+					store.set(ChecklistIcon.ok);
+					probed = true;
+				}
+				finally
+				{
+					if(!probed)
+						store.set(ChecklistIcon.error);
+				}
 			}
 			if(request.getParameter(ISSUE)!=null)
 			{
@@ -88,7 +111,7 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 		ConnectToken_Jspm.writeBody(
 				out, this,
 				properties,
-				probed, probe,
+				store.get(), probed, probe,
 				model);
 	}
 }

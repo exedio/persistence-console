@@ -35,6 +35,7 @@ final class ConnectToken_Jspm
 				final Out out,
 				final ConnectTokenCop cop,
 				final Properties properties,
+				final ChecklistIcon probeIcon,
 				final boolean probed,
 				final String probe,
 				final Model model)
@@ -42,6 +43,7 @@ final class ConnectToken_Jspm
 		%>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=PROBE%>" value="probe" />
+			<% probeIcon.write(out); %>
 		</form><%
 
 		if(probed)
