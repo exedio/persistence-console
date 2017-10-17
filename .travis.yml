@@ -4,7 +4,6 @@ jdk:
   - oraclejdk8
 
 before_script:
-  - sudo apt-get install ant-optional
   - ant -version
 
 script: "ant clean jenkins"
