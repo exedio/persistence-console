@@ -64,7 +64,7 @@ final class Console_Jspm
 	</head>
 	<body>
 		<a href="https://exedio.github.io/" target="_blank"><img class="logo" src="<%=ConsoleServlet.logo%>" alt="Exedio Logo"></a>
-		<h1>COPE Console</h1>
+		<h1>Cope Console</h1>
 		<div class="authenticated">Model <%= modelName %> <span title="Model.getInitializeDate()">(<%= modelDate %>)</span></div>
 		<div class="<% if(authentication==null){%>not<%} %>authenticated"><%
 		if(authentication!=null)
