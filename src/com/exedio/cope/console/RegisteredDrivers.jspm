@@ -1,0 +1,87 @@
+<%
+/*
+ * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.util.Iterator;
+import java.util.ServiceLoader;
+import java.util.function.Supplier;
+
+final class RegisteredDrivers_Jspm
+{
+	static void writeBody(
+			final Out out,
+			final RegisteredDriversCop cop)
+	{
+		writeTable(out, "DriverManager.getDrivers",         cop.showDrivers,  cop.showDrivers(),  () -> RegisteredDriversCop.it(DriverManager.getDrivers()));
+		writeTable(out, "ServiceLoader.load(Driver.class)", cop.showServices, cop.showServices(), () -> ServiceLoader.load(Driver.class).iterator());
+	}
+
+	private static void writeTable(
+			final Out out,
+			final String caption,
+			final boolean enabled,
+			final RegisteredDriversCop enableCop,
+			final Supplier<Iterator<Driver>> rows)
+	{
+		%>
+		<table>
+			<caption><%=caption%></caption>
+			<tr>
+				<th rowspan="2">Class</th>
+				<th rowspan="2">Instance</th>
+				<th colspan="2">Version</th>
+				<th rowspan="2">jdbcCompliant</th>
+			</tr>
+			<tr>
+				<th>Major</th>
+				<th>Minor</th>
+			</tr><%
+
+		if(enabled)
+		{
+			for(final Iterator<Driver> i = rows.get(); i.hasNext(); )
+			{
+				final Driver row = i.next();
+			%>
+			<tr>
+				<td class="text"><%= row.getClass() %></td>
+				<td class="text"><%= Integer.toHexString(System.identityHashCode(row)) %></td>
+				<td><%= row.getMajorVersion() %></td>
+				<td><%= row.getMinorVersion() %></td>
+				<td class="text"><%= row.jdbcCompliant() %></td>
+			</tr><%
+			}
+		}
+		else
+		{
+			%>
+			<tr><td class="text" colspan="5"><a href="<%= enableCop %>">show</a> (<b>BEWARE:</b> may load drivers)</td></tr><%
+		}
+		%>
+		</table><%
+	}
+
+	private RegisteredDrivers_Jspm()
+	{
+		// prevent instantiation
+	}
+}%>
