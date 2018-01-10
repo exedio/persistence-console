@@ -28,6 +28,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import javax.servlet.http.HttpServletRequest;
 
 final class TransactionCop extends ConsoleCop<Void> implements Pageable
@@ -131,12 +132,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 	{
 		final Collection<Transaction> openTransactionsList = model.getOpenTransactions();
 		final Transaction[] openTransactions = openTransactionsList.toArray(new Transaction[openTransactionsList.size()]);
-		Arrays.sort(openTransactions, (tx1, tx2) ->
-		{
-			final long id1 = tx1.getID();
-			final long id2 = tx2.getID();
-			return id1<id2 ? -1 : id1>id2 ? 1 : 0;
-		});
+		Arrays.sort(openTransactions, Comparator.comparingLong(Transaction::getID));
 
 		final Thread[] threads = new Thread[openTransactions.length];
 		final long[] threadIds = new long[openTransactions.length];
