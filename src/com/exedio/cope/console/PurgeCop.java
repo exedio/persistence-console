@@ -43,7 +43,7 @@ final class PurgeCop extends ConsoleCop<Void>
 	void writeBody(final Out out)
 	{
 		final Model model = out.model;
-		model.getConnectProperties(); // check whether it is connected
+		failIfNotConnected(model);
 
 		final HttpServletRequest request = out.request;
 		final boolean post = isPost(request);
