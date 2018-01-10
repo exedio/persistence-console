@@ -531,6 +531,7 @@ abstract class ConsoleCop<S> extends Cop
 		throw new IllegalArgumentException(getClass().getName());
 	}
 
+	@SuppressWarnings("ResultOfMethodCallIgnored") // OK: intended side effect
 	protected static final void failIfNotConnected(final Model model)
 	{
 		model.getConnectProperties();
