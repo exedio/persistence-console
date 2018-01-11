@@ -33,6 +33,7 @@ final class RegisteredDrivers_Jspm
 	{
 		writeTable(out, "DriverManager.getDrivers",         cop.showDrivers,  cop.showDrivers(),  () -> RegisteredDriversCop.it(DriverManager.getDrivers()));
 		writeTable(out, "ServiceLoader.load(Driver.class)", cop.showServices, cop.showServices(), () -> ServiceLoader.load(Driver.class).iterator());
+		writeTable(out, "ServiceLoader.loadInstalled(Driver.class)", cop.showServicesInstalled, cop.showServicesInstalled(), () -> ServiceLoader.loadInstalled(Driver.class).iterator());
 	}
 
 	private static void writeTable(

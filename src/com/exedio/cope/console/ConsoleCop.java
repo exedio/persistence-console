@@ -225,7 +225,7 @@ abstract class ConsoleCop<S> extends Cop
 				},
 				new ConsoleCop<?>[]{
 					new VmCop(args, false, false),
-					new RegisteredDriversCop(args, false, false),
+					new RegisteredDriversCop(args, false, false, false),
 					new EnumsCop(args),
 					new HiddenCop(args),
 					new DataFieldCop(args),

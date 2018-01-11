@@ -27,44 +27,55 @@ final class RegisteredDriversCop extends ConsoleCop<Void>
 {
 	private static final String SHOW_DRIVERS = "sd";
 	private static final String SHOW_SERVICES = "ss";
+	private static final String SHOW_SERVICES_INSTALLED = "ssi";
 
 	final boolean showDrivers;
 	final boolean showServices;
+	final boolean showServicesInstalled;
 
 	RegisteredDriversCop(
 			final Args args,
 			final boolean showDrivers,
-			final boolean showServices)
+			final boolean showServices,
+			final boolean showServicesInstalled)
 	{
 		super(TAB_REGISTERED_DRIVERS, "Registered Drivers", args);
 		this.showDrivers = showDrivers;
 		this.showServices = showServices;
+		this.showServicesInstalled = showServicesInstalled;
 
 		addParameter(SHOW_DRIVERS, showDrivers);
 		addParameter(SHOW_SERVICES, showServices);
+		addParameter(SHOW_SERVICES_INSTALLED, showServicesInstalled);
 	}
 
 	static RegisteredDriversCop getRegisteredDriversCop(final Args args, final HttpServletRequest request)
 	{
 		return new RegisteredDriversCop(args,
 				getBooleanParameter(request, SHOW_DRIVERS),
-				getBooleanParameter(request, SHOW_SERVICES));
+				getBooleanParameter(request, SHOW_SERVICES),
+				getBooleanParameter(request, SHOW_SERVICES_INSTALLED));
 	}
 
 	@Override
 	protected RegisteredDriversCop newArgs(final Args args)
 	{
-		return new RegisteredDriversCop(args, showDrivers, showServices);
+		return new RegisteredDriversCop(args, showDrivers, showServices, showServicesInstalled);
 	}
 
 	RegisteredDriversCop showDrivers()
 	{
-		return new RegisteredDriversCop(args, true, showServices);
+		return new RegisteredDriversCop(args, true, showServices, showServicesInstalled);
 	}
 
 	RegisteredDriversCop showServices()
 	{
-		return new RegisteredDriversCop(args, showDrivers, true);
+		return new RegisteredDriversCop(args, showDrivers, true, showServicesInstalled);
+	}
+
+	RegisteredDriversCop showServicesInstalled()
+	{
+		return new RegisteredDriversCop(args, showDrivers, showServices, true);
 	}
 
 	@Override
