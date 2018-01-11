@@ -350,96 +350,99 @@ abstract class ConsoleCop<S> extends Cop
 			return new NotFound(args, pathInfo);
 
 		final String tab = pathInfo.substring(1, pathInfo.length()-NAME_POSTFIX.length());
-		if(TAB_PURGE.equals(tab))
-			return new PurgeCop(args);
-		else if(TAB_SCHEMA.equals(tab))
-			return SchemaCop.getSchemaCop(args, request);
-		else if(TAB_SAVEPOINT.equals(tab))
-			return new SavepointCop(args);
-		if(TAB_UNSUPPORTED_CONSTRAINTS.equals(tab))
-			return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
-		if(TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE.equals(tab))
-			return new UnsupportedCheckConstraintByTableCop(args, new TestCop.TestArgs(request));
-		if(TAB_MULTI_TABLE_CHECK_CONSTRAINTS.equals(tab))
-			return new MultiTableCheckConstraintCop(args, new TestCop.TestArgs(request));
-		if(TAB_TYPE_COLUMNS.equals(tab))
-			return new TypeColumnCop(args, new TestCop.TestArgs(request));
-		if(TAB_TYPE_COMPLETENESS.equals(tab))
-			return new TypeCompletenessCop(args, new TestCop.TestArgs(request));
-		if(TAB_UPDATE_COUNTERS.equals(tab))
-			return new UpdateCounterCop(args, new TestCop.TestArgs(request));
-		if(TAB_COPY_CONSTRAINTS.equals(tab))
-			return new CopyConstraintCop(args, new TestCop.TestArgs(request));
-		if(TAB_CHARACTER_NUL.equals(tab))
-			return new CharacterNulCop(args, new TestCop.TestArgs(request));
-		if(TAB_CONNECT.equals(tab))
-			return new ConnectCop(args);
-		if(TAB_CONNECT_TOKEN.equals(tab))
-			return new ConnectTokenCop(args);
-		if(TAB_OPTIONAL_FIELDS.equals(tab))
-			return new OptionalFieldCop(args, new TestCop.TestArgs(request));
-		if(TAB_EMPTY_STRING_FIELDS.equals(tab))
-			return new EmptyStringFieldCop(args, new TestCop.TestArgs(request));
-		if(TAB_MIN_LENGTH_STRING_FIELDS.equals(tab))
-			return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
-		if(TAB_FEATURE_FIELD.equals(tab))
-			return new FeatureFieldCop(args, new TestCop.TestArgs(request));
-		if(TAB_REVISION.equals(tab))
-			return new RevisionCop(args, request);
-		if(TAB_REVISION_SHEET.equals(tab))
-			return new RevisionSheetCop(args);
-		if(TAB_CONNECTION_POOL.equals(tab))
-			return new ConnectionPoolCop(args);
-		if(TAB_TRANSACTION.equals(tab))
-			return new TransactionCop(args, request);
-		if(TAB_DATBASE_LOG.equals(tab))
-			return new DatabaseLogCop(args);
-		if(TAB_ITEM_CACHE.equals(tab))
-			return ItemCacheCop.getItemCacheCop(args, request);
-		if(TAB_QUERY_CACHE.equals(tab))
-			return QueryCacheCop.getQueryCacheCop(args, request);
-		if(TAB_DATA_VAULT.equals(tab))
-			return new DataVaultCop(args);
-		if(TAB_SEQUENCE.equals(tab))
-			return new SequenceCop(args, new TestCop.TestArgs(request));
-		if(TAB_SERIALIZATION_CHECK.equals(tab))
-			return new SerializationCheckCop(args);
-		if(TAB_DATA_FIELD.equals(tab))
-			return new DataFieldCop(args);
-		if(TAB_MEDIA_STATS.equals(tab))
-			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.all, request);
-		if(TAB_MEDIA_GUESSUNGPREVENTED.equals(tab))
-			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.guessingPrevented, request);
-		if(TAB_MEDIA_FINGERPRINTING.equals(tab))
-			return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.fingerprint, request);
-		if(TAB_MEDIA_TESTABLE.equals(tab))
-			return new MediaTestableCop(args, new TestCop.TestArgs(request));
-		if(TAB_MEDIA_TYPE.equals(tab))
-			return new MediaTypeCop(args, new TestCop.TestArgs(request));
-		if(TAB_HASH_CONSTRAINT.equals(tab))
-			return new HashConstraintCop(args, new TestCop.TestArgs(request));
-		if(TAB_CLUSTER.equals(tab))
-			return new ClusterCop(args);
-		if(TAB_THREAD.equals(tab))
-			return new ThreadCop(args);
-		if(TAB_VM.equals(tab))
-			return VmCop.getVmCop(args, request);
-		if(TAB_REGISTERED_DRIVERS.equals(tab))
-			return RegisteredDriversCop.getRegisteredDriversCop(args, request);
-		if(TAB_ENUMS.equals(tab))
-			return new EnumsCop(args);
-		if(TAB_ENUM.equals(tab))
-			return EnumCop.getEnumCop(args, request);
-		if(TAB_ENVIRONMENT.equals(tab))
-			return new EnvironmentCop(args);
-		if(TAB_HASH.equals(tab))
-			return new HashCop(args);
-		if(TAB_HIDDEN.equals(tab))
-			return new HiddenCop(args);
-		if(TAB_CHANGE_LISTENER.equals(tab))
-			return new ChangeListenerCop(args, request);
-		if(TAB_CHECKLISTS.equals(tab))
-			return new ChecklistsCop(args);
+		switch(tab)
+		{
+			case TAB_PURGE:
+				return new PurgeCop(args);
+			case TAB_SCHEMA:
+				return SchemaCop.getSchemaCop(args, request);
+			case TAB_SAVEPOINT:
+				return new SavepointCop(args);
+			case TAB_UNSUPPORTED_CONSTRAINTS:
+				return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
+			case TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE:
+				return new UnsupportedCheckConstraintByTableCop(args, new TestCop.TestArgs(request));
+			case TAB_MULTI_TABLE_CHECK_CONSTRAINTS:
+				return new MultiTableCheckConstraintCop(args, new TestCop.TestArgs(request));
+			case TAB_TYPE_COLUMNS:
+				return new TypeColumnCop(args, new TestCop.TestArgs(request));
+			case TAB_TYPE_COMPLETENESS:
+				return new TypeCompletenessCop(args, new TestCop.TestArgs(request));
+			case TAB_UPDATE_COUNTERS:
+				return new UpdateCounterCop(args, new TestCop.TestArgs(request));
+			case TAB_COPY_CONSTRAINTS:
+				return new CopyConstraintCop(args, new TestCop.TestArgs(request));
+			case TAB_CHARACTER_NUL:
+				return new CharacterNulCop(args, new TestCop.TestArgs(request));
+			case TAB_CONNECT:
+				return new ConnectCop(args);
+			case TAB_CONNECT_TOKEN:
+				return new ConnectTokenCop(args);
+			case TAB_OPTIONAL_FIELDS:
+				return new OptionalFieldCop(args, new TestCop.TestArgs(request));
+			case TAB_EMPTY_STRING_FIELDS:
+				return new EmptyStringFieldCop(args, new TestCop.TestArgs(request));
+			case TAB_MIN_LENGTH_STRING_FIELDS:
+				return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
+			case TAB_FEATURE_FIELD:
+				return new FeatureFieldCop(args, new TestCop.TestArgs(request));
+			case TAB_REVISION:
+				return new RevisionCop(args, request);
+			case TAB_REVISION_SHEET:
+				return new RevisionSheetCop(args);
+			case TAB_CONNECTION_POOL:
+				return new ConnectionPoolCop(args);
+			case TAB_TRANSACTION:
+				return new TransactionCop(args, request);
+			case TAB_DATBASE_LOG:
+				return new DatabaseLogCop(args);
+			case TAB_ITEM_CACHE:
+				return ItemCacheCop.getItemCacheCop(args, request);
+			case TAB_QUERY_CACHE:
+				return QueryCacheCop.getQueryCacheCop(args, request);
+			case TAB_DATA_VAULT:
+				return new DataVaultCop(args);
+			case TAB_SEQUENCE:
+				return new SequenceCop(args, new TestCop.TestArgs(request));
+			case TAB_SERIALIZATION_CHECK:
+				return new SerializationCheckCop(args);
+			case TAB_DATA_FIELD:
+				return new DataFieldCop(args);
+			case TAB_MEDIA_STATS:
+				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.all, request);
+			case TAB_MEDIA_GUESSUNGPREVENTED:
+				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.guessingPrevented, request);
+			case TAB_MEDIA_FINGERPRINTING:
+				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.fingerprint, request);
+			case TAB_MEDIA_TESTABLE:
+				return new MediaTestableCop(args, new TestCop.TestArgs(request));
+			case TAB_MEDIA_TYPE:
+				return new MediaTypeCop(args, new TestCop.TestArgs(request));
+			case TAB_HASH_CONSTRAINT:
+				return new HashConstraintCop(args, new TestCop.TestArgs(request));
+			case TAB_CLUSTER:
+				return new ClusterCop(args);
+			case TAB_THREAD:
+				return new ThreadCop(args);
+			case TAB_VM:
+				return VmCop.getVmCop(args, request);
+			case TAB_REGISTERED_DRIVERS:
+				return RegisteredDriversCop.getRegisteredDriversCop(args, request);
+			case TAB_ENUMS:
+				return new EnumsCop(args);
+			case TAB_ENUM:
+				return EnumCop.getEnumCop(args, request);
+			case TAB_ENVIRONMENT:
+				return new EnvironmentCop(args);
+			case TAB_HASH:
+				return new HashCop(args);
+			case TAB_HIDDEN:
+				return new HiddenCop(args);
+			case TAB_CHANGE_LISTENER:
+				return new ChangeListenerCop(args, request);
+			case TAB_CHECKLISTS:
+				return new ChecklistsCop(args);
+		}
 
 		final MediaCop mediaCop = MediaCop.getMediaCop(model, args, request);
 		if(mediaCop!=null)
