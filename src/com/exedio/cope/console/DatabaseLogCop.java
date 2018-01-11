@@ -25,6 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 
 final class DatabaseLogCop extends ConsoleCop<Void>
 {
+	static final String TAB_DATBASE_LOG = "dblogs";
+
 	static final String ENABLE = "dblogenable";
 	static final String THRESHOLD = "dblogthreshold";
 	static final String SQL = "dblogsql";

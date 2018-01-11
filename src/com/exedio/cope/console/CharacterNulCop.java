@@ -39,6 +39,8 @@ import java.util.List;
 
 final class CharacterNulCop extends TestCop<StringField>
 {
+	static final String TAB_CHARACTER_NUL = "characterNul";
+
 	CharacterNulCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_CHARACTER_NUL, "Character Nul", args, testArgs);

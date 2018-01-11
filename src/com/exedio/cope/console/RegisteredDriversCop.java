@@ -25,6 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 
 final class RegisteredDriversCop extends ConsoleCop<Void>
 {
+	static final String TAB_REGISTERED_DRIVERS = "registereddrivers";
+
 	private static final String SHOW_DRIVERS = "sd";
 	private static final String SHOW_SERVICES = "ss";
 	private static final String SHOW_SERVICES_INSTALLED = "ssi";

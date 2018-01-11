@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ThreadCop extends ConsoleCop<Void>
 {
+	static final String TAB_THREAD = "thread";
+
 	static final String RESTART = "restart";
 	static final String ID_HASH = "idhs";
 

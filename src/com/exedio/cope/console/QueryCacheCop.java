@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class QueryCacheCop extends ConsoleCop<Void>
 {
+	static final String TAB_QUERY_CACHE = "querycache";
 	static final String HISTOGRAM_LIMIT = "hl";
 	private static final int HISTOGRAM_LIMIT_DEFAULT = 100;
 	private static final String CONDENSE = "condense";

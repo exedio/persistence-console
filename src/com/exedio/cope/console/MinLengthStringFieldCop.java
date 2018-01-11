@@ -30,6 +30,8 @@ import java.util.List;
 
 final class MinLengthStringFieldCop extends TestCop<StringField>
 {
+	static final String TAB_MIN_LENGTH_STRING_FIELDS = "minlength";
+
 	MinLengthStringFieldCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_MIN_LENGTH_STRING_FIELDS, "Min Length String Fields", args, testArgs);

@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 {
+	static final String TAB_CONNECT_TOKEN = "connectToken";
 	static final String PROBE = "probe";
 	static final String ISSUE = "issue";
 	static final String RETURN_SELECTED = "returnSelected";

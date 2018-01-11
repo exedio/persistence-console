@@ -23,6 +23,8 @@ import com.exedio.cope.misc.SerializationCheck;
 
 final class SerializationCheckCop extends ConsoleCop<Void>
 {
+	static final String TAB_SERIALIZATION_CHECK = "serialization";
+
 	SerializationCheckCop(final Args args)
 	{
 		super(TAB_SERIALIZATION_CHECK, "Serialization Check", args);

@@ -37,6 +37,10 @@ import javax.servlet.http.HttpServletRequest;
 
 final class MediaStatsCop extends ConsoleCop<Void>
 {
+	static final String TAB_MEDIA_STATS = "mediastats";
+	static final String TAB_MEDIA_GUESSUNGPREVENTED = "mediaguess";
+	static final String TAB_MEDIA_FINGERPRINTING = "mediafinger";
+
 	final Variant variant;
 	final double fingerprintRampStep;
 

@@ -29,6 +29,8 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 {
+	static final String TAB_CHANGE_LISTENER = "changelistener";
+
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(20, 100, 1000, 10000);
 	static final String REMOVE_SELECTED = "removeSelected";
 	static final String REMOVE_CHECKBOX = "rm";

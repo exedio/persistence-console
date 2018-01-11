@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ConnectionPoolCop extends ConsoleCop<Void>
 {
+	static final String TAB_CONNECTION_POOL = "connections";
+
 	ConnectionPoolCop(final Args args)
 	{
 		super(TAB_CONNECTION_POOL, "Connection Pool", args);

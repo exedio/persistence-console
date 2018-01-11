@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServletRequest;
 
 final class HashCop extends ConsoleCop<Void>
 {
+	static final String TAB_HASH = "hash";
+
 	static final String CHECKED = "checked";
 	static final String COMPUTE = "compute";
 	static final String COMPUTE_PLAINTEXT = "compute.plaintext";

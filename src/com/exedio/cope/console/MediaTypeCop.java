@@ -31,6 +31,8 @@ import java.util.List;
 
 final class MediaTypeCop extends TestCop<Media>
 {
+	static final String TAB_MEDIA_TYPE = "mediatype";
+
 	MediaTypeCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_MEDIA_TYPE, "Media Types", args, testArgs);

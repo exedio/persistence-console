@@ -26,6 +26,8 @@ import java.util.TreeMap;
 
 final class RevisionSheetCop extends ConsoleCop<Void>
 {
+	static final String TAB_REVISION_SHEET = "revisionSheet";
+
 	RevisionSheetCop(final Args args)
 	{
 		super(TAB_REVISION_SHEET, "Revision Sheet", args);

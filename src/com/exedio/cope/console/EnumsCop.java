@@ -26,6 +26,8 @@ import java.util.LinkedHashMap;
 
 final class EnumsCop extends ConsoleCop<Void>
 {
+	static final String TAB_ENUMS = "enums";
+
 	EnumsCop(final Args args)
 	{
 		super(TAB_ENUMS, "Enums", args);

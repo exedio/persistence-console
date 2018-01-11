@@ -288,52 +288,6 @@ abstract class ConsoleCop<S> extends Cop
 		throw new RuntimeException(getClass().getName());
 	}
 
-	static final String TAB_CONNECT = "connect";
-	static final String TAB_CONNECT_TOKEN = "connectToken";
-	static final String TAB_PURGE = "purge";
-	static final String TAB_SCHEMA = "schema";
-	static final String TAB_SAVEPOINT = "savepoint";
-	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
-	static final String TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE = "unsupportedcheckconstraintsbytable";
-	static final String TAB_MULTI_TABLE_CHECK_CONSTRAINTS = "multitablecheckconstraints";
-	static final String TAB_TYPE_COLUMNS = "typecolumns";
-	static final String TAB_TYPE_COMPLETENESS = "typecompleteness";
-	static final String TAB_UPDATE_COUNTERS = "updatecounters";
-	static final String TAB_COPY_CONSTRAINTS = "copyconstraints";
-	static final String TAB_CHARACTER_NUL = "characterNul";
-	static final String TAB_OPTIONAL_FIELDS = "optional";
-	static final String TAB_EMPTY_STRING_FIELDS = "emptystring";
-	static final String TAB_MIN_LENGTH_STRING_FIELDS = "minlength";
-	static final String TAB_FEATURE_FIELD = "feature";
-	static final String TAB_REVISION = "revision";
-	static final String TAB_REVISION_SHEET = "revisionSheet";
-	static final String TAB_DATBASE_LOG = "dblogs";
-	static final String TAB_CONNECTION_POOL = "connections";
-	static final String TAB_TRANSACTION = "transactions";
-	static final String TAB_ITEM_CACHE = "itemcache";
-	static final String TAB_QUERY_CACHE = "querycache";
-	static final String TAB_DATA_VAULT = "datavault";
-	static final String TAB_SEQUENCE = "sequence";
-	static final String TAB_SERIALIZATION_CHECK = "serialization";
-	static final String TAB_DATA_FIELD = "datafield";
-	static final String TAB_MEDIA_STATS = "mediastats";
-	static final String TAB_MEDIA_GUESSUNGPREVENTED = "mediaguess";
-	static final String TAB_MEDIA_FINGERPRINTING = "mediafinger";
-	static final String TAB_MEDIA_TESTABLE = "mediatestable";
-	static final String TAB_MEDIA_TYPE = "mediatype";
-	static final String TAB_HASH_CONSTRAINT = "hashconstraint";
-	static final String TAB_CLUSTER = "cluster";
-	static final String TAB_THREAD = "thread";
-	static final String TAB_VM = "vm";
-	static final String TAB_REGISTERED_DRIVERS = "registereddrivers";
-	static final String TAB_ENUMS = "enums";
-	static final String TAB_ENUM = "enum";
-	static final String TAB_ENVIRONMENT = "environment";
-	static final String TAB_HASH = "hash";
-	static final String TAB_HIDDEN = "hidden";
-	static final String TAB_CHANGE_LISTENER = "changelistener";
-	static final String TAB_CHECKLISTS = "checklists";
-
 	static final ConsoleCop<?> getCop(
 			final Stores stores,
 			final Model model,
@@ -352,95 +306,95 @@ abstract class ConsoleCop<S> extends Cop
 		final String tab = pathInfo.substring(1, pathInfo.length()-NAME_POSTFIX.length());
 		switch(tab)
 		{
-			case TAB_PURGE:
+			case PurgeCop.TAB_PURGE:
 				return new PurgeCop(args);
-			case TAB_SCHEMA:
+			case SchemaCop.TAB_SCHEMA:
 				return SchemaCop.getSchemaCop(args, request);
-			case TAB_SAVEPOINT:
+			case SavepointCop.TAB_SAVEPOINT:
 				return new SavepointCop(args);
-			case TAB_UNSUPPORTED_CONSTRAINTS:
+			case UnsupportedConstraintCop.TAB_UNSUPPORTED_CONSTRAINTS:
 				return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
-			case TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE:
+			case UnsupportedCheckConstraintByTableCop.TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE:
 				return new UnsupportedCheckConstraintByTableCop(args, new TestCop.TestArgs(request));
-			case TAB_MULTI_TABLE_CHECK_CONSTRAINTS:
+			case MultiTableCheckConstraintCop.TAB_MULTI_TABLE_CHECK_CONSTRAINTS:
 				return new MultiTableCheckConstraintCop(args, new TestCop.TestArgs(request));
-			case TAB_TYPE_COLUMNS:
+			case TypeColumnCop.TAB_TYPE_COLUMNS:
 				return new TypeColumnCop(args, new TestCop.TestArgs(request));
-			case TAB_TYPE_COMPLETENESS:
+			case TypeCompletenessCop.TAB_TYPE_COMPLETENESS:
 				return new TypeCompletenessCop(args, new TestCop.TestArgs(request));
-			case TAB_UPDATE_COUNTERS:
+			case UpdateCounterCop.TAB_UPDATE_COUNTERS:
 				return new UpdateCounterCop(args, new TestCop.TestArgs(request));
-			case TAB_COPY_CONSTRAINTS:
+			case CopyConstraintCop.TAB_COPY_CONSTRAINTS:
 				return new CopyConstraintCop(args, new TestCop.TestArgs(request));
-			case TAB_CHARACTER_NUL:
+			case CharacterNulCop.TAB_CHARACTER_NUL:
 				return new CharacterNulCop(args, new TestCop.TestArgs(request));
-			case TAB_CONNECT:
+			case ConnectCop.TAB_CONNECT:
 				return new ConnectCop(args);
-			case TAB_CONNECT_TOKEN:
+			case ConnectTokenCop.TAB_CONNECT_TOKEN:
 				return new ConnectTokenCop(args);
-			case TAB_OPTIONAL_FIELDS:
+			case OptionalFieldCop.TAB_OPTIONAL_FIELDS:
 				return new OptionalFieldCop(args, new TestCop.TestArgs(request));
-			case TAB_EMPTY_STRING_FIELDS:
+			case EmptyStringFieldCop.TAB_EMPTY_STRING_FIELDS:
 				return new EmptyStringFieldCop(args, new TestCop.TestArgs(request));
-			case TAB_MIN_LENGTH_STRING_FIELDS:
+			case MinLengthStringFieldCop.TAB_MIN_LENGTH_STRING_FIELDS:
 				return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
-			case TAB_FEATURE_FIELD:
+			case FeatureFieldCop.TAB_FEATURE_FIELD:
 				return new FeatureFieldCop(args, new TestCop.TestArgs(request));
-			case TAB_REVISION:
+			case RevisionCop.TAB_REVISION:
 				return new RevisionCop(args, request);
-			case TAB_REVISION_SHEET:
+			case RevisionSheetCop.TAB_REVISION_SHEET:
 				return new RevisionSheetCop(args);
-			case TAB_CONNECTION_POOL:
+			case ConnectionPoolCop.TAB_CONNECTION_POOL:
 				return new ConnectionPoolCop(args);
-			case TAB_TRANSACTION:
+			case TransactionCop.TAB_TRANSACTION:
 				return new TransactionCop(args, request);
-			case TAB_DATBASE_LOG:
+			case DatabaseLogCop.TAB_DATBASE_LOG:
 				return new DatabaseLogCop(args);
-			case TAB_ITEM_CACHE:
+			case ItemCacheCop.TAB_ITEM_CACHE:
 				return ItemCacheCop.getItemCacheCop(args, request);
-			case TAB_QUERY_CACHE:
+			case QueryCacheCop.TAB_QUERY_CACHE:
 				return QueryCacheCop.getQueryCacheCop(args, request);
-			case TAB_DATA_VAULT:
+			case DataVaultCop.TAB_DATA_VAULT:
 				return new DataVaultCop(args);
-			case TAB_SEQUENCE:
+			case SequenceCop.TAB_SEQUENCE:
 				return new SequenceCop(args, new TestCop.TestArgs(request));
-			case TAB_SERIALIZATION_CHECK:
+			case SerializationCheckCop.TAB_SERIALIZATION_CHECK:
 				return new SerializationCheckCop(args);
-			case TAB_DATA_FIELD:
+			case DataFieldCop.TAB_DATA_FIELD:
 				return new DataFieldCop(args);
-			case TAB_MEDIA_STATS:
+			case MediaStatsCop.TAB_MEDIA_STATS:
 				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.all, request);
-			case TAB_MEDIA_GUESSUNGPREVENTED:
+			case MediaStatsCop.TAB_MEDIA_GUESSUNGPREVENTED:
 				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.guessingPrevented, request);
-			case TAB_MEDIA_FINGERPRINTING:
+			case MediaStatsCop.TAB_MEDIA_FINGERPRINTING:
 				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.fingerprint, request);
-			case TAB_MEDIA_TESTABLE:
+			case MediaTestableCop.TAB_MEDIA_TESTABLE:
 				return new MediaTestableCop(args, new TestCop.TestArgs(request));
-			case TAB_MEDIA_TYPE:
+			case MediaTypeCop.TAB_MEDIA_TYPE:
 				return new MediaTypeCop(args, new TestCop.TestArgs(request));
-			case TAB_HASH_CONSTRAINT:
+			case HashConstraintCop.TAB_HASH_CONSTRAINT:
 				return new HashConstraintCop(args, new TestCop.TestArgs(request));
-			case TAB_CLUSTER:
+			case ClusterCop.TAB_CLUSTER:
 				return new ClusterCop(args);
-			case TAB_THREAD:
+			case ThreadCop.TAB_THREAD:
 				return new ThreadCop(args);
-			case TAB_VM:
+			case VmCop.TAB_VM:
 				return VmCop.getVmCop(args, request);
-			case TAB_REGISTERED_DRIVERS:
+			case RegisteredDriversCop.TAB_REGISTERED_DRIVERS:
 				return RegisteredDriversCop.getRegisteredDriversCop(args, request);
-			case TAB_ENUMS:
+			case EnumsCop.TAB_ENUMS:
 				return new EnumsCop(args);
-			case TAB_ENUM:
+			case EnumCop.TAB_ENUM:
 				return EnumCop.getEnumCop(args, request);
-			case TAB_ENVIRONMENT:
+			case EnvironmentCop.TAB_ENVIRONMENT:
 				return new EnvironmentCop(args);
-			case TAB_HASH:
+			case HashCop.TAB_HASH:
 				return new HashCop(args);
-			case TAB_HIDDEN:
+			case HiddenCop.TAB_HIDDEN:
 				return new HiddenCop(args);
-			case TAB_CHANGE_LISTENER:
+			case ChangeListenerCop.TAB_CHANGE_LISTENER:
 				return new ChangeListenerCop(args, request);
-			case TAB_CHECKLISTS:
+			case ChecklistsCop.TAB_CHECKLISTS:
 				return new ChecklistsCop(args);
 		}
 

@@ -27,6 +27,8 @@ import java.util.List;
 
 final class UpdateCounterCop extends TestCop<Type<?>>
 {
+	static final String TAB_UPDATE_COUNTERS = "updatecounters";
+
 	UpdateCounterCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_UPDATE_COUNTERS, "Update Counters", args, testArgs);

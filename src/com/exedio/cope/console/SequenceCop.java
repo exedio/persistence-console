@@ -31,6 +31,8 @@ import java.util.List;
 
 final class SequenceCop extends TestCop<SequenceInfo>
 {
+	static final String TAB_SEQUENCE = "sequence";
+
 	SequenceCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_SEQUENCE, "Sequences", args, testArgs);

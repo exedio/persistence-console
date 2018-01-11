@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 {
+	static final String TAB_SCHEMA = "schema";
 	private static final String DETAILED = "dt";
 
 	final boolean detailed;

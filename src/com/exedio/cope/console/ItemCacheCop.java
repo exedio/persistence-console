@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ItemCacheCop extends ConsoleCop<Void>
 {
+	static final String TAB_ITEM_CACHE = "itemcache";
 	private static final String DETAILED = "dt";
 
 	final boolean detailed;

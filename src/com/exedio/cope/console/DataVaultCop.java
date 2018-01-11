@@ -31,9 +31,11 @@ import java.util.List;
 
 final class DataVaultCop extends ConsoleCop<Void>
 {
+	static final String TAB_DATA_VAULT = "datavault";
+
 	DataVaultCop(final Args args)
 	{
-		super(ConsoleCop.TAB_DATA_VAULT, "Data Vaults", args);
+		super(TAB_DATA_VAULT, "Data Vaults", args);
 	}
 
 	@Override

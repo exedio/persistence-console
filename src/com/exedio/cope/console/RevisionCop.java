@@ -35,6 +35,8 @@ import javax.servlet.http.HttpServletRequest;
 
 final class RevisionCop extends ConsoleCop<Void> implements Pageable
 {
+	static final String TAB_REVISION = "revision";
+
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 20, 50, 100, 200, 500);
 
 	private final Pager pager;

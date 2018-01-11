@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 
 final class EnumCop extends ConsoleCop<Void>
 {
+	static final String TAB_ENUM = "enum";
+
 	private static final String CLASS = "cs";
 
 	final Class<? extends Enum<?>> clazz;

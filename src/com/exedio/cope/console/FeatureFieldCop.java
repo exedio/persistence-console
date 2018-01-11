@@ -30,6 +30,8 @@ import java.util.List;
 
 final class FeatureFieldCop extends TestCop<FeatureField<?>>
 {
+	static final String TAB_FEATURE_FIELD = "feature";
+
 	FeatureFieldCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_FEATURE_FIELD, "Feature Fields", args, testArgs);

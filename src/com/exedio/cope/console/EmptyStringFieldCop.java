@@ -29,6 +29,8 @@ import java.util.List;
 
 final class EmptyStringFieldCop extends TestCop<StringField>
 {
+	static final String TAB_EMPTY_STRING_FIELDS = "emptystring";
+
 	EmptyStringFieldCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_EMPTY_STRING_FIELDS, "Empty String Fields", args, testArgs);

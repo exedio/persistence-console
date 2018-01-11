@@ -34,6 +34,8 @@ import java.util.TreeMap;
 
 final class EnvironmentCop extends ConsoleCop<Void>
 {
+	static final String TAB_ENVIRONMENT = "environment";
+
 	EnvironmentCop(final Args args)
 	{
 		super(TAB_ENVIRONMENT, "Environment", args);

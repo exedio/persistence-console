@@ -30,6 +30,8 @@ import java.util.List;
 
 final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 {
+	static final String TAB_MULTI_TABLE_CHECK_CONSTRAINTS = "multitablecheckconstraints";
+
 	MultiTableCheckConstraintCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB_MULTI_TABLE_CHECK_CONSTRAINTS, "Multi-Table Check Constraints", args, testArgs);

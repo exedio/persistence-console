@@ -22,6 +22,8 @@ import com.exedio.cope.misc.HiddenFeatures;
 
 final class HiddenCop extends ConsoleCop<Void>
 {
+	static final String TAB_HIDDEN = "hidden";
+
 	HiddenCop(final Args args)
 	{
 		super(TAB_HIDDEN, "Hidden Features", args);

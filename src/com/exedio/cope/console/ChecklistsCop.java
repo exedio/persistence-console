@@ -20,6 +20,8 @@ package com.exedio.cope.console;
 
 final class ChecklistsCop extends ConsoleCop<Void>
 {
+	static final String TAB_CHECKLISTS = "checklists";
+
 	ChecklistsCop(final Args args)
 	{
 		super(TAB_CHECKLISTS, "Checklists", args);

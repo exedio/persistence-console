@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ClusterCop extends ConsoleCop<Void>
 {
+	static final String TAB_CLUSTER = "cluster";
 	static final String PING_COUNT = "ping.count";
 	static final String PING = "ping";
 
