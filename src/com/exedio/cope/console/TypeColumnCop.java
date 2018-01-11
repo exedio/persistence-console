@@ -34,11 +34,11 @@ import java.util.List;
 
 final class TypeColumnCop extends TestCop<ItemFunction<?>>
 {
-	static final String TAB_TYPE_COLUMNS = "typecolumns";
+	static final String TAB = "typecolumns";
 
 	TypeColumnCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_TYPE_COLUMNS, "Type Columns", args, testArgs);
+		super(TAB, "Type Columns", args, testArgs);
 	}
 
 	@Override

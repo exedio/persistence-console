@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class EnumCop extends ConsoleCop<Void>
 {
-	static final String TAB_ENUM = "enum";
+	static final String TAB = "enum";
 
 	private static final String CLASS = "cs";
 
@@ -30,7 +30,7 @@ final class EnumCop extends ConsoleCop<Void>
 
 	EnumCop(final Args args, final Class<? extends Enum<?>> clazz)
 	{
-		super(TAB_ENUM, "Enum - " + clazz.getName(), args);
+		super(TAB, "Enum - " + clazz.getName(), args);
 		this.clazz = clazz;
 		addParameter(CLASS, clazz.getName());
 	}

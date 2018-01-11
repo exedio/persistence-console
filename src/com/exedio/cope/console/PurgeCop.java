@@ -25,13 +25,13 @@ import javax.servlet.http.HttpServletRequest;
 
 final class PurgeCop extends ConsoleCop<Void>
 {
-	static final String TAB_PURGE = "purge";
+	static final String TAB = "purge";
 	static final String PURGE = "purge";
 	static final String REVISION_STATISTICS = "revisionStatistics";
 
 	PurgeCop(final Args args)
 	{
-		super(TAB_PURGE, "Purge", args);
+		super(TAB, "Purge", args);
 	}
 
 	@Override

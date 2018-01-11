@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class RegisteredDriversCop extends ConsoleCop<Void>
 {
-	static final String TAB_REGISTERED_DRIVERS = "registereddrivers";
+	static final String TAB = "registereddrivers";
 
 	private static final String SHOW_DRIVERS = "sd";
 	private static final String SHOW_SERVICES = "ss";
@@ -41,7 +41,7 @@ final class RegisteredDriversCop extends ConsoleCop<Void>
 			final boolean showServices,
 			final boolean showServicesInstalled)
 	{
-		super(TAB_REGISTERED_DRIVERS, "Registered Drivers", args);
+		super(TAB, "Registered Drivers", args);
 		this.showDrivers = showDrivers;
 		this.showServices = showServices;
 		this.showServicesInstalled = showServicesInstalled;

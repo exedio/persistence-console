@@ -29,12 +29,12 @@ import java.util.List;
 
 final class UnsupportedConstraintCop extends TestCop<Constraint>
 {
-	static final String TAB_UNSUPPORTED_CONSTRAINTS = "unsupportedconstraints";
+	static final String TAB = "unsupportedconstraints";
 	static final String NAME = "Unsupported Constraints";
 
 	UnsupportedConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_UNSUPPORTED_CONSTRAINTS, NAME, args, testArgs);
+		super(TAB, NAME, args, testArgs);
 	}
 
 	@Override

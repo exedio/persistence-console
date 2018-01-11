@@ -31,11 +31,11 @@ import java.util.TreeSet;
 
 final class DataFieldCop extends ConsoleCop<Void>
 {
-	static final String TAB_DATA_FIELD = "datafield";
+	static final String TAB = "datafield";
 
 	DataFieldCop(final Args args)
 	{
-		super(TAB_DATA_FIELD, "Data Fields", args);
+		super(TAB, "Data Fields", args);
 	}
 
 	@Override

@@ -29,11 +29,11 @@ import java.util.List;
 
 final class OptionalFieldCop extends TestCop<FunctionField<?>>
 {
-	static final String TAB_OPTIONAL_FIELDS = "optional";
+	static final String TAB = "optional";
 
 	OptionalFieldCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_OPTIONAL_FIELDS, "Optional Fields", args, testArgs);
+		super(TAB, "Optional Fields", args, testArgs);
 	}
 
 	@Override

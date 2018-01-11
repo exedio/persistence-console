@@ -26,11 +26,11 @@ import java.util.LinkedHashMap;
 
 final class EnumsCop extends ConsoleCop<Void>
 {
-	static final String TAB_ENUMS = "enums";
+	static final String TAB = "enums";
 
 	EnumsCop(final Args args)
 	{
-		super(TAB_ENUMS, "Enums", args);
+		super(TAB, "Enums", args);
 	}
 
 	@Override

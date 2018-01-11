@@ -30,11 +30,11 @@ import java.io.InputStreamReader;
 
 final class ConnectCop extends ConsoleCop<Void>
 {
-	static final String TAB_CONNECT = "connect";
+	static final String TAB = "connect";
 
 	ConnectCop(final Args args)
 	{
-		super(TAB_CONNECT, "Connect", args);
+		super(TAB, "Connect", args);
 	}
 
 	@Override

@@ -29,11 +29,11 @@ import javax.servlet.http.HttpServletRequest;
 
 final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 {
-	static final String TAB_SAVEPOINT = "savepoint";
+	static final String TAB = "savepoint";
 
 	SavepointCop(final Args args)
 	{
-		super(TAB_SAVEPOINT, "Savepoints", args);
+		super(TAB, "Savepoints", args);
 	}
 
 	@Override

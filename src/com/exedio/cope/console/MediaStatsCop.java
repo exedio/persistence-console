@@ -37,9 +37,9 @@ import javax.servlet.http.HttpServletRequest;
 
 final class MediaStatsCop extends ConsoleCop<Void>
 {
-	static final String TAB_MEDIA_STATS = "mediastats";
-	static final String TAB_MEDIA_GUESSUNGPREVENTED = "mediaguess";
-	static final String TAB_MEDIA_FINGERPRINTING = "mediafinger";
+	static final String TAB_ALL = "mediastats";
+	static final String TAB_GUESSUNG_PREVENTED = "mediaguess";
+	static final String TAB_FINGER_PRINTING = "mediafinger";
 
 	final Variant variant;
 	final double fingerprintRampStep;
@@ -100,8 +100,8 @@ final class MediaStatsCop extends ConsoleCop<Void>
 
 	enum Variant
 	{
-		all(TAB_MEDIA_STATS, "Media"),
-		guessingPrevented(TAB_MEDIA_GUESSUNGPREVENTED, "Media Url Guessing")
+		all(TAB_ALL, "Media"),
+		guessingPrevented(TAB_GUESSUNG_PREVENTED, "Media Url Guessing")
 		{
 			@Override boolean accepts(final MediaPath path)
 			{
@@ -127,7 +127,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				return false;
 			}
 		},
-		fingerprint(TAB_MEDIA_FINGERPRINTING, "Media Fingerprinting")
+		fingerprint(TAB_FINGER_PRINTING, "Media Fingerprinting")
 		{
 			@Override boolean accepts(final MediaPath path)
 			{

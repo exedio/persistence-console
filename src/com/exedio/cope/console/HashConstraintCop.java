@@ -37,11 +37,11 @@ import java.util.List;
 
 final class HashConstraintCop extends TestCop<HashConstraint>
 {
-	static final String TAB_HASH_CONSTRAINT = "hashconstraint";
+	static final String TAB = "hashconstraint";
 
 	HashConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_HASH_CONSTRAINT, "Hash Constraints", args, testArgs);
+		super(TAB, "Hash Constraints", args, testArgs);
 	}
 
 	@Override

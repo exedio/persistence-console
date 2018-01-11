@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 {
-	static final String TAB_CHANGE_LISTENER = "changelistener";
+	static final String TAB = "changelistener";
 
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(20, 100, 1000, 10000);
 	static final String REMOVE_SELECTED = "removeSelected";
@@ -45,7 +45,7 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 
 	private ChangeListenerCop(final Args args, final Pager pager)
 	{
-		super(TAB_CHANGE_LISTENER, "Change Listeners", args);
+		super(TAB, "Change Listeners", args);
 		this.pager = pager;
 
 		//noinspection ThisEscapedInObjectConstruction

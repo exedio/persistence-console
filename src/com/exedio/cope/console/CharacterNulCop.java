@@ -39,11 +39,11 @@ import java.util.List;
 
 final class CharacterNulCop extends TestCop<StringField>
 {
-	static final String TAB_CHARACTER_NUL = "characterNul";
+	static final String TAB = "characterNul";
 
 	CharacterNulCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_CHARACTER_NUL, "Character Nul", args, testArgs);
+		super(TAB, "Character Nul", args, testArgs);
 	}
 
 	@Override

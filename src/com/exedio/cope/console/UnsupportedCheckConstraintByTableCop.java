@@ -42,13 +42,13 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 {
 	private static final Logger logger = LoggerFactory.getLogger(UnsupportedCheckConstraintByTableCop.class);
 
-	static final String TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE = "unsupportedcheckconstraintsbytable";
+	static final String TAB = "unsupportedcheckconstraintsbytable";
 	static final String NAME = "Unsupported Check Constraints By Table";
 
 	UnsupportedCheckConstraintByTableCop(final Args args, final TestArgs testArgs)
 	{
 		super(
-				TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE,
+				TAB,
 				NAME,
 				args, testArgs);
 	}

@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class VmCop extends ConsoleCop<Void>
 {
-	static final String TAB_VM = "vm";
+	static final String TAB = "vm";
 
 	private static final String DETAILED = "dt";
 	private static final String ALL_PACKAGES = "ap";
@@ -36,7 +36,7 @@ final class VmCop extends ConsoleCop<Void>
 
 	VmCop(final Args args, final boolean detailed, final boolean allPackages)
 	{
-		super(TAB_VM, "Java Packages", args);
+		super(TAB, "Java Packages", args);
 		this.detailed = detailed;
 		this.allPackages = allPackages;
 

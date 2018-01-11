@@ -24,14 +24,14 @@ import javax.servlet.http.HttpServletRequest;
 
 final class ThreadCop extends ConsoleCop<Void>
 {
-	static final String TAB_THREAD = "thread";
+	static final String TAB = "thread";
 
 	static final String RESTART = "restart";
 	static final String ID_HASH = "idhs";
 
 	ThreadCop(final Args args)
 	{
-		super(TAB_THREAD, "Threads", args);
+		super(TAB, "Threads", args);
 	}
 
 	@Override

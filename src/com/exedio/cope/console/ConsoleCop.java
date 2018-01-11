@@ -306,95 +306,95 @@ abstract class ConsoleCop<S> extends Cop
 		final String tab = pathInfo.substring(1, pathInfo.length()-NAME_POSTFIX.length());
 		switch(tab)
 		{
-			case PurgeCop.TAB_PURGE:
+			case PurgeCop.TAB:
 				return new PurgeCop(args);
-			case SchemaCop.TAB_SCHEMA:
+			case SchemaCop.TAB:
 				return SchemaCop.getSchemaCop(args, request);
-			case SavepointCop.TAB_SAVEPOINT:
+			case SavepointCop.TAB:
 				return new SavepointCop(args);
-			case UnsupportedConstraintCop.TAB_UNSUPPORTED_CONSTRAINTS:
+			case UnsupportedConstraintCop.TAB:
 				return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
-			case UnsupportedCheckConstraintByTableCop.TAB_UNSUPPORTED_CHECK_CONSTRAINTS_BY_TABLE:
+			case UnsupportedCheckConstraintByTableCop.TAB:
 				return new UnsupportedCheckConstraintByTableCop(args, new TestCop.TestArgs(request));
-			case MultiTableCheckConstraintCop.TAB_MULTI_TABLE_CHECK_CONSTRAINTS:
+			case MultiTableCheckConstraintCop.TAB:
 				return new MultiTableCheckConstraintCop(args, new TestCop.TestArgs(request));
-			case TypeColumnCop.TAB_TYPE_COLUMNS:
+			case TypeColumnCop.TAB:
 				return new TypeColumnCop(args, new TestCop.TestArgs(request));
-			case TypeCompletenessCop.TAB_TYPE_COMPLETENESS:
+			case TypeCompletenessCop.TAB:
 				return new TypeCompletenessCop(args, new TestCop.TestArgs(request));
-			case UpdateCounterCop.TAB_UPDATE_COUNTERS:
+			case UpdateCounterCop.TAB:
 				return new UpdateCounterCop(args, new TestCop.TestArgs(request));
-			case CopyConstraintCop.TAB_COPY_CONSTRAINTS:
+			case CopyConstraintCop.TAB:
 				return new CopyConstraintCop(args, new TestCop.TestArgs(request));
-			case CharacterNulCop.TAB_CHARACTER_NUL:
+			case CharacterNulCop.TAB:
 				return new CharacterNulCop(args, new TestCop.TestArgs(request));
-			case ConnectCop.TAB_CONNECT:
+			case ConnectCop.TAB:
 				return new ConnectCop(args);
-			case ConnectTokenCop.TAB_CONNECT_TOKEN:
+			case ConnectTokenCop.TAB:
 				return new ConnectTokenCop(args);
-			case OptionalFieldCop.TAB_OPTIONAL_FIELDS:
+			case OptionalFieldCop.TAB:
 				return new OptionalFieldCop(args, new TestCop.TestArgs(request));
-			case EmptyStringFieldCop.TAB_EMPTY_STRING_FIELDS:
+			case EmptyStringFieldCop.TAB:
 				return new EmptyStringFieldCop(args, new TestCop.TestArgs(request));
-			case MinLengthStringFieldCop.TAB_MIN_LENGTH_STRING_FIELDS:
+			case MinLengthStringFieldCop.TAB:
 				return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
-			case FeatureFieldCop.TAB_FEATURE_FIELD:
+			case FeatureFieldCop.TAB:
 				return new FeatureFieldCop(args, new TestCop.TestArgs(request));
-			case RevisionCop.TAB_REVISION:
+			case RevisionCop.TAB:
 				return new RevisionCop(args, request);
-			case RevisionSheetCop.TAB_REVISION_SHEET:
+			case RevisionSheetCop.TAB:
 				return new RevisionSheetCop(args);
-			case ConnectionPoolCop.TAB_CONNECTION_POOL:
+			case ConnectionPoolCop.TAB:
 				return new ConnectionPoolCop(args);
-			case TransactionCop.TAB_TRANSACTION:
+			case TransactionCop.TAB:
 				return new TransactionCop(args, request);
-			case DatabaseLogCop.TAB_DATBASE_LOG:
+			case DatabaseLogCop.TAB:
 				return new DatabaseLogCop(args);
-			case ItemCacheCop.TAB_ITEM_CACHE:
+			case ItemCacheCop.TAB:
 				return ItemCacheCop.getItemCacheCop(args, request);
-			case QueryCacheCop.TAB_QUERY_CACHE:
+			case QueryCacheCop.TAB:
 				return QueryCacheCop.getQueryCacheCop(args, request);
-			case DataVaultCop.TAB_DATA_VAULT:
+			case DataVaultCop.TAB:
 				return new DataVaultCop(args);
-			case SequenceCop.TAB_SEQUENCE:
+			case SequenceCop.TAB:
 				return new SequenceCop(args, new TestCop.TestArgs(request));
-			case SerializationCheckCop.TAB_SERIALIZATION_CHECK:
+			case SerializationCheckCop.TAB:
 				return new SerializationCheckCop(args);
-			case DataFieldCop.TAB_DATA_FIELD:
+			case DataFieldCop.TAB:
 				return new DataFieldCop(args);
-			case MediaStatsCop.TAB_MEDIA_STATS:
+			case MediaStatsCop.TAB_ALL:
 				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.all, request);
-			case MediaStatsCop.TAB_MEDIA_GUESSUNGPREVENTED:
+			case MediaStatsCop.TAB_GUESSUNG_PREVENTED:
 				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.guessingPrevented, request);
-			case MediaStatsCop.TAB_MEDIA_FINGERPRINTING:
+			case MediaStatsCop.TAB_FINGER_PRINTING:
 				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.fingerprint, request);
-			case MediaTestableCop.TAB_MEDIA_TESTABLE:
+			case MediaTestableCop.TAB:
 				return new MediaTestableCop(args, new TestCop.TestArgs(request));
-			case MediaTypeCop.TAB_MEDIA_TYPE:
+			case MediaTypeCop.TAB:
 				return new MediaTypeCop(args, new TestCop.TestArgs(request));
-			case HashConstraintCop.TAB_HASH_CONSTRAINT:
+			case HashConstraintCop.TAB:
 				return new HashConstraintCop(args, new TestCop.TestArgs(request));
-			case ClusterCop.TAB_CLUSTER:
+			case ClusterCop.TAB:
 				return new ClusterCop(args);
-			case ThreadCop.TAB_THREAD:
+			case ThreadCop.TAB:
 				return new ThreadCop(args);
-			case VmCop.TAB_VM:
+			case VmCop.TAB:
 				return VmCop.getVmCop(args, request);
-			case RegisteredDriversCop.TAB_REGISTERED_DRIVERS:
+			case RegisteredDriversCop.TAB:
 				return RegisteredDriversCop.getRegisteredDriversCop(args, request);
-			case EnumsCop.TAB_ENUMS:
+			case EnumsCop.TAB:
 				return new EnumsCop(args);
-			case EnumCop.TAB_ENUM:
+			case EnumCop.TAB:
 				return EnumCop.getEnumCop(args, request);
-			case EnvironmentCop.TAB_ENVIRONMENT:
+			case EnvironmentCop.TAB:
 				return new EnvironmentCop(args);
-			case HashCop.TAB_HASH:
+			case HashCop.TAB:
 				return new HashCop(args);
-			case HiddenCop.TAB_HIDDEN:
+			case HiddenCop.TAB:
 				return new HiddenCop(args);
-			case ChangeListenerCop.TAB_CHANGE_LISTENER:
+			case ChangeListenerCop.TAB:
 				return new ChangeListenerCop(args, request);
-			case ChecklistsCop.TAB_CHECKLISTS:
+			case ChecklistsCop.TAB:
 				return new ChecklistsCop(args);
 		}
 

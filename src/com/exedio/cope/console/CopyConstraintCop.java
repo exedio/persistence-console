@@ -30,11 +30,11 @@ import java.util.List;
 
 final class CopyConstraintCop extends TestCop<CopyConstraint>
 {
-	static final String TAB_COPY_CONSTRAINTS = "copyconstraints";
+	static final String TAB = "copyconstraints";
 
 	CopyConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_COPY_CONSTRAINTS, "Copy Constraints", args, testArgs);
+		super(TAB, "Copy Constraints", args, testArgs);
 	}
 
 	@Override

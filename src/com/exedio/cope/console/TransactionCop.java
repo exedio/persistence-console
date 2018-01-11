@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class TransactionCop extends ConsoleCop<Void> implements Pageable
 {
-	static final String TAB_TRANSACTION = "transactions";
+	static final String TAB = "transactions";
 
 	private static final Pager.Config PAGER_CONFIG = new Pager.Config(10, 100, 1000, 10000);
 	static final String ENABLE  = "txlistenerenable";
@@ -44,7 +44,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 
 	private TransactionCop(final Args args, final Pager pager)
 	{
-		super(TAB_TRANSACTION, "Transactions", args);
+		super(TAB, "Transactions", args);
 		this.pager = pager;
 
 		//noinspection ThisEscapedInObjectConstruction

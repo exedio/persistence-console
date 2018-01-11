@@ -30,11 +30,11 @@ import java.util.List;
 
 final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?>>
 {
-	static final String TAB_TYPE_COMPLETENESS = "typecompleteness";
+	static final String TAB = "typecompleteness";
 
 	TypeCompletenessCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_TYPE_COMPLETENESS, "Type Completeness", args, testArgs);
+		super(TAB, "Type Completeness", args, testArgs);
 	}
 
 	@Override

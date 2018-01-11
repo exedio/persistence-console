@@ -28,11 +28,11 @@ import java.util.List;
 
 final class MediaTestableCop extends TestCop<MediaTestable>
 {
-	static final String TAB_MEDIA_TESTABLE = "mediatestable";
+	static final String TAB = "mediatestable";
 
 	MediaTestableCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_MEDIA_TESTABLE, "Media Testables", args, testArgs);
+		super(TAB, "Media Testables", args, testArgs);
 	}
 
 	@Override

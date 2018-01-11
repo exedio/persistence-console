@@ -29,11 +29,11 @@ import java.util.List;
 
 final class EmptyStringFieldCop extends TestCop<StringField>
 {
-	static final String TAB_EMPTY_STRING_FIELDS = "emptystring";
+	static final String TAB = "emptystring";
 
 	EmptyStringFieldCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB_EMPTY_STRING_FIELDS, "Empty String Fields", args, testArgs);
+		super(TAB, "Empty String Fields", args, testArgs);
 	}
 
 	@Override

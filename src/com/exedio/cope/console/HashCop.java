@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 
 final class HashCop extends ConsoleCop<Void>
 {
-	static final String TAB_HASH = "hash";
+	static final String TAB = "hash";
 
 	static final String CHECKED = "checked";
 	static final String COMPUTE = "compute";
@@ -36,7 +36,7 @@ final class HashCop extends ConsoleCop<Void>
 
 	HashCop(final Args args)
 	{
-		super(TAB_HASH, "Hashes", args);
+		super(TAB, "Hashes", args);
 	}
 
 	@Override
