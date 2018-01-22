@@ -19,12 +19,17 @@
 package com.exedio.cope.console.example;
 
 import com.exedio.cope.CopeSchemaValue;
+import com.exedio.cope.DateField;
+import com.exedio.cope.DayField;
 import com.exedio.cope.EnumField;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
+import com.exedio.cope.util.Day;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class AnItem extends Item
@@ -47,6 +52,16 @@ public class AnItem extends Item
 	static final EnumField<Color> color = EnumField.create(Color.class);
 
 	static final IntegerField superInteger = new IntegerField().defaultTo(3);
+
+
+	// for default to now
+	static final DateField defaultNoneDate = new DateField().optional();
+	static final DayField  defaultNoneDay  = new DayField ().optional();
+	static final DateField defaultGoodDate = new DateField().defaultTo(new Date(19028589127l));
+	static final DayField  defaultGoodDay  = new DayField ().defaultTo(new Day(2005, 8, 23));
+	static final DateField defaultBadDate  = new DateField().defaultTo(new Date());
+	static final DayField  defaultBadDay   = new DayField ().defaultTo(new Day(TimeZone.getDefault()));
+
 
 	// for serialization check
 	@SuppressWarnings("TransientFieldNotInitialized")
@@ -189,6 +204,176 @@ public class AnItem extends Item
 	final void setSuperInteger(final int superInteger)
 	{
 		AnItem.superInteger.set(this,superInteger);
+	}
+
+	/**
+	 * Returns the value of {@link #defaultNoneDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	final java.util.Date getDefaultNoneDate()
+	{
+		return AnItem.defaultNoneDate.get(this);
+	}
+
+	/**
+	 * Sets a new value for {@link #defaultNoneDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setDefaultNoneDate(final java.util.Date defaultNoneDate)
+	{
+		AnItem.defaultNoneDate.set(this,defaultNoneDate);
+	}
+
+	/**
+	 * Sets the current date for the date field {@link #defaultNoneDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	final void touchDefaultNoneDate()
+	{
+		AnItem.defaultNoneDate.touch(this);
+	}
+
+	/**
+	 * Returns the value of {@link #defaultNoneDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	final com.exedio.cope.util.Day getDefaultNoneDay()
+	{
+		return AnItem.defaultNoneDay.get(this);
+	}
+
+	/**
+	 * Sets a new value for {@link #defaultNoneDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setDefaultNoneDay(final com.exedio.cope.util.Day defaultNoneDay)
+	{
+		AnItem.defaultNoneDay.set(this,defaultNoneDay);
+	}
+
+	/**
+	 * Sets today for the date field {@link #defaultNoneDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	final void touchDefaultNoneDay(final java.util.TimeZone zone)
+	{
+		AnItem.defaultNoneDay.touch(this,zone);
+	}
+
+	/**
+	 * Returns the value of {@link #defaultGoodDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	final java.util.Date getDefaultGoodDate()
+	{
+		return AnItem.defaultGoodDate.get(this);
+	}
+
+	/**
+	 * Sets a new value for {@link #defaultGoodDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setDefaultGoodDate(final java.util.Date defaultGoodDate)
+			throws
+				com.exedio.cope.MandatoryViolationException
+	{
+		AnItem.defaultGoodDate.set(this,defaultGoodDate);
+	}
+
+	/**
+	 * Sets the current date for the date field {@link #defaultGoodDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	final void touchDefaultGoodDate()
+	{
+		AnItem.defaultGoodDate.touch(this);
+	}
+
+	/**
+	 * Returns the value of {@link #defaultGoodDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	final com.exedio.cope.util.Day getDefaultGoodDay()
+	{
+		return AnItem.defaultGoodDay.get(this);
+	}
+
+	/**
+	 * Sets a new value for {@link #defaultGoodDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setDefaultGoodDay(final com.exedio.cope.util.Day defaultGoodDay)
+			throws
+				com.exedio.cope.MandatoryViolationException
+	{
+		AnItem.defaultGoodDay.set(this,defaultGoodDay);
+	}
+
+	/**
+	 * Sets today for the date field {@link #defaultGoodDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	final void touchDefaultGoodDay(final java.util.TimeZone zone)
+	{
+		AnItem.defaultGoodDay.touch(this,zone);
+	}
+
+	/**
+	 * Returns the value of {@link #defaultBadDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	final java.util.Date getDefaultBadDate()
+	{
+		return AnItem.defaultBadDate.get(this);
+	}
+
+	/**
+	 * Sets a new value for {@link #defaultBadDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setDefaultBadDate(final java.util.Date defaultBadDate)
+			throws
+				com.exedio.cope.MandatoryViolationException
+	{
+		AnItem.defaultBadDate.set(this,defaultBadDate);
+	}
+
+	/**
+	 * Sets the current date for the date field {@link #defaultBadDate}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	final void touchDefaultBadDate()
+	{
+		AnItem.defaultBadDate.touch(this);
+	}
+
+	/**
+	 * Returns the value of {@link #defaultBadDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	final com.exedio.cope.util.Day getDefaultBadDay()
+	{
+		return AnItem.defaultBadDay.get(this);
+	}
+
+	/**
+	 * Sets a new value for {@link #defaultBadDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setDefaultBadDay(final com.exedio.cope.util.Day defaultBadDay)
+			throws
+				com.exedio.cope.MandatoryViolationException
+	{
+		AnItem.defaultBadDay.set(this,defaultBadDay);
+	}
+
+	/**
+	 * Sets today for the date field {@link #defaultBadDay}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	final void touchDefaultBadDay(final java.util.TimeZone zone)
+	{
+		AnItem.defaultBadDay.touch(this,zone);
 	}
 
 	@javax.annotation.Generated("com.exedio.cope.instrument")

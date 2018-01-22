@@ -229,6 +229,7 @@ abstract class ConsoleCop<S> extends Cop
 					new EnumsCop(args),
 					new HiddenCop(args),
 					new DataFieldCop(args),
+					new DefaultToNowCop(args),
 					new SerializationCheckCop(args),
 					new HashCop(args),
 				},
@@ -358,6 +359,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new DataVaultCop(args);
 			case SequenceCop.TAB:
 				return new SequenceCop(args, new TestCop.TestArgs(request));
+			case DefaultToNowCop.TAB:
+				return new DefaultToNowCop(args);
 			case SerializationCheckCop.TAB:
 				return new SerializationCheckCop(args);
 			case DataFieldCop.TAB:
