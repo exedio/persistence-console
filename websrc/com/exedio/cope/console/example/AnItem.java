@@ -41,7 +41,7 @@ public class AnItem extends Item
 
 	enum Color
 	{
-		red, green, yellow, @CopeSchemaValue(35) blue, pink
+		red, green, yellow, @CopeSchemaValue(35) blue35, pink
 	}
 
 	static final EnumField<Color> color = EnumField.create(Color.class);

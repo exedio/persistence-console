@@ -182,11 +182,11 @@ public final class ExampleServlet extends CopsServlet
 		Main.model.createSchema();
 		try(TransactionTry tx = Main.model.startTransactionTry(thisClass.getName() + "#createSampleData"))
 		{
-			new AnItem("aField1", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
-			new AnItem("aField2", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
-			new ASubItem("aField1s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue, "aSubField1s");
-			new ASubItem("aField2s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue, "aSubField2s");
-			new ASubItem("aField3s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue, "aSubField3s");
+			new AnItem("aField1", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
+			new AnItem("aField2", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
+			new ASubItem("aField1s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35, "aSubField1s");
+			new ASubItem("aField2s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35, "aSubField2s");
+			new ASubItem("aField3s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35, "aSubField3s");
 			new OptionalItem("mandatory", "optional", "optionalOk");
 			new OptionalItem("mandatory", "optional", null);
 			new StringLengthItem("empty", "emptyOk", "normal", "normalOk", "min10xxxxx", "min10Okxxx");
@@ -236,7 +236,7 @@ public final class ExampleServlet extends CopsServlet
 		try(TransactionTry tx = Main.model.startTransactionTry(replaceNullName(name)))
 		{
 			for(int i = 0; i<items; i++)
-				new AnItem(name + "#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
+				new AnItem(name + "#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
 
 			final Runnable duplicatePre = () ->
 			{
@@ -278,7 +278,7 @@ public final class ExampleServlet extends CopsServlet
 		try(TransactionTry tx = Main.model.startTransactionTry("ItemCache create"))
 		{
 			for(int i = 0; i<30000; i++)
-				new AnItem("ItemCache#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue);
+				new AnItem("ItemCache#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
 			tx.commit();
 		}
 		try(TransactionTry tx = Main.model.startTransactionTry("ItemCache read"))
