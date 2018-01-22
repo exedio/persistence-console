@@ -21,6 +21,9 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.SchemaInfo.getColumnValue;
 
+import com.exedio.cope.CopeSchemaValue;
+import com.exedio.cope.misc.EnumAnnotatedElement;
+
 final class Enum_Jspm
 {
 	static void write(
@@ -30,6 +33,7 @@ final class Enum_Jspm
 		%>
 		<table>
 			<tr>
+				<th>@CopeSchemaValue</th>
 				<th>Name</th>
 				<th>Ordinal</th>
 				<th>Schema Number</th>
@@ -37,8 +41,13 @@ final class Enum_Jspm
 
 		for(final Enum<?> constant : clazz.getEnumConstants())
 		{
+			final CopeSchemaValue ann =
+					EnumAnnotatedElement.get(constant).getAnnotation(CopeSchemaValue.class);
 			%>
 			<tr>
+				<td<% if(ann==null){%> class="notavailable"<%} %>><%
+					if(ann!=null){%><%=ann.value()%><%}
+					%></td>
 				<td class="text"><%=constant.name()%></td>
 				<td><%=constant.ordinal()%></td>
 				<td><%=getColumnValue(constant)%></td>
