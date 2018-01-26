@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Condition;
-import com.exedio.cope.DateField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.NoSuchIDException;
@@ -192,11 +191,11 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 	{
 		if(touchIds!=null)
 		{
-			final DateField lastModified = ((Media)media).getLastModified();
+			final Media m = (Media)media;
 			try
 			{
 				for(final String touchId : touchIds)
-					lastModified.set(model.getItem(touchId), now);
+					m.setLastModified(model.getItem(touchId), now);
 			}
 			catch(final NoSuchIDException e)
 			{
