@@ -6,7 +6,7 @@
 		<attribute name="jarfile" />
 		<attribute name="name" />
 		<attribute name="classpath" />
-		<element name="fileset" optional="true" implicit="true" />
+		<element name="implicit-element" optional="true" implicit="true" />
 		<sequential>
 			<!--echo message="local jar @{jarfile}" /-->
 			<jar
@@ -15,7 +15,7 @@
 					duplicate="fail"
 					strict="fail"
 					level="9">
-				<fileset />
+				<implicit-element />
 				<manifest>
 					<attribute name="Specification-Title" value="exedio @{name}" />
 					<attribute name="Specification-Version" value="${build.tag}" />

@@ -24,7 +24,7 @@
 	<macrodef name="ljunit">
 		<attribute name="test" />
 		<attribute name="env" default="N" />
-		<element name="classpath" optional="true" implicit="true" />
+		<element name="implicit-element" optional="true" implicit="true" />
 		<sequential>
 			<mkdir dir="build/testresults" />
 			<junit fork="yes"
@@ -32,7 +32,7 @@
 					showoutput="true" printsummary="true">
 				<formatter type="brief" usefile="false" />
 				<formatter type="xml" />
-				<classpath />
+				<implicit-element />
 				<test name="@{test}" todir="build/testresults" outfile="@{test}-@{env}" />
 				<sysproperty key="tomcat.port.http" value="${tomcat.port.http}" />
 				<assertions><enable/></assertions>
@@ -212,11 +212,11 @@
 	</target>
 
 	<macrodef name="foreachClusterNode">
-		<element name="body" optional="false" implicit="true" />
+		<element name="implicit-element" optional="false" implicit="true" />
 		<sequential>
 			<for param="node" list="${clusterNodes}">
 				<sequential>
-					<body />
+					<implicit-element />
 				</sequential>
 			</for>
 		</sequential>
