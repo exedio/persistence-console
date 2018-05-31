@@ -156,7 +156,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 
 	boolean canTouchOther()
 	{
-		return other!=null && canTouchInternal(other);
+		return canTouchInternal(other);
 	}
 
 	private static boolean canTouchInternal(final MediaPath media)
