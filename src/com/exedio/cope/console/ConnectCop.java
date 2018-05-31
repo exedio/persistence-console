@@ -66,7 +66,7 @@ final class ConnectCop extends ConsoleCop<Void>
 				bf.append(b, 0, len);
 
 			sourceContent = XMLEncoder.encode(bf.toString());
-			for(final Properties.Field field : props.getFields())
+			for(final Properties.Field<?> field : props.getFields())
 			{
 				if(field.hasHiddenValue())
 				{

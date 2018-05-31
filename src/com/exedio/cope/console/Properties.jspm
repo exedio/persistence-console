@@ -70,7 +70,7 @@ final class Properties_Jspm
 			<tr class="unspecified">
 				<td colspan="2" class="text"><small><%=properties.getSourceObject().getDescription()%></small></td>
 			</tr><%
-			for(final Properties.Field field : properties.getFields())
+			for(final Properties.Field<?> field : properties.getFields())
 			{
 				final boolean fieldSpecified = field.isSpecified();
 				if(!field.hasHiddenValue())
