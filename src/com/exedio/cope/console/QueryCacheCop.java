@@ -142,7 +142,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 							if(qxbuf==null)
 								qxbuf = new StringBuilder(q.substring(0, pos));
 							else
-								qxbuf.append(q.substring(lastpos+1, pos));
+								qxbuf.append(q, lastpos+1, pos);
 
 							qxbuf.append('?');
 
