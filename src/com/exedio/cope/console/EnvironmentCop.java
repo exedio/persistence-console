@@ -68,7 +68,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		Environment_Jspm.writeTest(out, current, makeTestedDatabases());
 	}
 
-	@SuppressFBWarnings("WMI_WRONG_MAP_ITERATOR")
+	@SuppressFBWarnings({"WMI_WRONG_MAP_ITERATOR", "ITA_INEFFICIENT_TO_ARRAY"})
 	private static HashMap<String, Object>[] makeTestedDatabases()
 	{
 		final Properties p = new Properties();
@@ -117,8 +117,8 @@ final class EnvironmentCop extends ConsoleCop<Void>
 				database.put(key, value);
 		}
 
-		@SuppressWarnings({"rawtypes", "unchecked"})
-		final HashMap<String, Object>[] result = testedDatabases.values().toArray(new HashMap[testedDatabases.size()]);
+		@SuppressWarnings({"rawtypes", "unchecked", "ZeroLengthArrayAllocation"})
+		final HashMap<String, Object>[] result = testedDatabases.values().toArray(new HashMap[0]);
 		return result;
 	}
 

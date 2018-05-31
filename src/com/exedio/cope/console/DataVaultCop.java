@@ -69,8 +69,10 @@ final class DataVaultCop extends ConsoleCop<Void>
 				}
 
 		DataVault_Jspm.writeBody(out, this, vaults.values(), infos,
-				new DataFieldVaultSummary(infos.toArray(new DataFieldVaultInfo[infos.size()])));
+				new DataFieldVaultSummary(infos.toArray(EMPTY_INFO)));
 	}
+
+	private static final DataFieldVaultInfo[] EMPTY_INFO = {};
 
 	static final class Vault
 	{

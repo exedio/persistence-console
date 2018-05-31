@@ -200,7 +200,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 
 				if(histogramCondensed!=null)
 				{
-					this.histogramCondensed = histogramCondensed.values().toArray(new Condense[histogramCondensed.size()]);
+					this.histogramCondensed = histogramCondensed.values().toArray(EMPTY_CONDENSE);
 					Arrays.sort(this.histogramCondensed, (c1, c2) ->
 					{
 						if(c1==c2)
@@ -304,6 +304,8 @@ final class QueryCacheCop extends ConsoleCop<Void>
 			return hits;
 		}
 	}
+
+	private static final Condense[] EMPTY_CONDENSE = {};
 
 	@Override
 	void writeBody(final Out out)

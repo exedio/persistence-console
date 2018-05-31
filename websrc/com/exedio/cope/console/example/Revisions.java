@@ -90,8 +90,10 @@ public final class Revisions
 				body[j] = "sql " + revision + "/" + j;
 			result.add(new Revision(revision, "comment " + revision, body));
 		}
-		return DirectRevisionsFactory.make(new com.exedio.cope.Revisions(result.toArray(new Revision[result.size()])));
+		return DirectRevisionsFactory.make(new com.exedio.cope.Revisions(result.toArray(EMPTY_REVISION)));
 	}
+
+	private static final Revision[] EMPTY_REVISION = {};
 
 	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
 	static void revisions(final Model model)
@@ -133,7 +135,7 @@ public final class Revisions
 						new Date(),
 						environment,
 						revision.getComment(),
-						body.toArray(new RevisionInfoRevise.Body[body.size()])));
+						body.toArray(EMPTY_REVISION_BODY)));
 
 				if("before change of environment".equals(revision.getComment()))
 				{
@@ -174,6 +176,8 @@ public final class Revisions
 			throw new SQLRuntimeException(e, "create");
 		}
 	}
+
+	private static final RevisionInfoRevise.Body[] EMPTY_REVISION_BODY = {};
 
 	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
 	static void removeMutex(final Model model)
