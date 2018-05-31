@@ -25,6 +25,7 @@ import java.util.List;
 
 final class Savepoint_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final Out out,
 			final SavepointCop cop,

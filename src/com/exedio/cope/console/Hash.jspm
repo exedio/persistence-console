@@ -32,6 +32,7 @@ import com.exedio.cope.pattern.HashAlgorithm;
 
 final class Hash_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final Out out,
 			final HashCop cop,

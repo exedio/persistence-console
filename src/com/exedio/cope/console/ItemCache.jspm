@@ -28,6 +28,7 @@ import com.exedio.cope.ItemCacheStatistics;
 
 final class ItemCache_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final ItemCacheCop cop,
 			final Out out,

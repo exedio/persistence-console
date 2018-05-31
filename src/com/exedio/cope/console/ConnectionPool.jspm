@@ -27,6 +27,7 @@ import com.exedio.cope.util.PoolCounter;
 
 final class ConnectionPool_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final Out out,
 			final ConnectionPoolCop cop,

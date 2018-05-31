@@ -28,6 +28,7 @@ import com.exedio.cope.util.JobContext;
 
 final class Purge_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final Out out,
 			final Model model,

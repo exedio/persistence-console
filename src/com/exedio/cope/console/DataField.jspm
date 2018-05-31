@@ -30,6 +30,7 @@ import com.exedio.cope.console.DataFieldCop.Table;
 
 final class DataField_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final Out out,
 			final DataFieldCop cop,

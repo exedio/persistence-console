@@ -25,6 +25,7 @@ import com.exedio.cope.util.Properties;
 
 final class Connect_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 				final Out out,
 				final Properties properties,

@@ -86,6 +86,7 @@ final class RegisteredDriversCop extends ConsoleCop<Void>
 		RegisteredDrivers_Jspm.writeBody(out, this);
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static Iterator<Driver> it(final Enumeration<Driver> x)
 	{
 		return new Iterator<Driver>(){

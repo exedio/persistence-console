@@ -31,6 +31,7 @@ import com.exedio.cope.QueryCacheInfo;
 
 final class QueryCache_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final QueryCacheCop cop,
 			final Out out,

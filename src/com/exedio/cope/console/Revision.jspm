@@ -117,6 +117,7 @@ final class Revision_Jspm
 		</script><%
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final Out out,
 			final RevisionCop cop,

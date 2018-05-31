@@ -44,6 +44,7 @@ import com.exedio.cope.pattern.UrlFingerPrinting;
 
 final class Media_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final MediaStatsCop cop,
 			final Out out,

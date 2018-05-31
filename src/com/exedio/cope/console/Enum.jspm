@@ -26,6 +26,7 @@ import com.exedio.cope.misc.EnumAnnotatedElement;
 
 final class Enum_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void write(
 			final Out out,
 			final Class<? extends Enum<?>> clazz)

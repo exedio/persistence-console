@@ -28,6 +28,7 @@ import com.exedio.cope.ThreadController;
 
 final class Thread_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final Out out,
 			final List<ThreadController> threads)

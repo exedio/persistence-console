@@ -24,6 +24,7 @@ import java.util.List;
 
 final class DefaultToNow_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final Out out,
 			final List<FunctionField<?>> fields)

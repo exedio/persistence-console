@@ -27,6 +27,7 @@ import com.exedio.cope.EnumField;
 
 final class Enums_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void write(
 			final Out out,
 			final EnumsCop cop,

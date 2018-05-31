@@ -25,6 +25,7 @@ import com.exedio.cope.Feature;
 
 final class Hidden_Jspm
 {
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(final Out out, final Map<Feature, Feature> hiddenFeatures)
 	{
 		%>
