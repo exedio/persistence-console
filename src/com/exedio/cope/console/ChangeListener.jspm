@@ -57,6 +57,7 @@ final class ChangeListener_Jspm
 		<table>
 			<caption>Dispatcher</caption><%
 
+		//noinspection IfStatementWithIdenticalBranches OK: just a </td></tr>
 		if(dispatcherInfo!=null)
 		{
 			%>
