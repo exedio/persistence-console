@@ -34,6 +34,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+@SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType")
 final class RevisionLine
 {
 	final int number;
