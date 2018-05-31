@@ -149,7 +149,8 @@ public class ConsoleServlet extends CopsServlet
 	final void connect()
 	{
 		if(connectToken==null || connectToken.isReturned())
-			connectToken = ConnectToken.issue(model, "servlet \"" + getServletName() + "\" (" + toString() + ')');
+			//noinspection ObjectToString OK: shows identity of servlet
+			connectToken = ConnectToken.issue(model, "servlet \"" + getServletName() + "\" (" + this + ')');
 	}
 
 	final boolean willBeReturned(final ConnectToken token)
