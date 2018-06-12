@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Console_Jspm.writeToggle;
+import static com.exedio.cope.console.VmCop.shortGit;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,7 +36,7 @@ final class Vm_Jspm
 		if(title!=null)
 			values.put("Title", title);
 		if(version!=null)
-			values.put("Version", version);
+			values.put("Version", shortGit(version));
 		if(vendor!=null)
 			values.put("Vendor", vendor);
 
@@ -122,8 +123,8 @@ final class Vm_Jspm
 						%><%=p.getName()%><%
 					}
 				%></th>
-				<td class="text"><% if(spec!=null) { %><%=spec%><% } %></td>
-				<td class="text"><% if(impl!=null) { %><%=impl%><% } %></td>
+				<td class="text"><% if(spec!=null) { %><%=shortGit(spec)%><% } %></td>
+				<td class="text"><% if(impl!=null) { %><%=shortGit(impl)%><% } %></td>
 			</tr><%
 	}
 

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 final class VmCop extends ConsoleCop<Void>
@@ -98,4 +99,12 @@ final class VmCop extends ConsoleCop<Void>
 
 		Vm_Jspm.writeBody(out, this, new ArrayList<>(jarMap.values()));
 	}
+
+	static String shortGit(final String version)
+	{
+		return versionPattern.matcher(version).replaceAll("$1");
+	}
+
+	private static final Pattern versionPattern =
+			Pattern.compile("\\b([0-9,a-f]{7})[0-9,a-f]{33}\\b");
 }
