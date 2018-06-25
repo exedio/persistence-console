@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeSet;
 
 final class Vm_Jspm
@@ -99,9 +100,20 @@ final class Vm_Jspm
 			final String impl = p.getImplementationVersion();
 			%>
 			<tr>
-				<th><%=p.getName()%></th>
+				<th><%=p.getName()%></th><%
+
+			if(Objects.equals(spec, impl))
+			{
+				%>
+				<td class="text" colspan="2"><% if(spec!=null) { %><%=shortGit(spec)%><% } %></td><%
+			}
+			else
+			{
+				%>
 				<td class="text"><% if(spec!=null) { %><%=shortGit(spec)%><% } %></td>
-				<td class="text"><% if(impl!=null) { %><%=shortGit(impl)%><% } %></td>
+				<td class="text"><% if(impl!=null) { %><%=shortGit(impl)%><% } %></td><%
+			}
+			%>
 			</tr><%
 	}
 
