@@ -97,7 +97,9 @@ final class VmCop extends ConsoleCop<Void>
 			jarMap.computeIfAbsent(key, k -> new TreeSet<>(COMPARATOR)).add(pack);
 		}
 
-		Vm_Jspm.writeBody(out, this, new ArrayList<>(jarMap.values()));
+		final ArrayList<TreeSet<Package>> jarList = new ArrayList<>(jarMap.values());
+		jarList.sort(Comparator.comparing(a -> a.iterator().next().getName()));
+		Vm_Jspm.writeBody(out, this, jarList);
 	}
 
 	static String shortGit(final String version)

@@ -66,19 +66,10 @@ final class Vm_Jspm
 	private static void writeDetailed(final Out out, final TreeSet<Package> jar)
 	{
 			final Package p = jar.iterator().next();
-
-			final String name;
-			if(p.getSpecificationTitle()!=null)
-				name = p.getSpecificationTitle();
-			else if(p.getImplementationTitle()!=null)
-				name = p.getImplementationTitle();
-			else
-				name = jar.iterator().next().getName();
-
 			%>
 			<tr>
 				<td colspan="2"></td>
-				<th><%=name%></th>
+				<th><%=p.getName()%></th>
 			</tr><%
 			write(out, "Specification",  p.getSpecificationTitle(),  p.getSpecificationVersion(),  p.getSpecificationVendor());
 			write(out, "Implementation", p.getImplementationTitle(), p.getImplementationVersion(), p.getImplementationVendor());
@@ -108,21 +99,7 @@ final class Vm_Jspm
 			final String impl = p.getImplementationVersion();
 			%>
 			<tr>
-				<th><%
-
-					if(p.getSpecificationTitle()!=null)
-					{
-						%><%=p.getSpecificationTitle()%><%
-					}
-					else if(p.getImplementationTitle()!=null)
-					{
-						%><%=p.getImplementationTitle()%><%
-					}
-					else
-					{
-						%><%=p.getName()%><%
-					}
-				%></th>
+				<th><%=p.getName()%></th>
 				<td class="text"><% if(spec!=null) { %><%=shortGit(spec)%><% } %></td>
 				<td class="text"><% if(impl!=null) { %><%=shortGit(impl)%><% } %></td>
 			</tr><%
