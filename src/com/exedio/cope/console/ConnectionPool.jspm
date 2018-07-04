@@ -74,6 +74,10 @@ final class ConnectionPool_Jspm
 				<td><%=format(poolCounter.getPutCounter())%></td>
 			</tr>
 			<tr>
+				<th colspan="2">Get - Put</th>
+				<td><%=format(poolCounter.getGetCounter() - poolCounter.getPutCounter())%></td>
+			</tr>
+			<tr>
 				<th rowspan="2">Invalid On</th>
 				<th>Get</th>
 				<td><%=format(info.getInvalidOnGet())%></td>
