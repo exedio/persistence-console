@@ -74,6 +74,17 @@ final class Out extends OutBasic
 		bf.print(c);
 	}
 
+	void write(final Consumer b)
+	{
+		b.accept(this);
+	}
+
+	@FunctionalInterface
+	interface Consumer
+	{
+		void accept(Out t);
+	}
+
 	void write(final boolean b)
 	{
 		bf.print(b);

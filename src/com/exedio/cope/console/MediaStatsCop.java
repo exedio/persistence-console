@@ -318,7 +318,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 			"ratio",
 		};
 
-	static String[] format(final MediaSummary summary)
+	static Out.Consumer[] format(final MediaSummary summary)
 	{
 		return format(new int[]{
 				summary.getRedirectFrom(),
@@ -332,10 +332,15 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				summary.getNotComputable(),
 				summary.getNotModified(),
 				summary.getDelivered()
-		});
+		},
+				null,
+				null,
+				new MediaErrorLogCop.Kind[11]);
 	}
 
-	static String[] format(final MediaInfo info)
+	static Out.Consumer[] format(
+			final MediaInfo info,
+			final ConsoleCop<?> cop)
 	{
 		return format(new int[]{
 				info.getRedirectFrom(),
@@ -349,15 +354,50 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				info.getNotComputable(),
 				info.getNotModified(),
 				info.getDelivered()
+		},
+				cop,
+				info.getPath(),
+		new MediaErrorLogCop.Kind[]{
+				null,
+				MediaErrorLogCop.Kind.Exception,
+				MediaErrorLogCop.Kind.InvalidSpecial,
+				MediaErrorLogCop.Kind.GuessedUrl,
+				MediaErrorLogCop.Kind.NotAnItem,
+				MediaErrorLogCop.Kind.NoSuchItem,
+				null,
+				MediaErrorLogCop.Kind.IsNull,
+				MediaErrorLogCop.Kind.NotComputable,
+				null,
+				null,
 		});
 	}
 
-	private static String[] format(final int[] numbers)
+	private static Out.Consumer[] format(
+			final int[] numbers,
+			final ConsoleCop<?> cop,
+			final MediaPath path,
+			final MediaErrorLogCop.Kind[] errorKinds)
 	{
 		final int length = numbers.length;
-		final String[] result = new String[length];
+		assert length==errorKinds.length;
+		final Out.Consumer[] result = new Out.Consumer[length];
 		for(int i = 0; i<length; i++)
-			result[i] = Format.formatAndHide(0, numbers[i]);
+		{
+			final MediaErrorLogCop.Kind errorKind = errorKinds[i];
+			final int number = numbers[i];
+			result[i] = out ->
+			{
+				if(errorKind!=null)
+				{
+					out.writeStatic("<a href=\"");
+					out.write(cop.toMediaErrorLog(errorKind, path));
+					out.writeStatic("\">");
+				}
+				out.writeStatic(Format.formatAndHide(0, number));
+				if(errorKind!=null)
+					out.writeStatic("</a>");
+			};
+		}
 		return result;
 	}
 
@@ -399,5 +439,10 @@ final class MediaStatsCop extends ConsoleCop<Void>
 					prefix = contentType.substring(0, pos+1);
 			}
 		}
+	}
+
+	MediaErrorLogCop toNoSuchPath()
+	{
+		return MediaErrorLogCop.noSuchPath(args);
 	}
 }

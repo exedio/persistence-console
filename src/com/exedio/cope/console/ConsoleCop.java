@@ -165,6 +165,13 @@ abstract class ConsoleCop<S> extends Cop
 		return new MediaCop(args, media);
 	}
 
+	MediaErrorLogCop toMediaErrorLog(
+			final MediaErrorLogCop.Kind kind,
+			final MediaPath media)
+	{
+		return new MediaErrorLogCop(args, kind, media);
+	}
+
 	int getResponseStatus()
 	{
 		return HttpServletResponse.SC_OK;
@@ -371,6 +378,8 @@ abstract class ConsoleCop<S> extends Cop
 				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.guessingPrevented, request);
 			case MediaStatsCop.TAB_FINGER_PRINTING:
 				return MediaStatsCop.getMediaStatsCop(args, MediaStatsCop.Variant.fingerprint, request);
+			case MediaErrorLogCop.TAB:
+				return MediaErrorLogCop.getMediaErrorLogCop(model, args, request);
 			case MediaTestableCop.TAB:
 				return new MediaTestableCop(args, new TestCop.TestArgs(request));
 			case MediaTypeCop.TAB:

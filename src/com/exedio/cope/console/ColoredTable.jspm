@@ -89,6 +89,15 @@ final class ColoredTable_Jspm
 			}
 	}
 
+	static void writeData(final Out out, final Out.Consumer[] data)
+	{
+			for(int i = 0; i<data.length; i++)
+			{
+			%>
+				<td class="color<%= i%COLORS %>"><%=data[i]%></td><%
+			}
+	}
+
 	private ColoredTable_Jspm()
 	{
 		// prevent instantiation

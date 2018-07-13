@@ -220,15 +220,6 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		final Model model = out.model;
 
 		Media_Jspm.writeStats(out, this, media.getInfo());
-		Media_Jspm.writeErrorLogs(out, "No Such Path"   , MediaPath.getNoSuchPathLogs());
-		Media_Jspm.writeErrorLogs(out, "Exception"      , media.getExceptionLogs());
-		Media_Jspm.writeErrorLogs(out, "Invalid Special", media.getInvalidSpecialLogs());
-		Media_Jspm.writeErrorLogs(out, "Guessed Url"    , media.getGuessedUrlLogs());
-		Media_Jspm.writeErrorLogs(out, "Not An Item"    , media.getNotAnItemLogs());
-		Media_Jspm.writeErrorLogs(out, "No Such Item"   , media.getNoSuchItemLogs());
-		Media_Jspm.writeErrorLogs(out, "Is Null"        , media.getIsNullLogs());
-		Media_Jspm.writeErrorLogs(out, "Not Computable" , media.getNotComputableLogs());
-		Media_Jspm.writeHorizontalRule(out);
 
 		{
 			final List<String> prefixes = out.getMediaURLPrefixes();

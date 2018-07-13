@@ -56,7 +56,10 @@ final class Media_Jspm
 		%>
 		<table id="coloredTable">
 			<caption>Statistics</caption>
-			<tr><th colspan="<%=tableColumns%>">No Such Path (404)</th><td><%=format(MediaPath.getNoSuchPath())%></td></tr><%
+			<tr>
+				<th colspan="<%=tableColumns%>">No Such Path (404)</th>
+				<td><a href="<%=cop.toNoSuchPath()%>"><%=format(MediaPath.getNoSuchPath())%></a></td>
+			</tr><%
 			MediaStatsCop.writeTableHeader(out);
 
 			if(isUrlGuessingNotSecure)
@@ -98,7 +101,7 @@ final class Media_Jspm
 				final String name = path.getName();
 				%>
 			<tr><%
-				ColoredTable_Jspm.writeData(out, format(info));
+				ColoredTable_Jspm.writeData(out, format(info, cop));
 				%>
 				<td class="color1"><%=ratio(info.getNotModified(), info.getDelivered())%></td>
 				<td class="text"><%=type%></td>
@@ -315,15 +318,10 @@ final class Media_Jspm
 
 	static void writeErrorLogs(
 				final Out out,
-				final String caption,
 				final List<MediaRequestLog> logs)
 	{
-		if(logs.isEmpty())
-			return;
-
 		%>
 		<table>
-			<caption><%=caption%></caption>
 			<tr>
 				<th>#</th>
 				<th>Date</th>
