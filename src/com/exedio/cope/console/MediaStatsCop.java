@@ -31,8 +31,12 @@ import com.exedio.cope.pattern.MediaInfo;
 import com.exedio.cope.pattern.MediaPath;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.TreeSet;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.ToIntFunction;
 import javax.servlet.http.HttpServletRequest;
 
 final class MediaStatsCop extends ConsoleCop<Void>
@@ -268,7 +272,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 				// disable warning about incomplete switch
 				break;
 		}
-		Media_Jspm.writeBody(this, out, shortNames.length+1, isUrlGuessingNotSecure, infos, summary);
+		Media_Jspm.writeBody(this, out, Column.values().length+1, isUrlGuessingNotSecure, infos, summary);
 	}
 
 	private static double limitRamp(final double ramp)
@@ -281,124 +285,105 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		return ramp;
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeTableHeader(final Out out)
 	{
+		final String[] shortNames = new String[Column.values().length];
+		for(final Column c : Column.values())
+			shortNames[c.ordinal()] = c.shortName;
+
+		final String[] otherNames = {
+				"Type",
+				"Name",
+				"Description"
+		};
+
+		final String[] names = new String[Column.values().length + otherNames.length];
+		for(final Column c : Column.values())
+			names[c.ordinal()] = c.name;
+		for(int i = 0; i<otherNames.length; i++)
+			names[i + Column.values().length] = otherNames[i];
+
 		ColoredTable_Jspm.writeHeader(out, names, shortNames);
 	}
 
-	private static final String[] names = {
-			"Redirect From (301)",
-			"Exception (500)",
-			"Invalid Special (404)",
-			"Guessed Url (404)",
-			"Not An Item (404)",
-			"No Such Item (404)",
-			"Moved (301)",
-			"Is Null (404)",
-			"Not Computable (404)",
-			"Not Modified (304)",
-			"Delivered (200/301)",
-			"log<sub>10</sub> Not Modified / Delivered",
-			"Type",
-			"Name",
-			"Description",
-		};
-	private static final String[] shortNames = {
-			"rf",
-			"ex",
-			"is",
-			"gss",
-			"nai",
-			"nsi",
-			"mv",
-			"in",
-			"nc",
-			"nm",
-			"del",
-			"ratio",
-		};
-
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static Out.Consumer[] format(final MediaSummary summary)
 	{
-		return format(new int[]{
-				summary.getRedirectFrom(),
-				summary.getException(),
-				summary.getInvalidSpecial(),
-				summary.getGuessedUrl(),
-				summary.getNotAnItem(),
-				summary.getNoSuchItem(),
-				summary.getMoved(),
-				summary.getIsNull(),
-				summary.getNotComputable(),
-				summary.getNotModified(),
-				summary.getDelivered()
-		},
-				null,
-				null,
-				new MediaErrorLogCop.Kind[11]);
+		final Out.Consumer[] result = new Out.Consumer[Column.values().length];
+		Arrays.setAll(result, i -> Column.values()[i].summary.apply(summary));
+		return result;
 	}
 
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static Out.Consumer[] format(
 			final MediaInfo info,
 			final ConsoleCop<?> cop)
 	{
-		return format(new int[]{
-				info.getRedirectFrom(),
-				info.getException(),
-				info.getInvalidSpecial(),
-				info.getGuessedUrl(),
-				info.getNotAnItem(),
-				info.getNoSuchItem(),
-				info.getMoved(),
-				info.getIsNull(),
-				info.getNotComputable(),
-				info.getNotModified(),
-				info.getDelivered()
-		},
-				cop,
-				info.getPath(),
-		new MediaErrorLogCop.Kind[]{
-				null,
-				MediaErrorLogCop.Kind.Exception,
-				MediaErrorLogCop.Kind.InvalidSpecial,
-				MediaErrorLogCop.Kind.GuessedUrl,
-				MediaErrorLogCop.Kind.NotAnItem,
-				MediaErrorLogCop.Kind.NoSuchItem,
-				null,
-				MediaErrorLogCop.Kind.IsNull,
-				MediaErrorLogCop.Kind.NotComputable,
-				null,
-				null,
-		});
+		final Out.Consumer[] result = new Out.Consumer[Column.values().length];
+		Arrays.setAll(result, i -> Column.values()[i].info.apply(info, cop));
+		return result;
 	}
 
-	private static Out.Consumer[] format(
-			final int[] numbers,
-			final ConsoleCop<?> cop,
-			final MediaPath path,
-			final MediaErrorLogCop.Kind[] errorKinds)
+	private enum Column
 	{
-		final int length = numbers.length;
-		assert length==errorKinds.length;
-		final Out.Consumer[] result = new Out.Consumer[length];
-		for(int i = 0; i<length; i++)
+		RedirectFrom  ("Redirect From (301)",   "rf",  MediaSummary::getRedirectFrom,   MediaInfo::getRedirectFrom,   null),
+		Exception     ("Exception (500)",       "ex",  MediaSummary::getException,      MediaInfo::getException,      MediaErrorLogCop.Kind.Exception),
+		InvalidSpecial("Invalid Special (404)", "is",  MediaSummary::getInvalidSpecial, MediaInfo::getInvalidSpecial, MediaErrorLogCop.Kind.InvalidSpecial),
+		GuessedUrl    ("Guessed Url (404)",     "gss", MediaSummary::getGuessedUrl,     MediaInfo::getGuessedUrl,     MediaErrorLogCop.Kind.GuessedUrl),
+		NotAnItem     ("Not An Item (404)",     "nai", MediaSummary::getNotAnItem,      MediaInfo::getNotAnItem,      MediaErrorLogCop.Kind.NotAnItem),
+		NoSuchItem    ("No Such Item (404)",    "nsi", MediaSummary::getNoSuchItem,     MediaInfo::getNoSuchItem,     MediaErrorLogCop.Kind.NoSuchItem),
+		Moved         ("Moved (301)",           "mv",  MediaSummary::getMoved,          MediaInfo::getMoved,          null),
+		IsNull        ("Is Null (404)",         "in",  MediaSummary::getIsNull,         MediaInfo::getIsNull,         MediaErrorLogCop.Kind.IsNull),
+		NotComputable ("Not Computable (404)",  "nc",  MediaSummary::getNotComputable,  MediaInfo::getNotComputable,  MediaErrorLogCop.Kind.NotComputable),
+		NotModified   ("Not Modified (304)",    "nm",  MediaSummary::getNotModified,    MediaInfo::getNotModified,    null),
+		Delivered     ("Delivered (200/301)",   "del", MediaSummary::getDelivered,      MediaInfo::getDelivered,      null),
+		Ratio("log<sub>10</sub> Not Modified / Delivered", "ratio",
+			s ->
+					out -> out.write(Format.ratio(s.getNotModified(), s.getDelivered())),
+			(i,cop) ->
+					out -> out.write(Format.ratio(i.getNotModified(), i.getDelivered())));
+
+		final String name;
+		final String shortName;
+		final Function<MediaSummary,Out.Consumer> summary;
+		final BiFunction<MediaInfo,ConsoleCop<?>,Out.Consumer> info;
+
+		Column(
+				final String name,
+				final String shortName,
+				final Function<MediaSummary,Out.Consumer> summary,
+				final BiFunction<MediaInfo,ConsoleCop<?>,Out.Consumer> info)
 		{
-			final MediaErrorLogCop.Kind errorKind = errorKinds[i];
-			final int number = numbers[i];
-			result[i] = out ->
+			this.name = name;
+			this.shortName = shortName;
+			this.summary = summary;
+			this.info = info;
+		}
+
+		Column(
+				final String name,
+				final String shortName,
+				final ToIntFunction<MediaSummary> summary,
+				final ToIntFunction<MediaInfo> info,
+				final MediaErrorLogCop.Kind errorKind)
+		{
+			this.name = name;
+			this.shortName = shortName;
+			this.summary = s -> out -> out.writeStatic(Format.formatAndHide(0, summary.applyAsInt(s)));
+			this.info = (i,cop) -> out ->
 			{
 				if(errorKind!=null)
 				{
 					out.writeStatic("<a href=\"");
-					out.write(cop.toMediaErrorLog(errorKind, path));
+					out.write(cop.toMediaErrorLog(errorKind, i.getPath()));
 					out.writeStatic("\">");
 				}
-				out.writeStatic(Format.formatAndHide(0, number));
+				out.writeStatic(Format.formatAndHide(0, info.applyAsInt(i)));
 				if(errorKind!=null)
 					out.writeStatic("</a>");
 			};
 		}
-		return result;
 	}
 
 	private static void collapse(final TreeSet<String> contentTypes, final String r, final String a, final String b)
