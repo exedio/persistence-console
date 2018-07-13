@@ -309,13 +309,6 @@ final class Media_Jspm
 		}
 	}
 
-	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-	static void writeHorizontalRule(final Out out)
-	{
-		%>
-		<hr><%
-	}
-
 	static void writeErrorLogs(
 				final Out out,
 				final List<MediaRequestLog> logs)
@@ -398,7 +391,8 @@ final class Media_Jspm
 				writeMediaURLPrefix(out, cop, activePrefix, prefix);
 
 		%>
-		</ul><%
+		</ul>
+		<hr><%
 	}
 
 	private static void writeMediaURLPrefix(

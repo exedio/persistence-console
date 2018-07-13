@@ -224,10 +224,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		{
 			final List<String> prefixes = out.getMediaURLPrefixes();
 			if(!prefixes.isEmpty())
-			{
 				Media_Jspm.writeMediaURLPrefixes(out, this, args.mediaURLPrefix, prefixes);
-				Media_Jspm.writeHorizontalRule(out);
-			}
 		}
 
 		try(TransactionTry tx = model.startTransactionTry("Console Media list"))
