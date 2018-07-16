@@ -26,6 +26,7 @@
 					<attribute name="Class-Path" value="@{classpath}" />
 				</manifest>
 			</jar>
+			<plot file="@{jarfile}" />
 		</sequential>
 	</macrodef>
 

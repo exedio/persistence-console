@@ -70,6 +70,18 @@ timestamps
 						usePreviousBuildAsReference: false,
 						useStableBuildAsReference: false])
 				archive 'build/success/*'
+				step([$class: 'PlotBuilder',
+						csvFileName: 'plots.csv',
+						exclZero: false,
+						keepRecords: false,
+						group: 'Sizes',
+						title: 'exedio-cope-console.jar',
+						numBuilds: '1000',
+						style: 'line',
+						useDescr: false,
+						propertiesSeries:
+							[[ file: 'build/exedio-cope-console.jar-plot.properties', label: 'exedio-cope-console.jar' ]],
+				])
 			}
 		}
 		catch(Exception e)
