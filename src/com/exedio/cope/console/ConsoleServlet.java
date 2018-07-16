@@ -77,10 +77,8 @@ public class ConsoleServlet extends CopsServlet
 
 	private static final long serialVersionUID = 1l;
 
-	@SuppressWarnings("NonSerializableFieldInSerializableClass")
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
 	private Stores stores = null;
-	@SuppressWarnings("NonSerializableFieldInSerializableClass")
 	@SuppressFBWarnings({"SE_BAD_FIELD","MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})
 	private ConnectToken connectToken = null;
 	@SuppressFBWarnings({"MSF_MUTABLE_SERVLET_FIELD","MTIA_SUSPECT_SERVLET_INSTANCE_FIELD"})

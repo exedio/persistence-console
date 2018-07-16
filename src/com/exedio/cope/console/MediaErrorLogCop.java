@@ -102,7 +102,6 @@ final class MediaErrorLogCop extends ConsoleCop<Void>
 		NotComputable ("Not Computable" , MediaPath::getNotComputableLogs);
 
 		final String caption;
-		@SuppressWarnings("NonSerializableFieldInSerializableClass")
 		final Function<MediaPath,List<MediaRequestLog>> logs;
 
 		Kind(
