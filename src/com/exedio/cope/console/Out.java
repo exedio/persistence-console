@@ -30,6 +30,7 @@ import com.exedio.dsmf.Node;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -156,6 +157,16 @@ final class Out extends OutBasic
 			( (now-yearInterval) < dateMillis && dateMillis < (now+yearInterval) )
 			? yearFormat : fullDateFormat).format(date);
 	}
+
+	void writeRatio(final long dividend, final long divisor)
+	{
+		if(dividend<0 || divisor<0)
+			writeStatic("<0");
+		else if(divisor!=0)
+			writeStatic(RATIO_FORMAT.format(Math.log10(((double)dividend) / ((double)divisor))));
+	}
+
+	private final DecimalFormat RATIO_FORMAT = new DecimalFormat("###0.00");
 
 	void write(final Thread.State state)
 	{

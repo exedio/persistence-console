@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Console_Jspm.writeToggle;
 import static com.exedio.cope.console.Format.formatAndHide;
-import static com.exedio.cope.console.Format.ratio;
 
 import com.exedio.cope.ItemCacheInfo;
 import com.exedio.cope.ItemCacheStatistics;
@@ -63,10 +62,10 @@ final class ItemCache_Jspm
 			<tr>
 				<td class="a"><%=formatAndHide(0, statistics.getLimit())%></td>
 				<td class="a"><%=formatAndHide(0, statistics.getLevel())%></td>
-				<td class="a"><%=ratio(statistics.getLimit(), statistics.getLevel())%></td>
+				<td class="a"><% out.writeRatio(statistics.getLimit(), statistics.getLevel()); %></td>
 				<td class="b"><%=formatAndHide(0, statistics.getSummarizedHits())%></td>
 				<td class="b"><%=formatAndHide(0, statistics.getSummarizedMisses())%></td>
-				<td class="b"><%=ratio(statistics.getSummarizedHits(), statistics.getSummarizedMisses())%></td>
+				<td class="b"><% out.writeRatio(statistics.getSummarizedHits(), statistics.getSummarizedMisses()); %></td>
 				<td class="a"><%=formatAndHide(0, statistics.getSummarizedConcurrentLoads())%></td>
 				<td class="b"><%=formatAndHide(0, statistics.getSummarizedReplacements())%></td>
 				<td class="a"><%=formatAndHide(0, statistics.getSummarizedInvalidationsOrdered())%></td>
@@ -87,7 +86,7 @@ final class ItemCache_Jspm
 				<td class="notavailable"></td>
 				<td class="b"><%=formatAndHide(0, info.getHits())%></td>
 				<td class="b"><%=formatAndHide(0, info.getMisses())%></td>
-				<td class="b"><%=ratio(info.getHits(), info.getMisses())%></td>
+				<td class="b"><% out.writeRatio(info.getHits(), info.getMisses()); %></td>
 				<td class="a"><%=formatAndHide(0, info.getConcurrentLoads())%></td>
 				<td class="b"><%=formatAndHide(0, info.getReplacementsL())%></td>
 				<td class="a"><%=formatAndHide(0, info.getInvalidationsOrdered())%></td>

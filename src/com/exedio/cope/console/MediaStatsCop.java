@@ -340,9 +340,9 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		Delivered     ("Delivered (200/301)",   "del", MediaSummary::getDelivered,      MediaInfo::getDelivered,      null),
 		Ratio("log<sub>10</sub> Not Modified / Delivered", "ratio",
 			s ->
-					out -> out.write(Format.ratio(s.getNotModified(), s.getDelivered())),
+					out -> out.writeRatio(s.getNotModified(), s.getDelivered()),
 			(i,cop) ->
-					out -> out.write(Format.ratio(i.getNotModified(), i.getDelivered())));
+					out -> out.writeRatio(i.getNotModified(), i.getDelivered()));
 
 		final String name;
 		final String shortName;

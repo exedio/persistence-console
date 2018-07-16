@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ConsoleCop.writePager;
 import static com.exedio.cope.console.Format.format;
-import static com.exedio.cope.console.Format.ratio;
 import static com.exedio.cope.console.TransactionCop.CLEAR;
 import static com.exedio.cope.console.TransactionCop.DISABLE;
 import static com.exedio.cope.console.TransactionCop.ENABLE;
@@ -85,14 +84,14 @@ final class Transaction_Jspm
 				<td><%=format(transactionCounters.getCommit())%></td>
 				<td><%=format(transactionCounters.getCommitWithoutConnection())%></td>
 				<td><%=format(transactionCounters.getCommitWithConnection())%></td>
-				<td><%=ratio(transactionCounters.getCommitWithoutConnection(), transactionCounters.getCommitWithConnection())%></td>
+				<td><% out.writeRatio(transactionCounters.getCommitWithoutConnection(), transactionCounters.getCommitWithConnection()); %></td>
 			</tr>
 			<tr>
 				<th>Rollback</th>
 				<td><%=format(transactionCounters.getRollback())%></td>
 				<td><%=format(transactionCounters.getRollbackWithoutConnection())%></td>
 				<td><%=format(transactionCounters.getRollbackWithConnection())%></td>
-				<td><%=ratio(transactionCounters.getRollbackWithoutConnection(), transactionCounters.getRollbackWithConnection())%></td>
+				<td><% out.writeRatio(transactionCounters.getRollbackWithoutConnection(), transactionCounters.getRollbackWithConnection()); %></td>
 			</tr>
 		</table>
 		<%

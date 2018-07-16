@@ -58,19 +58,6 @@ final class Format
 		return /*("["+hidden+']') +*/ (number!=hidden ? format(number) : "");
 	}
 
-	private static final DecimalFormat RATIO_FORMAT = new DecimalFormat("###0.00");
-
-	static String ratio(final long dividend, final long divisor)
-	{
-		if(dividend<0 || divisor<0)
-			return "<0";
-		if(divisor==0)
-			return "";
-
-		//noinspection AccessToNonThreadSafeStaticField TODO
-		return RATIO_FORMAT.format(Math.log10(((double)dividend) / ((double)divisor)));
-	}
-
 	private static String hs(String s, final String... keywords)
 	{
 		for(final String keyword : keywords)

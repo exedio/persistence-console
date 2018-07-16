@@ -22,7 +22,6 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.Console_Jspm.writeToggle;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.Format.formatAndHide;
-import static com.exedio.cope.console.Format.ratio;
 import static com.exedio.cope.console.QueryCacheCop.CLEAR;
 import static com.exedio.cope.console.QueryCacheCop.HISTOGRAM_LIMIT;
 
@@ -49,7 +48,7 @@ final class QueryCache_Jspm
 			<tr><th colspan="2">Concurrent Loads</th><td><%=format(info.getConcurrentLoads())%></td></tr>
 			<tr><th colspan="2">Replacements</th><td><%=format(info.getReplacements())%></td></tr>
 			<tr><th colspan="2">Invalidations</th><td><%=format(info.getInvalidations())%></td></tr>
-			<tr><th colspan="2">log<sub>10</sub> Hits/Misses</th><td><%=ratio(hits, misses)%></td></tr>
+			<tr><th colspan="2">log<sub>10</sub> Hits/Misses</th><td><% out.writeRatio(hits, misses); %></td></tr>
 			<tr><th colspan="2">Hits</th><td><%=  format(hits)  %></td></tr>
 			<tr><th colspan="2">Misses</th><td><%=format(misses)%></td></tr>
 			<tr><th rowspan="3">Stamps</th><th>Size</th><td><%=format(info.getStampsSize())%></td></tr>
