@@ -7,7 +7,7 @@ _________________________________________
 
 This work is licensed under a
 Creative Commons Attribution 2.5 License.
-[ http://creativecommons.org/licenses/by/2.5/ ]
+[ https://creativecommons.org/licenses/by/2.5/ ]
 
 This means you may use it for any purpose,
 and make any changes you like.
