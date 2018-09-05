@@ -204,6 +204,7 @@ abstract class ConsoleCop<S> extends Cop
 					new EmptyStringFieldCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
+					new DispatcherFailureDeprecatedCop(args, testArgs),
 					new CharacterNulCop(args, testArgs),
 					new SavepointCop(args),
 					new PurgeCop(args),
@@ -334,6 +335,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new UpdateCounterCop(args, new TestCop.TestArgs(request));
 			case CopyConstraintCop.TAB:
 				return new CopyConstraintCop(args, new TestCop.TestArgs(request));
+			case DispatcherFailureDeprecatedCop.TAB:
+				return new DispatcherFailureDeprecatedCop(args, new TestCop.TestArgs(request));
 			case CharacterNulCop.TAB:
 				return new CharacterNulCop(args, new TestCop.TestArgs(request));
 			case ConnectCop.TAB:

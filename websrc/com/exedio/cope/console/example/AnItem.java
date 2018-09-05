@@ -25,6 +25,8 @@ import com.exedio.cope.EnumField;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
+import com.exedio.cope.pattern.Dispatchable;
+import com.exedio.cope.pattern.Dispatcher;
 import com.exedio.cope.util.Day;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +34,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
-public class AnItem extends Item
+public class AnItem extends Item implements Dispatchable
 {
 	static final StringField aField = new StringField();
 
@@ -69,6 +71,11 @@ public class AnItem extends Item
 	int nonTransientField = 0;
 	Map<String, List<Integer>> nonTransientField2 = null;
 	Item serializable = null;
+
+	static final Dispatcher dispatcher = new Dispatcher();
+
+	@Override
+	public void dispatch(final Dispatcher dispatcher) {}
 
 
 	/**
@@ -374,6 +381,117 @@ public class AnItem extends Item
 	final void touchDefaultBadDay(final java.util.TimeZone zone)
 	{
 		AnItem.defaultBadDay.touch(this,zone);
+	}
+
+	/**
+	 * Dispatch by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="dispatch")
+	static final void dispatchDispatcher(final com.exedio.cope.pattern.Dispatcher.Config config,final com.exedio.cope.util.JobContext ctx)
+	{
+		AnItem.dispatcher.dispatch(AnItem.class,config,ctx);
+	}
+
+	/**
+	 * Dispatch by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="dispatch")
+	static final void dispatchDispatcher(final com.exedio.cope.pattern.Dispatcher.Config config,final java.lang.Runnable probe,final com.exedio.cope.util.JobContext ctx)
+	{
+		AnItem.dispatcher.dispatch(AnItem.class,config,probe,ctx);
+	}
+
+	/**
+	 * Returns, whether this item is yet to be dispatched by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isPending")
+	final boolean isDispatcherPending()
+	{
+		return AnItem.dispatcher.isPending(this);
+	}
+
+	/**
+	 * Sets whether this item is yet to be dispatched by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setPending")
+	final void setDispatcherPending(final boolean pending)
+	{
+		AnItem.dispatcher.setPending(this,pending);
+	}
+
+	/**
+	 * Returns, whether this item is allowed to be purged by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isNoPurge")
+	final boolean isDispatcherNoPurge()
+	{
+		return AnItem.dispatcher.isNoPurge(this);
+	}
+
+	/**
+	 * Sets whether this item is allowed to be purged by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setNoPurge")
+	final void setDispatcherNoPurge(final boolean noPurge)
+	{
+		AnItem.dispatcher.setNoPurge(this,noPurge);
+	}
+
+	/**
+	 * Returns the date, this item was last successfully dispatched by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLastSuccessDate")
+	final java.util.Date getDispatcherLastSuccessDate()
+	{
+		return AnItem.dispatcher.getLastSuccessDate(this);
+	}
+
+	/**
+	 * Returns the milliseconds, this item needed to be last successfully dispatched by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLastSuccessElapsed")
+	final java.lang.Long getDispatcherLastSuccessElapsed()
+	{
+		return AnItem.dispatcher.getLastSuccessElapsed(this);
+	}
+
+	/**
+	 * Returns the attempts to dispatch this item by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getRuns")
+	final java.util.List<com.exedio.cope.pattern.Dispatcher.Run> getDispatcherRuns()
+	{
+		return AnItem.dispatcher.getRuns(this);
+	}
+
+	/**
+	 * Returns the failed attempts to dispatch this item by {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getFailures")
+	final java.util.List<com.exedio.cope.pattern.Dispatcher.Run> getDispatcherFailures()
+	{
+		return AnItem.dispatcher.getFailures(this);
+	}
+
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="purge")
+	static final void purgeDispatcher(final com.exedio.cope.pattern.DispatcherPurgeProperties properties,final com.exedio.cope.util.JobContext ctx)
+	{
+		AnItem.dispatcher.purge(properties,ctx);
+	}
+
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="purge")
+	static final void purgeDispatcher(final com.exedio.cope.pattern.DispatcherPurgeProperties properties,final com.exedio.cope.Condition restriction,final com.exedio.cope.util.JobContext ctx)
+	{
+		AnItem.dispatcher.purge(properties,restriction,ctx);
+	}
+
+	/**
+	 * Returns the parent field of the run type of {@link #dispatcher}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="RunParent")
+	static final com.exedio.cope.ItemField<AnItem> dispatcherRunParent()
+	{
+		return AnItem.dispatcher.getRunParent(AnItem.class);
 	}
 
 	@javax.annotation.Generated("com.exedio.cope.instrument")
