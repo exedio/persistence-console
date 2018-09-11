@@ -7,6 +7,149 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* DayField constrains value range to between Jan 1st, 1600 and Dec 31st, 9999.
+	This heavily affects database schema, except on MySQL.
+* Jar files for dialects split off exedio-cope.jar.
+	At least one of exedio-cope-[hsqldb|mysql|oracle|postgresql].jar is needed at runtime.
+* ColorField#bind added.
+* The instrumentor no longer uses an interpreter, but now extracts a selection of the source code (called "interim code")
+	and compiles that. Interim code includes:
+	* classes that inherit a @WrapType annotation (i.e. items, composites and blocks)
+	* in these, static variables whose type has a @WrapFeature annotation
+	* classes, variables and methods that have a @WrapInterim annotation
+	* classes and enums that are part of the type of interim variables
+	* interface implemenation relations where the interface has a @WrapImplementsInterim annotation
+	Interim code must compile without the rest of the project code. Use @WrapInterim and @WrapImplementsInterim to add
+	code.
+	This removes the instrument-time dependency on bsh.core.
+* Access to ignored fields (annotated with @WrapperIgnore) in feature initialization no longer supported.
+	Use @Wrapper(wrap="*", visibility=NONE) instead.
+* EnvironmentInfo#getDriverClass added.
+* Hash#getPlainTextValidator added.
+* Choice constraint added.
+	Implements the "default address" scenario using copy constraints.
+	Call ItemField#choice to create a choice constraint.
+	Breaks backwards API compatibility of CopyConstraint#getCopy(),
+	if choice constraints are present within your model.
+	Then updates of copeview and outliner are required.
+* drop support for instrumentor control via javadoc tags
+	* to upgrade a project that uses tags, first upgrade cope to build 9741
+	* these instrumentor parameters that are no longer supported:
+		* configByTags (now always "ignore")
+		 (the below were only supported for configByTags="support":)
+		* hintFormat (now always "forAnnotations")
+		* longJavadoc (now always "true")
+		* finalArgs (now always "true")
+		* genericSetValueArray (now always "true")
+		* parenthesesOnEmptyMemberAnnotations (now always "false")
+		* deprecatedFullyQualified (now always "true")
+		* overrideOnSeparateLine (now always "true")
+* Price and Money now offer grossToTaxPercent(double)
+* Singleton creates check constraint.
+	This affects database schema, except on MySQL.
+* @Computed gets a new specification.
+* Generate getValid*Token for PasswordRecovery to get a valid token for postponed redemption
+	Affects instrumented code.
+	To disable the new getter, adapt your <instrument> call:
+	<instrument ...>
+		<disableWrap>com.exedio.cope.pattern.PasswordRecovery#getValidToken(com.exedio.cope.Item,long)</disableWrap>
+	</instrument>
+* Change Javadoc of PasswordRecovery#redeem
+	This affects instrumented code
+* ChangeHook added.
+* MySQL supports nativeDate.
+	This heavily affects database schema on MySQL. Use Factory#disableNativeDate()
+	or disableSupport.nativeDate=true in ConnectProperties to revert to previous
+	behaviour.
+	For converting a database schema use SQL like this:
+
+		SET time_zone = '+00:00'; -- UTC needed for from_unixtime
+		ALTER TABLE `SomeTable` CHANGE `someDate` `someDateOld` bigint;
+		ALTER TABLE `SomeTable` ADD COLUMN `someDate` datetime(3) AFTER `someDateOld`; -- use "datetime(3) not null" if field is mandatory, but with DEFAULT clause, otherwise it fails with "Data truncation: Incorrect datetime value: '0000-00-00 00:00:00' for column 'someDate'"
+		UPDATE      `SomeTable` SET `someDate`=from_unixtime(`someDateOld`/1000);
+		ALTER TABLE `SomeTable` DROP COLUMN `someDateOld`; -- you may want to omit this to keep the old data for some time
+
+* require mysql connector 5.1.45
+
+	BEWARE: Within a web application, the new mysql connector may cause the
+	following warning on shutdown (tomcat 8.5.14):
+
+		org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads
+		The web application [myapp] appears to have started a thread named
+		[Abandoned connection cleanup thread] but has failed to stop it.
+		This is very likely to create a memory leak. Stack trace of thread:
+			java.lang.Object.wait(Native Method)
+			java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+			com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:64)
+			java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+			java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+			java.lang.Thread.run(Thread.java:748)
+
+	This may be fixed with the following piece of code in
+	javax.servlet.ServletContextListener#contextDestroyed:
+
+		com.mysql.jdbc.AbandonedConnectionCleanupThread.checkedShutdown();
+
+	You may want to use reflection, if mysql connector is not available on compile time:
+
+		Class.forName("com.mysql.jdbc.AbandonedConnectionCleanupThread").
+			getDeclaredMethod("checkedShutdown").
+			invoke(null);
+
+* Media#setLastModified added.
+* DateField creates check constraints for value range if native dates are supported.
+	This heavily affects database schema, except on MySQL.
+* hsqldb 2.4.0 required, instead of 2.2.9
+* DateField constrains value range to between Jan 1st, 1600 and Dec 31st, 9999.
+	Affects database schema, check constraints do become stricter.
+* The instrumentor now uses a directory for internal files. It is configurable as <instrument> parameter 'buildDirectory'
+	and defaults to "build/<name_of_ant_target>".
+	<instrument> parameter 'timestampFile' is no longer required. Please remove from your build.xml. The instrumentor
+	will now always use a timestamp file.
+* VaultService#put takes VaultPutInfo.
+	This breaks backwards API compatibility of the Vault API.
+	May cause compiler errors and/or java.lang.NoSuchMethodError on runtime,
+	if vaults are used within your project.
+	You MUST update copevault (if present in your project) to rev>=42.
+* bugfix: EnumMapField#fallback fixes @Nonnull/@Nullable.
+	Affects instrumented code.
+* ivy conf "junit" dropped (for exedio-cope-junit.jar)
+* Collection fields (ListField, SetField, MapField) support copy constraints on their elements
+	see ListField#copyWith, SetField#copyWith, MapField#copyKeyWith, MapField#copyValueWith
+	Adding copy constraints to existing collections changes the database schema.
+* SchemaInfo#search/total fixed for condition==false / limit==0
+* ConnectProperties: renamed several keys:
+
+	schema.mysql.utf8mb4                -> dialect.utf8mb4
+	schema.mysql.smallIntegerTypes      -> dialect.smallIntegerTypes
+	schema.mysql.longConstraintNames    -> dialect.longConstraintNames
+	schema.mysql.fullSequenceColumnName -> dialect.fullSequenceColumnName
+	schema.mysql.rowFormat              -> dialect.rowFormat
+	schema.mysql.avoidTruncate          -> dialect.avoidTruncate
+
+	This breaks backwards API compatibility, check your deployed systems!
+	Field values do affect MySQL only.
+
+* ConnectProperties: renamed key:
+	connection.postgresql.search_path -> dialect.search_path
+	Field value affects Postgresql only.
+* SetField supports order - SetField#ordered() added.
+* Generate for*Strict finders for unique constraints and unique function fields.
+	Affects instrumented code.
+	To disable the new finders, adapt your <instrument> call:
+	<instrument ...>
+		<disableWrap>com.exedio.cope.UniqueConstraint#searchStrict(java.lang.Class,[Ljava.lang.Object;)</disableWrap>
+		<disableWrap>com.exedio.cope.FunctionField#searchUniqueStrict(java.lang.Class,java.lang.Object)</disableWrap>
+	</instrument>
+* The instrumentor can be configured to ignore specific feature wraps.
+	Example:
+	<instrument ...>
+		<disableWrap>com.exedio.cope.UniqueConstraint#search(java.lang.Class,[Ljava.lang.Object;)</disableWrap>
+	</instrument>
+* ConnectToken#setProperties(Model,Supplier) added.
+* ConnectToken#removePropertiesVoid added.
+* VaultNotFoundException#anonymiseHash and #getHashAnonymous added.
+* VaultService#close added.
 * @VaultServiceProperties replaced by @ServiceProperties.
 	This extensively breaks backwards API compatibility of the recently introduced Vault API (Jun 2 2017),
 	causes compiler errors.
@@ -14,7 +157,10 @@ The items are sorted inversely, i.e. latest items are on top
 	The wrapping get-methods for mandatory MoneyFields were incorrectly annotated as @Nullable, now fixed to @NonNull.
 	Affects instrumented code.
 * The instrumentor no longer generates deprecated wrapping methods for deprecated feature methods.
-	To keep individual methods, you can whitelist them in your build.xml:
+	To keep individual methods, you can whitelist them in your build.xml.
+	Class and parameter type names have to be given in the syntax of Class#getName - that means an
+	Object[] parameter has to be specified as "[Ljava.lang.Object;".
+	Example:
 	<instrument ...>
 		<generateDeprecated>com.exedio.cope.pattern.PasswordRecovery#purge(com.exedio.cope.util.Interrupter)</generateDeprecated>
 		<generateDeprecated>com.exedio.cope.pattern.Dispatcher#dispatch(java.lang.Class,com.exedio.cope.pattern.Dispatcher$Config,com.exedio.cope.util.Interrupter)</generateDeprecated>
@@ -81,7 +227,7 @@ The items are sorted inversely, i.e. latest items are on top
     With the same limit, the global cache will end up having more entries (and
     using more memory) than the per-type cache.
     Cache limit is now controlled by property "cache.item.globalLimit", which falls
-    back to the old "cope.cache.item.limit".
+    back to the old "cache.item.limit".
 * ConnectProperties: renamed several keys:
 
 	changeListeners.threads     -> changeListeners.threads.initial
@@ -153,6 +299,7 @@ The items are sorted inversely, i.e. latest items are on top
 	1. <instrument configByTags="support"> - verify that everthing works as before
 	2. <instrument configByTags="convertToAnnotations"> - run once to get tags auto-transformed into annotations; review code changes
 	3. <instrument configByTags="error"> - if necessary, manually convert tags that have not been auto-transformed
+	Legacy support for tags and the conversion tool ends after cope build 9741.
 * bugfix: in instrumentor tags "internal" together with "package", "protected",
 	or "public" does work now. Before, "internal" methods always became private.
 * dsmf.Column#getConstraints() added.

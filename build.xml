@@ -151,7 +151,7 @@
 	</target>
 
 	<target name="web.instrument" unless="skip.instrument" depends="instrument.taskdef">
-		<instrument dir="websrc" verify="${instrument.verify}" configByTags="error">
+		<instrument dir="websrc" verify="${instrument.verify}">
 		</instrument>
 	</target>
 
@@ -182,6 +182,8 @@
 			<fileset file="lib/exedio-cope-servletutil.jar" />
 			<fileset file="lib/exedio-cope-util.jar" />
 			<fileset file="lib/exedio-cope.jar" />
+			<fileset file="lib/exedio-cope-hsqldb.jar" />
+			<fileset file="lib/exedio-cope-mysql.jar" />
 			<fileset file="lib/hsqldb.jar" />
 			<fileset file="lib/mysql-connector-java.jar" />
 		</copy>

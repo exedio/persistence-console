@@ -21,6 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 import com.exedio.cope.Vault;
+import com.exedio.cope.instrument.WrapperIgnore;
 import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaRedirect;
@@ -61,12 +62,14 @@ public final class AMediaItem extends Item
 	@Deprecated
 	static final MediaRedirect thumbnailRedirect = new MediaRedirect(thumbnail);
 
-	static final AMediaTestable testableOk1  = new AMediaTestable(content, false);
-	static final AMediaTestable testableOk2  = new AMediaTestable(content, false);
-	static final AMediaTestable testableFail = new AMediaTestable(content, true );
+	@WrapperIgnore static final AMediaTestable testableOk1  = new AMediaTestable(content, false);
+	@WrapperIgnore static final AMediaTestable testableOk2  = new AMediaTestable(content, false);
+	@WrapperIgnore static final AMediaTestable testableFail = new AMediaTestable(content, true );
 
+	@WrapperIgnore
 	static final ANameServer nameServer = new ANameServer(name);
 
+	@WrapperIgnore
 	static final ConditionUnsupported conditionUnsupported = new ConditionUnsupported();
 
 
