@@ -105,7 +105,6 @@
 				<pathelement location="lib/exedio-cope-util.jar" />
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
-				<pathelement location="lib/exedio-cope-junit.jar" />
 				<pathelement location="lib/javax.servlet-api.jar" />
 				<pathelement location="lib/junit.jar" />
 				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
@@ -123,7 +122,6 @@
 				<pathelement location="lib/exedio-cope-util.jar" />
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
-				<pathelement location="lib/exedio-cope-junit.jar" />
 				<pathelement location="lib/trove4j.jar" />
 				<pathelement location="lib/slf4j-api.jar" />
 				<pathelement location="lib/hsqldb.jar" />
@@ -289,7 +287,6 @@
 				<pathelement location="${basedir}/lib/exedio-cope.jar" />
 				<pathelement location="${basedir}/lib/exedio-cope-util.jar" />
 				<pathelement location="${basedir}/lib/exedio-cope-servletutil.jar" />
-				<pathelement location="${basedir}/lib/exedio-cope-junit.jar" />
 				<pathelement location="${basedir}/lib/exedio-cops.jar" />
 				<pathelement location="${basedir}/lib/trove4j.jar" />
 				<pathelement location="${basedir}/lib/javax.servlet-api.jar" />
