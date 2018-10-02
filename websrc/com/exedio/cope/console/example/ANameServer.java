@@ -44,7 +44,7 @@ public final class ANameServer extends MediaPath
 	{
 		this.source = source;
 		if(source!=null)
-			addSource(source, "Source");
+			addSourceFeature(source, "Source");
 	}
 
 	@Override

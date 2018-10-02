@@ -232,7 +232,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 			final Query<? extends Item> q = media.getType().newQuery(isNotNull());
 			if(contentTypeMismatch)
 				q.narrow(((Media)media).bodyMismatchesContentTypeIfSupported());
-			q.setLimit(pager.getOffset(), pager.getLimit());
+			q.setPage(pager.getOffset(), pager.getLimit());
 			q.setOrderBy(media.getType().getThis(), true);
 			final Query.Result<? extends Item> items = q.searchAndTotal();
 			pager.init(items.getData().size(), items.getTotal());

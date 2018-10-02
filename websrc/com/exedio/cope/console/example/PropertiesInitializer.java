@@ -44,7 +44,7 @@ public class PropertiesInitializer implements ServletContextListener
 	@Override
 	public void contextDestroyed(final ServletContextEvent sce)
 	{
-		ConnectToken.removeProperties(Main.model);
-		ConnectToken.removeProperties(Main.reducedModel);
+		ConnectToken.removePropertiesVoid(Main.model);
+		ConnectToken.removePropertiesVoid(Main.reducedModel);
 	}
 }

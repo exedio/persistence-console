@@ -78,7 +78,7 @@ final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 			{
 				try
 				{
-					probe = properties.probe();
+					probe = probe(properties);
 					store.set(ChecklistIcon.ok);
 					probed = true;
 				}
@@ -114,5 +114,11 @@ final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 				properties,
 				store.get(), probed, probe,
 				model);
+	}
+
+	@SuppressWarnings("deprecation")
+	private static String probe(final ConnectProperties properties) // TODO list and execute nested probes instead
+	{
+		return properties.probe();
 	}
 }
