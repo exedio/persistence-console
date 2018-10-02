@@ -52,7 +52,7 @@ final class Hash_Jspm
 				<th rowspan="2"></th>
 				<th rowspan="2">Type</th>
 				<th rowspan="2">Name</th>
-				<th rowspan="2">Plain<br>Text<br>Limit</th>
+				<th colspan="2">Plain Text</th>
 				<th colspan="2">Algorithm</th><%
 
 			if(compute)
@@ -68,6 +68,8 @@ final class Hash_Jspm
 			%>
 			</tr>
 			<tr>
+				<th>Limit</th>
+				<th>Validator</th>
 				<th>ID</th>
 				<th>Description</th>
 			</tr><%
@@ -81,6 +83,7 @@ final class Hash_Jspm
 				<td class="text"><%=hash.getType().getID()%></td>
 				<td class="text"><%=hash.getName()%></td>
 				<td><%=hash.getPlainTextLimit()%></td>
+				<td><%=hash.getPlainTextValidator()%></td>
 				<td class="text"><%=algorithm.getID()%></td>
 				<td class="text"><%=algorithm.getDescription()%></td><%
 

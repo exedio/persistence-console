@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
+import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.util.XMLEncoder;
 import com.exedio.cops.Cop;
@@ -115,6 +116,12 @@ final class Out extends OutBasic
 			bf.print("</small>");
 			bf.print(s.substring(pos));
 		}
+	}
+
+	void write(final Hash.PlainTextValidator v)
+	{
+		if(v!=null)
+			write(v.toString());
 	}
 
 	void write(final InetAddress s)

@@ -19,6 +19,7 @@
 package com.exedio.cope.console.example;
 
 import com.exedio.cope.Item;
+import com.exedio.cope.misc.DigitPinValidator;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.MessageDigestAlgorithm;
 import com.exedio.cope.pattern.MessageDigestHash;
@@ -30,6 +31,7 @@ public final class AHashItem extends Item
 	static final Hash md8x6latin = new Hash(MessageDigestHash.algorithm(80000), Charset.forName("ISO-8859-1"));
 	static final Hash md5 = new Hash(new MessageDigestAlgorithm("MD5", 2, 5000));
 	static final Hash deterministic = new Hash(new MessageDigestAlgorithm("MD5", 0, 1));
+	static final Hash pin = new Hash(MessageDigestHash.algorithm(2)).validate(new DigitPinValidator(4));
 
 	/**
 	 * Creates a new AHashItem with all the fields initially needed.
@@ -37,14 +39,16 @@ public final class AHashItem extends Item
 	 * @param md8x6latin the initial value for field {@link #md8x6latin}.
 	 * @param md5 the initial value for field {@link #md5}.
 	 * @param deterministic the initial value for field {@link #deterministic}.
-	 * @throws com.exedio.cope.MandatoryViolationException if md8, md8x6latin, md5, deterministic is null.
+	 * @param pin the initial value for field {@link #pin}.
+	 * @throws com.exedio.cope.MandatoryViolationException if md8, md8x6latin, md5, deterministic, pin is null.
 	 */
 	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
 	AHashItem(
 				final java.lang.String md8,
 				final java.lang.String md8x6latin,
 				final java.lang.String md5,
-				final java.lang.String deterministic)
+				final java.lang.String deterministic,
+				final java.lang.String pin)
 			throws
 				com.exedio.cope.MandatoryViolationException
 	{
@@ -53,6 +57,7 @@ public final class AHashItem extends Item
 			AHashItem.md8x6latin.map(md8x6latin),
 			AHashItem.md5.map(md5),
 			AHashItem.deterministic.map(deterministic),
+			AHashItem.pin.map(pin),
 		});
 	}
 
@@ -263,6 +268,56 @@ public final class AHashItem extends Item
 				com.exedio.cope.MandatoryViolationException
 	{
 		AHashItem.deterministic.setHash(this,deterministic);
+	}
+
+	/**
+	 * Returns whether the given value corresponds to the hash in {@link #pin}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="check")
+	final boolean checkPin(final java.lang.String pin)
+	{
+		return AHashItem.pin.check(this,pin);
+	}
+
+	/**
+	 * Wastes (almost) as much cpu cycles, as a call to <tt>checkPin</tt> would have needed.
+	 * Needed to prevent Timing Attacks.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="blind")
+	static final void blindPin(final java.lang.String pin)
+	{
+		AHashItem.pin.blind(pin);
+	}
+
+	/**
+	 * Sets a new value for {@link #pin}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	final void setPin(final java.lang.String pin)
+			throws
+				com.exedio.cope.MandatoryViolationException
+	{
+		AHashItem.pin.set(this,pin);
+	}
+
+	/**
+	 * Returns the encoded hash value for hash {@link #pin}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getSHA512s8i2")
+	final java.lang.String getPinSHA512s8i2()
+	{
+		return AHashItem.pin.getHash(this);
+	}
+
+	/**
+	 * Sets the encoded hash value for hash {@link #pin}.
+	 */
+	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setSHA512s8i2")
+	final void setPinSHA512s8i2(final java.lang.String pin)
+			throws
+				com.exedio.cope.MandatoryViolationException
+	{
+		AHashItem.pin.setHash(this,pin);
 	}
 
 	@javax.annotation.Generated("com.exedio.cope.instrument")
