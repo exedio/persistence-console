@@ -64,6 +64,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 
 		Environment_Jspm.writeCurrent(out,
 				env.getCatalog(),
+				env.getDriverClass(),
 				model.getConnectProperties().getDialect(),
 				current);
 		Environment_Jspm.writeTest(out, current, makeTestedDatabases());

@@ -33,6 +33,7 @@ final class Environment_Jspm
 	static void writeCurrent(
 			final Out out,
 			final String catalog,
+			final String driverClass,
 			final String dialect,
 			final java.util.Properties properties)
 	{
@@ -51,6 +52,10 @@ final class Environment_Jspm
 			<tr>
 				<th>catalog</th>
 				<td class="text"><%=catalog%></td>
+			</tr>
+			<tr>
+				<th>driver class</th>
+				<td class="text"><%=driverClass%></td>
 			</tr>
 			<tr>
 				<th>dialect</th>
