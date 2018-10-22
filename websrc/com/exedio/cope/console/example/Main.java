@@ -50,6 +50,7 @@ public final class Main
 				AMediaSingleItem.TYPE,
 				UniqueHashedMediaItem.TYPE,
 				UniqueHashedMediaItemUnsupported.TYPE,
+				TypeItem.TYPE,
 				FeatureItem.TYPE,
 				SequenceItem.TYPE
 			)

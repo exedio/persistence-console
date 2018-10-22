@@ -203,6 +203,7 @@ abstract class ConsoleCop<S> extends Cop
 					new OptionalFieldCop(args, testArgs),
 					new EmptyStringFieldCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
+					new TypeFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
 					new DispatcherFailureDeprecatedCop(args, testArgs),
 					new CharacterNulCop(args, testArgs),
@@ -349,6 +350,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new EmptyStringFieldCop(args, new TestCop.TestArgs(request));
 			case MinLengthStringFieldCop.TAB:
 				return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
+			case TypeFieldCop.TAB:
+				return new TypeFieldCop(args, new TestCop.TestArgs(request));
 			case FeatureFieldCop.TAB:
 				return new FeatureFieldCop(args, new TestCop.TestArgs(request));
 			case RevisionCop.TAB:

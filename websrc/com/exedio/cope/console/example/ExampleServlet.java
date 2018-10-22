@@ -26,6 +26,7 @@ import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
 import com.exedio.cope.Feature;
 import com.exedio.cope.TransactionTry;
+import com.exedio.cope.Type;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.UniqueHashedMedia;
@@ -72,6 +73,10 @@ public final class ExampleServlet extends CopsServlet
 
 	static final String NUL_CHARACTER    = "nulChar";
 	static final String BREAK_MEDIA_HASH = "breakMediaHash";
+
+	static final String TYPE_FIELD_FEATURE = "typeField.feature";
+	static final String TYPE_FIELD_STRING  = "typeField.string";
+	static final String TYPE_FIELD_SUBMIT  = "typeField.submit";
 
 	static final String FEATURE_FIELD_FEATURE = "featureField.feature";
 	static final String FEATURE_FIELD_STRING  = "featureField.string";
@@ -153,6 +158,16 @@ public final class ExampleServlet extends CopsServlet
 					tx.commit();
 				}
 			}
+			else if(request.getParameter(TYPE_FIELD_SUBMIT)!=null)
+			{
+				try(TransactionTry tx = Main.model.startTransactionTry("create type item"))
+				{
+					new TypeItem(
+							replaceNullName(request.getParameter(TYPE_FIELD_FEATURE)),
+							replaceNullName(request.getParameter(TYPE_FIELD_STRING)));
+					tx.commit();
+				}
+			}
 			else if(request.getParameter(FEATURE_FIELD_SUBMIT)!=null)
 			{
 				try(TransactionTry tx = Main.model.startTransactionTry("create feature"))
@@ -211,6 +226,9 @@ public final class ExampleServlet extends CopsServlet
 			new AMediaItem().setName("someName");
 			new AMediaItem().setName("someName error");
 			new UniqueHashedMediaItem(Media.toValue(resource("test.png"), "image/png"));
+			new TypeItem(AnItem.TYPE, AnItem.TYPE);
+			new TypeItem(UniqueHashedMediaItem.TYPE, ASubItem.TYPE);
+			new TypeItem((Type<?>)null, null);
 			new FeatureItem(FeatureItem.intField1, FeatureItem.stringField1);
 			new FeatureItem(FeatureItem.intField2, FeatureItem.stringField2);
 			new FeatureItem((Feature)null, null);

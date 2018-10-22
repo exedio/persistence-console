@@ -81,6 +81,15 @@ final class Example_Jspm
 		<form method="POST">
 			<input name="<%=ExampleServlet.BREAK_MEDIA_HASH%>" type="submit" value="break" />
 		</form>
+		<h2>Type Fields</h2>
+		<form method="POST">
+			<br>name:
+			<input name="<%=ExampleServlet.TYPE_FIELD_FEATURE%>" size="40" value="<%=AnItem.TYPE.getID()%>" />
+			<br>items:
+			<input name="<%=ExampleServlet.TYPE_FIELD_STRING %>" size="40" value="<%=AnItem.TYPE.getID()%>" />
+			<br>
+			<input name="<%=ExampleServlet.TYPE_FIELD_SUBMIT %>" type="submit" value="create" />
+		</form>
 		<h2>Feature Fields</h2>
 		<form method="POST">
 			<br>name:
