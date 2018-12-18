@@ -127,7 +127,7 @@ final class SequenceCop extends TestCop<SequenceInfo>
 		if(feature instanceof This)
 			return ((This<?>)feature).getType().getPrimaryKeyInfo();
 		else if(feature instanceof IntegerField)
-			return ((IntegerField)feature).getDefaultToNextInfo();
+			return ((IntegerField)feature).getDefaultToNextInfoX();
 		else
 			throw new RuntimeException(feature.toString());
 	}
@@ -139,7 +139,7 @@ final class SequenceCop extends TestCop<SequenceInfo>
 		if(feature instanceof This)
 			return ((This<?>)feature).getType().checkSequenceBehindPrimaryKey().isBehindByL();
 		else if(feature instanceof IntegerField)
-			return ((IntegerField)feature).checkSequenceBehindDefaultToNext().isBehindByL();
+			return ((IntegerField)feature).checkSequenceBehindDefaultToNextX().isBehindByL();
 		else
 			throw new RuntimeException(feature.toString());
 	}

@@ -153,6 +153,8 @@
 
 	<target name="web.instrument" unless="skip.instrument" depends="instrument.taskdef">
 		<instrument dir="websrc" verify="${instrument.verify}">
+			<disableWrap>com.exedio.cope.DataField#set(com.exedio.cope.Item,java.nio.file.Path)</disableWrap>
+			<disableWrap>com.exedio.cope.pattern.Media#set(com.exedio.cope.Item,java.nio.file.Path,java.lang.String)</disableWrap>
 		</instrument>
 	</target>
 
