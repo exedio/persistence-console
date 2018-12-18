@@ -19,8 +19,10 @@
 package com.exedio.cope.console;
 
 import java.sql.Driver;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.ServiceLoader;
 import javax.servlet.http.HttpServletRequest;
 
 final class RegisteredDriversCop extends ConsoleCop<Void>
@@ -101,5 +103,20 @@ final class RegisteredDriversCop extends ConsoleCop<Void>
 				return x.nextElement();
 			}
 		};
+	}
+
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
+	static Iterable<?> getDialectUrlMappers() // TODO use cope methods when available
+	{
+		final Class<?> clazz;
+		try
+		{
+			clazz = Class.forName("com.exedio.cope.DialectUrlMapper");
+		}
+		catch(final ClassNotFoundException e)
+		{
+			return Collections.emptyList();
+		}
+		return ServiceLoader.load(clazz);
 	}
 }

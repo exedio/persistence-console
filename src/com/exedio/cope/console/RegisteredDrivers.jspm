@@ -19,10 +19,13 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.RegisteredDriversCop.getDialectUrlMappers;
+
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.util.Iterator;
 import java.util.ServiceLoader;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 final class RegisteredDrivers_Jspm
@@ -31,9 +34,64 @@ final class RegisteredDrivers_Jspm
 			final Out out,
 			final RegisteredDriversCop cop)
 	{
+		writeDialectUrlMappers(out);
 		writeTable(out, "DriverManager.getDrivers",         cop.showDrivers,  cop.showDrivers(),  () -> RegisteredDriversCop.it(DriverManager.getDrivers()));
 		writeTable(out, "ServiceLoader.load(Driver.class)", cop.showServices, cop.showServices(), () -> ServiceLoader.load(Driver.class).iterator());
 		writeTable(out, "ServiceLoader.loadInstalled(Driver.class)", cop.showServicesInstalled, cop.showServicesInstalled(), () -> ServiceLoader.loadInstalled(Driver.class).iterator());
+	}
+
+	private static void writeDialectUrlMappers(
+			final Out out)
+	{
+		%>
+		<table>
+			<caption>DialectUrlMapper</caption>
+			<tr>
+				<th>Class</th>
+				<th>Spec</th>
+				<th>Impl</th>
+				<th>Instance</th>
+			</tr><%
+
+			for(final Object mapper : getDialectUrlMappers())
+			{
+				final Class<?> clazz = mapper.getClass();
+				final Package pack = clazz.getPackage();
+				final String spec = pack.getSpecificationTitle();
+				final String impl = pack.getImplementationTitle();
+			%>
+			<tr>
+				<td class="text"><%= clazz %></td><%
+
+			//noinspection IfStatementWithIdenticalBranches OK, looks much nicer
+			if(Objects.equals(spec, impl))
+			{
+				%>
+				<td class="text" colspan="2"><%= spec %></td><%
+			}
+			else
+			{
+				%>
+				<td class="text"><%= spec %></td>
+				<td class="text"><%= impl %></td><%
+			}
+
+			try
+			{
+				final String instance = mapper.toString();
+				%>
+				<td class="text"><%= instance %><%
+			}
+			catch(final RuntimeException e)
+			{
+				%>
+				<td class="notavailable"><% out.writeStackTrace(e); %><%
+			}
+				%></td>
+			</tr><%
+			}
+		%>
+		</table><%
 	}
 
 	private static void writeTable(
