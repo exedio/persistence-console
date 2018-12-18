@@ -18,22 +18,37 @@
 
 package com.exedio.cope.console;
 
-import junit.framework.Test;
+import static com.exedio.cope.console.VmCop.shortGit;
+
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
-public class PackageTest extends TestCase
+public class ShortGitTest extends TestCase
 {
-	public static Test suite()
+	public void testMatch()
 	{
-		final TestSuite suite = new TestSuite();
+		assertEquals(
+				"revision: 9131eef or so", shortGit(
+				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2 or so"));
+	}
 
-		suite.addTestSuite(MimeTypesTest.class);
-		suite.addTestSuite(QueryCacheTest.class);
-		suite.addTestSuite(RevisionLineTest.class);
-		suite.addTestSuite(SavepointChecklistIconTest.class);
-		suite.addTestSuite(ShortGitTest.class);
+	public void testTooShort()
+	{
+		assertEquals(
+				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b or so", shortGit(
+				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b or so"));
+	}
 
-		return suite;
+	public void testTooLong()
+	{
+		assertEquals(
+				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2a or so", shortGit(
+				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2a or so"));
+	}
+
+	public void testNoHex()
+	{
+		assertEquals(
+				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5bX or so", shortGit(
+				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5bX or so"));
 	}
 }
