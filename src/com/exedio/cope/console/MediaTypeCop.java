@@ -64,6 +64,16 @@ final class MediaTypeCop extends TestCop<Media>
 		};
 	}
 
+	/**
+	 * Is needed, because {@link #getItems(Model)} calls
+	 * {@link com.exedio.cope.DataField#getVaultInfo()}.
+	 */
+	@Override
+	boolean requiresConnect()
+	{
+		return true;
+	}
+
 	@Override
 	List<Media> getItems(final Model model)
 	{
