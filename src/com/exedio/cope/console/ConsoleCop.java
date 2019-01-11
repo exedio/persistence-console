@@ -277,6 +277,11 @@ abstract class ConsoleCop<S> extends Cop
 		return null;
 	}
 
+	String getExternalImgSrc()
+	{
+		return null;
+	}
+
 	/**
 	 * @param out used in subclasses
 	 */

@@ -36,6 +36,19 @@
 		<url-pattern>/reduced/*</url-pattern>
 	</servlet-mapping>
 
+	<filter>
+		<filter-name>csrf</filter-name>
+		<filter-class>com.exedio.cope.console.example.DummyStrictRefererValidationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>csrf</filter-name>
+		<servlet-name>standard</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>csrf</filter-name>
+		<servlet-name>reduced</servlet-name>
+	</filter-mapping>
+
 	<security-constraint>
 		<web-resource-collection>
 			<url-pattern>/reduced/*</url-pattern>

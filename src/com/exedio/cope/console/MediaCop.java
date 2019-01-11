@@ -205,6 +205,19 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@Override
+	String getExternalImgSrc()
+	{
+		final String prefix = args.mediaURLPrefix;
+		if(prefix==null)
+			return null;
+
+		if(prefix.startsWith("http:") || prefix.startsWith("https:"))
+			return prefix;
+
+		return null;
+	}
+
+	@Override
 	void writeHead(final Out out)
 	{
 		if(mediaInline || otherInline)
