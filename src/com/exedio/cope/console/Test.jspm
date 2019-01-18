@@ -148,6 +148,16 @@ final class Test_Jspm
 
 			function toggleSuccess(image)
 			{
+				toggle(image, "<%=TestCop.SUCCESS_CLASS%>");
+			}
+
+			function toggleNotYetTested(image)
+			{
+				toggle(image, "<%=TestCop.NOT_YET_TESTED_CLASS%>");
+			}
+
+			function toggle(image, rowClass)
+			{
 				var imageSrc = image.src;
 				if(imageSrc.substring(imageSrc.length-8)=="true.png")
 				{
@@ -156,7 +166,7 @@ final class Test_Jspm
 					for(i=0; i<rows.length; i++)
 					{
 						var row = rows[i];
-						if(row.className=="<%=TestCop.SUCCESS_CLASS%>")
+						if(row.className==rowClass)
 							row.style.display = "table-row";
 					}
 				}
@@ -167,7 +177,7 @@ final class Test_Jspm
 					for(i=0; i<rows.length; i++)
 					{
 						var row = rows[i];
-						if(row.className=="<%=TestCop.SUCCESS_CLASS%>")
+						if(row.className==rowClass)
 							row.style.display = "none";
 					}
 				}
@@ -203,7 +213,9 @@ final class Test_Jspm
 			<tr id="summary"><%
 				cop.writeSummary(out, headingsLength, items, store);
 			%>
-				<img class="check" onClick="toggleSuccess(this)" src="<%=ConsoleServlet.checkFalse%>"> hide success
+				hide:
+				<img class="check" onClick="toggleSuccess(this)" src="<%=     ConsoleServlet.checkFalse%>"> success
+				<img class="check" onClick="toggleNotYetTested(this)" src="<%=ConsoleServlet.checkFalse%>"> not yet tested
 			</tr>
 			<tr><%
 
@@ -223,7 +235,7 @@ final class Test_Jspm
 		{
 			final String id = cop.getID(item);
 			final Info info = store.get(id);
-			final String rowClass = info!=null ? info.getRowClass() : null;
+			final String rowClass = info!=null ? info.getRowClass() : TestCop.NOT_YET_TESTED_CLASS;
 			%>
 			<tr id="<%=id%>"<% if(rowClass!=null){%> class="<%=rowClass%>"<%} %>><%
 				writeRow(out, cop, headingsLength, item, id, info);
