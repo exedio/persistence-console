@@ -20,6 +20,8 @@ package com.exedio.cope.console.example;
 
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
+import com.exedio.cope.instrument.WrapperIgnore;
+import com.exedio.cope.util.CharSet;
 
 public final class StringLengthItem extends Item
 {
@@ -29,6 +31,14 @@ public final class StringLengthItem extends Item
 	static final StringField normalOk = new StringField().toFinal().lengthMin(1);
 	static final StringField min10 = new StringField().toFinal().lengthMin(10);
 	static final StringField min10Ok = new StringField().toFinal().lengthMin(10);
+
+	/**
+	 * Provokes an "TypeError: responseXML is null" when running tests in
+	 * {@code CharacterNulCop} with copeutil before revision 863.
+	 */
+	@WrapperIgnore
+	@SuppressWarnings("unused")
+	static final StringField charSet = new StringField().optional().charSet(CharSet.EMAIL_INTERNATIONAL);
 
 
 	/**
