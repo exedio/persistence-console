@@ -27,7 +27,7 @@ public class ShortGitTest extends TestCase
 	public void testMatch()
 	{
 		assertEquals(
-				"revision: 9131eef or so", shortGit(
+				"revision: 9131eefa or so", shortGit(
 				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2 or so"));
 	}
 

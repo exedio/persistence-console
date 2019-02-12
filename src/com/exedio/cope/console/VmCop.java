@@ -108,5 +108,5 @@ final class VmCop extends ConsoleCop<Void>
 	}
 
 	private static final Pattern versionPattern =
-			Pattern.compile("\\b([0-9,a-f]{7})[0-9,a-f]{33}\\b");
+			Pattern.compile("\\b([0-9,a-f]{8})[0-9,a-f]{32}\\b");
 }
