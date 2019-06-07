@@ -49,6 +49,7 @@ final class Format
 		if(number==Long.MAX_VALUE)
 			return "max64";
 
+		//noinspection AccessToNonThreadSafeStaticField TODO
 		return /*"fm" +*/ numberFormat.format(number);
 	}
 
@@ -66,6 +67,7 @@ final class Format
 		if(divisor==0)
 			return "";
 
+		//noinspection AccessToNonThreadSafeStaticField TODO
 		return RATIO_FORMAT.format(Math.log10(((double)dividend) / ((double)divisor)));
 	}
 

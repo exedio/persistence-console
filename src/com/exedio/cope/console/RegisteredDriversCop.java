@@ -96,7 +96,6 @@ final class RegisteredDriversCop extends ConsoleCop<Void>
 				return x.hasMoreElements();
 			}
 			@Override
-			@SuppressWarnings("IteratorNextCanNotThrowNoSuchElementException") // OK: Enumeration#nextElement does throw NoSuchElementException
 			public Driver next()
 			{
 				return x.nextElement();

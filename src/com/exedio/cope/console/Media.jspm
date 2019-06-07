@@ -25,6 +25,7 @@ import static com.exedio.cope.console.ConsoleCop.writePager;
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.MediaStatsCop.format;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.List;
 
@@ -398,7 +399,7 @@ final class Media_Jspm
 				final String activePrefix,
 				final String prefix)
 	{
-			final boolean inActive = (activePrefix==null) ? (prefix!=null) : !activePrefix.equals(prefix);
+			final boolean inActive = !Objects.equals(activePrefix, prefix);
 			final String prefixName = prefix!=null ? prefix : "getURLByConnect";
 			%>
 			<li><%

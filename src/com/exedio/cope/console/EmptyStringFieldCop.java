@@ -76,6 +76,7 @@ final class EmptyStringFieldCop extends TestCop<StringField>
 	@Override
 	void writeValue(final Out out, final StringField field, final int h)
 	{
+		//noinspection SwitchStatementWithTooFewBranches OK: all methods overriding writeValue have a switch
 		switch(h)
 		{
 			case 0: out.write(field.toString()); break;

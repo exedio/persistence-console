@@ -76,6 +76,7 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 	@Override
 	void writeValue(final Out out, final FunctionField<?> field, final int h)
 	{
+		//noinspection SwitchStatementWithTooFewBranches OK: all methods overriding writeValue have a switch
 		switch(h)
 		{
 			case 0: out.write(field.toString()); break;

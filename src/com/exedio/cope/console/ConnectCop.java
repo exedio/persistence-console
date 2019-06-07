@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static java.nio.charset.StandardCharsets.US_ASCII;
+
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.util.Properties;
@@ -57,7 +59,7 @@ final class ConnectCop extends ConsoleCop<Void>
 		final String source = props.getSource();
 		String sourceContent = null;
 		final File f = new File(source);
-		try(InputStreamReader r = new InputStreamReader(new FileInputStream(f), "US-ASCII"))
+		try(InputStreamReader r = new InputStreamReader(new FileInputStream(f), US_ASCII))
 		{
 			final StringBuilder bf = new StringBuilder();
 

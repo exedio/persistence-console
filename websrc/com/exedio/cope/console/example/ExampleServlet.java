@@ -42,6 +42,7 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -84,7 +85,7 @@ public final class ExampleServlet extends CopsServlet
 
 	@SuppressFBWarnings("SE_BAD_FIELD")
 	private final ArrayList<ConnectToken> connectTokens = new ArrayList<>();
-	static int changeListenerNumber = 0;
+	static final AtomicInteger changeListenerNumber = new AtomicInteger(0);
 
 	@Override
 	protected void doRequest(
@@ -311,7 +312,7 @@ public final class ExampleServlet extends CopsServlet
 	{
 		return new ChangeListener()
 		{
-			private final int count = changeListenerNumber++;
+			private final int count = changeListenerNumber.getAndIncrement();
 
 			@Override
 			public void onChange(final ChangeEvent event)

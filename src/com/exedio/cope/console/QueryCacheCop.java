@@ -102,9 +102,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 		final long maxHits;
 		final long minHits;
 
-		@SuppressWarnings({
-				"ZeroLengthArrayAllocation", // OK: is rarely called
-				"ConstantConditions"}) // too complex to analyze
+		@SuppressWarnings("ZeroLengthArrayAllocation") // OK: is rarely called
 		@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 		Content(final QueryCacheHistogram[] histogram, final boolean condense)
 		{

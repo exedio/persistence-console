@@ -29,12 +29,13 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-@SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType")
+@SuppressWarnings({"AssignmentOrReturnOfFieldWithMutableType", "RedundantSuppression"})
 final class RevisionLine
 {
 	final int number;
@@ -209,7 +210,7 @@ final class RevisionLine
 		}
 	}
 
-	static <K,V> Set<K> diff(final Map<K,V> left, final Map<K,V> right)
+	static <K extends Comparable<K>,V> Set<K> diff(final Map<K,V> left, final Map<K,V> right)
 	{
 		final TreeSet<K> result = new TreeSet<>();
 		for(final Map.Entry<K,V> e : left.entrySet())
@@ -224,7 +225,7 @@ final class RevisionLine
 			{
 				final V l = e.getValue();
 				final V r = right.get(key);
-				if(r!=null ? !r.equals(l) : l!=null)
+				if(!Objects.equals(r, l))
 					result.add(key);
 			}
 		}

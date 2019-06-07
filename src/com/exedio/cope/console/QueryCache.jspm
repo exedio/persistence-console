@@ -103,7 +103,6 @@ final class QueryCache_Jspm
 
 		final int histogramLimit = cop.histogramLimit;
 
-		//noinspection ConstantConditions OK: guarded by if(cop.condense) above
 		for(int i = 0; i<content.histogramCondensed.length; i++)
 		{
 			if(i>=histogramLimit)
