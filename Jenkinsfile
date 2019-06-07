@@ -1,6 +1,15 @@
 
 timestamps
 {
+	def isRelease = env.BRANCH_NAME.toString().equals("master")
+
+	properties([
+			buildDiscarder(logRotator(
+					numToKeepStr         : isRelease ? '1000' : '30',
+					artifactNumToKeepStr : isRelease ? '1000' :  '2'
+			))
+	])
+
 	//noinspection GroovyAssignabilityCheck
 	node('GitCloneExedio && OpenJdk18Debian9')
 	{
@@ -24,14 +33,6 @@ timestamps
 
 				sh "java -version"
 				sh "${antHome}/bin/ant -version"
-
-				def isRelease = env.BRANCH_NAME.toString().equals("master");
-
-				properties([[$class: 'jenkins.model.BuildDiscarderProperty',
-						strategy: [
-								$class               : 'LogRotator',
-								numToKeepStr         : isRelease ? '1000' : '30',
-								artifactNumToKeepStr : isRelease ? '1000' :  '2' ]]])
 
 				sh 'echo' +
 						' HOSTNAME -${HOSTNAME}-' +
