@@ -56,18 +56,18 @@ final class Properties_Jspm
 				%>>
 				<th><%=field.getKey()%></th>
 				<td class="text"><%
-					final Object defaultValue = field.getDefaultValue();
+					final String defaultValue = field.getDefaultValueString();
 					if(defaultValue!=null && fieldSpecified)
 					{
 						%><%=
-							field.getValue().toString()
+							field.getValueString()
 							%> <small>(<%=
-							defaultValue.toString()
+							defaultValue
 							%>)</small><%
 					}
 					else
 					{
-						%><%= field.getValue().toString() %><%
+						%><%= field.getValueString() %><%
 					}
 				%></td>
 			</tr><%
