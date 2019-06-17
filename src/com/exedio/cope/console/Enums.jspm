@@ -31,7 +31,8 @@ final class Enums_Jspm
 	static void write(
 			final Out out,
 			final EnumsCop cop,
-			final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map)
+			final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map,
+			final String changeHooks)
 	{
 		%>
 		<table>
@@ -63,7 +64,13 @@ final class Enums_Jspm
 		}
 	}
 			%>
-		</table><%
+		</table>
+		<h2>Change Hooks</h2>
+		<div>
+			Result of <a href="https://exedio.github.io/api/com/exedio/cope/Model.html#getChangeHookString--">Model.getChangeHookString()</a>:
+			<br>
+			<%= changeHooks %>
+		</div><%
 	}
 
 	private Enums_Jspm()
