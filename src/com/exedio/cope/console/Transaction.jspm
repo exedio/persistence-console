@@ -128,13 +128,14 @@ final class Transaction_Jspm
 		{
 			%>
 			<tr>
-				<th colspan="5">Transaction</th>
+				<th colspan="6">Transaction</th>
 				<th colspan="5">Bound Thread</th>
 			</tr>
 			<tr>
 				<th>#</th>
 				<th>ID</th>
 				<th>Started</th>
+				<th title="Transaction.getInvalidationSize()">Inv</th>
 				<th title="Number of Pre/Post Commit Hooks (.Duplicates)">Hks</th>
 				<th>Name</th>
 				<th>ID</th>
@@ -148,12 +149,14 @@ final class Transaction_Jspm
 			{
 				final Transaction t = openTransactions[n];
 				final Thread thread = threads[n];
+				final int inv = t.getInvalidationSize();
 				final String name = t.getName();
 			%>
 			<tr>
 				<td><%=format(n)%></td>
 				<td><%=format(t.getID())%></td>
 				<td><%=t.getStartDate()%></td>
+				<td><% if(inv!=0){%><%=format(inv)%><%} %></td>
 				<td><%
 				{
 					final int pre    = t.getPreCommitHookCount();
