@@ -26,7 +26,7 @@
 			<exclude org="org.hamcrest" />
 		</dependency>
 		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; build->runtime,sources,changelog" />
-		<dependency org="com.exedio" name="cope" rev="10060" conf="runtime->runtime; build->hsqldb,mysql,instrument,sources,changelog" />
+		<dependency org="com.exedio" name="cope" rev="10337" conf="runtime->runtime; build->hsqldb,mysql,instrument,sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="857" conf="runtime->runtime; build->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="copeservletutil" rev="71" conf="runtime->runtime; build->runtime,sources,changelog"/>
 		<dependency org="com.exedio" name="jspm" rev="202" conf="build->runtime,changelog" />

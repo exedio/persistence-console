@@ -24,7 +24,6 @@ import com.exedio.cope.Vault;
 import com.exedio.cope.instrument.WrapperIgnore;
 import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.pattern.Media;
-import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cope.pattern.MediaThumbnail;
 import com.exedio.cope.pattern.PreventUrlGuessing;
 import com.exedio.cope.pattern.RedirectFrom;
@@ -54,13 +53,7 @@ public final class AMediaItem extends Item
 	@UrlFingerPrinting
 	static final Media finger = new Media().optional();
 
-	@Deprecated
-	static final MediaRedirect redirect = new MediaRedirect(content);
-
 	static final MediaThumbnail thumbnail = new MediaThumbnail(content, 150, 150);
-
-	@Deprecated
-	static final MediaRedirect thumbnailRedirect = new MediaRedirect(thumbnail);
 
 	@WrapperIgnore static final AMediaTestable testableOk1  = new AMediaTestable(content, false);
 	@WrapperIgnore static final AMediaTestable testableOk2  = new AMediaTestable(content, false);
@@ -1145,36 +1138,6 @@ public final class AMediaItem extends Item
 	}
 
 	/**
-	 * Returns a URL the content of {@link #redirect} is available under.
-	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getURL")
-	@java.lang.Deprecated
-	final java.lang.String getRedirectURL()
-	{
-		return AMediaItem.redirect.getURL(this);
-	}
-
-	/**
-	 * Returns a Locator the content of {@link #redirect} is available under.
-	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLocator")
-	@java.lang.Deprecated
-	final com.exedio.cope.pattern.MediaPath.Locator getRedirectLocator()
-	{
-		return AMediaItem.redirect.getLocator(this);
-	}
-
-	/**
-	 * Returns the content type of the media {@link #redirect}.
-	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getContentType")
-	@java.lang.Deprecated
-	final java.lang.String getRedirectContentType()
-	{
-		return AMediaItem.redirect.getContentType(this);
-	}
-
-	/**
 	 * Returns a URL the content of {@link #thumbnail} is available under.
 	 */
 	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getURL")
@@ -1219,26 +1182,6 @@ public final class AMediaItem extends Item
 				java.io.IOException
 	{
 		return AMediaItem.thumbnail.get(this);
-	}
-
-	/**
-	 * Returns a URL the content of {@link #thumbnailRedirect} is available under.
-	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getURL")
-	@java.lang.Deprecated
-	final java.lang.String getThumbnailRedirectURL()
-	{
-		return AMediaItem.thumbnailRedirect.getURL(this);
-	}
-
-	/**
-	 * Returns a Locator the content of {@link #thumbnailRedirect} is available under.
-	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLocator")
-	@java.lang.Deprecated
-	final com.exedio.cope.pattern.MediaPath.Locator getThumbnailRedirectLocator()
-	{
-		return AMediaItem.thumbnailRedirect.getLocator(this);
 	}
 
 	@javax.annotation.Generated("com.exedio.cope.instrument")

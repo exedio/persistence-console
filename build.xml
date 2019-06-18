@@ -146,15 +146,19 @@
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/findbugs-annotations.jar" />
 				<pathelement location="lib/slf4j-api.jar" />
+				<pathelement location="lib/micrometer-core.jar" />
+				<pathelement location="lib/LatencyUtils.jar" />
 				<pathelement location="lib/javax.servlet-api.jar" />
 			</classpath>
 		</taskdef>
 	</target>
 
 	<target name="web.instrument" unless="skip.instrument" depends="instrument.taskdef">
-		<instrument dir="websrc" verify="${instrument.verify}">
+		<instrument dir="websrc" convertTT2Code="false" genericConstructorOneline="false" javaxAnnotationGenerated="true" verify="${instrument.verify}">
 			<disableWrap>com.exedio.cope.DataField#set(com.exedio.cope.Item,java.nio.file.Path)</disableWrap>
 			<disableWrap>com.exedio.cope.pattern.Media#set(com.exedio.cope.Item,java.nio.file.Path,java.lang.String)</disableWrap>
+			<disableWrap>com.exedio.cope.DataField#get(com.exedio.cope.Item,java.nio.file.Path)</disableWrap>
+			<disableWrap>com.exedio.cope.pattern.Media#getBody(com.exedio.cope.Item,java.nio.file.Path)</disableWrap>
 		</instrument>
 	</target>
 
