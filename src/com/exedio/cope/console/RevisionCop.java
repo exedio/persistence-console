@@ -23,6 +23,7 @@ import com.exedio.cope.Revision;
 import com.exedio.cope.RevisionInfo;
 import com.exedio.cope.RevisionInfoMutex;
 import com.exedio.cope.Revisions;
+import com.exedio.cope.misc.SchemaView;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import com.exedio.dsmf.SQLRuntimeException;
@@ -95,7 +96,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 			{
 				try
 				{
-					new SchemaNice(model).create();
+					new SchemaView(model).create();
 				}
 				catch(final SQLException e)
 				{
@@ -106,7 +107,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 			{
 				try
 				{
-					new SchemaNice(model).drop();
+					new SchemaView(model).tearDown();
 				}
 				catch(final SQLException e)
 				{
