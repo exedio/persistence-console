@@ -19,7 +19,7 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.RegisteredDriversCop.getDialectUrlMappers;
+import static com.exedio.cope.ConnectProperties.getDialectUrlMappers;
 
 import java.sql.Driver;
 import java.sql.DriverManager;
