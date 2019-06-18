@@ -51,7 +51,10 @@ final class QueryCache_Jspm
 			<tr><th colspan="2">Invalidations</th><td><%=format(info.getInvalidations())%></td></tr>
 			<tr><th colspan="2">log<sub>10</sub> Hits/Misses</th><td><%=ratio(hits, misses)%></td></tr>
 			<tr><th colspan="2">Hits</th><td><%=  format(hits)  %></td></tr>
-			<tr><th colspan="2">Misses</th><td><%=format(misses)%></td></tr><%
+			<tr><th colspan="2">Misses</th><td><%=format(misses)%></td></tr>
+			<tr><th rowspan="3">Stamps</th><th>Size</th><td><%=format(info.getStampsSize())%></td></tr>
+			<tr><th>Hits</th><td><%=format(info.getStampsHits())%></td></tr>
+			<tr><th>Purged</th><td><%=format(info.getStampsPurged())%></td></tr><%
 			if(content.histogram.length>0)
 			{
 			%>
