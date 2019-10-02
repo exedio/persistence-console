@@ -246,7 +246,7 @@
 
 	<target name="compile" depends="src.compile, testsrc.compile, web.compile" />
 
-	<target name="api">
+	<target name="api" depends="src.jspm">
 		<delete dir="build/api" />
 
 		<javadoc
@@ -266,6 +266,7 @@
 				<pathelement location="lib/exedio-cope-util.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/javax.servlet-api.jar" />
+				<pathelement location="lib/slf4j-api.jar" />
 				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="lib/findbugs-annotations.jar" />
 			</classpath>
