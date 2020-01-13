@@ -220,7 +220,7 @@ final class Transaction_Jspm
 			%>
 			<caption>Changes</caption>
 			<tr>
-				<th rowspan="2">Remote<br>Node</th>
+				<th rowspan="2">Node</th>
 				<th colspan="4">Transaction</th>
 				<th rowspan="2">Items</th>
 			</tr>
@@ -235,15 +235,8 @@ final class Transaction_Jspm
 			{
 				final ChangeEvent event = commit.event;
 			%>
-			<tr><%
-
-			try
-			{
-				final String value = event.getRemoteNodeIDString();
-				%>
-				<td><%=value%></td><%
-			}
-			catch(final NotAvailableException e) { write(out, e); }
+			<tr>
+				<td class="text"><%=event.getNodeID()%></td><%
 
 			try
 			{
