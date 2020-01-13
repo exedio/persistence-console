@@ -4,6 +4,4 @@
 		docBase="../../build/clusterweb@NODE@"
 		debug="0"
 		privileged="true">
-	<Parameter name="cope-console-cluster@NODE@.cluster.secret" value="5476" />
-	<Parameter name="cope-console-cluster@NODE@.cluster.listenThreads" value="2" />
 </Context>

@@ -210,8 +210,11 @@
 					<filter token="NODE" value="@{node}" />
 				</filterset>
 			</copy>
+			<copy
+					tofile="build/clusterweb@{node}/WEB-INF/cope.properties"
+					file="cluster.cope.properties"
+					overwrite="true" />
 		</foreachClusterNode>
-		<copy todir="tomcat/bin" file="cluster.cope.properties"/>
 	</target>
 
 	<macrodef name="foreachClusterNode">
