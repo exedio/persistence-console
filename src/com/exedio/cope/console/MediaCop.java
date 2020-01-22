@@ -27,7 +27,6 @@ import com.exedio.cope.TransactionTry;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaFilter;
 import com.exedio.cope.pattern.MediaPath;
-import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import java.util.Date;
@@ -72,8 +71,6 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 
 		if(media instanceof MediaFilter)
 			other = ((MediaFilter)media).getSource();
-		else if(media instanceof MediaRedirect)
-			other = ((MediaRedirect)media).getTarget();
 		else
 			other = null;
 

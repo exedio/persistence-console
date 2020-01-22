@@ -36,7 +36,6 @@ import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaFilter;
 import com.exedio.cope.pattern.MediaInfo;
 import com.exedio.cope.pattern.MediaPath;
-import com.exedio.cope.pattern.MediaRedirect;
 import com.exedio.cope.pattern.MediaRequestLog;
 import com.exedio.cope.pattern.MediaThumbnail;
 import com.exedio.cope.pattern.PreventUrlGuessing;
@@ -134,11 +133,6 @@ final class Media_Jspm
 					{
 						final Media m = (Media)path;
 						%>(<%=m.getContentTypeDescription()%>)<%
-					}
-					else if(path instanceof MediaRedirect)
-					{
-						final MediaRedirect redirect = (MediaRedirect)path;
-						%>(<%=redirect.getTarget().getName()%>)<%
 					}
 					else if(path instanceof MediaThumbnail)
 					{
