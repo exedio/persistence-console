@@ -303,9 +303,10 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 	{
 		final ArrayList<Column> result = new ArrayList<>();
 		for(final Table table : schema.getTables())
-			for(final Column column : table.getColumns())
-				if(!column.required() && column.exists())
-					result.add(column);
+			if(table.required()) // don't care about nonrequired tables
+				for(final Column column : table.getColumns())
+					if(!column.required() && column.exists())
+						result.add(column);
 		return result;
 	}
 
