@@ -22,6 +22,8 @@ package com.exedio.cope.console;
 import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.util.Properties;
+import java.util.Iterator;
+import java.util.SortedSet;
 
 final class Connect_Jspm
 {
@@ -48,13 +50,24 @@ final class Connect_Jspm
 			<tr>
 				<th>Random</th>
 				<td class="text"><%if(model.supportsRandom()){%>yes<%}else{%>no<%}%></td>
-			</tr>
+			</tr><%
+
+			final SortedSet<String> hashes = model.getSupportedDataHashAlgorithms();
+			final Iterator<String> hashesIter = hashes.iterator();
+			%>
 			<tr>
-				<th colspan="2">Data Hash Algorithms</th>
-			</tr>
+				<th rowspan="<%=hashes.size()%>">Data Hash Algorithms</th>
+				<td class="text"><%= hashesIter.hasNext() ? hashesIter.next() : "<none>" %></td>
+			</tr><%
+
+			while(hashesIter.hasNext())
+			{
+			%>
 			<tr>
-				<td colspan="2" class="text"><%=model.getSupportedDataHashAlgorithms().toString()%></td>
-			</tr>
+				<td class="text"><%=hashesIter.next()%></td>
+			</tr><%
+			}
+			%>
 		</table>
 		<table>
 			<caption>Supports (Schema)</caption>
