@@ -20,7 +20,9 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.DatabaseLogCop.ENABLE;
+import static com.exedio.cope.console.DatabaseLogCop.LIMIT;
 import static com.exedio.cope.console.DatabaseLogCop.SQL;
+import static com.exedio.cope.console.DatabaseLogCop.STACKTRACE;
 import static com.exedio.cope.console.DatabaseLogCop.THRESHOLD;
 
 import java.util.Date;
@@ -34,8 +36,11 @@ final class DatabaseLog_Jspm
 			final Class<?> listenerClass,
 			final boolean enable,
 			final Date date,
+			final int logsLimit,
+			final int logsLeft,
 			final int threshold,
-			final String sql)
+			final String sql,
+			final boolean printStackTrace)
 	{
 		%>
 		active: <%= listenerClass!=null ? listenerClass.getName() : "NONE" %>
@@ -43,9 +48,13 @@ final class DatabaseLog_Jspm
 		<form action="<%=cop%>" method="POST">
 			<input type="checkbox" name="<%=ENABLE%>"<%if(enable){%> checked="checked"<%}%>> enable
 			<br>
-			<input type="text" name="<%=THRESHOLD%>" value="<%=threshold%>"> threshold
+			<input type="text" name="<%=LIMIT%>" value="<%=logsLimit%>"> limit (<%=logsLeft%> left)
+			<br>
+			<input type="text" name="<%=THRESHOLD%>" value="<% if(threshold>0){%><%=threshold%><%} %>"> threshold
 			<br>
 			<input type="text" name="<%=SQL%>" value="<%=sql!=null?sql:""%>"> sql
+			<br>
+			<input type="checkbox" name="<%=STACKTRACE%>"<%if(printStackTrace){%> checked="checked"<%}%>> print stackTrace
 			<br>
 			<input type="submit" name="submit" value="submit">
 		</form><%

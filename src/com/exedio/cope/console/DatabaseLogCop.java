@@ -19,8 +19,8 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.console.DatabaseLogListener.Builder;
 import com.exedio.cope.misc.DatabaseListener;
-import com.exedio.cope.misc.DatabaseLogListener;
 import javax.servlet.http.HttpServletRequest;
 
 final class DatabaseLogCop extends ConsoleCop<Void>
@@ -28,8 +28,10 @@ final class DatabaseLogCop extends ConsoleCop<Void>
 	static final String TAB = "dblogs";
 
 	static final String ENABLE = "dblogenable";
+	static final String LIMIT = "dbloglimit";
 	static final String THRESHOLD = "dblogthreshold";
 	static final String SQL = "dblogsql";
+	static final String STACKTRACE = "dblogstacktrace";
 
 	DatabaseLogCop(final Args args)
 	{
@@ -48,16 +50,37 @@ final class DatabaseLogCop extends ConsoleCop<Void>
 		super.initialize(request, model);
 		if(isPost(request))
 		{
-			final boolean enable = request.getParameter(ENABLE)!=null;
-			final String threshold = request.getParameter(THRESHOLD).trim();
-			final String sql = request.getParameter(SQL).trim();
-			model.setDatabaseListener(
-					enable
-					? new DatabaseLogListener(
-							!threshold.isEmpty() ? Integer.parseInt(threshold) : 0,
-							!sql.isEmpty() ? sql : null,
-							System.out)
-					: null);
+			final DatabaseLogListener listener;
+
+			if(request.getParameter(ENABLE)!=null)
+			{
+				final Builder builder = new Builder(System.out);
+				{
+					final String p = request.getParameter(LIMIT).trim();
+					if(!p.isEmpty())
+						builder.logsLimit(Integer.parseInt(p));
+				}
+				{
+					final String p = request.getParameter(THRESHOLD).trim();
+					if(!p.isEmpty())
+						builder.durationThreshold(Integer.parseInt(p));
+				}
+				{
+					final String p = request.getParameter(SQL).trim();
+					if(!p.isEmpty())
+						builder.sqlFilter(p);
+				}
+				if(request.getParameter(STACKTRACE)!=null)
+					builder.printStackTrace();
+
+				listener = builder.build();
+			}
+			else
+			{
+				listener = null;
+			}
+
+			model.setDatabaseListener(listener);
 		}
 	}
 
@@ -71,7 +94,10 @@ final class DatabaseLogCop extends ConsoleCop<Void>
 				listener!=null ? listener.getClass() : null,
 				enabled,
 				enabled ? ((DatabaseLogListener)listener).getDate()      : null,
+				enabled ? ((DatabaseLogListener)listener).getLogsLimit() : Builder.LOGS_LIMIT_DEFAULT,
+				enabled ? ((DatabaseLogListener)listener).getLogsLeft()  : 0,
 				enabled ? ((DatabaseLogListener)listener).getThreshold() : 0,
-				enabled ? ((DatabaseLogListener)listener).getSQL()       : null);
+				enabled ? ((DatabaseLogListener)listener).getSQL()       : null,
+				enabled &&((DatabaseLogListener)listener).isPrintStackTraceEnabled());
 	}
 }
