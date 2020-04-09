@@ -243,7 +243,9 @@
 		</delete>
 	</target>
 
-	<target name="src" depends="src.jspm, web.jspm" description="creates all sources, so the IDE does not complain" />
+	<target name="jspm" depends="src.jspm, web.jspm" />
+
+	<target name="src" depends="jspm" description="creates all sources, so the IDE does not complain" />
 
 	<target name="instrument" depends="web.instrument" />
 
