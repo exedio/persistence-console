@@ -25,16 +25,17 @@ import com.exedio.cope.EnumField;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
-import com.exedio.cope.pattern.Dispatchable;
+import com.exedio.cope.instrument.WrapInterim;
 import com.exedio.cope.pattern.Dispatcher;
 import com.exedio.cope.util.Day;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
-public class AnItem extends Item implements Dispatchable
+public class AnItem extends Item
 {
 	static final StringField aField = new StringField();
 
@@ -72,10 +73,12 @@ public class AnItem extends Item implements Dispatchable
 	Map<String, List<Integer>> nonTransientField2 = null;
 	Item serializable = null;
 
-	static final Dispatcher dispatcher = new Dispatcher();
+	static final Dispatcher dispatcher = Dispatcher.create(AnItem::dispatch);
 
-	@Override
-	public void dispatch(final Dispatcher dispatcher) {}
+	@WrapInterim(methodBody=false)
+	@SuppressWarnings("EmptyMethod") // OK: just a dummy
+	@SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD") // OK: just a dummy
+	private void dispatch() {}
 
 
 	/**
