@@ -38,7 +38,8 @@ public final class ADataItem extends Item
 	/**
 	 * Creates a new ADataItem with all the fields initially needed.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	public ADataItem()
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
@@ -48,16 +49,14 @@ public final class ADataItem extends Item
 	/**
 	 * Creates a new ADataItem and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private ADataItem(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private ADataItem(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns, whether there is no data for field {@link #blob1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isNull")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isNull")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean isBlob1Null()
 	{
 		return ADataItem.blob1.isNull(this);
@@ -66,7 +65,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns the length of the data of the data field {@link #blob1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLength")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLength")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final long getBlob1Length()
 	{
 		return ADataItem.blob1.getLength(this);
@@ -75,7 +75,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns the value of the persistent field {@link #blob1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getArray")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final byte[] getBlob1Array()
 	{
 		return ADataItem.blob1.getArray(this);
@@ -84,7 +85,8 @@ public final class ADataItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given stream.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void getBlob1(final java.io.OutputStream blob1)
 			throws
 				java.io.IOException
@@ -95,8 +97,9 @@ public final class ADataItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given file.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
-	final void getBlob1(final java.io.File blob1)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getBlob1(final java.nio.file.Path blob1)
 			throws
 				java.io.IOException
 	{
@@ -106,7 +109,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #blob1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setBlob1(final com.exedio.cope.DataField.Value blob1)
 	{
 		ADataItem.blob1.set(this,blob1);
@@ -115,7 +119,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #blob1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setBlob1(final byte[] blob1)
 	{
 		ADataItem.blob1.set(this,blob1);
@@ -124,7 +129,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #blob1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setBlob1(final java.io.InputStream blob1)
 			throws
 				java.io.IOException
@@ -135,8 +141,9 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #blob1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
-	final void setBlob1(final java.io.File blob1)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setBlob1(final java.nio.file.Path blob1)
 			throws
 				java.io.IOException
 	{
@@ -146,7 +153,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns, whether there is no data for field {@link #blob2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isNull")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isNull")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean isBlob2Null()
 	{
 		return ADataItem.blob2.isNull(this);
@@ -155,7 +163,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns the length of the data of the data field {@link #blob2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLength")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLength")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final long getBlob2Length()
 	{
 		return ADataItem.blob2.getLength(this);
@@ -164,7 +173,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns the value of the persistent field {@link #blob2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getArray")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final byte[] getBlob2Array()
 	{
 		return ADataItem.blob2.getArray(this);
@@ -173,7 +183,8 @@ public final class ADataItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given stream.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void getBlob2(final java.io.OutputStream blob2)
 			throws
 				java.io.IOException
@@ -184,8 +195,9 @@ public final class ADataItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given file.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
-	final void getBlob2(final java.io.File blob2)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getBlob2(final java.nio.file.Path blob2)
 			throws
 				java.io.IOException
 	{
@@ -195,7 +207,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #blob2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setBlob2(final com.exedio.cope.DataField.Value blob2)
 	{
 		ADataItem.blob2.set(this,blob2);
@@ -204,7 +217,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #blob2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setBlob2(final byte[] blob2)
 	{
 		ADataItem.blob2.set(this,blob2);
@@ -213,7 +227,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #blob2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setBlob2(final java.io.InputStream blob2)
 			throws
 				java.io.IOException
@@ -224,8 +239,9 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #blob2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
-	final void setBlob2(final java.io.File blob2)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setBlob2(final java.nio.file.Path blob2)
 			throws
 				java.io.IOException
 	{
@@ -235,7 +251,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns, whether there is no data for field {@link #vault1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isNull")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isNull")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean isVault1Null()
 	{
 		return ADataItem.vault1.isNull(this);
@@ -244,7 +261,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns the length of the data of the data field {@link #vault1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLength")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLength")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final long getVault1Length()
 	{
 		return ADataItem.vault1.getLength(this);
@@ -253,7 +271,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns the value of the persistent field {@link #vault1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getArray")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final byte[] getVault1Array()
 	{
 		return ADataItem.vault1.getArray(this);
@@ -262,7 +281,8 @@ public final class ADataItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given stream.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void getVault1(final java.io.OutputStream vault1)
 			throws
 				java.io.IOException
@@ -273,8 +293,9 @@ public final class ADataItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given file.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
-	final void getVault1(final java.io.File vault1)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getVault1(final java.nio.file.Path vault1)
 			throws
 				java.io.IOException
 	{
@@ -284,7 +305,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #vault1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setVault1(final com.exedio.cope.DataField.Value vault1)
 	{
 		ADataItem.vault1.set(this,vault1);
@@ -293,7 +315,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #vault1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setVault1(final byte[] vault1)
 	{
 		ADataItem.vault1.set(this,vault1);
@@ -302,7 +325,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #vault1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setVault1(final java.io.InputStream vault1)
 			throws
 				java.io.IOException
@@ -313,8 +337,9 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #vault1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
-	final void setVault1(final java.io.File vault1)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setVault1(final java.nio.file.Path vault1)
 			throws
 				java.io.IOException
 	{
@@ -324,7 +349,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns, whether there is no data for field {@link #vault2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isNull")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isNull")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean isVault2Null()
 	{
 		return ADataItem.vault2.isNull(this);
@@ -333,7 +359,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns the length of the data of the data field {@link #vault2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLength")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLength")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final long getVault2Length()
 	{
 		return ADataItem.vault2.getLength(this);
@@ -342,7 +369,8 @@ public final class ADataItem extends Item
 	/**
 	 * Returns the value of the persistent field {@link #vault2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getArray")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final byte[] getVault2Array()
 	{
 		return ADataItem.vault2.getArray(this);
@@ -351,7 +379,8 @@ public final class ADataItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given stream.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void getVault2(final java.io.OutputStream vault2)
 			throws
 				java.io.IOException
@@ -362,8 +391,9 @@ public final class ADataItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given file.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
-	final void getVault2(final java.io.File vault2)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getVault2(final java.nio.file.Path vault2)
 			throws
 				java.io.IOException
 	{
@@ -373,7 +403,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #vault2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setVault2(final com.exedio.cope.DataField.Value vault2)
 	{
 		ADataItem.vault2.set(this,vault2);
@@ -382,7 +413,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #vault2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setVault2(final byte[] vault2)
 	{
 		ADataItem.vault2.set(this,vault2);
@@ -391,7 +423,8 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #vault2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setVault2(final java.io.InputStream vault2)
 			throws
 				java.io.IOException
@@ -402,27 +435,28 @@ public final class ADataItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #vault2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
-	final void setVault2(final java.io.File vault2)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setVault2(final java.nio.file.Path vault2)
 			throws
 				java.io.IOException
 	{
 		ADataItem.vault2.set(this,vault2);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for aDataItem.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<ADataItem> TYPE = com.exedio.cope.TypesBound.newType(ADataItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private ADataItem(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

@@ -54,7 +54,8 @@ public final class FeatureItem extends Item
 	 * @param string the initial value for field {@link #string}.
 	 * @throws com.exedio.cope.StringLengthViolationException if feature, string violates its length constraint.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	FeatureItem(
 				final Feature feature,
 				final StringField string)
@@ -70,16 +71,14 @@ public final class FeatureItem extends Item
 	/**
 	 * Creates a new FeatureItem and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private FeatureItem(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private FeatureItem(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns the value of {@link #feature}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final Feature getFeature()
 	{
 		return FeatureItem.feature.get(this);
@@ -88,7 +87,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Sets a new value for {@link #feature}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setFeature(final Feature feature)
 			throws
 				com.exedio.cope.StringLengthViolationException
@@ -99,7 +99,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Returns the value of {@link #string}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final StringField getString()
 	{
 		return FeatureItem.string.get(this);
@@ -108,7 +109,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Sets a new value for {@link #string}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setString(final StringField string)
 			throws
 				com.exedio.cope.StringLengthViolationException
@@ -119,7 +121,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Returns the value of {@link #stringField1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getStringField1()
 	{
 		return FeatureItem.stringField1.get(this);
@@ -128,7 +131,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Sets a new value for {@link #stringField1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setStringField1(final java.lang.String stringField1)
 			throws
 				com.exedio.cope.StringLengthViolationException
@@ -139,7 +143,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Returns the value of {@link #stringField2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getStringField2()
 	{
 		return FeatureItem.stringField2.get(this);
@@ -148,7 +153,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Sets a new value for {@link #stringField2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setStringField2(final java.lang.String stringField2)
 			throws
 				com.exedio.cope.StringLengthViolationException
@@ -159,7 +165,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Returns the value of {@link #intField1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.Integer getIntField1()
 	{
 		return FeatureItem.intField1.get(this);
@@ -168,7 +175,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Sets a new value for {@link #intField1}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setIntField1(final java.lang.Integer intField1)
 	{
 		FeatureItem.intField1.set(this,intField1);
@@ -177,7 +185,8 @@ public final class FeatureItem extends Item
 	/**
 	 * Returns the value of {@link #intField2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.Integer getIntField2()
 	{
 		return FeatureItem.intField2.get(this);
@@ -186,25 +195,26 @@ public final class FeatureItem extends Item
 	/**
 	 * Sets a new value for {@link #intField2}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setIntField2(final java.lang.Integer intField2)
 	{
 		FeatureItem.intField2.set(this,intField2);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for featureItem.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<FeatureItem> TYPE = com.exedio.cope.TypesBound.newType(FeatureItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private FeatureItem(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

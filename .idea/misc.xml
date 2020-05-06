@@ -2,7 +2,7 @@
 <project version="4">
   <component name="EntryPointsManager">
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="javax.annotation.Generated" />
+      <item index="0" class="java.lang.String" itemvalue="com.exedio.cope.instrument.Generated" />
     </list>
   </component>
   <component name="MavenImportPreferences">

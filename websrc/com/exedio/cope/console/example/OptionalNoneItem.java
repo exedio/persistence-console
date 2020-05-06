@@ -34,7 +34,8 @@ public final class OptionalNoneItem extends Item
 	 * @throws com.exedio.cope.MandatoryViolationException if mandatory is null.
 	 * @throws com.exedio.cope.StringLengthViolationException if mandatory, optional violates its length constraint.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	OptionalNoneItem(
 				final java.lang.String mandatory,
 				final java.lang.String optional)
@@ -51,16 +52,14 @@ public final class OptionalNoneItem extends Item
 	/**
 	 * Creates a new OptionalNoneItem and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private OptionalNoneItem(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private OptionalNoneItem(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns the value of {@link #mandatory}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getMandatory()
 	{
 		return OptionalNoneItem.mandatory.get(this);
@@ -69,25 +68,26 @@ public final class OptionalNoneItem extends Item
 	/**
 	 * Returns the value of {@link #optional}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getOptional()
 	{
 		return OptionalNoneItem.optional.get(this);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for optionalNoneItem.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<OptionalNoneItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalNoneItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private OptionalNoneItem(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

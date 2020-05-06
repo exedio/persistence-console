@@ -31,7 +31,8 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	 * @param feature the initial value for field {@link #feature}.
 	 * @throws com.exedio.cope.MandatoryViolationException if feature is null.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	UniqueHashedMediaItemUnsupported(
 				final com.exedio.cope.pattern.Media.Value feature)
 			throws
@@ -45,16 +46,14 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	/**
 	 * Creates a new UniqueHashedMediaItemUnsupported and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private UniqueHashedMediaItemUnsupported(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private UniqueHashedMediaItemUnsupported(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns a URL the content of {@link #feature} is available under.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getURL")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getURL")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getURL()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getURL(this);
@@ -63,7 +62,8 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	/**
 	 * Returns a Locator the content of {@link #feature} is available under.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLocator")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLocator")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final com.exedio.cope.pattern.MediaPath.Locator getLocator()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getLocator(this);
@@ -72,7 +72,8 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	/**
 	 * Returns the content type of the media {@link #feature}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getContentType")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getContentType")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getContentType()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getContentType(this);
@@ -81,7 +82,8 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	/**
 	 * Returns the last modification date of media {@link #feature}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLastModified")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLastModified")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.util.Date getLastModified()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getLastModified(this);
@@ -90,7 +92,8 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	/**
 	 * Returns the body length of the media {@link #feature}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLength")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLength")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final long getLength()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getLength(this);
@@ -99,7 +102,8 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	/**
 	 * Returns the body of the media {@link #feature}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getBody")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getBody")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final byte[] getBody()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getBody(this);
@@ -108,7 +112,8 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	/**
 	 * Returns the hash of the media body {@link #feature}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getHash")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getHash")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getHash()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getHash(this);
@@ -118,7 +123,8 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	 * Finds a uniqueHashedMediaItemUnsupported by it's hash.
 	 * @return null if there is no matching item.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="forHash")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="forHash")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final UniqueHashedMediaItemUnsupported forHash(final java.lang.String featureHash)
 	{
 		return UniqueHashedMediaItemUnsupported.feature.forHash(UniqueHashedMediaItemUnsupported.class,featureHash);
@@ -127,9 +133,10 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	/**
 	 * Returns a uniqueHashedMediaItemUnsupported containing given media value or creates a new one.
 	 * @param feature shall be equal to field {@link #feature}.
-	 * @throws java.io.IOException if reading <tt>value</tt> throws an IOException.
+	 * @throws java.io.IOException if reading {@code value} throws an IOException.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getOrCreate")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getOrCreate")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final UniqueHashedMediaItemUnsupported getOrCreate(final com.exedio.cope.pattern.Media.Value feature)
 			throws
 				java.io.IOException
@@ -137,19 +144,19 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 		return UniqueHashedMediaItemUnsupported.feature.getOrCreate(UniqueHashedMediaItemUnsupported.class,feature);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for uniqueHashedMediaItemUnsupported.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<UniqueHashedMediaItemUnsupported> TYPE = com.exedio.cope.TypesBound.newType(UniqueHashedMediaItemUnsupported.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private UniqueHashedMediaItemUnsupported(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

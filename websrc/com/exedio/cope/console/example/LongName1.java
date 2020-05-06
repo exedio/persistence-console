@@ -32,7 +32,8 @@ public final class LongName1 extends AnItem
 	 * @throws com.exedio.cope.MandatoryViolationException if aField, letter, secondLetter, color is null.
 	 * @throws com.exedio.cope.StringLengthViolationException if aField violates its length constraint.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	LongName1(
 				final java.lang.String aField,
 				final com.exedio.cope.console.example.AnItem.Letter letter,
@@ -53,25 +54,22 @@ public final class LongName1 extends AnItem
 	/**
 	 * Creates a new LongName1 and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private LongName1(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private LongName1(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for longName1.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<LongName1> TYPE = com.exedio.cope.TypesBound.newType(LongName1.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private LongName1(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

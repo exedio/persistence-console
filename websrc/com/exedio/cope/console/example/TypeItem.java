@@ -60,16 +60,14 @@ public final class TypeItem extends Item
 	/**
 	 * Creates a new TypeItem and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private TypeItem(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private TypeItem(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns the value of {@link #item}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final com.exedio.cope.Type<? extends Item> getItem()
 	{
 		return TypeItem.item.get(this);
@@ -78,7 +76,8 @@ public final class TypeItem extends Item
 	/**
 	 * Sets a new value for {@link #item}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setItem(final com.exedio.cope.Type<? extends Item> item)
 			throws
 				com.exedio.cope.StringLengthViolationException
@@ -89,7 +88,8 @@ public final class TypeItem extends Item
 	/**
 	 * Returns the value of {@link #anitem}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final com.exedio.cope.Type<? extends AnItem> getAnitem()
 	{
 		return TypeItem.anitem.get(this);
@@ -98,7 +98,8 @@ public final class TypeItem extends Item
 	/**
 	 * Sets a new value for {@link #anitem}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setAnitem(final com.exedio.cope.Type<? extends AnItem> anitem)
 			throws
 				com.exedio.cope.StringLengthViolationException
@@ -106,19 +107,19 @@ public final class TypeItem extends Item
 		TypeItem.anitem.set(this,anitem);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for typeItem.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<TypeItem> TYPE = com.exedio.cope.TypesBound.newType(TypeItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private TypeItem(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

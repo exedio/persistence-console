@@ -42,7 +42,8 @@ public final class AHashItem extends Item
 	 * @param pin the initial value for field {@link #pin}.
 	 * @throws com.exedio.cope.MandatoryViolationException if md8, md8x6latin, md5, deterministic, pin is null.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	AHashItem(
 				final java.lang.String md8,
 				final java.lang.String md8x6latin,
@@ -64,26 +65,25 @@ public final class AHashItem extends Item
 	/**
 	 * Creates a new AHashItem and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private AHashItem(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private AHashItem(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns whether the given value corresponds to the hash in {@link #md8}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="check")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="check")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean checkMd8(final java.lang.String md8)
 	{
 		return AHashItem.md8.check(this,md8);
 	}
 
 	/**
-	 * Wastes (almost) as much cpu cycles, as a call to <tt>checkMd8</tt> would have needed.
+	 * Wastes (almost) as much cpu cycles, as a call to {@code checkMd8} would have needed.
 	 * Needed to prevent Timing Attacks.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="blind")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="blind")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void blindMd8(final java.lang.String md8)
 	{
 		AHashItem.md8.blind(md8);
@@ -92,7 +92,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets a new value for {@link #md8}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setMd8(final java.lang.String md8)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -103,7 +104,8 @@ public final class AHashItem extends Item
 	/**
 	 * Returns the encoded hash value for hash {@link #md8}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getSHA512s8i8")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getSHA512s8i8")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getMd8SHA512s8i8()
 	{
 		return AHashItem.md8.getHash(this);
@@ -112,7 +114,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets the encoded hash value for hash {@link #md8}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setSHA512s8i8")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="setSHA512s8i8")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setMd8SHA512s8i8(final java.lang.String md8)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -123,17 +126,19 @@ public final class AHashItem extends Item
 	/**
 	 * Returns whether the given value corresponds to the hash in {@link #md8x6latin}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="check")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="check")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean checkMd8x6latin(final java.lang.String md8x6latin)
 	{
 		return AHashItem.md8x6latin.check(this,md8x6latin);
 	}
 
 	/**
-	 * Wastes (almost) as much cpu cycles, as a call to <tt>checkMd8x6latin</tt> would have needed.
+	 * Wastes (almost) as much cpu cycles, as a call to {@code checkMd8x6latin} would have needed.
 	 * Needed to prevent Timing Attacks.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="blind")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="blind")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void blindMd8x6latin(final java.lang.String md8x6latin)
 	{
 		AHashItem.md8x6latin.blind(md8x6latin);
@@ -142,7 +147,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets a new value for {@link #md8x6latin}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setMd8x6latin(final java.lang.String md8x6latin)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -153,7 +159,8 @@ public final class AHashItem extends Item
 	/**
 	 * Returns the encoded hash value for hash {@link #md8x6latin}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getSHA512s8i80000")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getSHA512s8i80000")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getMd8x6latinSHA512s8i80000()
 	{
 		return AHashItem.md8x6latin.getHash(this);
@@ -162,7 +169,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets the encoded hash value for hash {@link #md8x6latin}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setSHA512s8i80000")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="setSHA512s8i80000")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setMd8x6latinSHA512s8i80000(final java.lang.String md8x6latin)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -173,17 +181,19 @@ public final class AHashItem extends Item
 	/**
 	 * Returns whether the given value corresponds to the hash in {@link #md5}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="check")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="check")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean checkMd5(final java.lang.String md5)
 	{
 		return AHashItem.md5.check(this,md5);
 	}
 
 	/**
-	 * Wastes (almost) as much cpu cycles, as a call to <tt>checkMd5</tt> would have needed.
+	 * Wastes (almost) as much cpu cycles, as a call to {@code checkMd5} would have needed.
 	 * Needed to prevent Timing Attacks.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="blind")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="blind")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void blindMd5(final java.lang.String md5)
 	{
 		AHashItem.md5.blind(md5);
@@ -192,7 +202,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets a new value for {@link #md5}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setMd5(final java.lang.String md5)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -203,7 +214,8 @@ public final class AHashItem extends Item
 	/**
 	 * Returns the encoded hash value for hash {@link #md5}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getMD5s2i5000")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getMD5s2i5000")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getMd5MD5s2i5000()
 	{
 		return AHashItem.md5.getHash(this);
@@ -212,7 +224,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets the encoded hash value for hash {@link #md5}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setMD5s2i5000")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="setMD5s2i5000")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setMd5MD5s2i5000(final java.lang.String md5)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -223,17 +236,19 @@ public final class AHashItem extends Item
 	/**
 	 * Returns whether the given value corresponds to the hash in {@link #deterministic}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="check")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="check")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean checkDeterministic(final java.lang.String deterministic)
 	{
 		return AHashItem.deterministic.check(this,deterministic);
 	}
 
 	/**
-	 * Wastes (almost) as much cpu cycles, as a call to <tt>checkDeterministic</tt> would have needed.
+	 * Wastes (almost) as much cpu cycles, as a call to {@code checkDeterministic} would have needed.
 	 * Needed to prevent Timing Attacks.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="blind")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="blind")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void blindDeterministic(final java.lang.String deterministic)
 	{
 		AHashItem.deterministic.blind(deterministic);
@@ -242,7 +257,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets a new value for {@link #deterministic}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDeterministic(final java.lang.String deterministic)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -253,7 +269,8 @@ public final class AHashItem extends Item
 	/**
 	 * Returns the encoded hash value for hash {@link #deterministic}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getMD5")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getMD5")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getDeterministicMD5()
 	{
 		return AHashItem.deterministic.getHash(this);
@@ -262,7 +279,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets the encoded hash value for hash {@link #deterministic}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setMD5")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="setMD5")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDeterministicMD5(final java.lang.String deterministic)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -273,17 +291,19 @@ public final class AHashItem extends Item
 	/**
 	 * Returns whether the given value corresponds to the hash in {@link #pin}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="check")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="check")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean checkPin(final java.lang.String pin)
 	{
 		return AHashItem.pin.check(this,pin);
 	}
 
 	/**
-	 * Wastes (almost) as much cpu cycles, as a call to <tt>checkPin</tt> would have needed.
+	 * Wastes (almost) as much cpu cycles, as a call to {@code checkPin} would have needed.
 	 * Needed to prevent Timing Attacks.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="blind")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="blind")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void blindPin(final java.lang.String pin)
 	{
 		AHashItem.pin.blind(pin);
@@ -292,7 +312,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets a new value for {@link #pin}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setPin(final java.lang.String pin)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -303,7 +324,8 @@ public final class AHashItem extends Item
 	/**
 	 * Returns the encoded hash value for hash {@link #pin}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getSHA512s8i2")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getSHA512s8i2")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getPinSHA512s8i2()
 	{
 		return AHashItem.pin.getHash(this);
@@ -312,7 +334,8 @@ public final class AHashItem extends Item
 	/**
 	 * Sets the encoded hash value for hash {@link #pin}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setSHA512s8i2")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="setSHA512s8i2")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setPinSHA512s8i2(final java.lang.String pin)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -320,19 +343,19 @@ public final class AHashItem extends Item
 		AHashItem.pin.setHash(this,pin);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for aHashItem.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<AHashItem> TYPE = com.exedio.cope.TypesBound.newType(AHashItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private AHashItem(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

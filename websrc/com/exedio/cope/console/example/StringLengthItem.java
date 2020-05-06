@@ -52,7 +52,8 @@ public final class StringLengthItem extends Item
 	 * @throws com.exedio.cope.MandatoryViolationException if empty, emptyOk, normal, normalOk, min10, min10Ok is null.
 	 * @throws com.exedio.cope.StringLengthViolationException if empty, emptyOk, normal, normalOk, min10, min10Ok violates its length constraint.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	StringLengthItem(
 				final java.lang.String empty,
 				final java.lang.String emptyOk,
@@ -77,16 +78,14 @@ public final class StringLengthItem extends Item
 	/**
 	 * Creates a new StringLengthItem and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private StringLengthItem(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private StringLengthItem(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns the value of {@link #empty}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getEmpty()
 	{
 		return StringLengthItem.empty.get(this);
@@ -95,7 +94,8 @@ public final class StringLengthItem extends Item
 	/**
 	 * Returns the value of {@link #emptyOk}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getEmptyOk()
 	{
 		return StringLengthItem.emptyOk.get(this);
@@ -104,7 +104,8 @@ public final class StringLengthItem extends Item
 	/**
 	 * Returns the value of {@link #normal}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getNormal()
 	{
 		return StringLengthItem.normal.get(this);
@@ -113,7 +114,8 @@ public final class StringLengthItem extends Item
 	/**
 	 * Returns the value of {@link #normalOk}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getNormalOk()
 	{
 		return StringLengthItem.normalOk.get(this);
@@ -122,7 +124,8 @@ public final class StringLengthItem extends Item
 	/**
 	 * Returns the value of {@link #min10}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getMin10()
 	{
 		return StringLengthItem.min10.get(this);
@@ -131,25 +134,26 @@ public final class StringLengthItem extends Item
 	/**
 	 * Returns the value of {@link #min10Ok}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getMin10Ok()
 	{
 		return StringLengthItem.min10Ok.get(this);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for stringLengthItem.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<StringLengthItem> TYPE = com.exedio.cope.TypesBound.newType(StringLengthItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private StringLengthItem(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

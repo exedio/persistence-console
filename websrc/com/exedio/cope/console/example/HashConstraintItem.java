@@ -38,7 +38,8 @@ public final class HashConstraintItem extends Item
 	 * @throws com.exedio.cope.MandatoryViolationException if hash, data is null.
 	 * @throws com.exedio.cope.StringLengthViolationException if hash violates its length constraint.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	HashConstraintItem(
 				final java.lang.String hash,
 				final com.exedio.cope.DataField.Value data)
@@ -55,16 +56,14 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Creates a new HashConstraintItem and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	private HashConstraintItem(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	private HashConstraintItem(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns the value of {@link #hash}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getHash()
 	{
 		return HashConstraintItem.hash.get(this);
@@ -73,7 +72,8 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Sets a new value for {@link #hash}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setHash(final java.lang.String hash)
 			throws
 				com.exedio.cope.MandatoryViolationException,
@@ -85,7 +85,8 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Returns, whether there is no data for field {@link #data}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isNull")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isNull")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean isDataNull()
 	{
 		return HashConstraintItem.data.isNull(this);
@@ -94,7 +95,8 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Returns the length of the data of the data field {@link #data}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLength")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLength")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final long getDataLength()
 	{
 		return HashConstraintItem.data.getLength(this);
@@ -103,7 +105,8 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Returns the value of the persistent field {@link #data}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getArray")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final byte[] getDataArray()
 	{
 		return HashConstraintItem.data.getArray(this);
@@ -112,7 +115,8 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given stream.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void getData(final java.io.OutputStream data)
 			throws
 				java.io.IOException
@@ -123,8 +127,9 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Writes the data of this persistent data field into the given file.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
-	final void getData(final java.io.File data)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getData(final java.nio.file.Path data)
 			throws
 				java.io.IOException
 	{
@@ -134,7 +139,8 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #data}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setData(final com.exedio.cope.DataField.Value data)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -145,7 +151,8 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #data}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setData(final byte[] data)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -156,7 +163,8 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #data}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setData(final java.io.InputStream data)
 			throws
 				com.exedio.cope.MandatoryViolationException,
@@ -168,8 +176,9 @@ public final class HashConstraintItem extends Item
 	/**
 	 * Sets a new value for the persistent field {@link #data}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
-	final void setData(final java.io.File data)
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setData(final java.nio.file.Path data)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				java.io.IOException
@@ -177,19 +186,19 @@ public final class HashConstraintItem extends Item
 		HashConstraintItem.data.set(this,data);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for hashConstraintItem.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<HashConstraintItem> TYPE = com.exedio.cope.TypesBound.newType(HashConstraintItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private HashConstraintItem(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }

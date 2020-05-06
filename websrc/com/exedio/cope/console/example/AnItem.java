@@ -90,7 +90,8 @@ public class AnItem extends Item
 	 * @throws com.exedio.cope.MandatoryViolationException if aField, letter, secondLetter, color is null.
 	 * @throws com.exedio.cope.StringLengthViolationException if aField violates its length constraint.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
 	AnItem(
 				final java.lang.String aField,
 				final Letter letter,
@@ -111,16 +112,14 @@ public class AnItem extends Item
 	/**
 	 * Creates a new AnItem and sets the given fields initially.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(genericConstructor=...)
-	protected AnItem(final com.exedio.cope.SetValue<?>... setValues)
-	{
-		super(setValues);
-	}
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(genericConstructor=...)
+	protected AnItem(final com.exedio.cope.SetValue<?>... setValues){super(setValues);}
 
 	/**
 	 * Returns the value of {@link #aField}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.String getAField()
 	{
 		return AnItem.aField.get(this);
@@ -129,7 +128,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #aField}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setAField(final java.lang.String aField)
 			throws
 				com.exedio.cope.MandatoryViolationException,
@@ -141,7 +141,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #letter}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final Letter getLetter()
 	{
 		return AnItem.letter.get(this);
@@ -150,7 +151,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #letter}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setLetter(final Letter letter)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -161,7 +163,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #secondLetter}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final Letter getSecondLetter()
 	{
 		return AnItem.secondLetter.get(this);
@@ -170,7 +173,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #secondLetter}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setSecondLetter(final Letter secondLetter)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -181,7 +185,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #color}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final Color getColor()
 	{
 		return AnItem.color.get(this);
@@ -190,7 +195,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #color}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setColor(final Color color)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -201,7 +207,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #superInteger}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final int getSuperInteger()
 	{
 		return AnItem.superInteger.getMandatory(this);
@@ -210,7 +217,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #superInteger}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setSuperInteger(final int superInteger)
 	{
 		AnItem.superInteger.set(this,superInteger);
@@ -219,7 +227,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #defaultNoneDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.util.Date getDefaultNoneDate()
 	{
 		return AnItem.defaultNoneDate.get(this);
@@ -228,7 +237,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #defaultNoneDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDefaultNoneDate(final java.util.Date defaultNoneDate)
 	{
 		AnItem.defaultNoneDate.set(this,defaultNoneDate);
@@ -237,7 +247,8 @@ public class AnItem extends Item
 	/**
 	 * Sets the current date for the date field {@link #defaultNoneDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="touch")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void touchDefaultNoneDate()
 	{
 		AnItem.defaultNoneDate.touch(this);
@@ -246,7 +257,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #defaultNoneDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final com.exedio.cope.util.Day getDefaultNoneDay()
 	{
 		return AnItem.defaultNoneDay.get(this);
@@ -255,7 +267,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #defaultNoneDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDefaultNoneDay(final com.exedio.cope.util.Day defaultNoneDay)
 	{
 		AnItem.defaultNoneDay.set(this,defaultNoneDay);
@@ -264,7 +277,8 @@ public class AnItem extends Item
 	/**
 	 * Sets today for the date field {@link #defaultNoneDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="touch")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void touchDefaultNoneDay(final java.util.TimeZone zone)
 	{
 		AnItem.defaultNoneDay.touch(this,zone);
@@ -273,7 +287,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #defaultGoodDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.util.Date getDefaultGoodDate()
 	{
 		return AnItem.defaultGoodDate.get(this);
@@ -282,7 +297,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #defaultGoodDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDefaultGoodDate(final java.util.Date defaultGoodDate)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -293,7 +309,8 @@ public class AnItem extends Item
 	/**
 	 * Sets the current date for the date field {@link #defaultGoodDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="touch")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void touchDefaultGoodDate()
 	{
 		AnItem.defaultGoodDate.touch(this);
@@ -302,7 +319,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #defaultGoodDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final com.exedio.cope.util.Day getDefaultGoodDay()
 	{
 		return AnItem.defaultGoodDay.get(this);
@@ -311,7 +329,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #defaultGoodDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDefaultGoodDay(final com.exedio.cope.util.Day defaultGoodDay)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -322,7 +341,8 @@ public class AnItem extends Item
 	/**
 	 * Sets today for the date field {@link #defaultGoodDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="touch")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void touchDefaultGoodDay(final java.util.TimeZone zone)
 	{
 		AnItem.defaultGoodDay.touch(this,zone);
@@ -331,7 +351,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #defaultBadDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.util.Date getDefaultBadDate()
 	{
 		return AnItem.defaultBadDate.get(this);
@@ -340,7 +361,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #defaultBadDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDefaultBadDate(final java.util.Date defaultBadDate)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -351,7 +373,8 @@ public class AnItem extends Item
 	/**
 	 * Sets the current date for the date field {@link #defaultBadDate}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="touch")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void touchDefaultBadDate()
 	{
 		AnItem.defaultBadDate.touch(this);
@@ -360,7 +383,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the value of {@link #defaultBadDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="get")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final com.exedio.cope.util.Day getDefaultBadDay()
 	{
 		return AnItem.defaultBadDay.get(this);
@@ -369,7 +393,8 @@ public class AnItem extends Item
 	/**
 	 * Sets a new value for {@link #defaultBadDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="set")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDefaultBadDay(final com.exedio.cope.util.Day defaultBadDay)
 			throws
 				com.exedio.cope.MandatoryViolationException
@@ -380,7 +405,8 @@ public class AnItem extends Item
 	/**
 	 * Sets today for the date field {@link #defaultBadDay}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="touch")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="touch")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void touchDefaultBadDay(final java.util.TimeZone zone)
 	{
 		AnItem.defaultBadDay.touch(this,zone);
@@ -389,7 +415,8 @@ public class AnItem extends Item
 	/**
 	 * Dispatch by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="dispatch")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="dispatch")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void dispatchDispatcher(final com.exedio.cope.pattern.Dispatcher.Config config,final com.exedio.cope.util.JobContext ctx)
 	{
 		AnItem.dispatcher.dispatch(AnItem.class,config,ctx);
@@ -398,7 +425,8 @@ public class AnItem extends Item
 	/**
 	 * Dispatch by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="dispatch")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="dispatch")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void dispatchDispatcher(final com.exedio.cope.pattern.Dispatcher.Config config,final java.lang.Runnable probe,final com.exedio.cope.util.JobContext ctx)
 	{
 		AnItem.dispatcher.dispatch(AnItem.class,config,probe,ctx);
@@ -407,7 +435,8 @@ public class AnItem extends Item
 	/**
 	 * Returns, whether this item is yet to be dispatched by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isPending")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isPending")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean isDispatcherPending()
 	{
 		return AnItem.dispatcher.isPending(this);
@@ -416,7 +445,8 @@ public class AnItem extends Item
 	/**
 	 * Sets whether this item is yet to be dispatched by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setPending")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="setPending")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDispatcherPending(final boolean pending)
 	{
 		AnItem.dispatcher.setPending(this,pending);
@@ -425,7 +455,8 @@ public class AnItem extends Item
 	/**
 	 * Returns, whether this item is allowed to be purged by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="isNoPurge")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isNoPurge")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final boolean isDispatcherNoPurge()
 	{
 		return AnItem.dispatcher.isNoPurge(this);
@@ -434,7 +465,8 @@ public class AnItem extends Item
 	/**
 	 * Sets whether this item is allowed to be purged by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="setNoPurge")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="setNoPurge")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final void setDispatcherNoPurge(final boolean noPurge)
 	{
 		AnItem.dispatcher.setNoPurge(this,noPurge);
@@ -443,7 +475,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the date, this item was last successfully dispatched by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLastSuccessDate")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLastSuccessDate")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.util.Date getDispatcherLastSuccessDate()
 	{
 		return AnItem.dispatcher.getLastSuccessDate(this);
@@ -452,7 +485,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the milliseconds, this item needed to be last successfully dispatched by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getLastSuccessElapsed")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLastSuccessElapsed")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.lang.Long getDispatcherLastSuccessElapsed()
 	{
 		return AnItem.dispatcher.getLastSuccessElapsed(this);
@@ -461,7 +495,8 @@ public class AnItem extends Item
 	/**
 	 * Returns the attempts to dispatch this item by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getRuns")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getRuns")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.util.List<com.exedio.cope.pattern.Dispatcher.Run> getDispatcherRuns()
 	{
 		return AnItem.dispatcher.getRuns(this);
@@ -470,19 +505,22 @@ public class AnItem extends Item
 	/**
 	 * Returns the failed attempts to dispatch this item by {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="getFailures")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getFailures")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	final java.util.List<com.exedio.cope.pattern.Dispatcher.Run> getDispatcherFailures()
 	{
 		return AnItem.dispatcher.getFailures(this);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="purge")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="purge")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void purgeDispatcher(final com.exedio.cope.pattern.DispatcherPurgeProperties properties,final com.exedio.cope.util.JobContext ctx)
 	{
 		AnItem.dispatcher.purge(properties,ctx);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="purge")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="purge")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final void purgeDispatcher(final com.exedio.cope.pattern.DispatcherPurgeProperties properties,final com.exedio.cope.Condition restriction,final com.exedio.cope.util.JobContext ctx)
 	{
 		AnItem.dispatcher.purge(properties,restriction,ctx);
@@ -491,25 +529,26 @@ public class AnItem extends Item
 	/**
 	 * Returns the parent field of the run type of {@link #dispatcher}.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @Wrapper(wrap="RunParent")
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="RunParent")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	static final com.exedio.cope.ItemField<AnItem> dispatcherRunParent()
 	{
 		return AnItem.dispatcher.getRunParent(AnItem.class);
 	}
 
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	private static final long serialVersionUID = 1l;
 
 	/**
 	 * The persistent type information for anItem.
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument") // customize with @WrapperType(type=...)
+	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
 	public static final com.exedio.cope.Type<AnItem> TYPE = com.exedio.cope.TypesBound.newType(AnItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
 	 * @see com.exedio.cope.Item#Item(com.exedio.cope.ActivationParameters)
 	 */
-	@javax.annotation.Generated("com.exedio.cope.instrument")
+	@com.exedio.cope.instrument.Generated
 	protected AnItem(final com.exedio.cope.ActivationParameters ap){super(ap);}
 }
