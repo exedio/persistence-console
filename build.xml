@@ -201,6 +201,8 @@
 			<fileset file="lib/exedio-cope-mysql.jar" />
 			<fileset file="lib/hsqldb.jar" />
 			<fileset file="lib/mysql-connector-java.jar" />
+			<fileset file="lib/micrometer-core.jar" />
+			<fileset file="lib/LatencyUtils.jar" />
 		</copy>
 		<foreachClusterNode>
 			<copy todir="build/clusterweb@{node}">
