@@ -1,4 +1,3 @@
-<%
 /*
  * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
  *
@@ -17,40 +16,21 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package com.exedio.cope.console;
+package com.exedio.cope.console.example;
 
-import com.exedio.cope.FunctionField;
-import java.util.List;
+import com.exedio.cope.Feature;
+import java.util.Arrays;
+import java.util.Collection;
 
-final class DefaultToNow_Jspm
+public final class SuspicionFeature extends Feature
 {
-	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
-	static void writeBody(
-			final Out out,
-			final List<FunctionField<?>> fields)
+	@Override
+	public Collection<String> getSuspicions()
 	{
-		%>
-		<table>
-			<tr>
-				<th>Field</th>
-				<th>Type</th>
-				<th>Default</th>
-			</tr><%
-			for(final FunctionField<?> field : fields)
-			{
-			%>
-			<tr<% if(DefaultToNowCop.isSuspicious(field)){%> class="inconsistent"<%} %>>
-				<td class="text"><%=field.getID()%></td>
-				<td class="text"><%=field.getClass()%></td>
-				<td class="text"><%=field.getDefaultConstant().toString()%></td>
-			</tr><%
-			}
-			%>
-		</table><%
+		return Arrays.asList(
+				"First example suspicion",
+				"Second example suspicion");
 	}
 
-	private DefaultToNow_Jspm()
-	{
-		// prevent instantiation
-	}
-}%>
+	private static final long serialVersionUID = 1l;
+}

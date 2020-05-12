@@ -64,6 +64,7 @@ public class AnItem extends Item
 	static final DayField  defaultGoodDay  = new DayField ().defaultTo(new Day(2005, 8, 23));
 	static final DateField defaultBadDate  = new DateField().defaultTo(new Date());
 	static final DayField  defaultBadDay   = new DayField ().defaultTo(new Day(TimeZone.getDefault()));
+	static final SuspicionFeature suspicionFeature = new SuspicionFeature();
 
 
 	// for serialization check

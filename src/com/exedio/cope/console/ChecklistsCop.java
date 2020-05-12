@@ -69,7 +69,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new MediaTestableCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{ // application
-						new DefaultToNowCop(args),
+						new SuspicionsCop(args),
 						new SerializationCheckCop(args),
 				},
 				new ConsoleCop<?>[]{ // operations
