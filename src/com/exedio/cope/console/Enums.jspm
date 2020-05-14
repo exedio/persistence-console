@@ -67,7 +67,7 @@ final class Enums_Jspm
 		</table>
 		<h2>Change Hooks</h2>
 		<div>
-			Result of <a href="https://exedio.github.io/api/com/exedio/cope/Model.html#getChangeHookString--">Model.getChangeHookString()</a>:
+			Result of <a href="https://exedio.github.io/api/com/exedio/cope/Model.html#getChangeHookString()">Model.getChangeHookString()</a>:
 			<br>
 			<%= changeHooks %>
 		</div><%
