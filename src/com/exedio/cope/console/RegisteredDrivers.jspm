@@ -24,6 +24,7 @@ import static com.exedio.cope.ConnectProperties.getDialectUrlMappers;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.util.Iterator;
+import java.util.ServiceConfigurationError;
 import java.util.ServiceLoader;
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -53,6 +54,8 @@ final class RegisteredDrivers_Jspm
 				<th>Instance</th>
 			</tr><%
 
+		try
+		{
 			for(final Object mapper : getDialectUrlMappers())
 			{
 				final Class<?> clazz = mapper.getClass();
@@ -90,6 +93,14 @@ final class RegisteredDrivers_Jspm
 				%></td>
 			</tr><%
 			}
+		}
+		catch(final ServiceConfigurationError e)
+		{
+			%>
+			<tr>
+				<td class="notavailable" colspan="4"><% out.writeStackTrace(e); %></td>
+			</tr><%
+		}
 		%>
 		</table><%
 	}
