@@ -32,9 +32,6 @@ timestamps
 				env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
 				def antHome = tool 'Ant version 1.9.3'
 
-				sh "java -version"
-				sh "${antHome}/bin/ant -version"
-
 				sh 'echo' +
 						' HOSTNAME -${HOSTNAME}-' +
 						' EXECUTOR_NUMBER -${EXECUTOR_NUMBER}-' +
