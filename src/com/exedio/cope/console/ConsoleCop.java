@@ -121,6 +121,7 @@ abstract class ConsoleCop<S> extends Cop
 	private static final String[] EMPTY_STRING_ARRAY = new String[0];
 	final String name;
 	final Args args;
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static final int[] AUTO_REFRESHS = {0, 2, 5, 15, 60};
 
 	protected ConsoleCop(final String tab, final String name, final Args args)

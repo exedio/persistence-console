@@ -61,6 +61,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Ralf Wiebicke
  */
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 public class ConsoleServlet extends CopsServlet
 {
 	/**

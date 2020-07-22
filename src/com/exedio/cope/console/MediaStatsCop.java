@@ -186,6 +186,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	static final String FINGER_OFFSET_RAMP_DOWN       = "fingerprintOffset.ramp.down";
 	static final String FINGER_OFFSET_RAMP_VALUE      = "fingerprintOffset.ramp.value";
 	static final String FINGER_OFFSET_RAMP_UP         = "fingerprintOffset.ramp.up";
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static final String FINGER_OFFSET_WARNING =
 			"This operation invalidates media caches on all levels.\\n" +
 			"Do you really want to do this?";
@@ -279,6 +280,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	{
 		if(ramp<0.0)
 			return 0.0;
+		//noinspection ManualMinMaxCalculation OK: easier to read
 		if(ramp>1.0)
 			return 1.0;
 
