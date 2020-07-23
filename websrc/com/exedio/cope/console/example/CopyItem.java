@@ -23,6 +23,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.ItemField;
 import com.exedio.cope.StringField;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class CopyItem extends Item
 {
 	static final ItemField<CopyOriginItem> origin = ItemField.create(CopyOriginItem.class).toFinal();

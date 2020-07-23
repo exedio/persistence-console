@@ -23,6 +23,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.HashConstraint;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class HashConstraintItemUnsupported extends Item
 {
 	static final StringField hash = new StringField();

@@ -21,6 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.Item;
 import com.exedio.cope.pattern.Media;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class AMediaSingleItem extends Item
 {
 	static final Media content = new Media().optional();

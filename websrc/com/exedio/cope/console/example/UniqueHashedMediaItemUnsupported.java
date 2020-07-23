@@ -22,6 +22,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.UniqueHashedMedia;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class UniqueHashedMediaItemUnsupported extends Item
 {
 	static final UniqueHashedMedia feature = new UniqueHashedMedia(new Media(), "MD2");

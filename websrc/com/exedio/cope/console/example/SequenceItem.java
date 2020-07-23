@@ -22,6 +22,7 @@ import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Sequence;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class SequenceItem extends Item
 {
 	static final IntegerField defaultToNext = new IntegerField().defaultToNext(500);

@@ -26,6 +26,7 @@ import com.exedio.cope.instrument.WrapperType;
 import com.exedio.cope.reflect.TypeField;
 
 @WrapperType(constructor=Visibility.NONE)
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class TypeItem extends Item
 {
 	@WrapperInitial

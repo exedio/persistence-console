@@ -25,6 +25,7 @@ import com.exedio.cope.pattern.MessageDigestAlgorithm;
 import com.exedio.cope.pattern.MessageDigestHash;
 import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class AHashItem extends Item
 {
 	static final Hash md8 = new Hash(MessageDigestHash.algorithm(8));

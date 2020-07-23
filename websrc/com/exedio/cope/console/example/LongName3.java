@@ -21,6 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.CopeSchemaName;
 
 @CopeSchemaName("Long3Loooooooooooooooooooooooooooong")
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class LongName3 extends AnItem
 {
 	/**
