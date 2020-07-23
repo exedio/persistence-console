@@ -303,8 +303,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		final String[] names = new String[Column.values().length + otherNames.length];
 		for(final Column c : Column.values())
 			names[c.ordinal()] = c.name;
-		for(int i = 0; i<otherNames.length; i++)
-			names[i + Column.values().length] = otherNames[i];
+		System.arraycopy(otherNames, 0, names, Column.values().length, otherNames.length);
 
 		ColoredTable_Jspm.writeHeader(out, names, shortNames);
 	}
