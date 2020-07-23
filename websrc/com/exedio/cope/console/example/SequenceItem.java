@@ -22,7 +22,7 @@ import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Sequence;
 
-public final class SequenceItem extends Item
+final class SequenceItem extends Item
 {
 	static final IntegerField defaultToNext = new IntegerField().defaultToNext(500);
 	static final Sequence sequence = new Sequence(500);
@@ -32,7 +32,7 @@ public final class SequenceItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
-	public SequenceItem()
+	SequenceItem()
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
 		});
@@ -82,7 +82,7 @@ public final class SequenceItem extends Item
 	 * The persistent type information for sequenceItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<SequenceItem> TYPE = com.exedio.cope.TypesBound.newType(SequenceItem.class);
+	static final com.exedio.cope.Type<SequenceItem> TYPE = com.exedio.cope.TypesBound.newType(SequenceItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

@@ -21,7 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 
-public final class AReducedItem extends Item
+final class AReducedItem extends Item
 {
 	static final StringField aField = new StringField();
 
@@ -80,7 +80,7 @@ public final class AReducedItem extends Item
 	 * The persistent type information for aReducedItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<AReducedItem> TYPE = com.exedio.cope.TypesBound.newType(AReducedItem.class);
+	static final com.exedio.cope.Type<AReducedItem> TYPE = com.exedio.cope.TypesBound.newType(AReducedItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

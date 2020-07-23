@@ -21,7 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 
-public final class OptionalNoneItem extends Item
+final class OptionalNoneItem extends Item
 {
 	static final StringField mandatory = new StringField().toFinal();
 	static final StringField optional = new StringField().toFinal().optional();
@@ -82,7 +82,7 @@ public final class OptionalNoneItem extends Item
 	 * The persistent type information for optionalNoneItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<OptionalNoneItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalNoneItem.class);
+	static final com.exedio.cope.Type<OptionalNoneItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalNoneItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

@@ -22,7 +22,7 @@ import com.exedio.cope.DataField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Vault;
 
-public final class ADataItem extends Item
+final class ADataItem extends Item
 {
 	static final DataField blob1 = new DataField().optional();
 
@@ -40,7 +40,7 @@ public final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
-	public ADataItem()
+	ADataItem()
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
 		});
@@ -451,7 +451,7 @@ public final class ADataItem extends Item
 	 * The persistent type information for aDataItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<ADataItem> TYPE = com.exedio.cope.TypesBound.newType(ADataItem.class);
+	static final com.exedio.cope.Type<ADataItem> TYPE = com.exedio.cope.TypesBound.newType(ADataItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

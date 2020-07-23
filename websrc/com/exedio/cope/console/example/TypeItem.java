@@ -26,7 +26,7 @@ import com.exedio.cope.instrument.WrapperType;
 import com.exedio.cope.reflect.TypeField;
 
 @WrapperType(constructor=Visibility.NONE)
-public final class TypeItem extends Item
+final class TypeItem extends Item
 {
 	@WrapperInitial
 	static final TypeField<Item> item = TypeField.create().optional();
@@ -114,7 +114,7 @@ public final class TypeItem extends Item
 	 * The persistent type information for typeItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<TypeItem> TYPE = com.exedio.cope.TypesBound.newType(TypeItem.class);
+	static final com.exedio.cope.Type<TypeItem> TYPE = com.exedio.cope.TypesBound.newType(TypeItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

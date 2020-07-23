@@ -21,7 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.Item;
 import com.exedio.cope.pattern.Media;
 
-public final class AMediaSingleItem extends Item
+final class AMediaSingleItem extends Item
 {
 	static final Media content = new Media().optional();
 
@@ -30,7 +30,7 @@ public final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
-	public AMediaSingleItem()
+	AMediaSingleItem()
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
 		});
@@ -196,7 +196,7 @@ public final class AMediaSingleItem extends Item
 	 * The persistent type information for aMediaSingleItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<AMediaSingleItem> TYPE = com.exedio.cope.TypesBound.newType(AMediaSingleItem.class);
+	static final com.exedio.cope.Type<AMediaSingleItem> TYPE = com.exedio.cope.TypesBound.newType(AMediaSingleItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

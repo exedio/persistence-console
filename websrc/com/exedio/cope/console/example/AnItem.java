@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 @SuppressWarnings({"unused", "UnusedReturnValue"})
-public class AnItem extends Item
+class AnItem extends Item
 {
 	static final StringField aField = new StringField();
 
@@ -544,7 +544,7 @@ public class AnItem extends Item
 	 * The persistent type information for anItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<AnItem> TYPE = com.exedio.cope.TypesBound.newType(AnItem.class);
+	static final com.exedio.cope.Type<AnItem> TYPE = com.exedio.cope.TypesBound.newType(AnItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

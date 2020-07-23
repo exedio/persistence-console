@@ -25,7 +25,7 @@ import com.exedio.cope.pattern.MessageDigestAlgorithm;
 import com.exedio.cope.pattern.MessageDigestHash;
 import java.nio.charset.Charset;
 
-public final class AHashItem extends Item
+final class AHashItem extends Item
 {
 	static final Hash md8 = new Hash(MessageDigestHash.algorithm(8));
 	static final Hash md8x6latin = new Hash(MessageDigestHash.algorithm(80000), Charset.forName("ISO-8859-1"));
@@ -350,7 +350,7 @@ public final class AHashItem extends Item
 	 * The persistent type information for aHashItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<AHashItem> TYPE = com.exedio.cope.TypesBound.newType(AHashItem.class);
+	static final com.exedio.cope.Type<AHashItem> TYPE = com.exedio.cope.TypesBound.newType(AHashItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

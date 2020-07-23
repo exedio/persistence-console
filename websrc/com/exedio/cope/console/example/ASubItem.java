@@ -23,7 +23,7 @@ import com.exedio.cope.IntegerField;
 import com.exedio.cope.StringField;
 
 @SuppressWarnings("unused")
-public final class ASubItem extends AnItem
+final class ASubItem extends AnItem
 {
 	static final StringField aSubField = new StringField();
 
@@ -118,7 +118,7 @@ public final class ASubItem extends AnItem
 	 * The persistent type information for aSubItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<ASubItem> TYPE = com.exedio.cope.TypesBound.newType(ASubItem.class);
+	static final com.exedio.cope.Type<ASubItem> TYPE = com.exedio.cope.TypesBound.newType(ASubItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

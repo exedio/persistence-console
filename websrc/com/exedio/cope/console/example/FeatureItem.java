@@ -25,7 +25,7 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.reflect.FeatureField;
 
-public final class FeatureItem extends Item
+final class FeatureItem extends Item
 {
 	@WrapperInitial
 	static final FeatureField<Feature> feature = FeatureField.create().optional();
@@ -209,7 +209,7 @@ public final class FeatureItem extends Item
 	 * The persistent type information for featureItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<FeatureItem> TYPE = com.exedio.cope.TypesBound.newType(FeatureItem.class);
+	static final com.exedio.cope.Type<FeatureItem> TYPE = com.exedio.cope.TypesBound.newType(FeatureItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

@@ -22,7 +22,7 @@ import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 
-public final class CopyOriginItem extends Item
+final class CopyOriginItem extends Item
 {
 	static final StringField string = new StringField().toFinal();
 	static final IntegerField integer = new IntegerField().toFinal();
@@ -82,7 +82,7 @@ public final class CopyOriginItem extends Item
 	 * The persistent type information for copyOriginItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<CopyOriginItem> TYPE = com.exedio.cope.TypesBound.newType(CopyOriginItem.class);
+	static final com.exedio.cope.Type<CopyOriginItem> TYPE = com.exedio.cope.TypesBound.newType(CopyOriginItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

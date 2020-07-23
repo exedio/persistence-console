@@ -22,7 +22,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.UniqueHashedMedia;
 
-public final class UniqueHashedMediaItemUnsupported extends Item
+final class UniqueHashedMediaItemUnsupported extends Item
 {
 	static final UniqueHashedMedia feature = new UniqueHashedMedia(new Media(), "MD2");
 
@@ -151,7 +151,7 @@ public final class UniqueHashedMediaItemUnsupported extends Item
 	 * The persistent type information for uniqueHashedMediaItemUnsupported.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<UniqueHashedMediaItemUnsupported> TYPE = com.exedio.cope.TypesBound.newType(UniqueHashedMediaItemUnsupported.class);
+	static final com.exedio.cope.Type<UniqueHashedMediaItemUnsupported> TYPE = com.exedio.cope.TypesBound.newType(UniqueHashedMediaItemUnsupported.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

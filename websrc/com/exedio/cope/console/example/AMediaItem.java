@@ -30,7 +30,7 @@ import com.exedio.cope.pattern.RedirectFrom;
 import com.exedio.cope.pattern.UrlFingerPrinting;
 
 @SuppressWarnings("unused")
-public final class AMediaItem extends Item
+final class AMediaItem extends Item
 {
 	@WrapperInitial
 	static final StringField name = new StringField().optional();
@@ -1295,7 +1295,7 @@ public final class AMediaItem extends Item
 	 * The persistent type information for aMediaItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<AMediaItem> TYPE = com.exedio.cope.TypesBound.newType(AMediaItem.class);
+	static final com.exedio.cope.Type<AMediaItem> TYPE = com.exedio.cope.TypesBound.newType(AMediaItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

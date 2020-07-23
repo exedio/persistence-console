@@ -21,7 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.CopeSchemaName;
 
 @CopeSchemaName("Long5Loooooooooooooooooooooooooooong")
-public final class LongName5 extends AnItem
+final class LongName5 extends AnItem
 {
 	/**
 	 * Creates a new LongName5 with all the fields initially needed.
@@ -64,7 +64,7 @@ public final class LongName5 extends AnItem
 	 * The persistent type information for longName5.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<LongName5> TYPE = com.exedio.cope.TypesBound.newType(LongName5.class);
+	static final com.exedio.cope.Type<LongName5> TYPE = com.exedio.cope.TypesBound.newType(LongName5.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

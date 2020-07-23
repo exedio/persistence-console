@@ -23,7 +23,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.HashConstraint;
 
-public final class HashConstraintItemUnsupported extends Item
+final class HashConstraintItemUnsupported extends Item
 {
 	static final StringField hash = new StringField();
 	static final DataField data = new DataField();
@@ -193,7 +193,7 @@ public final class HashConstraintItemUnsupported extends Item
 	 * The persistent type information for hashConstraintItemUnsupported.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<HashConstraintItemUnsupported> TYPE = com.exedio.cope.TypesBound.newType(HashConstraintItemUnsupported.class);
+	static final com.exedio.cope.Type<HashConstraintItemUnsupported> TYPE = com.exedio.cope.TypesBound.newType(HashConstraintItemUnsupported.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

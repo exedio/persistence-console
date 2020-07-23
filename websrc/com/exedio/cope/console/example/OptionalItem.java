@@ -23,7 +23,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 
 @CopeCreateLimit(Long.MAX_VALUE)
-public final class OptionalItem extends Item
+final class OptionalItem extends Item
 {
 	static final StringField mandatory = new StringField().toFinal();
 	static final StringField optional = new StringField().toFinal().optional();
@@ -98,7 +98,7 @@ public final class OptionalItem extends Item
 	 * The persistent type information for optionalItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<OptionalItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalItem.class);
+	static final com.exedio.cope.Type<OptionalItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

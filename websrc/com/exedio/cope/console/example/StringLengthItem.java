@@ -23,7 +23,7 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.instrument.WrapperIgnore;
 import com.exedio.cope.util.CharSet;
 
-public final class StringLengthItem extends Item
+final class StringLengthItem extends Item
 {
 	static final StringField empty = new StringField().toFinal().lengthMin(0);
 	static final StringField emptyOk = new StringField().toFinal().lengthMin(0);
@@ -148,7 +148,7 @@ public final class StringLengthItem extends Item
 	 * The persistent type information for stringLengthItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	public static final com.exedio.cope.Type<StringLengthItem> TYPE = com.exedio.cope.TypesBound.newType(StringLengthItem.class);
+	static final com.exedio.cope.Type<StringLengthItem> TYPE = com.exedio.cope.TypesBound.newType(StringLengthItem.class);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
