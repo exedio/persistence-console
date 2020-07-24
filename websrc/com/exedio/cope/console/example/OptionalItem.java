@@ -23,6 +23,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 
 @CopeCreateLimit(Long.MAX_VALUE)
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class OptionalItem extends Item
 {
 	static final StringField mandatory = new StringField().toFinal();

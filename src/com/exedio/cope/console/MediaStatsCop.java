@@ -186,6 +186,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	static final String FINGER_OFFSET_RAMP_DOWN       = "fingerprintOffset.ramp.down";
 	static final String FINGER_OFFSET_RAMP_VALUE      = "fingerprintOffset.ramp.value";
 	static final String FINGER_OFFSET_RAMP_UP         = "fingerprintOffset.ramp.up";
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static final String FINGER_OFFSET_WARNING =
 			"This operation invalidates media caches on all levels.\\n" +
 			"Do you really want to do this?";
@@ -279,6 +280,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	{
 		if(ramp<0.0)
 			return 0.0;
+		//noinspection ManualMinMaxCalculation OK: easier to read
 		if(ramp>1.0)
 			return 1.0;
 
@@ -301,8 +303,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		final String[] names = new String[Column.values().length + otherNames.length];
 		for(final Column c : Column.values())
 			names[c.ordinal()] = c.name;
-		for(int i = 0; i<otherNames.length; i++)
-			names[i + Column.values().length] = otherNames[i];
+		System.arraycopy(otherNames, 0, names, Column.values().length, otherNames.length);
 
 		ColoredTable_Jspm.writeHeader(out, names, shortNames);
 	}

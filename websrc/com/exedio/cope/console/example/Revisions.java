@@ -126,7 +126,7 @@ public final class Revisions
 				int j = 0;
 				for(final String sql : revision.getBody())
 				{
-					body.add(new RevisionInfoRevise.Body(sql, (100*i)+j+1000, (100*i)+(10*j)+10000));
+					body.add(new RevisionInfoRevise.Body(sql, (100*i)+j+1000, (100l*i)+(10l*j)+10000));
 					j++;
 				}
 				save(stat, new RevisionInfoRevise(

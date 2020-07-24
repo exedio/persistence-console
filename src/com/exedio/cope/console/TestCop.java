@@ -32,9 +32,8 @@ import javax.servlet.http.HttpServletRequest;
 
 abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 {
-	static final String ID = "testajax";
-	static final String ITERATE = "iterate";
 	static final String SUCCESS_CLASS = "success";
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static final String NOT_YET_TESTED_CLASS = "notYetTested";
 
 	protected final TestArgs testArgs;
@@ -43,6 +42,9 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 
 	protected static class TestArgs
 	{
+		private static final String ID = "testajax";
+		private static final String ITERATE = "iterate";
+
 		protected final String id;
 		protected final boolean iterate;
 

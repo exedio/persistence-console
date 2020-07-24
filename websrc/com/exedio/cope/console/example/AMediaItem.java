@@ -29,7 +29,7 @@ import com.exedio.cope.pattern.PreventUrlGuessing;
 import com.exedio.cope.pattern.RedirectFrom;
 import com.exedio.cope.pattern.UrlFingerPrinting;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused","StaticMethodOnlyUsedInOneClass"}) // OK: for example TYPE
 final class AMediaItem extends Item
 {
 	@WrapperInitial

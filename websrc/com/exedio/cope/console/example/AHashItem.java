@@ -23,12 +23,13 @@ import com.exedio.cope.misc.DigitPinValidator;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.MessageDigestAlgorithm;
 import com.exedio.cope.pattern.MessageDigestHash;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class AHashItem extends Item
 {
 	static final Hash md8 = new Hash(MessageDigestHash.algorithm(8));
-	static final Hash md8x6latin = new Hash(MessageDigestHash.algorithm(80000), Charset.forName("ISO-8859-1"));
+	static final Hash md8x6latin = new Hash(MessageDigestHash.algorithm(80000), StandardCharsets.ISO_8859_1);
 	static final Hash md5 = new Hash(new MessageDigestAlgorithm("MD5", 2, 5000));
 	static final Hash deterministic = new Hash(new MessageDigestAlgorithm("MD5", 0, 1));
 	static final Hash pin = new Hash(MessageDigestHash.algorithm(2)).validate(new DigitPinValidator(4));

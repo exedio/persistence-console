@@ -22,6 +22,7 @@ import com.exedio.cope.DataField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Vault;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class ADataItem extends Item
 {
 	static final DataField blob1 = new DataField().optional();

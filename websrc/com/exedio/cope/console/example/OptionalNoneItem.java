@@ -21,6 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class OptionalNoneItem extends Item
 {
 	static final StringField mandatory = new StringField().toFinal();

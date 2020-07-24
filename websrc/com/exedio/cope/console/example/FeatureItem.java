@@ -25,6 +25,7 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.reflect.FeatureField;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class FeatureItem extends Item
 {
 	@WrapperInitial

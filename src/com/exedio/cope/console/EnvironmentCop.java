@@ -119,7 +119,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 				database.put(key, value);
 		}
 
-		@SuppressWarnings({"rawtypes", "unchecked", "ZeroLengthArrayAllocation"})
+		@SuppressWarnings({"rawtypes", "unchecked", "ZeroLengthArrayAllocation", "RedundantSuppression"})
 		final HashMap<String, Object>[] result = testedDatabases.values().toArray(new HashMap[0]);
 		return result;
 	}

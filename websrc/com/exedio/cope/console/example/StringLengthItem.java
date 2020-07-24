@@ -23,6 +23,7 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.instrument.WrapperIgnore;
 import com.exedio.cope.util.CharSet;
 
+@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class StringLengthItem extends Item
 {
 	static final StringField empty = new StringField().toFinal().lengthMin(0);
