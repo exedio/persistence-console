@@ -266,7 +266,7 @@ final class Transaction_Jspm
 			{
 				final String value = event.getTransactionName();
 				%>
-				<td<% if(value==null){%> class="notavailable"<%} %>><%=value%></td><%
+				<td class="<% if(value==null){%>notavailable<%}else{%>text<%} %>"><%=value%></td><%
 			}
 			catch(final NotAvailableException e) { write(out, e); }
 
