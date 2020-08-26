@@ -227,7 +227,7 @@ final class Transaction_Jspm
 			<tr>
 				<th>ID</th>
 				<th>Started</th>
-				<th>Elpsd.</th>
+				<th title="Elapsed Time (milliseconds)">Elpsd</th>
 				<th>Name</th>
 			</tr><%
 
