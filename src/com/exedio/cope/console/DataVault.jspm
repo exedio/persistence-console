@@ -46,6 +46,7 @@ final class DataVault_Jspm
 		<table>
 			<caption>Data Vaults</caption>
 			<tr>
+				<th>Key</th>
 				<th>Service</th>
 				<th>Count</th>
 				<th>Max Size</th>
@@ -55,8 +56,19 @@ final class DataVault_Jspm
 			for(final Vault vault : vaults)
 			{
 			%>
-			<tr>
-				<td class="text"><%=vault.service%></td>
+			<tr><%
+			if(vault.isBlob)
+			{
+				%>
+				<td class="notavailable" colspan="2">BLOB</td><%
+			}
+			else
+			{
+				%>
+				<td class="text"><%=vault.serviceKey%></td>
+				<td class="text"><%=vault.service%></td><%
+			}
+			%>
 				<td><%=format(vault.getCount())%></td>
 				<td><%=format(vault.getMaxSize())%></td>
 				<td class="text"><small><% write(out, cop, vault.getFields()); %></small></td>

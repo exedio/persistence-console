@@ -64,8 +64,8 @@ final class DataVaultCop extends ConsoleCop<Void>
 					final DataFieldVaultInfo info = field.getVaultInfo();
 					if(info!=null)
 						infos.add(info);
-					final String service = info!=null ? info.getService() : "BLOB";
-					vaults.computeIfAbsent(service, Vault::new).add(field);
+					final String key = info!=null ? info.getServiceKey() : null;
+					vaults.computeIfAbsent(key, s -> new Vault(info)).add(field);
 				}
 
 		DataVault_Jspm.writeBody(out, this, vaults.values(), infos,
@@ -76,13 +76,26 @@ final class DataVaultCop extends ConsoleCop<Void>
 
 	static final class Vault
 	{
+		final boolean isBlob;
+		final String serviceKey;
 		final String service;
 		private final ArrayList<DataField> fields = new ArrayList<>();
 		private long maxSize = 0;
 
-		Vault(final String service)
+		Vault(final DataFieldVaultInfo info)
 		{
-			this.service = service;
+			if(info==null)
+			{
+				this.isBlob = true;
+				this.serviceKey = null;
+				this.service = null;
+			}
+			else
+			{
+				this.isBlob = false;
+				this.serviceKey = info.getServiceKey();
+				this.service = info.getService();
+			}
 		}
 
 		void add(final DataField field)
