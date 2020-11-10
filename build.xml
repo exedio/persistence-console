@@ -213,6 +213,8 @@
 		</foreachClusterNode>
 		<mkdir dir="vaultFileServiceRoot" />
 		<mkdir dir="vaultFileServiceRoot/.tempVaultFileService" />
+		<mkdir dir="vaultFileServiceRootOther" />
+		<mkdir dir="vaultFileServiceRootOther/.tempVaultFileService" />
 	</target>
 
 	<target name="tomcat" depends="web, catalina">

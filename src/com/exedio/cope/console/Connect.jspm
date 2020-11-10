@@ -40,10 +40,6 @@ final class Connect_Jspm
 		<table style="float:left;">
 			<caption>Supports</caption>
 			<tr>
-				<th>Empty Strings</th>
-				<td class="text"><%if(model.supportsEmptyStrings()){%>yes<%}else{%>no<%}%></td>
-			</tr>
-			<tr>
 				<th>UTF8mb4</th>
 				<td class="text"><%if(model.supportsUTF8mb4()){%>yes<%}else{%>no<%}%></td>
 			</tr>

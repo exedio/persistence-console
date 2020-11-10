@@ -35,6 +35,9 @@ final class ADataItem extends Item
 	@Vault
 	static final DataField vault2 = new DataField().optional();
 
+	@Vault("other")
+	static final DataField vaultOther = new DataField().optional();
+
 
 	/**
 	 * Creates a new ADataItem with all the fields initially needed.
@@ -443,6 +446,104 @@ final class ADataItem extends Item
 				java.io.IOException
 	{
 		ADataItem.vault2.set(this,vault2);
+	}
+
+	/**
+	 * Returns, whether there is no data for field {@link #vaultOther}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isNull")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final boolean isVaultOtherNull()
+	{
+		return ADataItem.vaultOther.isNull(this);
+	}
+
+	/**
+	 * Returns the length of the data of the data field {@link #vaultOther}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLength")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final long getVaultOtherLength()
+	{
+		return ADataItem.vaultOther.getLength(this);
+	}
+
+	/**
+	 * Returns the value of the persistent field {@link #vaultOther}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final byte[] getVaultOtherArray()
+	{
+		return ADataItem.vaultOther.getArray(this);
+	}
+
+	/**
+	 * Writes the data of this persistent data field into the given stream.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getVaultOther(final java.io.OutputStream vaultOther)
+			throws
+				java.io.IOException
+	{
+		ADataItem.vaultOther.get(this,vaultOther);
+	}
+
+	/**
+	 * Writes the data of this persistent data field into the given file.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getVaultOther(final java.nio.file.Path vaultOther)
+			throws
+				java.io.IOException
+	{
+		ADataItem.vaultOther.get(this,vaultOther);
+	}
+
+	/**
+	 * Sets a new value for the persistent field {@link #vaultOther}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setVaultOther(final com.exedio.cope.DataField.Value vaultOther)
+	{
+		ADataItem.vaultOther.set(this,vaultOther);
+	}
+
+	/**
+	 * Sets a new value for the persistent field {@link #vaultOther}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setVaultOther(final byte[] vaultOther)
+	{
+		ADataItem.vaultOther.set(this,vaultOther);
+	}
+
+	/**
+	 * Sets a new value for the persistent field {@link #vaultOther}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setVaultOther(final java.io.InputStream vaultOther)
+			throws
+				java.io.IOException
+	{
+		ADataItem.vaultOther.set(this,vaultOther);
+	}
+
+	/**
+	 * Sets a new value for the persistent field {@link #vaultOther}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setVaultOther(final java.nio.file.Path vaultOther)
+			throws
+				java.io.IOException
+	{
+		ADataItem.vaultOther.set(this,vaultOther);
 	}
 
 	@com.exedio.cope.instrument.Generated

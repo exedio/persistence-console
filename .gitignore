@@ -1,5 +1,6 @@
 /tomcat
 /vaultFileServiceRoot/
+/vaultFileServiceRootOther/
 /build
 /.eclipse-output
 /local.properties
