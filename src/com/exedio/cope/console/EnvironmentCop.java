@@ -24,7 +24,6 @@ import static java.util.Objects.requireNonNull;
 import com.exedio.cope.Cope;
 import com.exedio.cope.EnvironmentInfo;
 import com.exedio.cope.Model;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,7 +69,6 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		Environment_Jspm.writeTest(out, current, makeTestedDatabases());
 	}
 
-	@SuppressFBWarnings({"WMI_WRONG_MAP_ITERATOR", "ITA_INEFFICIENT_TO_ARRAY"})
 	private static HashMap<String, Object>[] makeTestedDatabases()
 	{
 		final Properties p = new Properties();

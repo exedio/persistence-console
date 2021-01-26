@@ -28,7 +28,6 @@ import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.SQLRuntimeException;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Table;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -185,7 +184,6 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	}
 
 	@Override
-	@SuppressFBWarnings("SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE")
 	long check(final Table table, final Model model)
 	{
 		final StringBuilder bf = new StringBuilder();

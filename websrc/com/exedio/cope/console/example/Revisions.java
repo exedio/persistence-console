@@ -27,7 +27,6 @@ import com.exedio.cope.RevisionInfoRevise;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.misc.DirectRevisionsFactory;
 import com.exedio.dsmf.SQLRuntimeException;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -95,7 +94,6 @@ public final class Revisions
 
 	private static final Revision[] EMPTY_REVISION = {};
 
-	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
 	static void revisions(final Model model)
 	{
 		final java.util.Properties dbinfo = model.getEnvironmentInfo().asProperties();
@@ -179,7 +177,6 @@ public final class Revisions
 
 	private static final RevisionInfoRevise.Body[] EMPTY_REVISION_BODY = {};
 
-	@SuppressFBWarnings("SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING")
 	static void removeMutex(final Model model)
 	{
 		try(

@@ -26,7 +26,6 @@ import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.StatementListener;
 import com.exedio.dsmf.Table;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
@@ -197,7 +196,6 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 	static final String CATCH_DROP   = "catch.drop";
 	static final String CATCH_RESET  = "catch.reset";
 
-	@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 	void writeApply(final Out out,
 			final HttpServletRequest request, final Model model, final boolean dryRun)
 	{

@@ -28,7 +28,6 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.instrument.WrapInterim;
 import com.exedio.cope.pattern.Dispatcher;
 import com.exedio.cope.util.Day;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +77,6 @@ class AnItem extends Item
 
 	@WrapInterim(methodBody=false)
 	@SuppressWarnings("EmptyMethod") // OK: just a dummy
-	@SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD") // OK: just a dummy
 	private void dispatch() {}
 
 

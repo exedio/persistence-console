@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.QueryCacheHistogram;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Arrays;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -103,7 +102,6 @@ final class QueryCacheCop extends ConsoleCop<Void>
 		final long minHits;
 
 		@SuppressWarnings("ZeroLengthArrayAllocation") // OK: is rarely called
-		@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 		Content(final QueryCacheHistogram[] histogram, final boolean condense)
 		{
 			if(histogram.length>0)

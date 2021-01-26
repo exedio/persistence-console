@@ -34,7 +34,6 @@ import com.exedio.cope.util.Hex;
 import com.exedio.cope.util.MessageDigestUtil;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -83,7 +82,6 @@ public final class ExampleServlet extends CopsServlet
 	static final String FEATURE_FIELD_STRING  = "featureField.string";
 	static final String FEATURE_FIELD_SUBMIT  = "featureField.submit";
 
-	@SuppressFBWarnings("SE_BAD_FIELD")
 	private final ArrayList<ConnectToken> connectTokens = new ArrayList<>();
 	static final AtomicInteger changeListenerNumber = new AtomicInteger(0);
 

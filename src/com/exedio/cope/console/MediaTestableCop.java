@@ -22,7 +22,6 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.MediaTestable;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +79,6 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
-	@SuppressFBWarnings("BC_UNCONFIRMED_CAST")
 	void writeValue(final Out out, final MediaTestable testable, final int h)
 	{
 		final Feature feature = (Feature)testable;
@@ -95,14 +93,12 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
-	@SuppressFBWarnings("BC_UNCONFIRMED_CAST")
 	String getID(final MediaTestable testable)
 	{
 		return ((Feature)testable).getID();
 	}
 
 	@Override
-	@SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
 	MediaTestable forID(final Model model, final String id)
 	{
 		return (MediaTestable)model.getFeature(id);

@@ -24,7 +24,6 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Transaction;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -127,7 +126,6 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 		writeRecorded(out, model);
 	}
 
-	@SuppressFBWarnings("SIC_INNER_SHOULD_BE_STATIC_ANON")
 	private static void writeOpenTransations(
 			final Out out,
 			final Model model)

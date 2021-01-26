@@ -29,7 +29,6 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.util.CharSet;
 import com.exedio.dsmf.SQLRuntimeException;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -140,7 +139,6 @@ final class CharacterNulCop extends TestCop<StringField>
 	 * Works on MySQL only.
 	 */
 	@Override
-	@SuppressFBWarnings("SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE")
 	long check(final StringField field, final Model model)
 	{
 		try(

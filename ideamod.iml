@@ -10,7 +10,6 @@
     <libelement value="jar://$MODULE_DIR$/lib/exedio-cope.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/exedio-cope-junit.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/exedio-cope-servletutil.jar!/" />
-    <libelement value="jar://$MODULE_DIR$/lib/findbugs-annotations.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/slf4j-api.jar!/" />
     <src_description expected_position="0">
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />

@@ -19,7 +19,6 @@
 package com.exedio.cope.console.example;
 
 import com.exedio.cops.Cop;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -33,7 +32,6 @@ import javax.servlet.http.HttpServletResponse;
 public final class DummyStrictRefererValidationFilter implements Filter
 {
 	@Override
-	@SuppressFBWarnings("BC_UNCONFIRMED_CAST")
 	public void doFilter(
 			final ServletRequest request,
 			final ServletResponse response,

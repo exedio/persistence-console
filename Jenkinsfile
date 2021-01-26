@@ -33,8 +33,7 @@ timestamps
 						' -Dbuild.status=' + (isRelease?'release':'integration') +
 						' -Dinstrument.verify=true' +
 						' -Dtomcat.port.shutdown=' + port(0) +
-						' -Dtomcat.port.http=' + port(1) +
-						' -Dfindbugs.output=xml'
+						' -Dtomcat.port.http=' + port(1)
 
 				recordIssues(
 						failOnError: true,
@@ -43,7 +42,6 @@ timestamps
 						qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]],
 						tools: [
 							java(),
-							spotBugs(pattern: 'build/findbugs.xml', useRankAsPriority: true),
 						],
 				)
 				archiveArtifacts 'build/success/*'
