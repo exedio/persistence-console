@@ -215,6 +215,7 @@ abstract class ConsoleCop<S> extends Cop
 				},
 				new ConsoleCop<?>[]{
 					new DatabaseLogCop(args),
+					new DatabaseMetricsCop(args),
 				},
 				new ConsoleCop<?>[]{
 					new TransactionCop(args),
@@ -370,6 +371,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new TransactionCop(args, request);
 			case DatabaseLogCop.TAB:
 				return new DatabaseLogCop(args);
+			case DatabaseMetricsCop.TAB:
+				return new DatabaseMetricsCop(args);
 			case ItemCacheCop.TAB:
 				return ItemCacheCop.getItemCacheCop(args, request);
 			case QueryCacheCop.TAB:

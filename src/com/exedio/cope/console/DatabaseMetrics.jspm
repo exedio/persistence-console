@@ -1,0 +1,75 @@
+<%
+/*
+ * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import static com.exedio.cope.console.DatabaseMetricsCop.LOOP;
+import static com.exedio.cope.console.DatabaseMetricsCop.SQL;
+import static com.exedio.cope.console.Format.format;
+
+import java.util.List;
+import com.exedio.cope.console.DatabaseMetricsCop.Measurement;
+
+final class DatabaseMetrics_Jspm
+{
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
+	static void writeBody(
+			final DatabaseMetricsCop cop,
+			final Out out,
+			final Measurement next,
+			final List<Measurement> history)
+	{
+		%>
+		<form action="<%=cop%>" method="POST">
+			loop: <input type="text" name="<%=LOOP%>" size="5"  value="<%=next.loop%>">
+			sql:  <input type="text" name="<%=SQL %>" size="50" value="<%=next.sql%>">
+			<input type="submit" name="submit" value="measure">
+		</form>
+		<table>
+			<caption>Measurements</caption>
+			<tr>
+				<th>#</th>
+				<th>Date</th>
+				<th>Loop</th>
+				<th>SQL</th>
+				<th>Result Size</th>
+				<th>Elapsed<small>/ns</small></th>
+			</tr><%
+		int n = 0;
+		for(final Measurement measurement : history)
+		{
+			%>
+			<tr>
+				<td><%=n++%></td>
+				<td><%=measurement.getDate()%></td>
+				<td><%=measurement.loop%></td>
+				<td class="text"><%=measurement.sql%></td>
+				<td><%=format(measurement.resultSize)%></td>
+				<td><%=format(measurement.elapsedNanos)%></td>
+			</tr><%
+		}
+		%>
+		</table><%
+	}
+
+	private DatabaseMetrics_Jspm()
+	{
+		// prevent instantiation
+	}
+}%>
