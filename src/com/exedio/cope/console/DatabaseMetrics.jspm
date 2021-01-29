@@ -58,7 +58,7 @@ final class DatabaseMetrics_Jspm
 			<tr>
 				<td><%=n++%></td>
 				<td><%=measurement.getDate()%></td>
-				<td><%=measurement.loop%></td>
+				<td><%=format(measurement.loop)%></td>
 				<td class="text"><%=measurement.sql%></td>
 				<td><%=format(measurement.resultSize)%></td>
 				<td><%=format(measurement.elapsedNanos)%></td>
