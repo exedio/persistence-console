@@ -29,6 +29,9 @@
 		<dependency org="com.exedio" name="cope" rev="10458" conf="runtime->runtime; build->hsqldb,mysql,instrument,sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="857" conf="runtime->runtime; build->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="copeservletutil" rev="71" conf="runtime->runtime; build->runtime,sources,changelog"/>
+		<dependency org="ant-contrib" name="ant-contrib" rev="1.0b3" conf="build->default">
+			<exclude org="ant" module="ant" />
+		</dependency>
 		<dependency org="com.exedio" name="jspm" rev="202" conf="build->runtime,changelog" />
 		<dependency org="org.apache.tomcat" name="tomcat" rev="7.0.67" conf="build->default">
 			<artifact name="tomcat" type="tar.gz" />

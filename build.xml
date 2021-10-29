@@ -17,7 +17,8 @@
 	<taskdef name="LoadFile" classname="org.apache.tools.ant.taskdefs.LoadFile" />
 
 	<taskdef
-			resource="net/sf/antcontrib/antcontrib.properties"
+			name="for"
+			classname="net.sf.antcontrib.logic.ForTask"
 			classpath="lib/ant-contrib.jar" />
 
 	<taskdef
