@@ -27,7 +27,7 @@ import org.junit.Assert;
 
 public abstract class CopeAssert extends TestCase
 {
-	public static final void assertContainsList(final List<?> expected, final Collection<?> actual)
+	public static final <T> void assertContainsList(final List<T> expected, final Collection<T> actual)
 	{
 		if(expected==null && actual==null)
 			return;
@@ -46,37 +46,37 @@ public abstract class CopeAssert extends TestCase
 		assertContainsList(Collections.emptyList(), actual);
 	}
 
-	public static final void assertContains(final Object o, final Collection<?> actual)
+	public static final <T> void assertContains(final T o, final Collection<T> actual)
 	{
 		assertContainsList(Collections.singletonList(o), actual);
 	}
 
-	public static final void assertContains(final Object o1, final Object o2, final Collection<?> actual)
+	public static final <T> void assertContains(final T o1, final T o2, final Collection<T> actual)
 	{
 		assertContainsList(Arrays.asList(o1, o2), actual);
 	}
 
-	public static final void assertContains(final Object o1, final Object o2, final Object o3, final Collection<?> actual)
+	public static final <T> void assertContains(final T o1, final T o2, final T o3, final Collection<T> actual)
 	{
 		assertContainsList(Arrays.asList(o1, o2, o3), actual);
 	}
 
-	public static final void assertContains(final Object o1, final Object o2, final Object o3, final Object o4, final Collection<?> actual)
+	public static final <T> void assertContains(final T o1, final T o2, final T o3, final T o4, final Collection<T> actual)
 	{
 		assertContainsList(Arrays.asList(o1, o2, o3, o4), actual);
 	}
 
-	public static final void assertContains(final Object o1, final Object o2, final Object o3, final Object o4, final Object o5, final Collection<?> actual)
+	public static final <T> void assertContains(final T o1, final T o2, final T o3, final T o4, final T o5, final Collection<T> actual)
 	{
 		assertContainsList(Arrays.asList(o1, o2, o3, o4, o5), actual);
 	}
 
-	public static final void assertContains(final Object o1, final Object o2, final Object o3, final Object o4, final Object o5, final Object o6, final Collection<?> actual)
+	public static final <T> void assertContains(final T o1, final T o2, final T o3, final T o4, final T o5, final T o6, final Collection<T> actual)
 	{
 		assertContainsList(Arrays.asList(o1, o2, o3, o4, o5, o6), actual);
 	}
 
-	public static final void assertContains(final Object o1, final Object o2, final Object o3, final Object o4, final Object o5, final Object o6, final Object o7, final Collection<?> actual)
+	public static final <T> void assertContains(final T o1, final T o2, final T o3, final T o4, final T o5, final T o6, final T o7, final Collection<T> actual)
 	{
 		assertContainsList(Arrays.asList(o1, o2, o3, o4, o5, o6, o7), actual);
 	}
