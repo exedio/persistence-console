@@ -99,11 +99,9 @@ final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 				{
 					final HashMap<Integer, ConnectToken> map = new HashMap<>();
 					for(final ConnectToken token : ConnectToken.getTokens(model))
-						//noinspection resource OK: ConnectTokens are registered for later return
 						map.put(token.getID(), token);
 
 					for(final String id : ids)
-						//noinspection resource OK: ConnectTokens are registered for later return
 						map.get(Integer.valueOf(id)).returnStrictly();
 				}
 			}
