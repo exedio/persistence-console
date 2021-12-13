@@ -78,14 +78,6 @@ final class VmCop extends ConsoleCop<Void>
 			if(!allPackages && !pack.getName().startsWith("com.exedio."))
 				continue;
 
-			if(pack.getSpecificationTitle()==null &&
-				pack.getSpecificationVersion()==null &&
-				pack.getSpecificationVendor()==null &&
-				pack.getImplementationTitle()==null &&
-				pack.getImplementationVersion()==null &&
-				pack.getImplementationVendor()==null)
-				continue;
-
 			final String key =
 				pack.getSpecificationTitle() + '|' +
 				pack.getSpecificationVersion() + '|' +
