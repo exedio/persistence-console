@@ -7,6 +7,7 @@ def ideaSHA256 = '7c27799861fb1ba0d43a3565a1ec2be789e1871191be709f0e79f1e17d3571
 def isRelease = env.BRANCH_NAME=="master"
 def dockerNamePrefix = env.JOB_NAME.replace("/", "-").replace(" ", "_") + "-" + env.BUILD_NUMBER
 def dockerDate = new Date().format("yyyyMMdd")
+def ant = 'ant -noinput'
 
 properties([
 		gitLabConnection(env.GITLAB_CONNECTION),
@@ -39,7 +40,7 @@ try
 					"--security-opt no-new-privileges " +
 					"--network none")
 			{
-				shSilent "ant -noinput clean jenkins" +
+				shSilent ant + " clean jenkins" +
 						' "-Dbuild.revision=${BUILD_NUMBER}"' +
 						' "-Dbuild.tag=' + buildTag + '"' +
 						' -Dbuild.status=' + (isRelease?'release':'integration') +
@@ -114,7 +115,7 @@ try
 					"--security-opt no-new-privileges " +
 					"--network none")
 				{
-					shSilent "ant -noinput src"
+					shSilent ant + " src"
 					shSilent "/opt/idea/bin/inspect.sh " + env.WORKSPACE + " 'Project Default' idea-inspection-output"
 				}
 			archiveArtifacts 'idea-inspection-output/**'
@@ -151,7 +152,7 @@ try
 					"--security-opt no-new-privileges " +
 					"--mount type=volume,src=" + cache + ",target=/var/jenkins-build-survivor")
 			{
-				shSilent "ant -noinput" +
+				shSilent ant +
 					" -buildfile ivy" +
 					" -Divy.user.home=/var/jenkins-build-survivor"
 			}
