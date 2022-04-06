@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 
 abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
@@ -112,7 +113,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		if(items.isEmpty())
 			return ChecklistIcon.empty;
 
-		return store().getChecklistIcon(items.size());
+		return store().getChecklistIcon(getItemIDs(items));
 	}
 
 	@Override
@@ -129,10 +130,16 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		if(requiresConnect())
 			failIfNotConnected(out.model);
 
+		writeIntro(out);
+
 		Test_Jspm.writeBody(
 				this, out,
 				getHeadings(), getItems(model),
 				store());
+	}
+
+	void writeIntro(final Out out)
+	{
 	}
 
 	@Override
@@ -213,13 +220,18 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		return null;
 	}
 
+	final List<String> getItemIDs(final List<I> items)
+	{
+		return items.stream().map(this::getID).collect(Collectors.toList());
+	}
+
 	final void writeSummary(
 			final Out out,
 			final int headingsLength,
 			final List<I> items,
 			final Store store)
 	{
-		final Store.Summary summary = store.summarize(items.size());
+		final Store.Summary summary = store.summarize(getItemIDs(items));
 		Test_Jspm.writeSummary(
 				out,
 				this,
@@ -361,23 +373,28 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 			}
 		}
 
-		ChecklistIcon getChecklistIcon(final int itemsSize)
+		ChecklistIcon getChecklistIcon(final List<String> itemIDs)
 		{
 			synchronized(infos)
 			{
-				for(final Info info : infos.values())
-					if(info.isError())
+				boolean complete = true;
+				for (final String id: itemIDs)
+				{
+					final Info info = infos.get(id);
+					if(info == null)
+						complete = false;
+					else if(info.isError())
 						return ChecklistIcon.error;
-
-				if(itemsSize!=infos.size())
+				}
+				if(!complete)
 					return ChecklistIcon.unknown;
 			}
 			return ChecklistIcon.ok;
 		}
 
-		Summary summarize(final int itemsSize)
+		Summary summarize(final List<String> summarizedItemsIds)
 		{
-			final boolean complete;
+			boolean complete;
 			long elapsed = 0;
 			Info date = null;
 			long failures = 0;
@@ -385,14 +402,22 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 
 			synchronized(infos)
 			{
-				complete = itemsSize==infos.size();
+				complete = true;
 
-				for(final Info info : infos.values())
+				for(final String id : summarizedItemsIds)
 				{
-					elapsed  += info.elapsed;
-					date      = info.oldest(date);
-					failures += info.failures();
-					isError  |= info.isError();
+					final Info info = infos.get(id);
+					if (info==null)
+					{
+						complete = false;
+					}
+					else
+					{
+						elapsed += info.elapsed;
+						date = info.oldest(date);
+						failures += info.failures();
+						isError |= info.isError();
+					}
 				}
 			}
 
@@ -444,6 +469,11 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		out.writeStatic("<div class=\"long\">");
 		out.write(s.replaceAll(",", ", ")); // allow word wrap
 		out.writeStatic("</div>");
+	}
+
+	String getNoItemsMessage()
+	{
+		return "There are no "+name+" in this model.";
 	}
 
 	abstract List<I> getItems(Model model);
