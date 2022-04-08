@@ -26,27 +26,47 @@ import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Table;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 final class UnsupportedConstraintCop extends TestCop<Constraint>
 {
 	static final String TAB = "unsupportedconstraints";
 	static final String NAME = "Unsupported Constraints";
 
+	static final String TABLE_FILTER = "table";
+
+	final String tableFilter;
+
 	UnsupportedConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, NAME, args, testArgs);
+		this(args, testArgs, null);
+	}
+
+	UnsupportedConstraintCop(final Args args, final TestArgs testArgs, final String tableFilter)
+	{
+		super(TAB, NAME + (tableFilter==null?"":(" on '"+tableFilter+"'")), args, testArgs);
+		if (tableFilter!=null && tableFilter.isEmpty())
+			throw new IllegalArgumentException("tableFilter empty");
+		this.tableFilter = tableFilter;
+		addParameter(TABLE_FILTER, tableFilter);
+	}
+
+	static UnsupportedConstraintCop getUnsupportedConstraintCop(final Args args, final TestArgs testArgs, final HttpServletRequest request)
+	{
+		final String tableFilter = request.getParameter(TABLE_FILTER);
+		return new UnsupportedConstraintCop(args, testArgs, tableFilter==null||tableFilter.isEmpty()?null:tableFilter);
 	}
 
 	@Override
 	protected UnsupportedConstraintCop newArgs(final Args args)
 	{
-		return new UnsupportedConstraintCop(args, testArgs);
+		return new UnsupportedConstraintCop(args, testArgs, tableFilter);
 	}
 
 	@Override
 	protected UnsupportedConstraintCop newTestArgs(final TestArgs testArgs)
 	{
-		return new UnsupportedConstraintCop(args, testArgs);
+		return new UnsupportedConstraintCop(args, testArgs, tableFilter);
 	}
 
 	@Override
@@ -78,9 +98,12 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 		final Schema schema = model.getSchema();
 		for(final Table t : schema.getTables())
 		{
-			for(final Constraint c : t.getConstraints())
-				if(!c.isSupported())
-					result.add(c);
+			if (tableFilter==null || tableFilter.equals(t.getName()))
+			{
+				for(final Constraint c : t.getConstraints())
+					if(! c.isSupported())
+						result.add(c);
+			}
 		}
 
 		return result;
