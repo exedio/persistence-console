@@ -199,7 +199,7 @@ final class Test_Jspm
 			<table>
 				<tr>
 					<td class="text">
-						There are no <%=cop.name%> in this model.
+						<%=cop.getNoItemsMessage()%>
 					</td>
 				</td>
 			</table><%

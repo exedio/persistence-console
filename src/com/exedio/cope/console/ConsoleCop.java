@@ -57,17 +57,23 @@ abstract class ConsoleCop<S> extends Cop
 		final int autoRefresh;
 		final DatePrecision datePrecision;
 		final String mediaURLPrefix;
+		final TypeFieldCop.StableFilter stableTypesFilter;
+		final FeatureFieldCop.StableFilter stableFeaturesFilter;
 
 		Args(
 				final Stores stores,
 				final int autoRefresh,
 				final DatePrecision datePrecision,
-				final String mediaURLPrefix)
+				final String mediaURLPrefix,
+				final TypeFieldCop.StableFilter stableTypesFilter,
+				final FeatureFieldCop.StableFilter stableFeaturesFilter)
 		{
 			this.stores = stores;
 			this.autoRefresh = autoRefresh;
 			this.datePrecision = datePrecision;
 			this.mediaURLPrefix = mediaURLPrefix;
+			this.stableTypesFilter = stableTypesFilter;
+			this.stableFeaturesFilter = stableFeaturesFilter;
 		}
 
 		Args(
@@ -79,6 +85,8 @@ abstract class ConsoleCop<S> extends Cop
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
 			this.datePrecision = getEnumParameter(request, DATE_PRECISION, DatePrecision.m);
 			this.mediaURLPrefix = request.getParameter(MEDIA_URL_PREFIX);
+			this.stableTypesFilter = servlet::isStable;
+			this.stableFeaturesFilter = servlet::isStable;
 			securityCheckMediaURLPrefix(servlet, request);
 		}
 
@@ -103,17 +111,17 @@ abstract class ConsoleCop<S> extends Cop
 
 		Args toAutoRefresh(final int autoRefresh)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, stableTypesFilter, stableFeaturesFilter);
 		}
 
 		Args toDatePrecision(final DatePrecision datePrecision)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, stableTypesFilter, stableFeaturesFilter);
 		}
 
 		Args toMediaURLPrefix(final String mediaURLPrefix)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, stableTypesFilter, stableFeaturesFilter);
 		}
 	}
 
@@ -358,9 +366,9 @@ abstract class ConsoleCop<S> extends Cop
 			case MinLengthStringFieldCop.TAB:
 				return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
 			case TypeFieldCop.TAB:
-				return new TypeFieldCop(args, new TestCop.TestArgs(request));
+				return TypeFieldCop.getTypeFieldCop(args, new TestCop.TestArgs(request), request);
 			case FeatureFieldCop.TAB:
-				return new FeatureFieldCop(args, new TestCop.TestArgs(request));
+				return FeatureFieldCop.getFeatureFieldCop(args, new TestCop.TestArgs(request), request);
 			case RevisionCop.TAB:
 				return new RevisionCop(args, request);
 			case RevisionSheetCop.TAB:

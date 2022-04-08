@@ -19,6 +19,8 @@
 package com.exedio.cope.console.example;
 
 import com.exedio.cope.console.ConsoleServlet;
+import com.exedio.cope.reflect.FeatureField;
+import com.exedio.cope.reflect.TypeField;
 import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -38,5 +40,17 @@ public final class StandardConsole extends ConsoleServlet
 			"http://" + "127.0.0.1:8080"  + path,
 			"http://" + "localhost:8080"  + path,
 			"http://" + "console.invalid" + path);
+	}
+
+	@Override
+	protected boolean isStable(final TypeField<?> typeField)
+	{
+		return typeField==TypeItem.item;
+	}
+
+	@Override
+	protected boolean isStable(final FeatureField<?> featureField)
+	{
+		return featureField==FeatureItem.feature;
 	}
 }

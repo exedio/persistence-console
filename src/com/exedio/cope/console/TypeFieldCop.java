@@ -26,26 +26,54 @@ import com.exedio.cope.Type;
 import com.exedio.cope.reflect.TypeField;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 final class TypeFieldCop extends TestCop<TypeField<?>>
 {
 	static final String TAB = "type";
 
+	private static final String ALL = "all";
+
+	final boolean all;
+
 	TypeFieldCop(final Args args, final TestArgs testArgs)
 	{
+		this(args, testArgs, false);
+	}
+
+	private TypeFieldCop(final Args args, final TestArgs testArgs, final boolean all)
+	{
 		super(TAB, "Type Fields", args, testArgs);
+		this.all = all;
+		addParameter(ALL, all);
+	}
+
+	static TypeFieldCop getTypeFieldCop(final Args args, final TestArgs testArgs, final HttpServletRequest request)
+	{
+		return new TypeFieldCop(args, testArgs, getBooleanParameter(request, ALL));
+	}
+
+	TypeFieldCop toToggleAll()
+	{
+		return new TypeFieldCop(args, testArgs, !all);
 	}
 
 	@Override
 	protected TypeFieldCop newArgs(final Args args)
 	{
-		return new TypeFieldCop(args, testArgs);
+		return new TypeFieldCop(args, testArgs, all);
 	}
 
 	@Override
 	protected TypeFieldCop newTestArgs(final TestArgs testArgs)
 	{
-		return new TypeFieldCop(args, testArgs);
+		return new TypeFieldCop(args, testArgs, all);
+	}
+
+	@Override
+	String getNoItemsMessage()
+	{
+		return "There are no "+(all?"":"stable ")+"type fields in this model.";
 	}
 
 	@Override
@@ -58,7 +86,10 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 			for(final Feature feature : type.getDeclaredFeatures())
 			{
 				if(feature instanceof TypeField)
-					result.add((TypeField<?>)feature);
+				{
+					if (all || args.stableTypesFilter.isStable((TypeField<?>)feature))
+						result.add((TypeField<?>) feature);
+				}
 			}
 		}
 		return result;
@@ -84,6 +115,12 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 	}
 
 	@Override
+	void writeIntro(final Out out)
+	{
+		TypeField_Jspm.writeIntro(this, out);
+	}
+
+	@Override
 	String getID(final TypeField<?> field)
 	{
 		return field.getID();
@@ -104,5 +141,11 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 			return tx.commit(
 					query.total());
 		}
+	}
+
+	@FunctionalInterface
+	interface StableFilter
+	{
+		boolean isStable(final TypeField<?> featureField);
 	}
 }

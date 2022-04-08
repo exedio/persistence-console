@@ -26,26 +26,54 @@ import com.exedio.cope.Type;
 import com.exedio.cope.reflect.FeatureField;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 final class FeatureFieldCop extends TestCop<FeatureField<?>>
 {
 	static final String TAB = "feature";
 
+	private static final String ALL = "all";
+
+	final boolean all;
+
 	FeatureFieldCop(final Args args, final TestArgs testArgs)
 	{
+		this(args, testArgs, false);
+	}
+
+	private FeatureFieldCop(final Args args, final TestArgs testArgs, final boolean all)
+	{
 		super(TAB, "Feature Fields", args, testArgs);
+		this.all = all;
+		addParameter(ALL, all);
+	}
+
+	static FeatureFieldCop getFeatureFieldCop(final Args args, final TestArgs testArgs, final HttpServletRequest request)
+	{
+		return new FeatureFieldCop(args, testArgs, getBooleanParameter(request, ALL));
+	}
+
+	FeatureFieldCop toToggleAll()
+	{
+		return new FeatureFieldCop(args, testArgs, !all);
 	}
 
 	@Override
 	protected FeatureFieldCop newArgs(final Args args)
 	{
-		return new FeatureFieldCop(args, testArgs);
+		return new FeatureFieldCop(args, testArgs, all);
 	}
 
 	@Override
 	protected FeatureFieldCop newTestArgs(final TestArgs testArgs)
 	{
-		return new FeatureFieldCop(args, testArgs);
+		return new FeatureFieldCop(args, testArgs, all);
+	}
+
+	@Override
+	String getNoItemsMessage()
+	{
+		return "There are no "+(all?"":"stable ")+"feature fields in this model.";
 	}
 
 	@Override
@@ -58,7 +86,10 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 			for(final Feature feature : type.getDeclaredFeatures())
 			{
 				if(feature instanceof FeatureField)
-					result.add((FeatureField<?>)feature);
+				{
+					if (all || args.stableFeaturesFilter.isStable((FeatureField<?>)feature))
+						result.add((FeatureField<?>) feature);
+				}
 			}
 		}
 		return result;
@@ -84,6 +115,12 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	}
 
 	@Override
+	void writeIntro(final Out out)
+	{
+		FeatureField_Jspm.writeIntro(this, out);
+	}
+
+	@Override
 	String getID(final FeatureField<?> field)
 	{
 		return field.getID();
@@ -104,5 +141,11 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 			return tx.commit(
 					query.total());
 		}
+	}
+
+	@FunctionalInterface
+	interface StableFilter
+	{
+		boolean isStable(final FeatureField<?> featureField);
 	}
 }

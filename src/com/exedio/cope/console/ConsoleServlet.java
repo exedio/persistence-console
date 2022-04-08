@@ -22,6 +22,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
+import com.exedio.cope.reflect.FeatureField;
+import com.exedio.cope.reflect.TypeField;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import com.exedio.cops.Resource;
@@ -72,6 +74,24 @@ public class ConsoleServlet extends CopsServlet
 	public List<String> getMediaURLPrefixes(final HttpServletRequest request)
 	{
 		return Collections.emptyList();
+	}
+
+	/**
+	 * May be overridden by subclasses to specify which type fields are kept stable over model evolutions.
+	 * Default returns true.
+	 */
+	protected boolean isStable(final TypeField<?> typeField)
+	{
+		return true;
+	}
+
+	/**
+	 * May be overridden by subclasses to specify which feature fields are kept stable over model evolutions.
+	 * Default returns true.
+	 */
+	protected boolean isStable(final FeatureField<?> featureField)
+	{
+		return true;
 	}
 
 
