@@ -338,7 +338,7 @@ abstract class ConsoleCop<S> extends Cop
 			case SavepointCop.TAB:
 				return new SavepointCop(args);
 			case UnsupportedConstraintCop.TAB:
-				return new UnsupportedConstraintCop(args, new TestCop.TestArgs(request));
+				return UnsupportedConstraintCop.getUnsupportedConstraintCop(args, new TestCop.TestArgs(request), request);
 			case UnsupportedCheckConstraintByTableCop.TAB:
 				return new UnsupportedCheckConstraintByTableCop(args, new TestCop.TestArgs(request));
 			case MultiTableCheckConstraintCop.TAB:

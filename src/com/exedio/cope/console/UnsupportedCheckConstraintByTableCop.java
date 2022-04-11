@@ -112,12 +112,19 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 		return new String[]{"Table", "Condition"};
 	}
 
+	UnsupportedConstraintCop toTable(final Table table)
+	{
+		return new UnsupportedConstraintCop(args, testArgs, table.getName());
+	}
+
 	@Override
 	void writeValue(final Out out, final Table table, final int h)
 	{
 		switch(h)
 		{
-			case 0: out.write(table.getName()); break;
+			case 0:
+				UnsupportedCheckConstraintByTable_Jspm.writeTableValue(this, out, table);
+				break;
 			case 1:
 				final StringBuilder bf = new StringBuilder();
 				appendSQL(table, bf);
