@@ -117,7 +117,7 @@ final class MediaTypeCop extends TestCop<Media>
 			case 2: out.write(media.getContentTypeDescription().replaceAll(",", ", ")); break;
 			case 3:
 				if(c!=Condition.FALSE)
-					out.writeSQL(c.toString());
+					writeValueLong(out, c.toString());
 				break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
