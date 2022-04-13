@@ -182,7 +182,35 @@ final class Test_Jspm
 					}
 				}
 			}
-		</script><%
+
+			function copySql(image)
+			{
+				navigator.clipboard.writeText(image.dataset.sql);
+				image.classList.add("copied");
+				setTimeout(
+					clearBackground,
+					400,
+					image
+				);
+			}
+
+			function clearBackground(image)
+			{
+				image.classList.remove("copied");
+			}
+		</script>
+		<style>
+			.sql {
+				background:url('<%=ConsoleServlet.databaseGear%>');
+				width:16px;
+				height:16px;
+				display: inline-block;
+			}
+			.sql.copied {
+				background:url('<%=ConsoleServlet.databaseEdit%>');
+			}
+		</style>
+		<%
 	}
 
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
@@ -261,7 +289,17 @@ final class Test_Jspm
 			}
 
 				%>
-				<td><a href="#" onclick="return doTest('<%=cop.toTest(id, false)%>', this);">Test</a></td><%
+				<td class="test">
+					<a href="#" onclick="return doTest('<%=cop.toTest(id, false)%>', this);">Test</a>
+					<%
+					final String violationSql = cop.getViolationSql(item, out.model);
+					if (violationSql!=null)
+					{
+						%>
+						<div class="sql" title="copy sql to clipboard" onclick="copySql(this);" data-sql="<%=cop.getViolationSql(item, out.model)%>" /> <%
+					}
+					%>
+				</td><%
 
 			if(info!=null)
 			{
@@ -294,7 +332,7 @@ final class Test_Jspm
 	{
 				%>
 				<th style="text-align:right;" colspan="<%=headingsLength%>">Summary</th>
-				<td><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">Test</a></td>
+				<td class="test"><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">Test</a></td>
 				<td><% writeUnknown(out, !summary.complete); %><%=summary.date()%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
 				writeError(out, summary.isError);

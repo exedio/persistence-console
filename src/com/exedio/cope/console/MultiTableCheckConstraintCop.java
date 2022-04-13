@@ -22,6 +22,7 @@ import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
 
 import com.exedio.cope.CheckConstraint;
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
@@ -118,5 +119,11 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 			return tx.commit(
 					constraint.check());
 		}
+	}
+
+	@Override
+	String getViolationSql(final CheckConstraint constraint, final Model model)
+	{
+		return SchemaInfo.search(constraint.getType().newQuery(constraint.getCondition().not()));
 	}
 }

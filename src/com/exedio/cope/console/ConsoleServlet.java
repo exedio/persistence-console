@@ -133,6 +133,8 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource unknown = new Resource("silk_help_yellow.png");
 	static final Resource help    = new Resource("silk_help.png");
 	static final Resource imagebackground = new Resource("imagebackground.png");
+	static final Resource databaseEdit = new Resource("silk_database_edit.png");
+	static final Resource databaseGear = new Resource("silk_database_gear.png");
 
 	@Override
 	public final void init() throws ServletException

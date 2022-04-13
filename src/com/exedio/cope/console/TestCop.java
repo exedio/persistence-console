@@ -476,6 +476,14 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		return "There are no "+name+" in this model.";
 	}
 
+	/**
+	 * @return SQL query that finds violations, or null to indicate that violation SQL is not supported
+	 */
+	String getViolationSql(final I item, final Model model)
+	{
+		return null;
+	}
+
 	abstract List<I> getItems(Model model);
 	abstract String[] getHeadings();
 	abstract void writeValue(Out out, I item, int h);

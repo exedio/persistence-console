@@ -22,6 +22,7 @@ import com.exedio.cope.Condition;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Query;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Media;
@@ -138,12 +139,26 @@ final class MediaTypeCop extends TestCop<Media>
 	@Override
 	long check(final Media media, final Model model)
 	{
-		final Query<?> query = media.getType().newQuery(media.bodyMismatchesContentTypeIfSupported());
+		final Query<?> query = getQuery(media);
 
 		try(TransactionTry tx = model.startTransactionTry("Console MediaType " + id))
 		{
 			return tx.commit(
 					query.total());
 		}
+	}
+
+	private static Query<?> getQuery(final Media media)
+	{
+		return media.getType().newQuery(media.bodyMismatchesContentTypeIfSupported());
+	}
+
+	@Override
+	String getViolationSql(final Media media, final Model model)
+	{
+		if (media.bodyMismatchesContentTypeIfSupported()==Condition.FALSE)
+			return null;
+		else
+			return SchemaInfo.search(getQuery(media));
 	}
 }
