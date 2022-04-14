@@ -112,6 +112,12 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 		return new String[]{"Table", "Condition"};
 	}
 
+	@Override
+	int getNumberOfFilterableColumns()
+	{
+		return 1;
+	}
+
 	UnsupportedConstraintCop toTable(final Table table)
 	{
 		return new UnsupportedConstraintCop(args, testArgs, table.getName());

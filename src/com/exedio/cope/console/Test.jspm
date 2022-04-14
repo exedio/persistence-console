@@ -127,7 +127,8 @@ final class Test_Jspm
 									var row = document.getElementById(id);
 									var className = updateNode.getAttribute("className");
 									var content = updateNode.childNodes[0].nodeValue;
-									row.className = className;
+									row.classList.remove("<%=TestCop.NOT_YET_TESTED_CLASS%>");
+									row.classList.add(className);
 									row.innerHTML = content;
 								}
 							}
@@ -190,6 +191,20 @@ final class Test_Jspm
 			{
 				image.classList.remove("copied");
 			}
+
+			function filterRows(text, columnIndex)
+			{
+				var rows = document.body.querySelectorAll("tr.item");
+				for(i=0; i<rows.length; i++)
+				{
+					var row = rows[i];
+					var tds = row.getElementsByTagName("td");
+					if (tds.item(columnIndex).textContent.includes(text))
+						row.classList.remove("hiddenByFilter"+columnIndex);
+					else
+						row.classList.add("hiddenByFilter"+columnIndex);
+				}
+			}
 		</script>
 		<style id="toggles-<%=TestCop.SUCCESS_CLASS%>">
 			table tr.<%=TestCop.SUCCESS_CLASS%> {
@@ -246,11 +261,16 @@ final class Test_Jspm
 				<img class="check" onClick="toggleNotYetTested(this)" src="<%=ConsoleServlet.checkFalse%>"> not yet tested
 			</tr>
 			<tr><%
-
-				for(final String heading : headings)
+				for(int i=0; i<headingsLength; i++)
 				{
+					final String heading = headings[i];
 				%>
-				<th><%=heading%></th><%
+				<th>
+					<%=heading%>
+					<%if (i<cop.getNumberOfFilterableColumns()) { %>
+						<input class="filter" type="text" onkeyup="filterRows(this.value, <%=i%>);" placeholder="Filter"></input>
+					<%}%>
+					</th><%
 				}
 				%>
 				<th></th>
@@ -265,7 +285,7 @@ final class Test_Jspm
 			final Info info = store.get(id);
 			final String rowClass = info!=null ? info.getRowClass() : TestCop.NOT_YET_TESTED_CLASS;
 			%>
-			<tr id="<%=id%>"<% if(rowClass!=null){%> class="<%=rowClass%>"<%} %>><%
+			<tr id="<%=id%>" class="item <%=rowClass==null?"":rowClass%>"><%
 				writeRow(out, cop, headingsLength, item, id, info);
 			%>
 			</tr><%

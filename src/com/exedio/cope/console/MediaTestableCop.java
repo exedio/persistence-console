@@ -79,6 +79,12 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
+	int getNumberOfFilterableColumns()
+	{
+		return 3;
+	}
+
+	@Override
 	void writeValue(final Out out, final MediaTestable testable, final int h)
 	{
 		final Feature feature = (Feature)testable;

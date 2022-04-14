@@ -70,6 +70,12 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	}
 
 	@Override
+	int getNumberOfFilterableColumns()
+	{
+		return 1;
+	}
+
+	@Override
 	void writeValue(final Out out, final StringField field, final int h)
 	{
 		switch(h)

@@ -236,6 +236,21 @@ table tr.unspecified td
 	background:#FFE;
 }
 
+table tr.hiddenByFilter0
+{
+	display:none;
+}
+
+table tr.hiddenByFilter1
+{
+	display:none;
+}
+
+table tr.hiddenByFilter2
+{
+	display:none;
+}
+
 table th.color0 { margin:0px; background:#ccc; border-color:#ccc; text-align:left; padding-left:0.3em; }
 table th.color1 { margin:0px; background:#fff; border-color:#fff; text-align:left; padding-left:0.3em; }
 
@@ -353,3 +368,10 @@ span.textedit:hover
 }
 
 span.javaDecoration { color:#ccc; }
+
+input.filter
+{
+	width:6em;
+	border: none;
+	background-color: #eee;
+}
