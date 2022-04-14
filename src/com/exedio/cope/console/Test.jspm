@@ -159,27 +159,18 @@ final class Test_Jspm
 			function toggle(image, rowClass)
 			{
 				var imageSrc = image.src;
+				var sheet = document.getElementById("toggles-"+rowClass).sheet;
 				if(imageSrc.substring(imageSrc.length-8)=="true.png")
 				{
 					image.src = imageSrc.substring(0, imageSrc.length-8) + "false.png";
-					var rows = document.body.getElementsByTagName("tr");
-					for(i=0; i<rows.length; i++)
-					{
-						var row = rows[i];
-						if(row.className==rowClass)
-							row.style.display = "table-row";
-					}
+					sheet.deleteRule(0);
+					sheet.insertRule("table tr."+rowClass+" {}");
 				}
 				else
 				{
 					image.src = imageSrc.substring(0, imageSrc.length-9) + "true.png";
-					var rows = document.body.getElementsByTagName("tr");
-					for(i=0; i<rows.length; i++)
-					{
-						var row = rows[i];
-						if(row.className==rowClass)
-							row.style.display = "none";
-					}
+					sheet.deleteRule(0);
+					sheet.insertRule("table tr."+rowClass+" { display: none; }");
 				}
 			}
 
@@ -187,6 +178,7 @@ final class Test_Jspm
 			{
 				navigator.clipboard.writeText(image.dataset.sql);
 				image.classList.add("copied");
+				document.getElementById("zzz").sheet.insertRule("div { background: red; }", 0);
 				setTimeout(
 					clearBackground,
 					400,
@@ -199,6 +191,14 @@ final class Test_Jspm
 				image.classList.remove("copied");
 			}
 		</script>
+		<style id="toggles-<%=TestCop.SUCCESS_CLASS%>">
+			table tr.<%=TestCop.SUCCESS_CLASS%> {
+			}
+		</style>
+		<style id="toggles-<%=TestCop.NOT_YET_TESTED_CLASS%>">
+			table tr.<%=TestCop.NOT_YET_TESTED_CLASS%> {
+			}
+		</style>
 		<style>
 			.sql {
 				background:url('<%=ConsoleServlet.databaseGear%>');
