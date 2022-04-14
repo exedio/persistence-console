@@ -21,6 +21,8 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
+import com.exedio.dsmf.CheckConstraint;
 import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Table;
@@ -151,5 +153,15 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	long check(final Constraint constraint, final Model model)
 	{
 		return constraint.checkL();
+	}
+
+	@Override
+	String getViolationSql(final Constraint constraint, final Model model)
+	{
+		if (constraint instanceof CheckConstraint)
+			return "SELECT * FROM " + SchemaInfo.quoteName(model, constraint.getTable().getName()) +
+					 " WHERE NOT(" + constraint.getRequiredCondition() + ')';
+		else
+			return null;
 	}
 }

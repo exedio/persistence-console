@@ -205,6 +205,12 @@ table td div.long
 	font-size:small;
 }
 
+td.test
+{
+	white-space: nowrap;
+	text-align: left;
+}
+
 td.revisionNotInApplication
 {
 	background-color:#eee;
