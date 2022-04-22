@@ -86,8 +86,8 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	{
 		switch(h)
 		{
-			case 1: out.write(type.getSupertype().getID()); break;
-			case 0: out.write(type.getID()); break;
+			case 0: out.write(type.getSupertype().getID()); break;
+			case 1: out.write(type.getID()); break;
 			default:
 				throw new RuntimeException(String.valueOf(h));
 		}
