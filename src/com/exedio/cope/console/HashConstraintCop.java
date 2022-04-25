@@ -90,6 +90,12 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	}
 
 	@Override
+	int getNumberOfFilterableColumns()
+	{
+		return 1;
+	}
+
+	@Override
 	void writeValue(final Out out, final HashConstraint constraint, final int h)
 	{
 		final Pattern pattern = constraint.getData().getPattern();
