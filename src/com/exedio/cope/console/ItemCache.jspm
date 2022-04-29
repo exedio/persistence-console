@@ -27,6 +27,15 @@ import com.exedio.cope.ItemCacheStatistics;
 
 final class ItemCache_Jspm
 {
+	static void writeToggles(
+			final ItemCacheCop cop,
+			final Out out)
+	{
+		%>
+		<% writeToggle(out, cop.toToggleDetailed(), cop.detailed); %> detailed
+		<% writeToggle(out, cop.toToggleDeprecated(), cop.deprecated); %> deprecated<%
+	}
+
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeBody(
 			final ItemCacheCop cop,
@@ -35,7 +44,6 @@ final class ItemCache_Jspm
 	{
 		final ItemCacheInfo[] infos = statistics.getDetails();
 		%>
-		<% writeToggle(out, cop.toToggleDetailed(), cop.detailed); %> detailed
 		<table class="matrixTable">
 			<tr>
 				<th colspan="3">Current</th>
@@ -99,6 +107,43 @@ final class ItemCache_Jspm
 				}
 			}
 		%>
+		</table><%
+	}
+
+	static void writeBody(
+			final boolean displayNonEmptyRows,
+			final MeterTable table,
+			final Out out)
+	{
+		%>
+		<hr>
+		<table class="matrixTable">
+			<tr>
+				<th colspan="2">Efficiency</th>
+				<th rowspan="2">Evictions</th>
+				<th colspan="2">Invalidations</th>
+				<th colspan="2">Stamps</th>
+				<th rowspan="2">CL</th><%
+
+			for(final MeterTable.Column column : table.getColumns(8)) // 8 columns have their heading rendered already
+			{
+				%>
+				<th rowspan="2"><% Meter_Jspm.write(column.initialId, out); %></th><%
+			}
+
+				%>
+				<th rowspan="2">Type</th>
+			</tr>
+			<tr>
+				<th>Hit</th>
+				<th>Miss</th>
+				<th>Actual</th>
+				<th>Futile</th>
+				<th>Hit</th>
+				<th title="Purged">Purg</th>
+			</tr><%
+			Meter_Jspm.write(displayNonEmptyRows, table, out);
+			%>
 		</table><%
 	}
 
