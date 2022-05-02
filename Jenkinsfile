@@ -20,8 +20,10 @@ properties([
 tryCompleted = false
 try
 {
-	parallel "Main": { // trailing brace suppresses Syntax error in idea
+	def parallelBranches = [:]
 
+	parallelBranches["Main"] =
+	{
 		//noinspection GroovyAssignabilityCheck
 		nodeCheckoutAndDelete
 		{
@@ -79,9 +81,10 @@ try
 						[[ file: 'build/exedio-cope-console.jar-plot.properties', label: 'exedio-cope-console.jar' ]],
 			)
 		}
-	},
-	"Idea": { // trailing brace suppresses Syntax error in idea
+	}
 
+	parallelBranches["Idea"] =
+	{
 		//noinspection GroovyAssignabilityCheck
 		nodeCheckoutAndDelete
 		{
@@ -133,9 +136,10 @@ try
 					],
 			)
 		}
-	},
-	"Ivy": { // trailing brace suppresses Syntax error in idea
+	}
 
+	parallelBranches["Ivy"] =
+	{
 		def cache = 'jenkins-build-survivor-' + projectName + "-Ivy"
 		//noinspection GroovyAssignabilityCheck
 		lockNodeCheckoutAndDelete(cache)
@@ -167,6 +171,9 @@ try
 			}
 		}
 	}
+
+	parallel parallelBranches
+
 	tryCompleted = true
 }
 finally
