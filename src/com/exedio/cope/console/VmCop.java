@@ -99,6 +99,7 @@ final class VmCop extends ConsoleCop<Void>
 		return versionPattern.matcher(version).replaceAll("$1");
 	}
 
+	@SuppressWarnings("RegExpSimplifiable") // OK: [0-9] is easier to understand than \d
 	private static final Pattern versionPattern =
 			Pattern.compile("\\b([0-9,a-f]{8})[0-9,a-f]{32}\\b");
 }

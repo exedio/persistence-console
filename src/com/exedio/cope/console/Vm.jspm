@@ -101,7 +101,6 @@ final class Vm_Jspm
 			<tr>
 				<th><%=p.getName()%></th><%
 
-			//noinspection IfStatementWithIdenticalBranches OK, looks much nicer
 			if(Objects.equals(spec, impl))
 			{
 				%>
