@@ -66,7 +66,6 @@ final class RegisteredDrivers_Jspm
 			<tr>
 				<td class="text"><%= clazz %></td><%
 
-			//noinspection IfStatementWithIdenticalBranches OK, looks much nicer
 			if(Objects.equals(spec, impl))
 			{
 				%>
