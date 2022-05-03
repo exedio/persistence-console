@@ -45,14 +45,14 @@ final class ChangeListener_Jspm
 		%>
 		<table style="float:left;">
 			<caption>Listener</caption>
-			<tr><th>Cleared</td><td><%=format(clearedBefore)%><%
+			<tr><th>Cleared</th><td><%=format(clearedBefore)%><%
 					if(clearedBefore!=clearedAfter)
 					{
 						%>/<%=format(clearedAfter)%><%
 					}
 					%></td></tr>
-			<tr><th>Removed</td><td><%=format(infoAfter.getRemoved())%></td></tr>
-			<tr><th>Failed</td><td><%=format(infoAfter.getFailed())%></td></tr>
+			<tr><th>Removed</th><td><%=format(infoAfter.getRemoved())%></td></tr>
+			<tr><th>Failed</th><td><%=format(infoAfter.getFailed())%></td></tr>
 		</table>
 		<table>
 			<caption>Dispatcher</caption><%
@@ -60,9 +60,9 @@ final class ChangeListener_Jspm
 		if(dispatcherInfo!=null)
 		{
 			%>
-			<tr><th>Overflow</td><td><%=format(dispatcherInfo.getOverflow())%></td></tr>
-			<tr><th>Exception</td><td><%=format(dispatcherInfo.getException())%></td></tr>
-			<tr><th>Pending</td><td><%=format(dispatcherInfo.getPending())%></td></tr><%
+			<tr><th>Overflow</th><td><%=format(dispatcherInfo.getOverflow())%></td></tr>
+			<tr><th>Exception</th><td><%=format(dispatcherInfo.getException())%></td></tr>
+			<tr><th>Pending</th><td><%=format(dispatcherInfo.getPending())%></td></tr><%
 		}
 		else
 		{
