@@ -143,7 +143,6 @@
 			<classpath>
 				<pathelement location="build/classes/src" />
 				<pathelement location="lib/exedio-cope-instrument.jar" />
-				<pathelement location="lib/exedio-cope-servletutil.jar" />
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/slf4j-api.jar" />
 				<pathelement location="lib/micrometer-core.jar" />
@@ -175,7 +174,6 @@
 			<classpath>
 				<pathelement location="build/classes/src" />
 				<pathelement location="lib/exedio-cope-util.jar" />
-				<pathelement location="lib/exedio-cope-servletutil.jar" />
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/javax.servlet-api.jar" />
@@ -193,7 +191,6 @@
 			<fileset file="lib/trove4j.jar" />
 			<fileset file="lib/slf4j-api.jar" />
 			<fileset file="lib/exedio-cops.jar" />
-			<fileset file="lib/exedio-cope-servletutil.jar" />
 			<fileset file="lib/exedio-cope-util.jar" />
 			<fileset file="lib/exedio-cope.jar" />
 			<fileset file="lib/exedio-cope-hsqldb.jar" />
