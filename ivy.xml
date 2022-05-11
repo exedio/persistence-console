@@ -38,5 +38,11 @@
 			<artifact name="tomcat" type="tar.gz" />
 		</dependency>
 		<dependency org="org.slf4j" name="slf4j-api" rev="1.6.4" conf="runtime->default; build->sources" />
+		<!--
+			This project depends on micrometer for accessing meters created by cope. It does not
+			create meters on its own. Therefore it does not require the micrometer dependency
+			on its own. The line below just provides the sources for development.
+		-->
+		<dependency org="io.micrometer" name="micrometer-core" rev="" conf="build->sources" />
 	</dependencies>
 </ivy-module>

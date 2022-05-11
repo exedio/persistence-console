@@ -20,31 +20,39 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.ItemCacheInfo;
 import com.exedio.cope.ItemCacheStatistics;
+import com.exedio.cope.Type;
+import io.micrometer.core.instrument.Tags;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 final class ItemCacheCop extends ConsoleCop<Void>
 {
 	static final String TAB = "itemcache";
 	private static final String DETAILED = "dt";
+	private static final String DEPRECATED = "dep";
 
 	final boolean detailed;
+	final boolean deprecated;
 
 	ItemCacheCop(final Args args)
 	{
-		this(args, false);
+		this(args, false, false);
 	}
 
-	private ItemCacheCop(final Args args, final boolean detailed)
+	private ItemCacheCop(final Args args, final boolean detailed, final boolean deprecated)
 	{
 		super(TAB, "Item Cache", args);
 		this.detailed = detailed;
+		this.deprecated = deprecated;
 
 		addParameter(DETAILED, detailed);
+		addParameter(DEPRECATED, deprecated);
 	}
 
 	static ItemCacheCop getItemCacheCop(final Args args, final HttpServletRequest request)
 	{
-		return new ItemCacheCop(args, getBooleanParameter(request, DETAILED));
+		return new ItemCacheCop(args, getBooleanParameter(request, DETAILED), getBooleanParameter(request, DEPRECATED));
 	}
 
 	@Override
@@ -56,13 +64,51 @@ final class ItemCacheCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
+		ItemCache_Jspm.writeToggles(this, out);
+		if(deprecated)
+			writeBodyDeprecated(out);
+		else
+			writeBodyMetrics(out);
+	}
+
+	private void writeBodyDeprecated(final Out out)
+	{
 		final ItemCacheStatistics statistics = out.model.getItemCacheStatistics();
 		ItemCache_Jspm.writeBody(this, out, statistics);
 	}
 
+	private void writeBodyMetrics(final Out out)
+	{
+		final List<MeterTable.ListItem> list = new ArrayList<>();
+		final MeterTable table = new MeterTable();
+		table.addColumnWhite("gets", Tags.of("result", "hit"));
+		table.addColumnWhite("gets", Tags.of("result", "miss"));
+		table.addColumnBlue ("evictions");
+		table.addColumnWhite("invalidations", Tags.of("effect", "actual"));
+		table.addColumnWhite("invalidations", Tags.of("effect", "futile"));
+		table.addColumnBlue ("stamp.hit");
+		table.addColumnBlue ("stamp.purge");
+		table.addColumnWhite("concurrentLoad");
+		for(final Type<?> type : out.model.getConcreteTypes())
+			table.addRow(type.getID());
+		MeterTable.fillup(
+				list,
+				table,
+				"com.exedio.cope.ItemCache.",  // prefix
+				"model", out.model.toString(), // filter key/value
+				"type"); // row key
+		Meter_Jspm.write("Statistics", list, out);
+		ItemCache_Jspm.writeBody(detailed, table, out);
+	}
+
 	ItemCacheCop toToggleDetailed()
 	{
-		return new ItemCacheCop(args, !detailed);
+		return new ItemCacheCop(args, !detailed, deprecated);
+	}
+
+	ItemCacheCop toToggleDeprecated()
+	{
+		return new ItemCacheCop(args, detailed, !deprecated);
 	}
 
 	boolean showInfo(final ItemCacheInfo info)

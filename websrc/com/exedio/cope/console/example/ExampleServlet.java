@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console.example;
 
+import static io.micrometer.core.instrument.Metrics.globalRegistry;
 import static java.lang.System.nanoTime;
 import static java.nio.charset.StandardCharsets.US_ASCII;
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -34,6 +35,8 @@ import com.exedio.cope.util.Hex;
 import com.exedio.cope.util.MessageDigestUtil;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Tags;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -239,6 +242,30 @@ public final class ExampleServlet extends CopsServlet
 			throw new RuntimeException(e);
 		}
 		Revisions.revisions(Main.model);
+		{
+			final Tags tags = Tags.of("model", Main.model.toString()).and("type", "ExampleDummyType");
+			Counter.builder("com.exedio.cope.ItemCache.gets").tag("result", "hit").tags(tags).register(globalRegistry).increment(44.4);
+			Counter.builder("com.exedio.cope.ItemCache.gets").tag("result", "miss").tags(tags).register(globalRegistry).increment(55);
+			Counter.builder("com.exedio.cope.ItemCache.evictions").tags(tags).register(globalRegistry).increment(66);
+			Counter.builder("com.exedio.cope.ItemCache.invalidations").tag("effect", "actual").tags(tags).register(globalRegistry).increment(77);
+			// deliberately skip futile
+			Counter.builder("com.exedio.cope.ItemCache.stamp.hit").tags(tags).register(globalRegistry).increment(88);
+			Counter.builder("com.exedio.cope.ItemCache.stamp.purge").tags(tags).register(globalRegistry).increment(99);
+			Counter.builder("com.exedio.cope.ItemCache.exampleMeter").tags(tags).register(globalRegistry).increment(99);
+			Counter.builder("com.exedio.cope.ItemCache.exampleMeter2").tag("k", "v").tags(tags).register(globalRegistry).increment(99);
+		}
+		Counter.builder("com.exedio.cope.ItemCache.wrongModelCounter").
+				tags("model", "wrongModel").
+				tags("type", "wrongModelType").
+				register(globalRegistry).increment(555);
+		Counter.builder("com.exedio.cope.ItemCache.exampleMeterGlobal").
+				tags("model", Main.model.toString()).
+				register(globalRegistry).increment(777.777);
+		Counter.builder("com.exedio.cope.ItemCache.exampleMeterGlobal2").
+				tags("model", Main.model.toString()).
+				tag("k", "v").
+				description("Some useful description").
+				register(globalRegistry).increment(888);
 	}
 
 	@SuppressWarnings("CodeBlock2Expr") // OK: explicit identity of hooks needed for testing duplicates

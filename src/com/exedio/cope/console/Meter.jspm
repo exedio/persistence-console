@@ -1,0 +1,133 @@
+<%
+/*
+ * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+import com.exedio.cope.console.MeterTable.CellValue;
+import com.exedio.cope.console.MeterTable.Column;
+import com.exedio.cope.console.MeterTable.ListItem;
+import com.exedio.cope.console.MeterTable.Row;
+import io.micrometer.core.instrument.Meter;
+import io.micrometer.core.instrument.Tag;
+import java.util.List;
+
+final class Meter_Jspm
+{
+	static void write(
+			final String caption,
+			final List<ListItem> list,
+			final Out out)
+	{
+		if(!list.isEmpty())
+		{
+		%>
+		<table>
+			<caption><%=caption%></caption><%
+
+		for(final ListItem item : list)
+		{
+			%>
+			<tr>
+				<th><% write(item.id, out); %></th>
+				<td title="<% writeFull(item.fullId, out); %>"><% MeterTable.write(item.value, out); %></td>
+			</tr><%
+		}
+		%>
+		</table><%
+		}
+	}
+
+	static void write(
+			final boolean displayNonEmptyRows,
+			final MeterTable table,
+			final Out out)
+	{
+		%>
+			<tr><%
+				for(final Column column : table.getColumns())
+					writeCell(column, column.cellId(), column.getSum(), out);
+				%>
+				<th>Summary</th>
+			</tr><%
+
+		for(final Row row : table.getRows())
+		{
+			if(!displayNonEmptyRows && row.isEmpty())
+				continue;
+			%>
+			<tr><%
+
+		for(final Column column : table.getColumns())
+		{
+			final CellValue cell = table.getCell(column, row);
+			if(cell==null)
+			{
+				%>
+				<td class="notavailable"></td><%
+				continue;
+			}
+			writeCell(column, cell.id, cell.value, out);
+		}
+			%>
+				<td class="text"><%=row.id%></td>
+			</tr><%
+		}
+	}
+
+	private static void writeCell(
+			final Column column,
+			final Meter.Id id,
+			final double value,
+			final Out out)
+	{
+				%>
+				<td class="<%= column.isBlue()?"b":"a" %>" title="<% writeFull(id, out); %>"><%
+					MeterTable.write(value, out);
+				%></td><%
+	}
+
+	private static void writeFull(
+			final Meter.Id id,
+			final Out out)
+	{
+		final String description = id.getDescription();
+		if(description!=null)
+		{
+			%><%=description%> <%
+		}
+		write(id, out);
+	}
+
+	static void write(
+			final Meter.Id id,
+			final Out out)
+	{
+		%><%=id.getName()%><%
+
+		for(final Tag tag : id.getTags())
+		{
+			%> <%=tag.getKey()%>=<%=tag.getValue()%><%
+		}
+	}
+
+	private Meter_Jspm()
+	{
+		// prevent instantiation
+	}
+}%>

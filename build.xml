@@ -88,6 +88,7 @@
 				<pathelement location="lib/javax.servlet-api.jar" />
 				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 				<pathelement location="lib/slf4j-api.jar" />
+				<pathelement location="lib/micrometer-core.jar" />
 			</classpath>
 		</compile>
 	</target>
@@ -177,6 +178,7 @@
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/exedio-cops.jar" />
 				<pathelement location="lib/javax.servlet-api.jar" />
+				<pathelement location="lib/micrometer-core.jar" />
 				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 			</classpath>
 		</compile>
@@ -284,6 +286,7 @@
 				<pathelement location="lib/exedio-cope.jar" />
 				<pathelement location="lib/javax.servlet-api.jar" />
 				<pathelement location="lib/slf4j-api.jar" />
+				<pathelement location="lib/micrometer-core.jar" />
 				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
 			</classpath>
 		</javadoc>
