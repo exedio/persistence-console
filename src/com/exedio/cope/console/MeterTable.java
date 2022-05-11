@@ -115,7 +115,18 @@ final class MeterTable
 					withName(id.getName().substring(prefix.length())).
 					replaceTags(tags);
 			if(row==null)
-				list.add(new ListItem(newId, m));
+			{
+				boolean done = false;
+				for(final ListItem l : list)
+					if(l.id.equals(newId))
+					{
+						l.setValue(m);
+						done = true;
+						break;
+					}
+				if(!done)
+					list.add(new ListItem(newId, m));
+			}
 			else
 				table.add(newId, row, m);
 		}
@@ -124,14 +135,42 @@ final class MeterTable
 	static final class ListItem
 	{
 		final Meter.Id id;
-		final Meter.Id fullId;
-		final double value;
+		private Meter.Id fullId;
+		private double value;
+
+		ListItem(final String name)
+		{
+			this(name, Tags.empty());
+		}
+
+		ListItem(final String name, final Tags tags)
+		{
+			this.id = new Meter.Id(name, tags, null, null, Meter.Type.COUNTER);
+			this.fullId = null;
+			this.value = Double.NaN;
+		}
 
 		private ListItem(final Meter.Id id, final Meter meter)
 		{
 			this.id = id;
 			this.fullId = meter.getId();
-			this.value = value(meter);
+			this.value = MeterTable.value(meter);
+		}
+
+		Meter.Id fullId()
+		{
+			return fullId;
+		}
+
+		double value()
+		{
+			return value;
+		}
+
+		private void setValue(final Meter meter)
+		{
+			this.fullId = meter.getId();
+			this.value = MeterTable.value(meter);
 		}
 	}
 

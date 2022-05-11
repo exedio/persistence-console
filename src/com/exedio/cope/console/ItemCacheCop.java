@@ -80,6 +80,10 @@ final class ItemCacheCop extends ConsoleCop<Void>
 	private void writeBodyMetrics(final Out out)
 	{
 		final List<MeterTable.ListItem> list = new ArrayList<>();
+		list.add(new MeterTable.ListItem("maximumSize"));
+		list.add(new MeterTable.ListItem("size"));
+		list.add(new MeterTable.ListItem("stamp.transactions"));
+		//list.add(new MeterTable.ListItem("nonexisting")); just for debugging
 		final MeterTable table = new MeterTable();
 		table.addColumnWhite("gets", Tags.of("result", "hit"));
 		table.addColumnWhite("gets", Tags.of("result", "miss"));
@@ -97,7 +101,7 @@ final class ItemCacheCop extends ConsoleCop<Void>
 				"com.exedio.cope.ItemCache.",  // prefix
 				"model", out.model.toString(), // filter key/value
 				"type"); // row key
-		Meter_Jspm.write("Statistics", list, out);
+		Meter_Jspm.write("Statistics", null, list, out);
 		ItemCache_Jspm.writeBody(detailed, table, out);
 	}
 
