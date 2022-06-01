@@ -127,7 +127,7 @@ final class MeterTable
 		final Meter.Id fullId;
 		final double value;
 
-		ListItem(final Meter.Id id, final Meter meter)
+		private ListItem(final Meter.Id id, final Meter meter)
 		{
 			this.id = id;
 			this.fullId = meter.getId();
@@ -209,7 +209,7 @@ final class MeterTable
 		private final boolean blue;
 		private double sum = 0.0;
 
-		Column(final Meter.Id initialId, final boolean blue)
+		private Column(final Meter.Id initialId, final boolean blue)
 		{
 			this.initialId = requireNonNull(initialId);
 			this.blue = blue;
@@ -225,7 +225,7 @@ final class MeterTable
 			return blue;
 		}
 
-		void add(final CellValue cell)
+		private void add(final CellValue cell)
 		{
 			if(cellId==null)
 				cellId = cell.id;
@@ -243,12 +243,12 @@ final class MeterTable
 		final String id;
 		private boolean empty = true;
 
-		Row(final String id)
+		private Row(final String id)
 		{
 			this.id = requireNonNull(id);
 		}
 
-		void add(final CellValue cell)
+		private void add(final CellValue cell)
 		{
 			if(cell.value!=0.0)
 				empty = false;
