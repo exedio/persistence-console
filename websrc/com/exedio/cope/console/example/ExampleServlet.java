@@ -69,6 +69,8 @@ public final class ExampleServlet extends CopsServlet
 	static final String TRANSACTION_SUBMIT = "transaction.submit";
 
 	static final String ITEM_CACHE_REPLACE = "itemCache.replace";
+	static final String QUERY_CACHE_PARAMETER = "queryCache.parameter";
+	static final String QUERY_CACHE_SEARCH = "queryCache.search";
 
 	static final String CHANGE_LISTENER_ADD      = "changeListener.add";
 	static final String CHANGE_LISTENER_ADD_FAIL = "changeListener.addFail";
@@ -124,6 +126,14 @@ public final class ExampleServlet extends CopsServlet
 			else if(request.getParameter(ITEM_CACHE_REPLACE)!=null)
 			{
 				replaceItemCache();
+			}
+			else if(request.getParameter(QUERY_CACHE_SEARCH)!=null)
+			{
+				try(TransactionTry tx = Main.model.startTransactionTry("queryCache"))
+				{
+					AnItem.TYPE.search(AnItem.aField.equal(request.getParameter(QUERY_CACHE_PARAMETER)));
+					tx.commit();
+				}
 			}
 			else if(request.getParameter(CHANGE_LISTENER_ADD)!=null)
 			{
