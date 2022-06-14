@@ -31,21 +31,36 @@ final class Meter_Jspm
 {
 	static void write(
 			final String caption,
+			final String tableStyle,
 			final List<ListItem> list,
 			final Out out)
 	{
 		if(!list.isEmpty())
 		{
 		%>
-		<table>
+		<table<% if(tableStyle!=null){ %> style="<%=tableStyle%>"<% } %>>
 			<caption><%=caption%></caption><%
 
 		for(final ListItem item : list)
 		{
+			final Meter.Id fullId = item.fullId();
+
+			final double value = item.value();
 			%>
 			<tr>
-				<th><% write(item.id, out); %></th>
-				<td title="<% writeFull(item.fullId, out); %>"><% MeterTable.write(item.value, out); %></td>
+				<th><% write(item.id, out); %></th><%
+
+			if(fullId==null)
+			{
+				%>
+				<td class="notavailable"></td><%
+			}
+			else
+			{
+				%>
+				<td title="<% writeFull(fullId, out); %>"><% MeterTable.write(value, out); %></td><%
+			}
+			%>
 			</tr><%
 		}
 		%>

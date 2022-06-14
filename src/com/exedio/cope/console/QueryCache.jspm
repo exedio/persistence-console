@@ -31,12 +31,10 @@ import com.exedio.cope.QueryCacheInfo;
 final class QueryCache_Jspm
 {
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
-	static void writeBody(
-			final QueryCacheCop cop,
+	static void writeStatistics(
 			final Out out,
 			final int limit,
-			final QueryCacheInfo info,
-			final QueryCacheCop.Content content)
+			final QueryCacheInfo info)
 	{
 		final long hits = info.getHits();
 		final long misses = info.getMisses();
@@ -53,10 +51,20 @@ final class QueryCache_Jspm
 			<tr><th colspan="2">Misses</th><td><%=format(misses)%></td></tr>
 			<tr><th rowspan="3">Stamps</th><th>Size</th><td><%=format(info.getStampsSize())%></td></tr>
 			<tr><th>Hits</th><td><%=format(info.getStampsHits())%></td></tr>
-			<tr><th>Purged</th><td><%=format(info.getStampsPurged())%></td></tr><%
-			if(content.histogram.length>0)
-			{
-			%>
+			<tr><th>Purged</th><td><%=format(info.getStampsPurged())%></td></tr>
+		</table><%
+	}
+
+	static void writeHistogram(
+			final QueryCacheCop cop,
+			final Out out,
+			final QueryCacheCop.Content content)
+	{
+		if(content.histogram.length>0)
+		{
+		%>
+		<table style="float:left;">
+			<caption>Histogram Statistics</caption>
 			<tr><th rowspan="3">Key Length</th><th>Average</th><td><%=format(content.avgKeyLength)%></td></tr>
 			<tr><th>Maximum</th><td><%=format(content.maxKeyLength)%></td></tr>
 			<tr><th>Minimum</th><td><%=format(content.minKeyLength)%></td></tr>
@@ -71,10 +79,10 @@ final class QueryCache_Jspm
 			%>
 			<tr><th rowspan="3">Hits</th><th>Average</th><td><%=format(content.avgHits)%></td></tr>
 			<tr><th>Maximum</th><td><%=format(content.maxHits)%></td></tr>
-			<tr><th>Minimum</th><td><%=format(content.minHits)%></td></tr><%
-			}
+			<tr><th>Minimum</th><td><%=format(content.minHits)%></td></tr>
+		</table><%
+		}
 		%>
-		</table>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=CLEAR%>" value="clear all caches"
 				onclick="return confirm('This operation will clear all global (cross-transactional) caches, such as item cache and query cache.\nDo you really want to do this?')" />

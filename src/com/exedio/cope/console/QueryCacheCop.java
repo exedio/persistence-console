@@ -18,52 +18,69 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Console_Jspm.writeToggle;
+
 import com.exedio.cope.Model;
 import com.exedio.cope.QueryCacheHistogram;
+import com.exedio.cope.console.MeterTable.ListItem;
+import io.micrometer.core.instrument.Tags;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 final class QueryCacheCop extends ConsoleCop<Void>
 {
 	static final String TAB = "querycache";
+	private static final String DEPRECATED = "dep";
 	static final String HISTOGRAM_LIMIT = "hl";
 	private static final int HISTOGRAM_LIMIT_DEFAULT = 100;
 	private static final String CONDENSE = "condense";
 
+	final boolean deprecated;
 	final int histogramLimit;
 	final boolean condense;
 
 	QueryCacheCop(final Args args)
 	{
-		this(args, HISTOGRAM_LIMIT_DEFAULT, true);
+		this(args, false, HISTOGRAM_LIMIT_DEFAULT, true);
 	}
 
-	private QueryCacheCop(final Args args, final int histogramLimit, final boolean condense)
+	private QueryCacheCop(final Args args, final boolean deprecated, final int histogramLimit, final boolean condense)
 	{
 		super(TAB, "Query Cache", args);
+		addParameter(DEPRECATED, deprecated);
 		addParameter(HISTOGRAM_LIMIT, histogramLimit, HISTOGRAM_LIMIT_DEFAULT);
 		addParameter(CONDENSE, condense);
 
+		this.deprecated = deprecated;
 		this.histogramLimit = histogramLimit;
 		this.condense = condense;
 	}
 
 	static QueryCacheCop getQueryCacheCop(final Args args, final HttpServletRequest request)
 	{
-		return new QueryCacheCop(args, getIntParameter(request, HISTOGRAM_LIMIT, HISTOGRAM_LIMIT_DEFAULT),
+		return new QueryCacheCop(args,
+				getBooleanParameter(request, DEPRECATED),
+				getIntParameter(request, HISTOGRAM_LIMIT, HISTOGRAM_LIMIT_DEFAULT),
 				getBooleanParameter(request, CONDENSE));
 	}
 
 	@Override
 	protected QueryCacheCop newArgs(final Args args)
 	{
-		return new QueryCacheCop(args, histogramLimit, condense);
+		return new QueryCacheCop(args, deprecated, histogramLimit, condense);
+	}
+
+	QueryCacheCop toToggleDeprecated()
+	{
+		return new QueryCacheCop(args, !deprecated, histogramLimit, condense);
 	}
 
 	QueryCacheCop toToggleCondense()
 	{
-		return new QueryCacheCop(args, histogramLimit, !condense);
+		return new QueryCacheCop(args, deprecated, histogramLimit, !condense);
 	}
 
 	static final String CLEAR = "cache.clear";
@@ -307,10 +324,40 @@ final class QueryCacheCop extends ConsoleCop<Void>
 	void writeBody(final Out out)
 	{
 		final Model model = out.model;
+
+		writeToggle(out, toToggleDeprecated(), deprecated);
+		out.write("deprecated");
+
+		if(deprecated)
+		{
+			QueryCache_Jspm.writeStatistics(out,
+					model.getConnectProperties().getQueryCacheLimit(),
+					model.getQueryCacheInfo());
+		}
+		else
+		{
+			final List<ListItem> list = new ArrayList<>();
+			list.add(new ListItem("maximumSize"));
+			list.add(new ListItem("size"));
+			list.add(new ListItem("concurrentLoad"));
+			list.add(new ListItem("evictions"));
+			list.add(new ListItem("invalidations"));
+			list.add(new ListItem("gets", Tags.of("result", "hit")));
+			list.add(new ListItem("gets", Tags.of("result", "miss")));
+			list.add(new ListItem("stamp.transactions"));
+			list.add(new ListItem("stamp.hit"));
+			list.add(new ListItem("stamp.purge"));
+			final MeterTable table = new MeterTable();
+			MeterTable.fillup(
+					list,
+					table,
+					"com.exedio.cope.QueryCache.", // prefix
+					"model", model.toString(), // filter key/value
+					"DUMMY"); // row key
+			Meter_Jspm.write("Statistics", "float:left;", list, out);
+		}
 		final QueryCacheHistogram[] histogram = model.getQueryCacheHistogram();
-		QueryCache_Jspm.writeBody(this, out,
-				model.getConnectProperties().getQueryCacheLimit(),
-				model.getQueryCacheInfo(),
+		QueryCache_Jspm.writeHistogram(this, out,
 				new Content(histogram, condense));
 	}
 }
