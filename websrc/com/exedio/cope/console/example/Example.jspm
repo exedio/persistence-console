@@ -66,6 +66,11 @@ final class Example_Jspm
 		<form method="POST">
 			<input name="<%=ExampleServlet.ITEM_CACHE_REPLACE%>" type="submit" value="force replacement run in item cache" />
 		</form>
+		<h2>Query Cache</h2>
+		<form method="POST">
+			<input name="<%=ExampleServlet.QUERY_CACHE_PARAMETER%>" value="aField1" size="20" />
+			<input name="<%=ExampleServlet.QUERY_CACHE_SEARCH%>" type="submit" value="search and fill query cache" />
+		</form>
 		<h2>Change Listeners</h2>
 		<form method="POST">
 			<input type="submit" name="<%=ExampleServlet.CHANGE_LISTENER_ADD     %>" value="add" />
