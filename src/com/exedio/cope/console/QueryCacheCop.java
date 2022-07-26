@@ -22,6 +22,7 @@ import static com.exedio.cope.console.Console_Jspm.writeToggle;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.QueryCacheHistogram;
+import com.exedio.cope.QueryCacheInfo;
 import com.exedio.cope.console.MeterTable.ListItem;
 import io.micrometer.core.instrument.Tags;
 import java.util.ArrayList;
@@ -334,9 +335,11 @@ final class QueryCacheCop extends ConsoleCop<Void>
 
 		if(deprecated)
 		{
+			@SuppressWarnings("deprecation")
+			final QueryCacheInfo queryCacheInfo = model.getQueryCacheInfo();
 			QueryCache_Jspm.writeStatistics(out,
 					model.getConnectProperties().getQueryCacheLimit(),
-					model.getQueryCacheInfo());
+					queryCacheInfo);
 		}
 		else
 		{

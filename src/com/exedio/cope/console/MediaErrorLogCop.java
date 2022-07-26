@@ -99,6 +99,7 @@ final class MediaErrorLogCop extends ConsoleCop<Void>
 		NotAnItem     ("Not An Item"    , MediaPath::getNotAnItemLogs),
 		NoSuchItem    ("No Such Item"   , MediaPath::getNoSuchItemLogs),
 		IsNull        ("Is Null"        , MediaPath::getIsNullLogs),
+		@SuppressWarnings("deprecation") // TODO
 		NotComputable ("Not Computable" , MediaPath::getNotComputableLogs);
 
 		final String caption;

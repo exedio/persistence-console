@@ -116,7 +116,9 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 			{
 				try
 				{
-					storeAdd(new Point(model.getSchemaSavepoint()));
+					@SuppressWarnings("deprecation") // TODO
+					final String savepoint = model.getSchemaSavepoint();
+					storeAdd(new Point(savepoint));
 				}
 				catch(final SQLException e)
 				{
