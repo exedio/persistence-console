@@ -236,6 +236,7 @@ abstract class ConsoleCop<S> extends Cop
 					new QueryCacheCop(args),
 					new ThreadCop(args),
 					new DataVaultCop(args),
+					new DataVaultTrailCop(args, testArgs),
 					new ChangeListenerCop(args),
 					new ClusterCop(args),
 				},
@@ -419,6 +420,8 @@ abstract class ConsoleCop<S> extends Cop
 				return QueryCacheCop.getQueryCacheCop(args, request);
 			case DataVaultCop.TAB:
 				return new DataVaultCop(args);
+			case DataVaultTrailCop.TAB:
+				return DataVaultTrailCop.getDataVaultTrailCop(args, new TestCop.TestArgs(request), request);
 			case SequenceCop.TAB:
 				return new SequenceCop(args, new TestCop.TestArgs(request));
 			case SuspicionsCop.TAB:
