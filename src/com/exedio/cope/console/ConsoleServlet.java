@@ -102,7 +102,6 @@ public class ConsoleServlet extends CopsServlet
 	private Model model = null;
 
 	static final Resource stylesheet = new Resource("console.css");
-	static final Resource script     = new Resource("console.js");
 	static final Resource propertiesScript = new Resource("properties.js");
 	static final Resource schemaScript = new Resource("schema.js");
 	static final Resource logo = new Resource("logo.png");
@@ -135,6 +134,7 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource imagebackground = new Resource("imagebackground.png");
 	static final Resource databaseEdit = new Resource("silk_database_edit.png");
 	static final Resource databaseGear = new Resource("silk_database_gear.png");
+	static final Resource helpOnDomReady = new Resource("helpOnDomReady.js");
 
 	@Override
 	public final void init() throws ServletException

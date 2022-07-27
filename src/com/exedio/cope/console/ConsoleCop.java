@@ -18,13 +18,17 @@
 
 package com.exedio.cope.console;
 
+import static java.util.Collections.unmodifiableCollection;
+
 import com.exedio.cope.Model;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
+import com.exedio.cops.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -317,6 +321,18 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	abstract void writeBody(Out out);
+
+	private final LinkedHashSet<Resource> onDomReady = new LinkedHashSet<>();
+
+	final void onDomReady(final Resource resource)
+	{
+		onDomReady.add(resource);
+	}
+
+	final Iterable<Resource> onDomReady()
+	{
+		return unmodifiableCollection(onDomReady);
+	}
 
 
 	boolean isAjax()
