@@ -103,6 +103,10 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 		}
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	void writeHead(final Out out)
 	{

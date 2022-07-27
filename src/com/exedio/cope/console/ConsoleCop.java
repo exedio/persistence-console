@@ -287,6 +287,22 @@ abstract class ConsoleCop<S> extends Cop
 		return null;
 	}
 
+	/**
+	 * TODO get rid of unsafe-inline
+	 */
+	boolean requiresUnsafeInlineStyle()
+	{
+		return false;
+	}
+
+	/**
+	 * TODO get rid of unsafe-inline
+	 */
+	boolean requiresUnsafeInlineScript()
+	{
+		return false;
+	}
+
 	String getExternalImgSrc()
 	{
 		return null;

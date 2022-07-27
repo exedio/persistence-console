@@ -50,6 +50,8 @@ final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return store().get();
 	}
 
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	AtomicReference<ChecklistIcon> initialStore()
 	{
