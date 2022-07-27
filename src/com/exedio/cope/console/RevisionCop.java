@@ -117,6 +117,10 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		}
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	void writeHead(final Out out)
 	{

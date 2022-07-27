@@ -116,6 +116,10 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		return store().getChecklistIcon(getItemIDs(items));
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	final void writeHead(final Out out)
 	{

@@ -201,6 +201,10 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		}
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	String getExternalImgSrc()
 	{

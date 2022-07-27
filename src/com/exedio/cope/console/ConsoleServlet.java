@@ -198,8 +198,8 @@ public class ConsoleServlet extends CopsServlet
 			// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 			response.setHeader("Content-Security-Policy",
 					"default-src 'none'; " +
-					"style-src 'self' 'unsafe-inline'; " +  // TODO get rid of unsafe-inline
-					"script-src 'self' 'unsafe-inline'; " + // TODO get rid of unsafe-inline
+					"style-src 'self'"  + (cop.requiresUnsafeInlineStyle ()?" 'unsafe-inline'":"") + "; " +
+					"script-src 'self'" + (cop.requiresUnsafeInlineScript()?" 'unsafe-inline'":"") + "; " +
 					"img-src 'self'" + (externalImgSrc!=null ? (" " + externalImgSrc) : "") + "; " +
 					"connect-src 'self'; " +
 					"frame-ancestors 'none'; " +

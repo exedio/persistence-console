@@ -53,6 +53,10 @@ final class ConnectionPoolCop extends ConsoleCop<Void>
 		}
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	void writeBody(final Out out)
 	{

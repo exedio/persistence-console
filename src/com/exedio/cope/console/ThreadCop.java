@@ -58,6 +58,10 @@ final class ThreadCop extends ConsoleCop<Void>
 		}
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	void writeHead(final Out out)
 	{

@@ -43,6 +43,10 @@ final class DataFieldCop extends ConsoleCop<Void>
 		return new DataFieldCop(args);
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	String[] getHeadingHelp()
 	{

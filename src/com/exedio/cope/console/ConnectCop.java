@@ -45,6 +45,10 @@ final class ConnectCop extends ConsoleCop<Void>
 		return new ConnectCop(args);
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	void writeHead(final Out out)
 	{

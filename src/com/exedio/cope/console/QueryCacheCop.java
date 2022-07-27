@@ -320,6 +320,10 @@ final class QueryCacheCop extends ConsoleCop<Void>
 
 	private static final Condense[] EMPTY_CONDENSE = {};
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	void writeBody(final Out out)
 	{

@@ -75,6 +75,10 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 		return new ChangeListenerCop(args, pager);
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	void writeBody(final Out out)
 	{

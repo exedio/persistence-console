@@ -93,6 +93,10 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return store().get();
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	AtomicReference<ChecklistIcon> initialStore()
 	{

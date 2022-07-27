@@ -33,6 +33,8 @@ final class ChecklistsCop extends ConsoleCop<Void>
 		return new ChecklistsCop(args);
 	}
 
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	String[] getHeadingHelp()
 	{

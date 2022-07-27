@@ -226,6 +226,10 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		return new DecimalFormat("0.0000").format(ramp);
 	}
 
+	@Override boolean requiresUnsafeInlineStyle() { return true; }
+
+	@Override boolean requiresUnsafeInlineScript() { return true; }
+
 	@Override
 	void writeBody(final Out out)
 	{
