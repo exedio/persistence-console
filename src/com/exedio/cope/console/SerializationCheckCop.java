@@ -36,8 +36,6 @@ final class SerializationCheckCop extends ConsoleCop<Void>
 		return new SerializationCheckCop(args);
 	}
 
-	@Override boolean requiresUnsafeInlineScript() { return true; }
-
 	@Override
 	String[] getHeadingHelp()
 	{

@@ -97,8 +97,6 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 		return ChecklistIcon.unknown;
 	}
 
-	@Override boolean requiresUnsafeInlineScript() { return true; }
-
 	@Override
 	ArrayList<Point> initialStore()
 	{

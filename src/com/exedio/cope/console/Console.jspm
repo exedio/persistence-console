@@ -51,8 +51,7 @@ final class Console_Jspm
 		<meta http-equiv="content-type" content="text/html; charset=<%=UTF_8%>">
 		<title>COPE Console - <%=cop.name%></title>
 		<link rel="shortcut icon" href="<%=ConsoleServlet.shortcutIcon%>" type="image/png">
-		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet%>">
-		<script src="<%=ConsoleServlet.script%>" type="text/javascript"></script><%
+		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet%>"><%
 		cop.writeHead(out);
 
 		if(autoRefresh>0)
@@ -84,20 +83,20 @@ final class Console_Jspm
 		Menue_Jspm.write(out, cop);
 
 		final String[] help = cop.getHeadingHelp();
-		final int helpId = out.nextId();
 		%>
 		<h2><%=cop.name%><%
 
 			if(help.length>0)
 			{
-				%><img class="icon" onClick="return onHelp(<%=helpId%>);" src="<%=ConsoleServlet.help%>"><%
+				cop.onDomReady(ConsoleServlet.helpOnDomReady);
+				%><img class="icon" help="yes" src="<%=ConsoleServlet.help%>"><%
 			}
 			%></h2><%
 
 		if(help.length>0)
 		{
 		%>
-		<div id="help<%=helpId%>" class="help">
+		<div class="help">
 			<% for (final String helpLine: help) { %>
 				<div class="helpline"><%=helpLine%></div>
 			<% } %>
@@ -119,7 +118,14 @@ final class Console_Jspm
 			<%=cop.getStart()%> (<%=cop.getDuration()%>ms)
 			<br>
 			Silk icons from <a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank">famfamfam.com</a>.
-		</div>
+		</div><%
+
+	for(final Resource resource : cop.onDomReady())
+	{
+		%>
+		<script src="<%=resource%>"></script><%
+	}
+	%>
 	</body>
 </html>
 <%
