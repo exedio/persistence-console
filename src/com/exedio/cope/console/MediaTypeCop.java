@@ -103,7 +103,6 @@ final class MediaTypeCop extends TestCop<Media>
 	@Override
 	void writeValue(final Out out, final Media media, final int h)
 	{
-		final Condition c = media.bodyMismatchesContentTypeIfSupported();
 		switch(h)
 		{
 			case 0: out.write(media.getType().getID()); break;
@@ -116,6 +115,7 @@ final class MediaTypeCop extends TestCop<Media>
 				break;
 			case 2: out.write(media.getContentTypeDescription().replaceAll(",", ", ")); break;
 			case 3:
+				final Condition c = media.bodyMismatchesContentTypeIfSupported();
 				if(c!=Condition.FALSE)
 					writeValueLong(out, c.toString());
 				break;
