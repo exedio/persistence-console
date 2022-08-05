@@ -7,7 +7,103 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
-* CaseView added. Constructor of UppercaseView is now deprecated.
+* Vault Trails introduced.
+	Does not affect you, if vaults are not enabled in your project.
+	Otherwise, affects database schema, adds a new table for each vault service.
+	To disable vault trails set ConnectProperties key:
+		vault.trail=false
+* Primary key columns are declared 'not null'.
+	Does *not* affect database schema. Primary key columns are 'not null' regardless
+	whether declared explicitly or not. You will get a huge diff in MainSchemaTestSchema.txt,
+	but you don't have to patch the database schema.
+* Instrumentor uses possessive determiner "its" instead of contracted "it's" for finder javadoc.
+	Affects instrumented code.
+* ConnectProperties: key "vault-short-key" no longer supported.
+	Check your deployed systems! Probably this key is at its default,
+	then you don't have to do anything.
+* FeatureField#forbid(Class) added.
+* [Type|Feature]Field#idLengthMax added.
+* copeservletutil dependency dropped.
+	Was redundant since r10333 (Mar 3 2020). You may want to drop
+		<exclude org="com.exedio" module="copeservletutil" />
+	from your cope dependency, if present.
+* EnumMapField obeys defaults of value.
+	This breaks backwards API compatibility:
+	EnumMapField#create no longer drops default (defaultTo, defaultToNow,
+	defaultToNext etc.) of parameter value.
+* Money#compute[Double|Big] added.
+	Allows arbitrary computations on amount written more concisely:
+		radicand.computeDouble(Math::sqrt)
+	instead of:
+		Money.valueOf(Math.sqrt(radicand.doubleAmount(currency)), currency)
+* EnumMapField#setMap supports maps created by Map.of available in JDK 11.
+* Instrumentor supports wrapping nullable results into java.util.Optional (see Wrapper#nullableAsOptional)
+* VaultFileService sets posix permissions for vault directories to rwx------.
+	Check your deployed systems, whether this is what you want!
+	If not, adjust the new property directory.posixPermissions. Up to now VaultFileService
+	did not specify permissions, typically with laxer results.
+* Use SetValue.EMPTY_ARRAY when generating code.
+	Consider removing "<suppressWarnings><constructor>ZeroLengthArrayAllocation</constructor></<suppressWarnings>"
+	from your build.xml.
+	Affects instrumented code.
+	Use this parameter:
+		<instrument useConstantForEmptySetValuesArray="false" ...
+	to enable previous behaviour.
+* @DispatcherImmediateFinalFailure added.
+	Dispatcher.Result enum gets new facet immediateFinalFailure with schema value -5.
+	This affects database schema in check constraints of Dispatcher.Run.
+* Choice Constraints do change their names: Customer.defaultAddressChoicecustomer
+	becomes Customer.defaultAddressChoice.
+* Added Contract annotations
+	To get rid of compiler warnings for missing annotation classes, add dependency on cope configuration "idea" to your
+	compile classpath (not runtime classpath).
+* LimitedListField#create(FunctionField template, int maximumSize) makes
+	list source fields optional. This allows LimitedListField to store lists
+	shorter than maximumSize if template is mandatory.
+	Affects database schema if and only if template is mandatory.
+	If your template is currently optional, you probably want to change it to mandatory.
+	Otherwise, you continue to allow the list to contain null as an element.
+* Add nullability annotations to EnumSingleton.
+	Affects instrumented code.
+* UniqueHashedMedia promotes @Vault to Media.
+	May affect database schema.
+* Transaction#[is|set]QueryCacheDisabled added.
+* @CopeSchemaName("") fixed for sourceTypes of Patterns.
+	Affects database schema.
+* MediaServlet customization methods do take Locator parameter instead of MediaPath and Item.
+	This breaks backwards API compatibility. It causes compiler errors,
+	if you have your @Override annotations in place.
+* MediaServlet#doFlushBufferOnNotModified changes its default implementation
+	from "true" to "false". This will break conditional requests on Tomcat earlier
+	than version 8.5.14. In this case, override this method to return "true" again.
+* MySQL 5.5 support dropped, new minimum requirement for MySQL is version 5.6.
+* servlet-api 3.1.0 required (provided by Apache Tomcat 8.0.x).
+* ConnectProperties: key dialect.fullSequenceColumnName no longer supported.
+	This breaks backwards API compatibility on MySQL, check your deployed systems!
+	Probably this key is at its default, then you don't have to do anything.
+* MultiItemField#nullify() added.
+* VaultFileService properties: key directory.createAsNeeded changed to
+	directory.premised and *inverted its meaning*.
+
+	This breaks backwards API compatibility, check your deployed systems!
+	If this property is at its default (probably it is) you don't have to do anything.
+
+* EnumSingleton added.
+* Model#rollbackIfNotCommittedVerbosely() added.
+* [Composite|Block]Type#forClass[Unchecked] and #as(Class) added.
+* MultiItemField obeys @CopeName and @CopeSchemaName at classes set by #canBe(Class).
+	Affects database schema.
+* MediaUtil#setContentLengthLong added
+* ConnectProperties: key "dataField.vault" becomes "vault".
+	This applies to all sub-keys ("dataField.vault.*") as well.
+
+	This breaks backwards API compatibility, check your deployed systems!
+	If "dataField.vault" is false (thus vaults are disabled) you don't
+	have to do anything.
+	Set property "vault-short-key=false" to switch back to legacy key
+	"dataField.vault". Then you don't have to change any other key.
+
+* StringFunction#toLowerCase() added.
 * Fix nullability annotation of DataField#getArray.
 	Affects instrumented code.
 * MediaUtil supports java.nio.file.Path.

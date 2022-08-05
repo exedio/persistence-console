@@ -73,6 +73,7 @@ final class ItemCacheCop extends ConsoleCop<Void>
 
 	private void writeBodyDeprecated(final Out out)
 	{
+		@SuppressWarnings("deprecation")
 		final ItemCacheStatistics statistics = out.model.getItemCacheStatistics();
 		ItemCache_Jspm.writeBody(this, out, statistics);
 	}

@@ -340,6 +340,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		NoSuchItem    ("No Such Item (404)",    "nsi", MediaSummary::getNoSuchItem,     MediaInfo::getNoSuchItem,     MediaErrorLogCop.Kind.NoSuchItem),
 		Moved         ("Moved (301)",           "mv",  MediaSummary::getMoved,          MediaInfo::getMoved,          null),
 		IsNull        ("Is Null (404)",         "in",  MediaSummary::getIsNull,         MediaInfo::getIsNull,         MediaErrorLogCop.Kind.IsNull),
+		@SuppressWarnings("deprecation") // TODO
 		NotComputable ("Not Computable (404)",  "nc",  MediaSummary::getNotComputable,  MediaInfo::getNotComputable,  MediaErrorLogCop.Kind.NotComputable),
 		NotModified   ("Not Modified (304)",    "nm",  MediaSummary::getNotModified,    MediaInfo::getNotModified,    null),
 		Delivered     ("Delivered (200/301)",   "del", MediaSummary::getDelivered,      MediaInfo::getDelivered,      null),
