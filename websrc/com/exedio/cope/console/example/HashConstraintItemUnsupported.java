@@ -40,7 +40,7 @@ final class HashConstraintItemUnsupported extends Item
 	 * @throws com.exedio.cope.StringLengthViolationException if hash violates its length constraint.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	HashConstraintItemUnsupported(
 				final java.lang.String hash,
 				final com.exedio.cope.DataField.Value data)

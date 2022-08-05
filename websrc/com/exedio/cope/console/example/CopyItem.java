@@ -39,7 +39,7 @@ final class CopyItem extends Item
 	 * @throws com.exedio.cope.MandatoryViolationException if origin is null.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	CopyItem(
 				final CopyOriginItem origin)
 			throws

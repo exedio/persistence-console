@@ -154,7 +154,7 @@
 	</target>
 
 	<target name="web.instrument" unless="skip.instrument" depends="instrument.taskdef">
-		<instrument dir="websrc" useConstantForEmptySetValuesArray="false" verify="${instrument.verify}">
+		<instrument dir="websrc" verify="${instrument.verify}">
 			<disableWrap>com.exedio.cope.DataField#set(com.exedio.cope.Item,java.io.File)</disableWrap>
 			<disableWrap>com.exedio.cope.pattern.Media#set(com.exedio.cope.Item,java.io.File,java.lang.String)</disableWrap>
 			<disableWrap>com.exedio.cope.DataField#get(com.exedio.cope.Item,java.io.File)</disableWrap>
@@ -162,7 +162,6 @@
 			<suppressWarnings>
 				<constructor>RedundantArrayCreation</constructor>
 				<constructor>RedundantSuppression</constructor>
-				<constructor>ZeroLengthArrayAllocation</constructor>
 				<wrapper>FinalMethodInFinalClass</wrapper>
 				<wrapper>RedundantSuppression</wrapper>
 				<wrapper>UnnecessarilyQualifiedStaticUsage</wrapper>

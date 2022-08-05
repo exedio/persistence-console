@@ -54,7 +54,7 @@ final class StringLengthItem extends Item
 	 * @throws com.exedio.cope.StringLengthViolationException if empty, emptyOk, normal, normalOk, min10, min10Ok violates its length constraint.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	StringLengthItem(
 				final java.lang.String empty,
 				final java.lang.String emptyOk,

@@ -42,7 +42,7 @@ final class ASubItem extends AnItem
 	 * @throws com.exedio.cope.StringLengthViolationException if aField, aSubField violates its length constraint.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	ASubItem(
 				final java.lang.String aField,
 				final com.exedio.cope.console.example.AnItem.Letter letter,

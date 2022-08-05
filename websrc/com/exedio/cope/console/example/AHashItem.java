@@ -44,7 +44,7 @@ final class AHashItem extends Item
 	 * @throws com.exedio.cope.MandatoryViolationException if md8, md8x6latin, md5, deterministic, pin is null.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	AHashItem(
 				final java.lang.String md8,
 				final java.lang.String md8x6latin,

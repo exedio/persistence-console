@@ -33,7 +33,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 * @throws com.exedio.cope.MandatoryViolationException if feature is null.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	UniqueHashedMediaItemUnsupported(
 				final com.exedio.cope.pattern.Media.Value feature)
 			throws
