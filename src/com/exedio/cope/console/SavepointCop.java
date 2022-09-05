@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaSavepointNotAvailableException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -116,13 +117,15 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 			{
 				try
 				{
-					@SuppressWarnings("deprecation") // TODO
-					final String savepoint = model.getSchemaSavepoint();
-					storeAdd(new Point(savepoint));
+					storeAdd(new Point(model.getSchemaSavepointNew()));
+				}
+				catch(final SchemaSavepointNotAvailableException e)
+				{
+					storeAdd(new Point(e));
 				}
 				catch(final SQLException e)
 				{
-					storeAdd(new Point(e));
+					throw new RuntimeException(e);
 				}
 			}
 		}
@@ -149,7 +152,7 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 			this.success = true;
 		}
 
-		Point(final SQLException exception)
+		Point(final SchemaSavepointNotAvailableException exception)
 		{
 			this.date = System.currentTimeMillis();
 			this.message = exception.getMessage();

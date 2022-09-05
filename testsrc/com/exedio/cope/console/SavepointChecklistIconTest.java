@@ -18,13 +18,13 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.CopeHack.newSchemaSavepointNotAvailable;
 import static com.exedio.cope.console.ChecklistIcon.error;
 import static com.exedio.cope.console.ChecklistIcon.ok;
 import static com.exedio.cope.console.ChecklistIcon.unknown;
 import static com.exedio.cope.console.SavepointCop.getChecklistIcon;
 
 import com.exedio.cope.console.SavepointCop.Point;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import junit.framework.TestCase;
@@ -43,7 +43,7 @@ public class SavepointChecklistIconTest extends TestCase
 	public void testOneFailure()
 	{
 		assertEquals(error, icon(
-				new Point(new SQLException())));
+				new Point(newSchemaSavepointNotAvailable())));
 	}
 	public void testTwoSuccessesEquals()
 	{
@@ -60,19 +60,19 @@ public class SavepointChecklistIconTest extends TestCase
 	public void testTwoFailures()
 	{
 		assertEquals(error, icon(
-				new Point(new SQLException()),
-				new Point(new SQLException())));
+				new Point(newSchemaSavepointNotAvailable()),
+				new Point(newSchemaSavepointNotAvailable())));
 	}
 	public void testOneFailureOneSuccess()
 	{
 		assertEquals(error, icon(
 				new Point("ok"),
-				new Point(new SQLException())));
+				new Point(newSchemaSavepointNotAvailable())));
 	}
 	public void testOneSuccessOneFailure()
 	{
 		assertEquals(unknown, icon(
-				new Point(new SQLException()),
+				new Point(newSchemaSavepointNotAvailable()),
 				new Point("ok")));
 	}
 	public void testManySuccessesEquals()
@@ -99,7 +99,7 @@ public class SavepointChecklistIconTest extends TestCase
 				new Point("okOther"),
 				new Point("ok"),
 				new Point("ok"),
-				new Point(new SQLException()),
+				new Point(newSchemaSavepointNotAvailable()),
 				new Point("ok")));
 	}
 	public void testManySuccessesDistinctButFailureLast()
@@ -109,7 +109,7 @@ public class SavepointChecklistIconTest extends TestCase
 				new Point("ok"),
 				new Point("ok"),
 				new Point("ok"),
-				new Point(new SQLException())));
+				new Point(newSchemaSavepointNotAvailable())));
 	}
 
 
