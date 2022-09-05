@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static java.lang.Boolean.parseBoolean;
+
 import com.exedio.cope.DataField;
 import com.exedio.cope.DataFieldVaultInfo;
 import com.exedio.cope.Feature;
@@ -28,10 +30,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 final class DataVaultCop extends ConsoleCop<Void>
 {
 	static final String TAB = "datavault";
+
+	static final String SET_MARK_PUT_SUBMIT = "setMarkPut";
+	static final String SET_MARK_PUT_SERVICE_KEY = "serviceKey";
+	static final String SET_MARK_PUT_VALUE = "value";
 
 	DataVaultCop(final Args args)
 	{
@@ -42,6 +49,19 @@ final class DataVaultCop extends ConsoleCop<Void>
 	protected DataVaultCop newArgs(final Args args)
 	{
 		return new DataVaultCop(args);
+	}
+
+	@Override
+	void initialize(final HttpServletRequest request, final Model model)
+	{
+		super.initialize(request, model);
+		if(isPost(request))
+		{
+			if(request.getParameter(SET_MARK_PUT_SUBMIT)!=null)
+				model.setVaultRequiredToMarkPut(
+						request.getParameter(SET_MARK_PUT_SERVICE_KEY),
+						parseBoolean(request.getParameter(SET_MARK_PUT_VALUE)));
+		}
 	}
 
 	@Override
@@ -79,6 +99,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 		final boolean isBlob;
 		final String serviceKey;
 		final String service;
+		final boolean markPut;
 		private final ArrayList<DataField> fields = new ArrayList<>();
 		private long maxSize = 0;
 
@@ -89,12 +110,14 @@ final class DataVaultCop extends ConsoleCop<Void>
 				this.isBlob = true;
 				this.serviceKey = null;
 				this.service = null;
+				this.markPut = false;
 			}
 			else
 			{
 				this.isBlob = false;
 				this.serviceKey = info.getServiceKey();
 				this.service = info.getService();
+				this.markPut = info.getField().getType().getModel().isVaultRequiredToMarkPut(serviceKey);
 			}
 		}
 

@@ -19,6 +19,9 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.DataVaultCop.SET_MARK_PUT_SERVICE_KEY;
+import static com.exedio.cope.console.DataVaultCop.SET_MARK_PUT_SUBMIT;
+import static com.exedio.cope.console.DataVaultCop.SET_MARK_PUT_VALUE;
 import static com.exedio.cope.console.Format.format;
 import static java.util.Collections.singletonList;
 
@@ -47,6 +50,7 @@ final class DataVault_Jspm
 			<caption>Data Vaults</caption>
 			<tr>
 				<th>Key</th>
+				<th>Mark Put</th>
 				<th>Service</th>
 				<th>Count</th>
 				<th>Max Size</th>
@@ -60,12 +64,19 @@ final class DataVault_Jspm
 			if(vault.isBlob)
 			{
 				%>
-				<td class="notavailable" colspan="2">BLOB</td><%
+				<td class="notavailable" colspan="3">BLOB</td><%
 			}
 			else
 			{
 				%>
 				<td class="text"><%=vault.serviceKey%></td>
+				<td class="text<% if(vault.markPut){%> enabled<%} %>">
+					<form action="<%=cop%>" method="POST">
+						<input type="hidden" name="<%=SET_MARK_PUT_SERVICE_KEY%>" value="<%=vault.serviceKey%>">
+						<input type="hidden" name="<%=SET_MARK_PUT_VALUE      %>" value="<%=!vault.markPut%>">
+						<input type="submit" name="<%=SET_MARK_PUT_SUBMIT     %>" value="<%=vault.markPut?"disable":"enable"%>">
+					</form>
+				</td>
 				<td class="text"><%=vault.service%></td><%
 			}
 			%>
