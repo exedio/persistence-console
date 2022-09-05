@@ -33,7 +33,7 @@ final class AReducedItem extends Item
 	 * @throws com.exedio.cope.StringLengthViolationException if aField violates its length constraint.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	AReducedItem(
 				final java.lang.String aField)
 			throws

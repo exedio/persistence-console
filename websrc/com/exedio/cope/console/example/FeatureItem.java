@@ -56,7 +56,7 @@ final class FeatureItem extends Item
 	 * @throws com.exedio.cope.StringLengthViolationException if feature, string violates its length constraint.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	FeatureItem(
 				final Feature feature,
 				final StringField string)

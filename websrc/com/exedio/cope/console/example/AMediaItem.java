@@ -78,7 +78,7 @@ final class AMediaItem extends Item
 	 * @throws com.exedio.cope.StringLengthViolationException if name violates its length constraint.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
-	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression","ZeroLengthArrayAllocation"})
+	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	AMediaItem(
 				final java.lang.String name,
 				final com.exedio.cope.pattern.Media.Value isFinal)
