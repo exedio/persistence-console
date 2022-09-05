@@ -98,9 +98,7 @@ final class MediaErrorLogCop extends ConsoleCop<Void>
 		GuessedUrl    ("Guessed Url"    , MediaPath::getGuessedUrlLogs),
 		NotAnItem     ("Not An Item"    , MediaPath::getNotAnItemLogs),
 		NoSuchItem    ("No Such Item"   , MediaPath::getNoSuchItemLogs),
-		IsNull        ("Is Null"        , MediaPath::getIsNullLogs),
-		@SuppressWarnings("deprecation") // TODO
-		NotComputable ("Not Computable" , MediaPath::getNotComputableLogs);
+		IsNull        ("Is Null"        , MediaPath::getIsNullLogs);
 
 		final String caption;
 		final Function<MediaPath,List<MediaRequestLog>> logs;
