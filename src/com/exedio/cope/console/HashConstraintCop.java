@@ -29,6 +29,7 @@ import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
+import com.exedio.cope.UnsupportedQueryException;
 import com.exedio.cope.pattern.HashConstraint;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaPath;
@@ -189,6 +190,19 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 		{
 			return tx.commit(
 					getQuery(constraint).total());
+		}
+	}
+
+	@Override
+	String getViolationSql(final HashConstraint constraint, final Model model)
+	{
+		try
+		{
+			return SchemaInfo.search(getQuery(constraint));
+		}
+		catch(final UnsupportedQueryException e)
+		{
+			return e.getMessage(); // happens typically when hash algorithm is not supported
 		}
 	}
 }

@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Query;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.reflect.TypeField;
@@ -135,12 +136,23 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 	@Override
 	long check(final TypeField<?> field, final Model model)
 	{
-		final Query<?> query = field.getType().newQuery(field.isInvalid());
+		final Query<?> query = getQuery(field);
 		try(TransactionTry tx = model.startTransactionTry("Console TypeField " + id))
 		{
 			return tx.commit(
 					query.total());
 		}
+	}
+
+	@Override
+	String getViolationSql(final TypeField<?> field, final Model model)
+	{
+		return SchemaInfo.search(getQuery(field));
+	}
+
+	private static Query<?> getQuery(final TypeField<?> field)
+	{
+		return field.getType().newQuery(field.isInvalid());
 	}
 
 	@FunctionalInterface
