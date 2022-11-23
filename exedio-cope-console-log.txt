@@ -7,6 +7,10 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* tab "Media Types" checks medias in vault again.
+	Requires cope rev>=11520 , otherwise tests do fail with:
+		UnsupportedQueryException:
+			DataField MyItem.myMedia does not support startsWith as it has vault enabled
 * tab "Connect Tokens" no longer supports the button "probe".
 	This functionality was taken over by the "Probes" of the PropertiesServlet.
 * JDK 11 required.

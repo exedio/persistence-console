@@ -57,7 +57,6 @@ final class MediaTypeCop extends TestCop<Media>
 		{
 			"Verifies whether the content type of Media is consistent to their body (i.e., binary data). " +
 				"This is done by usual mime-magic.",
-			"Tests non-@Vault media only!",
 			"IMPACT: " +
 				"Failures here do cause MediaServlet to send wrong Content-Type headers in http responses, " +
 				"which may confuse browsers and cause broken web pages."
@@ -84,11 +83,7 @@ final class MediaTypeCop extends TestCop<Media>
 			for(final Feature feature : type.getDeclaredFeatures())
 			{
 				if(feature instanceof Media)
-				{
-					final Media media = (Media)feature;
-					if(media.getBody().getVaultInfo()==null) // StartsWithCondition does not support vaults
-						result.add(media);
-				}
+					result.add((Media)feature);
 			}
 		}
 		return result;
