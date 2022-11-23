@@ -99,7 +99,7 @@ final class OptionalItem extends Item
 	 * The persistent type information for optionalItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<OptionalItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalItem.class);
+	static final com.exedio.cope.Type<OptionalItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalItem.class,OptionalItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

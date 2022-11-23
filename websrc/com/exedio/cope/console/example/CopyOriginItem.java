@@ -83,7 +83,7 @@ final class CopyOriginItem extends Item
 	 * The persistent type information for copyOriginItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<CopyOriginItem> TYPE = com.exedio.cope.TypesBound.newType(CopyOriginItem.class);
+	static final com.exedio.cope.Type<CopyOriginItem> TYPE = com.exedio.cope.TypesBound.newType(CopyOriginItem.class,CopyOriginItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

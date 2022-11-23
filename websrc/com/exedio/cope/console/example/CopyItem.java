@@ -93,7 +93,7 @@ final class CopyItem extends Item
 	 * The persistent type information for copyItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<CopyItem> TYPE = com.exedio.cope.TypesBound.newType(CopyItem.class);
+	static final com.exedio.cope.Type<CopyItem> TYPE = com.exedio.cope.TypesBound.newType(CopyItem.class,CopyItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

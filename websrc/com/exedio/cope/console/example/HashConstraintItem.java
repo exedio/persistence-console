@@ -194,7 +194,7 @@ final class HashConstraintItem extends Item
 	 * The persistent type information for hashConstraintItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<HashConstraintItem> TYPE = com.exedio.cope.TypesBound.newType(HashConstraintItem.class);
+	static final com.exedio.cope.Type<HashConstraintItem> TYPE = com.exedio.cope.TypesBound.newType(HashConstraintItem.class,HashConstraintItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

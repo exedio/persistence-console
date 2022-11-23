@@ -194,7 +194,7 @@ final class HashConstraintItemUnsupported extends Item
 	 * The persistent type information for hashConstraintItemUnsupported.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<HashConstraintItemUnsupported> TYPE = com.exedio.cope.TypesBound.newType(HashConstraintItemUnsupported.class);
+	static final com.exedio.cope.Type<HashConstraintItemUnsupported> TYPE = com.exedio.cope.TypesBound.newType(HashConstraintItemUnsupported.class,HashConstraintItemUnsupported::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

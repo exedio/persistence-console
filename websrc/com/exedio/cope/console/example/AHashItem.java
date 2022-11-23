@@ -351,7 +351,7 @@ final class AHashItem extends Item
 	 * The persistent type information for aHashItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<AHashItem> TYPE = com.exedio.cope.TypesBound.newType(AHashItem.class);
+	static final com.exedio.cope.Type<AHashItem> TYPE = com.exedio.cope.TypesBound.newType(AHashItem.class,AHashItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

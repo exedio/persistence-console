@@ -81,7 +81,7 @@ final class AReducedItem extends Item
 	 * The persistent type information for aReducedItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<AReducedItem> TYPE = com.exedio.cope.TypesBound.newType(AReducedItem.class);
+	static final com.exedio.cope.Type<AReducedItem> TYPE = com.exedio.cope.TypesBound.newType(AReducedItem.class,AReducedItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

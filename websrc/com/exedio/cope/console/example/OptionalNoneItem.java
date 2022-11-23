@@ -83,7 +83,7 @@ final class OptionalNoneItem extends Item
 	 * The persistent type information for optionalNoneItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<OptionalNoneItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalNoneItem.class);
+	static final com.exedio.cope.Type<OptionalNoneItem> TYPE = com.exedio.cope.TypesBound.newType(OptionalNoneItem.class,OptionalNoneItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
