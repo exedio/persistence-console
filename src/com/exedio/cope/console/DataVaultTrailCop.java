@@ -103,6 +103,13 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	}
 
 	@Override
+	boolean requiresConnect()
+	{
+		// connect is required by DataField#getVaultServiceKey() in #getItems
+		return true;
+	}
+
+	@Override
 	List<DataField> getItems(final Model model)
 	{
 		final ArrayList<DataField> result = new ArrayList<>();
