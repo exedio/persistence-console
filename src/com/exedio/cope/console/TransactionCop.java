@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
+import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.Transaction;
 import com.exedio.cops.Pageable;
@@ -179,6 +180,21 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 				out, this,
 				model.getChangeListeners().contains(listener),
 				pager.init(Arrays.asList(events)));
+	}
+
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
+	static void writeItems(final ChangeEvent event, final Out bf)
+	{
+		boolean first = true;
+		for(final Item item : event.getItems())
+		{
+			if(first)
+				first = false;
+			else
+				bf.write(", ");
+
+			bf.write(item.getCopeID());
+		}
 	}
 
 	static final ArrayList<ChangeEvent> events = new ArrayList<>();
