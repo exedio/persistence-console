@@ -210,7 +210,7 @@ final class Transaction_Jspm
 			final Out out,
 			final TransactionCop cop,
 			final boolean recordCommits,
-			final List<ChangeEvent> commits)
+			final List<ChangeEvent> events)
 	{
 		%>
 		<hr><%
@@ -232,7 +232,7 @@ final class Transaction_Jspm
 				<th>Name</th>
 			</tr><%
 
-			for(final ChangeEvent event : commits)
+			for(final ChangeEvent event : events)
 			{
 			%>
 			<tr>
@@ -278,7 +278,7 @@ final class Transaction_Jspm
 		%>
 		</table><%
 
-		if(!commits.isEmpty())
+		if(!events.isEmpty())
 			writeRecordingForm(out, cop, recordCommits);
 	}
 

@@ -95,9 +95,9 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 			}
 			else if(request.getParameter(CLEAR)!=null)
 			{
-				synchronized(commits)
+				synchronized(events)
 				{
-					commits.clear();
+					events.clear();
 				}
 			}
 		}
@@ -170,28 +170,28 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 			final Out out,
 			final Model model)
 	{
-		final ChangeEvent[] commits;
-		synchronized(TransactionCop.commits)
+		final ChangeEvent[] events;
+		synchronized(TransactionCop.events)
 		{
-			commits = TransactionCop.commits.toArray(EMPTY_COMMIT);
+			events = TransactionCop.events.toArray(EMPTY_EVENTS);
 		}
 		Transaction_Jspm.writeRecorded(
 				out, this,
 				model.getChangeListeners().contains(listener),
-				pager.init(Arrays.asList(commits)));
+				pager.init(Arrays.asList(events)));
 	}
 
-	static final ArrayList<ChangeEvent> commits = new ArrayList<>();
+	static final ArrayList<ChangeEvent> events = new ArrayList<>();
 
 	private static final ChangeListener listener = new ChangeListener()
 	{
 		@Override
 		public void onChange(final ChangeEvent event)
 		{
-			synchronized(commits)
+			synchronized(events)
 			{
-				if(commits.size()<10000) // prevent indefinite accumulation TODO customize limit
-					commits.add(event);
+				if(events.size()<10000) // prevent indefinite accumulation TODO customize limit
+					events.add(event);
 			}
 		}
 
@@ -202,5 +202,5 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 		}
 	};
 
-	private static final ChangeEvent[] EMPTY_COMMIT = {};
+	private static final ChangeEvent[] EMPTY_EVENTS = {};
 }
