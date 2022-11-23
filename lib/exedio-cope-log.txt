@@ -7,6 +7,47 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* ConnectProperties: key "schema.mysql.lower_case_table_names" no longer supported.
+	Check your deployed systems! Probably this key is at its default,
+	then you don't have to do anything.
+* ConnectProperties: key cluster.listenDisableLoopback is renamed and negated.
+
+	This breaks backwards API compatibility, check your deployed systems!
+	If this property is at its default (probably it is) you don't have to do anything.
+
+	Otherwise:
+		cluster.listenDisableLoopback=true
+	becomes:
+		cluster.listenLoopback=false
+
+* Info api requires micrometer registry.
+	You must call io.micrometer.core.instrument.Metrics.globalRegistry.add(MeterRegistry)
+	in your project (probably you do already). If you don't, counters exposed by info api
+	will just stay at zero. This includes for example:
+	- TransactionCounters#get*()
+	- DataFieldVaultInfo#get*Count()
+	- ChangeListenerInfo#getCleared(), #getRemoved(), #getFailed()
+	- ChangeListenerDispatcherInfo#getOverflow(), #getException()
+	- ItemCacheInfo#getHits(), #getMisses(), #getConcurrentLoads(), #getReplacementsL(),
+		#getInvalidationsOrdered(), #getInvalidationsDone(), #getStampsHits(), #getStampsPurged()
+	- QueryCacheInfo#getHits(), #getMisses(), #getReplacements(), #getInvalidations(),
+		#getConcurrentLoads(), #getStampsHits(), #getStampsPurged()
+	- ClusterSenderInfo#getInvalidationSplit()
+	- ClusterListenerInfo#getException(), #getMissingMagic(), #getWrongSecret(), #getFromMyself()
+	- MediaInfo#get*() except #getPath()
+	- MediaPath#getNoSuchPath()
+* DispatcherProperties#sessionLimit defaults to 15 instead of 100.
+* Instrumentor uses activator. Affects instrumented code.
+	Use this parameter:
+		<instrument activator="false" ...
+	to enable previous behaviour.
+* bugfix: Vault Trails did not work with disableSupport.nativeDate=true.
+* Schedule does not support Locale anymore.
+	Constructor Schedule(TimeZone, Locale) and methods getLocale() and
+	newGregorianCalendar() were dropped. Were deprecated since Jan 2017.
+* ChangeEvent#getTransactionDuration() added.
+* Aggregate becomes Function, Function#get becomes optional operation.
+	This breaks backwards API compatibility, causes compiler errors.
 * Vault Trails introduced.
 	Does not affect you, if vaults are not enabled in your project.
 	Otherwise, affects database schema, adds a new table for each vault service.
