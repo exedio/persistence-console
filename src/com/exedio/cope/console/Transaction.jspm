@@ -25,6 +25,7 @@ import static com.exedio.cope.console.TransactionCop.CLEAR;
 import static com.exedio.cope.console.TransactionCop.DISABLE;
 import static com.exedio.cope.console.TransactionCop.ENABLE;
 
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
@@ -209,7 +210,7 @@ final class Transaction_Jspm
 			final Out out,
 			final TransactionCop cop,
 			final boolean recordCommits,
-			final List<Commit> commits)
+			final List<ChangeEvent> commits)
 	{
 		%>
 		<hr><%
@@ -227,13 +228,12 @@ final class Transaction_Jspm
 			<tr>
 				<th>ID</th>
 				<th>Started</th>
-				<th title="Elapsed Time (milliseconds)">Elpsd</th>
+				<th>Duration</th>
 				<th>Name</th>
 			</tr><%
 
-			for(final Commit commit : commits)
+			for(final ChangeEvent event : commits)
 			{
-				final ChangeEvent event = commit.event;
 			%>
 			<tr>
 				<td class="text"><%=event.getNodeID()%></td><%
@@ -256,9 +256,9 @@ final class Transaction_Jspm
 
 			try
 			{
-				final long value = commit.getElapsed();
+				final Duration value = event.getTransactionDuration();
 				%>
-				<td><%=format(value)%></td><%
+				<td><%=value%></td><%
 			}
 			catch(final NotAvailableException e) { write(out, e); }
 
@@ -272,7 +272,7 @@ final class Transaction_Jspm
 
 
 				%>
-				<td class="text"><%commit.writeItems(out);%></td>
+				<td class="text"><%Commit.writeItems(event, out);%></td>
 			</tr><%
 			}
 		%>

@@ -23,16 +23,7 @@ import com.exedio.cope.Item;
 
 final class Commit
 {
-	private final long timeStamp;
-	final ChangeEvent event;
-
-	Commit(final ChangeEvent event)
-	{
-		this.timeStamp = System.currentTimeMillis();
-		this.event = event;
-	}
-
-	void writeItems(final Out bf)
+	static void writeItems(final ChangeEvent event, final Out bf)
 	{
 		boolean first = true;
 		for(final Item item : event.getItems())
@@ -46,8 +37,8 @@ final class Commit
 		}
 	}
 
-	long getElapsed() throws ChangeEvent.NotAvailableException
+	private Commit()
 	{
-		return timeStamp - event.getTransactionStartDate().getTime();
+		// prevent instantiation
 	}
 }
