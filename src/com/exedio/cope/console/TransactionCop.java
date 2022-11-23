@@ -170,7 +170,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 			final Out out,
 			final Model model)
 	{
-		final Commit[] commits;
+		final ChangeEvent[] commits;
 		synchronized(TransactionCop.commits)
 		{
 			commits = TransactionCop.commits.toArray(EMPTY_COMMIT);
@@ -181,18 +181,17 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 				pager.init(Arrays.asList(commits)));
 	}
 
-	static final ArrayList<Commit> commits = new ArrayList<>();
+	static final ArrayList<ChangeEvent> commits = new ArrayList<>();
 
 	private static final ChangeListener listener = new ChangeListener()
 	{
 		@Override
 		public void onChange(final ChangeEvent event)
 		{
-			final Commit commit = new Commit(event);
 			synchronized(commits)
 			{
 				if(commits.size()<10000) // prevent indefinite accumulation TODO customize limit
-					commits.add(commit);
+					commits.add(event);
 			}
 		}
 
@@ -203,5 +202,5 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 		}
 	};
 
-	private static final Commit[] EMPTY_COMMIT = {};
+	private static final ChangeEvent[] EMPTY_COMMIT = {};
 }

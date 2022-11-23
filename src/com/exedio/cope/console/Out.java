@@ -32,6 +32,7 @@ import java.net.InetAddress;
 import java.nio.charset.Charset;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -146,6 +147,11 @@ final class Out extends OutBasic
 	{
 		if(date!=null)
 			bf.print(format(date));
+	}
+
+	void write(final Duration duration)
+	{
+		bf.print(duration.toString());
 	}
 
 	private String format(final Date date)
