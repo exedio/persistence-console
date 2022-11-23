@@ -25,7 +25,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
+import com.exedio.cope.DataField;
 import com.exedio.cope.Feature;
+import com.exedio.cope.Transaction;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.misc.ConnectToken;
@@ -36,7 +38,11 @@ import com.exedio.cope.util.MessageDigestUtil;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Meter;
 import io.micrometer.core.instrument.Tags;
+import io.micrometer.core.instrument.config.MeterFilter;
+import io.micrometer.core.instrument.config.MeterFilterReply;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -389,5 +395,56 @@ public final class ExampleServlet extends CopsServlet
 			i.remove();
 		}
 		super.destroy();
+	}
+
+
+	private static final String[] ACCEPTED = {
+			// Model.class and Sequence.class not needed, as there are gauges only, no counters or timers
+			Transaction.class.getName() + '.',
+			"com.exedio.cope.QueryCache.",
+			"com.exedio.cope.ItemCache.",
+			"com.exedio.cope.Cluster.",
+			ChangeListener.class.getName() + '.',
+			DataField.class.getName() + '.',
+			"com.exedio.cope.pattern.MediaPath."};
+
+	private static final SimpleMeterRegistry REGISTRY = new SimpleMeterRegistry();
+
+	static
+	{
+		// Info api requires micrometer registry.
+		// We must call Metrics.globalRegistry.add(MeterRegistry). If we don't,
+		// counters exposed by info api will just stay at zero. This includes for
+		// example:
+		// - TransactionCounters#get*()
+		// - DataFieldVaultInfo#get*Count()
+		// - ChangeListenerInfo#getCleared(), #getRemoved(), #getFailed()
+		// - ChangeListenerDispatcherInfo#getOverflow(), #getException()
+		// - ItemCacheInfo#getHits(), #getMisses(), #getConcurrentLoads(), #getReplacementsL(),
+		//     #getInvalidationsOrdered(), #getInvalidationsDone(), #getStampsHits(), #getStampsPurged()
+		// - QueryCacheInfo#getHits(), #getMisses(), #getReplacements(), #getInvalidations(),
+		//     #getConcurrentLoads(), #getStampsHits(), #getStampsPurged()
+		// - ClusterSenderInfo#getInvalidationSplit()
+		// - ClusterListenerInfo#getException(), #getMissingMagic(), #getWrongSecret(), #getFromMyself()
+
+		REGISTRY.config().meterFilter(new MeterFilter()
+		{
+			@Override
+			public MeterFilterReply accept(final Meter.Id id)
+			{
+				return isAccepted(id.getName())
+						? MeterFilterReply.ACCEPT
+						: MeterFilterReply.DENY;
+			}
+
+			private boolean isAccepted(final String name)
+			{
+				for(final String s : ACCEPTED)
+					if(name.startsWith(s))
+						return true;
+				return false;
+			}
+		});
+		globalRegistry.add(REGISTRY);
 	}
 }

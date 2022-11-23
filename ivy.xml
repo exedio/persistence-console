@@ -26,7 +26,7 @@
 			<exclude org="org.hamcrest" />
 		</dependency>
 		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; build->runtime,sources,changelog" />
-		<dependency org="com.exedio" name="cope" rev="10838" conf="runtime->runtime; build->hsqldb,mysql,instrument,sources,changelog" />
+		<dependency org="com.exedio" name="cope" rev="10926" conf="runtime->runtime; build->hsqldb,mysql,instrument,sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="857" conf="runtime->runtime; build->runtime,sources,changelog" />
 		<dependency org="ant-contrib" name="ant-contrib" rev="1.0b3" conf="build->default">
 			<exclude org="ant" module="ant" />
