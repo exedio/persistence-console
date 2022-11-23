@@ -272,7 +272,7 @@ final class Transaction_Jspm
 
 
 				%>
-				<td class="text"><%Commit.writeItems(event, out);%></td>
+				<td class="text"><%TransactionCop.writeItems(event, out);%></td>
 			</tr><%
 			}
 		%>
