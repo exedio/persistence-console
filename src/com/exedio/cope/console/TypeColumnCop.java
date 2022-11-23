@@ -25,6 +25,7 @@ import com.exedio.cope.Field;
 import com.exedio.cope.ItemField;
 import com.exedio.cope.ItemFunction;
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.This;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
@@ -129,5 +130,11 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 			return tx.commit(
 					function.checkTypeColumnL());
 		}
+	}
+
+	@Override
+	String getViolationSql(final ItemFunction<?> function, final Model model)
+	{
+		return SchemaInfo.checkTypeColumn(function);
 	}
 }
