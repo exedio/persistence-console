@@ -485,6 +485,18 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		return 2;
 	}
 
+	final String getViolationSqlIfConnected(final I item, final Model model)
+	{
+		try
+		{
+			return getViolationSql(item, model);
+		}
+		catch(final Model.NotConnectedException e)
+		{
+			return null;
+		}
+	}
+
 	/**
 	 * @return SQL query that finds violations, or null to indicate that violation SQL is not supported
 	 */

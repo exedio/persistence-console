@@ -311,11 +311,11 @@ final class Test_Jspm
 				<td class="test">
 					<a href="#" onclick="return doTest('<%=cop.toTest(id, false)%>', this);">Test</a>
 					<%
-					final String violationSql = cop.getViolationSql(item, out.model);
+					final String violationSql = cop.getViolationSqlIfConnected(item, out.model);
 					if (violationSql!=null)
 					{
 						%>
-						<div class="sql" title="copy sql to clipboard" onclick="copySql(this);" data-sql="<%=cop.getViolationSql(item, out.model)%>" /> <%
+						<div class="sql" title="copy sql to clipboard" onclick="copySql(this);" data-sql="<%=violationSql%>" /> <%
 					}
 					%>
 				</td><%
