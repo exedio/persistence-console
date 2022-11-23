@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import com.exedio.cope.DataField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
@@ -167,5 +168,11 @@ final class DataVaultTrailCop extends TestCop<DataField>
 			return tx.commit(
 					field.checkVaultTrail());
 		}
+	}
+
+	@Override
+	String getViolationSql(final DataField field, final Model model)
+	{
+		return SchemaInfo.checkVaultTrail(field);
 	}
 }

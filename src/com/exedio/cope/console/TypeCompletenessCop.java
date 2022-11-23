@@ -22,6 +22,7 @@ import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
 
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
@@ -114,6 +115,12 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 		return constraint.check(model);
 	}
 
+	@Override
+	String getViolationSql(final Constraint<?> constraint, final Model model)
+	{
+		return constraint.getViolationSql();
+	}
+
 	static final class Constraint<T extends Item>
 	{
 		final Type<T> superType;
@@ -155,6 +162,11 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 				return tx.commit(
 						superType.checkCompletenessL(subType));
 			}
+		}
+
+		String getViolationSql()
+		{
+			return SchemaInfo.checkCompleteness(superType, subType);
 		}
 	}
 }

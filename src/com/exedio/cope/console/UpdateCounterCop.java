@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
@@ -113,5 +114,11 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 			return tx.commit(
 					type.checkUpdateCounterL());
 		}
+	}
+
+	@Override
+	String getViolationSql(final Type<?> type, final Model model)
+	{
+		return SchemaInfo.checkUpdateCounter(type);
 	}
 }

@@ -22,6 +22,7 @@ import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
 
 import com.exedio.cope.CopyConstraint;
 import com.exedio.cope.Model;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
@@ -108,5 +109,11 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 			return tx.commit(
 					constraint.check());
 		}
+	}
+
+	@Override
+	String getViolationSql(final CopyConstraint constraint, final Model model)
+	{
+		return SchemaInfo.check(constraint);
 	}
 }
