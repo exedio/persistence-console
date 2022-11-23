@@ -210,7 +210,7 @@ final class FeatureItem extends Item
 	 * The persistent type information for featureItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<FeatureItem> TYPE = com.exedio.cope.TypesBound.newType(FeatureItem.class);
+	static final com.exedio.cope.Type<FeatureItem> TYPE = com.exedio.cope.TypesBound.newType(FeatureItem.class,FeatureItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

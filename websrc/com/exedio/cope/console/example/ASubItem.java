@@ -118,7 +118,7 @@ final class ASubItem extends AnItem
 	 * The persistent type information for aSubItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<ASubItem> TYPE = com.exedio.cope.TypesBound.newType(ASubItem.class);
+	static final com.exedio.cope.Type<ASubItem> TYPE = com.exedio.cope.TypesBound.newType(ASubItem.class,ASubItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

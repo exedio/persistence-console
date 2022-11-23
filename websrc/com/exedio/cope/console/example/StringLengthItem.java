@@ -149,7 +149,7 @@ final class StringLengthItem extends Item
 	 * The persistent type information for stringLengthItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<StringLengthItem> TYPE = com.exedio.cope.TypesBound.newType(StringLengthItem.class);
+	static final com.exedio.cope.Type<StringLengthItem> TYPE = com.exedio.cope.TypesBound.newType(StringLengthItem.class,StringLengthItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

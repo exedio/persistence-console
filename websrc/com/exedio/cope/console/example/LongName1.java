@@ -65,7 +65,7 @@ final class LongName1 extends AnItem
 	 * The persistent type information for longName1.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<LongName1> TYPE = com.exedio.cope.TypesBound.newType(LongName1.class);
+	static final com.exedio.cope.Type<LongName1> TYPE = com.exedio.cope.TypesBound.newType(LongName1.class,LongName1::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.

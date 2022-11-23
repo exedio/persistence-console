@@ -151,7 +151,7 @@ final class UniqueHashedMediaItem extends Item
 	 * The persistent type information for uniqueHashedMediaItem.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(type=...)
-	static final com.exedio.cope.Type<UniqueHashedMediaItem> TYPE = com.exedio.cope.TypesBound.newType(UniqueHashedMediaItem.class);
+	static final com.exedio.cope.Type<UniqueHashedMediaItem> TYPE = com.exedio.cope.TypesBound.newType(UniqueHashedMediaItem.class,UniqueHashedMediaItem::new);
 
 	/**
 	 * Activation constructor. Used for internal purposes only.
