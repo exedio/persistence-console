@@ -96,8 +96,7 @@
 	<target name="jar" depends="src.compile">
 		<jar-exedio
 				name="cope console"
-				jarfile="build/exedio-cope-console.jar"
-				classpath="exedio-cope.jar exedio-cops.jar">
+				jarfile="build/exedio-cope-console.jar">
 			<fileset dir="build/classes/src" />
 		</jar-exedio>
 	</target>
