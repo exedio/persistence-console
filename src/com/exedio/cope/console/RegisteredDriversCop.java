@@ -89,7 +89,7 @@ final class RegisteredDriversCop extends ConsoleCop<Void>
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static Iterator<Driver> it(final Enumeration<Driver> x)
 	{
-		return new Iterator<Driver>(){
+		return new Iterator<>(){
 			@Override
 			public boolean hasNext()
 			{
