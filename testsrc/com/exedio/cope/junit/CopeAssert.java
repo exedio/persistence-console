@@ -83,6 +83,6 @@ public abstract class CopeAssert extends TestCase
 
 	public static final List<Object> list(final Object... o)
 	{
-		return Collections.unmodifiableList(Arrays.asList(o));
+		return List.of(o);
 	}
 }
