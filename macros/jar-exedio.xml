@@ -5,7 +5,6 @@
 	<macrodef name="jar-exedio">
 		<attribute name="jarfile" />
 		<attribute name="name" />
-		<attribute name="classpath" />
 		<element name="implicit-element" optional="true" implicit="true" />
 		<sequential>
 			<!--echo message="local jar @{jarfile}" /-->
@@ -23,7 +22,6 @@
 					<attribute name="Implementation-Title" value="exedio @{name}" />
 					<attribute name="Implementation-Version" value="${build.tag}" />
 					<attribute name="Implementation-Vendor" value="exedio GmbH" />
-					<attribute name="Class-Path" value="@{classpath}" />
 				</manifest>
 			</jar>
 			<plot file="@{jarfile}" />
