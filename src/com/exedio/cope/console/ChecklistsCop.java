@@ -59,6 +59,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new TypeCompletenessCop(args, testArgs),
 						new CopyConstraintCop(args, testArgs),
 						new DataVaultTrailCop(args, testArgs),
+						new EnumSingletonCop(args, testArgs),
 						new TypeFieldCop(args, testArgs),
 						new FeatureFieldCop(args, testArgs),
 						new HashConstraintCop(args, testArgs),
