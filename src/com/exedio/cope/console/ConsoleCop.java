@@ -210,6 +210,7 @@ abstract class ConsoleCop<S> extends Cop
 					new TypeColumnCop(args, testArgs),
 					new TypeCompletenessCop(args, testArgs),
 					new CopyConstraintCop(args, testArgs),
+					new EnumSingletonCop(args, testArgs),
 					new HashConstraintCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
@@ -384,6 +385,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new UpdateCounterCop(args, new TestCop.TestArgs(request));
 			case CopyConstraintCop.TAB:
 				return new CopyConstraintCop(args, new TestCop.TestArgs(request));
+			case EnumSingletonCop.TAB:
+				return new EnumSingletonCop(args, new TestCop.TestArgs(request));
 			case DispatcherFailureDeprecatedCop.TAB:
 				return new DispatcherFailureDeprecatedCop(args, new TestCop.TestArgs(request));
 			case CharacterNulCop.TAB:

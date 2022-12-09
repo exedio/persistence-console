@@ -224,6 +224,8 @@ public final class ExampleServlet extends CopsServlet
 			new OptionalItem("mandatory", "optional", null);
 			new StringLengthItem("empty", "emptyOk", "normal", "normalOk", "min10xxxxx", "min10Okxxx");
 			new StringLengthItem("empty", "",        "normal", "x",        "min10xxxxx", "min10Okxxx");
+			EnumSingletonComplete.createSampleData();
+			EnumSingletonIncomplete.createSampleData();
 			new AMediaItem();
 			new AMediaItem().setContent(resource("test.png"), "image/png");
 			new AMediaItem().setContent(resource("test.png"), "unknownma/unknownmi");
