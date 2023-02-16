@@ -49,8 +49,8 @@ final class HashConstraintItemUnsupported extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			HashConstraintItemUnsupported.hash.map(hash),
-			HashConstraintItemUnsupported.data.map(data),
+			com.exedio.cope.SetValue.map(HashConstraintItemUnsupported.hash,hash),
+			com.exedio.cope.SetValue.map(HashConstraintItemUnsupported.data,data),
 		});
 	}
 

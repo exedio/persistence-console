@@ -67,12 +67,12 @@ final class StringLengthItem extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			StringLengthItem.empty.map(empty),
-			StringLengthItem.emptyOk.map(emptyOk),
-			StringLengthItem.normal.map(normal),
-			StringLengthItem.normalOk.map(normalOk),
-			StringLengthItem.min10.map(min10),
-			StringLengthItem.min10Ok.map(min10Ok),
+			com.exedio.cope.SetValue.map(StringLengthItem.empty,empty),
+			com.exedio.cope.SetValue.map(StringLengthItem.emptyOk,emptyOk),
+			com.exedio.cope.SetValue.map(StringLengthItem.normal,normal),
+			com.exedio.cope.SetValue.map(StringLengthItem.normalOk,normalOk),
+			com.exedio.cope.SetValue.map(StringLengthItem.min10,min10),
+			com.exedio.cope.SetValue.map(StringLengthItem.min10Ok,min10Ok),
 		});
 	}
 

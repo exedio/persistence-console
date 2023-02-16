@@ -46,7 +46,7 @@ final class CopyItem extends Item
 				com.exedio.cope.MandatoryViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			CopyItem.origin.map(origin),
+			com.exedio.cope.SetValue.map(CopyItem.origin,origin),
 		});
 	}
 

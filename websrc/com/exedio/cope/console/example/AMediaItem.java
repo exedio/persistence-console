@@ -86,8 +86,8 @@ final class AMediaItem extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			AMediaItem.name.map(name),
-			AMediaItem.isFinal.map(isFinal),
+			com.exedio.cope.SetValue.map(AMediaItem.name,name),
+			com.exedio.cope.SetValue.map(AMediaItem.isFinal,isFinal),
 		});
 	}
 

@@ -101,10 +101,10 @@ class AnItem extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			AnItem.aField.map(aField),
-			AnItem.letter.map(letter),
-			AnItem.secondLetter.map(secondLetter),
-			AnItem.color.map(color),
+			com.exedio.cope.SetValue.map(AnItem.aField,aField),
+			com.exedio.cope.SetValue.map(AnItem.letter,letter),
+			com.exedio.cope.SetValue.map(AnItem.secondLetter,secondLetter),
+			com.exedio.cope.SetValue.map(AnItem.color,color),
 		});
 	}
 

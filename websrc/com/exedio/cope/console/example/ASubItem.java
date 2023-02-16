@@ -54,11 +54,11 @@ final class ASubItem extends AnItem
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			com.exedio.cope.console.example.AnItem.aField.map(aField),
-			com.exedio.cope.console.example.AnItem.letter.map(letter),
-			com.exedio.cope.console.example.AnItem.secondLetter.map(secondLetter),
-			com.exedio.cope.console.example.AnItem.color.map(color),
-			ASubItem.aSubField.map(aSubField),
+			com.exedio.cope.SetValue.map(com.exedio.cope.console.example.AnItem.aField,aField),
+			com.exedio.cope.SetValue.map(com.exedio.cope.console.example.AnItem.letter,letter),
+			com.exedio.cope.SetValue.map(com.exedio.cope.console.example.AnItem.secondLetter,secondLetter),
+			com.exedio.cope.SetValue.map(com.exedio.cope.console.example.AnItem.color,color),
+			com.exedio.cope.SetValue.map(ASubItem.aSubField,aSubField),
 		});
 	}
 

@@ -40,7 +40,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 				com.exedio.cope.MandatoryViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			UniqueHashedMediaItemUnsupported.feature.map(feature),
+			com.exedio.cope.SetValue.map(UniqueHashedMediaItemUnsupported.feature,feature),
 		});
 	}
 
