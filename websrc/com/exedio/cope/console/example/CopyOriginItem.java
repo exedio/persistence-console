@@ -45,8 +45,8 @@ final class CopyOriginItem extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			CopyOriginItem.string.map(string),
-			CopyOriginItem.integer.map(integer),
+			com.exedio.cope.SetValue.map(CopyOriginItem.string,string),
+			com.exedio.cope.SetValue.map(CopyOriginItem.integer,integer),
 		});
 	}
 

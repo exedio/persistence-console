@@ -41,7 +41,7 @@ final class AReducedItem extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			AReducedItem.aField.map(aField),
+			com.exedio.cope.SetValue.map(AReducedItem.aField,aField),
 		});
 	}
 

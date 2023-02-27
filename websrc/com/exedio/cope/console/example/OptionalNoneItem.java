@@ -45,8 +45,8 @@ final class OptionalNoneItem extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			OptionalNoneItem.mandatory.map(mandatory),
-			OptionalNoneItem.optional.map(optional),
+			com.exedio.cope.SetValue.map(OptionalNoneItem.mandatory,mandatory),
+			com.exedio.cope.SetValue.map(OptionalNoneItem.optional,optional),
 		});
 	}
 

@@ -55,7 +55,7 @@ final class EnumSingletonComplete extends Item
 				com.exedio.cope.UniqueViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			EnumSingletonComplete.feature.map(feature),
+			com.exedio.cope.SetValue.map(EnumSingletonComplete.feature,feature),
 		});
 	}
 

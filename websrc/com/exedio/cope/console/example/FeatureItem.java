@@ -64,8 +64,8 @@ final class FeatureItem extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			FeatureItem.feature.map(feature),
-			FeatureItem.string.map(string),
+			com.exedio.cope.SetValue.map(FeatureItem.feature,feature),
+			com.exedio.cope.SetValue.map(FeatureItem.string,string),
 		});
 	}
 

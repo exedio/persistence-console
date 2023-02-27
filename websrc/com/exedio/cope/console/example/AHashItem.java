@@ -55,11 +55,11 @@ final class AHashItem extends Item
 				com.exedio.cope.MandatoryViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			AHashItem.md8.map(md8),
-			AHashItem.md8x6latin.map(md8x6latin),
-			AHashItem.md5.map(md5),
-			AHashItem.deterministic.map(deterministic),
-			AHashItem.pin.map(pin),
+			com.exedio.cope.SetValue.map(AHashItem.md8,md8),
+			com.exedio.cope.SetValue.map(AHashItem.md8x6latin,md8x6latin),
+			com.exedio.cope.SetValue.map(AHashItem.md5,md5),
+			com.exedio.cope.SetValue.map(AHashItem.deterministic,deterministic),
+			com.exedio.cope.SetValue.map(AHashItem.pin,pin),
 		});
 	}
 

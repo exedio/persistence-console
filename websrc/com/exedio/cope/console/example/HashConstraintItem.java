@@ -49,8 +49,8 @@ final class HashConstraintItem extends Item
 				com.exedio.cope.StringLengthViolationException
 	{
 		this(new com.exedio.cope.SetValue<?>[]{
-			HashConstraintItem.hash.map(hash),
-			HashConstraintItem.data.map(data),
+			com.exedio.cope.SetValue.map(HashConstraintItem.hash,hash),
+			com.exedio.cope.SetValue.map(HashConstraintItem.data,data),
 		});
 	}
 
