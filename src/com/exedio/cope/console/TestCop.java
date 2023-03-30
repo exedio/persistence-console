@@ -238,9 +238,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		final Store.Summary summary = store.summarize(getItemIDs(items));
 		Test_Jspm.writeSummary(
 				out,
-				this,
 				headingsLength,
-				getID(items.get(0)),
 				summary,
 				(summary.failures>0) ? "failure" : null);
 	}
