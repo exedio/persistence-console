@@ -23,10 +23,8 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.TimeUtil;
-import com.exedio.cops.Cop;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -39,43 +37,36 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 
 	protected final TestArgs testArgs;
 	protected final String id;
-	protected final boolean iterate;
 
 	protected static class TestArgs
 	{
 		private static final String ID = "testajax";
-		private static final String ITERATE = "iterate";
 
 		protected final String id;
-		protected final boolean iterate;
 
 		TestArgs()
 		{
 			this.id = null;
-			this.iterate = false;
 		}
 
-		private TestArgs(final String id, final boolean iterate)
+		private TestArgs(final String id)
 		{
 			this.id = id;
-			this.iterate = iterate;
 		}
 
 		TestArgs(final HttpServletRequest request)
 		{
 			this.id = request.getParameter(ID);
-			this.iterate = Cop.getBooleanParameter(request, ITERATE);
 		}
 
 		void addParameters(final TestCop<?> cop)
 		{
 			cop.addParameter(ID, id);
-			cop.addParameter(ITERATE, iterate);
 		}
 
-		TestArgs toTest(final String id, final boolean iterate)
+		TestArgs toTest(final String id)
 		{
-			return new TestArgs(id, iterate);
+			return new TestArgs(id);
 		}
 	}
 
@@ -84,15 +75,14 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		super(tab, name, args);
 		this.testArgs = testArgs;
 		this.id = testArgs.id;
-		this.iterate = testArgs.iterate;
 
 		//noinspection ThisEscapedInObjectConstruction
 		testArgs.addParameters(this);
 	}
 
-	final TestCop<I> toTest(final String id, final boolean iterate)
+	final TestCop<I> toTest(final String id)
 	{
-		return newTestArgs(testArgs.toTest(id, iterate));
+		return newTestArgs(testArgs.toTest(id));
 	}
 
 	@Override
@@ -178,20 +168,11 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		store.put(id, info);
 
 		final List<I> items = getItems(out.model);
-		final I nextItem = nextItem(items, id);
 
 		final int headingsLength = getHeadings().length;
 		out.writeRaw(
 			"<?xml version=\"1.0\" encoding=\"" + UTF_8.name() + "\" standalone=\"yes\"?>" +
-			"<response");
-		if(nextItem!=null)
-		{
-			out.writeRaw(" iterate=\"");
-			final String nextId = getID(nextItem);
-			out.write(toTest(nextId, true));
-			out.writeRaw('"');
-		}
-		out.writeRaw(">" +
+			"<response>" +
 			"<update id=\"");
 		out.write(id);
 		out.writeRaw("\"");
@@ -212,18 +193,6 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 			"</response>");
 	}
 
-	private I nextItem(final List<I> items, final String id)
-	{
-		if(!iterate)
-			return null;
-
-		for(final Iterator<I> i = items.iterator(); i.hasNext(); )
-			if(id.equals(getID(i.next())))
-				return i.hasNext() ? i.next() : null;
-
-		return null;
-	}
-
 	final List<String> getItemIDs(final List<I> items)
 	{
 		return items.stream().map(this::getID).collect(Collectors.toList());
@@ -238,9 +207,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		final Store.Summary summary = store.summarize(getItemIDs(items));
 		Test_Jspm.writeSummary(
 				out,
-				this,
 				headingsLength,
-				getID(items.get(0)),
 				summary,
 				(summary.failures>0) ? "failure" : null);
 	}

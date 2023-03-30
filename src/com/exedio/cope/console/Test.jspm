@@ -61,14 +61,18 @@ final class Test_Jspm
 
 			var testRequest = getXmlHttpRequestObject();
 
-			function doTest(url,anchor)
+			function doTest(anchor, iterate)
 			{
-				//alert('toTest >' + url + '<');
+				var url = anchor.dataset.test;
+				// console.log('doTest >' + url + '< iterate=' + iterate);
 				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0))
 				{
 					anchor.style.display = "none";
 					testRequest.open("POST", url, true);
-					testRequest.onreadystatechange = handleTest;
+					testRequest.onreadystatechange = function()
+					{
+						handleTest(iterate);
+					};
 					testRequest.send(null);
 					return false;
 				}
@@ -78,23 +82,26 @@ final class Test_Jspm
 				}
 			}
 
-			function doTest(url)
+			function getNextVisibleElementSibling(element, selector)
 			{
-				//alert('toTest >' + url + '<');
-				if(testRequest && (testRequest.readyState == 4 || testRequest.readyState == 0))
+				var sibling = element.nextElementSibling;
+				while (sibling)
 				{
-					testRequest.open("POST", url, true);
-					testRequest.onreadystatechange = handleTest;
-					testRequest.send(null);
-					return false;
-				}
-				else
-				{
-					return true;
+					if (sibling.matches(selector) && !isHidden(sibling)) return sibling;
+					sibling = sibling.nextElementSibling;
 				}
 			}
 
-			function handleTest()
+			function isHidden(element)
+			 {
+			 	return (element.offsetParent === null);
+			 	// the above is a shortcut for the below - works as long as we don't use "position: fixed"
+				// var style = window.getComputedStyle(element);
+				// console.log("isHidden", element, style.display);
+				// return (style.display === 'none');
+			}
+
+			function handleTest(iterate)
 			{
 				if(testRequest.readyState == 4)
 				{
@@ -102,6 +109,7 @@ final class Test_Jspm
 					{
 						if(testRequest.status != null && testRequest.status == 200)
 						{
+							// console.log("handleTest iterate="+iterate);
 							var responseXML = testRequest.responseXML;
 
 							var responseNode = responseXML.childNodes[0];
@@ -130,12 +138,13 @@ final class Test_Jspm
 									row.classList.remove("<%=TestCop.NOT_YET_TESTED_CLASS%>");
 									row.classList.add(className);
 									row.innerHTML = content;
+									if (iterate && row.classList.contains("item"))
+									{
+										// console.log("handleTest iterating");
+										triggerNextTest(row);
+									}
 								}
 							}
-
-							var iterateURL = responseNode.getAttribute("iterate");
-							if(iterateURL!=null)
-								doTest(iterateURL);
 						}
 					}
 					catch(e)
@@ -144,6 +153,18 @@ final class Test_Jspm
 						stopAll = true;
 						throw e;
 					}
+				}
+			}
+
+			function triggerNextTest(row)
+			{
+				var next = getNextVisibleElementSibling(row, ".item");
+				// console.log("triggerNextTest", row, next);
+				if (next)
+				{
+					var nextTest = next.querySelector(".test a");
+					// console.log("nextTest", nextTest);
+					doTest(nextTest, true);
 				}
 			}
 
@@ -309,7 +330,7 @@ final class Test_Jspm
 
 				%>
 				<td class="test">
-					<a href="#" onclick="return doTest('<%=cop.toTest(id, false)%>', this);">Test</a>
+					<a href="#" onclick="return doTest(this, false);" data-test="<%=cop.toTest(id)%>">Test</a>
 					<%
 					final String violationSql = cop.getViolationSqlIfConnected(item, out.model);
 					if (violationSql!=null)
@@ -343,15 +364,13 @@ final class Test_Jspm
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static <I> void writeSummary(
 			final Out out,
-			final TestCop<I> cop,
 			final int headingsLength,
-			final String firstId,
 			final Store.Summary summary,
 			final String cellClass)
 	{
 				%>
 				<th style="text-align:right;" colspan="<%=headingsLength%>">Summary</th>
-				<td class="test"><a href="#" onclick="return doTest('<%=cop.toTest(firstId, true)%>', this);">Test</a></td>
+				<td class="test"><a href="#" onclick="return triggerNextTest(this.closest('#summary'));">Test</a></td>
 				<td><% writeUnknown(out, !summary.complete); %><%=summary.date()%></td>
 				<td<% if(cellClass!=null){%> class="<%=cellClass%>"<%} %>><%
 				writeError(out, summary.isError);
