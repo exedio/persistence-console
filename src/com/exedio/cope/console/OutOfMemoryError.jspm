@@ -21,15 +21,15 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package com.exedio.copedemo.admin;
+package com.exedio.cope.console;
 
-import static com.exedio.copedemo.admin.OutOfMemoryErrorCop.LOG_OUT;
-import static com.exedio.copedemo.admin.OutOfMemoryErrorCop.LOG_ERR;
-import static com.exedio.copedemo.admin.OutOfMemoryErrorCop.THROW;
-import static com.exedio.copedemo.admin.OutOfMemoryErrorCop.ALLOCATE;
-import static com.exedio.copedemo.admin.OutOfMemoryErrorCop.ALLOCATE_CLEAR;
-import static com.exedio.copedemo.admin.OutOfMemoryErrorCop.ALLOCATE_NUMBER;
-import static com.exedio.copedemo.admin.OutOfMemoryErrorCop.ALLOCATE_SIZE;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.LOG_OUT;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.LOG_ERR;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.THROW;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.ALLOCATE;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.ALLOCATE_CLEAR;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.ALLOCATE_NUMBER;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.ALLOCATE_SIZE;
 
 @SuppressWarnings("HardcodedLineSeparator")
 final class OutOfMemoryError_Jspm
@@ -40,7 +40,6 @@ final class OutOfMemoryError_Jspm
 			final int currentNumber)
 	{
 		%>
-		<h2>OutOfMemoryError</h2>
 		<form method="post">
 			<input type="submit" name="<%= LOG_OUT %>" value="Log to System.out"      onclick="return confirm('This operation may cause your application server to be restarted.\nDo you really want to do this?')"></input>
 			<input type="submit" name="<%= LOG_ERR %>" value="Log to System.err"      onclick="return confirm('This operation may cause your application server to be restarted.\nDo you really want to do this?')"></input>

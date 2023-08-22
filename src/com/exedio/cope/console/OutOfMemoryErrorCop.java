@@ -20,16 +20,18 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package com.exedio.copedemo.admin;
+package com.exedio.cope.console;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-final class OutOfMemoryErrorCop extends AdminCop
+final class OutOfMemoryErrorCop extends ConsoleCop<Void>
 {
-	static final String PATH_INFO = "outOfMemoryError.html";
+	static final String TAB = "outOfMemoryError";
 
 	static final String LOG_OUT  = "logOut";
 	static final String LOG_ERR  = "logErr";
@@ -39,16 +41,26 @@ final class OutOfMemoryErrorCop extends AdminCop
 	static final String ALLOCATE        = "allocate";
 	static final String ALLOCATE_CLEAR  = "allocate.clear";
 
-	OutOfMemoryErrorCop()
+	OutOfMemoryErrorCop(final Args args)
 	{
-		super(PATH_INFO);
+		super(TAB, "Out Of Memory Error", args);
+	}
+
+	static OutOfMemoryErrorCop getOutOfMemoryErrorCop(final Args args)
+	{
+		return new OutOfMemoryErrorCop(args);
+	}
+
+	@Override
+	protected OutOfMemoryErrorCop newArgs(final Args args)
+	{
+		return new OutOfMemoryErrorCop(args);
 	}
 
 	private static final List<double[]> memoryLeak =
 			Collections.synchronizedList(new ArrayList<>());
 
-	@Override
-	protected void post(
+	private static void post(
 			final HttpServletRequest request)
 	{
 		if(request.getParameter(LOG_OUT)!=null)
@@ -61,22 +73,28 @@ final class OutOfMemoryErrorCop extends AdminCop
 		{
 			final int size   = getIntParameter(request, ALLOCATE_SIZE  , 0);
 			final int number = getIntParameter(request, ALLOCATE_NUMBER, 0);
-			System.out.println("mxsampler: Allocating double[" + size + "] times " + number + '.');
+			logger.warn("Allocating double[{}] times {}.", size, number);
 			for(int i = 0; i<number; i++)
 				memoryLeak.add(new double[size]);
-			System.out.println("mxsampler: Allocated  double[" + size + "] times " + number + '.');
+			logger.info("Allocated  double[{}] times {}.", size, number);
 		}
 		if(request.getParameter(ALLOCATE_CLEAR)!=null)
 		{
-			System.out.println("mxsampler: Clearing " + memoryLeak.size() + " entries.");
+			logger.info("Clearing {} entries.", memoryLeak.size());
 			memoryLeak.clear();
-			System.out.println("mxsampler: Cleared.");
+			logger.info("Cleared.");
 		}
 	}
 
 	@Override
-	void writeBody(final Out out, final HttpServletRequest request)
+	void writeBody(final Out out)
 	{
+		final HttpServletRequest request = out.request;
+		if(isPost(request))
+			post(request);
+
 		OutOfMemoryError_Jspm.writeBody(out, memoryLeak.size());
 	}
+
+	private static final Logger logger = LoggerFactory.getLogger(OutOfMemoryErrorCop.class);
 }
