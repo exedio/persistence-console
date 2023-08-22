@@ -1,0 +1,66 @@
+<%
+/*
+ * Copyright (C) 2004-2011  exedio GmbH (www.exedio.com)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
+package com.exedio.cope.console;
+
+import static com.exedio.cope.console.OutOfMemoryErrorCop.LOG_OUT;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.LOG_ERR;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.THROW;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.ALLOCATE;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.ALLOCATE_CLEAR;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.ALLOCATE_NUMBER;
+import static com.exedio.cope.console.OutOfMemoryErrorCop.ALLOCATE_SIZE;
+
+@SuppressWarnings("HardcodedLineSeparator")
+final class OutOfMemoryError_Jspm
+{
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
+	static void writeBody(
+			final Out out,
+			final int currentNumber)
+	{
+		%>
+		<form method="post">
+			<input type="submit" name="<%= LOG_OUT %>" value="Log to System.out"      onclick="return confirm('This operation may cause your application server to be restarted.\nDo you really want to do this?')"></input>
+			<input type="submit" name="<%= LOG_ERR %>" value="Log to System.err"      onclick="return confirm('This operation may cause your application server to be restarted.\nDo you really want to do this?')"></input>
+			<input type="submit" name="<%= THROW   %>" value="throw OutOfMemoryError" onclick="return confirm('This operation may cause your application server to be restarted.\nDo you really want to do this?')"></input>
+			<hr>
+			<table>
+				<caption>allocate arrays</caption>
+				<tr><th>Size  </th><td><input name="<%= ALLOCATE_SIZE   %>" value="1000" size="10"></input></td></tr>
+				<tr><th>Number</th><td><input name="<%= ALLOCATE_NUMBER %>" value="1000" size="10"></input> (currently <%=currentNumber%>)</td></tr>
+				<tr><td colspan="2">
+					<input type="submit" name="<%= ALLOCATE       %>" value="allocate" onclick="return confirm('This operation will probably cause your application server to be restarted.\nDo you really want to do this?')"></input>
+					<input type="submit" name="<%= ALLOCATE_CLEAR %>" value="clear"></input>
+				</td></tr>
+			</table>
+		</form><%
+	}
+
+
+	private OutOfMemoryError_Jspm()
+	{
+		// prevent instantiation
+	}
+}
+%>
