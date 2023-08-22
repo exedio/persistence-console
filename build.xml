@@ -193,6 +193,8 @@
 		<copy todir="web/WEB-INF/lib">
 			<fileset file="lib/trove4j.jar" />
 			<fileset file="lib/slf4j-api.jar" />
+			<fileset file="lib/logback-classic.jar" />
+			<fileset file="lib/logback-core.jar" />
 			<fileset file="lib/exedio-cops.jar" />
 			<fileset file="lib/exedio-cope-util.jar" />
 			<fileset file="lib/exedio-cope.jar" />

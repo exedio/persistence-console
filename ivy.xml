@@ -36,6 +36,7 @@
 			<artifact name="tomcat" type="tar.gz" />
 		</dependency>
 		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.25" conf="runtime->default; build->sources" />
+		<dependency org="ch.qos.logback" name="logback-classic" rev="1.1.3" conf="build->default" />
 		<!--
 			This project depends on micrometer for accessing meters created by cope. It does not
 			create meters on its own. Therefore it does not require the micrometer dependency
