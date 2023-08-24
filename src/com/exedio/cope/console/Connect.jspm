@@ -68,7 +68,7 @@ final class Connect_Jspm
 		<table>
 			<caption>Supports (Schema)</caption>
 			<tr>
-				<th>Check Constraints</th>
+				<th>Check Constraint</th>
 				<td class="text"><%if(SchemaInfo.supportsCheckConstraints(model)){%>yes<%}else{%>no<%}%></td>
 			</tr>
 			<tr>
