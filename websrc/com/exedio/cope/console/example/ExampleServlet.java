@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console.example;
 
+import static com.exedio.cope.SetValue.map;
 import static io.micrometer.core.instrument.Metrics.globalRegistry;
 import static java.lang.System.nanoTime;
 import static java.nio.charset.StandardCharsets.US_ASCII;
@@ -170,8 +171,8 @@ public final class ExampleServlet extends CopsServlet
 					final UniqueHashedMedia feature = UniqueHashedMediaItem.feature;
 					final MessageDigest digest = MessageDigestUtil.getInstance(feature.getMessageDigestAlgorithm());
 					UniqueHashedMediaItem.TYPE.newItem(
-							feature.getMedia().map(Media.toValue(resource("test.png"), "image/png")),
-							feature.getHash().map(Hex.encodeLower(
+							map(feature.getMedia(), Media.toValue(resource("test.png"), "image/png")),
+							map(feature.getHash(), Hex.encodeLower(
 											digest.digest(("" + nanoTime()).getBytes(US_ASCII)))));
 					tx.commit();
 				}
