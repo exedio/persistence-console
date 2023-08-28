@@ -21,6 +21,7 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.Feature;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
+import com.exedio.cope.SetValue;
 import com.exedio.cope.StringField;
 import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.reflect.FeatureField;
@@ -45,8 +46,8 @@ final class FeatureItem extends Item
 			com.exedio.cope.StringLengthViolationException
 	{
 		this(
-			FeatureItem.feature.getIdField().map(feature),
-			FeatureItem.string.getIdField().map(string));
+				SetValue.map(FeatureItem.feature.getIdField(), feature),
+				SetValue.map(FeatureItem.string.getIdField(), string));
 	}
 
 	/**
