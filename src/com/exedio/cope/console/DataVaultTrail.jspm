@@ -26,34 +26,34 @@ final class DataVaultTrail_Jspm
 {
 	static void writeIntro(
 			final DataVaultTrailCop cop,
-			final LinkedHashSet<String> serviceKeys,
+			final LinkedHashSet<String> buckets,
 			final Out out)
 	{
 		%>
 		<div>
-			Services: <%
+			Buckets: <%
 
 			writeLink(cop, null, out);
 
-			for(final String serviceKey : serviceKeys)
-				writeLink(cop, serviceKey, out);
+			for(final String bucket : buckets)
+				writeLink(cop, bucket, out);
 		%>
 		</div><%
 	}
 
 	private static void writeLink(
 			final DataVaultTrailCop cop,
-			final String serviceKey,
+			final String bucket,
 			final Out out)
 	{
-			final boolean link = !Objects.equals(serviceKey, cop.serviceKey);
+			final boolean link = !Objects.equals(bucket, cop.bucket);
 			%>
 			[<%
 				if(link)
 				{
-					%><a href="<%=cop.toServiceKey(serviceKey)%>"><%
+					%><a href="<%=cop.toBucket(bucket)%>"><%
 				}
-				%><%= serviceKey!=null ? serviceKey : "*" %><%
+				%><%= bucket!=null ? bucket : "*" %><%
 				if(link)
 				{
 					%></a><%

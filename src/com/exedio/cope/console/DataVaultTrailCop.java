@@ -32,15 +32,15 @@ import javax.servlet.http.HttpServletRequest;
 final class DataVaultTrailCop extends TestCop<DataField>
 {
 	static final String TAB = "datavaulttrail";
-	private static final String SERVICE_KEY = "sk";
+	private static final String BUCKET = "bucket";
 
-	final String serviceKey;
+	final String bucket;
 
-	private DataVaultTrailCop(final Args args, final TestArgs testArgs, final String serviceKey)
+	private DataVaultTrailCop(final Args args, final TestArgs testArgs, final String bucket)
 	{
 		super(TAB, "Data Vault Trail", args, testArgs);
-		this.serviceKey = serviceKey;
-		addParameter(SERVICE_KEY, serviceKey);
+		this.bucket = bucket;
+		addParameter(BUCKET, bucket);
 	}
 
 	DataVaultTrailCop(final Args args, final TestArgs testArgs)
@@ -56,24 +56,24 @@ final class DataVaultTrailCop extends TestCop<DataField>
 		return new DataVaultTrailCop(
 				args,
 				testArgs,
-				request.getParameter(SERVICE_KEY));
+				request.getParameter(BUCKET));
 	}
 
 	@Override
 	protected DataVaultTrailCop newArgs(final Args args)
 	{
-		return new DataVaultTrailCop(args, testArgs, serviceKey);
+		return new DataVaultTrailCop(args, testArgs, bucket);
 	}
 
 	@Override
 	protected DataVaultTrailCop newTestArgs(final TestArgs testArgs)
 	{
-		return new DataVaultTrailCop(args, testArgs, serviceKey);
+		return new DataVaultTrailCop(args, testArgs, bucket);
 	}
 
-	DataVaultTrailCop toServiceKey(final String serviceKey)
+	DataVaultTrailCop toBucket(final String bucket)
 	{
-		return new DataVaultTrailCop(args, testArgs, serviceKey);
+		return new DataVaultTrailCop(args, testArgs, bucket);
 	}
 
 	@Override
@@ -88,25 +88,25 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	@Override
 	void writeIntro(final Out out)
 	{
-		final LinkedHashSet<String> serviceKeys = new LinkedHashSet<>();
+		final LinkedHashSet<String> buckets = new LinkedHashSet<>();
 
 		for(final Type<?> type : out.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof DataField)
 				{
-					final String serviceKey = ((DataField)feature).getVaultServiceKey();
-					if(serviceKey!=null)
-						serviceKeys.add(serviceKey);
+					final String bucket = ((DataField)feature).getVaultServiceKey();
+					if(bucket!=null)
+						buckets.add(bucket);
 				}
 
-		if(serviceKeys.size()>1)
-			DataVaultTrail_Jspm.writeIntro(this, serviceKeys, out);
+		if(buckets.size()>1)
+			DataVaultTrail_Jspm.writeIntro(this, buckets, out);
 	}
 
 	@Override
 	boolean requiresConnect()
 	{
-		// connect is required by DataField#getVaultServiceKey() in #getItems
+		// connect is required by DataField#getVaultBucket() in #getItems
 		return true;
 	}
 
@@ -120,10 +120,10 @@ final class DataVaultTrailCop extends TestCop<DataField>
 				if(feature instanceof DataField)
 				{
 					final DataField field = (DataField) feature;
-					final String serviceKey = field.getVaultServiceKey();
-					if(this.serviceKey!=null
-						? this.serviceKey.equals(serviceKey)
-						: serviceKey!=null)
+					final String bucket = field.getVaultServiceKey();
+					if(this.bucket!=null
+						? this.bucket.equals(bucket)
+						: bucket!=null)
 						result.add(field);
 				}
 
