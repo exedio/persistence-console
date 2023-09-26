@@ -19,7 +19,7 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.DataVaultCop.SET_MARK_PUT_SERVICE_KEY;
+import static com.exedio.cope.console.DataVaultCop.SET_MARK_PUT_BUCKET;
 import static com.exedio.cope.console.DataVaultCop.SET_MARK_PUT_SUBMIT;
 import static com.exedio.cope.console.DataVaultCop.SET_MARK_PUT_VALUE;
 import static com.exedio.cope.console.Format.format;
@@ -32,7 +32,7 @@ import com.exedio.cope.DataField;
 import com.exedio.cope.DataFieldVaultInfo;
 import com.exedio.cope.Pattern;
 import com.exedio.cope.Type;
-import com.exedio.cope.console.DataVaultCop.Vault;
+import com.exedio.cope.console.DataVaultCop.Bucket;
 import com.exedio.cope.misc.DataFieldVaultSummary;
 import com.exedio.cope.pattern.MediaPath;
 
@@ -41,15 +41,15 @@ final class DataVault_Jspm
 	static void writeBody(
 			final Out out,
 			final DataVaultCop cop,
-			final Collection<Vault> vaults,
+			final Collection<Bucket> buckets,
 			final List<DataFieldVaultInfo> infos,
 			final DataFieldVaultSummary summary)
 	{
 		%>
 		<table>
-			<caption>Data Vaults</caption>
+			<caption>Buckets</caption>
 			<tr>
-				<th>Key</th>
+				<th>Bucket</th>
 				<th>Mark Put</th>
 				<th>Service</th>
 				<th>Count</th>
@@ -57,11 +57,11 @@ final class DataVault_Jspm
 				<th>Fields</th>
 			</tr><%
 
-			for(final Vault vault : vaults)
+			for(final Bucket bucket : buckets)
 			{
 			%>
 			<tr><%
-			if(vault.isBlob)
+			if(bucket.isBlob)
 			{
 				%>
 				<td class="notavailable" colspan="3">BLOB</td><%
@@ -69,20 +69,20 @@ final class DataVault_Jspm
 			else
 			{
 				%>
-				<td class="text"><%=vault.serviceKey%></td>
-				<td class="text<% if(vault.markPut){%> enabled<%} %>">
+				<td class="text"><%=bucket.bucket%></td>
+				<td class="text<% if(bucket.markPut){%> enabled<%} %>">
 					<form action="<%=cop%>" method="POST">
-						<input type="hidden" name="<%=SET_MARK_PUT_SERVICE_KEY%>" value="<%=vault.serviceKey%>">
-						<input type="hidden" name="<%=SET_MARK_PUT_VALUE      %>" value="<%=!vault.markPut%>">
-						<input type="submit" name="<%=SET_MARK_PUT_SUBMIT     %>" value="<%=vault.markPut?"disable":"enable"%>">
+						<input type="hidden" name="<%=SET_MARK_PUT_BUCKET%>" value="<%=bucket.bucket%>">
+						<input type="hidden" name="<%=SET_MARK_PUT_VALUE %>" value="<%=!bucket.markPut%>">
+						<input type="submit" name="<%=SET_MARK_PUT_SUBMIT%>" value="<%=bucket.markPut?"disable":"enable"%>">
 					</form>
 				</td>
-				<td class="text"><%=vault.service%></td><%
+				<td class="text"><%=bucket.service%></td><%
 			}
 			%>
-				<td><%=format(vault.getCount())%></td>
-				<td><%=format(vault.getMaxSize())%></td>
-				<td class="text"><small><% write(out, cop, vault.getFields()); %></small></td>
+				<td><%=format(bucket.getCount())%></td>
+				<td><%=format(bucket.getMaxSize())%></td>
+				<td class="text"><small><% write(out, cop, bucket.getFields()); %></small></td>
 			</tr><%
 			}
 		%>

@@ -37,7 +37,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 	static final String TAB = "datavault";
 
 	static final String SET_MARK_PUT_SUBMIT = "setMarkPut";
-	static final String SET_MARK_PUT_SERVICE_KEY = "serviceKey";
+	static final String SET_MARK_PUT_BUCKET = "bucket";
 	static final String SET_MARK_PUT_VALUE = "value";
 
 	DataVaultCop(final Args args)
@@ -59,7 +59,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 		{
 			if(request.getParameter(SET_MARK_PUT_SUBMIT)!=null)
 				model.setVaultRequiredToMarkPut(
-						request.getParameter(SET_MARK_PUT_SERVICE_KEY),
+						request.getParameter(SET_MARK_PUT_BUCKET),
 						parseBoolean(request.getParameter(SET_MARK_PUT_VALUE)));
 		}
 	}
@@ -75,7 +75,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 		}
 
 		final ArrayList<DataFieldVaultInfo> infos = new ArrayList<>();
-		final LinkedHashMap<String, Vault> vaults = new LinkedHashMap<>();
+		final LinkedHashMap<String, Bucket> vaults = new LinkedHashMap<>();
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof DataField)
@@ -85,7 +85,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 					if(info!=null)
 						infos.add(info);
 					final String key = info!=null ? info.getServiceKey() : null;
-					vaults.computeIfAbsent(key, s -> new Vault(info)).add(field);
+					vaults.computeIfAbsent(key, s -> new Bucket(info)).add(field);
 				}
 
 		DataVault_Jspm.writeBody(out, this, vaults.values(), infos,
@@ -94,30 +94,30 @@ final class DataVaultCop extends ConsoleCop<Void>
 
 	private static final DataFieldVaultInfo[] EMPTY_INFO = {};
 
-	static final class Vault
+	static final class Bucket
 	{
 		final boolean isBlob;
-		final String serviceKey;
+		final String bucket;
 		final String service;
 		final boolean markPut;
 		private final ArrayList<DataField> fields = new ArrayList<>();
 		private long maxSize = 0;
 
-		Vault(final DataFieldVaultInfo info)
+		Bucket(final DataFieldVaultInfo info)
 		{
 			if(info==null)
 			{
 				this.isBlob = true;
-				this.serviceKey = null;
+				this.bucket = null;
 				this.service = null;
 				this.markPut = false;
 			}
 			else
 			{
 				this.isBlob = false;
-				this.serviceKey = info.getServiceKey();
+				this.bucket = info.getServiceKey();
 				this.service = info.getService();
-				this.markPut = info.getField().getType().getModel().isVaultRequiredToMarkPut(serviceKey);
+				this.markPut = info.getField().getType().getModel().isVaultRequiredToMarkPut(bucket);
 			}
 		}
 
