@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
 import static com.exedio.cope.console.ConnectTokenCop.ISSUE;
-import static com.exedio.cope.console.ConnectTokenCop.PROBE;
 import static com.exedio.cope.console.ConnectTokenCop.RETURN_SELECTED;
 import static com.exedio.cope.console.ConnectTokenCop.RETURN_CHECKBOX;
 
@@ -36,23 +35,8 @@ final class ConnectToken_Jspm
 				final Out out,
 				final ConnectTokenCop cop,
 				final Properties properties,
-				final ChecklistIcon probeIcon,
-				final boolean probed,
-				final String probe,
 				final Model model)
 	{
-		%>
-		<form action="<%=cop%>" method="POST">
-			<input type="submit" name="<%=PROBE%>" value="probe" />
-			<% probeIcon.write(out); %>
-		</form><%
-
-		if(probed)
-		{
-		%>
-		<div class="message"><u>Probe:</u> <%=probe%></div><%
-		}
-
 			Properties_Jspm.writeBody(out, properties);
 		%>
 		<hr>
