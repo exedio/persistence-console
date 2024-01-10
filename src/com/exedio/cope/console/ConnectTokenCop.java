@@ -22,13 +22,11 @@ import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletRequest;
 
-final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
+final class ConnectTokenCop extends ConsoleCop<Void>
 {
 	static final String TAB = "connectToken";
-	static final String PROBE = "probe";
 	static final String ISSUE = "issue";
 	static final String RETURN_SELECTED = "returnSelected";
 	static final String RETURN_CHECKBOX = "rt";
@@ -44,19 +42,7 @@ final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return new ConnectTokenCop(args);
 	}
 
-	@Override
-	ChecklistIcon getChecklistIcon(final Model model)
-	{
-		return store().get();
-	}
-
 	@Override boolean requiresUnsafeInlineScript() { return true; }
-
-	@Override
-	AtomicReference<ChecklistIcon> initialStore()
-	{
-		return new AtomicReference<>(ChecklistIcon.unknown);
-	}
 
 	@Override
 	void writeHead(final Out out)
@@ -70,26 +56,9 @@ final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		final HttpServletRequest request = out.request;
 		final Model model = out.model;
 		final ConnectProperties properties = ConnectToken.getProperties(model);
-		final AtomicReference<ChecklistIcon> store = store();
-		boolean probed = false;
-		String probe = null;
 
 		if(isPost(request))
 		{
-			if(request.getParameter(PROBE)!=null)
-			{
-				try
-				{
-					probe = probe(properties);
-					store.set(ChecklistIcon.ok);
-					probed = true;
-				}
-				finally
-				{
-					if(!probed)
-						store.set(ChecklistIcon.error);
-				}
-			}
 			if(request.getParameter(ISSUE)!=null)
 			{
 				out.connect();
@@ -112,13 +81,6 @@ final class ConnectTokenCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		ConnectToken_Jspm.writeBody(
 				out, this,
 				properties,
-				store.get(), probed, probe,
 				model);
-	}
-
-	@SuppressWarnings("deprecation")
-	private static String probe(final ConnectProperties properties) // TODO list and execute nested probes instead
-	{
-		return properties.probe();
 	}
 }
