@@ -6,9 +6,9 @@ import groovy.transform.stc.SimpleType
 @Field
 String jdk = 'openjdk-11'
 @Field
-String idea = '2022.1'
+String idea = '2023.2'
 @Field
-String ideaSHA256 = '0400e6152fa0173e4e9a514c6398eef8f19150893298658c0b3eb1427e5bcbe5'
+String ideaSHA256 = 'b1a5c267ca86850764b0541bee0c27af7d2082e55516e95a0c8d30539571735c'
 
 String projectName = env.JOB_NAME.substring(0, env.JOB_NAME.indexOf("/")) // depends on name and location of multibranch pipeline in jenkins
 boolean isRelease = env.BRANCH_NAME=="master"
