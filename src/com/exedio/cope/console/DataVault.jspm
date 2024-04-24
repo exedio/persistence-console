@@ -25,7 +25,7 @@ import static com.exedio.cope.console.DataVaultCop.SET_MARK_PUT_VALUE;
 import static com.exedio.cope.console.Format.format;
 import static java.util.Collections.singletonList;
 
-import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.exedio.cope.DataField;
@@ -41,7 +41,7 @@ final class DataVault_Jspm
 	static void writeBody(
 			final Out out,
 			final DataVaultCop cop,
-			final Collection<Bucket> buckets,
+			final LinkedHashMap<String, Bucket> buckets,
 			final List<DataFieldVaultInfo> infos,
 			final DataFieldVaultSummary summary)
 	{
@@ -57,7 +57,7 @@ final class DataVault_Jspm
 				<th>Fields</th>
 			</tr><%
 
-			for(final Bucket bucket : buckets)
+			for(final Bucket bucket : buckets.values())
 			{
 			%>
 			<tr><%
@@ -117,10 +117,11 @@ final class DataVault_Jspm
 
 			for(final DataFieldVaultInfo info : infos)
 			{
+				final String bucket = info.getServiceKey();
 			%>
 			<tr>
 				<td class="text"><% write(out, cop, singletonList(info.getField())); %></td>
-				<td class="text"><%=info.getServiceKey()%></td>
+				<td class="text<% if(buckets.get(bucket).markPut){%> enabled<%} %>"><%=bucket%></td>
 				<td><%=format(info.getGetLengthCount())%></td>
 				<td><%=format(info.getGetBytesCount())%></td>
 				<td><%=format(info.getGetStreamCount())%></td>
