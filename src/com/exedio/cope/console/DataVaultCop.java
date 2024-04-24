@@ -75,7 +75,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 		}
 
 		final ArrayList<DataFieldVaultInfo> infos = new ArrayList<>();
-		final LinkedHashMap<String, Bucket> vaults = new LinkedHashMap<>();
+		final LinkedHashMap<String, Bucket> buckets = new LinkedHashMap<>();
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof DataField)
@@ -85,10 +85,10 @@ final class DataVaultCop extends ConsoleCop<Void>
 					if(info!=null)
 						infos.add(info);
 					final String key = info!=null ? info.getServiceKey() : null;
-					vaults.computeIfAbsent(key, s -> new Bucket(info)).add(field);
+					buckets.computeIfAbsent(key, s -> new Bucket(info)).add(field);
 				}
 
-		DataVault_Jspm.writeBody(out, this, vaults.values(), infos,
+		DataVault_Jspm.writeBody(out, this, buckets.values(), infos,
 				new DataFieldVaultSummary(infos.toArray(EMPTY_INFO)));
 	}
 
