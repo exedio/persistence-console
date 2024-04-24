@@ -7,6 +7,30 @@
 	<echo taskname="which ant" message="${ant.version}" />
 	<echo taskname="which java" message="${java.vm.name} ${java.version}" />
 
+	<macrodef name="syncContents">
+		<attribute name="from"/>
+		<attribute name="to"/>
+		<element name="ex-mapper" implicit="true" optional="true"/>
+		<sequential>
+			<move todir="@{from}" includeemptydirs="true">
+				<fileset dir="@{from}"/>
+				<ex-mapper/>
+			</move>
+			<fileset id="selectCopyFiles" dir="@{from}">
+				<different targetdir="@{to}"/>
+			</fileset>
+			<fileset id="selectDeleteFiles" dir="@{to}">
+				<present present="srconly" targetdir="@{from}"/>
+			</fileset>
+			<copy overwrite="true" todir="@{to}" includeemptydirs="true" preservelastmodified="false">
+				<fileset refid="selectCopyFiles"/>
+			</copy>
+			<delete includeEmptyDirs="false">
+				<fileset refid="selectDeleteFiles"/>
+			</delete>
+		</sequential>
+	</macrodef>
+
 	<target name="prepare">
 		<delete dir="artifacts" />
 		<mkdir dir="artifacts" />
@@ -30,7 +54,7 @@
 	</target>
 
 	<target name="resolve" depends="prepare">
-		<ivy:retrieve file="../ivy.xml" pattern="artifacts/lib/[artifact]-[type].[ext]" />
+		<ivy:retrieve pattern="artifacts/lib/[artifact]-[type].[ext]" />
 		<fixcrlf srcDir="artifacts/lib" includes="**/*-log.txt,**/*-userlog.txt" fixlast="false" />
 		<ivy:report todir="artifacts/reportraw" graph="false" />
 		<copy todir="artifacts/report">
@@ -53,8 +77,8 @@
 	</target>
 
 	<target name="publishlocally" depends="prepare">
-		<ivy:resolve file="../ivy.xml" />
-		<ivy:publish resolver="localrepo" pubrevision="999999999" forcedeliver="true" overwrite="true">
+		<ivy:resolve />
+		<ivy:publish resolver="localrepo" pubrevision="999999999" status="integration" forcedeliver="true" overwrite="true">
 			<artifacts pattern="../build/[artifact].[ext]" />
 			<artifacts pattern="../build/[artifact]-[type].[ext]" />
 			<artifacts pattern="../[artifact]-[type].[ext]" />
