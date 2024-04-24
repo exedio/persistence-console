@@ -88,7 +88,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 					buckets.computeIfAbsent(key, s -> new Bucket(info)).add(field);
 				}
 
-		DataVault_Jspm.writeBody(out, this, buckets.values(), infos,
+		DataVault_Jspm.writeBody(out, this, buckets, infos,
 				new DataFieldVaultSummary(infos.toArray(EMPTY_INFO)));
 	}
 
