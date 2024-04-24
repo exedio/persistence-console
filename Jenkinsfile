@@ -140,6 +140,12 @@ try
 			archiveArtifacts 'ivy/artifacts/report/**'
 
 			assertGitUnchanged()
+
+			// There should be an assertIvyExtends for each <conf name="abc" extends="def" /> in ivy/ivy.xml.
+			assertIvyExtends("runtime", "compile")
+			assertIvyExtends("test", "runtime")
+			assertIvyExtends("ide", "runtime")
+			assertIvyExtends("ide", "test")
 		}
 	}
 
@@ -235,6 +241,25 @@ String makeBuildTag(Map<String, String> scmResult)
 	       new Date().format("yyyy-MM-dd") + ' ' +
 	       scmResult.GIT_COMMIT + ' ' +
 	       treeHash
+}
+
+void assertIvyExtends(String extendingConf, String parentConf)
+{
+	int status = shStatus(
+		"LC_ALL=C" +
+		" diff --recursive lib/" + parentConf + " lib/" + extendingConf +
+		" | grep --invert-match '^Only in lib/" + extendingConf + ": '" +
+		" > ivy/artifacts/ivyExtends" + extendingConf + ".txt")
+	if (status!=0 && status!=1) // https://www.man7.org/linux/man-pages/man1/diff.1.html
+	{
+		error 'FAILURE because diff had trouble'
+	}
+	String result = readFile "ivy/artifacts/ivyExtends" + extendingConf + ".txt"
+	if (result != '')
+	{
+		error 'FAILURE because ivy conf "' + extendingConf + '" does not just add jar-files to "' + parentConf + '":\n' +
+		      result
+	}
 }
 
 void shSilent(String script)

@@ -36,14 +36,23 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/lib" />
+          <root url="file://$MODULE_DIR$/lib/ide" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/lib" />
+          <root url="file://$MODULE_DIR$/lib/ide" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/ide" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/ide" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/instrument/exedio-cope-instrument-annotations.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="sourceFolder" forTests="false" />
