@@ -22,13 +22,12 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import junit.framework.TestCase;
 
 public class MimeTypesTest extends TestCase
 {
-	public void testIt() throws UnsupportedEncodingException
+	public void testIt()
 	{
 		assertIt("image/png, text/plain", "image/png", "text/plain");
 		assertIt("image/png, text/plain", "text/plain", "image/png");
@@ -37,10 +36,10 @@ public class MimeTypesTest extends TestCase
 		assertIt("image/[p]jpeg, ~/[x-]png, text/plain", "image/x-png", "image/jpeg", "text/plain", "image/png", "image/pjpeg");
 	}
 
-	private static void assertIt(final String expected, final String... actual) throws UnsupportedEncodingException
+	private static void assertIt(final String expected, final String... actual)
 	{
 		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		final OutBasic out = new OutBasic(new PrintStream(baos, false, UTF_8.name()));
+		final OutBasic out = new OutBasic(new PrintStream(baos, false, UTF_8));
 		MediaStatsCop.printContentTypes(out, Arrays.asList(actual));
 		assertEquals(expected, baos.toString(UTF_8));
 	}

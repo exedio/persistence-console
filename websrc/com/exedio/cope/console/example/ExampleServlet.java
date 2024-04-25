@@ -199,7 +199,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 		}
 
-		final Out out = new Out(new PrintStream(response.getOutputStream(), false, UTF_8.name()));
+		final Out out = new Out(new PrintStream(response.getOutputStream(), false, UTF_8));
 		Example_Jspm.write(out);
 		out.close();
 	}
