@@ -143,6 +143,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		}
 		catch(final Exception | AssertionError e)
 		{
+			//noinspection CallToPrintStackTrace
 			e.printStackTrace();
 		}
 		return null;
@@ -173,6 +174,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 		}
 		catch(final SQLRuntimeException e)
 		{
+			//noinspection CallToPrintStackTrace
 			e.printStackTrace(); // TODO show error in page together with declared revisions
 		}
 
