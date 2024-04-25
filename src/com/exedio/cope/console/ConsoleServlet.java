@@ -40,7 +40,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The servlet providing the COPE Console application.
- *
+ * <p>
  * In order to use it, you have to deploy the servlet in your {@code web.xml},
  * providing the name of the cope model via an init-parameter.
  * Typically, your {@code web.xml} would contain a snippet like this:
