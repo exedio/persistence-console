@@ -387,7 +387,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 						elapsed += info.elapsed;
 						date = info.oldest(date);
 						failures += info.failures();
-						isError |= info.isError();
+						isError = isError || info.isError();
 					}
 				}
 			}
