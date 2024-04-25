@@ -127,8 +127,7 @@ final class Console_Jspm
 	}
 	%>
 	</body>
-</html>
-<%
+</html><%
 		}
 		catch(final Throwable t)
 		{

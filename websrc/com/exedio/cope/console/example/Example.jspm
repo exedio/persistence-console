@@ -105,8 +105,7 @@ final class Example_Jspm
 			<input name="<%=ExampleServlet.FEATURE_FIELD_SUBMIT %>" type="submit" value="create" />
 		</form>
 	</body>
-</html>
-<%
+</html><%
 	}
 
 	private Example_Jspm()
