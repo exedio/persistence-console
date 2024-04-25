@@ -19,11 +19,19 @@
 	<taskdef
 			name="for"
 			classname="net.sf.antcontrib.logic.ForTask"
-			classpath="lib/ant-contrib.jar" />
+			onerror="failall">
+		<classpath>
+			<fileset dir="lib/ant-contrib" />
+		</classpath>
+	</taskdef>
 
 	<taskdef
 			resource="com/exedio/jspm/ant.properties"
-			classpath="lib/exedio-jspm.jar" />
+			onerror="failall">
+		<classpath>
+			<fileset dir="lib/jspm" />
+		</classpath>
+	</taskdef>
 
 	<macrodef name="ljunit">
 		<attribute name="test" />
@@ -46,7 +54,7 @@
 
 	<target name="catalina">
 		<property name="catalina.root" value="apache-tomcat-9.0.31" />
-		<untar src="lib/tomcat.tar.gz"
+		<untar src="lib/tomcat/tomcat.tar.gz"
 				 compression="gzip"
 				 dest="${basedir}">
 			<patternset>
@@ -82,13 +90,7 @@
 	<target name="src.compile" depends="src.jspm">
 		<compile srcdir="src">
 			<classpath>
-				<pathelement location="lib/exedio-cope-util.jar" />
-				<pathelement location="lib/exedio-cops.jar" />
-				<pathelement location="lib/exedio-cope.jar" />
-				<pathelement location="lib/javax.servlet-api.jar" />
-				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
-				<pathelement location="lib/slf4j-api.jar" />
-				<pathelement location="lib/micrometer-core.jar" />
+				<fileset dir="lib/compile" />
 			</classpath>
 		</compile>
 	</target>
@@ -105,13 +107,7 @@
 		<compile srcdir="testsrc">
 			<classpath>
 				<pathelement location="build/classes/src" />
-				<pathelement location="lib/exedio-cope-util.jar" />
-				<pathelement location="lib/exedio-cops.jar" />
-				<pathelement location="lib/exedio-cope.jar" />
-				<pathelement location="lib/javax.servlet-api.jar" />
-				<pathelement location="lib/junit.jar" />
-				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
-				<pathelement location="lib/sl4j-api.jar" />
+				<fileset dir="lib/test" />
 			</classpath>
 		</compile>
 	</target>
@@ -121,13 +117,7 @@
 			<classpath>
 				<pathelement location="build/classes/src" />
 				<pathelement location="build/classes/testsrc" />
-				<pathelement location="lib/exedio-cope-util.jar" />
-				<pathelement location="lib/exedio-cops.jar" />
-				<pathelement location="lib/exedio-cope.jar" />
-				<pathelement location="lib/trove4j.jar" />
-				<pathelement location="lib/slf4j-api.jar" />
-				<pathelement location="lib/hsqldb.jar" />
-				<pathelement location="lib/junit.jar" />
+				<fileset dir="lib/test" />
 			</classpath>
 		</ljunit>
 	</target>
@@ -139,15 +129,10 @@
 	</target>
 
 	<target name="instrument.taskdef" depends="web.jspm, src.compile">
-		<taskdef resource="com/exedio/cope/instrument/ant.properties">
+		<taskdef resource="com/exedio/cope/instrument/ant.properties" onerror="failall">
 			<classpath>
 				<pathelement location="build/classes/src" />
-				<pathelement location="lib/exedio-cope-instrument.jar" />
-				<pathelement location="lib/exedio-cops.jar" />
-				<pathelement location="lib/slf4j-api.jar" />
-				<pathelement location="lib/micrometer-core.jar" />
-				<pathelement location="lib/LatencyUtils.jar" />
-				<pathelement location="lib/javax.servlet-api.jar" />
+				<fileset dir="lib/instrument" />
 			</classpath>
 		</taskdef>
 	</target>
@@ -157,6 +142,9 @@
 				dir="websrc"
 				directSetValueMap="true"
 				verify="${instrument.verify}">
+			<classpath>
+				<fileset dir="lib/test" />
+			</classpath>
 			<disableWrap>com.exedio.cope.DataField#set(com.exedio.cope.Item,java.io.File)</disableWrap>
 			<disableWrap>com.exedio.cope.pattern.Media#set(com.exedio.cope.Item,java.io.File,java.lang.String)</disableWrap>
 			<disableWrap>com.exedio.cope.DataField#get(com.exedio.cope.Item,java.io.File)</disableWrap>
@@ -175,12 +163,8 @@
 		<compile srcdir="websrc">
 			<classpath>
 				<pathelement location="build/classes/src" />
-				<pathelement location="lib/exedio-cope-util.jar" />
-				<pathelement location="lib/exedio-cope.jar" />
-				<pathelement location="lib/exedio-cops.jar" />
-				<pathelement location="lib/javax.servlet-api.jar" />
-				<pathelement location="lib/micrometer-core.jar" />
-				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
+				<fileset dir="lib/test" />
+				<pathelement location="lib/instrument/exedio-cope-instrument-annotations.jar" />
 			</classpath>
 		</compile>
 	</target>
@@ -191,19 +175,9 @@
 			<fileset dir="build/classes/websrc" />
 		</copy>
 		<copy todir="web/WEB-INF/lib">
-			<fileset file="lib/trove4j.jar" />
-			<fileset file="lib/slf4j-api.jar" />
-			<fileset file="lib/logback-classic.jar" />
-			<fileset file="lib/logback-core.jar" />
-			<fileset file="lib/exedio-cops.jar" />
-			<fileset file="lib/exedio-cope-util.jar" />
-			<fileset file="lib/exedio-cope.jar" />
-			<fileset file="lib/exedio-cope-hsqldb.jar" />
-			<fileset file="lib/exedio-cope-mysql.jar" />
-			<fileset file="lib/hsqldb.jar" />
-			<fileset file="lib/mysql-connector-java.jar" />
-			<fileset file="lib/micrometer-core.jar" />
-			<fileset file="lib/LatencyUtils.jar" />
+			<fileset dir="lib/runtime">
+				<exclude name="javax.servlet-api.jar" />
+			</fileset>
 		</copy>
 		<foreachClusterNode>
 			<copy todir="build/clusterweb@{node}">
@@ -284,13 +258,8 @@
 			<fileset file="src/com" includes="**/*.java" />
 			<arg value="-Xdoclint:all,-missing" />
 			<classpath>
-				<pathelement location="lib/exedio-cops.jar" />
-				<pathelement location="lib/exedio-cope-util.jar" />
-				<pathelement location="lib/exedio-cope.jar" />
-				<pathelement location="lib/javax.servlet-api.jar" />
-				<pathelement location="lib/slf4j-api.jar" />
-				<pathelement location="lib/micrometer-core.jar" />
-				<pathelement location="lib/exedio-cope-instrument-annotations.jar" />
+				<fileset dir="lib/compile" />
+				<pathelement location="lib/instrument/exedio-cope-instrument-annotations.jar" />
 			</classpath>
 		</javadoc>
 	</target>
@@ -303,12 +272,7 @@
 				fork="yes" failonerror="yes">
 			<classpath>
 				<pathelement location="build/classes/src" />
-				<pathelement location="lib/exedio-cope.jar" />
-				<pathelement location="lib/trove4j.jar" />
-				<pathelement location="lib/exedio-cope-util.jar" />
-				<pathelement location="lib/exedio-cops.jar" />
-				<pathelement location="lib/javax.servlet-api.jar" />
-				<pathelement location="lib/slf4j-api.jar" />
+				<fileset dir="lib/compile" />
 			</classpath>
 			<arg value="build/testprotocol.html"/>
 			<assertions><enable/></assertions>
