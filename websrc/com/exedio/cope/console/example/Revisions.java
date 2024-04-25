@@ -94,6 +94,7 @@ public final class Revisions
 
 	private static final Revision[] EMPTY_REVISION = {};
 
+	@SuppressWarnings("RedundantSuppression") // bug in idea, complains about ConstantConditions
 	static void revisions(final Model model)
 	{
 		final java.util.Properties dbinfo = model.getEnvironmentInfo().asProperties();
