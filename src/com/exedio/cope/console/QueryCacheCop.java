@@ -149,35 +149,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 
 					if(condense)
 					{
-						StringBuilder qxbuf = null;
-						int lastpos = 0;
-						for(int pos = q.indexOf('\''); pos>=0; pos = q.indexOf('\'', pos+1))
-						{
-							if(qxbuf==null)
-								qxbuf = new StringBuilder(q.substring(0, pos));
-							else
-								qxbuf.append(q, lastpos+1, pos);
-
-							qxbuf.append('?');
-
-							//noinspection AssignmentToForLoopParameter
-							pos = q.indexOf('\'', pos+1);
-							if(pos<0)
-							{
-								qxbuf = null;
-								break;
-							}
-
-							lastpos = pos;
-						}
-						final String qx;
-						if(qxbuf!=null)
-						{
-							qxbuf.append(q.substring(lastpos+1));
-							qx = qxbuf.toString();
-						}
-						else
-							qx = q;
+						final String qx = replaceParameters(q);
 
 						final Condense dongs = histogramCondensed.get(qx);
 						if(dongs==null)
@@ -269,6 +241,40 @@ final class QueryCacheCop extends ConsoleCop<Void>
 				this.maxHits = -1;
 				this.minHits = -1;
 			}
+		}
+
+		private static String replaceParameters(final String q)
+		{
+			StringBuilder qxbuf = null;
+			int lastpos = 0;
+			for(int pos = q.indexOf('\''); pos>=0; pos = q.indexOf('\'', pos+1))
+			{
+				if(qxbuf==null)
+					qxbuf = new StringBuilder(q.substring(0, pos));
+				else
+					qxbuf.append(q, lastpos+1, pos);
+
+				qxbuf.append('?');
+
+				//noinspection AssignmentToForLoopParameter
+				pos = q.indexOf('\'', pos+1);
+				if(pos<0)
+				{
+					qxbuf = null;
+					break;
+				}
+
+				lastpos = pos;
+			}
+			final String qx;
+			if(qxbuf!=null)
+			{
+				qxbuf.append(q.substring(lastpos+1));
+				qx = qxbuf.toString();
+			}
+			else
+				qx = q;
+			return qx;
 		}
 	}
 
