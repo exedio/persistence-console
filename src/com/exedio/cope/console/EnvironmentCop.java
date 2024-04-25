@@ -135,7 +135,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		try(FileOutputStream out = new FileOutputStream(args[0]))
 		{
 			Environment_Jspm.writeTestBody(
-					new OutBasic(new PrintStream(out, false, UTF_8.name())),
+					new OutBasic(new PrintStream(out, false, UTF_8)),
 					new java.util.Properties(),
 					requireNonNull(makeTestedDatabases()));
 		}
