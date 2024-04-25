@@ -22,6 +22,7 @@
 		<conf visibility="private" name="test" extends="runtime" />
 		<conf visibility="private" name="ant-contrib" />
 		<conf visibility="private" name="tomcat" />
+		<conf visibility="private" name="jenkins" />
 		<conf visibility="private" name="ide" extends="runtime,test"
 				description="classpath for IDEs such as Eclipse and IntelliJ, includes java sources and changelogs" />
 	</configurations>
@@ -52,5 +53,6 @@
 			on its own. The line below just provides the sources for development.
 		-->
 		<dependency org="io.micrometer" name="micrometer-core" rev="" conf="ide->sources" />
+		<dependency org="com.exedio" name="pipeline-gdsl" rev="26" conf="jenkins->runtime; ide->changelog" />
 	</dependencies>
 </ivy-module>
