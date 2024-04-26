@@ -122,7 +122,6 @@ final class DatabaseMetricsCop extends ConsoleCop<ArrayList<DatabaseMetricsCop.M
 	private void storeAdd(final Measurement measurement)
 	{
 		final ArrayList<Measurement> store = store();
-		//noinspection SynchronizationOnLocalVariableOrMethodParameter OK: comes from global store
 		synchronized(store)
 		{
 			store.add(measurement);
@@ -133,7 +132,6 @@ final class DatabaseMetricsCop extends ConsoleCop<ArrayList<DatabaseMetricsCop.M
 	{
 		final ArrayList<Measurement> store = store();
 		final ArrayList<Measurement> result;
-		//noinspection SynchronizationOnLocalVariableOrMethodParameter OK: comes from global store
 		synchronized(store)
 		{
 			result = new ArrayList<>(store);

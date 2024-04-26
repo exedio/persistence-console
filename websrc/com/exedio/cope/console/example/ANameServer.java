@@ -40,6 +40,7 @@ public final class ANameServer extends MediaPath
 
 	final StringField source;
 
+	@SuppressWarnings("unused") // OK: used by reflection
 	ANameServer(final StringField source)
 	{
 		this.source = source;
