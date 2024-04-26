@@ -135,7 +135,8 @@ try
 				dockerRunDefaults('bridge') +
 				"--mount type=volume,src=" + cache + ",target=/var/jenkins-build-survivor") {
 				ant "-buildfile ivy" +
-				    " -Divy.user.home=/var/jenkins-build-survivor"
+				    " -Divy.user.home=/var/jenkins-build-survivor",
+				    "-Divy.xml.allow-doctype-processing=true -Divy.xml.external-resources=PROHIBIT"
 			}
 			archiveArtifacts 'ivy/artifacts/report/**'
 
