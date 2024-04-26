@@ -112,7 +112,7 @@ try
 				'--build-arg IDEA_SHA256=' + ideaSHA256 + ' ' +
 				'conf/idea')
 			ideaImage.inside(dockerRunDefaults()) {
-				ant "src"
+				ant "src -Dskip.instrument=true"
 				shSilent "/opt/idea/bin/inspect.sh " + env.WORKSPACE + " 'Project Default' idea-inspection-output"
 			}
 			archiveArtifacts 'idea-inspection-output/**'
