@@ -286,7 +286,7 @@ String shStdout(String script)
 
 void ant(String script, String jvmargs = '')
 {
-	shSilent 'ant -noinput ' + script
+	shSilent 'java ' + jvmargs + ' -jar lib/ant/ant-launcher.jar -noinput ' + script
 }
 
 void assertGitUnchanged()

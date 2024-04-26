@@ -5,9 +5,7 @@ RUN <<EOF
 set -e
 apt-get update
 apt-get install --no-install-recommends --assume-yes \
-	${JDK}-jdk-headless \
-	ant \
-	ant-optional
+	${JDK}-jdk-headless
 rm -rf /var/lib/apt/lists/*
 EOF
 
@@ -19,6 +17,4 @@ chown ${JENKINS_OWNER} /var/jenkins-build-survivor
 EOF
 
 LABEL purpose=jenkins
-LABEL ant=yes
-LABEL ant-optional=yes
 LABEL jdk=${JDK}

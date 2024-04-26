@@ -20,6 +20,7 @@
 		<conf visibility="private" name="jspm" />
 		<conf visibility="private" name="instrument" />
 		<conf visibility="private" name="test" extends="runtime" />
+		<conf visibility="private" name="ant" />
 		<conf visibility="private" name="ant-contrib" />
 		<conf visibility="private" name="tomcat" />
 		<conf visibility="private" name="jenkins" />
@@ -38,6 +39,10 @@
 		<dependency org="com.exedio" name="cops" rev="388" conf="compile->runtime; ide->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="cope" rev="10926" conf="compile->runtime; runtime->hsqldb,mysql; instrument->instrument; ide->sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="857" conf="compile->runtime; ide->sources,changelog" />
+		<dependency org="org.apache.ant" name="ant"       rev="1.10.11" conf="ant->default" />
+		<dependency org="org.apache.ant" name="ant-junit" rev="1.10.11" conf="ant->default">
+			<exclude org="junit" module="junit" />
+		</dependency>
 		<dependency org="ant-contrib" name="ant-contrib" rev="1.0b3" conf="ant-contrib->default">
 			<exclude org="ant" module="ant" />
 		</dependency>
