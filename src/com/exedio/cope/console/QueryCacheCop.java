@@ -193,8 +193,8 @@ final class QueryCacheCop extends ConsoleCop<Void>
 							return 0;
 
 						{
-							final int r1 = c1.getRecentUsage();
-							final int r2 = c2.getRecentUsage();
+							final long r1 = c1.getRecentUsage();
+							final long r2 = c2.getRecentUsage();
 							if(r1<r2)
 								return -1;
 							else if(r1>r2)
@@ -282,8 +282,8 @@ final class QueryCacheCop extends ConsoleCop<Void>
 	{
 		final String query;
 		private int count;
-		private int recentUsage;
-		private int resultSize;
+		private long recentUsage;
+		private long resultSize;
 		private long hits;
 
 		Condense(final String query, final int recentUsage, final QueryCacheHistogram info)
@@ -309,12 +309,12 @@ final class QueryCacheCop extends ConsoleCop<Void>
 			return count;
 		}
 
-		int getRecentUsage()
+		long getRecentUsage()
 		{
 			return recentUsage / count;
 		}
 
-		int getResultSize()
+		long getResultSize()
 		{
 			return resultSize;
 		}
