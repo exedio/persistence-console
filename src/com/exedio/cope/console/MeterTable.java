@@ -308,7 +308,7 @@ final class MeterTable
 		final long l = (long)d;
 		//noinspection FloatingPointEquality
 		if(l==d)
-			out.write(l);
+			out.write(Format.formatAndHide(0, l));
 		else
 			out.write(d);
 	}
