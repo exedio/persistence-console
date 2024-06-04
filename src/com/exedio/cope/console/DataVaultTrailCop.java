@@ -133,7 +133,7 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	@Override
 	String[] getHeadings()
 	{
-		return new String[]{"Field", "Service"};
+		return new String[]{"Field", "Bucket"};
 	}
 
 	@Override
