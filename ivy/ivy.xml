@@ -14,12 +14,12 @@
 	</info>
 	<configurations>
 		<!-- There should be an assertIvyExtends in Jenkinsfile for each <conf name="abc" extends="def" /> here. -->
-		<conf name="compile" />
-		<conf name="runtime" extends="compile" />
+		<conf name="runtime" />
 		<conf name="changelog" />
 		<conf visibility="private" name="jspm" />
 		<conf visibility="private" name="instrument" />
 		<conf visibility="private" name="test" extends="runtime" />
+		<conf visibility="private" name="example" extends="runtime" />
 		<conf visibility="private" name="ant" />
 		<conf visibility="private" name="ant-contrib" />
 		<conf visibility="private" name="ivy" />
@@ -33,13 +33,13 @@
 		<artifact name="exedio-cope-console" conf="changelog" type="log" ext="txt" />
 	</publications>
 	<dependencies>
-		<dependency org="javax.servlet" name="javax.servlet-api" rev="3.1.0" conf="compile->default; ide->sources" />
+		<dependency org="javax.servlet" name="javax.servlet-api" rev="3.1.0" conf="runtime->default; ide->sources" />
 		<dependency org="junit" name="junit" rev="4.10" conf="test->default">
 			<exclude org="org.hamcrest" />
 		</dependency>
-		<dependency org="com.exedio" name="cops" rev="388" conf="compile->runtime; ide->runtime,sources,changelog" />
-		<dependency org="com.exedio" name="cope" rev="10926" conf="compile->runtime; runtime->hsqldb,mysql; instrument->instrument; ide->sources,changelog" />
-		<dependency org="com.exedio" name="copeutil" rev="857" conf="compile->runtime; ide->sources,changelog" />
+		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; ide->runtime,sources,changelog" />
+		<dependency org="com.exedio" name="cope" rev="10926" conf="runtime->runtime; test,example->hsqldb,mysql; instrument->instrument; ide->sources,changelog" />
+		<dependency org="com.exedio" name="copeutil" rev="857" conf="runtime->runtime; ide->sources,changelog" />
 		<dependency org="org.apache.ant" name="ant"       rev="1.10.11" conf="ant->default" />
 		<dependency org="org.apache.ant" name="ant-junit" rev="1.10.11" conf="ant->default">
 			<exclude org="junit" module="junit" />
@@ -52,8 +52,8 @@
 		<dependency org="org.apache.tomcat" name="tomcat" rev="9.0.31" conf="tomcat->default">
 			<artifact name="tomcat" type="tar.gz" />
 		</dependency>
-		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.25" conf="compile->default; ide->sources" />
-		<dependency org="ch.qos.logback" name="logback-classic" rev="1.1.3" conf="runtime->default" />
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.25" conf="runtime->default; ide->sources" />
+		<dependency org="ch.qos.logback" name="logback-classic" rev="1.1.3" conf="example->default" />
 		<!--
 			This project depends on micrometer for accessing meters created by cope. It does not
 			create meters on its own. Therefore it does not require the micrometer dependency

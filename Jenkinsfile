@@ -141,8 +141,8 @@ try
 			assertGitUnchanged()
 
 			// There should be an assertIvyExtends for each <conf name="abc" extends="def" /> in ivy/ivy.xml.
-			assertIvyExtends("runtime", "compile")
 			assertIvyExtends("test", "runtime")
+			assertIvyExtends("example", "runtime")
 			assertIvyExtends("ide", "runtime")
 			assertIvyExtends("ide", "test")
 		}
