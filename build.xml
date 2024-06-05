@@ -90,7 +90,7 @@
 	<target name="src.compile" depends="src.jspm">
 		<compile srcdir="src">
 			<classpath>
-				<fileset dir="lib/compile" />
+				<fileset dir="lib/runtime" />
 			</classpath>
 		</compile>
 	</target>
@@ -175,7 +175,7 @@
 			<fileset dir="build/classes/websrc" />
 		</copy>
 		<copy todir="web/WEB-INF/lib">
-			<fileset dir="lib/runtime">
+			<fileset dir="lib/example">
 				<exclude name="javax.servlet-api.jar" />
 			</fileset>
 		</copy>
@@ -258,7 +258,7 @@
 			<fileset file="src/com" includes="**/*.java" />
 			<arg value="-Xdoclint:all,-missing" />
 			<classpath>
-				<fileset dir="lib/compile" />
+				<fileset dir="lib/runtime" />
 				<pathelement location="lib/instrument/exedio-cope-instrument-annotations.jar" />
 			</classpath>
 		</javadoc>
@@ -272,7 +272,7 @@
 				fork="yes" failonerror="yes">
 			<classpath>
 				<pathelement location="build/classes/src" />
-				<fileset dir="lib/compile" />
+				<fileset dir="lib/runtime" />
 			</classpath>
 			<arg value="build/testprotocol.html"/>
 			<assertions><enable/></assertions>
