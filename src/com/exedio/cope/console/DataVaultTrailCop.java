@@ -82,6 +82,10 @@ final class DataVaultTrailCop extends TestCop<DataField>
 		return new String[]
 		{
 			"Runs DataField#checkVaultTrail.",
+			"IMPACT: " +
+				"A failure here may cause DataField#getLength to fail. " +
+				"Furthermore, DataField#startsWithIfSupported may return wrong results. " +
+				"DANGER ZONE."
 		};
 	}
 
