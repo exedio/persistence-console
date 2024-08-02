@@ -83,8 +83,8 @@ final class DataVaultCop extends ConsoleCop<Void>
 					final DataFieldVaultInfo info = field.getVaultInfo();
 					if(info!=null)
 						infos.add(info);
-					final String key = info!=null ? info.getBucket() : null;
-					buckets.computeIfAbsent(key, s -> new Bucket(info)).add(field);
+					final String bucket = info!=null ? info.getBucket() : null;
+					buckets.computeIfAbsent(bucket, s -> new Bucket(info)).add(field);
 				}
 
 		DataVault_Jspm.writeBody(out, this, buckets, infos,
