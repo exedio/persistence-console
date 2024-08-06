@@ -51,6 +51,7 @@ final class AMediaItem extends Item
 	static final Media secret = new Media().optional();
 
 	@UrlFingerPrinting
+	@Vault("other")
 	static final Media finger = new Media().optional();
 
 	static final MediaThumbnail thumbnail = new MediaThumbnail(content, 150, 150);

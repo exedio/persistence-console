@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Condition;
+import com.exedio.cope.DataField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.NoSuchIDException;
@@ -261,6 +262,23 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 			return media.isNotNull();
 		}
 		catch(final UnsupportedOperationException ignored)
+		{
+			return null;
+		}
+	}
+
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
+	static String getVaultServiceKey(final MediaPath path)
+	{
+		if(!(path instanceof Media))
+			return null;
+
+		final DataField body = ((Media)path).getBody();
+		try
+		{
+			return body.getVaultServiceKey();
+		}
+		catch(final Model.NotConnectedException ignored)
 		{
 			return null;
 		}

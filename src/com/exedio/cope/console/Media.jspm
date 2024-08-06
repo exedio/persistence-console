@@ -31,6 +31,7 @@ import java.util.List;
 
 import com.exedio.cope.Item;
 import com.exedio.cope.Query;
+import com.exedio.cope.Vault;
 import com.exedio.cope.misc.MediaSummary;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaFilter;
@@ -112,6 +113,18 @@ final class Media_Jspm
 					if(writeUrlFingerPrinted && path.isUrlFingerPrinted())
 					{
 						%><small>@<%=UrlFingerPrinting.class.getSimpleName()%></small><br><%
+					}
+					{
+						final String vaultBucket = MediaCop.getVaultServiceKey(path);
+						if(vaultBucket!=null)
+						{
+							%><small>@<%=Vault.class.getSimpleName()%><%
+								if(!Vault.DEFAULT.equals(vaultBucket))
+								{
+									%>(<%=vaultBucket%>)<%
+								}
+								%></small><br><%
+						}
 					}
 					if(path.isFinal())
 					{
