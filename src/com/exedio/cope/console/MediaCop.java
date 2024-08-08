@@ -268,7 +268,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
-	static String getVaultServiceKey(final MediaPath path)
+	static String getVaultBucket(final MediaPath path)
 	{
 		if(!(path instanceof Media))
 			return null;

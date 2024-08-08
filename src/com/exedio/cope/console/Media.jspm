@@ -115,7 +115,7 @@ final class Media_Jspm
 						%><small>@<%=UrlFingerPrinting.class.getSimpleName()%></small><br><%
 					}
 					{
-						final String vaultBucket = MediaCop.getVaultServiceKey(path);
+						final String vaultBucket = MediaCop.getVaultBucket(path);
 						if(vaultBucket!=null)
 						{
 							%><small>@<%=Vault.class.getSimpleName()%><%
