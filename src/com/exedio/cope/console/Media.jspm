@@ -249,7 +249,7 @@ final class Media_Jspm
 				%>
 			<tr>
 				<td class="text"><%=item.getCopeID()%></td>
-				<td class="text"><% writeLocator(out, media.getLocator(item), mediaInline); %></td>
+				<td class="text"><% writeLocator(out, media, item, mediaInline); %></td>
 				<td class="text"><%if(contentType!=null){%><%=contentType%><%}%></td>
 				<td><%=media.getLastModified(item)%><%
 
@@ -268,7 +268,7 @@ final class Media_Jspm
 				if(other!=null)
 				{
 				%>
-				<td class="text"><% writeLocator(out, other.getLocator(item), otherInline); %></td><%
+				<td class="text"><% writeLocator(out, other, item, otherInline); %></td><%
 				}
 				%>
 			</tr><%
@@ -295,8 +295,18 @@ final class Media_Jspm
 		<input type="submit" value="touch"></input><%
 	}
 
-	private static void writeLocator(final Out out, final MediaPath.Locator locator, final boolean inline)
+	private static void writeLocator(final Out out, final MediaPath mediaPath, final Item item, final boolean inline)
 	{
+		final MediaPath.Locator locator;
+		try
+		{
+			locator = mediaPath.getLocator(item);
+		}
+		catch (final UnsupportedOperationException e)
+		{
+			%><%=e.getClass().getSimpleName()%>: <%=e.getMessage()%><%
+			return;
+		}
 		if(locator!=null)
 		{
 			final String contentType = locator.getContentType();
