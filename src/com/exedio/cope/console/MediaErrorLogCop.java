@@ -23,7 +23,7 @@ import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaRequestLog;
 import java.util.List;
 import java.util.function.Function;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class MediaErrorLogCop extends ConsoleCop<Void>
 {

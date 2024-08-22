@@ -32,7 +32,7 @@ import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import java.util.Date;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class MediaCop extends ConsoleCop<Void> implements Pageable
 {

@@ -19,7 +19,7 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class ConnectionPoolCop extends ConsoleCop<Void>
 {

@@ -26,7 +26,7 @@ import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class DataVaultTrailCop extends TestCop<DataField>
 {

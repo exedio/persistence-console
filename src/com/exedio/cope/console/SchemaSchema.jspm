@@ -21,7 +21,7 @@ package com.exedio.cope.console;
 
 import static com.exedio.cops.Cop.isPost;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
 

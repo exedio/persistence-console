@@ -21,7 +21,7 @@ package com.exedio.cope.console;
 import com.exedio.cope.Model;
 import com.exedio.cope.console.DatabaseLogListener.Builder;
 import com.exedio.cope.misc.DatabaseListener;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class DatabaseLogCop extends ConsoleCop<Void>
 {

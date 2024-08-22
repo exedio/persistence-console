@@ -21,7 +21,7 @@ package com.exedio.cope.console;
 import com.exedio.cope.Model;
 import com.exedio.cope.revstat.RevisionStatistics;
 import com.exedio.cope.util.EmptyJobContext;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class PurgeCop extends ConsoleCop<Void>
 {
