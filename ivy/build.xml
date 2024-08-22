@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <project name="ivy" default="copy">
 	<import file="common.xml" />
-	<target name="copy" depends="resolve">
+	<target name="copy" depends="resolve, taskdef.contrib, taskdef.jakartaee-migrate">
+
+		<jakartaee-migrate file="exedio-cops-jar.jar" otherconfs="runtime,example,test" />
+		<jakartaee-migrate file="exedio-cops-src.zip" />
+		<jakartaee-migrate file="exedio-cope-jar.jar" otherconfs="runtime,example,test,instrument" />
+		<jakartaee-migrate file="exedio-cope-src.zip" />
 
 		<syncContents from="artifacts/lib" to="../lib">
 			<firstmatchmapper>
@@ -13,4 +18,50 @@
 		</syncContents>
 
 	</target>
+
+	<target name="taskdef.contrib">
+		<!--
+			Beware: Do not move this taskdef to global scope!
+			A global task def will fail on Windows machines as the used jar of ant-contrib
+			will be deleted and copied in previous tasks which conflicts with file locking.
+		-->
+		<taskdef resource="net/sf/antcontrib/antlib.xml" onerror="failall">
+			<classpath>
+				<fileset dir="../lib/ant-contrib" />
+			</classpath>
+		</taskdef>
+	</target>
+
+
+	<target name="taskdef.jakartaee-migrate">
+		<taskdef name="javax2jakarta" classname="org.apache.tomcat.jakartaee.MigrationTask" onerror="failall">
+			<classpath>
+				<fileset dir="../lib/jakartaee-migration" />
+			</classpath>
+		</taskdef>
+	</target>
+
+	<macrodef name="jakartaee-migrate">
+		<attribute name="file" />
+		<attribute name="otherconfs" default="" />
+		<sequential>
+			<javax2jakarta
+					src="artifacts/lib/ide/@{file}"
+					dest="artifacts/lib/ide/@{file}"
+					profile="servlet" />
+			<for param="otherconf" list="@{otherconfs}">
+				<sequential>
+					<fail message="dependency @{file} doesn't exist in conf @{otherconf}">
+						<condition>
+							<not>
+								<available file="artifacts/lib/@{otherconf}/@{file}" />
+							</not>
+						</condition>
+					</fail>
+					<copy file="artifacts/lib/ide/@{file}" todir="artifacts/lib/@{otherconf}" overwrite="true" />
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
 </project>

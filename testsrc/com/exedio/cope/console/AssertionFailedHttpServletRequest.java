@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import jakarta.servlet.ServletConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -173,12 +174,6 @@ class AssertionFailedHttpServletRequest implements HttpServletRequest {
     throw new AssertionError();
   }
 
-  @Deprecated
-  @Override
-  public String getRealPath(final String path) {
-    throw new AssertionError();
-  }
-
   @Override
   public int getRemotePort() {
     throw new AssertionError();
@@ -324,12 +319,6 @@ class AssertionFailedHttpServletRequest implements HttpServletRequest {
     throw new AssertionError();
   }
 
-  @Deprecated
-  @Override
-  public boolean isRequestedSessionIdFromUrl() {
-    throw new AssertionError();
-  }
-
   @Override
   public boolean authenticate(final HttpServletResponse response) {
     throw new AssertionError();
@@ -396,6 +385,21 @@ class AssertionFailedHttpServletRequest implements HttpServletRequest {
 
   @Override
   public DispatcherType getDispatcherType() {
+    throw new AssertionError();
+  }
+
+  @Override
+  public String getRequestId() {
+    throw new AssertionError();
+  }
+
+  @Override
+  public String getProtocolRequestId() {
+    throw new AssertionError();
+  }
+
+  @Override
+  public ServletConnection getServletConnection() {
     throw new AssertionError();
   }
 }

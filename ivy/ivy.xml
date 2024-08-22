@@ -30,6 +30,7 @@
 		<conf visibility="private" name="ant" />
 		<conf visibility="private" name="ant-contrib" />
 		<conf visibility="private" name="ivy" />
+		<conf visibility="private" name="jakartaee-migration" />
 		<conf visibility="private" name="tomcat" />
 		<conf visibility="private" name="jenkins" />
 		<conf visibility="private" name="ide" extends="runtime,test"
@@ -41,7 +42,7 @@
 		<artifact name="&artifacts.name;" conf="changelog" type="log" ext="txt" />
 	</publications>
 	<dependencies>
-		<dependency org="javax.servlet" name="javax.servlet-api" rev="4.0.1" conf="runtime->default; ide->sources" />
+		<dependency org="jakarta.servlet" name="jakarta.servlet-api" rev="6.0.0" conf="runtime,instrument->default; ide->sources" />
 		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; ide->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="cope" rev="12141" conf="runtime->runtime; compile-annotations->instrument-annotations; test,example->hsqldb,mysql; instrument->instrument,servlet; ide->sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="1109" conf="runtime->runtime; ide->sources,changelog" />
@@ -56,8 +57,9 @@
 		</dependency>
 		<dependency org="com.google.code.findbugs" name="jsr305" rev="3.0.2" conf="compile-annotations->default" />
 		<dependency org="org.apache.ivy" name="ivy" rev="2.5.2" conf="ivy->default" />
+		<dependency org="org.apache.tomcat" name="jakartaee-migration" rev="1.0.9" conf="jakartaee-migration->default" />
 		<dependency org="com.exedio" name="jspm" rev="202" conf="jspm->runtime; ide->changelog" />
-		<dependency org="org.apache.tomcat" name="tomcat" rev="9.0.43" conf="tomcat->default">
+		<dependency org="org.apache.tomcat" name="tomcat" rev="10.1.24" conf="tomcat->default">
 			<artifact name="tomcat" type="tar.gz" />
 		</dependency>
 		<dependency org="org.slf4j" name="slf4j-api" rev="2.0.16" conf="runtime->default; ide->sources" />
@@ -69,5 +71,7 @@
 		-->
 		<dependency org="io.micrometer" name="micrometer-core" rev="" conf="ide->sources" />
 		<dependency org="com.exedio" name="pipeline-gdsl" rev="26" conf="jenkins->runtime; ide->changelog" />
+
+		<exclude org="javax.servlet" module="javax.servlet-api" /><!-- old javax.servlet package instead of new jakarta.servlet -->
 	</dependencies>
 </ivy-module>
