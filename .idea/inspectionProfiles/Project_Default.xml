@@ -806,7 +806,7 @@
       </option>
     </inspection_tool>
     <inspection_tool class="unused" enabled="true" level="WARNING" enabled_by_default="true" klass="packageLocal" field="packageLocal" method="packageLocal" checkParameterExcludingHierarchy="false">
-      <option name="LOCAL_VARIABLE" value="false" />
+      <option name="LOCAL_VARIABLE" value="true" />
       <option name="FIELD" value="true" />
       <option name="METHOD" value="true" />
       <option name="CLASS" value="true" />
