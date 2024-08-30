@@ -36,7 +36,10 @@ public class QueryCacheTest extends TestCase
 		}
 		catch(final NullPointerException e)
 		{
-			assertEquals(null, e.getMessage());
+			assertEquals(
+					"Cannot read the array length " +
+					"because \"histogram\" is null",
+					e.getMessage());
 		}
 		{
 			final QueryCacheHistogram[] histogram = {};
