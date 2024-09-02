@@ -440,7 +440,7 @@ public final class ExampleServlet extends CopsServlet
 						: MeterFilterReply.DENY;
 			}
 
-			private boolean isAccepted(final String name)
+			private static boolean isAccepted(final String name)
 			{
 				for(final String s : ACCEPTED)
 					if(name.startsWith(s))
