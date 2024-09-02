@@ -51,9 +51,8 @@ final class EnumsCop extends ConsoleCop<Void>
 			new LinkedHashMap<>();
 		for(final Type<?> type : out.model.getTypes())
 			for(final Field<?> field : type.getDeclaredFields())
-				if(field instanceof EnumField)
+				if(field instanceof final EnumField<?> f)
 				{
-					final EnumField<?> f = (EnumField<?>)field;
 					final Class<? extends Enum<?>> c = f.getValueClass();
 					map.computeIfAbsent(c, k -> new ArrayList<>()).add(f);
 				}

@@ -78,9 +78,8 @@ final class DataVaultCop extends ConsoleCop<Void>
 		final LinkedHashMap<String, Bucket> buckets = new LinkedHashMap<>();
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof DataField)
+				if(feature instanceof final DataField field)
 				{
-					final DataField field = (DataField)feature;
 					final DataFieldVaultInfo info = field.getVaultInfo();
 					if(info!=null)
 						infos.add(info);

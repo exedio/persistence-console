@@ -185,9 +185,8 @@ final class RevisionLine
 		{
 			date = info.getDate();
 			environment = info.getEnvironment();
-			if(info instanceof RevisionInfoRevise)
+			if(info instanceof final RevisionInfoRevise infoRevise)
 			{
-				final RevisionInfoRevise infoRevise = (RevisionInfoRevise)info;
 				this.content = infoRevise.getComment();
 				this.body = infoRevise.getBody();
 				int rows = 0;
