@@ -121,17 +121,8 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 		return constraint.getViolationSql();
 	}
 
-	static final class Constraint<T extends Item>
+	record Constraint<T extends Item>(Type<T> superType, Type<? extends T> subType)
 	{
-		final Type<T> superType;
-		final Type<? extends T> subType;
-
-		Constraint(final Type<T> superType, final Type<? extends T> subType)
-		{
-			this.superType = superType;
-			this.subType = subType;
-		}
-
 		String getID()
 		{
 			return superType.getID() + ID_SEPARATOR + subType.getID();

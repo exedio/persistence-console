@@ -201,30 +201,12 @@ final class MeterTable
 			return Double.NaN;
 	}
 
-	private static final class CellKey
+	private record CellKey(Meter.Id column, String row)
 	{
-		final Meter.Id column;
-		final String row;
-
-		private CellKey(final Meter.Id column, final String row)
+		private CellKey
 		{
-			this.column = requireNonNull(column);
-			this.row = requireNonNull(row);
-		}
-
-		@Override
-		public boolean equals(final Object other)
-		{
-			if(!(other instanceof final CellKey o))
-				return false;
-
-			return column.equals(o.column) && row.equals(o.row);
-		}
-
-		@Override
-		public int hashCode()
-		{
-			return column.hashCode()*31 + row.hashCode();
+			requireNonNull(column);
+			requireNonNull(row);
 		}
 	}
 
