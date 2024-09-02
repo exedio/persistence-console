@@ -81,8 +81,8 @@ final class DispatcherFailureDeprecatedCop extends TestCop<Dispatcher>
 		//noinspection SwitchStatementWithTooFewBranches OK: all methods overriding writeValue have a switch
 		switch(h)
 		{
-			case 0: out.write(dispatcher.getID()); break;
-			default:
+			case 0 -> out.write(dispatcher.getID());
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

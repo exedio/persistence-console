@@ -100,21 +100,21 @@ final class MediaTypeCop extends TestCop<Media>
 	{
 		switch(h)
 		{
-			case 0: out.write(media.getType().getID()); break;
-			case 1:
+			case 0 -> out.write(media.getType().getID());
+			case 1 -> {
 				out.writeRaw("<a href=\"");
 				out.write(new MediaCop(args, media));
 				out.writeRaw("\">");
 				out.write(media.getName());
 				out.writeRaw("</a>");
-				break;
-			case 2: out.write(media.getContentTypeDescription().replaceAll(",", ", ")); break;
-			case 3:
+			}
+			case 2 -> out.write(media.getContentTypeDescription().replaceAll(",", ", "));
+			case 3 -> {
 				final Condition c = media.bodyMismatchesContentTypeIfSupported();
 				if(c!=Condition.FALSE)
 					writeValueLong(out, c.toString());
-				break;
-			default:
+			}
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

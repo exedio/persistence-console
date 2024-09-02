@@ -90,9 +90,9 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	{
 		switch(h)
 		{
-			case 0: out.write(constraint.superType.toString()); break;
-			case 1: out.write(constraint.subType.toString()); break;
-			default:
+			case 0 -> out.write(constraint.superType.toString());
+			case 1 -> out.write(constraint.subType.toString());
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

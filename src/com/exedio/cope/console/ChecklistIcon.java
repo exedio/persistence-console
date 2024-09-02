@@ -33,13 +33,13 @@ enum ChecklistIcon
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 	static ChecklistIcon forColor(final Node.Color color)
 	{
-		switch(color)
+		return switch(color)
 		{
-			case OK:      return ok;
-			case WARNING: return warning;
-			case ERROR:   return error;
-			default:
-				throw new RuntimeException("" + color);
-		}
+			case OK      -> ok;
+			case WARNING -> warning;
+			case ERROR   -> error;
+			//noinspection UnnecessaryDefault
+			default -> throw new RuntimeException("" + color);
+		};
 	}
 }

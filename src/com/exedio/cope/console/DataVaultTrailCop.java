@@ -144,9 +144,9 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	{
 		switch(h)
 		{
-			case 0: out.write(field.getID()); break;
-			case 1: out.write(field.getVaultServiceKey()); break;
-			default:
+			case 0 -> out.write(field.getID());
+			case 1 -> out.write(field.getVaultServiceKey());
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}
