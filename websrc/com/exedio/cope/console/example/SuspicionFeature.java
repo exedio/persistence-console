@@ -19,6 +19,7 @@
 package com.exedio.cope.console.example;
 
 import com.exedio.cope.Feature;
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -32,5 +33,6 @@ public final class SuspicionFeature extends Feature
 				"Second example suspicion");
 	}
 
+	@Serial
 	private static final long serialVersionUID = 1l;
 }

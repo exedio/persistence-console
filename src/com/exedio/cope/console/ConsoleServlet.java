@@ -29,6 +29,7 @@ import com.exedio.cops.CopsServlet;
 import com.exedio.cops.Resource;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.Serial;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.Principal;
@@ -95,6 +96,7 @@ public class ConsoleServlet extends CopsServlet
 	}
 
 
+	@Serial
 	private static final long serialVersionUID = 1l;
 
 	private Stores stores = null;

@@ -24,6 +24,7 @@ import com.exedio.cope.pattern.MediaFilter;
 import com.exedio.cope.pattern.MediaTestable;
 import com.exedio.cope.pattern.MediaType;
 import java.io.IOException;
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public final class AMediaTestable extends MediaFilter implements MediaTestable
 {
+	@Serial
 	private static final long serialVersionUID = 1l;
 
 	private final boolean fail;

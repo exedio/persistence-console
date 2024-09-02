@@ -22,12 +22,14 @@ import com.exedio.cope.Item;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaUtil;
 import java.io.IOException;
+import java.io.Serial;
 import java.nio.charset.StandardCharsets;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public final class ConditionUnsupported extends MediaPath
 {
+	@Serial
 	private static final long serialVersionUID = 1l;
 
 	@Override

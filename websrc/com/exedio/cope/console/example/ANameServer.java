@@ -27,6 +27,7 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaUtil;
 import java.io.IOException;
+import java.io.Serial;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +37,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public final class ANameServer extends MediaPath
 {
+	@Serial
 	private static final long serialVersionUID = 1l;
 
 	final StringField source;
