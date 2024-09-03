@@ -55,10 +55,10 @@ final class EmptyStringFieldCop extends TestCop<StringField>
 		for(final Type<?> t : model.getTypes())
 		{
 			for(final Field<?> f : t.getDeclaredFields())
-				if(f instanceof final StringField sf)
+				if(f instanceof final StringField sf &&
+					sf.getMinimumLength()<1)
 				{
-					if(sf.getMinimumLength()<1)
-						result.add(sf);
+					result.add(sf);
 				}
 		}
 
