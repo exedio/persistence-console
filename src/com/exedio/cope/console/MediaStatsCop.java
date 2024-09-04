@@ -239,10 +239,10 @@ final class MediaStatsCop extends ConsoleCop<Void>
 
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof final MediaPath path)
+				if(feature instanceof final MediaPath path &&
+					variant.accepts(path))
 				{
-					if(variant.accepts(path))
-						medias.add(path);
+					medias.add(path);
 				}
 
 		final boolean isUrlGuessingNotSecure =
