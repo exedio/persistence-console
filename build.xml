@@ -141,6 +141,7 @@
 		<instrument
 				dir="websrc"
 				directSetValueMap="true"
+				serialAnnotation="true"
 				verify="${instrument.verify}">
 			<classpath>
 				<fileset dir="lib/test" />
