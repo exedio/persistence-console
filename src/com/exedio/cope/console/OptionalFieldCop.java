@@ -55,9 +55,8 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 		for(final Type<?> t : model.getTypes())
 		{
 			for(final Field<?> f : t.getDeclaredFields())
-				if(f instanceof FunctionField)
+				if(f instanceof final FunctionField<?> ff)
 				{
-					final FunctionField<?> ff = (FunctionField<?>)f;
 					if(!ff.isMandatory())
 						result.add(ff);
 				}

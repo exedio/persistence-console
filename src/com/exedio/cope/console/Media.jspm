@@ -142,19 +142,16 @@ final class Media_Jspm
 					{
 						%><%=path.getClass()%><%
 					}
-					if(path instanceof Media)
+					if(path instanceof final Media m)
 					{
-						final Media m = (Media)path;
 						%>(<%=m.getContentTypeDescription()%>)<%
 					}
-					else if(path instanceof MediaThumbnail)
+					else if(path instanceof final MediaThumbnail thumbnail)
 					{
-						final MediaThumbnail thumbnail = (MediaThumbnail)path;
 						%>(<%=thumbnail.getSource().getName()%>,<%=thumbnail.getBoundX()%>,<%=thumbnail.getBoundY()%>)<%
 					}
-					if(path instanceof MediaFilter)
+					if(path instanceof final MediaFilter filter)
 					{
-						final MediaFilter filter = (MediaFilter)path;
 						final Set<String> contentTypes = filter.getSupportedSourceContentTypes();
 						%><small><br>supports <% MediaStatsCop.printContentTypes(out, contentTypes); %></small><%
 					}

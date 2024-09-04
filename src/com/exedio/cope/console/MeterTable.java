@@ -215,10 +215,9 @@ final class MeterTable
 		@Override
 		public boolean equals(final Object other)
 		{
-			if(!(other instanceof CellKey))
+			if(!(other instanceof final CellKey o))
 				return false;
 
-			final CellKey o = (CellKey)other;
 			return column.equals(o.column) && row.equals(o.row);
 		}
 

@@ -81,9 +81,8 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 				result.add(tt);
 
 			for(final Field<?> f : t.getDeclaredFields())
-				if(f instanceof ItemField)
+				if(f instanceof final ItemField<?> itf)
 				{
-					final ItemField<?> itf = (ItemField<?>)f;
 					if(itf.needsCheckTypeColumn())
 						result.add(itf);
 				}

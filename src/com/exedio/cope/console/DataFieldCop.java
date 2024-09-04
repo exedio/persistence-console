@@ -66,9 +66,8 @@ final class DataFieldCop extends ConsoleCop<Void>
 
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof DataField)
+				if(feature instanceof final DataField field)
 				{
-					final DataField field = (DataField)feature;
 					fields.add(field);
 					if(lengthMax<field.getMaximumLength())
 						lengthMax = field.getMaximumLength();
@@ -132,9 +131,8 @@ final class DataFieldCop extends ConsoleCop<Void>
 
 			for(final Type<?> type : model.getTypes())
 				for(final Feature feature : type.getDeclaredFeatures())
-					if(feature instanceof DataField)
+					if(feature instanceof final DataField field)
 					{
-						final DataField field = (DataField)feature;
 						final String tableName = SchemaInfo.getTableName(field.getType());
 						Table table = result.get(tableName);
 						if(table==null)

@@ -239,9 +239,8 @@ final class MediaStatsCop extends ConsoleCop<Void>
 
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof MediaPath)
+				if(feature instanceof final MediaPath path)
 				{
-					final MediaPath path = (MediaPath)feature;
 					if(variant.accepts(path))
 						medias.add(path);
 				}

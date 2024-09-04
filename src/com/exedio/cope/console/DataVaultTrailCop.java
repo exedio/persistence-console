@@ -121,9 +121,8 @@ final class DataVaultTrailCop extends TestCop<DataField>
 
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof DataField)
+				if(feature instanceof final DataField field)
 				{
-					final DataField field = (DataField) feature;
 					final String bucket = field.getVaultServiceKey();
 					if(this.bucket!=null
 						? this.bucket.equals(bucket)
