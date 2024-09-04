@@ -47,6 +47,7 @@ import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.io.Serial;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,6 +59,7 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings("ResultOfObjectAllocationIgnored") // persistent object
 public final class ExampleServlet extends CopsServlet
 {
+	@Serial
 	private static final long serialVersionUID = 1l;
 
 	static final String CREATE_SAMPLE_DATA = "createSampleData";

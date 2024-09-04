@@ -21,12 +21,14 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.console.ConsoleServlet;
 import com.exedio.cope.reflect.FeatureField;
 import com.exedio.cope.reflect.TypeField;
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 public final class StandardConsole extends ConsoleServlet
 {
+	@Serial
 	private static final long serialVersionUID = 1l;
 
 	@Override
