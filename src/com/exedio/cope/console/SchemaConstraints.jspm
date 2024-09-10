@@ -30,19 +30,6 @@ import com.exedio.dsmf.Constraint;
 
 final class SchemaConstraints_Jspm
 {
-	private static String type(final Constraint.Type type)
-	{
-		switch(type)
-		{
-			case PrimaryKey: return "pk";
-			case ForeignKey: return "fk";
-			case Unique:     return "unique";
-			case Check:      return "check";
-			default:
-				throw new RuntimeException(type.name());
-		}
-	}
-
 	private static final String TYPE = "constraint.type";
 	private static final String CREATE = "constraint.create";
 	private static final String TEARDOWN = "constraint.teardown";
@@ -63,7 +50,7 @@ final class SchemaConstraints_Jspm
 			for(final Constraint.Type type : Constraint.Type.values())
 			{
 			%>
-			<input type="checkbox" name="<%=TYPE%>" value="<%=type.name()%>" checked="checked" /><%=type(type)%><%
+			<input type="checkbox" name="<%=TYPE%>" value="<%=type.name()%>" checked="checked" /><%=type%><%
 			}
 			%>
 			<br>
