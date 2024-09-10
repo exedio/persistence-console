@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import com.exedio.cope.Model;
-import com.exedio.cops.Resource;
 import com.exedio.dsmf.Column;
 import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Node;
@@ -75,7 +74,7 @@ final class SchemaDetails_Jspm
 				<input type="submit" name="<%= APPLY     %>" value="apply"/>
 				<input type="submit" name="<%= APPLY_DRY %>" value="dry run"/>
 			</div>
-			<img class="node" onClick="togSch(this)" src="<%=node(schema.getCumulativeColor())%>">
+			<img class="node" onClick="togSch(this)" src="<%=ConsoleServlet.nodeFalse(schema.getCumulativeColor())%>">
 			Schema
 			<ul id="schBdy" class="expand"><%
 
@@ -90,7 +89,7 @@ final class SchemaDetails_Jspm
 				final String tableName = table.getName();
 				%>
 				<li>
-					<img class="node" onClick="togTab(this,<%=tableCount%>)" src="<%=node(table.getCumulativeColor())%>">
+					<img class="node" onClick="togTab(this,<%=tableCount%>)" src="<%=ConsoleServlet.nodeFalse(table.getCumulativeColor())%>">
 					<small>tab<%=tableCount%></small><%
 
 					if(table.exists())
@@ -274,18 +273,6 @@ final class SchemaDetails_Jspm
 			%>
 			</ul>
 		</form><%
-	}
-
-	private static Resource node(final Node.Color color)
-	{
-		switch(color)
-		{
-			case OK:      return ConsoleServlet.nodeFalse;
-			case WARNING: return ConsoleServlet.nodeWarningFalse;
-			case ERROR:   return ConsoleServlet.nodeErrorFalse;
-			default:
-				throw new RuntimeException(color.toString());
-		}
 	}
 
 	private static void write(final Node.Color color, final Out out)
