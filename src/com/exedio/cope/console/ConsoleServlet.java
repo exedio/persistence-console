@@ -27,6 +27,7 @@ import com.exedio.cope.reflect.TypeField;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import com.exedio.cops.Resource;
+import com.exedio.dsmf.Node;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.Serial;
@@ -116,13 +117,25 @@ public class ConsoleServlet extends CopsServlet
 	@SuppressWarnings("unused") // OK: url set by javascript
 	static final Resource nodeTrue  = new Resource("nodetrue.png");
 
-	static final Resource nodeWarningFalse = new Resource("nodewarningfalse.png");
+	private static final Resource nodeWarningFalse = new Resource("nodewarningfalse.png");
 	@SuppressWarnings("unused") // OK: url set by javascript
 	static final Resource nodeWarningTrue  = new Resource("nodewarningtrue.png");
 
-	static final Resource nodeErrorFalse = new Resource("nodeerrorfalse.png");
+	private static final Resource nodeErrorFalse = new Resource("nodeerrorfalse.png");
 	@SuppressWarnings("unused") // OK: url set by javascript
 	static final Resource nodeErrorTrue  = new Resource("nodeerrortrue.png");
+
+	static Resource nodeFalse(final Node.Color color)
+	{
+		switch(color)
+		{
+			case OK:      return nodeFalse;
+			case WARNING: return nodeWarningFalse;
+			case ERROR:   return nodeErrorFalse;
+			default:
+				throw new RuntimeException(color.toString());
+		}
+	}
 
 	static final Resource nodeLeaf        = new Resource("nodeleaf.png");
 	static final Resource nodeLeafWarning = new Resource("nodewarningleaf.png");
