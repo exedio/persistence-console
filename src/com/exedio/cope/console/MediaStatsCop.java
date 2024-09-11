@@ -258,7 +258,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 
 		switch(variant)
 		{
-			case fingerprint:
+			case fingerprint -> {
 				final MediaFingerprintOffset offset =
 						model.getConnectProperties().mediaFingerprintOffset();
 				final double rampCurrent = offset.getRamp();
@@ -270,11 +270,11 @@ final class MediaStatsCop extends ConsoleCop<Void>
 						rampCurrent,
 						limitRamp(rampCurrent + fingerprintRampStep)
 				);
-				break;
-			case all:
-			case guessingPrevented:
+			}
+			case all,
+					guessingPrevented -> {
 				// disable warning about incomplete switch
-				break;
+			}
 		}
 		Media_Jspm.writeBody(this, out, Column.values().length+1, isUrlGuessingNotSecure, infos, summary);
 	}

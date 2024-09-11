@@ -83,9 +83,9 @@ final class EnumSingletonCop extends TestCop<EnumSingleton<?>>
 	{
 		switch(h)
 		{
-			case 0: out.write(singleton.getID()); break;
-			case 1: out.write(singleton.getOnce().getValueClass()); break;
-			default:
+			case 0 -> out.write(singleton.getID());
+			case 1 -> out.write(singleton.getOnce().getValueClass());
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

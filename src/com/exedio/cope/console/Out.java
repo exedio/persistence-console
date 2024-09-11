@@ -184,11 +184,11 @@ final class Out extends OutBasic
 	{
 		switch(type)
 		{
-			case PrimaryKey: bf.print("pk"    ); break;
-			case ForeignKey: bf.print("fk"    ); break;
-			case Unique:     bf.print("unique"); break;
-			case Check:      bf.print("check" ); break;
-			default:
+			case PrimaryKey -> bf.print("pk");
+			case ForeignKey -> bf.print("fk");
+			case Unique     -> bf.print("unique");
+			case Check      -> bf.print("check");
+			default ->
 				throw new RuntimeException(type.name());
 		}
 	}

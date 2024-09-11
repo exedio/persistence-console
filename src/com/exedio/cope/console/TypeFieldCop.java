@@ -107,10 +107,10 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 	{
 		switch(h)
 		{
-			case 0: out.write(field.getType().getID()); break;
-			case 1: out.write(field.getName()); break;
-			case 2: writeValueLong(out, field.getValues().toString()); break;
-			default:
+			case 0 -> out.write(field.getType().getID());
+			case 1 -> out.write(field.getName());
+			case 2 -> writeValueLong(out, field.getValues().toString());
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

@@ -128,15 +128,15 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	{
 		switch(h)
 		{
-			case 0:
+			case 0 ->
 				UnsupportedCheckConstraintByTable_Jspm.writeTableValue(this, out, table);
-				break;
-			case 1:
+
+			case 1 -> {
 				final StringBuilder bf = new StringBuilder();
 				appendSQL(table, bf);
 				writeValueLong(out, bf.toString());
-				break;
-			default:
+			}
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

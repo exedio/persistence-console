@@ -127,14 +127,14 @@ public class ConsoleServlet extends CopsServlet
 
 	static Resource nodeFalse(final Node.Color color)
 	{
-		switch(color)
+		return switch(color)
 		{
-			case OK:      return nodeFalse;
-			case WARNING: return nodeWarningFalse;
-			case ERROR:   return nodeErrorFalse;
-			default:
-				throw new RuntimeException(color.toString());
-		}
+			case OK      -> nodeFalse;
+			case WARNING -> nodeWarningFalse;
+			case ERROR   -> nodeErrorFalse;
+			//noinspection UnnecessaryDefault
+			default -> throw new RuntimeException(color.toString());
+		};
 	}
 
 	static final Resource nodeLeaf        = new Resource("nodeleaf.png");

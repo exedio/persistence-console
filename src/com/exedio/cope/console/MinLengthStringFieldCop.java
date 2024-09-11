@@ -80,9 +80,9 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	{
 		switch(h)
 		{
-			case 0: out.write(field.toString()); break;
-			case 1: out.write(Format.formatAndHide(0, field.getMinimumLength())); break;
-			default:
+			case 0 -> out.write(field.toString());
+			case 1 -> out.write(Format.formatAndHide(0, field.getMinimumLength()));
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

@@ -90,10 +90,10 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 		final Feature feature = (Feature)testable;
 		switch(h)
 		{
-			case 0: out.write(feature.getType().getID()); break;
-			case 1: out.write(feature.getName()); break;
-			case 2: out.write(feature.getClass()); break;
-			default:
+			case 0 -> out.write(feature.getType().getID());
+			case 1 -> out.write(feature.getName());
+			case 2 -> out.write(feature.getClass());
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

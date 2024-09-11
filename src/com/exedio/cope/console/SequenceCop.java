@@ -101,15 +101,15 @@ final class SequenceCop extends TestCop<SequenceInfo>
 		final boolean known = info.isKnown();
 		switch(h)
 		{
-			case 0: out.write(feature.getType().getID()); break;
-			case 1: out.write(feature.getName()); break;
-			case 2: out.write(format(info.getStartL())); break;
-			case 3: out.write(format(info.getMinimumL())); break;
-			case 4: out.write(format(info.getMaximumL())); break;
-			case 5: out.write(format(info.getCountL())); break;
-			case 6: if(known) out.write(format(info.getFirstL())); break;
-			case 7: if(known) out.write(format(info.getLastL())); break;
-			default:
+			case 0 -> out.write(feature.getType().getID());
+			case 1 -> out.write(feature.getName());
+			case 2 -> out.write(format(info.getStartL()));
+			case 3 -> out.write(format(info.getMinimumL()));
+			case 4 -> out.write(format(info.getMaximumL()));
+			case 5 -> out.write(format(info.getCountL()));
+			case 6 -> { if(known) out.write(format(info.getFirstL())); }
+			case 7 -> { if(known) out.write(format(info.getLastL())); }
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

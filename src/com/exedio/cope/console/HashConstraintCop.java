@@ -102,7 +102,7 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 		final Pattern pattern = constraint.getData().getPattern();
 		switch(h)
 		{
-			case 0:
+			case 0 -> {
 				if(pattern instanceof MediaPath)
 				{
 					out.writeRaw("<a href=\"");
@@ -115,12 +115,12 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 				if(pattern instanceof Media)
 					out.writeRaw("</a>");
 
-				break;
-			case 1:
+			}
+			case 1 -> {
 				if(pattern instanceof Media)
 					out.write(((Media)pattern).getContentTypeDescription().replaceAll(",", ", "));
-				break;
-			case 2:
+			}
+			case 2 ->
 			{
 				final String algorithm = constraint.getAlgorithm();
 				out.write(algorithm);
@@ -128,9 +128,8 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 				writeError(out,
 						model.isConnected() &&
 						!model.getSupportedDataHashAlgorithms().contains(algorithm));
-				break;
 			}
-			case 3:
+			case 3 ->
 			{
 				final Query<?> query = getQuery(constraint);
 				if(!query.getType().getModel().isConnected())
@@ -159,9 +158,8 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 					break;
 				}
 				out.write(sql);
-				break;
 			}
-			default:
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

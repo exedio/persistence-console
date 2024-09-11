@@ -102,9 +102,9 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	{
 		switch(h)
 		{
-			case 0: out.write(function.toString()); break;
-			case 1: out.write(function.getValueType().getID()); break;
-			default:
+			case 0 -> out.write(function.toString());
+			case 1 -> out.write(function.getValueType().getID());
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

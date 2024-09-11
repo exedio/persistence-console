@@ -100,8 +100,8 @@ final class CharacterNulCop extends TestCop<StringField>
 	{
 		switch(h)
 		{
-			case 0: out.write(field.getID()); break;
-			case 1:
+			case 0 -> out.write(field.getID());
+			case 1 -> {
 				final CharSet charSet = field.getCharSet();
 				if(charSet!=null)
 				{
@@ -109,9 +109,9 @@ final class CharacterNulCop extends TestCop<StringField>
 					if(charSet.contains('\0'))
 						out.write(" (contains NUL)");
 				}
-				break;
-			case 2: out.write(getSQL(field)); break;
-			default:
+			}
+			case 2 -> out.write(getSQL(field));
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}

@@ -279,15 +279,15 @@ final class SchemaDetails_Jspm
 	{
 		switch(color)
 		{
-			case OK:
-				break;
-			case WARNING:
+			case OK -> {
+				}
+			case WARNING -> {
 				%><img class="icon" src="<%=ConsoleServlet.warning%>"><%
-				break;
-			case ERROR:
+				}
+			case ERROR -> {
 				%><img class="icon" src="<%=ConsoleServlet.error%>"><%
-				break;
-			default:
+				}
+			default ->
 				throw new RuntimeException(color.toString());
 		}
 	}

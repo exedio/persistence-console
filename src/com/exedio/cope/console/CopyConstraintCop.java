@@ -82,9 +82,9 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	{
 		switch(h)
 		{
-			case 0: out.write(constraint.toString()); break;
-			case 1: out.write(constraint.getTarget().getValueType().getID()); break;
-			default:
+			case 0 -> out.write(constraint.toString());
+			case 1 -> out.write(constraint.getTarget().getValueType().getID());
+			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
 	}
