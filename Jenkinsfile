@@ -45,8 +45,8 @@ try
 				    ' "-Dbuild.tag=' + buildTag + '"' +
 				    ' -Dbuild.status=' + (isRelease?'release':'integration') +
 				    ' -Dinstrument.verify=true' +
-				    ' -Dtomcat.port.shutdown=' + port(0) +
-				    ' -Dtomcat.port.http=' + port(1)
+				    ' -Dtomcat.port.shutdown=18005' +
+				    ' -Dtomcat.port.http=18080'
 			}
 
 			recordIssues(
@@ -295,9 +295,4 @@ void assertGitUnchanged()
 	{
 		error 'FAILURE because fetching dependencies produces git diff:\n' + gitStatus
 	}
-}
-
-def port(int offset)
-{
-	return 28000 + 10*env.EXECUTOR_NUMBER.toInteger() + offset
 }
