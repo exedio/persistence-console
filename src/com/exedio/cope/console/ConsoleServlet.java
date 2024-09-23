@@ -172,7 +172,7 @@ public class ConsoleServlet extends CopsServlet
 			return;
 		}
 
-		stores = new Stores();
+		stores = new Stores(this);
 		model = ServletUtilX.getConnectedModel(this);
 	}
 

@@ -88,7 +88,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 			{
 				if(feature instanceof FeatureField)
 				{
-					if (all || args.stableFeaturesFilter.isStable((FeatureField<?>)feature))
+					if (all || args.stores.isStable((FeatureField<?>)feature))
 						result.add((FeatureField<?>) feature);
 				}
 			}
@@ -153,11 +153,5 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	private static Query<?> getQuery(final FeatureField<?> field)
 	{
 		return field.getType().newQuery(field.isInvalid());
-	}
-
-	@FunctionalInterface
-	interface StableFilter
-	{
-		boolean isStable(final FeatureField<?> featureField);
 	}
 }

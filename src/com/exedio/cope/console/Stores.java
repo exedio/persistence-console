@@ -20,7 +20,11 @@ package com.exedio.cope.console;
 
 import static java.util.Objects.requireNonNull;
 
+import com.exedio.cope.Query;
+import com.exedio.cope.reflect.FeatureField;
+import com.exedio.cope.reflect.TypeField;
 import java.util.HashMap;
+import java.util.List;
 
 final class Stores
 {
@@ -36,5 +40,28 @@ final class Stores
 		{
 			return (S)stores.computeIfAbsent(clazz, k -> requireNonNull(cop.initialStore()));
 		}
+	}
+
+	
+	private final ConsoleServlet servlet;
+
+	Stores(final ConsoleServlet servlet)
+	{
+		this.servlet = requireNonNull(servlet);
+	}
+
+	List<Query<?>> getCustomQueryConstraints()
+	{
+		return servlet.getCustomQueryConstraints(); // TODO cache
+	}
+
+	boolean isStable(final TypeField<?> typeField)
+	{
+		return servlet.isStable(typeField);
+	}
+
+	boolean isStable(final FeatureField<?> featureField)
+	{
+		return servlet.isStable(featureField);
 	}
 }
