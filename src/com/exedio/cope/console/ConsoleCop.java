@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import static java.util.Collections.unmodifiableCollection;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.Query;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cops.Cop;
 import com.exedio.cops.Pageable;
@@ -30,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.function.Supplier;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -61,6 +63,7 @@ abstract class ConsoleCop<S> extends Cop
 		final int autoRefresh;
 		final DatePrecision datePrecision;
 		final String mediaURLPrefix;
+		final Supplier<List<Query<?>>> customQueries;
 		final TypeFieldCop.StableFilter stableTypesFilter;
 		final FeatureFieldCop.StableFilter stableFeaturesFilter;
 
@@ -69,6 +72,7 @@ abstract class ConsoleCop<S> extends Cop
 				final int autoRefresh,
 				final DatePrecision datePrecision,
 				final String mediaURLPrefix,
+				final Supplier<List<Query<?>>> customQueries,
 				final TypeFieldCop.StableFilter stableTypesFilter,
 				final FeatureFieldCop.StableFilter stableFeaturesFilter)
 		{
@@ -76,6 +80,7 @@ abstract class ConsoleCop<S> extends Cop
 			this.autoRefresh = autoRefresh;
 			this.datePrecision = datePrecision;
 			this.mediaURLPrefix = mediaURLPrefix;
+			this.customQueries = customQueries;
 			this.stableTypesFilter = stableTypesFilter;
 			this.stableFeaturesFilter = stableFeaturesFilter;
 		}
@@ -89,6 +94,7 @@ abstract class ConsoleCop<S> extends Cop
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
 			this.datePrecision = getEnumParameter(request, DATE_PRECISION, DatePrecision.m);
 			this.mediaURLPrefix = request.getParameter(MEDIA_URL_PREFIX);
+			this.customQueries = servlet::getCustomQueryConstraints;
 			this.stableTypesFilter = servlet::isStable;
 			this.stableFeaturesFilter = servlet::isStable;
 			securityCheckMediaURLPrefix(servlet, request);
@@ -115,17 +121,17 @@ abstract class ConsoleCop<S> extends Cop
 
 		Args toAutoRefresh(final int autoRefresh)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, stableTypesFilter, stableFeaturesFilter);
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, customQueries, stableTypesFilter, stableFeaturesFilter);
 		}
 
 		Args toDatePrecision(final DatePrecision datePrecision)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, stableTypesFilter, stableFeaturesFilter);
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, customQueries, stableTypesFilter, stableFeaturesFilter);
 		}
 
 		Args toMediaURLPrefix(final String mediaURLPrefix)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, stableTypesFilter, stableFeaturesFilter);
+			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix, customQueries, stableTypesFilter, stableFeaturesFilter);
 		}
 	}
 
@@ -212,6 +218,7 @@ abstract class ConsoleCop<S> extends Cop
 					new CopyConstraintCop(args, testArgs),
 					new EnumSingletonCop(args, testArgs),
 					new HashConstraintCop(args, testArgs),
+					new CustomQueryConstraintCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
 					new OptionalFieldCop(args, testArgs),
@@ -449,6 +456,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new MediaTypeCop(args, new TestCop.TestArgs(request));
 			case HashConstraintCop.TAB:
 				return new HashConstraintCop(args, new TestCop.TestArgs(request));
+			case CustomQueryConstraintCop.TAB:
+				return new CustomQueryConstraintCop(args, new TestCop.TestArgs(request));
 			case ClusterCop.TAB:
 				return new ClusterCop(args);
 			case ThreadCop.TAB:

@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console.example;
 
+import com.exedio.cope.Query;
 import com.exedio.cope.console.ConsoleServlet;
 import com.exedio.cope.reflect.FeatureField;
 import com.exedio.cope.reflect.TypeField;
@@ -43,6 +44,16 @@ public final class StandardConsole extends ConsoleServlet
 			"http://" + "localhost:8080"  + path,
 			"http://" + "console.invalid" + path);
 	}
+
+	@Override
+	protected List<Query<?>> getCustomQueryConstraints()
+	{
+		return CUSTOM_QUERY_CONSTRAINTS;
+	}
+
+	private static final List<Query<?>> CUSTOM_QUERY_CONSTRAINTS = List.of(
+			AnItem.TYPE.newQuery(AnItem.aField.equal("doesNotExists-queryShouldSucceed")),
+			AnItem.TYPE.newQuery(AnItem.color.equal(AnItem.Color.blue35)));
 
 	@Override
 	protected boolean isStable(final TypeField<?> typeField)

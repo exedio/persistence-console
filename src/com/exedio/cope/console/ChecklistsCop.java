@@ -62,6 +62,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new TypeFieldCop(args, testArgs),
 						new FeatureFieldCop(args, testArgs),
 						new HashConstraintCop(args, testArgs),
+						new CustomQueryConstraintCop(args, testArgs),
 						new MediaTypeCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{ // machine
