@@ -71,11 +71,11 @@ final class CharacterNulCop extends TestCop<StringField>
 	}
 
 	@Override
-	List<StringField> getItems(final Model model)
+	List<StringField> getItems()
 	{
 		final ArrayList<StringField> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof StringField)
 					result.add((StringField)feature);
@@ -136,19 +136,19 @@ final class CharacterNulCop extends TestCop<StringField>
 	}
 
 	@Override
-	StringField forID(final Model model, final String id)
+	StringField forID(final String id)
 	{
-		return (StringField)model.getFeature(id);
+		return (StringField)app.model.getFeature(id);
 	}
 
 	/**
 	 * Works on MySQL only.
 	 */
 	@Override
-	long check(final StringField field, final Model model)
+	long check(final StringField field)
 	{
 		try(
-			Connection con = newConnection(model);
+			Connection con = newConnection(app.model);
 			Statement st = con.createStatement())
 		{
 			// drop NO_BACKSLASH_ESCAPES, otherwise \0 will not work

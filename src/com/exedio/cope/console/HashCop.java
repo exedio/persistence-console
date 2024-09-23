@@ -49,7 +49,7 @@ final class HashCop extends ConsoleCop<Void>
 	void writeBody(final Out out)
 	{
 		final HttpServletRequest request = out.request;
-		final Model model = out.model;
+		final Model model = app.model;
 
 		final ArrayList<Hash> hashes = new ArrayList<>();
 		for(final Type<?> type : model.getTypes())

@@ -24,7 +24,6 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.ItemField;
 import com.exedio.cope.ItemFunction;
-import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.This;
 import com.exedio.cope.TransactionTry;
@@ -70,11 +69,11 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	}
 
 	@Override
-	List<ItemFunction<?>> getItems(final Model model)
+	List<ItemFunction<?>> getItems()
 	{
 		final ArrayList<ItemFunction<?>> result = new ArrayList<>();
 
-		for(final Type<?> t : model.getTypes())
+		for(final Type<?> t : app.model.getTypes())
 		{
 			final This<?> tt = t.getThis();
 			if(tt.needsCheckTypeColumn())
@@ -116,15 +115,15 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	}
 
 	@Override
-	ItemFunction<?> forID(final Model model, final String id)
+	ItemFunction<?> forID(final String id)
 	{
-		return (ItemFunction<?>)model.getFeature(id);
+		return (ItemFunction<?>)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final ItemFunction<?> function, final Model model)
+	long check(final ItemFunction<?> function)
 	{
-		try(TransactionTry tx = model.startTransactionTry("Console TypeColumn " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console TypeColumn " + id))
 		{
 			return tx.commit(
 					function.checkTypeColumnL());
@@ -132,7 +131,7 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	}
 
 	@Override
-	String getViolationSql(final ItemFunction<?> function, final Model model)
+	String getViolationSql(final ItemFunction<?> function)
 	{
 		return SchemaInfo.checkTypeColumn(function);
 	}

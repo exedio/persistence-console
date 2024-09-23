@@ -71,7 +71,7 @@ final class ThreadCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		failIfNotConnected(out.model);
-		Thread_Jspm.writeBody(out, out.model.getThreadControllers());
+		failIfNotConnected();
+		Thread_Jspm.writeBody(out, app.model.getThreadControllers());
 	}
 }

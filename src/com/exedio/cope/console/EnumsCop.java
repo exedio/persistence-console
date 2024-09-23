@@ -49,13 +49,13 @@ final class EnumsCop extends ConsoleCop<Void>
 	{
 		final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map =
 			new LinkedHashMap<>();
-		for(final Type<?> type : out.model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			for(final Field<?> field : type.getDeclaredFields())
 				if(field instanceof final EnumField<?> f)
 				{
 					final Class<? extends Enum<?>> c = f.getValueClass();
 					map.computeIfAbsent(c, k -> new ArrayList<>()).add(f);
 				}
-		Enums_Jspm.write(out, this, map, out.model.getChangeHookString());
+		Enums_Jspm.write(out, this, map, app.model.getChangeHookString());
 	}
 }

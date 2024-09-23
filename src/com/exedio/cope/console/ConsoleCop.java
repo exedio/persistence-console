@@ -125,6 +125,7 @@ abstract class ConsoleCop<S> extends Cop
 	private static final String[] EMPTY_STRING_ARRAY = new String[0];
 	final String name;
 	final Args args;
+	final App app;
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static final int[] AUTO_REFRESHS = {0, 2, 5, 15, 60};
 
@@ -135,6 +136,7 @@ abstract class ConsoleCop<S> extends Cop
 		this.args = args;
 		//noinspection ThisEscapedInObjectConstruction
 		args.addParameters(this);
+		this.app = args.app;
 	}
 
 	long start = 0;
@@ -279,10 +281,7 @@ abstract class ConsoleCop<S> extends Cop
 		return System.currentTimeMillis() - start;
 	}
 
-	/**
-	 * @param model used in subclasses
-	 */
-	ChecklistIcon getChecklistIcon(final Model model)
+	ChecklistIcon getChecklistIcon()
 	{
 		return null;
 	}
@@ -549,7 +548,7 @@ abstract class ConsoleCop<S> extends Cop
 
 	S store()
 	{
-		return args.app.store(this);
+		return app.store(this);
 	}
 
 	/**
@@ -561,8 +560,8 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	@SuppressWarnings("ResultOfMethodCallIgnored") // OK: intended side effect
-	protected static final void failIfNotConnected(final Model model)
+	protected final void failIfNotConnected()
 	{
-		model.getConnectProperties();
+		app.model.getConnectProperties();
 	}
 }

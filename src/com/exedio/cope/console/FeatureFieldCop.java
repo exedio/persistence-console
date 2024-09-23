@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
-import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
@@ -78,17 +77,17 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	}
 
 	@Override
-	List<FeatureField<?>> getItems(final Model model)
+	List<FeatureField<?>> getItems()
 	{
 		final ArrayList<FeatureField<?>> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 		{
 			for(final Feature feature : type.getDeclaredFeatures())
 			{
 				if(feature instanceof FeatureField)
 				{
-					if (all || args.app.isStable((FeatureField<?>)feature))
+					if (all || app.isStable((FeatureField<?>)feature))
 						result.add((FeatureField<?>) feature);
 				}
 			}
@@ -128,16 +127,16 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	}
 
 	@Override
-	FeatureField<?> forID(final Model model, final String id)
+	FeatureField<?> forID(final String id)
 	{
-		return (FeatureField<?>)model.getFeature(id);
+		return (FeatureField<?>)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final FeatureField<?> field, final Model model)
+	long check(final FeatureField<?> field)
 	{
 		final Query<?> query = getQuery(field);
-		try(TransactionTry tx = model.startTransactionTry("Console FeatureField " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console FeatureField " + id))
 		{
 			return tx.commit(
 					query.total());
@@ -145,7 +144,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	}
 
 	@Override
-	String getViolationSql(final FeatureField<?> field, final Model model)
+	String getViolationSql(final FeatureField<?> field)
 	{
 		return SchemaInfo.search(getQuery(field));
 	}

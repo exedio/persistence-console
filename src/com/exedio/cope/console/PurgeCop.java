@@ -43,8 +43,8 @@ final class PurgeCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
-		failIfNotConnected(model);
+		final Model model = app.model;
+		failIfNotConnected();
 
 		final HttpServletRequest request = out.request;
 		final boolean post = isPost(request);

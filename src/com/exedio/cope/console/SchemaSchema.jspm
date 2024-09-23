@@ -39,7 +39,7 @@ final class SchemaSchema_Jspm
 			final Out out)
 	{
 		final HttpServletRequest request = out.request;
-		final Model model = out.model;
+		final Model model = cop.app.model;
 
 		%>
 		<form action="<%=cop%>#overall" method="POST">

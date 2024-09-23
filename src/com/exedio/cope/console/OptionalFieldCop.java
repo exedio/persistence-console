@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Field;
 import com.exedio.cope.FunctionField;
-import com.exedio.cope.Model;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
@@ -48,11 +47,11 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 	}
 
 	@Override
-	List<FunctionField<?>> getItems(final Model model)
+	List<FunctionField<?>> getItems()
 	{
 		final ArrayList<FunctionField<?>> result = new ArrayList<>();
 
-		for(final Type<?> t : model.getTypes())
+		for(final Type<?> t : app.model.getTypes())
 		{
 			for(final Field<?> f : t.getDeclaredFields())
 				if(f instanceof final FunctionField<?> ff &&
@@ -90,16 +89,16 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 	}
 
 	@Override
-	FunctionField<?> forID(final Model model, final String id)
+	FunctionField<?> forID(final String id)
 	{
-		return (FunctionField<?>)model.getFeature(id);
+		return (FunctionField<?>)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final FunctionField<?> field, final Model model)
+	long check(final FunctionField<?> field)
 	{
 		final Type<?> type = field.getType();
-		try(TransactionTry tx = model.startTransactionTry("Console OptionalField " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console OptionalField " + id))
 		{
 			final boolean result =
 				(type.newQuery(field.isNull()).total()==0) &&

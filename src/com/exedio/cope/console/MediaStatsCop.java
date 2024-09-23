@@ -97,9 +97,9 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	ChecklistIcon getChecklistIcon(final Model model)
+	ChecklistIcon getChecklistIcon()
 	{
-		return variant.getChecklistIcon(model);
+		return variant.getChecklistIcon(app.model);
 	}
 
 	enum Variant
@@ -233,7 +233,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
+		final Model model = app.model;
 
 		final ArrayList<MediaPath> medias = new ArrayList<>();
 

@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
-import com.exedio.cope.Model;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Dispatcher;
@@ -57,11 +56,11 @@ final class DispatcherFailureDeprecatedCop extends TestCop<Dispatcher>
 	}
 
 	@Override
-	List<Dispatcher> getItems(final Model model)
+	List<Dispatcher> getItems()
 	{
 		final ArrayList<Dispatcher> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof Dispatcher)
 					result.add((Dispatcher)feature);
@@ -94,17 +93,17 @@ final class DispatcherFailureDeprecatedCop extends TestCop<Dispatcher>
 	}
 
 	@Override
-	Dispatcher forID(final Model model, final String id)
+	Dispatcher forID(final String id)
 	{
-		return (Dispatcher)model.getFeature(id);
+		return (Dispatcher)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final Dispatcher dispatcher, final Model model)
+	long check(final Dispatcher dispatcher)
 	{
 		@SuppressWarnings("deprecation")
 		final Dispatcher.Result deprecated = Dispatcher.Result.failure;
-		try(TransactionTry tx = model.startTransactionTry("Console DispatcherFailureDeprecated " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console DispatcherFailureDeprecated " + id))
 		{
 			return tx.commit(
 					dispatcher.getRunType().newQuery(

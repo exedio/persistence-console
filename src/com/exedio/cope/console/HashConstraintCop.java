@@ -72,11 +72,11 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	}
 
 	@Override
-	List<HashConstraint> getItems(final Model model)
+	List<HashConstraint> getItems()
 	{
 		final ArrayList<HashConstraint> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof HashConstraint)
 					result.add((HashConstraint)feature);
@@ -176,15 +176,15 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	}
 
 	@Override
-	HashConstraint forID(final Model model, final String id)
+	HashConstraint forID(final String id)
 	{
-		return (HashConstraint)model.getFeature(id);
+		return (HashConstraint)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final HashConstraint constraint, final Model model)
+	long check(final HashConstraint constraint)
 	{
-		try(TransactionTry tx = model.startTransactionTry("Console HashConstraint " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console HashConstraint " + id))
 		{
 			return tx.commit(
 					getQuery(constraint).total());
@@ -192,7 +192,7 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	}
 
 	@Override
-	String getViolationSql(final HashConstraint constraint, final Model model)
+	String getViolationSql(final HashConstraint constraint)
 	{
 		try
 		{

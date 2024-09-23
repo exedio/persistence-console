@@ -55,7 +55,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
+		final Model model = app.model;
 		final EnvironmentInfo env = model.getEnvironmentInfo();
 		final java.util.Properties current = env.asProperties();
 		for(final String name : current.stringPropertyNames())

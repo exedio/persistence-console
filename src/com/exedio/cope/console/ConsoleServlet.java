@@ -112,7 +112,6 @@ public class ConsoleServlet extends CopsServlet
 
 	private App app = null;
 	private ConnectToken connectToken = null;
-	private Model model = null;
 
 	static final Resource stylesheet = new Resource("console.css");
 	static final Resource propertiesScript = new Resource("properties.js");
@@ -166,14 +165,14 @@ public class ConsoleServlet extends CopsServlet
 	{
 		super.init();
 
-		if(model!=null)
+		if(app!=null)
 		{
 			System.out.println("reinvokation of jspInit");
 			return;
 		}
 
-		app = new App(this);
-		model = ServletUtilX.getConnectedModel(this);
+		app = new App(
+				ServletUtilX.getConnectedModel(this), this);
 	}
 
 	@Override
@@ -184,7 +183,6 @@ public class ConsoleServlet extends CopsServlet
 			connectToken.returnItConditionally();
 			connectToken = null;
 		}
-		model = null;
 		app = null;
 		super.destroy();
 	}
@@ -193,7 +191,7 @@ public class ConsoleServlet extends CopsServlet
 	{
 		if(connectToken==null || connectToken.isReturned())
 			//noinspection ObjectToString OK: shows identity of servlet
-			connectToken = ConnectToken.issue(model, "servlet \"" + getServletName() + "\" (" + this + ')');
+			connectToken = ConnectToken.issue(app.model, "servlet \"" + getServletName() + "\" (" + this + ')');
 	}
 
 	final boolean willBeReturned(final ConnectToken token)
@@ -212,7 +210,7 @@ public class ConsoleServlet extends CopsServlet
 		final Model model;
 		{
 			{
-				model = this.model;
+				model = app.model;
 			}
 
 			final ConsoleCop<?> cop = ConsoleCop.getCop(app, model, request, this);
@@ -248,7 +246,7 @@ public class ConsoleServlet extends CopsServlet
 			final boolean ajax = Cop.isPost(request) && cop.isAjax(); // must use POST for security
 			if(ajax)
 				response.setContentType("text/xml; charset="+ UTF_8.name());
-			final Out out = new Out(request, model, this, cop.args, new PrintStream(response.getOutputStream(), false, UTF_8));
+			final Out out = new Out(request, this, cop.args, new PrintStream(response.getOutputStream(), false, UTF_8));
 			if(ajax)
 				cop.writeAjax(out);
 			else
@@ -270,8 +268,8 @@ public class ConsoleServlet extends CopsServlet
 
 				Console_Jspm.write(
 						out, response, cop,
-						this.model.toString(),
-						this.model.getInitializeDate(),
+						model.toString(),
+						model.getInitializeDate(),
 						authentication, hostname
 						);
 			}

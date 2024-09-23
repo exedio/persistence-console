@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.DataField;
 import com.exedio.cope.Feature;
-import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
@@ -94,7 +93,7 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	{
 		final LinkedHashSet<String> buckets = new LinkedHashSet<>();
 
-		for(final Type<?> type : out.model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof DataField)
 				{
@@ -115,11 +114,11 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	}
 
 	@Override
-	List<DataField> getItems(final Model model)
+	List<DataField> getItems()
 	{
 		final ArrayList<DataField> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof final DataField field)
 				{
@@ -158,15 +157,15 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	}
 
 	@Override
-	DataField forID(final Model model, final String id)
+	DataField forID(final String id)
 	{
-		return (DataField)model.getFeature(id);
+		return (DataField)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final DataField field, final Model model)
+	long check(final DataField field)
 	{
-		try(TransactionTry tx = model.startTransactionTry("Console DataVaultTrailCop " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console DataVaultTrailCop " + id))
 		{
 			return tx.commit(
 					field.checkVaultTrail());
@@ -174,7 +173,7 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	}
 
 	@Override
-	String getViolationSql(final DataField field, final Model model)
+	String getViolationSql(final DataField field)
 	{
 		return SchemaInfo.checkVaultTrail(field);
 	}

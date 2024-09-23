@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
-import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.MediaTestable;
 import java.util.ArrayList;
@@ -60,11 +59,11 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
-	List<MediaTestable> getItems(final Model model)
+	List<MediaTestable> getItems()
 	{
 		final ArrayList<MediaTestable> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof MediaTestable)
 					result.add((MediaTestable)feature);
@@ -105,13 +104,13 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
-	MediaTestable forID(final Model model, final String id)
+	MediaTestable forID(final String id)
 	{
-		return (MediaTestable)model.getFeature(id);
+		return (MediaTestable)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final MediaTestable testable, final Model model)
+	long check(final MediaTestable testable)
 	{
 		try
 		{

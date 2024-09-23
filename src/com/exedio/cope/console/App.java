@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import static java.util.Objects.requireNonNull;
 
+import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.reflect.FeatureField;
 import com.exedio.cope.reflect.TypeField;
@@ -42,11 +43,12 @@ final class App
 		}
 	}
 
-	
+	final Model model;
 	private final ConsoleServlet servlet;
 
-	App(final ConsoleServlet servlet)
+	App(final Model model, final ConsoleServlet servlet)
 	{
+		this.model = requireNonNull(model);
 		this.servlet = requireNonNull(servlet);
 	}
 

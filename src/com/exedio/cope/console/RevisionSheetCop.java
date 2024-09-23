@@ -42,7 +42,7 @@ final class RevisionSheetCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
+		final Model model = app.model;
 
 		if(model.getRevisions()==null)
 		{

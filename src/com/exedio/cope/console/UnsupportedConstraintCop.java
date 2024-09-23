@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
 
-import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.dsmf.CheckConstraint;
 import com.exedio.dsmf.Constraint;
@@ -93,11 +92,11 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	}
 
 	@Override
-	List<Constraint> getItems(final Model model)
+	List<Constraint> getItems()
 	{
 		final ArrayList<Constraint> result = new ArrayList<>();
 
-		final Schema schema = model.getSchema();
+		final Schema schema = app.model.getSchema();
 		for(final Table t : schema.getTables())
 		{
 			if (tableFilter==null || tableFilter.equals(t.getName()))
@@ -137,9 +136,9 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	}
 
 	@Override
-	Constraint forID(final Model model, final String id)
+	Constraint forID(final String id)
 	{
-		final Schema schema = model.getSchema();
+		final Schema schema = app.model.getSchema();
 		for(final Table t : schema.getTables())
 		{
 			for(final Constraint c : t.getConstraints())
@@ -150,16 +149,16 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	}
 
 	@Override
-	long check(final Constraint constraint, final Model model)
+	long check(final Constraint constraint)
 	{
 		return constraint.checkL();
 	}
 
 	@Override
-	String getViolationSql(final Constraint constraint, final Model model)
+	String getViolationSql(final Constraint constraint)
 	{
 		if (constraint instanceof CheckConstraint)
-			return "SELECT * FROM " + SchemaInfo.quoteName(model, constraint.getTable().getName()) +
+			return "SELECT * FROM " + SchemaInfo.quoteName(app.model, constraint.getTable().getName()) +
 					 " WHERE NOT(" + constraint.getRequiredCondition() + ')';
 		else
 			return null;

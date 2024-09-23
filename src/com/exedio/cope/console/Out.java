@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.MediaPath;
@@ -41,7 +40,6 @@ import javax.servlet.http.HttpServletRequest;
 final class Out extends OutBasic
 {
 	final HttpServletRequest request;
-	final Model model;
 	private final ConsoleServlet servlet;
 	private final String mediaURLPrefix;
 	private int nextId = 0;
@@ -49,7 +47,6 @@ final class Out extends OutBasic
 	@SuppressWarnings("SimpleDateFormatWithoutLocale") // timezone is mentioned in page footer, reports server time
 	Out(
 			final HttpServletRequest request,
-			final Model model,
 			final ConsoleServlet servlet,
 			final ConsoleCop.Args args,
 			final PrintStream bf)
@@ -57,7 +54,6 @@ final class Out extends OutBasic
 		super(bf);
 		assert request!=null;
 		this.request = request;
-		this.model = model;
 		this.mediaURLPrefix = args.mediaURLPrefix;
 		this.servlet = servlet;
 

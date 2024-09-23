@@ -83,7 +83,7 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 	void writeBody(final Out out)
 	{
 		final HttpServletRequest request = out.request;
-		final Model model = out.model;
+		final Model model = app.model;
 
 		if(isPost(request))
 		{

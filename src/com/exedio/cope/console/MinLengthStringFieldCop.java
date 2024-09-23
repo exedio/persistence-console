@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Field;
-import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.StringField;
 import com.exedio.cope.TransactionTry;
@@ -49,11 +48,11 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	}
 
 	@Override
-	List<StringField> getItems(final Model model)
+	List<StringField> getItems()
 	{
 		final ArrayList<StringField> result = new ArrayList<>();
 
-		for(final Type<?> t : model.getTypes())
+		for(final Type<?> t : app.model.getTypes())
 		{
 			for(final Field<?> f : t.getDeclaredFields())
 				if(f instanceof StringField)
@@ -94,17 +93,17 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	}
 
 	@Override
-	StringField forID(final Model model, final String id)
+	StringField forID(final String id)
 	{
-		return (StringField)model.getFeature(id);
+		return (StringField)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final StringField field, final Model model)
+	long check(final StringField field)
 	{
 		final Query<Integer> q = new Query<>(field.length().min());
 
-		try(TransactionTry tx = model.startTransactionTry("Console MinLengthStringField " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console MinLengthStringField " + id))
 		{
 			final Integer result = q.searchSingleton();
 			tx.commit();

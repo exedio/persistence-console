@@ -54,7 +54,7 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 	void writeBody(final Out out)
 	{
 		final HttpServletRequest request = out.request;
-		final Model model = out.model;
+		final Model model = app.model;
 		final ConnectProperties properties = ConnectToken.getProperties(model);
 
 		if(isPost(request))

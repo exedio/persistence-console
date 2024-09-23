@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
@@ -65,11 +64,11 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
-	List<Type<?>> getItems(final Model model)
+	List<Type<?>> getItems()
 	{
 		final ArrayList<Type<?>> result = new ArrayList<>();
 
-		for(final Type<?> t : model.getTypes())
+		for(final Type<?> t : app.model.getTypes())
 			if(t.needsCheckUpdateCounter())
 				result.add(t);
 
@@ -101,15 +100,15 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
-	Type<?> forID(final Model model, final String id)
+	Type<?> forID(final String id)
 	{
-		return model.getType(id);
+		return app.model.getType(id);
 	}
 
 	@Override
-	long check(final Type<?> type, final Model model)
+	long check(final Type<?> type)
 	{
-		try(TransactionTry tx = model.startTransactionTry("Console UpdateCounter " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console UpdateCounter " + id))
 		{
 			return tx.commit(
 					type.checkUpdateCounterL());
@@ -117,7 +116,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
-	String getViolationSql(final Type<?> type, final Model model)
+	String getViolationSql(final Type<?> type)
 	{
 		return SchemaInfo.checkUpdateCounter(type);
 	}

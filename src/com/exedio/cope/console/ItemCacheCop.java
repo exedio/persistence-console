@@ -74,7 +74,7 @@ final class ItemCacheCop extends ConsoleCop<Void>
 	private void writeBodyDeprecated(final Out out)
 	{
 		@SuppressWarnings("deprecation")
-		final ItemCacheStatistics statistics = out.model.getItemCacheStatistics();
+		final ItemCacheStatistics statistics = app.model.getItemCacheStatistics();
 		ItemCache_Jspm.writeBody(this, out, statistics);
 	}
 
@@ -94,13 +94,13 @@ final class ItemCacheCop extends ConsoleCop<Void>
 		table.addColumnBlue ("stamp.hit");
 		table.addColumnBlue ("stamp.purge");
 		table.addColumnWhite("concurrentLoad");
-		for(final Type<?> type : out.model.getConcreteTypes())
+		for(final Type<?> type : app.model.getConcreteTypes())
 			table.addRow(type.getID());
 		MeterTable.fillup(
 				list,
 				table,
 				"com.exedio.cope.ItemCache.",  // prefix
-				"model", out.model.toString(), // filter key/value
+				"model", app.model.toString(), // filter key/value
 				"type"); // row key
 		Meter_Jspm.write("Statistics", null, list, out);
 		ItemCache_Jspm.writeBody(detailed, table, out);

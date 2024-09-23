@@ -332,7 +332,7 @@ final class Test_Jspm
 				<td class="test">
 					<a href="#" onclick="return doTest(this, false);" data-test="<%=cop.toTest(id)%>">Test</a>
 					<%
-					final String violationSql = cop.getViolationSqlIfConnected(item, out.model);
+					final String violationSql = cop.getViolationSqlIfConnected(item);
 					if (violationSql!=null)
 					{
 						%>

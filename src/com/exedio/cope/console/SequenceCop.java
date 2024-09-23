@@ -22,7 +22,6 @@ import static com.exedio.cope.console.Format.format;
 
 import com.exedio.cope.Feature;
 import com.exedio.cope.IntegerField;
-import com.exedio.cope.Model;
 import com.exedio.cope.SequenceInfo;
 import com.exedio.cope.This;
 import java.util.Iterator;
@@ -74,9 +73,9 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	}
 
 	@Override
-	List<SequenceInfo> getItems(final Model model)
+	List<SequenceInfo> getItems()
 	{
-		final LinkedList<SequenceInfo> result = new LinkedList<>(model.getSequenceInfo());
+		final LinkedList<SequenceInfo> result = new LinkedList<>(app.model.getSequenceInfo());
 		for(final Iterator<SequenceInfo> i = result.iterator(); i.hasNext(); )
 		{
 			final Feature feature = i.next().getFeature();
@@ -121,9 +120,9 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	}
 
 	@Override
-	SequenceInfo forID(final Model model, final String id)
+	SequenceInfo forID(final String id)
 	{
-		final Feature feature = model.getFeature(id);
+		final Feature feature = app.model.getFeature(id);
 		if(feature instanceof This)
 			return feature.getType().getPrimaryKeyInfo();
 		else if(feature instanceof IntegerField)
@@ -133,7 +132,7 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	}
 
 	@Override
-	long check(final SequenceInfo info, final Model model)
+	long check(final SequenceInfo info)
 	{
 		final Feature feature = info.getFeature();
 		if(feature instanceof This)

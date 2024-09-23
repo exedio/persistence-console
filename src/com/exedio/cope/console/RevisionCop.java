@@ -152,7 +152,7 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
+		final Model model = app.model;
 		final Revisions revisions = model.getRevisions();
 
 		if(revisions==null)
