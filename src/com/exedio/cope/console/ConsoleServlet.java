@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.Query;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.reflect.FeatureField;
 import com.exedio.cope.reflect.TypeField;
@@ -76,6 +77,15 @@ public class ConsoleServlet extends CopsServlet
 	public List<String> getMediaURLPrefixes(final HttpServletRequest request)
 	{
 		return Collections.emptyList();
+	}
+
+	/**
+	 * May be overridden by subclasses to specify Custom Query Constraints.
+	 * The default implementation returns an empty list.
+	 */
+	protected List<Query<?>> getCustomQueryConstraints()
+	{
+		return List.of();
 	}
 
 	/**
