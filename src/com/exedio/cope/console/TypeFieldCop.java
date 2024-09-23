@@ -88,7 +88,7 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 			{
 				if(feature instanceof TypeField)
 				{
-					if (all || args.stores.isStable((TypeField<?>)feature))
+					if (all || args.app.isStable((TypeField<?>)feature))
 						result.add((TypeField<?>) feature);
 				}
 			}

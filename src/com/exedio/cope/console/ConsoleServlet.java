@@ -110,7 +110,7 @@ public class ConsoleServlet extends CopsServlet
 	@Serial
 	private static final long serialVersionUID = 1l;
 
-	private Stores stores = null;
+	private App app = null;
 	private ConnectToken connectToken = null;
 	private Model model = null;
 
@@ -172,7 +172,7 @@ public class ConsoleServlet extends CopsServlet
 			return;
 		}
 
-		stores = new Stores(this);
+		app = new App(this);
 		model = ServletUtilX.getConnectedModel(this);
 	}
 
@@ -185,7 +185,7 @@ public class ConsoleServlet extends CopsServlet
 			connectToken = null;
 		}
 		model = null;
-		stores = null;
+		app = null;
 		super.destroy();
 	}
 
@@ -215,7 +215,7 @@ public class ConsoleServlet extends CopsServlet
 				model = this.model;
 			}
 
-			final ConsoleCop<?> cop = ConsoleCop.getCop(stores, model, request, this);
+			final ConsoleCop<?> cop = ConsoleCop.getCop(app, model, request, this);
 			cop.initialize(request, model);
 			response.setStatus(cop.getResponseStatus());
 

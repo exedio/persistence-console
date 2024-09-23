@@ -57,29 +57,29 @@ abstract class ConsoleCop<S> extends Cop
 		private static final String DATE_PRECISION = "dp";
 		private static final String MEDIA_URL_PREFIX = "mup";
 
-		final Stores stores;
+		final App app;
 		final int autoRefresh;
 		final DatePrecision datePrecision;
 		final String mediaURLPrefix;
 
 		Args(
-				final Stores stores,
+				final App app,
 				final int autoRefresh,
 				final DatePrecision datePrecision,
 				final String mediaURLPrefix)
 		{
-			this.stores = stores;
+			this.app = app;
 			this.autoRefresh = autoRefresh;
 			this.datePrecision = datePrecision;
 			this.mediaURLPrefix = mediaURLPrefix;
 		}
 
 		Args(
-				final Stores stores,
+				final App app,
 				final HttpServletRequest request,
 				final ConsoleServlet servlet)
 		{
-			this.stores = stores;
+			this.app = app;
 			this.autoRefresh = getIntParameter(request, AUTO_REFRESH, 0);
 			this.datePrecision = getEnumParameter(request, DATE_PRECISION, DatePrecision.m);
 			this.mediaURLPrefix = request.getParameter(MEDIA_URL_PREFIX);
@@ -107,17 +107,17 @@ abstract class ConsoleCop<S> extends Cop
 
 		Args toAutoRefresh(final int autoRefresh)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
+			return new Args(app, autoRefresh, datePrecision, mediaURLPrefix);
 		}
 
 		Args toDatePrecision(final DatePrecision datePrecision)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
+			return new Args(app, autoRefresh, datePrecision, mediaURLPrefix);
 		}
 
 		Args toMediaURLPrefix(final String mediaURLPrefix)
 		{
-			return new Args(stores, autoRefresh, datePrecision, mediaURLPrefix);
+			return new Args(app, autoRefresh, datePrecision, mediaURLPrefix);
 		}
 	}
 
@@ -342,12 +342,12 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	static final ConsoleCop<?> getCop(
-			final Stores stores,
+			final App app,
 			final Model model,
 			final HttpServletRequest request,
 			final ConsoleServlet servlet)
 	{
-		final Args args = new Args(stores, request, servlet);
+		final Args args = new Args(app, request, servlet);
 		final String pathInfo = request.getPathInfo();
 
 		if("/".equals(pathInfo))
@@ -549,7 +549,7 @@ abstract class ConsoleCop<S> extends Cop
 
 	S store()
 	{
-		return args.stores.store(this);
+		return args.app.store(this);
 	}
 
 	/**
