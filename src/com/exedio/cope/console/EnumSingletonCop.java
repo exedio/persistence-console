@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
-import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
@@ -60,11 +59,11 @@ final class EnumSingletonCop extends TestCop<EnumSingleton<?>>
 	}
 
 	@Override
-	List<EnumSingleton<?>> getItems(final Model model)
+	List<EnumSingleton<?>> getItems()
 	{
 		final ArrayList<EnumSingleton<?>> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof EnumSingleton)
 					result.add((EnumSingleton<?>)feature);
@@ -97,15 +96,15 @@ final class EnumSingletonCop extends TestCop<EnumSingleton<?>>
 	}
 
 	@Override
-	EnumSingleton<?> forID(final Model model, final String id)
+	EnumSingleton<?> forID(final String id)
 	{
-		return (EnumSingleton<?>)model.getFeature(id);
+		return (EnumSingleton<?>)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final EnumSingleton<?> singleton, final Model model)
+	long check(final EnumSingleton<?> singleton)
 	{
-		try(TransactionTry tx = model.startTransactionTry("Console EnumSingleton " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console EnumSingleton " + id))
 		{
 			return Math.subtractExact(
 					expected(singleton),
@@ -124,7 +123,7 @@ final class EnumSingletonCop extends TestCop<EnumSingleton<?>>
 	}
 
 	@Override
-	String getViolationSql(final EnumSingleton<?> singleton, final Model model)
+	String getViolationSql(final EnumSingleton<?> singleton)
 	{
 		return SchemaInfo.total(getQuery(singleton)) + " < " + expected(singleton);
 	}

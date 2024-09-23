@@ -59,7 +59,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
+		final Model model = app.model;
 
 		final ArrayList<DataField> fields = new ArrayList<>();
 		long lengthMax = 0;

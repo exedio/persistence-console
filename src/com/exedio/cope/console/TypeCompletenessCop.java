@@ -60,11 +60,11 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	}
 
 	@Override
-	List<Constraint<?>> getItems(final Model model)
+	List<Constraint<?>> getItems()
 	{
 		final ArrayList<Constraint<?>> result = new ArrayList<>();
 
-		for(final Type<?> superType : model.getTypes())
+		for(final Type<?> superType : app.model.getTypes())
 			addTypes(superType, result);
 
 		return result;
@@ -104,19 +104,19 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	}
 
 	@Override
-	Constraint<?> forID(final Model model, final String id)
+	Constraint<?> forID(final String id)
 	{
-		return Constraint.forID(model, id);
+		return Constraint.forID(app.model, id);
 	}
 
 	@Override
-	long check(final Constraint<?> constraint, final Model model)
+	long check(final Constraint<?> constraint)
 	{
-		return constraint.check(model);
+		return constraint.check(app.model);
 	}
 
 	@Override
-	String getViolationSql(final Constraint<?> constraint, final Model model)
+	String getViolationSql(final Constraint<?> constraint)
 	{
 		return constraint.getViolationSql();
 	}

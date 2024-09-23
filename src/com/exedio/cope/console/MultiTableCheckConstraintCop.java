@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
 
 import com.exedio.cope.CheckConstraint;
-import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
@@ -67,11 +66,11 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 	}
 
 	@Override
-	List<CheckConstraint> getItems(final Model model)
+	List<CheckConstraint> getItems()
 	{
 		final ArrayList<CheckConstraint> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 		{
 			for(final CheckConstraint constraint : type.getDeclaredCheckConstraints())
 				if(!constraint.isSupportedBySchemaIfSupportedByDialect())
@@ -106,15 +105,15 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 	}
 
 	@Override
-	CheckConstraint forID(final Model model, final String id)
+	CheckConstraint forID(final String id)
 	{
-		return (CheckConstraint)model.getFeature(id);
+		return (CheckConstraint)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final CheckConstraint constraint, final Model model)
+	long check(final CheckConstraint constraint)
 	{
-		try(TransactionTry tx = model.startTransactionTry("Console CheckConstraint " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console CheckConstraint " + id))
 		{
 			return tx.commit(
 					constraint.check());
@@ -122,7 +121,7 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 	}
 
 	@Override
-	String getViolationSql(final CheckConstraint constraint, final Model model)
+	String getViolationSql(final CheckConstraint constraint)
 	{
 		return SchemaInfo.search(constraint.getType().newQuery(constraint.getCondition().not()));
 	}

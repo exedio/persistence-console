@@ -231,7 +231,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
+		final Model model = app.model;
 
 		Media_Jspm.writeStats(out, this, media.getInfo());
 

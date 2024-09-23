@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
@@ -55,9 +54,9 @@ final class CustomQueryConstraintCop extends TestCop<Query<?>>
 	}
 
 	@Override
-	List<Query<?>> getItems(final Model model)
+	List<Query<?>> getItems()
 	{
-		return args.app.getCustomQueryConstraints();
+		return app.getCustomQueryConstraints();
 	}
 
 	@Override
@@ -85,25 +84,25 @@ final class CustomQueryConstraintCop extends TestCop<Query<?>>
 	}
 
 	@Override
-	Query<?> forID(final Model model, final String id)
+	Query<?> forID(final String id)
 	{
-		return args.app.getCustomQueryConstraints().stream().
+		return app.getCustomQueryConstraints().stream().
 				filter(q -> id.equals(q.toString())).
 				findFirst().
 				orElse(null);
 	}
 
 	@Override
-	long check(final Query<?> query, final Model model)
+	long check(final Query<?> query)
 	{
-		try(TransactionTry tx = model.startTransactionTry("Console CustomQueryConstraint " + query))
+		try(TransactionTry tx = app.model.startTransactionTry("Console CustomQueryConstraint " + query))
 		{
 			return tx.commit(query.total());
 		}
 	}
 
 	@Override
-	String getViolationSql(final Query<?> query, final Model model)
+	String getViolationSql(final Query<?> query)
 	{
 		return SchemaInfo.total(query);
 	}

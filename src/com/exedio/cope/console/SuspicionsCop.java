@@ -70,10 +70,10 @@ final class SuspicionsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	ChecklistIcon getChecklistIcon(final Model model)
+	ChecklistIcon getChecklistIcon()
 	{
 		return
-				features(model).isEmpty()
+				features(app.model).isEmpty()
 				? ChecklistIcon.empty
 				: ChecklistIcon.error;
 	}
@@ -81,6 +81,6 @@ final class SuspicionsCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		Suspicions_Jspm.writeBody(out, features(out.model));
+		Suspicions_Jspm.writeBody(out, features(app.model));
 	}
 }

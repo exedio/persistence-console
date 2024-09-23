@@ -86,11 +86,11 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	}
 
 	@Override
-	List<Table> getItems(final Model model)
+	List<Table> getItems()
 	{
 		final ArrayList<Table> result = new ArrayList<>();
 
-		final Schema schema = model.getSchema();
+		final Schema schema = app.model.getSchema();
 		for(final Table table : schema.getTables())
 		{
 			for(final Constraint constraint : table.getConstraints())
@@ -186,9 +186,9 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	}
 
 	@Override
-	Table forID(final Model model, final String id)
+	Table forID(final String id)
 	{
-		final Schema schema = model.getSchema();
+		final Schema schema = app.model.getSchema();
 		for(final Table t : schema.getTables())
 			if(id.equals(t.getName()))
 				return t;
@@ -197,8 +197,9 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	}
 
 	@Override
-	long check(final Table table, final Model model)
+	long check(final Table table)
 	{
+		final Model model = app.model;
 		final StringBuilder bf = new StringBuilder();
 		bf.append("SELECT COUNT(*) FROM ").
 			append(quoteName(model, table.getName())).

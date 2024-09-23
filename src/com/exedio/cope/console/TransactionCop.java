@@ -118,7 +118,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
+		final Model model = app.model;
 
 		Transaction_Jspm.writeStats(
 				out,

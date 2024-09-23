@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Condition;
 import com.exedio.cope.Feature;
-import com.exedio.cope.Model;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
@@ -64,7 +63,7 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	/**
-	 * Is needed, because {@link #getItems(Model)} calls
+	 * Is needed, because {@link #getItems()} calls
 	 * {@link com.exedio.cope.DataField#getVaultInfo()}.
 	 */
 	@Override
@@ -74,11 +73,11 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
-	List<Media> getItems(final Model model)
+	List<Media> getItems()
 	{
 		final ArrayList<Media> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 		{
 			for(final Feature feature : type.getDeclaredFeatures())
 			{
@@ -126,17 +125,17 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
-	Media forID(final Model model, final String id)
+	Media forID(final String id)
 	{
-		return (Media)model.getFeature(id);
+		return (Media)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final Media media, final Model model)
+	long check(final Media media)
 	{
 		final Query<?> query = getQuery(media);
 
-		try(TransactionTry tx = model.startTransactionTry("Console MediaType " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console MediaType " + id))
 		{
 			return tx.commit(
 					query.total());
@@ -149,7 +148,7 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
-	String getViolationSql(final Media media, final Model model)
+	String getViolationSql(final Media media)
 	{
 		if (media.bodyMismatchesContentTypeIfSupported()==Condition.FALSE)
 			return null;

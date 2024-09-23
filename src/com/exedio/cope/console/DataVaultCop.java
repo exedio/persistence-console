@@ -67,7 +67,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		final Model model = out.model;
+		final Model model = app.model;
 		if(!model.isConnected())
 		{
 			Console_Jspm.writeNotConnected(out, this);

@@ -94,12 +94,12 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	abstract TestCop<I> newTestArgs(TestArgs testArgs);
 
 	@Override
-	final ChecklistIcon getChecklistIcon(final Model model)
+	final ChecklistIcon getChecklistIcon()
 	{
-		if(requiresConnect() && !model.isConnected())
+		if(requiresConnect() && !app.model.isConnected())
 			return ChecklistIcon.unknown;
 
-		final List<I> items = getItems(model);
+		final List<I> items = getItems();
 		if(items.isEmpty())
 			return ChecklistIcon.empty;
 
@@ -119,16 +119,14 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	@Override
 	final void writeBody(final Out out)
 	{
-		final Model model = out.model;
-
 		if(requiresConnect())
-			failIfNotConnected(out.model);
+			failIfNotConnected();
 
 		writeIntro(out);
 
 		Test_Jspm.writeBody(
 				this, out,
-				getHeadings(), getItems(model),
+				getHeadings(), getItems(),
 				store());
 	}
 
@@ -148,7 +146,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		if(id==null)
 			throw new IllegalArgumentException();
 
-		final I item = forID(out.model, id);
+		final I item = forID(id);
 		if(item==null)
 			throw new IllegalArgumentException(id);
 
@@ -156,7 +154,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		Info info;
 		try
 		{
-			final long result = check(item, out.model);
+			final long result = check(item);
 			info = new ResultInfo(TimeUtil.toMillies(System.nanoTime(), start), result);
 		}
 		catch(final Exception | AssertionError e)
@@ -167,7 +165,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		final Store store = store();
 		store.put(id, info);
 
-		final List<I> items = getItems(out.model);
+		final List<I> items = getItems();
 
 		final int headingsLength = getHeadings().length;
 		out.writeRaw(
@@ -452,11 +450,11 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		return 2;
 	}
 
-	final String getViolationSqlIfConnected(final I item, final Model model)
+	final String getViolationSqlIfConnected(final I item)
 	{
 		try
 		{
-			return getViolationSql(item, model);
+			return getViolationSql(item);
 		}
 		catch(final Model.NotConnectedException e)
 		{
@@ -467,15 +465,15 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	/**
 	 * @return SQL query that finds violations, or null to indicate that violation SQL is not supported
 	 */
-	String getViolationSql(final I item, final Model model)
+	String getViolationSql(final I item)
 	{
 		return null;
 	}
 
-	abstract List<I> getItems(Model model);
+	abstract List<I> getItems();
 	abstract String[] getHeadings();
 	abstract void writeValue(Out out, I item, int h);
 	abstract String getID(I item);
-	abstract I forID(Model model, String id);
-	abstract long check(I item, Model model);
+	abstract I forID(String id);
+	abstract long check(I item);
 }

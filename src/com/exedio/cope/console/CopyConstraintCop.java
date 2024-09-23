@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
 
 import com.exedio.cope.CopyConstraint;
-import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
@@ -61,11 +60,11 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	}
 
 	@Override
-	List<CopyConstraint> getItems(final Model model)
+	List<CopyConstraint> getItems()
 	{
 		final ArrayList<CopyConstraint> result = new ArrayList<>();
 
-		for(final Type<?> type : model.getTypes())
+		for(final Type<?> type : app.model.getTypes())
 			result.addAll(type.getDeclaredCopyConstraints());
 
 		return result;
@@ -96,15 +95,15 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	}
 
 	@Override
-	CopyConstraint forID(final Model model, final String id)
+	CopyConstraint forID(final String id)
 	{
-		return (CopyConstraint)model.getFeature(id);
+		return (CopyConstraint)app.model.getFeature(id);
 	}
 
 	@Override
-	long check(final CopyConstraint constraint, final Model model)
+	long check(final CopyConstraint constraint)
 	{
-		try(TransactionTry tx = model.startTransactionTry("Console CopyConstraint " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console CopyConstraint " + id))
 		{
 			return tx.commit(
 					constraint.check());
@@ -112,7 +111,7 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	}
 
 	@Override
-	String getViolationSql(final CopyConstraint constraint, final Model model)
+	String getViolationSql(final CopyConstraint constraint)
 	{
 		return SchemaInfo.check(constraint);
 	}

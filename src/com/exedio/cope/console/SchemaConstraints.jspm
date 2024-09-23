@@ -40,7 +40,7 @@ final class SchemaConstraints_Jspm
 			final Out out)
 	{
 		final HttpServletRequest request = out.request;
-		final Model model = out.model;
+		final Model model = cop.app.model;
 
 		%>
 		<hr>

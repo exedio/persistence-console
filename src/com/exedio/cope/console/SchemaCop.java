@@ -88,7 +88,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 			"DANGER ZONE.";
 
 	@Override
-	ChecklistIcon getChecklistIcon(final Model model)
+	ChecklistIcon getChecklistIcon()
 	{
 		return store().get();
 	}
@@ -119,7 +119,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 	@Override
 	void writeBody(final Out out)
 	{
-		failIfNotConnected(out.model);
+		failIfNotConnected();
 		SchemaSchema_Jspm.writeBody(this, out);
 		SchemaConstraints_Jspm.writeBody(this, out);
 		SchemaDetails_Jspm.writeBody(this, out);

@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.Model;
 import com.exedio.cope.misc.SerializationCheck;
 
 final class SerializationCheckCop extends ConsoleCop<Void>
@@ -52,10 +51,10 @@ final class SerializationCheckCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	ChecklistIcon getChecklistIcon(final Model model)
+	ChecklistIcon getChecklistIcon()
 	{
 		return
-				SerializationCheck.check(model).isEmpty()
+				SerializationCheck.check(app.model).isEmpty()
 				? ChecklistIcon.ok
 				: ChecklistIcon.error;
 	}
@@ -65,6 +64,6 @@ final class SerializationCheckCop extends ConsoleCop<Void>
 	{
 		SerializationCheck_Jspm.writeBody(
 				out,
-				SerializationCheck.check(out.model));
+				SerializationCheck.check(app.model));
 	}
 }
