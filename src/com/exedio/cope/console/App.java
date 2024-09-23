@@ -26,7 +26,7 @@ import com.exedio.cope.reflect.TypeField;
 import java.util.HashMap;
 import java.util.List;
 
-final class Stores
+final class App
 {
 	private final HashMap<Class<? extends ConsoleCop<?>>, Object> stores = new HashMap<>();
 
@@ -45,7 +45,7 @@ final class Stores
 	
 	private final ConsoleServlet servlet;
 
-	Stores(final ConsoleServlet servlet)
+	App(final ConsoleServlet servlet)
 	{
 		this.servlet = requireNonNull(servlet);
 	}

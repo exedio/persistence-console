@@ -57,7 +57,7 @@ final class CustomQueryConstraintCop extends TestCop<Query<?>>
 	@Override
 	List<Query<?>> getItems(final Model model)
 	{
-		return args.stores.getCustomQueryConstraints();
+		return args.app.getCustomQueryConstraints();
 	}
 
 	@Override
@@ -87,7 +87,7 @@ final class CustomQueryConstraintCop extends TestCop<Query<?>>
 	@Override
 	Query<?> forID(final Model model, final String id)
 	{
-		return args.stores.getCustomQueryConstraints().stream().
+		return args.app.getCustomQueryConstraints().stream().
 				filter(q -> id.equals(q.toString())).
 				findFirst().
 				orElse(null);

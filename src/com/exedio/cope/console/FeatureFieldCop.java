@@ -88,7 +88,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 			{
 				if(feature instanceof FeatureField)
 				{
-					if (all || args.stores.isStable((FeatureField<?>)feature))
+					if (all || args.app.isStable((FeatureField<?>)feature))
 						result.add((FeatureField<?>) feature);
 				}
 			}
