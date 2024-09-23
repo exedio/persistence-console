@@ -63,28 +63,21 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	}
 
 	@Override
-	String[] getHeadings()
-	{
-		return new String[]{"Field", "Min Length"};
-	}
-
-	@Override
 	int getNumberOfFilterableColumns()
 	{
 		return 1;
 	}
 
 	@Override
-	void writeValue(final Out out, final StringField field, final int h)
+	List<Column<StringField>> columns()
 	{
-		switch(h)
-		{
-			case 0 -> out.write(field.toString());
-			case 1 -> out.write(Format.formatAndHide(0, field.getMinimumLength()));
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
+		return COLUMNS;
 	}
+
+	private static final List<Column<StringField>> COLUMNS = List.of(
+			column("Field", StringField::toString),
+			column("Min Length", field -> Format.formatAndHide(0, field.getMinimumLength()))
+	);
 
 	@Override
 	String getID(final StringField field)

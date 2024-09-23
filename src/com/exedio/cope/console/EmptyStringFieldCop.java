@@ -65,22 +65,14 @@ final class EmptyStringFieldCop extends TestCop<StringField>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<StringField>> columns()
 	{
-		return new String[]{"Field"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final StringField field, final int h)
-	{
-		//noinspection SwitchStatementWithTooFewBranches OK: all methods overriding writeValue have a switch
-		switch(h)
-		{
-			case 0 -> out.write(field.toString());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<StringField>> COLUMNS = List.of(
+			column("Field", StringField::toString)
+	);
 
 	@Override
 	String getID(final StringField field)

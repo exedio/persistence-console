@@ -96,23 +96,17 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<TypeField<?>>> columns()
 	{
-		return new String[]{"Type", "Name", "Values"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final TypeField<?> field, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(field.getType().getID());
-			case 1 -> out.write(field.getName());
-			case 2 -> writeValueLong(out, field.getValues().toString());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	@SuppressWarnings("Convert2MethodRef")
+	private static final List<Column<TypeField<?>>> COLUMNS = List.of(
+			column("Type", field -> field.getType().getID()),
+			column("Name", field -> field.getName()),
+			column("Values", (out, field) -> writeValueLong(out, field.getValues().toString()))
+	);
 
 	@Override
 	void writeIntro(final Out out)

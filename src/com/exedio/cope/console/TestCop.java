@@ -20,12 +20,15 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Format.format;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Objects.requireNonNull;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.TimeUtil;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 
@@ -126,7 +129,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 
 		Test_Jspm.writeBody(
 				this, out,
-				getHeadings(), getItems(),
+				columns(), getItems(),
 				store());
 	}
 
@@ -165,9 +168,10 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		final Store store = store();
 		store.put(id, info);
 
+		final List<Column<I>> columns = columns();
 		final List<I> items = getItems();
 
-		final int headingsLength = getHeadings().length;
+		final int headingsLength = columns.size();
 		out.writeRaw(
 			"<?xml version=\"1.0\" encoding=\"" + UTF_8.name() + "\" standalone=\"yes\"?>" +
 			"<response>" +
@@ -181,7 +185,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 			out.writeRaw('"');
 		}
 		out.writeRaw("><![CDATA[");
-		Test_Jspm.writeRow(out, this, headingsLength, item, id, info);
+		Test_Jspm.writeRow(out, this, columns, headingsLength, item, id, info);
 		out.writeRaw(
 			"]]></update>" +
 			"<update id=\"summary\"><![CDATA[");
@@ -471,8 +475,30 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	}
 
 	abstract List<I> getItems();
-	abstract String[] getHeadings();
-	abstract void writeValue(Out out, I item, int h);
+	abstract List<Column<I>> columns();
+
+	static final <I> Column<I> column(final String heading, final Function<I,String> cell)
+	{
+		return new Column<>(heading, (out, field) -> out.write(cell.apply(field)));
+	}
+
+	static final <I> Column<I> column(final String heading, final BiConsumer<Out, I> cell)
+	{
+		return new Column<>(heading, cell);
+	}
+
+	protected static final class Column<I>
+	{
+		final String heading;
+		final BiConsumer<Out, I> cell;
+
+		Column(final String heading, final BiConsumer<Out, I> cell)
+		{
+			this.heading = requireNonNull(heading);
+			this.cell = requireNonNull(cell);
+		}
+	}
+
 	abstract String getID(I item);
 	abstract I forID(String id);
 	abstract long check(I item);

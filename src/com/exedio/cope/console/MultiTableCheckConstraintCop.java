@@ -81,22 +81,15 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<CheckConstraint>> columns()
 	{
-		return new String[]{"Constraint", "Condition"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final CheckConstraint constraint, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(constraint.toString());
-			case 1 -> writeValueLong(out, constraint.getCondition().toString());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<CheckConstraint>> COLUMNS = List.of(
+			column("Constraint", CheckConstraint::toString),
+			column("Condition", (out,constraint) -> writeValueLong(out, constraint.getCondition().toString()))
+	);
 
 	@Override
 	String getID(final CheckConstraint constraint)

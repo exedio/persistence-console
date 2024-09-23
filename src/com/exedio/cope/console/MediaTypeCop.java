@@ -89,33 +89,26 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<Media>> columns()
 	{
-		return new String[]{"Type", "Name", "Content Type", "Query"};
-	}
-
-	@Override
-	void writeValue(final Out out, final Media media, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(media.getType().getID());
-			case 1 -> {
+		return List.of(
+			column("Type", media -> media.getType().getID()),
+			column("Name", (out, media) ->
+			{
 				out.writeRaw("<a href=\"");
 				out.write(new MediaCop(args, media));
 				out.writeRaw("\">");
 				out.write(media.getName());
 				out.writeRaw("</a>");
-			}
-			case 2 -> out.write(media.getContentTypeDescription().replaceAll(",", ", "));
-			case 3 -> {
+			}),
+			column("Content Type", media -> media.getContentTypeDescription().replaceAll(",", ", ")),
+			column("Query", (out, media) ->
+			{
 				final Condition c = media.bodyMismatchesContentTypeIfSupported();
 				if(c!=Condition.FALSE)
 					writeValueLong(out, c.toString());
-			}
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
+			})
+		);
 	}
 
 	@Override

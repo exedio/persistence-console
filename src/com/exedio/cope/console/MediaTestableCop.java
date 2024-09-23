@@ -72,30 +72,22 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
-	String[] getHeadings()
-	{
-		return new String[]{"Type", "Name", "Class"};
-	}
-
-	@Override
 	int getNumberOfFilterableColumns()
 	{
 		return 3;
 	}
 
 	@Override
-	void writeValue(final Out out, final MediaTestable testable, final int h)
+	List<Column<MediaTestable>> columns()
 	{
-		final Feature feature = (Feature)testable;
-		switch(h)
-		{
-			case 0 -> out.write(feature.getType().getID());
-			case 1 -> out.write(feature.getName());
-			case 2 -> out.write(feature.getClass());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
+		return COLUMNS;
 	}
+
+	private static final List<Column<MediaTestable>> COLUMNS = List.of(
+			column("Type",  testable -> ((Feature)testable).getType().getID()),
+			column("Name",  testable -> ((Feature)testable).getName()),
+			column("Class", (out, testable) -> out.write(testable.getClass()))
+	);
 
 	@Override
 	String getID(final MediaTestable testable)

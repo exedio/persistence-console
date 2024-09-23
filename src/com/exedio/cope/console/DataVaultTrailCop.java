@@ -133,22 +133,15 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<DataField>> columns()
 	{
-		return new String[]{"Field", "Bucket"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final DataField field, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(field.getID());
-			case 1 -> out.write(field.getVaultServiceKey());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<DataField>> COLUMNS = List.of(
+			column("Field",  DataField::getID),
+			column("Bucket", DataField::getVaultServiceKey)
+	);
 
 	@Override
 	String getID(final DataField field)

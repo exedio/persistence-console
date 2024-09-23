@@ -85,24 +85,18 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	}
 
 	@Override
-	String[] getHeadings()
-	{
-		return new String[]{"ID", "Content Type", "Hash", "SQL"};
-	}
-
-	@Override
 	int getNumberOfFilterableColumns()
 	{
 		return 1;
 	}
 
 	@Override
-	void writeValue(final Out out, final HashConstraint constraint, final int h)
+	List<Column<HashConstraint>> columns()
 	{
-		final Pattern pattern = constraint.getData().getPattern();
-		switch(h)
-		{
-			case 0 -> {
+		return List.of(
+			column("ID", (out, constraint) ->
+			{
+				final Pattern pattern = constraint.getData().getPattern();
 				if(pattern instanceof MediaPath)
 				{
 					out.writeRaw("<a href=\"");
@@ -114,13 +108,14 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 
 				if(pattern instanceof Media)
 					out.writeRaw("</a>");
-
-			}
-			case 1 -> {
+			}),
+			column("Content Type", (out, constraint) ->
+			{
+				final Pattern pattern = constraint.getData().getPattern();
 				if(pattern instanceof Media)
 					out.write(((Media)pattern).getContentTypeDescription().replaceAll(",", ", "));
-			}
-			case 2 ->
+			}),
+			column("Hash", (out, constraint) ->
 			{
 				final String algorithm = constraint.getAlgorithm();
 				out.write(algorithm);
@@ -128,8 +123,8 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 				writeError(out,
 						model.isConnected() &&
 						!model.getSupportedDataHashAlgorithms().contains(algorithm));
-			}
-			case 3 ->
+			}),
+			column("SQL", (out, constraint) ->
 			{
 				final Query<?> query = getQuery(constraint);
 				if(!query.getType().getModel().isConnected())
@@ -140,7 +135,7 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 					out.writeRaw("<small>");
 					out.write(query.toString());
 					out.writeRaw("</small>");
-					break;
+					return;
 				}
 				final String sql;
 				try
@@ -155,13 +150,11 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 					out.writeRaw("<br><small>");
 					out.write(query.toString());
 					out.writeRaw("</small>");
-					break;
+					return;
 				}
 				out.write(sql);
-			}
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
+			})
+		);
 	}
 
 	private static Query<?> getQuery(final HashConstraint constraint)

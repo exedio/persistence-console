@@ -25,6 +25,7 @@ import static com.exedio.cope.console.Format.format;
 
 import java.util.List;
 
+import com.exedio.cope.console.TestCop.Column;
 import com.exedio.cope.console.TestCop.Info;
 import com.exedio.cope.console.TestCop.Store;
 
@@ -252,7 +253,7 @@ final class Test_Jspm
 	static <I> void writeBody(
 			final TestCop<I> cop,
 			final Out out,
-			final String[] headings,
+			final List<Column<I>> columns,
 			final List<I> items,
 			final Store store)
 	{
@@ -269,7 +270,7 @@ final class Test_Jspm
 			return;
 		}
 
-		final int headingsLength = headings.length;
+		final int headingsLength = columns.size();
 
 		%>
 		<table id="test_table">
@@ -283,10 +284,10 @@ final class Test_Jspm
 			<tr><%
 				for(int i=0; i<headingsLength; i++)
 				{
-					final String heading = headings[i];
+					final Column<I> column = columns.get(i);
 				%>
 				<th>
-					<%=heading%>
+					<%=column.heading%>
 					<%if (i<cop.getNumberOfFilterableColumns()) { %>
 						<input class="filter" type="text" onkeyup="filterRows(this.value, <%=i%>);" placeholder="Filter"></input>
 					<%}%>
@@ -306,7 +307,7 @@ final class Test_Jspm
 			final String rowClass = info!=null ? info.getRowClass() : TestCop.NOT_YET_TESTED_CLASS;
 			%>
 			<tr id="<%=id%>" class="item <%=rowClass==null?"":rowClass%>"><%
-				writeRow(out, cop, headingsLength, item, id, info);
+				writeRow(out, cop, columns, headingsLength, item, id, info);
 			%>
 			</tr><%
 		}
@@ -317,6 +318,7 @@ final class Test_Jspm
 	static <I> void writeRow(
 			final Out out,
 			final TestCop<I> cop,
+			final List<Column<I>> columns,
 			final int headingsLength,
 			final I item,
 			final String id,
@@ -324,8 +326,9 @@ final class Test_Jspm
 	{
 			for(int h = 0; h<headingsLength; h++)
 			{
+				final Column<I> column = columns.get(h);
 				%>
-				<td class="text"><% cop.writeValue(out, item, h); %></td><%
+				<td class="text"><% column.cell.accept(out, item); %></td><%
 			}
 
 				%>

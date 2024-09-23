@@ -84,24 +84,21 @@ final class CharacterNulCop extends TestCop<StringField>
 	}
 
 	@Override
-	String[] getHeadings()
-	{
-		return new String[]{"Field", "CharSet"};
-	}
-
-	@Override
 	int getNumberOfFilterableColumns()
 	{
 		return 1;
 	}
 
 	@Override
-	void writeValue(final Out out, final StringField field, final int h)
+	List<Column<StringField>> columns()
 	{
-		switch(h)
-		{
-			case 0 -> out.write(field.getID());
-			case 1 -> {
+		return COLUMNS;
+	}
+
+	private static final List<Column<StringField>> COLUMNS = List.of(
+			column("Field", StringField::getID),
+			column("CharSet", (out, field) ->
+			{
 				final CharSet charSet = field.getCharSet();
 				if(charSet!=null)
 				{
@@ -109,11 +106,8 @@ final class CharacterNulCop extends TestCop<StringField>
 					if(charSet.contains('\0'))
 						out.write(" (contains NUL)");
 				}
-			}
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+			})
+	);
 
 	private static String getSQL(final StringField field)
 	{
