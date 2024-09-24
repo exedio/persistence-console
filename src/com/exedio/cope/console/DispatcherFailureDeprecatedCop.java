@@ -19,6 +19,8 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
+import com.exedio.cope.Query;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Dispatcher;
@@ -101,14 +103,24 @@ final class DispatcherFailureDeprecatedCop extends TestCop<Dispatcher>
 	@Override
 	long check(final Dispatcher dispatcher)
 	{
-		@SuppressWarnings("deprecation")
-		final Dispatcher.Result deprecated = Dispatcher.Result.failure;
 		try(TransactionTry tx = app.model.startTransactionTry("Console DispatcherFailureDeprecated " + id))
 		{
-			return tx.commit(
-					dispatcher.getRunType().newQuery(
-							dispatcher.getRunResult().equal(deprecated)).
-							total());
+			return tx.commit(getQuery(dispatcher).total());
 		}
+	}
+
+	private static Query<?> getQuery(final Dispatcher dispatcher)
+	{
+		@SuppressWarnings("deprecation")
+		final Dispatcher.Result deprecated = Dispatcher.Result.failure;
+		return
+				dispatcher.getRunType().newQuery(
+						dispatcher.getRunResult().equal(deprecated));
+	}
+
+	@Override
+	String getViolationSql(final Dispatcher dispatcher)
+	{
+		return SchemaInfo.total(getQuery(dispatcher));
 	}
 }
