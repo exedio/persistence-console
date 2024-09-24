@@ -86,7 +86,7 @@ final class CharacterNulCop extends TestCop<StringField>
 	@Override
 	String[] getHeadings()
 	{
-		return new String[]{"Field", "CharSet", "SQL"};
+		return new String[]{"Field", "CharSet"};
 	}
 
 	@Override
@@ -110,7 +110,6 @@ final class CharacterNulCop extends TestCop<StringField>
 						out.write(" (contains NUL)");
 				}
 			}
-			case 2 -> out.write(getSQL(field));
 			default ->
 				throw new RuntimeException(String.valueOf(h));
 		}
@@ -170,5 +169,11 @@ final class CharacterNulCop extends TestCop<StringField>
 		{
 			throw new SQLRuntimeException(e, field.toString());
 		}
+	}
+
+	@Override
+	String getViolationSql(final StringField field)
+	{
+		return getSQL(field);
 	}
 }
