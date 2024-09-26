@@ -449,11 +449,6 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		return "There are no "+name+" in this model.";
 	}
 
-	int getNumberOfFilterableColumns()
-	{
-		return 2;
-	}
-
 	final String getViolationSqlIfConnected(final I item)
 	{
 		try
@@ -479,23 +474,43 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 
 	static final <I> Column<I> column(final String heading, final Function<I,String> cell)
 	{
-		return new Column<>(heading, (out, field) -> out.write(cell.apply(field)));
+		return new Column<>(heading, toConsumer(cell), true);
+	}
+
+	// TODO
+	// I'd rather want to have a modifier method Column#nonFilterable,
+	// but this causes compiler errors I don't understand.
+	static final <I> Column<I> columnNonFilterable(final String heading, final Function<I,String> cell)
+	{
+		return new Column<>(heading, toConsumer(cell), false);
+	}
+
+	private static <I> BiConsumer<Out, I> toConsumer(final Function<I,String> cell)
+	{
+		return (out, field) -> out.write(cell.apply(field));
 	}
 
 	static final <I> Column<I> column(final String heading, final BiConsumer<Out, I> cell)
 	{
-		return new Column<>(heading, cell);
+		return new Column<>(heading, cell, true);
+	}
+
+	static final <I> Column<I> columnNonFilterable(final String heading, final BiConsumer<Out, I> cell)
+	{
+		return new Column<>(heading, cell, false);
 	}
 
 	protected static final class Column<I>
 	{
 		final String heading;
 		final BiConsumer<Out, I> cell;
+		final boolean filterable;
 
-		Column(final String heading, final BiConsumer<Out, I> cell)
+		Column(final String heading, final BiConsumer<Out, I> cell, final boolean filterable)
 		{
 			this.heading = requireNonNull(heading);
 			this.cell = requireNonNull(cell);
+			this.filterable = filterable;
 		}
 	}
 

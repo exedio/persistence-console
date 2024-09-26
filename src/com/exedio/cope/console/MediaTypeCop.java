@@ -101,8 +101,8 @@ final class MediaTypeCop extends TestCop<Media>
 				out.write(media.getName());
 				out.writeRaw("</a>");
 			}),
-			column("Content Type", media -> media.getContentTypeDescription().replaceAll(",", ", ")),
-			column("Query", (out, media) ->
+			columnNonFilterable("Content Type", media -> media.getContentTypeDescription().replaceAll(",", ", ")),
+			columnNonFilterable("Query", (out, media) ->
 			{
 				final Condition c = media.bodyMismatchesContentTypeIfSupported();
 				if(c!=Condition.FALSE)

@@ -106,12 +106,6 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 		return result;
 	}
 
-	@Override
-	int getNumberOfFilterableColumns()
-	{
-		return 1;
-	}
-
 	UnsupportedConstraintCop toTable(final Table table)
 	{
 		return new UnsupportedConstraintCop(args, testArgs, table.getName());
@@ -122,7 +116,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	{
 		return List.of(
 			column("Table", (out, table) -> UnsupportedCheckConstraintByTable_Jspm.writeTableValue(this, out, table)),
-			column("Condition", (out, table) ->
+			columnNonFilterable("Condition", (out, table) ->
 			{
 				final StringBuilder bf = new StringBuilder();
 				appendSQL(table, bf);
