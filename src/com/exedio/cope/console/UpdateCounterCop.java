@@ -76,22 +76,16 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<Type<?>>> columns()
 	{
-		return new String[]{"Supertype", "Type"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final Type<?> type, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(type.getSupertype().getID());
-			case 1 -> out.write(type.getID());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	@SuppressWarnings("Convert2MethodRef")
+	private static final List<Column<Type<?>>> COLUMNS = List.of(
+			column("Supertype", type -> type.getSupertype().getID()),
+			column("Type",      type -> type.getID())
+	);
 
 	@Override
 	String getID(final Type<?> type)

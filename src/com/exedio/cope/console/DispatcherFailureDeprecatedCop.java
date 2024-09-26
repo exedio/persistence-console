@@ -71,22 +71,14 @@ final class DispatcherFailureDeprecatedCop extends TestCop<Dispatcher>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<Dispatcher>> columns()
 	{
-		return new String[]{"Dispatcher"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final Dispatcher dispatcher, final int h)
-	{
-		//noinspection SwitchStatementWithTooFewBranches OK: all methods overriding writeValue have a switch
-		switch(h)
-		{
-			case 0 -> out.write(dispatcher.getID());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<Dispatcher>> COLUMNS = List.of(
+			column("Dispatcher", Dispatcher::getID)
+	);
 
 	@Override
 	String getID(final Dispatcher dispatcher)

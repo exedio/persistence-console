@@ -111,23 +111,17 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<Constraint>> columns()
 	{
-		return new String[]{"Table", "Name", "Condition"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final Constraint constraint, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(constraint.getTable().getName());
-			case 1 -> out.write(constraint.getName());
-			case 2 -> writeValueLong(out, constraint.getRequiredCondition());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	@SuppressWarnings("Convert2MethodRef")
+	private static final List<Column<Constraint>> COLUMNS = List.of(
+			column("Table", constraint -> constraint.getTable().getName()),
+			column("Name",  constraint -> constraint.getName()),
+			column("Condition", (out, constraint) -> writeValueLong(out, constraint.getRequiredCondition()))
+	);
 
 	@Override
 	String getID(final Constraint constraint)

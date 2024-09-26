@@ -60,22 +60,14 @@ final class CustomQueryConstraintCop extends TestCop<Query<?>>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<Query<?>>> columns()
 	{
-		return new String[]{"Query"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final Query<?> query, final int h)
-	{
-		//noinspection SwitchStatementWithTooFewBranches OK: all methods overriding writeValue have a switch
-		switch(h)
-		{
-			case 0 -> out.write(query.toString());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<Query<?>>> COLUMNS = List.of(
+			column("Query", Query::toString)
+	);
 
 	@Override
 	String getID(final Query<?> query)

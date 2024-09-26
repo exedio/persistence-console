@@ -72,22 +72,15 @@ final class EnumSingletonCop extends TestCop<EnumSingleton<?>>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<EnumSingleton<?>>> columns()
 	{
-		return new String[]{"EnumSingleton", "Enum class"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final EnumSingleton<?> singleton, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(singleton.getID());
-			case 1 -> out.write(singleton.getOnce().getValueClass());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<EnumSingleton<?>>> COLUMNS = List.of(
+			column("EnumSingleton", EnumSingleton::getID),
+			column("Enum class", (out, singleton) -> out.write(singleton.getOnce().getValueClass()))
+	);
 
 	@Override
 	String getID(final EnumSingleton<?> singleton)

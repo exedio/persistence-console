@@ -80,22 +80,15 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<Constraint<?>>> columns()
 	{
-		return new String[]{"Supertype", "Subtype"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final Constraint<?> constraint, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(constraint.superType.toString());
-			case 1 -> out.write(constraint.subType.toString());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<Constraint<?>>> COLUMNS = List.of(
+			column("Supertype", constraint -> constraint.superType.toString()),
+			column("Subtype",   constraint -> constraint.subType  .toString())
+	);
 
 	@Override
 	String getID(final Constraint<?> constraint)

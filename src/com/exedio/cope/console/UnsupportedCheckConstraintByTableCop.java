@@ -107,12 +107,6 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	}
 
 	@Override
-	String[] getHeadings()
-	{
-		return new String[]{"Table", "Condition"};
-	}
-
-	@Override
 	int getNumberOfFilterableColumns()
 	{
 		return 1;
@@ -124,21 +118,17 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	}
 
 	@Override
-	void writeValue(final Out out, final Table table, final int h)
+	List<Column<Table>> columns()
 	{
-		switch(h)
-		{
-			case 0 ->
-				UnsupportedCheckConstraintByTable_Jspm.writeTableValue(this, out, table);
-
-			case 1 -> {
+		return List.of(
+			column("Table", (out, table) -> UnsupportedCheckConstraintByTable_Jspm.writeTableValue(this, out, table)),
+			column("Condition", (out, table) ->
+			{
 				final StringBuilder bf = new StringBuilder();
 				appendSQL(table, bf);
 				writeValueLong(out, bf.toString());
-			}
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
+			})
+		);
 	}
 
 	private static void appendSQL(final Table table, final StringBuilder bf)

@@ -65,22 +65,14 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<FunctionField<?>>> columns()
 	{
-		return new String[]{"Field"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final FunctionField<?> field, final int h)
-	{
-		//noinspection SwitchStatementWithTooFewBranches OK: all methods overriding writeValue have a switch
-		switch(h)
-		{
-			case 0 -> out.write(field.toString());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<FunctionField<?>>> COLUMNS = List.of(
+			column("Field", FunctionField::toString)
+	);
 
 	@Override
 	String getID(final FunctionField<?> field)

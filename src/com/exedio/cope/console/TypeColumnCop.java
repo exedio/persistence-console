@@ -91,22 +91,16 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<ItemFunction<?>>> columns()
 	{
-		return new String[]{"Function", "Value"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final ItemFunction<?> function, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(function.toString());
-			case 1 -> out.write(function.getValueType().getID());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	@SuppressWarnings("Convert2MethodRef")
+	private static final List<Column<ItemFunction<?>>> COLUMNS = List.of(
+			column("Function", function -> function.toString()),
+			column("Value",    function -> function.getValueType().getID())
+	);
 
 	@Override
 	String getID(final ItemFunction<?> function)

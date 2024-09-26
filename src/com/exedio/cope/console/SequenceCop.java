@@ -88,30 +88,21 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<SequenceInfo>> columns()
 	{
-		return new String[]{"Type", "Name", "Start", "Min", "Max", "Count", "First", "Last"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final SequenceInfo info, final int h)
-	{
-		final Feature feature = info.getFeature();
-		final boolean known = info.isKnown();
-		switch(h)
-		{
-			case 0 -> out.write(feature.getType().getID());
-			case 1 -> out.write(feature.getName());
-			case 2 -> out.write(format(info.getStartL()));
-			case 3 -> out.write(format(info.getMinimumL()));
-			case 4 -> out.write(format(info.getMaximumL()));
-			case 5 -> out.write(format(info.getCountL()));
-			case 6 -> { if(known) out.write(format(info.getFirstL())); }
-			case 7 -> { if(known) out.write(format(info.getLastL())); }
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	private static final List<Column<SequenceInfo>> COLUMNS = List.of(
+			column("Type", info -> info.getFeature().getType().getID()),
+			column("Name", info -> info.getFeature().getName()),
+			column("Start", info -> format(info.getStartL())),
+			column("Min",   info -> format(info.getMinimumL())),
+			column("Max",   info -> format(info.getMaximumL())),
+			column("Count", info -> format(info.getCountL())),
+			column("First", (out, info) -> { if(info.isKnown()) out.write(format(info.getFirstL())); }),
+			column("Last",  (out, info) -> { if(info.isKnown()) out.write(format(info.getLastL()));  })
+	);
 
 	@Override
 	String getID(final SequenceInfo info)

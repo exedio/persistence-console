@@ -71,22 +71,16 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 	}
 
 	@Override
-	String[] getHeadings()
+	List<Column<CopyConstraint>> columns()
 	{
-		return new String[]{"Constraint", "Target"};
+		return COLUMNS;
 	}
 
-	@Override
-	void writeValue(final Out out, final CopyConstraint constraint, final int h)
-	{
-		switch(h)
-		{
-			case 0 -> out.write(constraint.toString());
-			case 1 -> out.write(constraint.getTarget().getValueType().getID());
-			default ->
-				throw new RuntimeException(String.valueOf(h));
-		}
-	}
+	@SuppressWarnings("Convert2MethodRef")
+	private static final List<Column<CopyConstraint>> COLUMNS = List.of(
+			column("Constraint", constraint -> constraint.toString()),
+			column("Target",     constraint -> constraint.getTarget().getValueType().getID())
+	);
 
 	@Override
 	String getID(final CopyConstraint constraint)
