@@ -120,7 +120,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	private static final List<Column<Constraint>> COLUMNS = List.of(
 			column("Table", constraint -> constraint.getTable().getName()),
 			column("Name",  constraint -> constraint.getName()),
-			column("Condition", (out, constraint) -> writeValueLong(out, constraint.getRequiredCondition()))
+			columnNonFilterable("Condition", (out, constraint) -> writeValueLong(out, constraint.getRequiredCondition()))
 	);
 
 	@Override

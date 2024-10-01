@@ -72,12 +72,6 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
-	int getNumberOfFilterableColumns()
-	{
-		return 3;
-	}
-
-	@Override
 	List<Column<MediaTestable>> columns()
 	{
 		return COLUMNS;

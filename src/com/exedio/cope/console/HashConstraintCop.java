@@ -85,12 +85,6 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	}
 
 	@Override
-	int getNumberOfFilterableColumns()
-	{
-		return 1;
-	}
-
-	@Override
 	List<Column<HashConstraint>> columns()
 	{
 		return List.of(
@@ -109,13 +103,13 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 				if(pattern instanceof Media)
 					out.writeRaw("</a>");
 			}),
-			column("Content Type", (out, constraint) ->
+			columnNonFilterable("Content Type", (out, constraint) ->
 			{
 				final Pattern pattern = constraint.getData().getPattern();
 				if(pattern instanceof Media)
 					out.write(((Media)pattern).getContentTypeDescription().replaceAll(",", ", "));
 			}),
-			column("Hash", (out, constraint) ->
+			columnNonFilterable("Hash", (out, constraint) ->
 			{
 				final String algorithm = constraint.getAlgorithm();
 				out.write(algorithm);
@@ -124,7 +118,7 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 						model.isConnected() &&
 						!model.getSupportedDataHashAlgorithms().contains(algorithm));
 			}),
-			column("SQL", (out, constraint) ->
+			columnNonFilterable("SQL", (out, constraint) ->
 			{
 				final Query<?> query = getQuery(constraint);
 				if(!query.getType().getModel().isConnected())

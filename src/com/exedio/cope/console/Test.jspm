@@ -288,7 +288,7 @@ final class Test_Jspm
 				%>
 				<th>
 					<%=column.heading%>
-					<%if (i<cop.getNumberOfFilterableColumns()) { %>
+					<%if (column.filterable) { %>
 						<input class="filter" type="text" onkeyup="filterRows(this.value, <%=i%>);" placeholder="Filter"></input>
 					<%}%>
 					</th><%

@@ -96,12 +96,12 @@ final class SequenceCop extends TestCop<SequenceInfo>
 	private static final List<Column<SequenceInfo>> COLUMNS = List.of(
 			column("Type", info -> info.getFeature().getType().getID()),
 			column("Name", info -> info.getFeature().getName()),
-			column("Start", info -> format(info.getStartL())),
-			column("Min",   info -> format(info.getMinimumL())),
-			column("Max",   info -> format(info.getMaximumL())),
-			column("Count", info -> format(info.getCountL())),
-			column("First", (out, info) -> { if(info.isKnown()) out.write(format(info.getFirstL())); }),
-			column("Last",  (out, info) -> { if(info.isKnown()) out.write(format(info.getLastL()));  })
+			columnNonFilterable("Start", info -> format(info.getStartL())),
+			columnNonFilterable("Min",   info -> format(info.getMinimumL())),
+			columnNonFilterable("Max",   info -> format(info.getMaximumL())),
+			columnNonFilterable("Count", info -> format(info.getCountL())),
+			columnNonFilterable("First", (out, info) -> { if(info.isKnown()) out.write(format(info.getFirstL())); }),
+			columnNonFilterable("Last",  (out, info) -> { if(info.isKnown()) out.write(format(info.getLastL()));  })
 	);
 
 	@Override

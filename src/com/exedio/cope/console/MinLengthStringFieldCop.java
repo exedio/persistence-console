@@ -63,12 +63,6 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 	}
 
 	@Override
-	int getNumberOfFilterableColumns()
-	{
-		return 1;
-	}
-
-	@Override
 	List<Column<StringField>> columns()
 	{
 		return COLUMNS;
@@ -76,7 +70,7 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 
 	private static final List<Column<StringField>> COLUMNS = List.of(
 			column("Field", StringField::toString),
-			column("Min Length", field -> Format.formatAndHide(0, field.getMinimumLength()))
+			columnNonFilterable("Min Length", field -> Format.formatAndHide(0, field.getMinimumLength()))
 	);
 
 	@Override

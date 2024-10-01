@@ -105,7 +105,7 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	private static final List<Column<FeatureField<?>>> COLUMNS = List.of(
 			column("Type", field -> field.getType().getID()),
 			column("Name", field -> field.getName()),
-			column("Values", (out, field) -> writeValueLong(out, field.getValues().toString()))
+			columnNonFilterable("Values", (out, field) -> writeValueLong(out, field.getValues().toString()))
 	);
 
 	@Override

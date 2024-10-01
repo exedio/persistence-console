@@ -84,12 +84,6 @@ final class CharacterNulCop extends TestCop<StringField>
 	}
 
 	@Override
-	int getNumberOfFilterableColumns()
-	{
-		return 1;
-	}
-
-	@Override
 	List<Column<StringField>> columns()
 	{
 		return COLUMNS;
@@ -97,7 +91,7 @@ final class CharacterNulCop extends TestCop<StringField>
 
 	private static final List<Column<StringField>> COLUMNS = List.of(
 			column("Field", StringField::getID),
-			column("CharSet", (out, field) ->
+			columnNonFilterable("CharSet", (out, field) ->
 			{
 				final CharSet charSet = field.getCharSet();
 				if(charSet!=null)
