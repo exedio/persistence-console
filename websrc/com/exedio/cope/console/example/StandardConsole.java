@@ -52,7 +52,7 @@ public final class StandardConsole extends ConsoleServlet
 	}
 
 	private static final List<Query<?>> CUSTOM_QUERY_CONSTRAINTS = List.of(
-			AnItem.TYPE.newQuery(AnItem.aField.equal("doesNotExists-queryShouldSucceed")),
+			AnItem.TYPE.newQuery(AnItem.aField.equal("doesNotExists-queryShouldSucceed<h1>to be escaped</h1>")),
 			AnItem.TYPE.newQuery(AnItem.color.equal(AnItem.Color.blue35)));
 
 	@Override
