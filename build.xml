@@ -53,7 +53,7 @@
 	</macrodef>
 
 	<target name="catalina">
-		<property name="catalina.root" value="apache-tomcat-9.0.31" />
+		<property name="catalina.root" value="apache-tomcat-9.0.43" />
 		<untar src="lib/tomcat/tomcat.tar.gz"
 				 compression="gzip"
 				 dest="${basedir}">
