@@ -118,6 +118,8 @@ final class Console_Jspm
 			<%=cop.getStart()%> (<%=cop.getDuration()%>ms)
 			<br>
 			Silk icons from <a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank">famfamfam.com</a>.
+			<br>
+			<a href="copsResourceStatus.html" target="_blank">Resource Status</a>
 		</div><%
 
 	for(final Resource resource : cop.onDomReady())

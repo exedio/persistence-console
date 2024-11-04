@@ -7,6 +7,8 @@ omit bug fixes.
 The items are sorted inversely, i.e. latest items are on top
 
 --------------------------------------------------------------------------
+* Page footer links to Resource Status (copsResourceStatus.html).
+	You may want to drop links within the Admin Area of your project.
 * JDK 17 required.
 * servlet-api 4.0.1 required.
 * tab "Media Types" checks medias in vault again.
