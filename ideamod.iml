@@ -23,6 +23,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/websrc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/testsrc" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/js/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/js/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.eclipse-output" />
       <excludeFolder url="file://$MODULE_DIR$/.settings" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
@@ -31,6 +33,8 @@
       <excludeFolder url="file://$MODULE_DIR$/tomcat" />
       <excludeFolder url="file://$MODULE_DIR$/web/WEB-INF/classes" />
       <excludeFolder url="file://$MODULE_DIR$/web/WEB-INF/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/.yarn" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">

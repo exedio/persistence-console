@@ -1,0 +1,32 @@
+{
+  "name": "js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+    "check-ts": "tsc -p tsconfig.node.json",
+    "check-format": "prettier . --check",
+    "format": "prettier . --write",
+    "test": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "5.0.3",
+    "@tsconfig/svelte": "5.0.4",
+    "@types/node": "22.13.1",
+    "@vitest/coverage-v8": "3.0.5",
+    "jsdom": "26.0.0",
+    "prettier": "3.5.0",
+    "prettier-plugin-java": "2.6.7",
+    "prettier-plugin-svelte": "3.3.3",
+    "svelte": "5.19.9",
+    "svelte-check": "4.1.4",
+    "tslib": "2.8.1",
+    "typescript": "5.7.3",
+    "vite": "6.1.0",
+    "vitest": "3.0.5"
+  },
+  "packageManager": "yarn@4.6.0"
+}

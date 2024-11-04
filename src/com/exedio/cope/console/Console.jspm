@@ -36,6 +36,8 @@ final class Console_Jspm
 				final Out out,
 				final HttpServletResponse response,
 				final ConsoleCop<?> cop,
+				final String apiPath,
+				final String apiPathNonce,
 				final String modelName,
 				final Date modelDate,
 				final String authentication,
@@ -52,8 +54,20 @@ final class Console_Jspm
 		<title>COPE Console - <%=cop.name%></title>
 		<link rel="shortcut icon" href="<%=ConsoleServlet.shortcutIcon%>" type="image/png">
 		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet%>"><%
+		if(cop.hasJsComponent())
+		{
+		%>
+		<script nonce="<%= apiPathNonce %>">
+			const apiPath = '<%= apiPath %>';
+		</script>
+		<link rel="stylesheet" crossorigin href="<%= ConsoleServlet.jsStyle  %>">
+		<script type="module" crossorigin src="<%=   ConsoleServlet.jsScript %>"></script><%
+		}
+		else
+		{
 		%>
 		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheetBody%>"><%
+		}
 		cop.writeHead(out);
 
 		if(autoRefresh>0)
@@ -246,6 +260,12 @@ final class Console_Jspm
 				<% writeNotConnected(out, cop); %>
 			</td></tr>
 		</table><%
+	}
+
+	static void writeJsComponentMountPoint(final Out out, final String id)
+	{
+		%>
+		<div id="<%= id %>"></div><%
 	}
 
 	private Console_Jspm()

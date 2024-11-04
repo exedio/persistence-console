@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COPE Console in yarn dev</title>
+
+    <!-- style duplicates part of console.css -->
+    <style>
+      small {
+        font-size: 60%;
+      }
+    </style>
+
+    <!-- script duplicates part of Console.jspm -->
+    <script>
+      let apiPath = "/cope-console/standard/api/";
+      //let apiPath = "/cope-console/reduced/api/";
+    </script>
+  </head>
+  <body>
+    <h2>suspicions</h2>
+    <div id="suspicions"></div>
+    <a
+      href="http://localhost:8080/cope-console/standard/defaultToNow.html"
+      target="_blank"
+      >standard</a
+    >
+    <a
+      href="http://localhost:8080/cope-console/reduced/defaultToNow.html"
+      target="_blank"
+      >reduced</a
+    >
+    <h2>hash</h2>
+    <div id="hashes"></div>
+    <a
+      href="http://localhost:8080/cope-console/standard/hash.html"
+      target="_blank"
+      >standard</a
+    >
+    <a
+      href="http://localhost:8080/cope-console/reduced/hash.html"
+      target="_blank"
+      >reduced</a
+    >
+    <!--suppress HtmlUnknownTarget -->
+    <script type="module" src="/js/src/main.ts"></script>
+  </body>
+</html>

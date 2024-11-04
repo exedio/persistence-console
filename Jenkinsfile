@@ -9,6 +9,8 @@ String jdk = 'openjdk-17'
 String idea = '2023.3.8'
 @Field
 String ideaSHA256 = '0f611af8539a0a1744e2d0083930aef128ece20a4086631240bfa6228677614e'
+@Field
+String nodejs = '22'
 
 String projectName = env.JOB_NAME.substring(0, env.JOB_NAME.indexOf("/")) // depends on name and location of multibranch pipeline in jenkins
 boolean isRelease = env.BRANCH_NAME=="master"
@@ -37,6 +39,12 @@ try
 
 	parallelBranches["Main"] = {
 		nodeCheckoutAndDelete { scmResult ->
+			nodejsImage(imageName('MainYarn')).inside(dockerRunDefaults()) {
+				shSilent(
+					"yarnpkg install && " +
+					"yarnpkg build"
+				)
+			}
 			def buildTag = makeBuildTag(scmResult)
 
 			mainImage(imageName("Main")).inside(dockerRunDefaults()) {
@@ -45,6 +53,7 @@ try
 				    ' "-Dbuild.tag=' + buildTag + '"' +
 				    ' -Dbuild.status=' + (isRelease?'release':'integration') +
 				    ' -Dinstrument.verify=true' +
+				    ' -Dskip.js=true' + // already done by nodejsImage above
 				    ' -Dtomcat.port.shutdown=18005' +
 				    ' -Dtomcat.port.http=18080'
 			}
@@ -91,6 +100,8 @@ try
 					taskScanner(
 						excludePattern:
 							'.git/**,lib/**,' +
+							'.pnp.cjs,' +
+							'.yarn/**,' +
 							// binary file types
 							'**/*.jar,**/*.zip,**/*.tgz,**/*.jpg,**/*.gif,**/*.png,**/*.tif,**/*.webp,**/*.pdf,**/*.eot,**/*.ttf,**/*.woff,**/*.woff2,**/keystore',
 						// causes build to become unstable, concatenation prevents matching this line
@@ -145,6 +156,56 @@ try
 			assertIvyExtends("example", "runtime")
 			assertIvyExtends("ide", "runtime")
 			assertIvyExtends("ide", "test")
+		}
+	}
+
+	parallelBranches["Yarn"] = {
+		nodeCheckoutAndDelete {
+			nodejsImage(imageName('Yarn')).inside(dockerRunDefaults()) {
+				shSilent(
+					"yarnpkg install --immutable --immutable-cache && " +
+					"yarnpkg dedupe --check && " +
+					"yarnpkg check && " +
+					"yarnpkg check-ts && " +
+					"yarnpkg test && " +
+					"yarnpkg check-format"
+				)
+			}
+			junit(
+					allowEmptyResults: false,
+					testResults: 'build/vitestresults/*.xml',
+					skipPublishingChecks: true
+			)
+			recordCoverage(
+					id: 'coverage-vitest',
+					name: 'Coverage Vitest',
+					tools: [[parser: 'COBERTURA', pattern: 'build/vitestcoverage/cobertura-coverage.xml']],
+					qualityGates: [
+							[criticality: 'FAILURE', metric: 'LINE', threshold: 63.5],
+							[criticality: 'FAILURE', metric: 'BRANCH', threshold: 86.3],
+							[criticality: 'FAILURE', metric: 'METHOD', threshold: 83.3],
+					],
+					ignoreParsingErrors: true,
+					enabledForFailure: true,
+					skipPublishingChecks: true,
+					sourceDirectories: [[path: 'js/src']]
+			)
+		}
+	}
+
+	parallelBranches["YarnAudit"] = {
+		// TODO when pipelineTriggers causes build skip all other branches
+		nodeCheckoutAndDelete {
+			int yarnResult = 999
+			nodejsImage(imageName('YarnAudit')).inside(dockerRunDefaults('bridge')) {
+				yarnResult = shStatus "yarnpkg npm audit --recursive > yarnpkg-audit.txt"
+			}
+			if (yarnResult == 0) return
+
+			sh 'cat yarnpkg-audit.txt'
+			// TODO: artifact is unreadable, because it contains ANSI escape sequences
+			archiveArtifacts 'yarnpkg-audit.txt'
+			error 'FAILURE: yarn audit finds vulnerabilities, see log above. Exit code is ' + yarnResult + '.'
 		}
 	}
 
@@ -211,6 +272,15 @@ def mainImage(String imageName)
 		'--build-arg JDK=' + jdk + ' ' +
 		'--build-arg JENKINS_OWNER=' + env.JENKINS_OWNER + ' ' +
 		'conf/main')
+}
+
+def nodejsImage(String imageName)
+{
+	return docker.build(
+		imageName,
+		'--build-arg NODEJS=' + nodejs + ' ' +
+		'--build-arg JENKINS_OWNER=' + env.JENKINS_OWNER + ' ' +
+		'conf/nodejs')
 }
 
 String imageName(String pipelineBranch, String subImage = '')

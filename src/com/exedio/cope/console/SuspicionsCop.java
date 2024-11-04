@@ -18,13 +18,14 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Console_Jspm.writeJsComponentMountPoint;
+
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.List;
 
 final class SuspicionsCop extends ConsoleCop<Void>
 {
@@ -51,9 +52,16 @@ final class SuspicionsCop extends ConsoleCop<Void>
 		};
 	}
 
-	private static Map<Feature,Collection<String>> features(final Model model)
+	@Override
+	boolean hasJsComponent()
 	{
-		LinkedHashMap<Feature,Collection<String>> result = null;
+		return true;
+	}
+
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
+	static List<SuspicionsResponse> suspicions(final Model model)
+	{
+		ArrayList<SuspicionsResponse> result = null;
 		for(final Type<?> t : model.getTypes())
 			for(final Feature f : t.getDeclaredFeatures())
 			{
@@ -61,26 +69,36 @@ final class SuspicionsCop extends ConsoleCop<Void>
 				if(!suspicions.isEmpty())
 				{
 					if(result==null)
-						result = new LinkedHashMap<>();
+						result = new ArrayList<>();
 
-					result.put(f, suspicions);
+					result.add(new SuspicionsResponse(
+							t.getID(),
+							f.getName(),
+							List.copyOf(suspicions)));
 				}
 			}
-		return result!=null ? result : Collections.emptyMap();
+		return result!=null ? result : List.of();
 	}
 
 	@Override
 	ChecklistIcon getChecklistIcon()
 	{
-		return
-				features(app.model).isEmpty()
-				? ChecklistIcon.empty
-				: ChecklistIcon.error;
+		for(final Type<?> t : app.model.getTypes())
+			for(final Feature f : t.getDeclaredFeatures())
+				if(!f.getSuspicions().isEmpty())
+					return ChecklistIcon.error;
+		return ChecklistIcon.empty;
 	}
 
 	@Override
 	void writeBody(final Out out)
 	{
-		Suspicions_Jspm.writeBody(out, features(app.model));
+		writeJsComponentMountPoint(out, "suspicions");
 	}
+
+	private record SuspicionsResponse(
+			String type,
+			String name,
+			List<String> suspicions)
+	{ }
 }

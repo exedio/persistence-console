@@ -35,6 +35,7 @@ import java.io.Serial;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.Principal;
+import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -112,6 +113,7 @@ public class ConsoleServlet extends CopsServlet
 
 	private App app = null;
 	private ConnectToken connectToken = null;
+	private final SecureRandom nonceSource = new SecureRandom();
 
 	static final Resource stylesheet = new Resource("console.css");
 	static final Resource stylesheetBody = new Resource("console-body.css");
@@ -134,6 +136,9 @@ public class ConsoleServlet extends CopsServlet
 	private static final Resource nodeErrorFalse = new Resource("nodeerrorfalse.png");
 	@UsageEntryPoint // OK: url set by javascript
 	static final Resource nodeErrorTrue  = new Resource("nodeerrortrue.png");
+
+	static final Resource jsScript = new Resource("app.js");
+	static final Resource jsStyle  = new Resource("app.css");
 
 	static Resource nodeFalse(final Node.Color color)
 	{
@@ -212,16 +217,41 @@ public class ConsoleServlet extends CopsServlet
 				model = app.model;
 			}
 
+			{
+				final String pathInfo = request.getPathInfo();
+				if(pathInfo.startsWith(API_PATH_ELEMENT))
+				{
+					Api.doRequest(
+							request,
+							pathInfo.substring(API_PATH_ELEMENT.length()),
+							response,
+							model);
+					return;
+				}
+			}
+
 			final ConsoleCop<?> cop = ConsoleCop.getCop(app, model, request, this);
 			cop.initialize(request, model);
 			response.setStatus(cop.getResponseStatus());
 
 			final String externalImgSrc = cop.getExternalImgSrc();
+			final String apiPath;
+			final String apiPathNonce;
+			if(cop.hasJsComponent())
+			{
+				apiPath = request.getContextPath() + request.getServletPath() + API_PATH_ELEMENT;
+				apiPathNonce = Long.toString(Math.abs(nonceSource.nextLong()));
+			}
+			else
+			{
+				apiPath = null;
+				apiPathNonce = null;
+			}
 			// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 			response.setHeader("Content-Security-Policy",
 					"default-src 'none'; " +
 					"style-src 'self'"  + (cop.requiresUnsafeInlineStyle ()?" 'unsafe-inline'":"") + "; " +
-					"script-src 'self'" + (cop.requiresUnsafeInlineScript()?" 'unsafe-inline'":"") + "; " +
+					"script-src 'self'" + (cop.requiresUnsafeInlineScript()?" 'unsafe-inline'":"") + (apiPathNonce!=null ? " 'nonce-"+apiPathNonce+'\'' : "") + "; " +
 					"img-src 'self'" + (externalImgSrc!=null ? (" " + externalImgSrc) : "") + "; " +
 					"connect-src 'self'; " +
 					"frame-ancestors 'none'; " +
@@ -267,6 +297,7 @@ public class ConsoleServlet extends CopsServlet
 
 				Console_Jspm.write(
 						out, response, cop,
+						apiPath, apiPathNonce,
 						model.toString(),
 						model.getInitializeDate(),
 						authentication, hostname
@@ -275,4 +306,6 @@ public class ConsoleServlet extends CopsServlet
 			out.close();
 		}
 	}
+
+	private static final String API_PATH_ELEMENT = "/api/";
 }

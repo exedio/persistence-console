@@ -10,6 +10,10 @@
 	<property file="local.properties" />
 	<property file="project.properties" />
 
+	<condition property="yarnPath" value="yarnpkg" else="yarn.cmd">
+		<os family="unix" />
+	</condition>
+
 	<import>
 		<fileset dir="macros">
 			<include name="*.xml" />
@@ -62,6 +66,15 @@
 		</sequential>
 	</macrodef>
 
+	<target name="js.dist" unless="skip.js">
+		<exec dir="js" executable="${yarnPath}" failonerror="true">
+			<arg value="install" />
+		</exec>
+		<exec dir="js" executable="${yarnPath}" failonerror="true">
+			<arg value="build" />
+		</exec>
+	</target>
+
 	<target name="catalina">
 		<property name="catalina.root" value="apache-tomcat-9.0.43" />
 		<untar src="lib/tomcat/tomcat.tar.gz"
@@ -97,12 +110,14 @@
 		</jspm>
 	</target>
 
-	<target name="src.compile" depends="src.jspm">
+	<target name="src.compile" depends="src.jspm, js.dist">
 		<compile srcdir="src">
 			<classpath>
 				<fileset dir="lib/runtime" />
 			</classpath>
 		</compile>
+		<copy file="dist/assets/app.js"  todir="build/classes/src/com/exedio/cope/console" />
+		<copy file="dist/assets/app.css" todir="build/classes/src/com/exedio/cope/console" />
 	</target>
 
 	<target name="jar" depends="src.compile">
@@ -237,6 +252,7 @@
 		<delete dir="web/WEB-INF/classes" />
 		<delete dir="web/WEB-INF/lib" />
 		<delete dir="tomcat" />
+		<delete dir="dist" unless:set="skip.js" />
 		<delete>
 			<fileset dir="src">
 				<include name="**/*_Jspm.java" />

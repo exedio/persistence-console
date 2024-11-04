@@ -283,6 +283,14 @@ abstract class ConsoleCop<S> extends Cop
 		return System.currentTimeMillis() - start;
 	}
 
+	/**
+	 * @see ConsoleServlet#stylesheetBody
+	 */
+	boolean hasJsComponent()
+	{
+		return false;
+	}
+
 	ChecklistIcon getChecklistIcon()
 	{
 		return null;

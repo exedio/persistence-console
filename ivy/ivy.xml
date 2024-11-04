@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE ivy-module [
+		<!ENTITY jackson.version "2.15.2">
 		<!ENTITY junit.version.minor "11.3">
 	]>
 <ivy-module
@@ -41,6 +42,8 @@
 		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; ide->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="cope" rev="10926" conf="runtime->runtime; test,example->hsqldb,mysql; instrument->instrument; ide->sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="857" conf="runtime->runtime; ide->sources,changelog" />
+		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="&jackson.version;" conf="runtime->default; ide->sources" />
+		<dependency org="com.fasterxml.jackson.core" name="jackson-databind"    rev="&jackson.version;" conf="runtime->default; ide->sources" />
 		<dependency org="org.apache.ant" name="ant"       rev="1.10.11" conf="ant->default" />
 		<dependency org="org.junit.jupiter"  name="junit-jupiter-api"      rev="5.&junit.version.minor;" conf="test->default; ide->sources" />
 		<dependency org="org.junit.jupiter"  name="junit-jupiter-engine"   rev="5.&junit.version.minor;" conf="test->default" />
