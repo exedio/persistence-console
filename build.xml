@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 
-<project name="cope" default="build" basedir=".">
+<project name="cope" default="build" basedir="."
+	xmlns:if="ant:if"
+	xmlns:unless="ant:unless">
 
 	<echo taskname="which ant" message="${ant.version}" />
 	<echo taskname="which java" message="${java.vm.name} ${java.version}" />
@@ -39,16 +41,24 @@
 		<element name="implicit-element" optional="true" implicit="true" />
 		<sequential>
 			<mkdir dir="build/testresults" />
-			<junit fork="yes"
-					haltonerror="true" haltonfailure="true"
-					showoutput="true" printsummary="true">
-				<formatter type="brief" usefile="false" />
-				<formatter type="xml" />
+			<mkdir dir="build/testtmpdir" />
+			<java taskname="junit" fork="yes" dir="${basedir}"
+					failonerror="true"
+					classname="org.junit.platform.console.ConsoleLauncher">
+				<jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,address=8000" if:set="test.debug"/>
+				<arg line="--details ${test-details}" />
+				<arg line="--disable-ansi-colors" if:set="disable-ansi-colors" />
 				<implicit-element />
-				<test name="@{test}" todir="build/testresults" outfile="@{test}-@{env}" />
+				<arg line="--fail-if-no-tests" />
+				<arg line="--scan-class-path build/classes/testsrc" unless:set="test" />
+				<arg line="--select-class ${test}" if:set="test" unless:set="method" />
+				<arg line="--select-method ${test}#${method}" if:set="method" />
+				<arg line="--reports-dir build/testresults" />
+				<sysproperty key="java.io.tmpdir" value="${basedir}/build/testtmpdir" />
+				<sysproperty key="user.timezone" value="@{userTimezone}" />
 				<sysproperty key="tomcat.port.http" value="${tomcat.port.http}" />
 				<assertions><enable/></assertions>
-			</junit>
+			</java>
 		</sequential>
 	</macrodef>
 
