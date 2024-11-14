@@ -19,33 +19,34 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.VmCop.shortGit;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class ShortGitTest extends TestCase
+public class ShortGitTest
 {
-	public void testMatch()
+	@Test void testMatch()
 	{
 		assertEquals(
 				"revision: 9131eefa or so", shortGit(
 				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2 or so"));
 	}
 
-	public void testTooShort()
+	@Test void testTooShort()
 	{
 		assertEquals(
 				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b or so", shortGit(
 				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b or so"));
 	}
 
-	public void testTooLong()
+	@Test void testTooLong()
 	{
 		assertEquals(
 				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2a or so", shortGit(
 				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5b2a or so"));
 	}
 
-	public void testNoHex()
+	@Test void testNoHex()
 	{
 		assertEquals(
 				"revision: 9131eefa398531c7dc98776e8a3fe839e544c5bX or so", shortGit(

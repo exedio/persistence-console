@@ -19,15 +19,16 @@
 package com.exedio.cope.console;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class MimeTypesTest extends TestCase
+public class MimeTypesTest
 {
-	public void testIt()
+	@Test void testIt()
 	{
 		assertIt("image/png, text/plain", "image/png", "text/plain");
 		assertIt("image/png, text/plain", "text/plain", "image/png");

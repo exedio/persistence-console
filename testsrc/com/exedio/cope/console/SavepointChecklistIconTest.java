@@ -23,59 +23,60 @@ import static com.exedio.cope.console.ChecklistIcon.error;
 import static com.exedio.cope.console.ChecklistIcon.ok;
 import static com.exedio.cope.console.ChecklistIcon.unknown;
 import static com.exedio.cope.console.SavepointCop.getChecklistIcon;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.console.SavepointCop.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class SavepointChecklistIconTest extends TestCase
+public class SavepointChecklistIconTest
 {
-	public void testEmpty()
+	@Test void testEmpty()
 	{
 		assertEquals(unknown, icon());
 	}
-	public void testOneSuccess()
+	@Test void testOneSuccess()
 	{
 		assertEquals(unknown, icon(
 				new Point("ok")));
 	}
-	public void testOneFailure()
+	@Test void testOneFailure()
 	{
 		assertEquals(error, icon(
 				new Point(newSchemaSavepointNotAvailable())));
 	}
-	public void testTwoSuccessesEquals()
+	@Test void testTwoSuccessesEquals()
 	{
 		assertEquals(unknown, icon(
 				new Point("ok"),
 				new Point("ok")));
 	}
-	public void testTwoSuccessesDistinct()
+	@Test void testTwoSuccessesDistinct()
 	{
 		assertEquals(ok, icon(
 				new Point("ok1"),
 				new Point("ok2")));
 	}
-	public void testTwoFailures()
+	@Test void testTwoFailures()
 	{
 		assertEquals(error, icon(
 				new Point(newSchemaSavepointNotAvailable()),
 				new Point(newSchemaSavepointNotAvailable())));
 	}
-	public void testOneFailureOneSuccess()
+	@Test void testOneFailureOneSuccess()
 	{
 		assertEquals(error, icon(
 				new Point("ok"),
 				new Point(newSchemaSavepointNotAvailable())));
 	}
-	public void testOneSuccessOneFailure()
+	@Test void testOneSuccessOneFailure()
 	{
 		assertEquals(unknown, icon(
 				new Point(newSchemaSavepointNotAvailable()),
 				new Point("ok")));
 	}
-	public void testManySuccessesEquals()
+	@Test void testManySuccessesEquals()
 	{
 		assertEquals(unknown, icon(
 				new Point("ok"),
@@ -84,7 +85,7 @@ public class SavepointChecklistIconTest extends TestCase
 				new Point("ok"),
 				new Point("ok")));
 	}
-	public void testManySuccessesDistinct()
+	@Test void testManySuccessesDistinct()
 	{
 		assertEquals(ok, icon(
 				new Point("okOther"),
@@ -93,7 +94,7 @@ public class SavepointChecklistIconTest extends TestCase
 				new Point("ok"),
 				new Point("ok")));
 	}
-	public void testManySuccessesDistinctButFailure()
+	@Test void testManySuccessesDistinctButFailure()
 	{
 		assertEquals(unknown, icon(
 				new Point("okOther"),
@@ -102,7 +103,7 @@ public class SavepointChecklistIconTest extends TestCase
 				new Point(newSchemaSavepointNotAvailable()),
 				new Point("ok")));
 	}
-	public void testManySuccessesDistinctButFailureLast()
+	@Test void testManySuccessesDistinctButFailureLast()
 	{
 		assertEquals(error, icon(
 				new Point("okOther"),

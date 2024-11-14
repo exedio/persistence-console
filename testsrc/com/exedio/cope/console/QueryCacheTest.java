@@ -19,15 +19,19 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.QueryCacheHistogramAccessor.newQueryCacheHistogram;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import com.exedio.cope.QueryCacheHistogram;
 import java.util.Arrays;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings({"ResultOfObjectAllocationIgnored", "ConstantConditions", "RedundantSuppression"})
-public class QueryCacheTest extends TestCase
+public class QueryCacheTest
 {
-	public void testIt()
+	@Test void testIt()
 	{
 		try
 		{
@@ -52,7 +56,7 @@ public class QueryCacheTest extends TestCase
 			assertEquals(-1, content.avgResultSize);
 			assertEquals(-1, content.minResultSize);
 			assertEquals(-1, content.maxResultSize);
-			assertEquals(new int[]{}, content.resultSizes);
+			assertEqualsA(new int[]{}, content.resultSizes);
 			assertEquals(-1, content.avgHits);
 			assertEquals(-1, content.minHits);
 			assertEquals(-1, content.maxHits);
@@ -71,7 +75,7 @@ public class QueryCacheTest extends TestCase
 			assertEquals(5, content.avgResultSize);
 			assertEquals(3, content.minResultSize);
 			assertEquals(7, content.maxResultSize);
-			assertEquals(new int[]{0, 0, 0, 1, 0}, content.resultSizes);
+			assertEqualsA(new int[]{0, 0, 0, 1, 0}, content.resultSizes);
 			assertEquals(102, content.avgHits);
 			assertEquals(101, content.minHits);
 			assertEquals(103, content.maxHits);
@@ -116,7 +120,7 @@ public class QueryCacheTest extends TestCase
 		assertEquals(query, actual.query);
 	}
 
-	private static void assertEquals(final int[] expected, final int[] actual)
+	private static void assertEqualsA(final int[] expected, final int[] actual)
 	{
 		if(!Arrays.equals(expected, actual))
 			fail("expected " + Arrays.toString(expected) + ", but was " + Arrays.toString(actual));

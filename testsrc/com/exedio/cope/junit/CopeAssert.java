@@ -18,27 +18,28 @@
 
 package com.exedio.cope.junit;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import junit.framework.TestCase;
-import org.junit.Assert;
 
-public abstract class CopeAssert extends TestCase
+public abstract class CopeAssert
 {
 	public static final <T> void assertContainsList(final List<T> expected, final Collection<T> actual)
 	{
 		if(expected==null && actual==null)
 			return;
 
-		Assert.assertNotNull("expected null, but was " + actual, expected);
-		Assert.assertNotNull("expected " + expected + ", but was null", actual);
+		assertNotNull(expected, "expected null, but was " + actual);
+		assertNotNull(actual, "expected " + expected + ", but was null");
 
 		if(expected.size()!=actual.size() ||
 				!expected.containsAll(actual) ||
 				!actual.containsAll(expected))
-			Assert.fail("expected "+expected+", but was "+actual);
+			fail("expected "+expected+", but was "+actual);
 	}
 
 	public static final void assertContains(final Collection<?> actual)

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ivy-module [
+		<!ENTITY junit.version.minor "11.3">
+	]>
 <ivy-module
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		version="2.0"
@@ -34,16 +37,13 @@
 	</publications>
 	<dependencies>
 		<dependency org="javax.servlet" name="javax.servlet-api" rev="4.0.1" conf="runtime->default; ide->sources" />
-		<dependency org="junit" name="junit" rev="4.10" conf="test->default">
-			<exclude org="org.hamcrest" />
-		</dependency>
 		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; ide->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="cope" rev="10926" conf="runtime->runtime; test,example->hsqldb,mysql; instrument->instrument; ide->sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="857" conf="runtime->runtime; ide->sources,changelog" />
 		<dependency org="org.apache.ant" name="ant"       rev="1.10.11" conf="ant->default" />
-		<dependency org="org.apache.ant" name="ant-junit" rev="1.10.11" conf="ant->default">
-			<exclude org="junit" module="junit" />
-		</dependency>
+		<dependency org="org.junit.jupiter"  name="junit-jupiter-api"      rev="5.&junit.version.minor;" conf="test->default; ide->sources" />
+		<dependency org="org.junit.jupiter"  name="junit-jupiter-engine"   rev="5.&junit.version.minor;" conf="test->default" />
+		<dependency org="org.junit.platform" name="junit-platform-console" rev="1.&junit.version.minor;" conf="test->default" />
 		<dependency org="ant-contrib" name="ant-contrib" rev="1.0b3" conf="ant-contrib->default">
 			<exclude org="ant" module="ant" />
 		</dependency>
