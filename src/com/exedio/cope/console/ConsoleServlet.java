@@ -114,6 +114,7 @@ public class ConsoleServlet extends CopsServlet
 	private ConnectToken connectToken = null;
 
 	static final Resource stylesheet = new Resource("console.css");
+	static final Resource stylesheetBody = new Resource("console-body.css");
 	static final Resource propertiesScript = new Resource("properties.js");
 	static final Resource schemaScript = new Resource("schema.js");
 	static final Resource logo = new Resource("logo.png");
