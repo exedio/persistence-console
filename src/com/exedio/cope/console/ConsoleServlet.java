@@ -141,8 +141,6 @@ public class ConsoleServlet extends CopsServlet
 			case OK      -> nodeFalse;
 			case WARNING -> nodeWarningFalse;
 			case ERROR   -> nodeErrorFalse;
-			//noinspection UnnecessaryDefault
-			default -> throw new RuntimeException(color.toString());
 		};
 	}
 
