@@ -38,8 +38,6 @@ enum ChecklistIcon
 			case OK      -> ok;
 			case WARNING -> warning;
 			case ERROR   -> error;
-			//noinspection UnnecessaryDefault
-			default -> throw new RuntimeException("" + color);
 		};
 	}
 }
