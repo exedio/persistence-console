@@ -117,7 +117,7 @@ final class Console_Jspm
 		<div class="footer">
 			<%=cop.getStart()%> (<%=cop.getDuration()%>ms)
 			<br>
-			Silk icons from <a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank">famfamfam.com</a>.
+			Silk icons from famfamfam.com (site no longer available).
 			<br>
 			<a href="copsResourceStatus.html" target="_blank">Resource Status</a>
 		</div><%
