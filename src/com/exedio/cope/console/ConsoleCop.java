@@ -356,7 +356,6 @@ abstract class ConsoleCop<S> extends Cop
 			return new NotFound(args, pathInfo);
 
 		final String tab = pathInfo.substring(1, pathInfo.length()-NAME_POSTFIX.length());
-		//noinspection EnhancedSwitchMigration
 		switch(tab)
 		{
 			case PurgeCop.TAB:
