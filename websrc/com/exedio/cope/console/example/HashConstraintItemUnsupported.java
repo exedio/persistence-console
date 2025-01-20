@@ -28,7 +28,7 @@ final class HashConstraintItemUnsupported extends Item
 {
 	static final StringField hash = new StringField();
 	static final DataField data = new DataField();
-	@SuppressWarnings("unused")
+	@UsageEntryPoint
 	static final HashConstraint constraint = new HashConstraint(hash, () -> "MD2", data);
 
 

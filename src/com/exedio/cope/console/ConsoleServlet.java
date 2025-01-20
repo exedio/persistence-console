@@ -123,15 +123,15 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource checkTrue  = new Resource("checktrue.png");
 
 	static final Resource nodeFalse = new Resource("nodefalse.png");
-	@SuppressWarnings("unused") // OK: url set by javascript
+	@UsageEntryPoint // OK: url set by javascript
 	static final Resource nodeTrue  = new Resource("nodetrue.png");
 
 	private static final Resource nodeWarningFalse = new Resource("nodewarningfalse.png");
-	@SuppressWarnings("unused") // OK: url set by javascript
+	@UsageEntryPoint // OK: url set by javascript
 	static final Resource nodeWarningTrue  = new Resource("nodewarningtrue.png");
 
 	private static final Resource nodeErrorFalse = new Resource("nodeerrorfalse.png");
-	@SuppressWarnings("unused") // OK: url set by javascript
+	@UsageEntryPoint // OK: url set by javascript
 	static final Resource nodeErrorTrue  = new Resource("nodeerrortrue.png");
 
 	static Resource nodeFalse(final Node.Color color)
