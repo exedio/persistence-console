@@ -38,7 +38,7 @@ final class StringLengthItem extends Item
 	 * {@code CharacterNulCop} with copeutil before revision 863.
 	 */
 	@WrapperIgnore
-	@SuppressWarnings("unused")
+	@UsageEntryPoint
 	static final StringField charSet = new StringField().optional().charSet(CharSet.EMAIL_INTERNATIONAL);
 
 
