@@ -41,7 +41,7 @@ final class CopyItem extends Item
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	CopyItem(
-				final CopyOriginItem origin)
+				@javax.annotation.Nonnull final CopyOriginItem origin)
 			throws
 				com.exedio.cope.MandatoryViolationException
 	{
@@ -61,6 +61,7 @@ final class CopyItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final CopyOriginItem getOrigin()
 	{
 		return CopyItem.origin.get(this);
@@ -71,6 +72,7 @@ final class CopyItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getString()
 	{
 		return CopyItem.string.get(this);

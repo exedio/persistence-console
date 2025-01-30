@@ -47,6 +47,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getURL")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.lang.String getContentURL()
 	{
 		return AMediaSingleItem.content.getURL(this);
@@ -57,6 +58,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLocator")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final com.exedio.cope.pattern.MediaPath.Locator getContentLocator()
 	{
 		return AMediaSingleItem.content.getLocator(this);
@@ -67,6 +69,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getContentType")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.lang.String getContentContentType()
 	{
 		return AMediaSingleItem.content.getContentType(this);
@@ -87,6 +90,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLastModified")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.util.Date getContentLastModified()
 	{
 		return AMediaSingleItem.content.getLastModified(this);
@@ -107,6 +111,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getBody")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final byte[] getContentBody()
 	{
 		return AMediaSingleItem.content.getBody(this);
@@ -119,7 +124,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getBody")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getContentBody(final java.io.OutputStream body)
+	final void getContentBody(@javax.annotation.Nonnull final java.io.OutputStream body)
 			throws
 				java.io.IOException
 	{
@@ -133,7 +138,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getBody")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getContentBody(final java.nio.file.Path body)
+	final void getContentBody(@javax.annotation.Nonnull final java.nio.file.Path body)
 			throws
 				java.io.IOException
 	{
@@ -146,7 +151,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setContent(final com.exedio.cope.pattern.Media.Value content)
+	final void setContent(@javax.annotation.Nullable final com.exedio.cope.pattern.Media.Value content)
 			throws
 				java.io.IOException
 	{
@@ -158,7 +163,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setContent(final byte[] body,final java.lang.String contentType)
+	final void setContent(@javax.annotation.Nullable final byte[] body,@javax.annotation.Nullable final java.lang.String contentType)
 	{
 		AMediaSingleItem.content.set(this,body,contentType);
 	}
@@ -169,7 +174,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setContent(final java.io.InputStream body,final java.lang.String contentType)
+	final void setContent(@javax.annotation.Nullable final java.io.InputStream body,@javax.annotation.Nullable final java.lang.String contentType)
 			throws
 				java.io.IOException
 	{
@@ -182,7 +187,7 @@ final class AMediaSingleItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setContent(final java.nio.file.Path body,final java.lang.String contentType)
+	final void setContent(@javax.annotation.Nullable final java.nio.file.Path body,@javax.annotation.Nullable final java.lang.String contentType)
 			throws
 				java.io.IOException
 	{

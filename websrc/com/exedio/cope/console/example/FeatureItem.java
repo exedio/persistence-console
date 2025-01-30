@@ -59,8 +59,8 @@ final class FeatureItem extends Item
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	FeatureItem(
-				final Feature feature,
-				final StringField string)
+				@javax.annotation.Nullable final Feature feature,
+				@javax.annotation.Nullable final StringField string)
 			throws
 				com.exedio.cope.StringLengthViolationException
 	{
@@ -81,6 +81,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final Feature getFeature()
 	{
 		return FeatureItem.feature.get(this);
@@ -91,7 +92,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setFeature(final Feature feature)
+	final void setFeature(@javax.annotation.Nullable final Feature feature)
 			throws
 				com.exedio.cope.StringLengthViolationException
 	{
@@ -103,6 +104,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final StringField getString()
 	{
 		return FeatureItem.string.get(this);
@@ -113,7 +115,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setString(final StringField string)
+	final void setString(@javax.annotation.Nullable final StringField string)
 			throws
 				com.exedio.cope.StringLengthViolationException
 	{
@@ -125,6 +127,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.lang.String getStringField1()
 	{
 		return FeatureItem.stringField1.get(this);
@@ -135,7 +138,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setStringField1(final java.lang.String stringField1)
+	final void setStringField1(@javax.annotation.Nullable final java.lang.String stringField1)
 			throws
 				com.exedio.cope.StringLengthViolationException
 	{
@@ -147,6 +150,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.lang.String getStringField2()
 	{
 		return FeatureItem.stringField2.get(this);
@@ -157,7 +161,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setStringField2(final java.lang.String stringField2)
+	final void setStringField2(@javax.annotation.Nullable final java.lang.String stringField2)
 			throws
 				com.exedio.cope.StringLengthViolationException
 	{
@@ -169,6 +173,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.lang.Integer getIntField1()
 	{
 		return FeatureItem.intField1.get(this);
@@ -179,7 +184,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setIntField1(final java.lang.Integer intField1)
+	final void setIntField1(@javax.annotation.Nullable final java.lang.Integer intField1)
 	{
 		FeatureItem.intField1.set(this,intField1);
 	}
@@ -189,6 +194,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.lang.Integer getIntField2()
 	{
 		return FeatureItem.intField2.get(this);
@@ -199,7 +205,7 @@ final class FeatureItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setIntField2(final java.lang.Integer intField2)
+	final void setIntField2(@javax.annotation.Nullable final java.lang.Integer intField2)
 	{
 		FeatureItem.intField2.set(this,intField2);
 	}

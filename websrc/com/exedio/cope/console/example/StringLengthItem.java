@@ -56,12 +56,12 @@ final class StringLengthItem extends Item
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	StringLengthItem(
-				final java.lang.String empty,
-				final java.lang.String emptyOk,
-				final java.lang.String normal,
-				final java.lang.String normalOk,
-				final java.lang.String min10,
-				final java.lang.String min10Ok)
+				@javax.annotation.Nonnull final java.lang.String empty,
+				@javax.annotation.Nonnull final java.lang.String emptyOk,
+				@javax.annotation.Nonnull final java.lang.String normal,
+				@javax.annotation.Nonnull final java.lang.String normalOk,
+				@javax.annotation.Nonnull final java.lang.String min10,
+				@javax.annotation.Nonnull final java.lang.String min10Ok)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
@@ -87,6 +87,7 @@ final class StringLengthItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getEmpty()
 	{
 		return StringLengthItem.empty.get(this);
@@ -97,6 +98,7 @@ final class StringLengthItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getEmptyOk()
 	{
 		return StringLengthItem.emptyOk.get(this);
@@ -107,6 +109,7 @@ final class StringLengthItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getNormal()
 	{
 		return StringLengthItem.normal.get(this);
@@ -117,6 +120,7 @@ final class StringLengthItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getNormalOk()
 	{
 		return StringLengthItem.normalOk.get(this);
@@ -127,6 +131,7 @@ final class StringLengthItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getMin10()
 	{
 		return StringLengthItem.min10.get(this);
@@ -137,6 +142,7 @@ final class StringLengthItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getMin10Ok()
 	{
 		return StringLengthItem.min10Ok.get(this);

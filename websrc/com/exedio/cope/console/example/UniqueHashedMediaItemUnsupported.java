@@ -35,7 +35,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	UniqueHashedMediaItemUnsupported(
-				final com.exedio.cope.pattern.Media.Value feature)
+				@javax.annotation.Nonnull final com.exedio.cope.pattern.Media.Value feature)
 			throws
 				com.exedio.cope.MandatoryViolationException
 	{
@@ -55,6 +55,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getURL")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getURL()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getURL(this);
@@ -65,6 +66,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLocator")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final com.exedio.cope.pattern.MediaPath.Locator getLocator()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getLocator(this);
@@ -75,6 +77,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getContentType")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getContentType()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getContentType(this);
@@ -85,6 +88,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLastModified")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.util.Date getLastModified()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getLastModified(this);
@@ -105,6 +109,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getBody")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final byte[] getBody()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getBody(this);
@@ -115,6 +120,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getHash")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getHash()
 	{
 		return UniqueHashedMediaItemUnsupported.feature.getHash(this);
@@ -126,7 +132,8 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="forHash")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	static final UniqueHashedMediaItemUnsupported forHash(final java.lang.String featureHash)
+	@javax.annotation.Nullable
+	static final UniqueHashedMediaItemUnsupported forHash(@javax.annotation.Nonnull final java.lang.String featureHash)
 	{
 		return UniqueHashedMediaItemUnsupported.feature.forHash(UniqueHashedMediaItemUnsupported.class,featureHash);
 	}
@@ -138,7 +145,8 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getOrCreate")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	static final UniqueHashedMediaItemUnsupported getOrCreate(final com.exedio.cope.pattern.Media.Value feature)
+	@javax.annotation.Nullable
+	static final UniqueHashedMediaItemUnsupported getOrCreate(@javax.annotation.Nullable final com.exedio.cope.pattern.Media.Value feature)
 			throws
 				java.io.IOException
 	{

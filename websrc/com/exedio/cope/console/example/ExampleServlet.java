@@ -23,6 +23,7 @@ import static io.micrometer.core.instrument.Metrics.globalRegistry;
 import static java.lang.System.nanoTime;
 import static java.nio.charset.StandardCharsets.US_ASCII;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Objects.requireNonNull;
 
 import com.exedio.cope.ChangeEvent;
 import com.exedio.cope.ChangeListener;
@@ -239,12 +240,12 @@ public final class ExampleServlet extends CopsServlet
 			{
 				final AMediaItem item = new AMediaItem();
 				item.setContent(resource("test.png"), "image/png");
-				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified().getTime()-(1000l*60*60*7))); // 7 hours
+				AMediaItem.content.getLastModified().set(item, new Date(requireNonNull(item.getContentLastModified()).getTime()-(1000l*60*60*7))); // 7 hours
 			}
 			{
 				final AMediaItem item = new AMediaItem();
 				item.setContent(resource("test.png"), "image/png");
-				AMediaItem.content.getLastModified().set(item, new Date(item.getContentLastModified().getTime()-(1000l*60*60*24*91))); // 91 days
+				AMediaItem.content.getLastModified().set(item, new Date(requireNonNull(item.getContentLastModified()).getTime()-(1000l*60*60*24*91))); // 91 days
 			}
 			new AMediaItem().setName("someName");
 			new AMediaItem().setName("someName error");

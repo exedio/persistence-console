@@ -36,10 +36,10 @@ final class LongName4 extends AnItem
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	LongName4(
-				final java.lang.String aField,
-				final com.exedio.cope.console.example.AnItem.Letter letter,
-				final com.exedio.cope.console.example.AnItem.Letter secondLetter,
-				final com.exedio.cope.console.example.AnItem.Color color)
+				@javax.annotation.Nonnull final java.lang.String aField,
+				@javax.annotation.Nonnull final com.exedio.cope.console.example.AnItem.Letter letter,
+				@javax.annotation.Nonnull final com.exedio.cope.console.example.AnItem.Letter secondLetter,
+				@javax.annotation.Nonnull final com.exedio.cope.console.example.AnItem.Color color)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
