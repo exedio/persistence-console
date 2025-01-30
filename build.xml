@@ -142,6 +142,7 @@
 		<taskdef resource="com/exedio/cope/instrument/ant.properties" onerror="failall">
 			<classpath>
 				<pathelement location="build/classes/src" />
+				<fileset dir="lib/compile-annotations" />
 				<fileset dir="lib/instrument" />
 			</classpath>
 		</taskdef>
@@ -150,6 +151,7 @@
 	<target name="web.instrument" unless="skip.instrument" depends="instrument.taskdef">
 		<instrument
 				dir="websrc"
+				nullabilityAnnotations="true"
 				directSetValueMap="true"
 				serialAnnotation="true"
 				verify="${instrument.verify}">
