@@ -49,7 +49,7 @@ final class EnumSingletonComplete extends Item
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	private EnumSingletonComplete(
-				final MyEnum feature)
+				@javax.annotation.Nonnull final MyEnum feature)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.UniqueViolationException
@@ -70,6 +70,7 @@ final class EnumSingletonComplete extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final MyEnum getFeature()
 	{
 		return EnumSingletonComplete.feature.get(this);
@@ -82,7 +83,8 @@ final class EnumSingletonComplete extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="instance")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	static final EnumSingletonComplete instance(final MyEnum feature)
+	@javax.annotation.Nonnull
+	static final EnumSingletonComplete instance(@javax.annotation.Nonnull final MyEnum feature)
 			throws
 				java.lang.IllegalArgumentException
 	{

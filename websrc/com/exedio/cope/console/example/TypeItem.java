@@ -70,6 +70,7 @@ final class TypeItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final com.exedio.cope.Type<? extends Item> getItem()
 	{
 		return TypeItem.item.get(this);
@@ -80,7 +81,7 @@ final class TypeItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setItem(final com.exedio.cope.Type<? extends Item> item)
+	final void setItem(@javax.annotation.Nullable final com.exedio.cope.Type<? extends Item> item)
 			throws
 				com.exedio.cope.StringLengthViolationException
 	{
@@ -92,6 +93,7 @@ final class TypeItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final com.exedio.cope.Type<? extends AnItem> getAnitem()
 	{
 		return TypeItem.anitem.get(this);
@@ -102,7 +104,7 @@ final class TypeItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setAnitem(final com.exedio.cope.Type<? extends AnItem> anitem)
+	final void setAnitem(@javax.annotation.Nullable final com.exedio.cope.Type<? extends AnItem> anitem)
 			throws
 				com.exedio.cope.StringLengthViolationException
 	{

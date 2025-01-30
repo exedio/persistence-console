@@ -80,6 +80,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final byte[] getBlob1Array()
 	{
 		return ADataItem.blob1.getArray(this);
@@ -90,7 +91,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getBlob1(final java.io.OutputStream blob1)
+	final void getBlob1(@javax.annotation.Nonnull final java.io.OutputStream blob1)
 			throws
 				java.io.IOException
 	{
@@ -102,7 +103,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getBlob1(final java.nio.file.Path blob1)
+	final void getBlob1(@javax.annotation.Nonnull final java.nio.file.Path blob1)
 			throws
 				java.io.IOException
 	{
@@ -114,7 +115,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setBlob1(final com.exedio.cope.DataField.Value blob1)
+	final void setBlob1(@javax.annotation.Nullable final com.exedio.cope.DataField.Value blob1)
 	{
 		ADataItem.blob1.set(this,blob1);
 	}
@@ -124,7 +125,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setBlob1(final byte[] blob1)
+	final void setBlob1(@javax.annotation.Nullable final byte[] blob1)
 	{
 		ADataItem.blob1.set(this,blob1);
 	}
@@ -134,7 +135,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setBlob1(final java.io.InputStream blob1)
+	final void setBlob1(@javax.annotation.Nullable final java.io.InputStream blob1)
 			throws
 				java.io.IOException
 	{
@@ -146,7 +147,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setBlob1(final java.nio.file.Path blob1)
+	final void setBlob1(@javax.annotation.Nullable final java.nio.file.Path blob1)
 			throws
 				java.io.IOException
 	{
@@ -178,6 +179,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final byte[] getBlob2Array()
 	{
 		return ADataItem.blob2.getArray(this);
@@ -188,7 +190,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getBlob2(final java.io.OutputStream blob2)
+	final void getBlob2(@javax.annotation.Nonnull final java.io.OutputStream blob2)
 			throws
 				java.io.IOException
 	{
@@ -200,7 +202,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getBlob2(final java.nio.file.Path blob2)
+	final void getBlob2(@javax.annotation.Nonnull final java.nio.file.Path blob2)
 			throws
 				java.io.IOException
 	{
@@ -212,7 +214,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setBlob2(final com.exedio.cope.DataField.Value blob2)
+	final void setBlob2(@javax.annotation.Nullable final com.exedio.cope.DataField.Value blob2)
 	{
 		ADataItem.blob2.set(this,blob2);
 	}
@@ -222,7 +224,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setBlob2(final byte[] blob2)
+	final void setBlob2(@javax.annotation.Nullable final byte[] blob2)
 	{
 		ADataItem.blob2.set(this,blob2);
 	}
@@ -232,7 +234,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setBlob2(final java.io.InputStream blob2)
+	final void setBlob2(@javax.annotation.Nullable final java.io.InputStream blob2)
 			throws
 				java.io.IOException
 	{
@@ -244,7 +246,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setBlob2(final java.nio.file.Path blob2)
+	final void setBlob2(@javax.annotation.Nullable final java.nio.file.Path blob2)
 			throws
 				java.io.IOException
 	{
@@ -276,6 +278,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final byte[] getVault1Array()
 	{
 		return ADataItem.vault1.getArray(this);
@@ -286,7 +289,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getVault1(final java.io.OutputStream vault1)
+	final void getVault1(@javax.annotation.Nonnull final java.io.OutputStream vault1)
 			throws
 				java.io.IOException
 	{
@@ -298,7 +301,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getVault1(final java.nio.file.Path vault1)
+	final void getVault1(@javax.annotation.Nonnull final java.nio.file.Path vault1)
 			throws
 				java.io.IOException
 	{
@@ -310,7 +313,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVault1(final com.exedio.cope.DataField.Value vault1)
+	final void setVault1(@javax.annotation.Nullable final com.exedio.cope.DataField.Value vault1)
 	{
 		ADataItem.vault1.set(this,vault1);
 	}
@@ -320,7 +323,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVault1(final byte[] vault1)
+	final void setVault1(@javax.annotation.Nullable final byte[] vault1)
 	{
 		ADataItem.vault1.set(this,vault1);
 	}
@@ -330,7 +333,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVault1(final java.io.InputStream vault1)
+	final void setVault1(@javax.annotation.Nullable final java.io.InputStream vault1)
 			throws
 				java.io.IOException
 	{
@@ -342,7 +345,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVault1(final java.nio.file.Path vault1)
+	final void setVault1(@javax.annotation.Nullable final java.nio.file.Path vault1)
 			throws
 				java.io.IOException
 	{
@@ -374,6 +377,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final byte[] getVault2Array()
 	{
 		return ADataItem.vault2.getArray(this);
@@ -384,7 +388,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getVault2(final java.io.OutputStream vault2)
+	final void getVault2(@javax.annotation.Nonnull final java.io.OutputStream vault2)
 			throws
 				java.io.IOException
 	{
@@ -396,7 +400,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getVault2(final java.nio.file.Path vault2)
+	final void getVault2(@javax.annotation.Nonnull final java.nio.file.Path vault2)
 			throws
 				java.io.IOException
 	{
@@ -408,7 +412,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVault2(final com.exedio.cope.DataField.Value vault2)
+	final void setVault2(@javax.annotation.Nullable final com.exedio.cope.DataField.Value vault2)
 	{
 		ADataItem.vault2.set(this,vault2);
 	}
@@ -418,7 +422,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVault2(final byte[] vault2)
+	final void setVault2(@javax.annotation.Nullable final byte[] vault2)
 	{
 		ADataItem.vault2.set(this,vault2);
 	}
@@ -428,7 +432,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVault2(final java.io.InputStream vault2)
+	final void setVault2(@javax.annotation.Nullable final java.io.InputStream vault2)
 			throws
 				java.io.IOException
 	{
@@ -440,7 +444,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVault2(final java.nio.file.Path vault2)
+	final void setVault2(@javax.annotation.Nullable final java.nio.file.Path vault2)
 			throws
 				java.io.IOException
 	{
@@ -472,6 +476,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final byte[] getVaultOtherArray()
 	{
 		return ADataItem.vaultOther.getArray(this);
@@ -482,7 +487,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getVaultOther(final java.io.OutputStream vaultOther)
+	final void getVaultOther(@javax.annotation.Nonnull final java.io.OutputStream vaultOther)
 			throws
 				java.io.IOException
 	{
@@ -494,7 +499,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getVaultOther(final java.nio.file.Path vaultOther)
+	final void getVaultOther(@javax.annotation.Nonnull final java.nio.file.Path vaultOther)
 			throws
 				java.io.IOException
 	{
@@ -506,7 +511,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVaultOther(final com.exedio.cope.DataField.Value vaultOther)
+	final void setVaultOther(@javax.annotation.Nullable final com.exedio.cope.DataField.Value vaultOther)
 	{
 		ADataItem.vaultOther.set(this,vaultOther);
 	}
@@ -516,7 +521,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVaultOther(final byte[] vaultOther)
+	final void setVaultOther(@javax.annotation.Nullable final byte[] vaultOther)
 	{
 		ADataItem.vaultOther.set(this,vaultOther);
 	}
@@ -526,7 +531,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVaultOther(final java.io.InputStream vaultOther)
+	final void setVaultOther(@javax.annotation.Nullable final java.io.InputStream vaultOther)
 			throws
 				java.io.IOException
 	{
@@ -538,7 +543,7 @@ final class ADataItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setVaultOther(final java.nio.file.Path vaultOther)
+	final void setVaultOther(@javax.annotation.Nullable final java.nio.file.Path vaultOther)
 			throws
 				java.io.IOException
 	{

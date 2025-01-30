@@ -44,11 +44,11 @@ final class ASubItem extends AnItem
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	ASubItem(
-				final java.lang.String aField,
-				final com.exedio.cope.console.example.AnItem.Letter letter,
-				final com.exedio.cope.console.example.AnItem.Letter secondLetter,
-				final com.exedio.cope.console.example.AnItem.Color color,
-				final java.lang.String aSubField)
+				@javax.annotation.Nonnull final java.lang.String aField,
+				@javax.annotation.Nonnull final com.exedio.cope.console.example.AnItem.Letter letter,
+				@javax.annotation.Nonnull final com.exedio.cope.console.example.AnItem.Letter secondLetter,
+				@javax.annotation.Nonnull final com.exedio.cope.console.example.AnItem.Color color,
+				@javax.annotation.Nonnull final java.lang.String aSubField)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
@@ -73,6 +73,7 @@ final class ASubItem extends AnItem
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getASubField()
 	{
 		return ASubItem.aSubField.get(this);
@@ -83,7 +84,7 @@ final class ASubItem extends AnItem
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setASubField(final java.lang.String aSubField)
+	final void setASubField(@javax.annotation.Nonnull final java.lang.String aSubField)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException

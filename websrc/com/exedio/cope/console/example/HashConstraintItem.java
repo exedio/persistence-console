@@ -42,8 +42,8 @@ final class HashConstraintItem extends Item
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	HashConstraintItem(
-				final java.lang.String hash,
-				final com.exedio.cope.DataField.Value data)
+				@javax.annotation.Nonnull final java.lang.String hash,
+				@javax.annotation.Nonnull final com.exedio.cope.DataField.Value data)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
@@ -65,6 +65,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getHash()
 	{
 		return HashConstraintItem.hash.get(this);
@@ -75,7 +76,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setHash(final java.lang.String hash)
+	final void setHash(@javax.annotation.Nonnull final java.lang.String hash)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
@@ -108,6 +109,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final byte[] getDataArray()
 	{
 		return HashConstraintItem.data.getArray(this);
@@ -118,7 +120,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getData(final java.io.OutputStream data)
+	final void getData(@javax.annotation.Nonnull final java.io.OutputStream data)
 			throws
 				java.io.IOException
 	{
@@ -130,7 +132,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void getData(final java.nio.file.Path data)
+	final void getData(@javax.annotation.Nonnull final java.nio.file.Path data)
 			throws
 				java.io.IOException
 	{
@@ -142,7 +144,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setData(final com.exedio.cope.DataField.Value data)
+	final void setData(@javax.annotation.Nonnull final com.exedio.cope.DataField.Value data)
 			throws
 				com.exedio.cope.MandatoryViolationException
 	{
@@ -154,7 +156,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setData(final byte[] data)
+	final void setData(@javax.annotation.Nonnull final byte[] data)
 			throws
 				com.exedio.cope.MandatoryViolationException
 	{
@@ -166,7 +168,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setData(final java.io.InputStream data)
+	final void setData(@javax.annotation.Nonnull final java.io.InputStream data)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				java.io.IOException
@@ -179,7 +181,7 @@ final class HashConstraintItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
-	final void setData(final java.nio.file.Path data)
+	final void setData(@javax.annotation.Nonnull final java.nio.file.Path data)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				java.io.IOException

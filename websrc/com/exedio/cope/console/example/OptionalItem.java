@@ -42,9 +42,9 @@ final class OptionalItem extends Item
 	@com.exedio.cope.instrument.Generated // customize with @WrapperType(constructor=...) and @WrapperInitial
 	@java.lang.SuppressWarnings({"RedundantArrayCreation","RedundantSuppression"})
 	OptionalItem(
-				final java.lang.String mandatory,
-				final java.lang.String optional,
-				final java.lang.String optionalOk)
+				@javax.annotation.Nonnull final java.lang.String mandatory,
+				@javax.annotation.Nullable final java.lang.String optional,
+				@javax.annotation.Nullable final java.lang.String optionalOk)
 			throws
 				com.exedio.cope.MandatoryViolationException,
 				com.exedio.cope.StringLengthViolationException
@@ -67,6 +67,7 @@ final class OptionalItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nonnull
 	final java.lang.String getMandatory()
 	{
 		return OptionalItem.mandatory.get(this);
@@ -77,6 +78,7 @@ final class OptionalItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.lang.String getOptional()
 	{
 		return OptionalItem.optional.get(this);
@@ -87,6 +89,7 @@ final class OptionalItem extends Item
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
 	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
 	final java.lang.String getOptionalOk()
 	{
 		return OptionalItem.optionalOk.get(this);
