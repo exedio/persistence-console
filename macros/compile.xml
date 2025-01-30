@@ -15,6 +15,9 @@
 					 debug="on"
 					 optimize="off">
 				<implicit-element />
+				<classpath>
+					<fileset dir="lib/compile-annotations" includes="*.jar" />
+				</classpath>
 				<compilerarg value="-Xlint:all,-path" />
 				<compilerarg value="-encoding" />
 				<compilerarg value="ascii" />

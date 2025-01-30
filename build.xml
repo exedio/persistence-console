@@ -271,6 +271,7 @@
 			<classpath>
 				<fileset dir="lib/runtime" />
 				<pathelement location="lib/instrument/exedio-cope-instrument-annotations.jar" />
+				<fileset dir="lib/compile-annotations" />
 			</classpath>
 		</javadoc>
 	</target>

@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import javax.annotation.Nonnull;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -150,6 +151,7 @@ abstract class ConsoleCop<S> extends Cop
 		start = System.currentTimeMillis();
 	}
 
+	@Nonnull
 	protected abstract ConsoleCop<S> newArgs(final Args args);
 
 	final ConsoleCop<S> toAutoRefresh(final int autoRefresh)
