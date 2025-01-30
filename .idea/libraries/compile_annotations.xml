@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="compile-annotations">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/compile-annotations" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/compile-annotations" recursive="false" />
+  </library>
+</component>
