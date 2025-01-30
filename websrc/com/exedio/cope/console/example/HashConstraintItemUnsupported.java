@@ -21,12 +21,14 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.DataField;
 import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
+import com.exedio.cope.instrument.Wrapper;
 import com.exedio.cope.pattern.HashConstraint;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class HashConstraintItemUnsupported extends Item
 {
 	static final StringField hash = new StringField();
+	@Wrapper(wrap="getArray", suppressWarnings="DataFlowIssue")
 	static final DataField data = new DataField();
 	@UsageEntryPoint
 	static final HashConstraint constraint = new HashConstraint(hash, () -> "MD2", data);
@@ -108,7 +110,7 @@ final class HashConstraintItemUnsupported extends Item
 	 * Returns the value of the persistent field {@link #data}.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
-	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@java.lang.SuppressWarnings({"DataFlowIssue","FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	@javax.annotation.Nonnull
 	final byte[] getDataArray()
 	{
