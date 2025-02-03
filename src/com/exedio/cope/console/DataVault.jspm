@@ -61,7 +61,7 @@ final class DataVault_Jspm
 			{
 			%>
 			<tr><%
-			if(bucket.isBlob)
+			if(bucket.isNone)
 			{
 				%>
 				<td class="notavailable" colspan="3">BLOB</td><%

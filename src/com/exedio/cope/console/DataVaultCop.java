@@ -95,7 +95,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 
 	static final class Bucket
 	{
-		final boolean isBlob;
+		final boolean isNone;
 		final String bucket;
 		final String service;
 		final boolean markPut;
@@ -106,14 +106,14 @@ final class DataVaultCop extends ConsoleCop<Void>
 		{
 			if(info==null)
 			{
-				this.isBlob = true;
+				this.isNone = true;
 				this.bucket = null;
 				this.service = null;
 				this.markPut = false;
 			}
 			else
 			{
-				this.isBlob = false;
+				this.isNone = false;
 				this.bucket = info.getServiceKey();
 				this.service = info.getService();
 				this.markPut = info.getField().getType().getModel().isVaultRequiredToMarkPut(bucket);
