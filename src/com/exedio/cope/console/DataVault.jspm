@@ -64,7 +64,7 @@ final class DataVault_Jspm
 			if(bucket.isNone)
 			{
 				%>
-				<td class="notavailable" colspan="3">BLOB</td><%
+				<td class="notavailable" colspan="3">/none/</td><% // TODO use Vault#NONE when available after cope update
 			}
 			else
 			{
