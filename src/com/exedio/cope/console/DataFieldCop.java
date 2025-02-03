@@ -50,7 +50,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 	{
 		return new String[]
 		{
-			"Here you can see sizes of data fields (blob columns). " +
+			"Here you can see sizes of data fields not stored in vaults (blob columns). " +
 				"Table \"Tables\" aggregates sizes of multiple columns within a table.",
 			"This helps to configure your database, such as max_allowed_packet on MySQL.",
 		};
@@ -66,7 +66,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 
 		for(final Type<?> type : model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof final DataField field)
+				if(feature instanceof final DataField field && isShown(field))
 				{
 					fields.add(field);
 					if(lengthMax<field.getMaximumLength())
@@ -131,7 +131,7 @@ final class DataFieldCop extends ConsoleCop<Void>
 
 			for(final Type<?> type : model.getTypes())
 				for(final Feature feature : type.getDeclaredFeatures())
-					if(feature instanceof final DataField field)
+					if(feature instanceof final DataField field && isShown(field))
 					{
 						final String tableName = SchemaInfo.getTableName(field.getType());
 						Table table = result.get(tableName);
@@ -150,5 +150,10 @@ final class DataFieldCop extends ConsoleCop<Void>
 		{
 			return null;
 		}
+	}
+
+	private static boolean isShown(final DataField field)
+	{
+		return field.getVaultServiceKey()==null;
 	}
 }
