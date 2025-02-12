@@ -1,0 +1,48 @@
+table.grey caption {
+  font-style: italic;
+  text-align: left;
+  white-space: nowrap;
+  background: #ccc;
+  padding: 1px 5px;
+  border: solid 2px white;
+  border-bottom-width: 0;
+}
+
+table.grey th {
+  text-align: left;
+  vertical-align: top;
+  background: #ccc;
+  border: solid 1px #ccc;
+  padding: 1px 3px;
+  font-weight: normal;
+}
+
+table.grey td {
+  vertical-align: top;
+  text-align: left;
+  border: solid 1px #ccc;
+  padding: 1px 3px;
+}
+
+table.grey td.number {
+  text-align: right;
+}
+
+table.grey td.notAvailable {
+  text-align: center;
+  vertical-align: middle;
+  background: #eee;
+  padding: 1px 3px;
+  font-size: 7pt;
+}
+
+table.grey td.empty {
+  text-align: center;
+}
+
+table.grey td.error {
+  text-align: center;
+  vertical-align: middle;
+  background: #ffc7c7;
+  padding: 1px 3px;
+}

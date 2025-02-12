@@ -1,0 +1,27 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["js/src/*"],
+      "@t/*": ["js/tests/*"]
+    },
+    "types": ["vitest/globals"]
+  },
+  "include": [
+    "js/src/**/*.ts",
+    "js/src/**/*.js",
+    "js/src/**/*.svelte",
+    "js/tests/**/*.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

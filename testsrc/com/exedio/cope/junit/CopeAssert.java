@@ -18,16 +18,32 @@
 
 package com.exedio.cope.junit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import org.junit.jupiter.api.function.Executable;
 
 public abstract class CopeAssert
 {
+	@SuppressWarnings("UnusedReturnValue") // OK: for future use
+	public static <T extends Throwable> T assertFails(
+			final Executable executable,
+			final Class<T> expectedType,
+			final String expectedMessage)
+	{
+		final T result = assertThrows(expectedType, executable);
+		assertSame(expectedType, result.getClass());
+		assertEquals(expectedMessage, result.getMessage());
+		return result;
+	}
+
 	public static final <T> void assertContainsList(final List<T> expected, final Collection<T> actual)
 	{
 		if(expected==null && actual==null)

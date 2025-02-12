@@ -68,6 +68,7 @@ div.helpline
 ul.menu
 {
 	position:sticky;
+	z-index:1; /* TODO Without this, the menu is hidden partially by table headers. Don't know why this is needed. Was not needed before svelte */
 	top:0;
 	margin:0;
 	padding:0;

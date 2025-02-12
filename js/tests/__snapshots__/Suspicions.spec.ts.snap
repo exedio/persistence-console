@@ -1,0 +1,78 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Suspicions > should render a non-empty table 1`] = `
+"<table class="grey">
+  <caption>
+    Suspicions
+  </caption>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Suspicion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!----><!----><!---->
+    <tr>
+      <td rowspan="1">myOnlyType.myOnlyName</td>
+      <!---->
+      <td>myOnlySuspicion</td>
+    </tr>
+    <!---->
+    <tr>
+      <td rowspan="2">myMultiType.myMultiName</td>
+      <!---->
+      <td>myFirstSuspicion</td>
+    </tr>
+    <tr>
+      <!---->
+      <td>mySecondSuspicion</td>
+    </tr>
+    <!---->
+  </tbody>
+</table>
+"
+`;
+
+exports[`Suspicions > should render an empty table 1`] = `
+"<table class="grey">
+  <caption>
+    Suspicions
+  </caption>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Suspicion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!---->
+    <tr>
+      <td colspan="2" class="empty">There are no suspicions for the model.</td>
+    </tr>
+    <!---->
+  </tbody>
+</table>
+"
+`;
+
+exports[`Suspicions > should render an error message 1`] = `
+"<table class="grey">
+  <caption>
+    Suspicions
+  </caption>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Suspicion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2" class="error">suspicions: response code 400 myError</td>
+    </tr>
+    <!---->
+  </tbody>
+</table>
+"
+`;
