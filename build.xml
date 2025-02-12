@@ -128,6 +128,16 @@
 		</jar-exedio>
 	</target>
 
+	<target name="jar.src">
+		<mkdir dir="build" />
+		<zip destfile="build/exedio-cope-console-src.zip" filesonly="true" whenempty="fail" duplicate="fail" level="9">
+			<zipfileset dir="${basedir}/src">
+				<include name="**/*.java" />
+			</zipfileset>
+		</zip>
+		<plot file="build/exedio-cope-console-src.zip" />
+	</target>
+
 	<target name="testsrc.compile" depends="src.compile">
 		<compile srcdir="testsrc">
 			<classpath>
@@ -319,11 +329,12 @@
 		<copy file="testprotocol.css" todir="build" />
 	</target>
 
-	<target name="all" depends="build, api, testprotocol" />
+	<target name="all" depends="build, jar.src, api, testprotocol" />
 
 	<target name="jenkins" depends="all">
 		<copy todir="${basedir}/build/success">
 			<fileset file="${basedir}/build/exedio-cope-console.jar" />
+			<fileset file="${basedir}/build/exedio-cope-console-src.zip" />
 			<fileset file="${basedir}/exedio-cope-console-log.txt" />
 		</copy>
 		<copy file="ivy/ivy.xml" todir="build/success" overwrite="true">
@@ -334,7 +345,7 @@
 		</copy>
 	</target>
 
-	<target name="publishlocally" depends="jar">
+	<target name="publishlocally" depends="jar, jar.src">
 		<ant dir="ivy" target="publishlocally" />
 	</target>
 
