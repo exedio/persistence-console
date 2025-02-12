@@ -1,0 +1,227 @@
+td.pager
+{
+	text-align:left;
+	font-size:70%;
+}
+
+td.pager a
+{
+	text-decoration: none;
+}
+
+td.pager a.selected
+{
+	background-color: #ccc;
+}
+
+td.pager div.right
+{
+	float:right;
+	text-align:right;
+}
+
+table caption
+{
+	font-style:italic;
+	text-align:left;
+	white-space:nowrap;
+	background:#ccc;
+	padding:1px 5px;
+	border:solid 2px white;
+	border-bottom-width:0px;
+}
+
+table th
+{
+	text-align:left;
+	vertical-align:top;
+	background:#ccc;
+	border:solid 1px #ccc;
+	padding:1px 3px;
+	font-weight:normal;
+}
+
+table td
+{
+	text-align:right;
+	vertical-align:top;
+	border:solid 1px #ccc;
+	padding:1px 3px;
+}
+
+table td.text
+{
+	text-align:left;
+}
+
+td.notavailable
+{
+	text-align:center;
+	vertical-align:middle;
+	background:#eee;
+	padding:1px 3px;
+	font-size:7pt;
+}
+
+table td div.long
+{
+	margin:0;
+	padding:0;
+	overflow:auto;
+	max-height:5em;
+	font-size:small;
+}
+
+td.test
+{
+	white-space: nowrap;
+	text-align: left;
+}
+
+td.revisionNotInApplication
+{
+	background-color:#eee;
+}
+
+table tr.inconsistent td
+{
+	background:#C00;
+}
+
+table tr.unspecified
+{
+	display:none;
+}
+
+table tr.unspecified th
+{
+	background:#CCB;
+}
+
+table tr.unspecified td
+{
+	background:#FFE;
+}
+
+table tr.hiddenByFilter0
+{
+	display:none;
+}
+
+table tr.hiddenByFilter1
+{
+	display:none;
+}
+
+table tr.hiddenByFilter2
+{
+	display:none;
+}
+
+td.enabled
+{
+	background:#cff;
+}
+
+table th.color0 { margin:0px; background:#ccc; border-color:#ccc; text-align:left; padding-left:0.3em; }
+table th.color1 { margin:0px; background:#fff; border-color:#fff; text-align:left; padding-left:0.3em; }
+
+table th.color0s { margin:0px; background:#ccc; border-color:#ccc; text-align:center; min-width:1.5em; }
+table th.color1s { margin:0px; background:#fff; border-color:#fff; text-align:center; min-width:1.5em; }
+
+table td.color0 { margin:0px; background:#ddf; border-color:#ddf; }
+table td.color1 { margin:0px; background:#fff; border-color:#ddf; }
+
+
+table.matrixTable th
+{
+	min-width:1em;
+	overflow:hidden;
+}
+
+table.matrixTable td.a { margin:0px; background:#fff; border-color:#ddf; }
+table.matrixTable td.b { margin:0px; background:#ddf; border-color:#ddf; }
+
+
+span.help
+{
+	font-size:70%;
+	vertical-align:top;
+	color:#375798;
+}
+
+div.message
+{
+	color: #000;
+	background-color: #FCC;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 5px;
+	border-width: 3px;
+	border-color: #800;
+	border-style: solid;
+}
+
+img.check
+{
+	width:13px;
+	height:13px;
+}
+
+img.icon
+{
+	vertical-align:top;
+	width:16px;
+	height:16px;
+}
+
+img.node
+{
+	width:9px;
+	height:9px;
+}
+
+div.nodeLeaf
+{
+	display:inline-block;
+	width:9px;
+	height:9px;
+	border:0;
+	padding:0;
+}
+
+div.schemaApply
+{
+	float:right;
+	margin:0.5em 0 0.5em 0.5em;
+	position:sticky;
+	top:7em;
+	background:#ccf;
+	padding:0.5em;
+}
+
+.expand
+{
+	display:none;
+}
+
+span.textedit
+{
+	display:inline-block;
+	color:#005;
+}
+
+span.textedit:hover
+{
+	background:#ccf;
+	cursor:pointer;
+}
+
+span.javaDecoration { color:#ccc; }
+
+input.filter
+{
+	width:6em;
+	border: none;
+	background-color: #eee;
+}
