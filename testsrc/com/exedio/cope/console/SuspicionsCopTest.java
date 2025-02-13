@@ -70,7 +70,7 @@ public class SuspicionsCopTest {
     @java.io.Serial
     private static final long serialVersionUID = 1l;
 
-    static final Type<?> TYPE = TypesBound.newType(MyType.class);
+    static final Type<?> TYPE = TypesBound.newType(MyType.class, MyType::new);
 
     private MyType(final ActivationParameters ap) {
       super(ap);
@@ -106,7 +106,10 @@ public class SuspicionsCopTest {
     @java.io.Serial
     private static final long serialVersionUID = 1l;
 
-    static final Type<?> TYPE = TypesBound.newType(MyTypeEmpty.class);
+    static final Type<?> TYPE = TypesBound.newType(
+      MyTypeEmpty.class,
+      MyTypeEmpty::new
+    );
 
     private MyTypeEmpty(final ActivationParameters ap) {
       super(ap);
