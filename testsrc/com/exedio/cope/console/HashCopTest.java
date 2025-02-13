@@ -174,7 +174,7 @@ public class HashCopTest {
     @java.io.Serial
     private static final long serialVersionUID = 1l;
 
-    static final Type<?> TYPE = TypesBound.newType(MyType.class);
+    static final Type<?> TYPE = TypesBound.newType(MyType.class, MyType::new);
 
     private MyType(final ActivationParameters ap) {
       super(ap);
