@@ -19,6 +19,7 @@
 	<configurations>
 		<!-- There should be an assertIvyExtends in Jenkinsfile for each <conf name="abc" extends="def" /> here. -->
 		<conf name="runtime" />
+		<conf name="sources" />
 		<conf name="changelog" />
 		<conf visibility="private" name="compile-annotations" />
 		<conf visibility="private" name="jspm" />
@@ -35,6 +36,7 @@
 	</configurations>
 	<publications>
 		<artifact name="exedio-cope-console" conf="runtime"   type="jar" ext="jar" />
+		<artifact name="exedio-cope-console" conf="sources"   type="src" ext="zip" />
 		<artifact name="exedio-cope-console" conf="changelog" type="log" ext="txt" />
 	</publications>
 	<dependencies>
