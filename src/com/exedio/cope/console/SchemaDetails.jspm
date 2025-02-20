@@ -50,6 +50,7 @@ final class SchemaDetails_Jspm
 		%>
 		<hr>
 		<h4>Details</h4>
+		<div><a href="<%=cop.toNew()%>">Preview New Implementation</a></div>
 		<% writeToggle(out, cop.toToggleDetailed(), cop.detailed); %> detailed
 		<form action="<%=cop%>#overall" method="POST"><%
 
