@@ -12,7 +12,7 @@ exports[`Suspicions > should render a non-empty table 1`] = `
     </tr>
   </thead>
   <tbody>
-    <!----><!----><!---->
+    <!----><!---->
     <tr>
       <td rowspan="1">myOnlyType.myOnlyName</td>
       <!---->

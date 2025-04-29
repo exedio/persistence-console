@@ -24,18 +24,16 @@
         <td colspan="2" class="empty">fetching data</td>
       </tr>
     {:then features}
-      {#if features.length > 0}
-        {#each features as feature (feature.type + "." + feature.name)}
-          {#each feature.suspicions as suspicion, index}
-            <tr>
-              {#if index === 0}
-                <td rowspan={feature.suspicions.length}
-                  >{feature.type}.{feature.name}</td
-                >
-              {/if}
-              <td>{suspicion}</td>
-            </tr>
-          {/each}
+      {#each features as feature (feature.type + "." + feature.name)}
+        {#each feature.suspicions as suspicion, index}
+          <tr>
+            {#if index === 0}
+              <td rowspan={feature.suspicions.length}
+                >{feature.type}.{feature.name}</td
+              >
+            {/if}
+            <td>{suspicion}</td>
+          </tr>
         {/each}
       {:else}
         <tr>
@@ -43,7 +41,7 @@
             >There are no suspicions for the model.</td
           >
         </tr>
-      {/if}
+      {/each}
     {:catch error}
       <tr>
         <td colspan="2" class="error">{error.message}</td>
