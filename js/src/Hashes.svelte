@@ -108,53 +108,51 @@
         <td colspan="7" class="empty">fetching data</td>
       </tr>
     {:then hashes}
-      {#if hashes.length > 0}
-        {#each hashes as hash (toId(hash))}
-          {@const hashId = toId(hash)}
-          {@const measurement = measurements.get(hashId)}
-          <tr class="relative">
-            <td>
-              <button class="hash" onclick={() => toggleHash(hashId)}>
-                {#if hashToggled === hashId}
-                  &#8594;
-                {:else}
-                  &#8595;
-                {/if}
-              </button>
-              {hash.type}
-            </td>
-            <td>{hash.name}</td>
-            <td class="number">{hash.plainTextLimit}</td>
-            <td class:notAvailable={!hash.plainTextValidator}
-              >{hash.plainTextValidator}</td
-            >
-            <td>{hash.algorithmID}</td>
-            <td>{hash.algorithmDescription}</td>
-            <td class="number">
-              {#if measurement}
-                {measurement.toLocaleString("en-US")}
+      {#each hashes as hash (toId(hash))}
+        {@const hashId = toId(hash)}
+        {@const measurement = measurements.get(hashId)}
+        <tr class="relative">
+          <td>
+            <button class="hash" onclick={() => toggleHash(hashId)}>
+              {#if hashToggled === hashId}
+                &#8594;
+              {:else}
+                &#8595;
               {/if}
-              <button class="measure" onclick={() => measure(hash)}
-                >&#128336;
-              </button>
+            </button>
+            {hash.type}
+          </td>
+          <td>{hash.name}</td>
+          <td class="number">{hash.plainTextLimit}</td>
+          <td class:notAvailable={!hash.plainTextValidator}
+            >{hash.plainTextValidator}</td
+          >
+          <td>{hash.algorithmID}</td>
+          <td>{hash.algorithmDescription}</td>
+          <td class="number">
+            {#if measurement}
+              {measurement.toLocaleString("en-US")}
+            {/if}
+            <button class="measure" onclick={() => measure(hash)}
+              >&#128336;
+            </button>
+          </td>
+        </tr>
+        {#if hashToggled === hashId}
+          <tr in:fly={{ y: -10, duration: 200 }}>
+            <td colspan="7" class="expansion">
+              <input bind:value={plainText} placeholder="Plain Text" />
+              <button onclick={() => computeHash(hash)}>Hash</button>
+              <br />
+              <small>{plainTextHashed}</small>
             </td>
           </tr>
-          {#if hashToggled === hashId}
-            <tr in:fly={{ y: -10, duration: 200 }}>
-              <td colspan="7" class="expansion">
-                <input bind:value={plainText} placeholder="Plain Text" />
-                <button onclick={() => computeHash(hash)}>Hash</button>
-                <br />
-                <small>{plainTextHashed}</small>
-              </td>
-            </tr>
-          {/if}
-        {/each}
+        {/if}
       {:else}
         <tr>
           <td colspan="7" class="empty">There are no hashes in the model.</td>
         </tr>
-      {/if}
+      {/each}
     {:catch error}
       <tr>
         <td colspan="7" class="error">{error.message}</td>
