@@ -117,7 +117,7 @@ final class DataVault_Jspm
 
 			for(final DataFieldVaultInfo info : infos)
 			{
-				final String bucket = info.getServiceKey();
+				final String bucket = info.getBucket();
 			%>
 			<tr>
 				<td class="text"><% write(out, cop, singletonList(info.getField())); %></td>

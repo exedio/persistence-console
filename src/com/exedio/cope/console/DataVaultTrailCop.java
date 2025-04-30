@@ -97,7 +97,7 @@ final class DataVaultTrailCop extends TestCop<DataField>
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof DataField)
 				{
-					final String bucket = ((DataField)feature).getVaultServiceKey();
+					final String bucket = ((DataField)feature).getVaultBucket();
 					if(bucket!=null)
 						buckets.add(bucket);
 				}
@@ -122,7 +122,7 @@ final class DataVaultTrailCop extends TestCop<DataField>
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof final DataField field)
 				{
-					final String bucket = field.getVaultServiceKey();
+					final String bucket = field.getVaultBucket();
 					if(this.bucket!=null
 						? this.bucket.equals(bucket)
 						: bucket!=null)
@@ -140,7 +140,7 @@ final class DataVaultTrailCop extends TestCop<DataField>
 
 	private static final List<Column<DataField>> COLUMNS = List.of(
 			column("Field",  DataField::getID),
-			column("Bucket", DataField::getVaultServiceKey)
+			column("Bucket", DataField::getVaultBucket)
 	);
 
 	@Override
