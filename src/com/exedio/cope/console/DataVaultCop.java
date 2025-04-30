@@ -83,7 +83,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 					final DataFieldVaultInfo info = field.getVaultInfo();
 					if(info!=null)
 						infos.add(info);
-					final String key = info!=null ? info.getServiceKey() : null;
+					final String key = info!=null ? info.getBucket() : null;
 					buckets.computeIfAbsent(key, s -> new Bucket(info)).add(field);
 				}
 
@@ -114,7 +114,7 @@ final class DataVaultCop extends ConsoleCop<Void>
 			else
 			{
 				this.isNone = false;
-				this.bucket = info.getServiceKey();
+				this.bucket = info.getBucket();
 				this.service = info.getService();
 				this.markPut = info.getField().getType().getModel().isVaultRequiredToMarkPut(bucket);
 			}

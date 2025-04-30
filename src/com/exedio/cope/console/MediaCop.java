@@ -276,7 +276,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 		final DataField body = ((Media)path).getBody();
 		try
 		{
-			return body.getVaultServiceKey();
+			return body.getVaultBucket();
 		}
 		catch(final Model.NotConnectedException ignored)
 		{

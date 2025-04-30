@@ -154,6 +154,6 @@ final class DataFieldCop extends ConsoleCop<Void>
 
 	private static boolean isShown(final DataField field)
 	{
-		return field.getVaultServiceKey()==null;
+		return field.getVaultBucket()==null;
 	}
 }

@@ -105,7 +105,7 @@ final class MediaTypeCop extends TestCop<Media>
 			columnNonFilterable("Query", (out, media) ->
 			{
 				final Condition c = media.bodyMismatchesContentTypeIfSupported();
-				if(c!=Condition.FALSE)
+				if(c!=Condition.ofFalse())
 					writeValueLong(out, c.toString());
 			})
 		);
@@ -143,7 +143,7 @@ final class MediaTypeCop extends TestCop<Media>
 	@Override
 	String getViolationSql(final Media media)
 	{
-		if (media.bodyMismatchesContentTypeIfSupported()==Condition.FALSE)
+		if (media.bodyMismatchesContentTypeIfSupported()==Condition.ofFalse())
 			return null;
 		else
 			return SchemaInfo.search(getQuery(media));
