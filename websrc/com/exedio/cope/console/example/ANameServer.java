@@ -22,7 +22,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Condition;
 import com.exedio.cope.Item;
-import com.exedio.cope.Join;
 import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaUtil;
@@ -101,19 +100,7 @@ public final class ANameServer extends MediaPath
 	}
 
 	@Override
-	public Condition isNull(final Join join)
-	{
-		return source.isNull();
-	}
-
-	@Override
 	public Condition isNotNull()
-	{
-		return source.isNotNull();
-	}
-
-	@Override
-	public Condition isNotNull(final Join join)
 	{
 		return source.isNotNull();
 	}

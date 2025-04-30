@@ -177,7 +177,6 @@
 		<instrument
 				dir="websrc"
 				nullabilityAnnotations="true"
-				directSetValueMap="true"
 				serialAnnotation="true"
 				verify="${instrument.verify}">
 			<classpath>
