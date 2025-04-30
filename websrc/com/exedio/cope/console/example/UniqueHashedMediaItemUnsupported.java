@@ -127,7 +127,7 @@ final class UniqueHashedMediaItemUnsupported extends Item
 	}
 
 	/**
-	 * Finds a uniqueHashedMediaItemUnsupported by it's hash.
+	 * Finds a uniqueHashedMediaItemUnsupported by its hash.
 	 * @return null if there is no matching item.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="forHash")
