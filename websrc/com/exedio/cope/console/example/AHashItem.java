@@ -18,21 +18,23 @@
 
 package com.exedio.cope.console.example;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.exedio.cope.Item;
 import com.exedio.cope.misc.DigitPinValidator;
 import com.exedio.cope.pattern.Hash;
-import com.exedio.cope.pattern.MessageDigestAlgorithm;
-import com.exedio.cope.pattern.MessageDigestHash;
+import com.exedio.cope.pattern.MessageDigestHashAlgorithm;
 import java.nio.charset.StandardCharsets;
+import java.security.SecureRandom;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class AHashItem extends Item
 {
-	static final Hash md8 = new Hash(MessageDigestHash.algorithm(8));
-	static final Hash md8x6latin = new Hash(MessageDigestHash.algorithm(80000), StandardCharsets.ISO_8859_1);
-	static final Hash md5 = new Hash(new MessageDigestAlgorithm("MD5", 2, 5000));
-	static final Hash deterministic = new Hash(new MessageDigestAlgorithm("MD5", 0, 1));
-	static final Hash pin = new Hash(MessageDigestHash.algorithm(2)).validate(new DigitPinValidator(4));
+	static final Hash md8 = new Hash(MessageDigestHashAlgorithm.create(UTF_8, "SHA-512", 8, new SecureRandom(), 8));
+	static final Hash md8x6latin = new Hash(MessageDigestHashAlgorithm.create(StandardCharsets.ISO_8859_1, "SHA-512", 8, new SecureRandom(), 80000));
+	static final Hash md5 = new Hash(MessageDigestHashAlgorithm.create(UTF_8, "MD5", 2, new SecureRandom(), 5000));
+	static final Hash deterministic = new Hash(MessageDigestHashAlgorithm.create(UTF_8, "MD5", 0, null, 1));
+	static final Hash pin = new Hash(MessageDigestHashAlgorithm.create(UTF_8, "SHA-512", 8, new SecureRandom(), 2)).validate(new DigitPinValidator(4));
 
 	/**
 	 * Creates a new AHashItem with all the fields initially needed.
