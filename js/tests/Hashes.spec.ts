@@ -7,12 +7,16 @@ import {
   responseSuccess,
 } from "@t/mockApi";
 import { flushPromises, formatHtml } from "@t/utils";
-import type { HashesResponse } from "@/api/types";
+import type {
+  DoHashRequest,
+  DoHashResponse,
+  HashesResponse,
+} from "@/api/types";
 
 describe("Hashes", () => {
   it("should render an empty table", async () => {
     const mock = mockFetch();
-    mock.mockResolvedValueOnce(responseSuccess([]));
+    mock.mockResolvedValueOnce(responseSuccess([] satisfies HashesResponse[]));
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
     expect(await formatHtml(document.body)).toMatchSnapshot();
@@ -38,7 +42,7 @@ describe("Hashes", () => {
           algorithmID: "myAlgorithmIDWithoutLimit",
           algorithmDescription: "myAlgorithmDescriptionWithoutLimit",
         },
-      ]),
+      ] satisfies HashesResponse[]),
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
@@ -55,19 +59,19 @@ describe("Hashes", () => {
         responseSuccess({
           hash: "DO NOT ASSERT myHash1",
           elapsedNanos: 50010,
-        }),
+        } satisfies DoHashResponse),
       )
       .mockResolvedValueOnce(
         responseSuccess({
           hash: "DO NOT ASSERT myHash2",
           elapsedNanos: 50020,
-        }),
+        } satisfies DoHashResponse),
       )
       .mockResolvedValueOnce(
         responseSuccess({
           hash: "DO NOT ASSERT myHash3",
           elapsedNanos: 50030,
-        }),
+        } satisfies DoHashResponse),
       );
     (document.querySelectorAll(".measure").item(0) as HTMLElement).click();
     await flushPromises();
@@ -78,7 +82,7 @@ describe("Hashes", () => {
         type: "myType1",
         name: "myName1",
         plainText: "example password",
-      }),
+      } satisfies DoHashRequest),
     );
     expect(mock).toHaveBeenNthCalledWith(
       2,
@@ -87,7 +91,7 @@ describe("Hashes", () => {
         type: "myType2",
         name: "myName2",
         plainText: "example password",
-      }),
+      } satisfies DoHashRequest),
     );
     expect(mock).toHaveBeenNthCalledWith(
       3,
@@ -96,7 +100,7 @@ describe("Hashes", () => {
         type: "myType3",
         name: "myName3",
         plainText: "example password",
-      }),
+      } satisfies DoHashRequest),
     );
     expect(mock).toHaveBeenCalledTimes(3);
     expect(
@@ -113,7 +117,7 @@ describe("Hashes", () => {
       responseSuccess({
         hash: "DO NOT ASSERT myHash2",
         elapsedNanos: 50020,
-      }),
+      } satisfies DoHashResponse),
     );
     (document.querySelectorAll(".measure").item(2) as HTMLElement).click();
     await flushPromises();
@@ -123,7 +127,7 @@ describe("Hashes", () => {
         type: "myType2",
         name: "myName2",
         plainText: "example password",
-      }),
+      } satisfies DoHashRequest),
     );
     expect(
       await formatHtml(document.body.querySelector("tbody")!),
@@ -145,7 +149,7 @@ describe("Hashes", () => {
       responseSuccess({
         hash: "myHash2",
         elapsedNanos: 50020,
-      }),
+      } satisfies DoHashResponse),
     );
     (
       document.querySelectorAll("td.expansion button").item(0) as HTMLElement
@@ -157,7 +161,7 @@ describe("Hashes", () => {
         type: "myType2",
         name: "myName2",
         plainText: "",
-      }),
+      } satisfies DoHashRequest),
     );
     expect(
       await formatHtml(document.body.querySelector("tbody")!),
