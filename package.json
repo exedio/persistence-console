@@ -9,7 +9,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
     "check-ts": "tsc -p tsconfig.node.json",
     "check-format": "prettier . --check",
-    "format": "prettier . --write --cache",
+    "format": "prettier . --write --cache --cache-location build/.prettier-cache",
     "test": "vitest run --coverage"
   },
   "devDependencies": {
