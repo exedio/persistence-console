@@ -181,9 +181,9 @@ try
 					name: 'Coverage Vitest',
 					tools: [[parser: 'COBERTURA', pattern: 'build/vitestcoverage/cobertura-coverage.xml']],
 					qualityGates: [
-							[criticality: 'FAILURE', metric: 'LINE', threshold: 63.5],
-							[criticality: 'FAILURE', metric: 'BRANCH', threshold: 86.3],
-							[criticality: 'FAILURE', metric: 'METHOD', threshold: 83.3],
+							[criticality: 'FAILURE', metric: 'LINE', threshold: 65],
+							[criticality: 'FAILURE', metric: 'BRANCH', threshold: 85],
+							[criticality: 'FAILURE', metric: 'METHOD', threshold: 84],
 					],
 					ignoreParsingErrors: true,
 					enabledForFailure: true,
