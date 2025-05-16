@@ -96,6 +96,10 @@ final class Api {
         requireGet(request);
         writeJson(SuspicionsCop.suspicions(model), response);
       }
+      case "schema" -> {
+        requireGet(request);
+        writeJson(SchemaNewCop.schema(model), response);
+      }
       default -> response.setStatus(SC_NOT_FOUND);
     }
   }

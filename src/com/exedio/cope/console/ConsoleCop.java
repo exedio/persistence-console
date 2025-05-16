@@ -372,6 +372,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new PurgeCop(args);
 			case SchemaCop.TAB:
 				return SchemaCop.getSchemaCop(args, request);
+			case SchemaNewCop.TAB:
+				return new SchemaNewCop(args);
 			case SavepointCop.TAB:
 				return new SavepointCop(args);
 			case UnsupportedConstraintCop.TAB:
