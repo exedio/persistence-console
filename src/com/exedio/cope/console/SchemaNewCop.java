@@ -202,7 +202,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
       return new ConstraintResponse(
         c.getName(),
         c.getType().name(),
-        c.getRequiredCondition(),
+        c.getCondition(),
         ConstraintError.convert(tableExistence, c)
       );
     }

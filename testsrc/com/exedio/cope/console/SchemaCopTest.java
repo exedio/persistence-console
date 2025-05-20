@@ -281,7 +281,8 @@ public class SchemaCopTest {
           "type" : "INTEGER not null",
           "constraints" : [ {
             "name" : "MyType_myTarget_Fk",
-            "type" : "ForeignKey"
+            "type" : "ForeignKey",
+            "clause" : "myTarget->MyTarget.this"
           } ]
         } ],
         "constraints" : [ {
@@ -289,37 +290,48 @@ public class SchemaCopTest {
           "type" : "PrimaryKey"
         }, {
           "name" : "MyType_this_MN",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "\\"this\\">=0"
         }, {
           "name" : "MyType_this_MX",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "\\"this\\"<=2147483647"
         }, {
           "name" : "MyType_myString_MN",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "CHAR_LENGTH(\\"myString\\")>=1"
         }, {
           "name" : "MyType_myString_MX",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "CHAR_LENGTH(\\"myString\\")<=80"
         }, {
           "name" : "MyType_myString2_MN",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "CHAR_LENGTH(\\"myString2\\")>=1"
         }, {
           "name" : "MyType_myString2_MX",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "CHAR_LENGTH(\\"myString2\\")<=80"
         }, {
           "name" : "MyType_myInt_MN",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "\\"myInt\\">=-2147483648"
         }, {
           "name" : "MyType_myInt_MX",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "\\"myInt\\"<=2147483647"
         }, {
           "name" : "MyType_myTarget_MN",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "\\"myTarget\\">=0"
         }, {
           "name" : "MyType_myTarget_MX",
-          "type" : "Check"
+          "type" : "Check",
+          "clause" : "\\"myTarget\\"<=2147483647"
         }, {
           "name" : "MyType_unique",
-          "type" : "Unique"
+          "type" : "Unique",
+          "clause" : "(\\"myString\\",\\"myString2\\")"
         } ]
       }""",
       writeJson(schema(MODEL).tables().get(2))
@@ -633,6 +645,7 @@ public class SchemaCopTest {
       {
         "name" : "MyType_this_MZ",
         "type" : "Check",
+        "clause" : "\\"this\\">=44",
         "error" : {
           "existence" : "unused"
         }
