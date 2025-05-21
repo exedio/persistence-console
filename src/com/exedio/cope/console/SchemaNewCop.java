@@ -91,7 +91,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  record TableError(Existence existence, String[] remainder) {
+  record TableError(Existence existence, List<String> remainder) {
     static TableError convert(final Table t) {
       Existence existence = null;
       String remainder = t.getError();
@@ -129,7 +129,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  record ColumnError(Existence existence, String type, String[] remainder) {
+  record ColumnError(Existence existence, String type, List<String> remainder) {
     static ColumnError convert(final Existence tableExistence, final Column c) {
       Existence existence = null;
       String type = null;
@@ -212,7 +212,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     Existence existence,
     String clause,
     String clauseRaw,
-    String[] remainder
+    List<String> remainder
   ) {
     static ConstraintError convert(
       final Existence tableExistence,
@@ -284,7 +284,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     Existence existence,
     String type,
     Long start,
-    String[] remainder
+    List<String> remainder
   ) {
     static SequenceError convert(final Sequence s) {
       Existence existence = null;
@@ -345,7 +345,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
   private static final String MISSING = "missing"; // Should be replaced by explicit API
   private static final String UNUSED = "unused"; // Should be replaced by explicit API
 
-  private static String[] splitRemainder(final String s) {
-    return s != null ? s.split(", ") : null;
+  private static List<String> splitRemainder(final String s) {
+    return s != null ? List.of(s.split(", ")) : null;
   }
 }
