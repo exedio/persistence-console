@@ -444,6 +444,7 @@ describe("Schema", () => {
                 error: {
                   existence: "missing",
                   clause: undefined,
+                  clauseRaw: undefined,
                   remainder: undefined,
                 },
               },
@@ -479,6 +480,7 @@ describe("Schema", () => {
                 error: {
                   existence: "unused",
                   clause: undefined,
+                  clauseRaw: undefined,
                   remainder: undefined,
                 },
               },
@@ -514,6 +516,7 @@ describe("Schema", () => {
                 error: {
                   existence: undefined,
                   clause: "myConstraint1ClauseX",
+                  clauseRaw: "myConstraint1ClauseX Raw",
                   remainder: undefined,
                 },
               },
@@ -553,6 +556,7 @@ describe("Schema", () => {
                     error: {
                       existence: undefined,
                       clause: '("myColumn1Name") myConstraint1ClauseX', // hsqldb, PostgreSQL
+                      clauseRaw: '("myColumn1Name") myConstraint1ClauseX Raw',
                       remainder: undefined,
                     },
                   },
@@ -595,6 +599,7 @@ describe("Schema", () => {
                 error: {
                   existence: undefined,
                   clause: undefined,
+                  clauseRaw: undefined,
                   remainder: ["remainder1", "remainder2"],
                 },
               },
