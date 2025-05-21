@@ -38,6 +38,7 @@ export type SchemaConstraintResponse = {
 export type SchemaConstraintError = {
   readonly existence: SchemaExistence;
   readonly clause: string | undefined;
+  readonly clauseRaw: string | undefined;
   readonly remainder: SchemaRemainder;
 };
 

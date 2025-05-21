@@ -81,6 +81,7 @@ export function useColumn(
     name: "type",
     expected: api.type,
     actual: api.error?.type,
+    actualRaw: undefined,
     shortener: (s) => s,
     color: api.error?.type ? "red" : undefined,
   };
@@ -136,6 +137,7 @@ export function useConstraint(
         name: "clause",
         expected: api.clause,
         actual: api.error?.clause,
+        actualRaw: api.error?.clauseRaw,
         shortener: (s) => {
           if (!columnName) return s;
           return s
@@ -204,6 +206,7 @@ export function useSequence(api: SchemaSequenceResponse): UseSequence {
     name: "type",
     expected: api.type,
     actual: api.error?.type,
+    actualRaw: undefined,
     shortener: (s) => s,
     color: api.error?.type ? "red" : undefined,
   };
@@ -211,6 +214,7 @@ export function useSequence(api: SchemaSequenceResponse): UseSequence {
     name: "start",
     expected: api.start.toString(),
     actual: api.error?.start?.toString(),
+    actualRaw: undefined,
     shortener: (s) => s,
     color: api.error?.start ? "red" : undefined,
   };
@@ -252,6 +256,7 @@ export type UseComparison = {
   name: string;
   expected: string;
   actual: string | undefined;
+  actualRaw: string | undefined;
   shortener: (s: string) => string;
   color: Color;
 };

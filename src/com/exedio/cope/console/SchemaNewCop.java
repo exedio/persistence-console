@@ -211,6 +211,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
   record ConstraintError(
     Existence existence,
     String clause,
+    String clauseRaw,
     String[] remainder
   ) {
     static ConstraintError convert(
@@ -219,6 +220,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     ) {
       Existence existence = null;
       String clause = null;
+      String clauseRaw = null;
       String remainder = c.getError();
       if (remainder != null) {
         switch (remainder) {
@@ -234,6 +236,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
             final Matcher mType = UNEXPECTED_CLAUSE.matcher(remainder);
             if (mType.matches()) {
               clause = mType.group(1);
+              clauseRaw = mType.groupCount() > 2 ? mType.group(3) : null;
               remainder = null;
             }
           }
@@ -241,11 +244,16 @@ final class SchemaNewCop extends ConsoleCop<Void> {
       }
       existence = filterContainer(tableExistence, existence);
       return existence != null || clause != null || remainder != null
-        ? new ConstraintError(existence, clause, splitRemainder(remainder))
+        ? new ConstraintError(
+          existence,
+          clause,
+          clauseRaw,
+          splitRemainder(remainder)
+        )
         : null;
     }
     private static final Pattern UNEXPECTED_CLAUSE = Pattern.compile(
-      "^unexpected condition >>>(.*)<<<.*$" // must allow more characters for (originally >>>...<<<), should be replaced by explicit API
+      "^unexpected condition >>>(.*)<<<( \\(originally >>>(.*)<<<\\))?$" // Should be replaced by explicit API
     );
   }
 

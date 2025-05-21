@@ -148,6 +148,7 @@ exports[`Schema > should render a column with a wrong type 3`] = `
               <td>actual:</td>
               <td>myColumn1TypeX</td>
             </tr>
+            <!---->
           </tbody>
         </table>
         <!---->
@@ -258,6 +259,11 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
               <td>actual:</td>
               <td>myConstraint1ClauseX</td>
             </tr>
+            <tr>
+              <td>raw:</td>
+              <td>myConstraint1ClauseX Raw</td>
+            </tr>
+            <!---->
           </tbody>
         </table>
         <!---->
@@ -351,6 +357,11 @@ exports[`Schema > should render a constraint with shortener 3`] = `
                   <td>actual:</td>
                   <td>(⬁) myConstraint1ClauseX</td>
                 </tr>
+                <tr>
+                  <td>raw:</td>
+                  <td>(⬁) myConstraint1ClauseX Raw</td>
+                </tr>
+                <!---->
               </tbody>
             </table>
             <!---->
@@ -843,6 +854,7 @@ exports[`Schema > should render a sequence with wrong start 1`] = `
           <td>actual:</td>
           <td>66</td>
         </tr>
+        <!---->
       </tbody>
     </table>
     <!---->
@@ -872,6 +884,7 @@ exports[`Schema > should render a sequence with wrong type 1`] = `
           <td>actual:</td>
           <td>myTypeX</td>
         </tr>
+        <!---->
       </tbody>
     </table>
     <!---->

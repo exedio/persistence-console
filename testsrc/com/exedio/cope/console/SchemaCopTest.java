@@ -499,7 +499,8 @@ public class SchemaCopTest {
         "type" : "Check",
         "clause" : "\\"this\\">=0",
         "error" : {
-          "clause" : "\\"this\\"<>44<<< (originally >>>\\"this\\"!=44"
+          "clause" : "\\"this\\"<>44",
+          "clauseRaw" : "\\"this\\"!=44"
         }
       }""",
       writeJson(thisMaxConstraint())
