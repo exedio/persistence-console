@@ -482,6 +482,30 @@ public class SchemaCopTest {
     );
   }
 
+  @Test
+  void testConstraintUnexpectedClauseWithRaw()
+    throws IOException, SQLException {
+    MODEL.getSchema()
+      .getTable(SchemaInfo.getTableName(MyType.TYPE))
+      .getConstraint("MyType_this_MN")
+      .drop();
+    execute(
+      "ALTER TABLE \"MyType\" ADD CONSTRAINT \"MyType_this_MN\" CHECK (\"this\"<>44)"
+    );
+    assertEquals(
+      """
+      {
+        "name" : "MyType_this_MN",
+        "type" : "Check",
+        "clause" : "\\"this\\">=0",
+        "error" : {
+          "clause" : "\\"this\\"<>44<<< (originally >>>\\"this\\"!=44"
+        }
+      }""",
+      writeJson(thisMaxConstraint())
+    );
+  }
+
   private static Object thisMaxConstraint() {
     return myTypeTable().columns().get(0).constraints().get(1);
   }
