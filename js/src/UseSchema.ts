@@ -107,6 +107,7 @@ function columnExistence(api: SchemaColumnResponse): UseExistence {
   const error = api.error;
   if (!error || !error.existence) return undefined;
 
+  // TODO "not null" should be replaced by explicit API
   if (error.existence === "unused" && !api.type.endsWith(" not null"))
     return { text: "unused", color: "yellow" };
 
