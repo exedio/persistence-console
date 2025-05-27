@@ -416,6 +416,23 @@ public class SchemaCopTest {
   }
 
   @Test
+  void testColumnUnusedOptional() throws IOException, SQLException {
+    execute("ALTER TABLE \"MyType\" ADD COLUMN \"myStringZ\" VARCHAR(80)");
+    // prepares Column.toleratesInsertIfUnused when available in newer cope version
+    assertEquals(
+      """
+      {
+        "name" : "myStringZ",
+        "type" : "VARCHAR(80)",
+        "error" : {
+          "existence" : "unused"
+        }
+      }""",
+      writeJson(myTypeTable().columns().get(5))
+    );
+  }
+
+  @Test
   void testConstraintMissing() throws IOException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
