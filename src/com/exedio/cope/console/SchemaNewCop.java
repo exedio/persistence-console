@@ -139,6 +139,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
 
   record ColumnError(
     Existence existence,
+    Boolean toleratesInsertIfUnused,
     String type,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder
@@ -149,9 +150,16 @@ final class SchemaNewCop extends ConsoleCop<Void> {
         Existence.forNode(c)
       );
       final String type = c.getMismatchingType();
+      final boolean toleratesInsertIfUnused =
+        existence == Existence.unused && c.toleratesInsertIfUnused();
       final List<String> remainder = emptyToNull(c.getAdditionalErrors());
       return existence != null || type != null || remainder != null
-        ? new ColumnError(existence, type, remainder)
+        ? new ColumnError(
+          existence,
+          toleratesInsertIfUnused ? Boolean.TRUE : null,
+          type,
+          remainder
+        )
         : null;
     }
   }
