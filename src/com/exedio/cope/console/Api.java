@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
@@ -60,15 +59,7 @@ final class Api {
       response.setStatus(SC_INTERNAL_SERVER_ERROR);
     } catch (final ApiTextException e) {
       logger.error(e.getMessage(), e);
-      try {
-        response.setStatus(e.status);
-        response.setContentType("text/plain;charset=UTF-8");
-        try (OutputStream out = response.getOutputStream()) {
-          out.write(e.body.getBytes(UTF_8));
-        }
-      } catch (final IOException io) {
-        throw new RuntimeException(io);
-      }
+      e.respond(response);
     }
   }
 

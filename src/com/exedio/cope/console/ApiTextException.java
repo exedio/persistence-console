@@ -18,17 +18,21 @@
 
 package com.exedio.cope.console;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serial;
 import javax.annotation.Nonnull;
+import javax.servlet.http.HttpServletResponse;
 
 final class ApiTextException extends Exception {
 
-  final int status;
+  private final int status;
 
   @Nonnull
-  final String body;
+  private final String body;
 
   ApiTextException(final int status, @Nonnull final String body) {
     this.status = status;
@@ -43,6 +47,18 @@ final class ApiTextException extends Exception {
     super(cause);
     this.status = status;
     this.body = requireNonNull(body);
+  }
+
+  void respond(final HttpServletResponse response) {
+    try {
+      response.setStatus(status);
+      response.setContentType("text/plain;charset=UTF-8");
+      try (OutputStream out = response.getOutputStream()) {
+        out.write(body.getBytes(UTF_8));
+      }
+    } catch (final IOException io) {
+      throw new RuntimeException(io);
+    }
   }
 
   @Override
