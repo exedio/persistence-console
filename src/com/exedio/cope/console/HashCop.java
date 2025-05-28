@@ -23,7 +23,6 @@ import static com.exedio.cope.console.Console_Jspm.writeJsComponentMountPoint;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
-import com.exedio.cope.console.Api.ResponseStatusException;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.HashAlgorithm;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -92,7 +91,7 @@ final class HashCop extends ConsoleCop<Void>
 	}
 
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-	static DoHashResponse doHash(final Model model, final DoHashRequest request) throws ResponseStatusException
+	static DoHashResponse doHash(final Model model, final DoHashRequest request) throws ApiTextException
 	{
 		final HashAlgorithm algorithm = request.get(model).getAlgorithm2();
 		final String plainText = request.plainText;
@@ -114,7 +113,7 @@ final class HashCop extends ConsoleCop<Void>
 		{ }
 
 		@Nonnull
-		Hash get(final Model model) throws ResponseStatusException
+		Hash get(final Model model) throws ApiTextException
 		{
 			return Api.resolveFeature(model, type, name, Hash.class);
 		}

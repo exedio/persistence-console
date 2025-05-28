@@ -31,7 +31,6 @@ import com.exedio.cope.Model;
 import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
-import com.exedio.cope.console.Api.ResponseStatusException;
 import com.exedio.cope.console.HashCop.DoHashRequest;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.HashAlgorithm;
@@ -65,7 +64,7 @@ public class HashCopTest {
   }
 
   @Test
-  void testDoHash() throws IOException, ResponseStatusException {
+  void testDoHash() throws IOException, ApiTextException {
     final DoHashRequest request = readJson(
       DoHashRequest.class,
       """
@@ -105,7 +104,7 @@ public class HashCopTest {
     );
     assertFails(
       () -> doHash(MODEL, request),
-      ResponseStatusException.class,
+      ApiTextException.class,
       "404 type not found within " + MODEL
     );
   }
@@ -119,7 +118,7 @@ public class HashCopTest {
     );
     assertFails(
       () -> doHash(MODEL, request),
-      ResponseStatusException.class,
+      ApiTextException.class,
       "404 name not found within " + MODEL
     );
   }
@@ -133,7 +132,7 @@ public class HashCopTest {
     );
     assertFails(
       () -> doHash(MODEL, request),
-      ResponseStatusException.class,
+      ApiTextException.class,
       "404 name not a com.exedio.cope.pattern.Hash within " + MODEL
     );
   }
@@ -151,7 +150,7 @@ public class HashCopTest {
           }
           """
         ),
-      ResponseStatusException.class,
+      ApiTextException.class,
       "400 Missing required creator property 'type' (index 0) / " +
       "line: 4, column: 1 / " +
       "com.exedio.cope.console.HashCop$DoHashRequest[\"type\"]"

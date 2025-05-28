@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.exedio.cope.console.Api.ResponseStatusException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -75,7 +74,7 @@ final class ApiTest {
   }
 
   static <T> T readJson(final Class<T> jsonClass, final String body)
-    throws IOException, ResponseStatusException {
+    throws IOException, ApiTextException {
     final Request request = new Request(body);
     final T result = Api.readJsonPost(jsonClass, request);
     assertTrue(request.methodCalled);
