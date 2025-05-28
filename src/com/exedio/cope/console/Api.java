@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
@@ -117,8 +116,7 @@ final class Api {
       result = reader.readValue(in);
     } catch (final MismatchedInputException e) {
       final JsonLocation location = e.getLocation();
-      throw new ApiTextException(
-        SC_BAD_REQUEST,
+      throw ApiTextException.badRequest(
         e.getOriginalMessage() +
         " / " +
         "line: " +
