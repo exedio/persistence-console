@@ -48,7 +48,7 @@ import org.junit.jupiter.api.Test;
 public class SchemaCopTest {
 
   @Test
-  void testSchema() throws IOException {
+  void testSchema() throws IOException, ApiTextException {
     assertEquals(
       """
       {
@@ -157,7 +157,7 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testTableMissing() throws IOException {
+  void testTableMissing() throws IOException, ApiTextException {
     MODEL.getSchema().getTable(SchemaInfo.getTableName(MyType.TYPE)).drop();
     assertEquals(
       """
@@ -244,12 +244,13 @@ public class SchemaCopTest {
     );
   }
 
-  private static SchemaNewCop.TableResponse myTypeTable() {
+  private static SchemaNewCop.TableResponse myTypeTable()
+    throws ApiTextException {
     return schema(MODEL).tables().get(0);
   }
 
   @Test
-  void testTableUnused() throws IOException {
+  void testTableUnused() throws IOException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .renameTo("MyTypeZ");
@@ -323,7 +324,7 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testColumnMissing() throws IOException {
+  void testColumnMissing() throws IOException, ApiTextException {
     final Table table = MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE));
     table.getConstraint("MyType_unique_Unq").drop();
@@ -357,7 +358,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testColumnUnexpectedType() throws IOException, SQLException {
+  void testColumnUnexpectedType()
+    throws IOException, SQLException, ApiTextException {
     final Table table = MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE));
     table.getConstraint("MyType_unique_Unq").drop();
@@ -393,12 +395,13 @@ public class SchemaCopTest {
     );
   }
 
-  private static SchemaNewCop.ColumnResponse myStringColumn() {
+  private static SchemaNewCop.ColumnResponse myStringColumn()
+    throws ApiTextException {
     return myTypeTable().columns().get(1);
   }
 
   @Test
-  void testColumnUnused() throws IOException, SQLException {
+  void testColumnUnused() throws IOException, SQLException, ApiTextException {
     execute(
       "ALTER TABLE \"MyType\" ADD COLUMN \"myStringZ\" VARCHAR(80) not null"
     );
@@ -416,7 +419,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testColumnUnusedOptional() throws IOException, SQLException {
+  void testColumnUnusedOptional()
+    throws IOException, SQLException, ApiTextException {
     execute("ALTER TABLE \"MyType\" ADD COLUMN \"myStringZ\" VARCHAR(80)");
     // prepares Column.toleratesInsertIfUnused when available in newer cope version
     assertEquals(
@@ -433,7 +437,7 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testConstraintMissing() throws IOException {
+  void testConstraintMissing() throws IOException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_this_MN")
@@ -453,7 +457,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testConstraintUnexpectedType() throws IOException, SQLException {
+  void testConstraintUnexpectedType()
+    throws IOException, SQLException, ApiTextException {
     final Table table = MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE));
     table.getConstraint("MyType_this_MN").drop();
@@ -477,7 +482,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testConstraintUnexpectedClause() throws IOException, SQLException {
+  void testConstraintUnexpectedClause()
+    throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_this_MN")
@@ -501,7 +507,7 @@ public class SchemaCopTest {
 
   @Test
   void testConstraintUnexpectedClauseWithRaw()
-    throws IOException, SQLException {
+    throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_this_MN")
@@ -524,12 +530,13 @@ public class SchemaCopTest {
     );
   }
 
-  private static Object thisMaxConstraint() {
+  private static Object thisMaxConstraint() throws ApiTextException {
     return myTypeTable().columns().get(0).constraints().get(1);
   }
 
   @Test
-  void testConstraintRemainingError() throws IOException, SQLException {
+  void testConstraintRemainingError()
+    throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_myTarget_Fk")
@@ -555,7 +562,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testConstraintRemainingErrorMultiple() throws IOException, SQLException {
+  void testConstraintRemainingErrorMultiple()
+    throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_myTarget_Fk")
@@ -582,7 +590,7 @@ public class SchemaCopTest {
 
   @Test
   void testConstraintRemainingErrorAndClause()
-    throws IOException, SQLException {
+    throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_myTarget_Fk")
@@ -609,7 +617,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testConstraintUnused() throws IOException, SQLException {
+  void testConstraintUnused()
+    throws IOException, SQLException, ApiTextException {
     execute(
       "ALTER TABLE \"MyType\" ADD CONSTRAINT \"MyType_this_MZ\" CHECK (\"this\">=44)"
     );
@@ -627,7 +636,7 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testSequenceMissing() throws IOException {
+  void testSequenceMissing() throws IOException, ApiTextException {
     MODEL.getSchema()
       .getSequence(SchemaInfo.getDefaultToNextSequenceName(MyType.myInt))
       .drop();
@@ -646,7 +655,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testSequenceUnexpectedType() throws IOException, SQLException {
+  void testSequenceUnexpectedType()
+    throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getSequence(SchemaInfo.getDefaultToNextSequenceName(MyType.myInt))
       .drop();
@@ -668,7 +678,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testSequenceUnexpectedStart() throws IOException, SQLException {
+  void testSequenceUnexpectedStart()
+    throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getSequence(SchemaInfo.getDefaultToNextSequenceName(MyType.myInt))
       .drop();
@@ -690,7 +701,8 @@ public class SchemaCopTest {
   }
 
   @Test
-  void testSequenceUnexpectedTypeAndStart() throws IOException, SQLException {
+  void testSequenceUnexpectedTypeAndStart()
+    throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getSequence(SchemaInfo.getDefaultToNextSequenceName(MyType.myInt))
       .drop();
@@ -712,12 +724,12 @@ public class SchemaCopTest {
     );
   }
 
-  private static Object myIntSequence() {
+  private static Object myIntSequence() throws ApiTextException {
     return schema(MODEL).sequences().get(0);
   }
 
   @Test
-  void testSequenceUnused() throws IOException, SQLException {
+  void testSequenceUnused() throws IOException, SQLException, ApiTextException {
     execute(
       "CREATE SEQUENCE \"MyType_myIntZ_Seq\" AS INTEGER START WITH 77 INCREMENT BY 1"
     );

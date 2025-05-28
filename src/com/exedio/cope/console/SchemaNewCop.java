@@ -57,8 +57,12 @@ final class SchemaNewCop extends ConsoleCop<Void> {
   }
 
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-  static SchemaResponse schema(final Model model) {
-    return new SchemaResponse(model.getVerifiedSchema());
+  static SchemaResponse schema(final Model model) throws ApiTextException {
+    try {
+      return new SchemaResponse(model.getVerifiedSchema());
+    } catch (final Model.NotConnectedException e) {
+      throw ApiTextException.badRequest(e.getMessage(), e); // TODO should be SC_FORBIDDEN
+    }
   }
 
   record SchemaResponse(
