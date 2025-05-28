@@ -74,6 +74,12 @@ final class ApiTextException extends Exception {
   private ApiTextException(final int status, @Nonnull final String body) {
     this.status = status;
     this.body = requireNonNull(body);
+    switch (status) {
+      case SC_METHOD_NOT_ALLOWED, SC_NOT_FOUND, SC_UNSUPPORTED_MEDIA_TYPE:
+        break;
+      default:
+        throw new RuntimeException("status not allowed: " + status);
+    }
   }
 
   private ApiTextException(
@@ -84,6 +90,13 @@ final class ApiTextException extends Exception {
     super(cause);
     this.status = status;
     this.body = requireNonNull(body);
+    //noinspection SwitchStatementWithTooFewBranches
+    switch (status) {
+      case SC_BAD_REQUEST:
+        break;
+      default:
+        throw new RuntimeException("status not allowed: " + status);
+    }
   }
 
   void respond(final HttpServletResponse response) {
