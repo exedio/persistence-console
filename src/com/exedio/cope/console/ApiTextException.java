@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
 import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
+import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
 
 import java.io.IOException;
@@ -56,12 +57,16 @@ final class ApiTextException extends Exception {
     );
   }
 
+  static ApiTextException notFound(final String body) {
+    return new ApiTextException(SC_NOT_FOUND, body);
+  }
+
   private final int status;
 
   @Nonnull
   private final String body;
 
-  ApiTextException(final int status, @Nonnull final String body) {
+  private ApiTextException(final int status, @Nonnull final String body) {
     this.status = status;
     this.body = requireNonNull(body);
   }

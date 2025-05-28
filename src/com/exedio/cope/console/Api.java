@@ -144,17 +144,14 @@ final class Api {
     final Class<F> featureClass
   ) throws ApiTextException {
     final Type<?> type = model.getType(typeId);
-    if (type == null) throw new ApiTextException(
-      SC_NOT_FOUND,
+    if (type == null) throw ApiTextException.notFound(
       "type not found within " + model
     );
     final Feature feature = type.getFeature(name);
-    if (feature == null) throw new ApiTextException(
-      SC_NOT_FOUND,
+    if (feature == null) throw ApiTextException.notFound(
       "name not found within " + model
     );
-    if (!(featureClass.isInstance(feature))) throw new ApiTextException(
-      SC_NOT_FOUND,
+    if (!(featureClass.isInstance(feature))) throw ApiTextException.notFound(
       "name not a " + featureClass.getName() + " within " + model
     );
     return featureClass.cast(feature);
