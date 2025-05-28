@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
 import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
+import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -39,6 +40,19 @@ final class ApiTextException extends Exception {
     if (!method.equals(request.getMethod())) throw new ApiTextException(
       SC_METHOD_NOT_ALLOWED,
       method + "required"
+    );
+  }
+
+  @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
+  static void requireContentType(
+    final String contentType,
+    final HttpServletRequest request
+  ) throws ApiTextException {
+    if (
+      !contentType.equals(request.getContentType())
+    ) throw new ApiTextException(
+      SC_UNSUPPORTED_MEDIA_TYPE,
+      "Content-Type " + contentType + " required"
     );
   }
 

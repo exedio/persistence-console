@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
-import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
 
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
@@ -110,12 +109,7 @@ final class Api {
     final HttpServletRequest request
   ) throws IOException, ApiTextException {
     ApiTextException.requireMethod("POST", request);
-    if (
-      !APPLICATION_JSON.equals(request.getContentType())
-    ) throw new ApiTextException(
-      SC_UNSUPPORTED_MEDIA_TYPE,
-      "Content-Type " + APPLICATION_JSON + " required"
-    );
+    ApiTextException.requireContentType(APPLICATION_JSON, request);
 
     final ObjectReader reader = mapper.readerFor(jsonClass);
     final Object result;
