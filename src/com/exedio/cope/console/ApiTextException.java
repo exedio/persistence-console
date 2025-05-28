@@ -20,14 +20,27 @@ package com.exedio.cope.console;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
+import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serial;
 import javax.annotation.Nonnull;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 final class ApiTextException extends Exception {
+
+  @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
+  static void requireMethod(
+    final String method,
+    final HttpServletRequest request
+  ) throws ApiTextException {
+    if (!method.equals(request.getMethod())) throw new ApiTextException(
+      SC_METHOD_NOT_ALLOWED,
+      method + "required"
+    );
+  }
 
   private final int status;
 

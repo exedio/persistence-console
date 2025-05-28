@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
-import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
 
@@ -103,20 +102,14 @@ final class Api {
 
   private static void requireGet(final HttpServletRequest request)
     throws ApiTextException {
-    if (!"GET".equals(request.getMethod())) throw new ApiTextException(
-      SC_METHOD_NOT_ALLOWED,
-      "GET required"
-    );
+    ApiTextException.requireMethod("GET", request);
   }
 
   static <T> T readJsonPost(
     final Class<T> jsonClass,
     final HttpServletRequest request
   ) throws IOException, ApiTextException {
-    if (!"POST".equals(request.getMethod())) throw new ApiTextException(
-      SC_METHOD_NOT_ALLOWED,
-      "POST required"
-    );
+    ApiTextException.requireMethod("POST", request);
     if (
       !APPLICATION_JSON.equals(request.getContentType())
     ) throw new ApiTextException(
