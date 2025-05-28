@@ -19,7 +19,6 @@
 package com.exedio.cope.console;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
-import static java.util.Objects.requireNonNull;
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
@@ -40,7 +39,6 @@ import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Serial;
 import javax.annotation.Nonnull;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,7 +58,7 @@ final class Api {
     } catch (final RuntimeException | IOException e) {
       logger.error(e.getMessage(), e);
       response.setStatus(SC_INTERNAL_SERVER_ERROR);
-    } catch (final ResponseStatusException e) {
+    } catch (final ApiTextException e) {
       logger.error(e.getMessage(), e);
       try {
         response.setStatus(e.status);
@@ -79,7 +77,7 @@ final class Api {
     final String endpoint,
     final HttpServletResponse response,
     final Model model
-  ) throws IOException, ResponseStatusException {
+  ) throws IOException, ApiTextException {
     switch (endpoint) {
       case "hashes" -> {
         requireGet(request);
@@ -113,8 +111,8 @@ final class Api {
   }
 
   private static void requireGet(final HttpServletRequest request)
-    throws ResponseStatusException {
-    if (!"GET".equals(request.getMethod())) throw new ResponseStatusException(
+    throws ApiTextException {
+    if (!"GET".equals(request.getMethod())) throw new ApiTextException(
       SC_METHOD_NOT_ALLOWED,
       "GET required"
     );
@@ -123,14 +121,14 @@ final class Api {
   static <T> T readJsonPost(
     final Class<T> jsonClass,
     final HttpServletRequest request
-  ) throws IOException, ResponseStatusException {
-    if (!"POST".equals(request.getMethod())) throw new ResponseStatusException(
+  ) throws IOException, ApiTextException {
+    if (!"POST".equals(request.getMethod())) throw new ApiTextException(
       SC_METHOD_NOT_ALLOWED,
       "POST required"
     );
     if (
       !APPLICATION_JSON.equals(request.getContentType())
-    ) throw new ResponseStatusException(
+    ) throw new ApiTextException(
       SC_UNSUPPORTED_MEDIA_TYPE,
       "Content-Type " + APPLICATION_JSON + " required"
     );
@@ -141,7 +139,7 @@ final class Api {
       result = reader.readValue(in);
     } catch (final MismatchedInputException e) {
       final JsonLocation location = e.getLocation();
-      throw new ResponseStatusException(
+      throw new ApiTextException(
         SC_BAD_REQUEST,
         e.getOriginalMessage() +
         " / " +
@@ -160,55 +158,24 @@ final class Api {
   private static final String APPLICATION_JSON =
     "application/json;charset=UTF-8";
 
-  static final class ResponseStatusException extends Exception {
-
-    final int status;
-
-    @Nonnull
-    final String body;
-
-    ResponseStatusException(final int status, @Nonnull final String body) {
-      this.status = status;
-      this.body = requireNonNull(body);
-    }
-
-    ResponseStatusException(
-      final int status,
-      @Nonnull final String body,
-      @Nonnull final Throwable cause
-    ) {
-      super(cause);
-      this.status = status;
-      this.body = requireNonNull(body);
-    }
-
-    @Override
-    public String getMessage() {
-      return "" + status + ' ' + body;
-    }
-
-    @Serial
-    private static final long serialVersionUID = 601159415713062976L;
-  }
-
   @Nonnull
   static <F extends Feature> F resolveFeature(
     final Model model,
     final String typeId,
     final String name,
     final Class<F> featureClass
-  ) throws ResponseStatusException {
+  ) throws ApiTextException {
     final Type<?> type = model.getType(typeId);
-    if (type == null) throw new ResponseStatusException(
+    if (type == null) throw new ApiTextException(
       SC_NOT_FOUND,
       "type not found within " + model
     );
     final Feature feature = type.getFeature(name);
-    if (feature == null) throw new ResponseStatusException(
+    if (feature == null) throw new ApiTextException(
       SC_NOT_FOUND,
       "name not found within " + model
     );
-    if (!(featureClass.isInstance(feature))) throw new ResponseStatusException(
+    if (!(featureClass.isInstance(feature))) throw new ApiTextException(
       SC_NOT_FOUND,
       "name not a " + featureClass.getName() + " within " + model
     );
