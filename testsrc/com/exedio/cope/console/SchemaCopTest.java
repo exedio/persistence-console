@@ -19,7 +19,9 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
+import static com.exedio.cope.console.SchemaNewCop.alterSchema;
 import static com.exedio.cope.console.SchemaNewCop.schema;
+import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
@@ -39,6 +41,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -744,6 +747,248 @@ public class SchemaCopTest {
         }
       }""",
       writeJson(schema(MODEL).sequences().get(1))
+    );
+  }
+
+  @Test
+  void testTableAdd() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "CREATE TABLE \\"MyType\\"(\\"this\\" INTEGER not null,\\"myString\\" VARCHAR(80) not null,\\"myString2\\" VARCHAR(80) not null,\\"myInt\\" INTEGER not null,\\"myTarget\\" INTEGER not null,CONSTRAINT \\"MyType_PK\\" PRIMARY KEY(\\"this\\"),CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0),CONSTRAINT \\"MyType_this_MX\\" CHECK(\\"this\\"<=2147483647),CONSTRAINT \\"MyType_myString_MN\\" CHECK(CHAR_LENGTH(\\"myString\\")>=1),CONSTRAINT \\"MyType_myString_MX\\" CHECK(CHAR_LENGTH(\\"myString\\")<=80),CONSTRAINT \\"MyType_myString2_MN\\" CHECK(CHAR_LENGTH(\\"myString2\\")>=1),CONSTRAINT \\"MyType_myString2_MX\\" CHECK(CHAR_LENGTH(\\"myString2\\")<=80),CONSTRAINT \\"MyType_myInt_MN\\" CHECK(\\"myInt\\">=-2147483648),CONSTRAINT \\"MyType_myInt_MX\\" CHECK(\\"myInt\\"<=2147483647),CONSTRAINT \\"MyType_myTarget_MN\\" CHECK(\\"myTarget\\">=0),CONSTRAINT \\"MyType_myTarget_MX\\" CHECK(\\"myTarget\\"<=2147483647),CONSTRAINT \\"MyType_unique_Unq\\" UNIQUE(\\"myString\\",\\"myString2\\"))"
+      }""",
+      writeJson(
+        alterSchema(
+          "addTable",
+          MODEL,
+          new ParameterRequest(Map.of("name", "MyType"))
+        )
+      )
+    );
+  }
+
+  @Test
+  void testTableDrop() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "DROP TABLE \\"MyType\\""
+      }""",
+      writeJson(
+        alterSchema(
+          "dropTable",
+          MODEL,
+          new ParameterRequest(Map.of("name", "MyType"))
+        )
+      )
+    );
+  }
+
+  @Test
+  void testTableAddNotExists() {
+    assertFails(
+      () ->
+        alterSchema(
+          "addTable",
+          MODEL,
+          new ParameterRequest(Map.of("name", "MyTypex"))
+        ),
+      ApiTextException.class,
+      "404 table not found within " + MODEL
+    );
+  }
+
+  @Test
+  void testColumnAdd() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null"
+      }""",
+      writeJson(
+        alterSchema(
+          "addColumn",
+          MODEL,
+          new ParameterRequest(Map.of("table", "MyType", "name", "this"))
+        )
+      )
+    );
+  }
+
+  @Test
+  void testColumnDrop() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" DROP COLUMN \\"this\\""
+      }""",
+      writeJson(
+        alterSchema(
+          "dropColumn",
+          MODEL,
+          new ParameterRequest(Map.of("table", "MyType", "name", "this"))
+        )
+      )
+    );
+  }
+
+  @Test
+  void testColumnAddNotExistsTable() {
+    assertFails(
+      () ->
+        alterSchema(
+          "addColumn",
+          MODEL,
+          new ParameterRequest(Map.of("table", "MyTypex", "name", "this"))
+        ),
+      ApiTextException.class,
+      "404 table not found within " + MODEL
+    );
+  }
+
+  @Test
+  void testColumnAddNotExistsColumn() {
+    assertFails(
+      () ->
+        alterSchema(
+          "addColumn",
+          MODEL,
+          new ParameterRequest(Map.of("table", "MyType", "name", "thisx"))
+        ),
+      ApiTextException.class,
+      "404 column not found within " + MODEL
+    );
+  }
+
+  @Test
+  void testConstraintAdd() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" ADD CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0)"
+      }""",
+      writeJson(
+        alterSchema(
+          "addConstraint",
+          MODEL,
+          new ParameterRequest(
+            Map.of("table", "MyType", "name", "MyType_this_MN")
+          )
+        )
+      )
+    );
+  }
+
+  @Test
+  void testConstraintDrop() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" DROP CONSTRAINT \\"MyType_this_MN\\""
+      }""",
+      writeJson(
+        alterSchema(
+          "dropConstraint",
+          MODEL,
+          new ParameterRequest(
+            Map.of("table", "MyType", "name", "MyType_this_MN")
+          )
+        )
+      )
+    );
+  }
+
+  @Test
+  void testConstraintAddNotExistsTable() {
+    assertFails(
+      () ->
+        alterSchema(
+          "addConstraint",
+          MODEL,
+          new ParameterRequest(
+            Map.of("table", "MyTypex", "name", "MyType_this_MN")
+          )
+        ),
+      ApiTextException.class,
+      "404 table not found within " + MODEL
+    );
+  }
+
+  @Test
+  void testConstraintAddNotExistsConstraint() {
+    assertFails(
+      () ->
+        alterSchema(
+          "addConstraint",
+          MODEL,
+          new ParameterRequest(
+            Map.of("table", "MyType", "name", "MyType_this_MNx")
+          )
+        ),
+      ApiTextException.class,
+      "404 constraint not found within " + MODEL
+    );
+  }
+
+  @Test
+  void testSequenceAdd() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "CREATE SEQUENCE \\"MyType_myInt_Seq\\" AS INTEGER START WITH 77 INCREMENT BY 1"
+      }""",
+      writeJson(
+        alterSchema(
+          "addSequence",
+          MODEL,
+          new ParameterRequest(Map.of("name", "MyType_myInt_Seq"))
+        )
+      )
+    );
+  }
+
+  @Test
+  void testSequenceDrop() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "DROP SEQUENCE \\"MyType_myInt_Seq\\""
+      }""",
+      writeJson(
+        alterSchema(
+          "dropSequence",
+          MODEL,
+          new ParameterRequest(Map.of("name", "MyType_myInt_Seq"))
+        )
+      )
+    );
+  }
+
+  @Test
+  void testSequenceAddNotExists() {
+    assertFails(
+      () ->
+        alterSchema(
+          "addSequence",
+          MODEL,
+          new ParameterRequest(Map.of("name", "MyType_myInt_Seqx"))
+        ),
+      ApiTextException.class,
+      "404 sequence not found within " + MODEL
+    );
+  }
+
+  @Test
+  void testParameterRequired() {
+    assertFails(
+      () ->
+        alterSchema(
+          "addSequence",
+          MODEL,
+          new ParameterRequest(Map.of("name", ""))
+        ),
+      ApiTextException.class,
+      "404 parameter name must be set"
     );
   }
 

@@ -35,7 +35,6 @@ import javax.servlet.http.HttpServletResponse;
 
 final class ApiTextException extends Exception {
 
-  @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
   static <T> T requireFound(final T obj, final String name, final Model model)
     throws ApiTextException {
     if (obj == null) throw notFound(name + " not found within " + model);

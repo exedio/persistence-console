@@ -60,6 +60,10 @@ export type SchemaExistence = "missing" | "unused" | undefined;
 
 export type SchemaRemainder = readonly string[] | undefined;
 
+export type AlterSchemaResponse = {
+  readonly sql: string;
+};
+
 export type HashID = {
   readonly type: string;
   readonly name: string;
