@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Api.requireParameter;
+import static com.exedio.cope.console.ApiTextException.requireFound;
 import static com.exedio.cope.console.Console_Jspm.writeJsComponentMountPoint;
 
 import com.exedio.cope.Model;
@@ -25,13 +27,17 @@ import com.exedio.dsmf.Column;
 import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Sequence;
+import com.exedio.dsmf.StatementListener;
 import com.exedio.dsmf.Table;
+import com.exedio.dsmf.misc.DefaultStatementListener;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.servlet.http.HttpServletRequest;
 
 final class SchemaNewCop extends ConsoleCop<Void> {
 
@@ -352,4 +358,159 @@ final class SchemaNewCop extends ConsoleCop<Void> {
   private static List<String> splitRemainder(final String s) {
     return s != null ? List.of(s.split(", ")) : null;
   }
+
+  static SqlResponse alterSchema(
+    final String endpoint,
+    final Model model,
+    final HttpServletRequest request
+  ) throws ApiTextException {
+    final String name = requireParameter("name", request);
+    return switch (endpoint) {
+      case "addTable" -> addTable(model, name);
+      case "dropTable" -> dropTable(model, name);
+      case "addColumn" -> addColumn(
+        model,
+        requireParameter("table", request),
+        name
+      );
+      case "dropColumn" -> dropColumn(
+        model,
+        requireParameter("table", request),
+        name
+      );
+      case "addConstraint" -> addConstraint(
+        model,
+        requireParameter("table", request),
+        name
+      );
+      case "dropConstraint" -> dropConstraint(
+        model,
+        requireParameter("table", request),
+        name
+      );
+      case "addSequence" -> addSequence(model, name);
+      case "dropSequence" -> dropSequence(model, name);
+      default -> throw ApiTextException.notFound("endpoint not found");
+    };
+  }
+
+  private static SqlResponse addTable(final Model model, final String name)
+    throws ApiTextException {
+    final var node = getTable(model, name);
+    return new SL().apply(node::create);
+  }
+
+  private static SqlResponse dropTable(final Model model, final String name)
+    throws ApiTextException {
+    final var node = getTable(model, name);
+    return new SL().apply(node::drop);
+  }
+
+  private static Table getTable(final Model model, final String name)
+    throws ApiTextException {
+    return requireFound(
+      model.getVerifiedSchema().getTable(name),
+      "table",
+      model
+    );
+  }
+
+  private static SqlResponse addColumn(
+    final Model model,
+    final String table,
+    final String name
+  ) throws ApiTextException {
+    final var node = getColumn(model, table, name);
+    return new SL().apply(node::create);
+  }
+
+  private static SqlResponse dropColumn(
+    final Model model,
+    final String table,
+    final String name
+  ) throws ApiTextException {
+    final var node = getColumn(model, table, name);
+    return new SL().apply(node::drop);
+  }
+
+  private static Column getColumn(
+    final Model model,
+    final String tableName,
+    final String name
+  ) throws ApiTextException {
+    return requireFound(
+      getTable(model, tableName).getColumn(name),
+      "column",
+      model
+    );
+  }
+
+  private static SqlResponse addConstraint(
+    final Model model,
+    final String tableName,
+    final String name
+  ) throws ApiTextException {
+    final var node = getConstraint(model, tableName, name);
+    return new SL().apply(node::create);
+  }
+
+  private static SqlResponse dropConstraint(
+    final Model model,
+    final String tableName,
+    final String name
+  ) throws ApiTextException {
+    final var node = getConstraint(model, tableName, name);
+    return new SL().apply(node::drop);
+  }
+
+  private static Constraint getConstraint(
+    final Model model,
+    final String tableName,
+    final String name
+  ) throws ApiTextException {
+    return requireFound(
+      getTable(model, tableName).getConstraint(name),
+      "constraint",
+      model
+    );
+  }
+
+  private static SqlResponse addSequence(final Model model, final String name)
+    throws ApiTextException {
+    final var node = getSequence(model, name);
+    return new SL().apply(node::create);
+  }
+
+  private static SqlResponse dropSequence(final Model model, final String name)
+    throws ApiTextException {
+    final var node = getSequence(model, name);
+    return new SL().apply(node::drop);
+  }
+
+  private static Sequence getSequence(final Model model, final String name)
+    throws ApiTextException {
+    return requireFound(
+      model.getVerifiedSchema().getSequence(name),
+      "sequence",
+      model
+    );
+  }
+
+  private static class SL extends DefaultStatementListener {
+
+    String statement;
+
+    @Override
+    public boolean beforeExecute(final String statement) {
+      this.statement = statement;
+      return false;
+    }
+
+    SqlResponse apply(final Consumer<StatementListener> listener) {
+      listener.accept(this);
+      return new SqlResponse(statement);
+    }
+  }
+
+  record SqlResponse(String sql) {}
 }

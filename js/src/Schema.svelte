@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { get } from "@/api/api";
-  import type { SchemaResponse } from "@/api/types";
+  import type { AlterSchemaResponse, SchemaResponse } from "@/api/types";
   import { SvelteSet } from "svelte/reactivity";
   import {
     type UseColumn,
@@ -10,6 +10,7 @@
     type UseExistence,
     type UseComparison,
     type UseConstraint,
+    type UseSequence,
   } from "@/UseSchema.js";
 
   const schema = $state(getSchema());
@@ -42,6 +43,50 @@
     else expandedColumns.add(key);
   }
 
+  function addDropTable(table: UseTable, e: Existence) {
+    get<AlterSchemaResponse>(
+      "schema/" + addDrop(e) + "Table?name=" + table.name,
+    ).then((x) => sql.add(x.sql));
+  }
+
+  function addDropColumn(table: UseTable, column: UseColumn, e: Existence) {
+    get<AlterSchemaResponse>(
+      "schema/" +
+        addDrop(e) +
+        "Column?table=" +
+        table.name +
+        "&name=" +
+        column.name,
+    ).then((x) => sql.add(x.sql));
+  }
+
+  function addDropConstraint(
+    table: UseTable,
+    constraint: UseConstraint,
+    e: Existence,
+  ) {
+    get<AlterSchemaResponse>(
+      "schema/" +
+        addDrop(e) +
+        "Constraint?table=" +
+        table.name +
+        "&name=" +
+        constraint.name,
+    ).then((x) => sql.add(x.sql));
+  }
+
+  function addDropSequence(sequence: UseSequence, e: Existence) {
+    get<AlterSchemaResponse>(
+      "schema/" + addDrop(e) + "Sequence?name=" + sequence.name,
+    ).then((x) => sql.add(x.sql));
+  }
+
+  function addDrop(e: Existence) {
+    return e === "missing" ? "add" : "drop";
+  }
+
+  const sql = new SvelteSet<String>();
+
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyUseConstraintArray = readonly UseConstraint[];
 
@@ -50,8 +95,17 @@
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type Boolean = boolean;
+
+  type Existence = "missing" | "unused";
 </script>
 
+{#if sql.size > 0}
+  <ul>
+    {#each sql as s}
+      <li>{s}</li>
+    {/each}
+  </ul>
+{/if}
 {#await schema}
   <div>fetching data</div>
 {:then schemaApi}
@@ -70,7 +124,9 @@
         </button>
         <span class="nodeType">tab</span>
         {table.name}
-        {@render renderExistence(table.existence)}
+        {@render renderExistence(table.existence, (e) => {
+          addDropTable(table, e);
+        })}
         {#if tableExpanded}
           {@render renderRemainder(table.remainingErrors)}
         {/if}
@@ -87,19 +143,21 @@
                 </button>
                 <span class="nodeType">col</span>
                 {column.name}
-                {@render renderExistence(column.existence)}
+                {@render renderExistence(column.existence, (e) => {
+                  addDropColumn(table, column, e);
+                })}
                 {@render renderComparison(column.type, columnExpanded)}
                 {#if columnExpanded}
                   {@render renderRemainder(column.remainingErrors)}
                 {/if}
                 {#if columnExpanded && column.constraints.length > 0}
                   <ul in:fly={{ y: -10, duration: 200 }}>
-                    {@render renderConstraints(column.constraints)}
+                    {@render renderConstraints(table, column.constraints)}
                   </ul>
                 {/if}
               </li>
             {/each}
-            {@render renderConstraints(table.constraints)}
+            {@render renderConstraints(table, table.constraints)}
           </ul>
         {/if}
       </li>
@@ -111,7 +169,9 @@
         </button>
         <span class="nodeType">seq</span>
         {sequence.name}
-        {@render renderExistence(sequence.existence)}
+        {@render renderExistence(sequence.existence, (e) => {
+          addDropSequence(sequence, e);
+        })}
         {@render renderComparison(sequence.type, true)}
         {@render renderComparison(sequence.start, true)}
         {@render renderRemainder(sequence.remainingErrors)}
@@ -122,7 +182,10 @@
   <div>{error.message}</div>
 {/await}
 
-{#snippet renderConstraints(constraints: ReadonlyUseConstraintArray)}
+{#snippet renderConstraints(
+  table: UseTable,
+  constraints: ReadonlyUseConstraintArray,
+)}
   {#each constraints as constraint (constraint.name)}
     <li>
       <button class={["bullet", constraint.bulletColor]} disabled={true}>
@@ -130,16 +193,25 @@
       </button>
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
-      {@render renderExistence(constraint.existence)}
+      {@render renderExistence(constraint.existence, (e) => {
+        addDropConstraint(table, constraint, e);
+      })}
       {@render renderComparison(constraint.clause, true)}
       {@render renderRemainder(constraint.remainingErrors)}
     </li>
   {/each}
 {/snippet}
 
-{#snippet renderExistence(existence: UseExistence)}
+{#snippet renderExistence(
+  existence: UseExistence,
+  onclick: (e: Existence) => void,
+)}
   {#if existence}
-    <span class={existence.color}>{existence.text}</span>
+    <!-- svelte-ignore <a11y_click_events_have_key_events> -->
+    <!-- svelte-ignore <a11y_no_static_element_interactions> -->
+    <span class={existence.color} onclick={() => onclick(existence.text)}
+      >{existence.text}</span
+    >
   {/if}
 {/snippet}
 

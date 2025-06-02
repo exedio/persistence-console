@@ -66,6 +66,18 @@ final class Api {
     final HttpServletResponse response,
     final Model model
   ) throws IOException, ApiTextException {
+    final String SCHEMA_ENDPOINT_PATHELEMENT = "schema/";
+    if (endpoint.startsWith(SCHEMA_ENDPOINT_PATHELEMENT)) {
+      requireGet(request);
+      writeJson(
+        SchemaNewCop.alterSchema(
+          endpoint.substring(SCHEMA_ENDPOINT_PATHELEMENT.length()),
+          model,
+          request
+        ),
+        response
+      );
+    }
     switch (endpoint) {
       case "hashes" -> {
         requireGet(request);
@@ -159,6 +171,17 @@ final class Api {
     mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     return mapper;
+  }
+
+  static String requireParameter(
+    final String name,
+    final HttpServletRequest request
+  ) throws ApiTextException {
+    final String result = request.getParameter(name);
+    if (result == null || result.isEmpty()) throw ApiTextException.notFound(
+      "parameter " + name + " must be set"
+    );
+    return result;
   }
 
   private static final Logger logger = LoggerFactory.getLogger(Api.class);
