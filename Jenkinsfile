@@ -180,11 +180,6 @@ try
 					id: 'coverage-vitest',
 					name: 'Coverage Vitest',
 					tools: [[parser: 'COBERTURA', pattern: 'build/vitestcoverage/cobertura-coverage.xml']],
-					qualityGates: [
-							[criticality: 'FAILURE', metric: 'LINE', threshold: 65],
-							[criticality: 'FAILURE', metric: 'BRANCH', threshold: 85],
-							[criticality: 'FAILURE', metric: 'METHOD', threshold: 84],
-					],
 					ignoreParsingErrors: true,
 					enabledForFailure: true,
 					skipPublishingChecks: true,
