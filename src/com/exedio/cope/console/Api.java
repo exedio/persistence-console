@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTextException.requireFound;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
-import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
@@ -87,7 +86,7 @@ final class Api {
         requireGet(request);
         writeJson(SchemaNewCop.schema(model), response);
       }
-      default -> response.setStatus(SC_NOT_FOUND);
+      default -> throw ApiTextException.notFound("endpoint not found");
     }
   }
 
