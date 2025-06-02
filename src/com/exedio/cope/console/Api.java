@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.ApiTextException.requireFound;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 
@@ -141,14 +142,8 @@ final class Api {
     final String name,
     final Class<F> featureClass
   ) throws ApiTextException {
-    final Type<?> type = model.getType(typeId);
-    if (type == null) throw ApiTextException.notFound(
-      "type not found within " + model
-    );
-    final Feature feature = type.getFeature(name);
-    if (feature == null) throw ApiTextException.notFound(
-      "name not found within " + model
-    );
+    final Type<?> type = requireFound(model.getType(typeId), "type", model);
+    final Feature feature = requireFound(type.getFeature(name), "name", model);
     if (!(featureClass.isInstance(feature))) throw ApiTextException.notFound(
       "name not a " + featureClass.getName() + " within " + model
     );

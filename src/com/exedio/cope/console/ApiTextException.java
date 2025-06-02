@@ -25,6 +25,7 @@ import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
 
+import com.exedio.cope.Model;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serial;
@@ -33,6 +34,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 final class ApiTextException extends Exception {
+
+  @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
+  static <T> T requireFound(final T obj, final String name, final Model model)
+    throws ApiTextException {
+    if (obj == null) throw notFound(name + " not found within " + model);
+    return obj;
+  }
 
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
   static void requireMethod(
