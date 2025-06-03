@@ -16,7 +16,7 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a minimal table", async () => {
@@ -36,11 +36,11 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a normal table without constraints", async () => {
@@ -67,15 +67,15 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a normal table with constraints", async () => {
@@ -141,15 +141,15 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a missing table", async () => {
@@ -172,11 +172,11 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a unused table", async () => {
@@ -199,11 +199,11 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a table with a remaining error", async () => {
@@ -226,11 +226,11 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a missing column", async () => {
@@ -261,15 +261,15 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a unused column", async () => {
@@ -300,15 +300,15 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a unused NOT NULL column", async () => {
@@ -339,15 +339,15 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a column with a wrong type", async () => {
@@ -378,15 +378,15 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a column with a remaining error", async () => {
@@ -417,15 +417,15 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a missing constraint", async () => {
@@ -457,11 +457,11 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a unused constraint", async () => {
@@ -493,11 +493,11 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a constraint with a wrong clause", async () => {
@@ -529,11 +529,11 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a constraint with shortener", async () => {
@@ -572,15 +572,15 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a constraint with a remaining error", async () => {
@@ -612,11 +612,11 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a minimal sequence", async () => {
@@ -636,7 +636,7 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a missing sequence", async () => {
@@ -661,7 +661,7 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a unused sequence", async () => {
@@ -686,7 +686,7 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a sequence with wrong type", async () => {
@@ -711,7 +711,7 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a sequence with wrong start", async () => {
@@ -736,7 +736,7 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a sequence with a remaining error", async () => {
@@ -761,7 +761,7 @@ describe("Schema", () => {
     );
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render an error message", async () => {
@@ -769,13 +769,17 @@ describe("Schema", () => {
     mock.mockResolvedValueOnce(responseFailure("myError"));
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(document.body)).toMatchSnapshot();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 });
 
 async function mountComponent() {
   mount(Schema, { target: document.body }); // `document` exists because of jsdom
   await flushPromises();
+}
+
+function tree(): HTMLElement {
+  return document.querySelectorAll(".tree").item(0) as HTMLElement;
 }
 
 beforeAll(() => {
