@@ -77,6 +77,7 @@ final class Api {
         ),
         response
       );
+      return;
     }
     switch (endpoint) {
       case "hashes" -> {
