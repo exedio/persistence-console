@@ -271,6 +271,9 @@
   ul.sql {
     max-width: 50vw;
     overflow-y: scroll;
+    li {
+      list-style-type: disc;
+    }
   }
 
   li {
