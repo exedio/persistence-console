@@ -201,11 +201,11 @@ function numberedHash(n: number): HashesResponse {
 
 beforeAll(() => {
   // https://github.com/jsdom/jsdom/issues/3429
-  // @ts-ignore
+  // @ts-expect-error
   Element.prototype.animate = () => ({});
 });
 
 afterAll(() => {
-  // @ts-ignore
+  // @ts-expect-error
   Element.prototype.animate = undefined;
 });
