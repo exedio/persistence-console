@@ -99,88 +99,94 @@
   type Existence = "missing" | "unused";
 </script>
 
-{#if sql.size > 0}
-  <ul>
-    {#each sql as s}
-      <li>{s}</li>
-    {/each}
-  </ul>
-{/if}
-{#await schema}
-  <div>fetching data</div>
-{:then schemaApi}
-  {@const schema = useSchema(schemaApi)}
-  <button class={["bullet", schema.bulletColor]} disabled={true}> . </button>
-  Schema
-  <ul>
-    {#each schema.tables as table (table.name)}
-      {@const tableExpanded = expandedTables.has(table.name)}
-      <li class="table">
-        <button
-          class={["bullet", table.bulletColor]}
-          onclick={() => toggleTable(table)}
-        >
-          {expansionCharacter(tableExpanded)}
-        </button>
-        <span class="nodeType">tab</span>
-        {table.name}
-        {@render renderExistence(table.existence, (e) => {
-          addDropTable(table, e);
-        })}
-        {#if tableExpanded}
-          {@render renderRemainder(table.remainingErrors)}
-        {/if}
-        {#if tableExpanded && (table.columns.length || table.constraints.length)}
-          <ul in:fly={{ y: -10, duration: 200 }}>
-            {#each table.columns as column (column.name)}
-              {@const columnExpanded = isColumnExpanded(table, column)}
-              <li class="column">
-                <button
-                  class={["bullet", column.bulletColor]}
-                  onclick={() => toggleColumn(table, column)}
-                >
-                  {expansionCharacter(columnExpanded)}
-                </button>
-                <span class="nodeType">col</span>
-                {column.name}
-                {@render renderExistence(column.existence, (e) => {
-                  addDropColumn(table, column, e);
-                })}
-                {@render renderComparison(column.type, columnExpanded)}
-                {#if columnExpanded}
-                  {@render renderRemainder(column.remainingErrors)}
-                {/if}
-                {#if columnExpanded && column.constraints.length > 0}
-                  <ul in:fly={{ y: -10, duration: 200 }}>
-                    {@render renderConstraints(table, column.constraints)}
-                  </ul>
-                {/if}
-              </li>
-            {/each}
-            {@render renderConstraints(table, table.constraints)}
-          </ul>
-        {/if}
-      </li>
-    {/each}
-    {#each schema.sequences as sequence (sequence.name)}
-      <li class="sequence">
-        <button class={["bullet", sequence.bulletColor]} disabled={true}>
-          .
-        </button>
-        <span class="nodeType">seq</span>
-        {sequence.name}
-        {@render renderExistence(sequence.existence, (e) => {
-          addDropSequence(sequence, e);
-        })}
-        {@render renderComparison(sequence.type, true)}
-        {@render renderComparison(sequence.start, true)}
-        {@render renderRemainder(sequence.remainingErrors)}
-      </li>
-    {/each}
-  </ul>
-{:catch error}
-  <div>{error.message}</div>
-{/await}
+<div class="container">
+  <div class="tree">
+    {#await schema}
+      fetching data
+    {:then schemaApi}
+      {@const schema = useSchema(schemaApi)}
+      <button class={["bullet", schema.bulletColor]} disabled={true}>
+        .
+      </button>
+      Schema
+      <ul>
+        {#each schema.tables as table (table.name)}
+          {@const tableExpanded = expandedTables.has(table.name)}
+          <li class="table">
+            <button
+              class={["bullet", table.bulletColor]}
+              onclick={() => toggleTable(table)}
+            >
+              {expansionCharacter(tableExpanded)}
+            </button>
+            <span class="nodeType">tab</span>
+            {table.name}
+            {@render renderExistence(table.existence, (e) => {
+              addDropTable(table, e);
+            })}
+            {#if tableExpanded}
+              {@render renderRemainder(table.remainingErrors)}
+            {/if}
+            {#if tableExpanded && (table.columns.length || table.constraints.length)}
+              <ul in:fly={{ y: -10, duration: 200 }}>
+                {#each table.columns as column (column.name)}
+                  {@const columnExpanded = isColumnExpanded(table, column)}
+                  <li class="column">
+                    <button
+                      class={["bullet", column.bulletColor]}
+                      onclick={() => toggleColumn(table, column)}
+                    >
+                      {expansionCharacter(columnExpanded)}
+                    </button>
+                    <span class="nodeType">col</span>
+                    {column.name}
+                    {@render renderExistence(column.existence, (e) => {
+                      addDropColumn(table, column, e);
+                    })}
+                    {@render renderComparison(column.type, columnExpanded)}
+                    {#if columnExpanded}
+                      {@render renderRemainder(column.remainingErrors)}
+                    {/if}
+                    {#if columnExpanded && column.constraints.length > 0}
+                      <ul in:fly={{ y: -10, duration: 200 }}>
+                        {@render renderConstraints(table, column.constraints)}
+                      </ul>
+                    {/if}
+                  </li>
+                {/each}
+                {@render renderConstraints(table, table.constraints)}
+              </ul>
+            {/if}
+          </li>
+        {/each}
+        {#each schema.sequences as sequence (sequence.name)}
+          <li class="sequence">
+            <button class={["bullet", sequence.bulletColor]} disabled={true}>
+              .
+            </button>
+            <span class="nodeType">seq</span>
+            {sequence.name}
+            {@render renderExistence(sequence.existence, (e) => {
+              addDropSequence(sequence, e);
+            })}
+            {@render renderComparison(sequence.type, true)}
+            {@render renderComparison(sequence.start, true)}
+            {@render renderRemainder(sequence.remainingErrors)}
+          </li>
+        {/each}
+      </ul>
+    {:catch error}
+      {error.message}
+    {/await}
+  </div>
+  {#if sql.size > 0}
+    <ul class="sql">
+      {#each sql as s}
+        <li>{s}</li>
+      {/each}
+    </ul>
+  {/if}
+</div>
 
 {#snippet renderConstraints(
   table: UseTable,
@@ -250,6 +256,23 @@
 {/snippet}
 
 <style>
+  div.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100vw;
+    height: 80vh;
+  }
+
+  div.tree {
+    overflow-y: scroll;
+  }
+
+  ul.sql {
+    max-width: 50vw;
+    overflow-y: scroll;
+  }
+
   li {
     list-style-type: none;
   }
