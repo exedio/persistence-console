@@ -30,13 +30,13 @@
 
   const expandedColumns = $state(new SvelteSet<string>());
 
-  function isColumnExpanded(table: UseTable, column: UseColumn) {
-    let key = table.name + "." + column.name;
+  function isColumnExpanded(column: UseColumn) {
+    let key = column.tableName + "." + column.name;
     return expandedColumns.has(key);
   }
 
-  function toggleColumn(table: UseTable, column: UseColumn) {
-    let key = table.name + "." + column.name;
+  function toggleColumn(column: UseColumn) {
+    let key = column.tableName + "." + column.name;
     if (expandedColumns.has(key)) expandedColumns.delete(key);
     else expandedColumns.add(key);
   }
@@ -49,30 +49,26 @@
     );
   }
 
-  function addDropColumn(table: UseTable, column: UseColumn, e: Existence) {
+  function addDropColumn(column: UseColumn, e: Existence) {
     handleAlterSchema(
       get<AlterSchemaResponse>(
         "schema/" +
           addDrop(e) +
           "Column?table=" +
-          table.name +
+          column.tableName +
           "&name=" +
           column.name,
       ),
     );
   }
 
-  function addDropConstraint(
-    table: UseTable,
-    constraint: UseConstraint,
-    e: Existence,
-  ) {
+  function addDropConstraint(constraint: UseConstraint, e: Existence) {
     handleAlterSchema(
       get<AlterSchemaResponse>(
         "schema/" +
           addDrop(e) +
           "Constraint?table=" +
-          table.name +
+          constraint.tableName +
           "&name=" +
           constraint.name,
       ),
@@ -141,18 +137,18 @@
             {#if tableExpanded && (table.columns.length || table.constraints.length)}
               <ul in:fly={{ y: -10, duration: 200 }}>
                 {#each table.columns as column (column.name)}
-                  {@const columnExpanded = isColumnExpanded(table, column)}
+                  {@const columnExpanded = isColumnExpanded(column)}
                   <li class="column">
                     <button
                       class={["bullet", column.bulletColor]}
-                      onclick={() => toggleColumn(table, column)}
+                      onclick={() => toggleColumn(column)}
                     >
                       {expansionCharacter(columnExpanded)}
                     </button>
                     <span class="nodeType">col</span>
                     {column.name}
                     {@render renderExistence(column.existence, (e) => {
-                      addDropColumn(table, column, e);
+                      addDropColumn(column, e);
                     })}
                     {@render renderComparison(column.type, columnExpanded)}
                     {#if columnExpanded}
@@ -160,12 +156,12 @@
                     {/if}
                     {#if columnExpanded && column.constraints.length > 0}
                       <ul in:fly={{ y: -10, duration: 200 }}>
-                        {@render renderConstraints(table, column.constraints)}
+                        {@render renderConstraints(column.constraints)}
                       </ul>
                     {/if}
                   </li>
                 {/each}
-                {@render renderConstraints(table, table.constraints)}
+                {@render renderConstraints(table.constraints)}
               </ul>
             {/if}
           </li>
@@ -199,10 +195,7 @@
   {/if}
 </div>
 
-{#snippet renderConstraints(
-  table: UseTable,
-  constraints: ReadonlyUseConstraintArray,
-)}
+{#snippet renderConstraints(constraints: ReadonlyUseConstraintArray)}
   {#each constraints as constraint (constraint.name)}
     <li>
       <button class={["bullet", constraint.bulletColor]} disabled={true}>
@@ -211,7 +204,7 @@
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
       {@render renderExistence(constraint.existence, (e) => {
-        addDropConstraint(table, constraint, e);
+        addDropConstraint(constraint, e);
       })}
       {@render renderComparison(constraint.clause, true)}
       {@render renderRemainder(constraint.remainingErrors)}
