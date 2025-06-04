@@ -5,6 +5,7 @@
         <option name="USE_TAB_CHARACTER" value="true" />
       </value>
     </option>
+    <option name="SOFT_MARGINS" value="80" />
     <JavaCodeStyleSettings>
       <option name="GENERATE_FINAL_PARAMETERS" value="true" />
       <option name="VISIBILITY" value="private" />
