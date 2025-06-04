@@ -531,7 +531,8 @@ exports[`Schema > should render a missing column 2`] = `
       <li class="column svelte-1n3ysu8">
         <button class="bullet red svelte-1n3ysu8">+</button>
         <span class="nodeType svelte-1n3ysu8">col</span> myColumn1Name
-        <!----><span class="red svelte-1n3ysu8">missing</span
+        <!----><span class="red svelte-1n3ysu8">missing</span>
+        <label><input type="checkbox" />add</label
         ><!---->
         <!----><!----><!---->
         <!---->
@@ -563,7 +564,8 @@ exports[`Schema > should render a missing column 3`] = `
       <li class="column svelte-1n3ysu8">
         <button class="bullet red svelte-1n3ysu8">-</button>
         <span class="nodeType svelte-1n3ysu8">col</span> myColumn1Name
-        <!----><span class="red svelte-1n3ysu8">missing</span
+        <!----><span class="red svelte-1n3ysu8">missing</span>
+        <label><input type="checkbox" />add</label
         ><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!----><!---->
@@ -578,6 +580,15 @@ exports[`Schema > should render a missing column 3`] = `
   <!---->
 </ul>
 <!---->
+"
+`;
+
+exports[`Schema > should render a missing column 4`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">column</span> myColumn1Name
+  <small>ALTER TABLE myTable1Name ADD COLUMN myColumn1Name</small
+  ><!---->
+</li>
 "
 `;
 
@@ -616,7 +627,8 @@ exports[`Schema > should render a missing constraint 2`] = `
       <li class="svelte-1n3ysu8">
         <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
         <span class="nodeType svelte-1n3ysu8">chk</span> myConstraint1Name
-        <!----><span class="red svelte-1n3ysu8">missing</span
+        <!----><span class="red svelte-1n3ysu8">missing</span>
+        <label><input type="checkbox" />add</label
         ><!---->
         <!----><!----><!---->myConstraint1Clause<!---->
         <!----><!---->
@@ -632,6 +644,15 @@ exports[`Schema > should render a missing constraint 2`] = `
 "
 `;
 
+exports[`Schema > should render a missing constraint 3`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">constraint</span> myConstraint1Name
+  <small>ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name</small
+  ><!---->
+</li>
+"
+`;
+
 exports[`Schema > should render a missing sequence 1`] = `
 "<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button
@@ -641,7 +662,8 @@ exports[`Schema > should render a missing sequence 1`] = `
   <li class="sequence svelte-1n3ysu8">
     <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
     <span class="nodeType svelte-1n3ysu8">seq</span> myOnlyName
-    <!----><span class="red svelte-1n3ysu8">missing</span
+    <!----><span class="red svelte-1n3ysu8">missing</span>
+    <label><input type="checkbox" />create</label
     ><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!---->55<!---->
@@ -653,6 +675,15 @@ exports[`Schema > should render a missing sequence 1`] = `
 "
 `;
 
+exports[`Schema > should render a missing sequence 2`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">sequence</span> myOnlyName
+  <small>CREATE SEQUENCE myOnlyName</small
+  ><!---->
+</li>
+"
+`;
+
 exports[`Schema > should render a missing table 1`] = `
 "<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button
@@ -661,7 +692,8 @@ exports[`Schema > should render a missing table 1`] = `
   <li class="table svelte-1n3ysu8">
     <button class="bullet red svelte-1n3ysu8">+</button>
     <span class="nodeType svelte-1n3ysu8">tab</span> myTable1Name
-    <!----><span class="red svelte-1n3ysu8">missing</span
+    <!----><span class="red svelte-1n3ysu8">missing</span>
+    <label><input type="checkbox" />create</label
     ><!---->
     <!---->
     <!---->
@@ -681,7 +713,8 @@ exports[`Schema > should render a missing table 2`] = `
   <li class="table svelte-1n3ysu8">
     <button class="bullet red svelte-1n3ysu8">-</button>
     <span class="nodeType svelte-1n3ysu8">tab</span> myTable1Name
-    <!----><span class="red svelte-1n3ysu8">missing</span
+    <!----><span class="red svelte-1n3ysu8">missing</span>
+    <label><input type="checkbox" />create</label
     ><!---->
     <!----><!---->
     <!---->
@@ -690,6 +723,25 @@ exports[`Schema > should render a missing table 2`] = `
   <!---->
 </ul>
 <!---->
+"
+`;
+
+exports[`Schema > should render a missing table 3`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">table</span> myTable1Name
+  <small>CREATE TABLE myTable1Name</small
+  ><!---->
+</li>
+"
+`;
+
+exports[`Schema > should render a missing table and fix fails 1`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">table</span> myTable1Name
+  <span class="red svelte-1n3ysu8"
+    >schema/addTable?name=myTable1Name: response code 400 myError</span
+  ><!---->
+</li>
 "
 `;
 
@@ -1092,7 +1144,8 @@ exports[`Schema > should render a unused NOT NULL column 2`] = `
       <li class="column svelte-1n3ysu8">
         <button class="bullet red svelte-1n3ysu8">+</button>
         <span class="nodeType svelte-1n3ysu8">col</span> myColumn1Name
-        <!----><span class="red svelte-1n3ysu8">unused</span
+        <!----><span class="red svelte-1n3ysu8">unused</span>
+        <label><input type="checkbox" />drop</label
         ><!---->
         <!----><!----><!---->
         <!---->
@@ -1124,7 +1177,8 @@ exports[`Schema > should render a unused NOT NULL column 3`] = `
       <li class="column svelte-1n3ysu8">
         <button class="bullet red svelte-1n3ysu8">-</button>
         <span class="nodeType svelte-1n3ysu8">col</span> myColumn1Name
-        <!----><span class="red svelte-1n3ysu8">unused</span
+        <!----><span class="red svelte-1n3ysu8">unused</span>
+        <label><input type="checkbox" />drop</label
         ><!---->
         <!----><!----><!---->myColumn1Type not null<!---->
         <!----><!---->
@@ -1175,7 +1229,8 @@ exports[`Schema > should render a unused column 2`] = `
       <li class="column svelte-1n3ysu8">
         <button class="bullet yellow svelte-1n3ysu8">+</button>
         <span class="nodeType svelte-1n3ysu8">col</span> myColumn1Name
-        <!----><span class="yellow svelte-1n3ysu8">unused</span
+        <!----><span class="yellow svelte-1n3ysu8">unused</span>
+        <label><input type="checkbox" />drop</label
         ><!---->
         <!----><!----><!---->
         <!---->
@@ -1207,7 +1262,8 @@ exports[`Schema > should render a unused column 3`] = `
       <li class="column svelte-1n3ysu8">
         <button class="bullet yellow svelte-1n3ysu8">-</button>
         <span class="nodeType svelte-1n3ysu8">col</span> myColumn1Name
-        <!----><span class="yellow svelte-1n3ysu8">unused</span
+        <!----><span class="yellow svelte-1n3ysu8">unused</span>
+        <label><input type="checkbox" />drop</label
         ><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!----><!---->
@@ -1222,6 +1278,15 @@ exports[`Schema > should render a unused column 3`] = `
   <!---->
 </ul>
 <!---->
+"
+`;
+
+exports[`Schema > should render a unused column 4`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">column</span> myColumn1Name
+  <small>ALTER TABLE myTable1Name DROP COLUMN myColumn1Name</small
+  ><!---->
+</li>
 "
 `;
 
@@ -1260,7 +1325,8 @@ exports[`Schema > should render a unused constraint 2`] = `
       <li class="svelte-1n3ysu8">
         <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
         <span class="nodeType svelte-1n3ysu8">chk</span> myConstraint1Name
-        <!----><span class="red svelte-1n3ysu8">unused</span
+        <!----><span class="red svelte-1n3ysu8">unused</span>
+        <label><input type="checkbox" />drop</label
         ><!---->
         <!----><!----><!---->myConstraint1Clause<!---->
         <!----><!---->
@@ -1276,6 +1342,15 @@ exports[`Schema > should render a unused constraint 2`] = `
 "
 `;
 
+exports[`Schema > should render a unused constraint 3`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">constraint</span> myConstraint1Name
+  <small>ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name</small
+  ><!---->
+</li>
+"
+`;
+
 exports[`Schema > should render a unused sequence 1`] = `
 "<button disabled="" class="bullet yellow svelte-1n3ysu8">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button
@@ -1285,7 +1360,8 @@ exports[`Schema > should render a unused sequence 1`] = `
   <li class="sequence svelte-1n3ysu8">
     <button disabled="" class="bullet yellow svelte-1n3ysu8">.</button>
     <span class="nodeType svelte-1n3ysu8">seq</span> myOnlyName
-    <!----><span class="yellow svelte-1n3ysu8">unused</span
+    <!----><span class="yellow svelte-1n3ysu8">unused</span>
+    <label><input type="checkbox" />drop</label
     ><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!---->55<!---->
@@ -1297,6 +1373,15 @@ exports[`Schema > should render a unused sequence 1`] = `
 "
 `;
 
+exports[`Schema > should render a unused sequence 2`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">sequence</span> myOnlyName
+  <small>DROP SEQUENCE myOnlyName</small
+  ><!---->
+</li>
+"
+`;
+
 exports[`Schema > should render a unused table 1`] = `
 "<button disabled="" class="bullet yellow svelte-1n3ysu8">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button
@@ -1305,7 +1390,8 @@ exports[`Schema > should render a unused table 1`] = `
   <li class="table svelte-1n3ysu8">
     <button class="bullet yellow svelte-1n3ysu8">+</button>
     <span class="nodeType svelte-1n3ysu8">tab</span> myTable1Name
-    <!----><span class="yellow svelte-1n3ysu8">unused</span
+    <!----><span class="yellow svelte-1n3ysu8">unused</span>
+    <label><input type="checkbox" />drop</label
     ><!---->
     <!---->
     <!---->
@@ -1325,7 +1411,8 @@ exports[`Schema > should render a unused table 2`] = `
   <li class="table svelte-1n3ysu8">
     <button class="bullet yellow svelte-1n3ysu8">-</button>
     <span class="nodeType svelte-1n3ysu8">tab</span> myTable1Name
-    <!----><span class="yellow svelte-1n3ysu8">unused</span
+    <!----><span class="yellow svelte-1n3ysu8">unused</span>
+    <label><input type="checkbox" />drop</label
     ><!---->
     <!----><!---->
     <!---->
@@ -1334,6 +1421,15 @@ exports[`Schema > should render a unused table 2`] = `
   <!---->
 </ul>
 <!---->
+"
+`;
+
+exports[`Schema > should render a unused table 3`] = `
+"<li class="svelte-1n3ysu8">
+  <span class="nodeType svelte-1n3ysu8">table</span> myTable1Name
+  <small>DROP TABLE myTable1Name</small
+  ><!---->
+</li>
 "
 `;
 

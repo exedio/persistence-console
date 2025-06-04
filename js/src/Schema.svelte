@@ -2,7 +2,7 @@
   import { fly } from "svelte/transition";
   import { get } from "@/api/api";
   import type { AlterSchemaResponse, SchemaResponse } from "@/api/types";
-  import { SvelteSet } from "svelte/reactivity";
+  import { SvelteMap, SvelteSet } from "svelte/reactivity";
   import {
     type UseColumn,
     useSchema,
@@ -10,7 +10,6 @@
     type UseExistence,
     type UseComparison,
     type UseConstraint,
-    type UseSequence,
   } from "@/UseSchema.js";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
@@ -41,57 +40,58 @@
     else expandedColumns.add(key);
   }
 
-  function addDropTable(table: UseTable, e: Existence) {
-    handleAlterSchema(
-      get<AlterSchemaResponse>(
-        "schema/" + addDrop(e) + "Table?name=" + table.name,
-      ),
-    );
-  }
+  type Checkbox = {
+    readonly subject: "table" | "column" | "constraint" | "sequence";
+    readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
+    readonly name: string;
+    readonly existence: Existence;
+  };
 
-  function addDropColumn(column: UseColumn, e: Existence) {
-    handleAlterSchema(
-      get<AlterSchemaResponse>(
-        "schema/" +
-          addDrop(e) +
-          "Column?table=" +
-          column.tableName +
-          "&name=" +
-          column.name,
-      ),
-    );
-  }
+  const checkboxes = new SvelteMap<String, Checkbox>();
 
-  function addDropConstraint(constraint: UseConstraint, e: Existence) {
-    handleAlterSchema(
-      get<AlterSchemaResponse>(
-        "schema/" +
-          addDrop(e) +
-          "Constraint?table=" +
-          constraint.tableName +
-          "&name=" +
-          constraint.name,
-      ),
-    );
-  }
+  type Fix = {
+    readonly checkbox: Checkbox;
+    readonly promise: Promise<AlterSchemaResponse>;
+  };
 
-  function addDropSequence(sequence: UseSequence, e: Existence) {
-    handleAlterSchema(
-      get<AlterSchemaResponse>(
-        "schema/" + addDrop(e) + "Sequence?name=" + sequence.name,
-      ),
-    );
-  }
+  const fixes: Fix[] = $derived(
+    Array.from(checkboxes.values()).map((cb) => ({
+      checkbox: cb,
+      promise: checkboxToPromise(cb),
+    })),
+  );
 
-  function handleAlterSchema(response: Promise<AlterSchemaResponse>) {
-    response.then((r) => sql.add(r.sql));
+  function checkboxToPromise({
+    subject,
+    tableName,
+    name,
+    existence,
+  }: Checkbox): Promise<AlterSchemaResponse> {
+    const method = existence === "missing" ? "add" : "drop";
+    switch (subject) {
+      case "table":
+        return get<AlterSchemaResponse>(
+          "schema/" + method + "Table?name=" + name,
+        );
+      case "column":
+        return get<AlterSchemaResponse>(
+          "schema/" + method + "Column?table=" + tableName + "&name=" + name,
+        );
+      case "constraint":
+        return get<AlterSchemaResponse>(
+          "schema/" +
+            method +
+            "Constraint?table=" +
+            tableName +
+            "&name=" +
+            name,
+        );
+      case "sequence":
+        return get<AlterSchemaResponse>(
+          "schema/" + method + "Sequence?name=" + name,
+        );
+    }
   }
-
-  function addDrop(e: Existence) {
-    return e === "missing" ? "add" : "drop";
-  }
-
-  const sql = new SvelteSet<String>();
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyUseConstraintArray = readonly UseConstraint[];
@@ -101,6 +101,14 @@
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type Boolean = boolean;
+
+  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
+  type String = string;
+
+  // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
+  function asInputElement(target: EventTarget | null): HTMLInputElement {
+    return target as HTMLInputElement;
+  }
 
   type Existence = "missing" | "unused";
 </script>
@@ -128,9 +136,12 @@
             </button>
             <span class="nodeType">tab</span>
             {table.name}
-            {@render renderExistence(table.existence, (e) => {
-              addDropTable(table, e);
-            })}
+            {@render renderExistence(
+              table.existence,
+              "table",
+              undefined,
+              table.name,
+            )}
             {#if tableExpanded}
               {@render renderRemainder(table.remainingErrors)}
             {/if}
@@ -147,9 +158,12 @@
                     </button>
                     <span class="nodeType">col</span>
                     {column.name}
-                    {@render renderExistence(column.existence, (e) => {
-                      addDropColumn(column, e);
-                    })}
+                    {@render renderExistence(
+                      column.existence,
+                      "column",
+                      table.name,
+                      column.name,
+                    )}
                     {@render renderComparison(column.type, columnExpanded)}
                     {#if columnExpanded}
                       {@render renderRemainder(column.remainingErrors)}
@@ -173,9 +187,12 @@
             </button>
             <span class="nodeType">seq</span>
             {sequence.name}
-            {@render renderExistence(sequence.existence, (e) => {
-              addDropSequence(sequence, e);
-            })}
+            {@render renderExistence(
+              sequence.existence,
+              "sequence",
+              undefined,
+              sequence.name,
+            )}
             {@render renderComparison(sequence.type, true)}
             {@render renderComparison(sequence.start, true)}
             {@render renderRemainder(sequence.remainingErrors)}
@@ -186,10 +203,20 @@
       {error.message}
     {/await}
   </div>
-  {#if sql.size > 0}
+  {#if fixes.length > 0}
     <ul class="sql">
-      {#each sql as s}
-        <li>{s}</li>
+      {#each fixes as { checkbox, promise } (checkbox.subject + "." + checkbox.tableName + "." + checkbox.name)}
+        <li>
+          <span class="nodeType">{checkbox.subject}</span>
+          {checkbox.name}
+          {#await promise}
+            {checkbox.existence}
+          {:then response}
+            <small>{response.sql}</small>
+          {:catch error}
+            <span class="red">{error.message}</span>
+          {/await}
+        </li>
       {/each}
     </ul>
   {/if}
@@ -203,9 +230,12 @@
       </button>
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
-      {@render renderExistence(constraint.existence, (e) => {
-        addDropConstraint(constraint, e);
-      })}
+      {@render renderExistence(
+        constraint.existence,
+        "constraint",
+        constraint.tableName,
+        constraint.name,
+      )}
       {@render renderComparison(constraint.clause, true)}
       {@render renderRemainder(constraint.remainingErrors)}
     </li>
@@ -214,13 +244,34 @@
 
 {#snippet renderExistence(
   existence: UseExistence,
-  onclick: (e: Existence) => void,
+  subject: "table" | "column" | "constraint" | "sequence",
+  tableName: String | undefined,
+  name: String,
 )}
   {#if existence}
-    <!-- svelte-ignore <a11y_click_events_have_key_events> -->
-    <!-- svelte-ignore <a11y_no_static_element_interactions> -->
-    <span class={existence.color} onclick={() => onclick(existence.text)}
-      >{existence.text}</span
+    {@const key = subject + "/" + tableName + "/" + name}
+    <span class={existence.color}>{existence.text}</span>
+    <label
+      ><input
+        type="checkbox"
+        checked={checkboxes.has(key)}
+        oninput={(e) => {
+          if (asInputElement(e.target).checked) {
+            checkboxes.set(key, {
+              subject,
+              tableName,
+              name,
+              existence: existence.text,
+            });
+          } else {
+            checkboxes.delete(key);
+          }
+        }}
+      />{existence.text === "missing"
+        ? subject === "table" || subject === "sequence"
+          ? "create"
+          : "add"
+        : "drop"}</label
     >
   {/if}
 {/snippet}

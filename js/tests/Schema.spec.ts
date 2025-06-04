@@ -1,9 +1,11 @@
+// noinspection SqlNoDataSourceInspection
+
 import { mount } from "svelte";
 import { default as Schema } from "@/Schema.svelte";
 import { mockFetch, responseFailure, responseSuccess } from "@t/mockApi";
 import { flushPromises, formatHtml } from "@t/utils";
 import { expect } from "vitest";
-import type { SchemaResponse } from "@/api/types";
+import type { AlterSchemaResponse, SchemaResponse } from "@/api/types";
 
 describe("Schema", () => {
   it("should render an empty schema", async () => {
@@ -196,6 +198,51 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter("CREATE TABLE myTable1Name"),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/addTable?name=myTable1Name",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
+  });
+
+  it("should render a missing table and fix fails", async () => {
+    const mock = mockFetch();
+    mock.mockResolvedValueOnce(
+      responseSuccess({
+        tables: [
+          {
+            name: "myTable1Name",
+            columns: undefined,
+            constraints: undefined,
+            error: {
+              existence: "missing",
+              remainder: undefined,
+            },
+          },
+        ],
+        sequences: undefined,
+      } satisfies SchemaResponse),
+    );
+    await mountComponent();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(responseFailure("myError"));
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/addTable?name=myTable1Name",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a unused table", async () => {
@@ -223,6 +270,17 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter("DROP TABLE myTable1Name"),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/dropTable?name=myTable1Name",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a table with a remaining error", async () => {
@@ -289,6 +347,17 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter("ALTER TABLE myTable1Name ADD COLUMN myColumn1Name"),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/addColumn?table=myTable1Name&name=myColumn1Name",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a unused column", async () => {
@@ -328,6 +397,19 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        "ALTER TABLE myTable1Name DROP COLUMN myColumn1Name",
+      ),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/dropColumn?table=myTable1Name&name=myColumn1Name",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a unused NOT NULL column", async () => {
@@ -481,6 +563,19 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        "ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",
+      ),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/addConstraint?table=myTable1Name&name=myConstraint1Name",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a unused constraint", async () => {
@@ -517,6 +612,19 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        "ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",
+      ),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/dropConstraint?table=myTable1Name&name=myConstraint1Name",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a constraint with a wrong clause", async () => {
@@ -681,6 +789,17 @@ describe("Schema", () => {
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter("CREATE SEQUENCE myOnlyName"),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/addSequence?name=myOnlyName",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a unused sequence", async () => {
@@ -706,6 +825,17 @@ describe("Schema", () => {
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter("DROP SEQUENCE myOnlyName"),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/schema/dropSequence?name=myOnlyName",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a sequence with wrong type", async () => {
@@ -799,6 +929,22 @@ async function mountComponent() {
 
 function tree(): HTMLElement {
   return document.querySelectorAll(".tree").item(0) as HTMLElement;
+}
+
+function responseSuccessAlter(sql: string) {
+  return responseSuccess({
+    sql: sql,
+  } satisfies AlterSchemaResponse);
+}
+
+function checkbox(): HTMLElement {
+  return document
+    .querySelectorAll("input[type='checkbox']")
+    .item(0) as HTMLElement;
+}
+
+function sql(): HTMLElement {
+  return document.querySelectorAll(".sql").item(0) as HTMLElement;
 }
 
 beforeAll(() => {
