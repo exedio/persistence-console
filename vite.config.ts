@@ -4,11 +4,12 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import path from "path";
 
 // https://vite.dev/config/
-export default defineConfig((_configEnv) => {
+export default defineConfig(({ mode }) => {
   return {
     plugins: [svelte()],
     cacheDir: ".yarn/.vite",
     build: {
+      minify: mode === "development" ? false : "esbuild",
       rollupOptions: {
         input: {
           app: "./js/index.html",
