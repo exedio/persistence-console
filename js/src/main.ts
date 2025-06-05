@@ -7,7 +7,7 @@ mountIfPresent("schema", Schema);
 mountIfPresent("suspicions", Suspicions);
 mountIfPresent("hashes", Hashes);
 
-function mountIfPresent(elementId: string, component: Component<{}, {}, "">) {
+function mountIfPresent(elementId: string, component: Component) {
   const element = document.getElementById(elementId);
   if (element) {
     mount(component, {
