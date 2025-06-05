@@ -5,6 +5,7 @@
         <option name="USE_TAB_CHARACTER" value="true" />
       </value>
     </option>
+    <option name="SOFT_MARGINS" value="80" />
     <JavaCodeStyleSettings>
       <option name="GENERATE_FINAL_PARAMETERS" value="true" />
       <option name="VISIBILITY" value="private" />
@@ -15,6 +16,7 @@
       </option>
       <option name="IMPORT_LAYOUT_TABLE">
         <value>
+          <package name="" withSubpackages="true" static="false" module="true" />
           <package name="" withSubpackages="true" static="true" />
           <emptyLine />
           <package name="" withSubpackages="true" static="false" />
