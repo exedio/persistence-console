@@ -44,20 +44,24 @@
   }
 
   function addDropTable(table: UseTable, e: Existence) {
-    get<AlterSchemaResponse>(
-      "schema/" + addDrop(e) + "Table?name=" + table.name,
-    ).then((x) => sql.add(x.sql));
+    handleAlterSchema(
+      get<AlterSchemaResponse>(
+        "schema/" + addDrop(e) + "Table?name=" + table.name,
+      ),
+    );
   }
 
   function addDropColumn(table: UseTable, column: UseColumn, e: Existence) {
-    get<AlterSchemaResponse>(
-      "schema/" +
-        addDrop(e) +
-        "Column?table=" +
-        table.name +
-        "&name=" +
-        column.name,
-    ).then((x) => sql.add(x.sql));
+    handleAlterSchema(
+      get<AlterSchemaResponse>(
+        "schema/" +
+          addDrop(e) +
+          "Column?table=" +
+          table.name +
+          "&name=" +
+          column.name,
+      ),
+    );
   }
 
   function addDropConstraint(
@@ -65,20 +69,28 @@
     constraint: UseConstraint,
     e: Existence,
   ) {
-    get<AlterSchemaResponse>(
-      "schema/" +
-        addDrop(e) +
-        "Constraint?table=" +
-        table.name +
-        "&name=" +
-        constraint.name,
-    ).then((x) => sql.add(x.sql));
+    handleAlterSchema(
+      get<AlterSchemaResponse>(
+        "schema/" +
+          addDrop(e) +
+          "Constraint?table=" +
+          table.name +
+          "&name=" +
+          constraint.name,
+      ),
+    );
   }
 
   function addDropSequence(sequence: UseSequence, e: Existence) {
-    get<AlterSchemaResponse>(
-      "schema/" + addDrop(e) + "Sequence?name=" + sequence.name,
-    ).then((x) => sql.add(x.sql));
+    handleAlterSchema(
+      get<AlterSchemaResponse>(
+        "schema/" + addDrop(e) + "Sequence?name=" + sequence.name,
+      ),
+    );
+  }
+
+  function handleAlterSchema(response: Promise<AlterSchemaResponse>) {
+    response.then((r) => sql.add(r.sql));
   }
 
   function addDrop(e: Existence) {
