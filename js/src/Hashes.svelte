@@ -13,8 +13,8 @@
   let hashes = $state(getHashes().finally(() => (isHashesLoading = false)));
   let isHashesLoading = $state(true);
   const measurements = $state(new SvelteMap<string, number>());
-  let hashToggled: string | undefined = $state.raw(undefined);
-  let plainText = $state.raw("");
+  let hashToggled: string | undefined = $state(undefined);
+  let plainText = $state("");
   let plainTextHashed: string | undefined = $state(undefined);
   const errors: Error[] = $state([]);
 
