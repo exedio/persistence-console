@@ -9,21 +9,14 @@
     type HashesResponse,
     toId,
   } from "@/api/types";
+  import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
 
-  let hashes = $state(getHashes().finally(() => (isHashesLoading = false)));
-  let isHashesLoading = $state(true);
+  const hashes = new PromiseTracker(getHashes);
   const measurements = $state(new SvelteMap<string, number>());
   let hashToggled: string | undefined = $state(undefined);
   let plainText = $state("");
   let plainTextHashed: string | undefined = $state(undefined);
   const errors: Error[] = $state([]);
-
-  function reload() {
-    isHashesLoading = true;
-    getHashes()
-      .then((h) => (hashes = Promise.resolve(h)))
-      .finally(() => (isHashesLoading = false));
-  }
 
   function measure(hash: HashesResponse): Promise<void> {
     return doHash(hash, "example password")
@@ -72,7 +65,10 @@
 <table class="grey">
   <caption>
     Hashes
-    <button class="reload" disabled={isHashesLoading} onclick={reload}
+    <button
+      class="reload"
+      disabled={hashes.pending()}
+      onclick={() => hashes.reload()}
       >&#128472;
     </button>
   </caption>
@@ -84,7 +80,7 @@
       <th colspan="2">Algorithm</th>
       <th rowspan="2" class="time">
         Time<small>/ns</small>
-        {#await hashes then hashes}
+        {#await hashes.promise() then hashes}
           {#if hashes.length > 0}
             <button class="measure" onclick={() => measureAll(hashes)}
               >&#128336;
@@ -103,7 +99,7 @@
     </tr>
   </thead>
   <tbody>
-    {#await hashes}
+    {#await hashes.promise()}
       <tr>
         <td colspan="7" class="empty">fetching data</td>
       </tr>
