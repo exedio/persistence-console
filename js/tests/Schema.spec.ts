@@ -41,6 +41,25 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockReloaded = mockFetch();
+    mockReloaded.mockResolvedValueOnce(
+      responseSuccess({
+        tables: [
+          {
+            name: "myOnlyNameReloaded",
+            columns: undefined,
+            constraints: undefined,
+            error: undefined,
+          },
+        ],
+        sequences: undefined,
+      } satisfies SchemaResponse),
+    );
+    (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
+    await flushPromises();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render a normal table without constraints", async () => {
