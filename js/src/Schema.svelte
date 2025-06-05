@@ -15,11 +15,7 @@
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
 
-  const schemaT = new PromiseTracker(getSchema);
-
-  function getSchema(): Promise<SchemaResponse> {
-    return get<SchemaResponse>("schema");
-  }
+  const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
 
   function expansionCharacter(expanded: boolean) {
     return expanded ? "-" : "+";
