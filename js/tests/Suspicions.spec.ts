@@ -35,6 +35,21 @@ describe("Suspicions", () => {
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/suspicions");
     expect(await formatHtml(document.body)).toMatchSnapshot();
+
+    const mockReloaded = mockFetch();
+    mockReloaded.mockResolvedValueOnce(
+      responseSuccess([
+        {
+          type: "myOnlyTypeReloaded",
+          name: "myOnlyNameReloaded",
+          suspicions: ["myOnlySuspicionReloaded"],
+        },
+      ] satisfies SuspicionsResponse[]),
+    );
+    (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
+    await flushPromises();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/suspicions");
+    expect(await formatHtml(document.body)).toMatchSnapshot();
   });
 
   it("should render an error message", async () => {
