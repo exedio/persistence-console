@@ -47,6 +47,24 @@ describe("Hashes", () => {
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
     expect(await formatHtml(document.body)).toMatchSnapshot();
+
+    const mockReloaded = mockFetch();
+    mockReloaded.mockResolvedValueOnce(
+      responseSuccess([
+        {
+          type: "myTypeReloaded",
+          name: "myNameReloaded",
+          plainTextLimit: 155,
+          plainTextValidator: "myValidatorReloaded",
+          algorithmID: "myAlgorithmIDReloaded",
+          algorithmDescription: "myAlgorithmDescriptionReloaded",
+        },
+      ] satisfies HashesResponse[]),
+    );
+    (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
+    await flushPromises();
+    expect(mockReloaded).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    expect(await formatHtml(document.body)).toMatchSnapshot();
   });
 
   it("should render a table body with all hashes measured", async () => {

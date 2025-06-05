@@ -63,6 +63,54 @@ exports[`Hashes > should render a non-empty table 1`] = `
 "
 `;
 
+exports[`Hashes > should render a non-empty table 2`] = `
+"<table class="grey svelte-1snoq4o">
+  <caption>
+    Hashes
+    <button class="reload svelte-1snoq4o">🗘</button>
+  </caption>
+  <thead>
+    <tr class="relative svelte-1snoq4o">
+      <th rowspan="2">Type</th>
+      <th rowspan="2">Name</th>
+      <th colspan="2">Plain Text</th>
+      <th colspan="2">Algorithm</th>
+      <th rowspan="2" class="time svelte-1snoq4o">
+        Time<small>/ns</small>
+        <!----><button class="measure svelte-1snoq4o">🕐</button
+        ><!---->
+      </th>
+    </tr>
+    <tr>
+      <th>Limit</th>
+      <th>Validator</th>
+      <th>ID</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!---->
+    <tr class="relative svelte-1snoq4o">
+      <td>
+        <button class="hash svelte-1snoq4o">↓<!----></button> myTypeReloaded
+      </td>
+      <td>myNameReloaded</td>
+      <td class="number">155</td>
+      <td>myValidatorReloaded</td>
+      <td>myAlgorithmIDReloaded</td>
+      <td>myAlgorithmDescriptionReloaded</td>
+      <td class="number">
+        <!---->
+        <button class="measure svelte-1snoq4o">🕐</button>
+      </td>
+    </tr>
+    <!----><!---->
+  </tbody>
+</table>
+<!---->
+"
+`;
+
 exports[`Hashes > should render a table body with all hashes measured 1`] = `
 "<!---->
 <tr class="relative svelte-1snoq4o">
