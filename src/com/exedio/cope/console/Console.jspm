@@ -52,7 +52,7 @@ final class Console_Jspm
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=<%=UTF_8%>">
 		<title>COPE Console - <%=cop.name%></title>
-		<link rel="shortcut icon" href="<%=ConsoleServlet.shortcutIcon%>" type="image/png">
+		<link rel="icon" href="<%=ConsoleServlet.shortcutIcon%>" type="image/png">
 		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet%>"><%
 		if(cop.hasJsComponent())
 		{
