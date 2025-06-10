@@ -402,7 +402,6 @@
     <inspection_tool class="ComparableImplementedButEqualsNotOverridden" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ComparatorNotSerializable" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="CompareToUsesNonFinalVariable" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="ComparisonOfShortAndChar" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConditionSignal" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ConfusingElse" enabled="false" level="INFORMATION" enabled_by_default="false">
       <option name="reportWhenNoStatementFollow" value="true" />
@@ -420,7 +419,6 @@
     <inspection_tool class="CustomSecurityManager" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DataProviderReturnType" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="DateToString" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="DefaultNotLastCaseInSwitch" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DeprecatedIsStillUsed" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="DollarSignInName" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="DoubleBraceInitialization" enabled="true" level="WARNING" enabled_by_default="true" />
