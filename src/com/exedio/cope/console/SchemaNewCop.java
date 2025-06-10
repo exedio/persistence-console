@@ -72,7 +72,9 @@ final class SchemaNewCop extends ConsoleCop<Void> {
   }
 
   record SchemaResponse(
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<TableResponse> tables,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<SequenceResponse> sequences
   ) {
     SchemaResponse(final Schema s) {
@@ -86,7 +88,9 @@ final class SchemaNewCop extends ConsoleCop<Void> {
   record TableResponse(
     String name,
     TableError error,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<ColumnResponse> columns,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<ConstraintResponse> constraints
   ) {
     static TableResponse convert(final Table t) {
@@ -101,7 +105,11 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  record TableError(Existence existence, List<String> remainder) {
+  record TableError(
+    Existence existence,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
+    List<String> remainder
+  ) {
     static TableError convert(final Table t) {
       Existence existence = null;
       String remainder = t.getError();
@@ -127,6 +135,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     String name,
     String type,
     ColumnError error,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<ConstraintResponse> constraints
   ) {
     ColumnResponse(final Existence tableExistence, final Column c) {
@@ -139,7 +148,12 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  record ColumnError(Existence existence, String type, List<String> remainder) {
+  record ColumnError(
+    Existence existence,
+    String type,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
+    List<String> remainder
+  ) {
     static ColumnError convert(final Existence tableExistence, final Column c) {
       Existence existence = null;
       String type = null;
@@ -222,6 +236,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     Existence existence,
     String clause,
     String clauseRaw,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder
   ) {
     static ConstraintError convert(
@@ -294,6 +309,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     Existence existence,
     String type,
     Long start,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder
   ) {
     static SequenceError convert(final Sequence s) {
