@@ -12,8 +12,10 @@
     type UseConstraint,
     type UseSequence,
   } from "@/UseSchema.js";
+  import { PromiseTracker } from "@/api/PromiseTracker.svelte";
+  import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
 
-  const schema = $state(getSchema());
+  const schemaT = new PromiseTracker(getSchema);
 
   function getSchema(): Promise<SchemaResponse> {
     return get<SchemaResponse>("schema");
@@ -113,7 +115,7 @@
 
 <div class="container">
   <div class="tree">
-    {#await schema}
+    {#await schemaT.promise()}
       fetching data
     {:then schemaApi}
       {@const schema = useSchema(schemaApi)}
@@ -121,6 +123,7 @@
         .
       </button>
       Schema
+      <PromiseTrackerReload tracker={schemaT} />
       <ul>
         {#each schema.tables as table (table.name)}
           {@const tableExpanded = expandedTables.has(table.name)}
