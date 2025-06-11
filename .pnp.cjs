@@ -37,7 +37,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.5.3"],\
           ["prettier-plugin-java", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:2.6.7"],\
           ["prettier-plugin-svelte", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.4.0"],\
-          ["svelte", "npm:5.30.1"],\
+          ["svelte", "npm:5.33.19"],\
           ["svelte-check", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:4.2.1"],\
           ["tslib", "npm:2.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
@@ -803,10 +803,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:b4cd417e4abe1a665884d752b2699eae120c867982591516132d23507d806bdda142396bef6966de3ae3d260011dae35ba10a4f9af64ac49ed59d7210ca6617a#npm:1.0.5", {\
-        "packageLocation": "./.yarn/__virtual__/@sveltejs-acorn-typescript-virtual-f201437914/0/cache/@sveltejs-acorn-typescript-npm-1.0.5-54c23cf901-5f5393ca3a.zip/node_modules/@sveltejs/acorn-typescript/",\
+      ["virtual:df47f5b746bd23a296851bd7cf317fa2321fb32740cd6ddb64761a23e3dc0331b4784178abbec287516ec606752f7fa81bd332118baf797eaa5026484d0f3746#npm:1.0.5", {\
+        "packageLocation": "./.yarn/__virtual__/@sveltejs-acorn-typescript-virtual-d92489e072/0/cache/@sveltejs-acorn-typescript-npm-1.0.5-54c23cf901-5f5393ca3a.zip/node_modules/@sveltejs/acorn-typescript/",\
         "packageDependencies": [\
-          ["@sveltejs/acorn-typescript", "virtual:b4cd417e4abe1a665884d752b2699eae120c867982591516132d23507d806bdda142396bef6966de3ae3d260011dae35ba10a4f9af64ac49ed59d7210ca6617a#npm:1.0.5"],\
+          ["@sveltejs/acorn-typescript", "virtual:df47f5b746bd23a296851bd7cf317fa2321fb32740cd6ddb64761a23e3dc0331b4784178abbec287516ec606752f7fa81bd332118baf797eaa5026484d0f3746#npm:1.0.5"],\
           ["@types/acorn", null],\
           ["acorn", "npm:8.14.1"]\
         ],\
@@ -836,7 +836,7 @@ const RAW_RUNTIME_STATE =
           ["deepmerge", "npm:4.3.1"],\
           ["kleur", "npm:4.1.5"],\
           ["magic-string", "npm:0.30.17"],\
-          ["svelte", "npm:5.30.1"],\
+          ["svelte", "npm:5.33.19"],\
           ["vite", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:6.3.5"],\
           ["vitefu", "virtual:3c119855419d4d35f62956aa6a4b35509eb5ec577ba431e77777208db1ae23002c0a8a000318b8412f743fd8e6a67d611ae5e04f5267b6ecd57dba2ff94a3236#npm:1.0.6"]\
         ],\
@@ -866,7 +866,7 @@ const RAW_RUNTIME_STATE =
           ["@types/sveltejs__vite-plugin-svelte", null],\
           ["@types/vite", null],\
           ["debug", "virtual:3c119855419d4d35f62956aa6a4b35509eb5ec577ba431e77777208db1ae23002c0a8a000318b8412f743fd8e6a67d611ae5e04f5267b6ecd57dba2ff94a3236#npm:4.4.1"],\
-          ["svelte", "npm:5.30.1"],\
+          ["svelte", "npm:5.33.19"],\
           ["vite", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:6.3.5"]\
         ],\
         "packagePeers": [\
@@ -1486,11 +1486,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["esrap", [\
-      ["npm:1.4.6", {\
-        "packageLocation": "./.yarn/cache/esrap-npm-1.4.6-6898789a61-3fb4fcc301.zip/node_modules/esrap/",\
+      ["npm:1.4.9", {\
+        "packageLocation": "./.yarn/cache/esrap-npm-1.4.9-205fdb7abd-21b4c58f35.zip/node_modules/esrap/",\
         "packageDependencies": [\
           ["@jridgewell/sourcemap-codec", "npm:1.5.0"],\
-          ["esrap", "npm:1.4.6"]\
+          ["esrap", "npm:1.4.9"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1826,7 +1826,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.5.3"],\
           ["prettier-plugin-java", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:2.6.7"],\
           ["prettier-plugin-svelte", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.4.0"],\
-          ["svelte", "npm:5.30.1"],\
+          ["svelte", "npm:5.33.19"],\
           ["svelte-check", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:4.2.1"],\
           ["tslib", "npm:2.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
@@ -2310,7 +2310,7 @@ const RAW_RUNTIME_STATE =
           ["@types/svelte", null],\
           ["prettier", "npm:3.5.3"],\
           ["prettier-plugin-svelte", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.4.0"],\
-          ["svelte", "npm:5.30.1"]\
+          ["svelte", "npm:5.33.19"]\
         ],\
         "packagePeers": [\
           "@types/prettier",\
@@ -2612,23 +2612,23 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["svelte", [\
-      ["npm:5.30.1", {\
-        "packageLocation": "./.yarn/cache/svelte-npm-5.30.1-b4cd417e4a-c4ce1f5f0e.zip/node_modules/svelte/",\
+      ["npm:5.33.19", {\
+        "packageLocation": "./.yarn/cache/svelte-npm-5.33.19-df47f5b746-505d4ddd75.zip/node_modules/svelte/",\
         "packageDependencies": [\
           ["@ampproject/remapping", "npm:2.3.0"],\
           ["@jridgewell/sourcemap-codec", "npm:1.5.0"],\
-          ["@sveltejs/acorn-typescript", "virtual:b4cd417e4abe1a665884d752b2699eae120c867982591516132d23507d806bdda142396bef6966de3ae3d260011dae35ba10a4f9af64ac49ed59d7210ca6617a#npm:1.0.5"],\
+          ["@sveltejs/acorn-typescript", "virtual:df47f5b746bd23a296851bd7cf317fa2321fb32740cd6ddb64761a23e3dc0331b4784178abbec287516ec606752f7fa81bd332118baf797eaa5026484d0f3746#npm:1.0.5"],\
           ["@types/estree", "npm:1.0.7"],\
           ["acorn", "npm:8.14.1"],\
           ["aria-query", "npm:5.3.2"],\
           ["axobject-query", "npm:4.1.0"],\
           ["clsx", "npm:2.1.1"],\
           ["esm-env", "npm:1.2.2"],\
-          ["esrap", "npm:1.4.6"],\
+          ["esrap", "npm:1.4.9"],\
           ["is-reference", "npm:3.0.3"],\
           ["locate-character", "npm:3.0.0"],\
           ["magic-string", "npm:0.30.17"],\
-          ["svelte", "npm:5.30.1"],\
+          ["svelte", "npm:5.33.19"],\
           ["zimmerframe", "npm:1.1.2"]\
         ],\
         "linkType": "HARD"\
@@ -2652,7 +2652,7 @@ const RAW_RUNTIME_STATE =
           ["fdir", "virtual:d25617fa20eab60c8d6348525ebb6559a9c0bdd1bffe257d5940aec32d8cb761dd4468ad3d18a09fd4a31582cc6b5fcc1d3afbc1f631769ab84ac5db7f9eaa5a#npm:6.4.4"],\
           ["picocolors", "npm:1.1.1"],\
           ["sade", "npm:1.8.1"],\
-          ["svelte", "npm:5.30.1"],\
+          ["svelte", "npm:5.33.19"],\
           ["svelte-check", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:4.2.1"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"]\
         ],\
