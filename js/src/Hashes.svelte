@@ -12,7 +12,7 @@
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
 
-  const hashes = new PromiseTracker(getHashes);
+  const hashes = new PromiseTracker(() => get<HashesResponse[]>("hashes"));
   const measurements = $state(new SvelteMap<string, number>());
   let hashToggled: string | undefined = $state(undefined);
   let plainText = $state("");
@@ -45,10 +45,6 @@
     doHash(hash, plainText)
       .then((r) => (plainTextHashed = r.hash))
       .catch((e) => errors.push(e));
-  }
-
-  function getHashes(): Promise<HashesResponse[]> {
-    return get<HashesResponse[]>("hashes");
   }
 
   function doHash(

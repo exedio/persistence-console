@@ -5,11 +5,9 @@
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
 
-  const features = new PromiseTracker(getSuspicions);
-
-  function getSuspicions(): Promise<SuspicionsResponse[]> {
-    return get<SuspicionsResponse[]>("suspicions");
-  }
+  const features = new PromiseTracker(() =>
+    get<SuspicionsResponse[]>("suspicions"),
+  );
 </script>
 
 <table class="grey">
