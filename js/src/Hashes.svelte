@@ -10,6 +10,7 @@
     toId,
   } from "@/api/types";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
+  import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
 
   const hashes = new PromiseTracker(getHashes);
   const measurements = $state(new SvelteMap<string, number>());
@@ -65,12 +66,7 @@
 <table class="grey">
   <caption>
     Hashes
-    <button
-      class="reload"
-      disabled={hashes.pending()}
-      onclick={() => hashes.reload()}
-      >&#128472;
-    </button>
+    <PromiseTrackerReload tracker={hashes} />
   </caption>
   <thead>
     <tr class="relative">
@@ -169,15 +165,6 @@
 <style>
   table {
     margin-left: 1em;
-  }
-
-  button.reload {
-    border: 0;
-    background: rgba(0, 0, 0, 0);
-  }
-
-  button.reload:disabled {
-    color: gray;
   }
 
   button.measure {
