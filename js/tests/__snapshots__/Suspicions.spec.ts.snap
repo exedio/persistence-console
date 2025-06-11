@@ -4,6 +4,8 @@ exports[`Suspicions > should render a non-empty table 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
+    <button class="reload svelte-dizlwz">🗘</button
+    ><!---->
   </caption>
   <thead>
     <tr>
@@ -34,10 +36,38 @@ exports[`Suspicions > should render a non-empty table 1`] = `
 "
 `;
 
+exports[`Suspicions > should render a non-empty table 2`] = `
+"<table class="grey">
+  <caption>
+    Suspicions
+    <button class="reload svelte-dizlwz">🗘</button
+    ><!---->
+  </caption>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Suspicion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!----><!---->
+    <tr>
+      <td rowspan="1">myOnlyTypeReloaded.myOnlyNameReloaded</td>
+      <!---->
+      <td>myOnlySuspicionReloaded</td>
+    </tr>
+    <!---->
+  </tbody>
+</table>
+"
+`;
+
 exports[`Suspicions > should render an empty table 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
+    <button class="reload svelte-dizlwz">🗘</button
+    ><!---->
   </caption>
   <thead>
     <tr>
@@ -60,6 +90,8 @@ exports[`Suspicions > should render an error message 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
+    <button class="reload svelte-dizlwz">🗘</button
+    ><!---->
   </caption>
   <thead>
     <tr>

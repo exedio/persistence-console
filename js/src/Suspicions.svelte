@@ -2,8 +2,10 @@
   import "@/table-grey.css";
   import { get } from "@/api/api";
   import type { SuspicionsResponse } from "@/api/types";
+  import { PromiseTracker } from "@/api/PromiseTracker.svelte";
+  import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
 
-  const features = $state(getSuspicions());
+  const features = new PromiseTracker(getSuspicions);
 
   function getSuspicions(): Promise<SuspicionsResponse[]> {
     return get<SuspicionsResponse[]>("suspicions");
@@ -11,7 +13,10 @@
 </script>
 
 <table class="grey">
-  <caption>Suspicions</caption>
+  <caption>
+    Suspicions
+    <PromiseTrackerReload tracker={features} />
+  </caption>
   <thead>
     <tr>
       <th>Feature</th>
@@ -19,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    {#await features}
+    {#await features.promise()}
       <tr>
         <td colspan="2" class="empty">fetching data</td>
       </tr>
