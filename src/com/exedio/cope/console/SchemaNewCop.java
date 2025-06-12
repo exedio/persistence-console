@@ -183,6 +183,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
         ? new ColumnError(existence, type, splitRemainder(remainder))
         : null;
     }
+
     private static final Pattern UNEXPECTED_TYPE = Pattern.compile(
       "^unexpected type >(.*)<" // Should be replaced by explicit API
     );
@@ -205,6 +206,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
         ConstraintError.convert(tableExistence, c)
       );
     }
+
     static List<ConstraintResponse> convert(
       final Existence tableExistence,
       final Collection<Constraint> list
@@ -278,6 +280,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
         )
         : null;
     }
+
     private static final Pattern UNEXPECTED_CLAUSE = Pattern.compile(
       "^unexpected condition >>>(.*)<<<( \\(originally >>>(.*)<<<\\))?$" // Should be replaced by explicit API
     );
