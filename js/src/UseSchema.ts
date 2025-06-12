@@ -63,6 +63,7 @@ export function useTable(api: SchemaTableResponse): UseTable {
 }
 
 export type UseColumn = {
+  readonly tableName: string;
   readonly name: string;
   readonly existence: UseExistence;
   readonly type: UseComparison;
@@ -89,6 +90,7 @@ export function useColumn(
     useConstraint(i, tableName, name),
   );
   return {
+    tableName,
     name,
     existence,
     type,
@@ -115,6 +117,7 @@ function columnExistence(api: SchemaColumnResponse): UseExistence {
 }
 
 export type UseConstraint = {
+  readonly tableName: string;
   readonly name: string;
   readonly nameShort: () => string;
   readonly existence: UseExistence;
@@ -150,6 +153,7 @@ export function useConstraint(
     : undefined;
 
   return {
+    tableName,
     name,
     nameShort: () => {
       if (columnName) {
