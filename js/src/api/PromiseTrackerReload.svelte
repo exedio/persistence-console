@@ -10,7 +10,7 @@
   class="reload"
   disabled={tracker.pending()}
   onclick={() => tracker.reload()}
-  >&#128472;
+  >🗘
 </button>
 
 <style>
