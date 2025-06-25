@@ -184,6 +184,31 @@ exports[`Schema > should render a column with a wrong type 3`] = `
 "
 `;
 
+exports[`Schema > should render a connect button 1`] = `
+"<!----><button>connect</button
+><!---->
+"
+`;
+
+exports[`Schema > should render a connect button 2`] = `
+"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-1n3ysu8">
+    <button class="bullet svelte-1n3ysu8">+</button>
+    <span class="nodeType svelte-1n3ysu8">tab</span> myTable1Name
+    <!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
 exports[`Schema > should render a constraint with a remaining error 1`] = `
 "<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button
@@ -1446,6 +1471,6 @@ exports[`Schema > should render an empty schema 1`] = `
 `;
 
 exports[`Schema > should render an error message 1`] = `
-"schema: response code 400 myError<!---->
+"<!---->schema: response code 400 myError<!---->
 "
 `;

@@ -44,13 +44,14 @@ import org.slf4j.LoggerFactory;
 final class Api {
 
   static void doRequest(
+    final ConsoleServlet servlet,
     final HttpServletRequest request,
     final String endpoint,
     final HttpServletResponse response,
     final Model model
   ) {
     try {
-      doRequestInternal(request, endpoint, response, model);
+      doRequestInternal(servlet, request, endpoint, response, model);
     } catch (final RuntimeException | IOException e) {
       logger.error(e.getMessage(), e);
       response.setStatus(SC_INTERNAL_SERVER_ERROR);
@@ -61,6 +62,7 @@ final class Api {
   }
 
   private static void doRequestInternal(
+    final ConsoleServlet servlet,
     final HttpServletRequest request,
     final String endpoint,
     final HttpServletResponse response,
@@ -80,6 +82,10 @@ final class Api {
       return;
     }
     switch (endpoint) {
+      case "connect" -> {
+        servlet.connect();
+        writeJson(null, response);
+      }
       case "hashes" -> {
         requireGet(request);
         writeJson(HashCop.hashes(model), response);

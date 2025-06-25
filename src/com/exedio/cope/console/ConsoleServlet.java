@@ -222,6 +222,7 @@ public class ConsoleServlet extends CopsServlet
 				if(pathInfo.startsWith(API_PATH_ELEMENT))
 				{
 					Api.doRequest(
+							this,
 							request,
 							pathInfo.substring(API_PATH_ELEMENT.length()),
 							response,
