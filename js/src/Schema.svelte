@@ -25,14 +25,14 @@
     return expanded ? "-" : "+";
   }
 
-  const expandedTables = $state(new SvelteSet<string>());
+  const expandedTables = new SvelteSet<string>();
 
   function toggleTable(table: UseTable) {
     if (expandedTables.has(table.name)) expandedTables.delete(table.name);
     else expandedTables.add(table.name);
   }
 
-  const expandedColumns = $state(new SvelteSet<string>());
+  const expandedColumns = new SvelteSet<string>();
 
   function isColumnExpanded(column: UseColumn) {
     let key = column.tableName + "." + column.name;
