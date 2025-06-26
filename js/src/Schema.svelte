@@ -14,6 +14,7 @@
     type UseExistence,
     type UseComparison,
     type UseConstraint,
+    type Color,
   } from "@/UseSchema.js";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
@@ -120,12 +121,7 @@
         {#each schema.tables as table (table.name)}
           {@const tableExpanded = expandedTables.has(table)}
           <li class="table">
-            <button
-              class={["bullet", table.bulletColor]}
-              onclick={() => expandedTables.toggle(table)}
-            >
-              {expansionCharacter(tableExpanded)}
-            </button>
+            {@render renderExpander(expandedTables, table, table.bulletColor)}
             <span class="nodeType">tab</span>
             {table.name}
             {@render renderExistence(
@@ -142,12 +138,11 @@
                 {#each table.columns as column (column.name)}
                   {@const columnExpanded = expandedColumns.has(column)}
                   <li class="column">
-                    <button
-                      class={["bullet", column.bulletColor]}
-                      onclick={() => expandedColumns.toggle(column)}
-                    >
-                      {expansionCharacter(columnExpanded)}
-                    </button>
+                    {@render renderExpander(
+                      expandedColumns,
+                      column,
+                      column.bulletColor,
+                    )}
                     <span class="nodeType">col</span>
                     {column.name}
                     {@render renderExistence(
@@ -236,6 +231,12 @@
       {@render renderRemainder(constraint.remainingErrors)}
     </li>
   {/each}
+{/snippet}
+
+{#snippet renderExpander<E>(expander: Expander<E>, element: E, color: Color)}
+  <button class={["bullet", color]} onclick={() => expander.toggle(element)}>
+    {expansionCharacter(expander.has(element))}
+  </button>
 {/snippet}
 
 {#snippet renderExistence(
