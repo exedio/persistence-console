@@ -384,6 +384,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     final String method = requireParameter("method", request);
     final String ADD = "add";
     final String DROP = "drop";
+    final String MODIFY = "modify";
     final String METHOD404 = "method not found";
     return switch (subject) {
       case "table" -> switch (method) {
@@ -394,6 +395,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
       case "column" -> switch (method) {
         case ADD -> addColumn(model, table(request), name);
         case DROP -> dropColumn(model, table(request), name);
+        case MODIFY -> modifyColumn(model, table(request), name);
         default -> throw ApiTextException.notFound(METHOD404);
       };
       case "constraint" -> switch (method) {
@@ -452,6 +454,15 @@ final class SchemaNewCop extends ConsoleCop<Void> {
   ) throws ApiTextException {
     final var node = getColumn(model, table, name);
     return new SL().apply(node::drop);
+  }
+
+  private static SqlResponse modifyColumn(
+    final Model model,
+    final String table,
+    final String name
+  ) throws ApiTextException {
+    final var node = getColumn(model, table, name);
+    return new SL().apply(sl -> node.modify(node.getRequiredType(), sl));
   }
 
   private static Column getColumn(
