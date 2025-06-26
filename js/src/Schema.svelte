@@ -108,9 +108,7 @@
       fetching data
     {:then schemaApi}
       {@const schema = useSchema(schemaApi)}
-      <button class={["bullet", schema.bulletColor]} disabled={true}>
-        .
-      </button>
+      {@render expanderDisabled(schema.bulletColor)}
       Schema
       <PromiseTrackerReload tracker={schemaT} />
       <ul>
@@ -160,9 +158,7 @@
         {/each}
         {#each schema.sequences as sequence (sequence.name)}
           <li class="sequence">
-            <button class={["bullet", sequence.bulletColor]} disabled={true}>
-              .
-            </button>
+            {@render expanderDisabled(sequence.bulletColor)}
             <span class="nodeType">seq</span>
             {sequence.name}
             {@render existence(
@@ -207,9 +203,7 @@
 {#snippet constraints(constraints: ReadonlyUseConstraintArray)}
   {#each constraints as constraint (constraint.name)}
     <li>
-      <button class={["bullet", constraint.bulletColor]} disabled={true}>
-        .
-      </button>
+      {@render expanderDisabled(constraint.bulletColor)}
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
       {@render existence(
@@ -228,6 +222,10 @@
   <button class={["bullet", color]} onclick={() => expander.toggle(element)}>
     {expander.has(element) ? "-" : "+"}
   </button>
+{/snippet}
+
+{#snippet expanderDisabled(color: Color)}
+  <button class={["bullet", color]} disabled={true}>.</button>
 {/snippet}
 
 {#snippet existence(

@@ -1,8 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Schema > should render a column with a remaining error 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -21,8 +22,9 @@ exports[`Schema > should render a column with a remaining error 1`] = `
 `;
 
 exports[`Schema > should render a column with a remaining error 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -54,8 +56,9 @@ exports[`Schema > should render a column with a remaining error 2`] = `
 `;
 
 exports[`Schema > should render a column with a remaining error 3`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -92,8 +95,9 @@ exports[`Schema > should render a column with a remaining error 3`] = `
 `;
 
 exports[`Schema > should render a column with a wrong type 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -112,8 +116,9 @@ exports[`Schema > should render a column with a wrong type 1`] = `
 `;
 
 exports[`Schema > should render a column with a wrong type 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -146,8 +151,9 @@ exports[`Schema > should render a column with a wrong type 2`] = `
 `;
 
 exports[`Schema > should render a column with a wrong type 3`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -201,8 +207,9 @@ exports[`Schema > should render a connect button 1`] = `
 `;
 
 exports[`Schema > should render a connect button 2`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -221,8 +228,9 @@ exports[`Schema > should render a connect button 2`] = `
 `;
 
 exports[`Schema > should render a constraint with a remaining error 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -241,8 +249,9 @@ exports[`Schema > should render a constraint with a remaining error 1`] = `
 `;
 
 exports[`Schema > should render a constraint with a remaining error 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -255,7 +264,8 @@ exports[`Schema > should render a constraint with a remaining error 2`] = `
       <!---->
       <!---->
       <li class="svelte-1n3ysu8">
-        <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+        <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+        ><!---->
         <span class="nodeType svelte-1n3ysu8">chk</span> myConstraint1Name
         <!----><!---->
         <!----><!----><!---->myConstraint1Clause<!---->
@@ -278,8 +288,9 @@ exports[`Schema > should render a constraint with a remaining error 2`] = `
 `;
 
 exports[`Schema > should render a constraint with a wrong clause 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -298,8 +309,9 @@ exports[`Schema > should render a constraint with a wrong clause 1`] = `
 `;
 
 exports[`Schema > should render a constraint with a wrong clause 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -312,7 +324,8 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
       <!---->
       <!---->
       <li class="svelte-1n3ysu8">
-        <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+        <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+        ><!---->
         <span class="nodeType svelte-1n3ysu8">chk</span> myConstraint1Name
         <!----><!---->
         <!----><!----><!----><span class="red svelte-1n3ysu8"
@@ -350,8 +363,9 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
 `;
 
 exports[`Schema > should render a constraint with shortener 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -370,8 +384,9 @@ exports[`Schema > should render a constraint with shortener 1`] = `
 `;
 
 exports[`Schema > should render a constraint with shortener 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -403,8 +418,9 @@ exports[`Schema > should render a constraint with shortener 2`] = `
 `;
 
 exports[`Schema > should render a constraint with shortener 3`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -424,7 +440,8 @@ exports[`Schema > should render a constraint with shortener 3`] = `
         <ul>
           <!---->
           <li class="svelte-1n3ysu8">
-            <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+            <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+            ><!---->
             <span class="nodeType svelte-1n3ysu8">chk</span> myConstraint1Name
             <!----><!---->
             <!----><!----><!----><span class="red svelte-1n3ysu8"
@@ -467,13 +484,15 @@ exports[`Schema > should render a constraint with shortener 3`] = `
 `;
 
 exports[`Schema > should render a minimal sequence 1`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
   <li class="sequence svelte-1n3ysu8">
-    <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+    <button disabled="" class="bullet svelte-1n3ysu8">.</button
+    ><!---->
     <span class="nodeType svelte-1n3ysu8">seq</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
@@ -487,8 +506,9 @@ exports[`Schema > should render a minimal sequence 1`] = `
 `;
 
 exports[`Schema > should render a minimal table 1`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -507,8 +527,9 @@ exports[`Schema > should render a minimal table 1`] = `
 `;
 
 exports[`Schema > should render a minimal table 2`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -527,8 +548,9 @@ exports[`Schema > should render a minimal table 2`] = `
 `;
 
 exports[`Schema > should render a minimal table 3`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -547,8 +569,9 @@ exports[`Schema > should render a minimal table 3`] = `
 `;
 
 exports[`Schema > should render a missing column 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -567,8 +590,9 @@ exports[`Schema > should render a missing column 1`] = `
 `;
 
 exports[`Schema > should render a missing column 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -602,8 +626,9 @@ exports[`Schema > should render a missing column 2`] = `
 `;
 
 exports[`Schema > should render a missing column 3`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -646,8 +671,9 @@ exports[`Schema > should render a missing column 4`] = `
 `;
 
 exports[`Schema > should render a missing constraint 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -666,8 +692,9 @@ exports[`Schema > should render a missing constraint 1`] = `
 `;
 
 exports[`Schema > should render a missing constraint 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -680,7 +707,8 @@ exports[`Schema > should render a missing constraint 2`] = `
       <!---->
       <!---->
       <li class="svelte-1n3ysu8">
-        <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+        <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+        ><!---->
         <span class="nodeType svelte-1n3ysu8">chk</span> myConstraint1Name
         <!----><span class="red svelte-1n3ysu8">missing</span>
         <label><input type="checkbox" />add</label
@@ -709,13 +737,15 @@ exports[`Schema > should render a missing constraint 3`] = `
 `;
 
 exports[`Schema > should render a missing sequence 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
   <li class="sequence svelte-1n3ysu8">
-    <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+    <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+    ><!---->
     <span class="nodeType svelte-1n3ysu8">seq</span> myOnlyName
     <!----><span class="red svelte-1n3ysu8">missing</span>
     <label><input type="checkbox" />create</label
@@ -740,8 +770,9 @@ exports[`Schema > should render a missing sequence 2`] = `
 `;
 
 exports[`Schema > should render a missing table 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -762,8 +793,9 @@ exports[`Schema > should render a missing table 1`] = `
 `;
 
 exports[`Schema > should render a missing table 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -803,8 +835,9 @@ exports[`Schema > should render a missing table and fix fails 1`] = `
 `;
 
 exports[`Schema > should render a normal table with constraints 1`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -823,8 +856,9 @@ exports[`Schema > should render a normal table with constraints 1`] = `
 `;
 
 exports[`Schema > should render a normal table with constraints 2`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -846,14 +880,16 @@ exports[`Schema > should render a normal table with constraints 2`] = `
       <!---->
       <!---->
       <li class="svelte-1n3ysu8">
-        <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+        <button disabled="" class="bullet svelte-1n3ysu8">.</button
+        ><!---->
         <span class="nodeType svelte-1n3ysu8">pk</span> myTable1Constraint1Name
         <!----><!---->
         <!----><!---->
         <!----><!---->
       </li>
       <li class="svelte-1n3ysu8">
-        <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+        <button disabled="" class="bullet svelte-1n3ysu8">.</button
+        ><!---->
         <span class="nodeType svelte-1n3ysu8">pk</span>
         ~constraintTildeNameTable
         <!----><!---->
@@ -872,8 +908,9 @@ exports[`Schema > should render a normal table with constraints 2`] = `
 `;
 
 exports[`Schema > should render a normal table with constraints 3`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -893,7 +930,8 @@ exports[`Schema > should render a normal table with constraints 3`] = `
         <ul>
           <!---->
           <li class="svelte-1n3ysu8">
-            <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+            <button disabled="" class="bullet svelte-1n3ysu8">.</button
+            ><!---->
             <span class="nodeType svelte-1n3ysu8">pk</span>
             myColumn1Constraint1Name
             <!----><!---->
@@ -901,7 +939,8 @@ exports[`Schema > should render a normal table with constraints 3`] = `
             <!----><!---->
           </li>
           <li class="svelte-1n3ysu8">
-            <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+            <button disabled="" class="bullet svelte-1n3ysu8">.</button
+            ><!---->
             <span class="nodeType svelte-1n3ysu8">chk</span>
             myColumn1Constraint2Name
             <!----><!---->
@@ -909,7 +948,8 @@ exports[`Schema > should render a normal table with constraints 3`] = `
             <!----><!---->
           </li>
           <li class="svelte-1n3ysu8">
-            <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+            <button disabled="" class="bullet svelte-1n3ysu8">.</button
+            ><!---->
             <span class="nodeType svelte-1n3ysu8">pk</span>
             ~ConstraintTildeNameColumn
             <!----><!---->
@@ -917,7 +957,8 @@ exports[`Schema > should render a normal table with constraints 3`] = `
             <!----><!---->
           </li>
           <li class="svelte-1n3ysu8">
-            <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+            <button disabled="" class="bullet svelte-1n3ysu8">.</button
+            ><!---->
             <span class="nodeType svelte-1n3ysu8">chk</span>
             myColumn1ConstraintArrowName
             <!----><!---->
@@ -931,14 +972,16 @@ exports[`Schema > should render a normal table with constraints 3`] = `
       <!---->
       <!---->
       <li class="svelte-1n3ysu8">
-        <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+        <button disabled="" class="bullet svelte-1n3ysu8">.</button
+        ><!---->
         <span class="nodeType svelte-1n3ysu8">pk</span> myTable1Constraint1Name
         <!----><!---->
         <!----><!---->
         <!----><!---->
       </li>
       <li class="svelte-1n3ysu8">
-        <button disabled="" class="bullet svelte-1n3ysu8">.</button>
+        <button disabled="" class="bullet svelte-1n3ysu8">.</button
+        ><!---->
         <span class="nodeType svelte-1n3ysu8">pk</span>
         ~constraintTildeNameTable
         <!----><!---->
@@ -957,8 +1000,9 @@ exports[`Schema > should render a normal table with constraints 3`] = `
 `;
 
 exports[`Schema > should render a normal table without constraints 1`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -977,8 +1021,9 @@ exports[`Schema > should render a normal table without constraints 1`] = `
 `;
 
 exports[`Schema > should render a normal table without constraints 2`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1010,8 +1055,9 @@ exports[`Schema > should render a normal table without constraints 2`] = `
 `;
 
 exports[`Schema > should render a normal table without constraints 3`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1043,13 +1089,15 @@ exports[`Schema > should render a normal table without constraints 3`] = `
 `;
 
 exports[`Schema > should render a sequence with a remaining error 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
   <li class="sequence svelte-1n3ysu8">
-    <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+    <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+    ><!---->
     <span class="nodeType svelte-1n3ysu8">seq</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
@@ -1068,13 +1116,15 @@ exports[`Schema > should render a sequence with a remaining error 1`] = `
 `;
 
 exports[`Schema > should render a sequence with wrong start 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
   <li class="sequence svelte-1n3ysu8">
-    <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+    <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+    ><!---->
     <span class="nodeType svelte-1n3ysu8">seq</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
@@ -1102,13 +1152,15 @@ exports[`Schema > should render a sequence with wrong start 1`] = `
 `;
 
 exports[`Schema > should render a sequence with wrong type 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
   <li class="sequence svelte-1n3ysu8">
-    <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+    <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+    ><!---->
     <span class="nodeType svelte-1n3ysu8">seq</span> myOnlyName
     <!----><!---->
     <!----><!----><!----><span class="red svelte-1n3ysu8">type mismatch:</span>
@@ -1136,8 +1188,9 @@ exports[`Schema > should render a sequence with wrong type 1`] = `
 `;
 
 exports[`Schema > should render a table with a remaining error 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1156,8 +1209,9 @@ exports[`Schema > should render a table with a remaining error 1`] = `
 `;
 
 exports[`Schema > should render a table with a remaining error 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1181,8 +1235,9 @@ exports[`Schema > should render a table with a remaining error 2`] = `
 `;
 
 exports[`Schema > should render a unused NOT NULL column 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1201,8 +1256,9 @@ exports[`Schema > should render a unused NOT NULL column 1`] = `
 `;
 
 exports[`Schema > should render a unused NOT NULL column 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1236,8 +1292,9 @@ exports[`Schema > should render a unused NOT NULL column 2`] = `
 `;
 
 exports[`Schema > should render a unused NOT NULL column 3`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1271,8 +1328,9 @@ exports[`Schema > should render a unused NOT NULL column 3`] = `
 `;
 
 exports[`Schema > should render a unused column 1`] = `
-"<button disabled="" class="bullet yellow svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet yellow svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1291,8 +1349,9 @@ exports[`Schema > should render a unused column 1`] = `
 `;
 
 exports[`Schema > should render a unused column 2`] = `
-"<button disabled="" class="bullet yellow svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet yellow svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1326,8 +1385,9 @@ exports[`Schema > should render a unused column 2`] = `
 `;
 
 exports[`Schema > should render a unused column 3`] = `
-"<button disabled="" class="bullet yellow svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet yellow svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1370,8 +1430,9 @@ exports[`Schema > should render a unused column 4`] = `
 `;
 
 exports[`Schema > should render a unused constraint 1`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1390,8 +1451,9 @@ exports[`Schema > should render a unused constraint 1`] = `
 `;
 
 exports[`Schema > should render a unused constraint 2`] = `
-"<button disabled="" class="bullet red svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet red svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1404,7 +1466,8 @@ exports[`Schema > should render a unused constraint 2`] = `
       <!---->
       <!---->
       <li class="svelte-1n3ysu8">
-        <button disabled="" class="bullet red svelte-1n3ysu8">.</button>
+        <button disabled="" class="bullet red svelte-1n3ysu8">.</button
+        ><!---->
         <span class="nodeType svelte-1n3ysu8">chk</span> myConstraint1Name
         <!----><span class="red svelte-1n3ysu8">unused</span>
         <label><input type="checkbox" />drop</label
@@ -1433,13 +1496,15 @@ exports[`Schema > should render a unused constraint 3`] = `
 `;
 
 exports[`Schema > should render a unused sequence 1`] = `
-"<button disabled="" class="bullet yellow svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet yellow svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
   <li class="sequence svelte-1n3ysu8">
-    <button disabled="" class="bullet yellow svelte-1n3ysu8">.</button>
+    <button disabled="" class="bullet yellow svelte-1n3ysu8">.</button
+    ><!---->
     <span class="nodeType svelte-1n3ysu8">seq</span> myOnlyName
     <!----><span class="yellow svelte-1n3ysu8">unused</span>
     <label><input type="checkbox" />drop</label
@@ -1464,8 +1529,9 @@ exports[`Schema > should render a unused sequence 2`] = `
 `;
 
 exports[`Schema > should render a unused table 1`] = `
-"<button disabled="" class="bullet yellow svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet yellow svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1486,8 +1552,9 @@ exports[`Schema > should render a unused table 1`] = `
 `;
 
 exports[`Schema > should render a unused table 2`] = `
-"<button disabled="" class="bullet yellow svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet yellow svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-1n3ysu8">
@@ -1517,8 +1584,9 @@ exports[`Schema > should render a unused table 3`] = `
 `;
 
 exports[`Schema > should render an empty schema 1`] = `
-"<button disabled="" class="bullet svelte-1n3ysu8">.</button> Schema
-<button class="reload svelte-dizlwz">🗘</button
+"<!----><button disabled="" class="bullet svelte-1n3ysu8">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
