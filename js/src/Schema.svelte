@@ -1,7 +1,11 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { get } from "@/api/api";
-  import type { AlterSchemaResponse, SchemaResponse } from "@/api/types";
+  import {
+    type AlterSchemaResponse,
+    isNotConnected,
+    type SchemaResponse,
+  } from "@/api/types";
   import { SvelteMap, SvelteSet } from "svelte/reactivity";
   import {
     type UseColumn,
@@ -201,7 +205,7 @@
         {/each}
       </ul>
     {:catch error}
-      {#if error.message.toString().includes("model not connected")}
+      {#if isNotConnected(error)}
         <Connect tracker={schemaT} />
       {:else}
         {error.message}
