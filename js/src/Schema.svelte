@@ -280,7 +280,7 @@
     {#if expanded}
       {#if value.actual}
         <span class={value.color}>{value.name} mismatch:</span>
-        <table>
+        <table class="comparison">
           <tbody>
             <tr><td>required:</td><td>{value.shortener(value.expected)}</td></tr
             >
@@ -361,5 +361,9 @@
 
   span.yellow {
     color: #887800;
+  }
+
+  table.comparison td {
+    vertical-align: top;
   }
 </style>
