@@ -6,7 +6,7 @@
     isNotConnected,
     type SchemaResponse,
   } from "@/api/types";
-  import { SvelteMap, SvelteSet } from "svelte/reactivity";
+  import { SvelteMap } from "svelte/reactivity";
   import {
     type UseColumn,
     useSchema,
@@ -18,6 +18,7 @@
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
+  import { Expander } from "@/Expander.js";
 
   const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
 
@@ -25,25 +26,11 @@
     return expanded ? "-" : "+";
   }
 
-  const expandedTables = new SvelteSet<string>();
+  const expandedTables = new Expander<UseTable>((t) => t.name);
 
-  function toggleTable(table: UseTable) {
-    if (expandedTables.has(table.name)) expandedTables.delete(table.name);
-    else expandedTables.add(table.name);
-  }
-
-  const expandedColumns = new SvelteSet<string>();
-
-  function isColumnExpanded(column: UseColumn) {
-    let key = column.tableName + "." + column.name;
-    return expandedColumns.has(key);
-  }
-
-  function toggleColumn(column: UseColumn) {
-    let key = column.tableName + "." + column.name;
-    if (expandedColumns.has(key)) expandedColumns.delete(key);
-    else expandedColumns.add(key);
-  }
+  const expandedColumns = new Expander<UseColumn>(
+    (c) => c.tableName + "." + c.name,
+  );
 
   type Checkbox = {
     readonly subject: "table" | "column" | "constraint" | "sequence";
@@ -131,11 +118,11 @@
       <PromiseTrackerReload tracker={schemaT} />
       <ul>
         {#each schema.tables as table (table.name)}
-          {@const tableExpanded = expandedTables.has(table.name)}
+          {@const tableExpanded = expandedTables.has(table)}
           <li class="table">
             <button
               class={["bullet", table.bulletColor]}
-              onclick={() => toggleTable(table)}
+              onclick={() => expandedTables.toggle(table)}
             >
               {expansionCharacter(tableExpanded)}
             </button>
@@ -153,11 +140,11 @@
             {#if tableExpanded && (table.columns.length || table.constraints.length)}
               <ul in:fly={{ y: -10, duration: 200 }}>
                 {#each table.columns as column (column.name)}
-                  {@const columnExpanded = isColumnExpanded(column)}
+                  {@const columnExpanded = expandedColumns.has(column)}
                   <li class="column">
                     <button
                       class={["bullet", column.bulletColor]}
-                      onclick={() => toggleColumn(column)}
+                      onclick={() => expandedColumns.toggle(column)}
                     >
                       {expansionCharacter(columnExpanded)}
                     </button>
