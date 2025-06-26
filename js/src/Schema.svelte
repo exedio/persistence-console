@@ -23,10 +23,6 @@
 
   const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
 
-  function expansionCharacter(expanded: boolean) {
-    return expanded ? "-" : "+";
-  }
-
   const expandedTables = new Expander<UseTable>((t) => t.name);
 
   const expandedColumns = new Expander<UseColumn>(
@@ -235,7 +231,7 @@
 
 {#snippet renderExpander<E>(expander: Expander<E>, element: E, color: Color)}
   <button class={["bullet", color]} onclick={() => expander.toggle(element)}>
-    {expansionCharacter(expander.has(element))}
+    {expander.has(element) ? "-" : "+"}
   </button>
 {/snippet}
 
