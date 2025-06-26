@@ -1,7 +1,12 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { get } from "@/api/api";
-  import type { AlterSchemaResponse, SchemaResponse } from "@/api/types";
+  import { get, post } from "@/api/api";
+  import type {
+    AlterSchemaResponse,
+    ConnectRequest,
+    ConnectResponse,
+    SchemaResponse,
+  } from "@/api/types";
   import { SvelteMap, SvelteSet } from "svelte/reactivity";
   import {
     type UseColumn,
@@ -91,6 +96,13 @@
           "schema/" + method + "Sequence?name=" + name,
         );
     }
+  }
+
+  function connect() {
+    return post<ConnectRequest, ConnectResponse>(
+      "connect",
+      {} satisfies ConnectRequest,
+    ).then((r) => schemaT.reload());
   }
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
@@ -200,7 +212,11 @@
         {/each}
       </ul>
     {:catch error}
-      {error.message}
+      {#if error.message.toString().includes("model not connected")}
+        <button onclick={() => connect()}>connect</button>
+      {:else}
+        {error.message}
+      {/if}
     {/await}
   </div>
   {#if fixes.length > 0}

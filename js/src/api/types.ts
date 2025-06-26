@@ -1,3 +1,7 @@
+export type ConnectRequest = {};
+
+export type ConnectResponse = {};
+
 export type SchemaResponse = {
   readonly tables: readonly SchemaTableResponse[] | undefined;
   readonly sequences: readonly SchemaSequenceResponse[] | undefined;

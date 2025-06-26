@@ -2,10 +2,20 @@
 
 import { mount } from "svelte";
 import { default as Schema } from "@/Schema.svelte";
-import { mockFetch, responseFailure, responseSuccess } from "@t/mockApi";
+import {
+  mockFetch,
+  request,
+  responseFailure,
+  responseSuccess,
+} from "@t/mockApi";
 import { flushPromises, formatHtml } from "@t/utils";
 import { expect } from "vitest";
-import type { AlterSchemaResponse, SchemaResponse } from "@/api/types";
+import type {
+  AlterSchemaResponse,
+  ConnectRequest,
+  ConnectResponse,
+  SchemaResponse,
+} from "@/api/types";
 
 describe("Schema", () => {
   it("should render an empty schema", async () => {
@@ -918,6 +928,41 @@ describe("Schema", () => {
     mock.mockResolvedValueOnce(responseFailure("myError"));
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    expect(await formatHtml(tree())).toMatchSnapshot();
+  });
+
+  it("should render a connect button", async () => {
+    const mock = mockFetch();
+    mock.mockResolvedValueOnce(responseFailure("model not connected message"));
+    await mountComponent();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockButton = mockFetch();
+    mockButton.mockResolvedValueOnce(
+      responseSuccess({} satisfies ConnectResponse),
+    );
+    mockButton.mockResolvedValueOnce(
+      responseSuccess({
+        tables: [
+          {
+            name: "myTable1Name",
+            columns: undefined,
+            constraints: undefined,
+            error: undefined,
+          },
+        ],
+        sequences: undefined,
+      } satisfies SchemaResponse),
+    );
+    (document.querySelectorAll(".tree button").item(0) as HTMLElement).click();
+    await flushPromises();
+    expect(mockButton).toHaveBeenNthCalledWith(
+      1,
+      "/myApiPath/connect",
+      request({} satisfies ConnectRequest),
+    );
+    expect(mockButton).toHaveBeenNthCalledWith(2, "/myApiPath/schema");
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 });
