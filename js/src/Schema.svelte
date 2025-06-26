@@ -50,7 +50,20 @@
     })),
   );
 
-  function checkboxToPromise({
+  const fixesCache = new Map<String, Promise<AlterSchemaResponse>>(); // must not be SvelteMap!
+
+  function checkboxToPromise(checkbox: Checkbox): Promise<AlterSchemaResponse> {
+    const key =
+      checkbox.subject + "." + checkbox.tableName + "." + checkbox.name;
+    const cached = fixesCache.get(key);
+    if (cached) return cached;
+
+    const result = checkboxToPromiseUncached(checkbox);
+    fixesCache.set(key, result);
+    return result;
+  }
+
+  function checkboxToPromiseUncached({
     subject,
     tableName,
     name,
