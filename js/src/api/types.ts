@@ -2,6 +2,10 @@ export type ConnectRequest = {};
 
 export type ConnectResponse = {};
 
+export function isNotConnected(error: any) {
+  return error.message.toString().includes("model not connected");
+}
+
 export type SchemaResponse = {
   readonly tables: readonly SchemaTableResponse[] | undefined;
   readonly sequences: readonly SchemaSequenceResponse[] | undefined;
