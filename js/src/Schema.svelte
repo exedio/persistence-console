@@ -117,48 +117,43 @@
         {#each schema.tables as table (table.name)}
           {@const tableExpanded = expandedTables.has(table)}
           <li class="table">
-            {@render renderExpander(expandedTables, table, table.bulletColor)}
+            {@render expander(expandedTables, table, table.bulletColor)}
             <span class="nodeType">tab</span>
             {table.name}
-            {@render renderExistence(
-              table.existence,
-              "table",
-              undefined,
-              table.name,
-            )}
+            {@render existence(table.existence, "table", undefined, table.name)}
             {#if tableExpanded}
-              {@render renderRemainder(table.remainingErrors)}
+              {@render remainder(table.remainingErrors)}
             {/if}
             {#if tableExpanded && (table.columns.length || table.constraints.length)}
               <ul in:fly={{ y: -10, duration: 200 }}>
                 {#each table.columns as column (column.name)}
                   {@const columnExpanded = expandedColumns.has(column)}
                   <li class="column">
-                    {@render renderExpander(
+                    {@render expander(
                       expandedColumns,
                       column,
                       column.bulletColor,
                     )}
                     <span class="nodeType">col</span>
                     {column.name}
-                    {@render renderExistence(
+                    {@render existence(
                       column.existence,
                       "column",
                       table.name,
                       column.name,
                     )}
-                    {@render renderComparison(column.type, columnExpanded)}
+                    {@render comparison(column.type, columnExpanded)}
                     {#if columnExpanded}
-                      {@render renderRemainder(column.remainingErrors)}
+                      {@render remainder(column.remainingErrors)}
                     {/if}
                     {#if columnExpanded && column.constraints.length > 0}
                       <ul in:fly={{ y: -10, duration: 200 }}>
-                        {@render renderConstraints(column.constraints)}
+                        {@render constraints(column.constraints)}
                       </ul>
                     {/if}
                   </li>
                 {/each}
-                {@render renderConstraints(table.constraints)}
+                {@render constraints(table.constraints)}
               </ul>
             {/if}
           </li>
@@ -170,15 +165,15 @@
             </button>
             <span class="nodeType">seq</span>
             {sequence.name}
-            {@render renderExistence(
+            {@render existence(
               sequence.existence,
               "sequence",
               undefined,
               sequence.name,
             )}
-            {@render renderComparison(sequence.type, true)}
-            {@render renderComparison(sequence.start, true)}
-            {@render renderRemainder(sequence.remainingErrors)}
+            {@render comparison(sequence.type, true)}
+            {@render comparison(sequence.start, true)}
+            {@render remainder(sequence.remainingErrors)}
           </li>
         {/each}
       </ul>
@@ -209,7 +204,7 @@
   {/if}
 </div>
 
-{#snippet renderConstraints(constraints: ReadonlyUseConstraintArray)}
+{#snippet constraints(constraints: ReadonlyUseConstraintArray)}
   {#each constraints as constraint (constraint.name)}
     <li>
       <button class={["bullet", constraint.bulletColor]} disabled={true}>
@@ -217,25 +212,25 @@
       </button>
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
-      {@render renderExistence(
+      {@render existence(
         constraint.existence,
         "constraint",
         constraint.tableName,
         constraint.name,
       )}
-      {@render renderComparison(constraint.clause, true)}
-      {@render renderRemainder(constraint.remainingErrors)}
+      {@render comparison(constraint.clause, true)}
+      {@render remainder(constraint.remainingErrors)}
     </li>
   {/each}
 {/snippet}
 
-{#snippet renderExpander<E>(expander: Expander<E>, element: E, color: Color)}
+{#snippet expander<E>(expander: Expander<E>, element: E, color: Color)}
   <button class={["bullet", color]} onclick={() => expander.toggle(element)}>
     {expander.has(element) ? "-" : "+"}
   </button>
 {/snippet}
 
-{#snippet renderExistence(
+{#snippet existence(
   existence: UseExistence,
   subject: "table" | "column" | "constraint" | "sequence",
   tableName: String | undefined,
@@ -269,7 +264,7 @@
   {/if}
 {/snippet}
 
-{#snippet renderComparison(value: UseComparison | undefined, expanded: Boolean)}
+{#snippet comparison(value: UseComparison | undefined, expanded: Boolean)}
   {#if value}
     {#if expanded}
       {#if value.actual}
@@ -293,7 +288,7 @@
   {/if}
 {/snippet}
 
-{#snippet renderRemainder(remainder: ReadonlyStringArray)}
+{#snippet remainder(remainder: ReadonlyStringArray)}
   {#if remainder.length}
     <ul>
       {#each remainder as r}
