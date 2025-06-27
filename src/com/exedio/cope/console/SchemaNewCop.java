@@ -389,29 +389,13 @@ final class SchemaNewCop extends ConsoleCop<Void> {
         default -> throw ApiTextException.notFound("method not found");
       };
       case "column" -> switch (method) {
-        case "add" -> addColumn(
-          model,
-          requireParameter("table", request),
-          name
-        );
-        case "drop" -> dropColumn(
-          model,
-          requireParameter("table", request),
-          name
-        );
+        case "add" -> addColumn(model, table(request), name);
+        case "drop" -> dropColumn(model, table(request), name);
         default -> throw ApiTextException.notFound("method not found");
       };
       case "constraint" -> switch (method) {
-        case "add" -> addConstraint(
-          model,
-          requireParameter("table", request),
-          name
-        );
-        case "drop" -> dropConstraint(
-          model,
-          requireParameter("table", request),
-          name
-        );
+        case "add" -> addConstraint(model, table(request), name);
+        case "drop" -> dropConstraint(model, table(request), name);
         default -> throw ApiTextException.notFound("method not found");
       };
       case "sequence" -> switch (method) {
@@ -421,6 +405,11 @@ final class SchemaNewCop extends ConsoleCop<Void> {
       };
       default -> throw ApiTextException.notFound("subject not found");
     };
+  }
+
+  private static String table(final HttpServletRequest request)
+    throws ApiTextException {
+    return requireParameter("table", request);
   }
 
   private static SqlResponse addTable(final Model model, final String name)
