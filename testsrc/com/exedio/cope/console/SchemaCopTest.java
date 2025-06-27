@@ -757,13 +757,7 @@ public class SchemaCopTest {
       {
         "sql" : "CREATE TABLE \\"MyType\\"(\\"this\\" INTEGER not null,\\"myString\\" VARCHAR(80) not null,\\"myString2\\" VARCHAR(80) not null,\\"myInt\\" INTEGER not null,\\"myTarget\\" INTEGER not null,CONSTRAINT \\"MyType_PK\\" PRIMARY KEY(\\"this\\"),CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0),CONSTRAINT \\"MyType_this_MX\\" CHECK(\\"this\\"<=2147483647),CONSTRAINT \\"MyType_myString_MN\\" CHECK(CHAR_LENGTH(\\"myString\\")>=1),CONSTRAINT \\"MyType_myString_MX\\" CHECK(CHAR_LENGTH(\\"myString\\")<=80),CONSTRAINT \\"MyType_myString2_MN\\" CHECK(CHAR_LENGTH(\\"myString2\\")>=1),CONSTRAINT \\"MyType_myString2_MX\\" CHECK(CHAR_LENGTH(\\"myString2\\")<=80),CONSTRAINT \\"MyType_myInt_MN\\" CHECK(\\"myInt\\">=-2147483648),CONSTRAINT \\"MyType_myInt_MX\\" CHECK(\\"myInt\\"<=2147483647),CONSTRAINT \\"MyType_myTarget_MN\\" CHECK(\\"myTarget\\">=0),CONSTRAINT \\"MyType_myTarget_MX\\" CHECK(\\"myTarget\\"<=2147483647),CONSTRAINT \\"MyType_unique_Unq\\" UNIQUE(\\"myString\\",\\"myString2\\"))"
       }""",
-      writeJson(
-        alterSchema(
-          "addTable",
-          MODEL,
-          new ParameterRequest(Map.of("name", "MyType"))
-        )
-      )
+      writeJson(alterSchema("addTable", MODEL, request("", "MyType")))
     );
   }
 
@@ -774,25 +768,14 @@ public class SchemaCopTest {
       {
         "sql" : "DROP TABLE \\"MyType\\""
       }""",
-      writeJson(
-        alterSchema(
-          "dropTable",
-          MODEL,
-          new ParameterRequest(Map.of("name", "MyType"))
-        )
-      )
+      writeJson(alterSchema("dropTable", MODEL, request("", "MyType")))
     );
   }
 
   @Test
   void testTableAddNotExists() {
     assertFails(
-      () ->
-        alterSchema(
-          "addTable",
-          MODEL,
-          new ParameterRequest(Map.of("name", "MyTypex"))
-        ),
+      () -> alterSchema("addTable", MODEL, request("", "MyTypex")),
       ApiTextException.class,
       "404 table not found within " + MODEL
     );
@@ -805,13 +788,7 @@ public class SchemaCopTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null"
       }""",
-      writeJson(
-        alterSchema(
-          "addColumn",
-          MODEL,
-          new ParameterRequest(Map.of("table", "MyType", "name", "this"))
-        )
-      )
+      writeJson(alterSchema("addColumn", MODEL, request("MyType", "this")))
     );
   }
 
@@ -822,25 +799,14 @@ public class SchemaCopTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" DROP COLUMN \\"this\\""
       }""",
-      writeJson(
-        alterSchema(
-          "dropColumn",
-          MODEL,
-          new ParameterRequest(Map.of("table", "MyType", "name", "this"))
-        )
-      )
+      writeJson(alterSchema("dropColumn", MODEL, request("MyType", "this")))
     );
   }
 
   @Test
   void testColumnAddNotExistsTable() {
     assertFails(
-      () ->
-        alterSchema(
-          "addColumn",
-          MODEL,
-          new ParameterRequest(Map.of("table", "MyTypex", "name", "this"))
-        ),
+      () -> alterSchema("addColumn", MODEL, request("MyTypex", "this")),
       ApiTextException.class,
       "404 table not found within " + MODEL
     );
@@ -849,12 +815,7 @@ public class SchemaCopTest {
   @Test
   void testColumnAddNotExistsColumn() {
     assertFails(
-      () ->
-        alterSchema(
-          "addColumn",
-          MODEL,
-          new ParameterRequest(Map.of("table", "MyType", "name", "thisx"))
-        ),
+      () -> alterSchema("addColumn", MODEL, request("MyType", "thisx")),
       ApiTextException.class,
       "404 column not found within " + MODEL
     );
@@ -868,13 +829,7 @@ public class SchemaCopTest {
         "sql" : "ALTER TABLE \\"MyType\\" ADD CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0)"
       }""",
       writeJson(
-        alterSchema(
-          "addConstraint",
-          MODEL,
-          new ParameterRequest(
-            Map.of("table", "MyType", "name", "MyType_this_MN")
-          )
-        )
+        alterSchema("addConstraint", MODEL, request("MyType", "MyType_this_MN"))
       )
     );
   }
@@ -890,9 +845,7 @@ public class SchemaCopTest {
         alterSchema(
           "dropConstraint",
           MODEL,
-          new ParameterRequest(
-            Map.of("table", "MyType", "name", "MyType_this_MN")
-          )
+          request("MyType", "MyType_this_MN")
         )
       )
     );
@@ -905,9 +858,7 @@ public class SchemaCopTest {
         alterSchema(
           "addConstraint",
           MODEL,
-          new ParameterRequest(
-            Map.of("table", "MyTypex", "name", "MyType_this_MN")
-          )
+          request("MyTypex", "MyType_this_MN")
         ),
       ApiTextException.class,
       "404 table not found within " + MODEL
@@ -921,9 +872,7 @@ public class SchemaCopTest {
         alterSchema(
           "addConstraint",
           MODEL,
-          new ParameterRequest(
-            Map.of("table", "MyType", "name", "MyType_this_MNx")
-          )
+          request("MyType", "MyType_this_MNx")
         ),
       ApiTextException.class,
       "404 constraint not found within " + MODEL
@@ -938,11 +887,7 @@ public class SchemaCopTest {
         "sql" : "CREATE SEQUENCE \\"MyType_myInt_Seq\\" AS INTEGER START WITH 77 INCREMENT BY 1"
       }""",
       writeJson(
-        alterSchema(
-          "addSequence",
-          MODEL,
-          new ParameterRequest(Map.of("name", "MyType_myInt_Seq"))
-        )
+        alterSchema("addSequence", MODEL, request("", "MyType_myInt_Seq"))
       )
     );
   }
@@ -955,11 +900,7 @@ public class SchemaCopTest {
         "sql" : "DROP SEQUENCE \\"MyType_myInt_Seq\\""
       }""",
       writeJson(
-        alterSchema(
-          "dropSequence",
-          MODEL,
-          new ParameterRequest(Map.of("name", "MyType_myInt_Seq"))
-        )
+        alterSchema("dropSequence", MODEL, request("", "MyType_myInt_Seq"))
       )
     );
   }
@@ -967,12 +908,7 @@ public class SchemaCopTest {
   @Test
   void testSequenceAddNotExists() {
     assertFails(
-      () ->
-        alterSchema(
-          "addSequence",
-          MODEL,
-          new ParameterRequest(Map.of("name", "MyType_myInt_Seqx"))
-        ),
+      () -> alterSchema("addSequence", MODEL, request("", "MyType_myInt_Seqx")),
       ApiTextException.class,
       "404 sequence not found within " + MODEL
     );
@@ -981,15 +917,17 @@ public class SchemaCopTest {
   @Test
   void testParameterRequired() {
     assertFails(
-      () ->
-        alterSchema(
-          "addSequence",
-          MODEL,
-          new ParameterRequest(Map.of("name", ""))
-        ),
+      () -> alterSchema("addSequence", MODEL, request("", "")),
       ApiTextException.class,
       "404 parameter name must be set"
     );
+  }
+
+  private static ParameterRequest request(
+    final String table,
+    final String name
+  ) {
+    return new ParameterRequest(Map.of("table", table, "name", name));
   }
 
   private static final class MyType extends Item {
