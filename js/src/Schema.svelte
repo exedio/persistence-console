@@ -33,7 +33,7 @@
     readonly subject: "table" | "column" | "constraint" | "sequence";
     readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
     readonly name: string;
-    readonly existence: Existence;
+    readonly method: "add" | "drop";
   };
 
   const checkboxes = new SvelteMap<String, Checkbox>();
@@ -66,9 +66,8 @@
     subject,
     tableName,
     name,
-    existence,
+    method,
   }: Checkbox): string {
-    const method = existence === "missing" ? "add" : "drop";
     return (
       "subject=" +
       subject +
@@ -96,8 +95,6 @@
   function asInputElement(target: EventTarget | null): HTMLInputElement {
     return target as HTMLInputElement;
   }
-
-  type Existence = "missing" | "unused";
 </script>
 
 <div class="container">
@@ -186,7 +183,7 @@
           <span class="nodeType">{checkbox.subject}</span>
           {checkbox.name}
           {#await promise}
-            {checkbox.existence}
+            {checkbox.method}
           {:then response}
             <small>{response.sql}</small>
           {:catch error}
@@ -245,7 +242,7 @@
               subject,
               tableName,
               name,
-              existence: existence.text,
+              method: existence.text === "missing" ? "add" : "drop",
             });
           } else {
             checkboxes.delete(key);
