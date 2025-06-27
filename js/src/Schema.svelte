@@ -54,7 +54,13 @@
 
   function checkboxToPromise(checkbox: Checkbox): Promise<AlterSchemaResponse> {
     const key =
-      checkbox.subject + "." + checkbox.tableName + "." + checkbox.name;
+      checkbox.subject +
+      "." +
+      checkbox.tableName +
+      "." +
+      checkbox.name +
+      "." +
+      checkbox.existence;
     const cached = fixesCache.get(key);
     if (cached) return cached;
 
