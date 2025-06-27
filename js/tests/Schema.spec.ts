@@ -216,7 +216,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/addTable?name=myTable1Name",
+      "/myApiPath/alterSchema?subject=table&name=myTable1Name&method=add",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
@@ -250,7 +250,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/addTable?name=myTable1Name",
+      "/myApiPath/alterSchema?subject=table&name=myTable1Name&method=add",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
@@ -288,7 +288,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/dropTable?name=myTable1Name",
+      "/myApiPath/alterSchema?subject=table&name=myTable1Name&method=drop",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
@@ -365,7 +365,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/addColumn?table=myTable1Name&name=myColumn1Name",
+      "/myApiPath/alterSchema?subject=column&table=myTable1Name&name=myColumn1Name&method=add",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
@@ -417,7 +417,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/dropColumn?table=myTable1Name&name=myColumn1Name",
+      "/myApiPath/alterSchema?subject=column&table=myTable1Name&name=myColumn1Name&method=drop",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
@@ -583,7 +583,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/addConstraint?table=myTable1Name&name=myConstraint1Name",
+      "/myApiPath/alterSchema?subject=constraint&table=myTable1Name&name=myConstraint1Name&method=add",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
@@ -632,7 +632,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/dropConstraint?table=myTable1Name&name=myConstraint1Name",
+      "/myApiPath/alterSchema?subject=constraint&table=myTable1Name&name=myConstraint1Name&method=drop",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
@@ -807,7 +807,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/addSequence?name=myOnlyName",
+      "/myApiPath/alterSchema?subject=sequence&name=myOnlyName&method=add",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
@@ -843,7 +843,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockFix).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/schema/dropSequence?name=myOnlyName",
+      "/myApiPath/alterSchema?subject=sequence&name=myOnlyName&method=drop",
     );
     expect(await formatHtml(sql())).toMatchSnapshot();
   });

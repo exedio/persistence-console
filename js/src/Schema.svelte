@@ -57,7 +57,7 @@
     const cached = fixesCacheByUrl.get(url);
     if (cached) return cached;
 
-    const result = get<AlterSchemaResponse>("schema/" + url);
+    const result = get<AlterSchemaResponse>("alterSchema?" + url);
     fixesCacheByUrl.set(url, result);
     return result;
   }
@@ -71,13 +71,27 @@
     const method = existence === "missing" ? "add" : "drop";
     switch (subject) {
       case "table":
-        return method + "Table?name=" + name;
+        return "subject=table&name=" + name + "&method=" + method;
       case "column":
-        return method + "Column?table=" + tableName + "&name=" + name;
+        return (
+          "subject=column&table=" +
+          tableName +
+          "&name=" +
+          name +
+          "&method=" +
+          method
+        );
       case "constraint":
-        return method + "Constraint?table=" + tableName + "&name=" + name;
+        return (
+          "subject=constraint&table=" +
+          tableName +
+          "&name=" +
+          name +
+          "&method=" +
+          method
+        );
       case "sequence":
-        return method + "Sequence?name=" + name;
+        return "subject=sequence&name=" + name + "&method=" + method;
     }
   }
 
