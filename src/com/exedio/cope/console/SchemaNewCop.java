@@ -382,26 +382,29 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     final String subject = requireParameter("subject", request);
     final String name = requireParameter("name", request);
     final String method = requireParameter("method", request);
+    final String ADD = "add";
+    final String DROP = "drop";
+    final String METHOD404 = "method not found";
     return switch (subject) {
       case "table" -> switch (method) {
-        case "add" -> addTable(model, name);
-        case "drop" -> dropTable(model, name);
-        default -> throw ApiTextException.notFound("method not found");
+        case ADD -> addTable(model, name);
+        case DROP -> dropTable(model, name);
+        default -> throw ApiTextException.notFound(METHOD404);
       };
       case "column" -> switch (method) {
-        case "add" -> addColumn(model, table(request), name);
-        case "drop" -> dropColumn(model, table(request), name);
-        default -> throw ApiTextException.notFound("method not found");
+        case ADD -> addColumn(model, table(request), name);
+        case DROP -> dropColumn(model, table(request), name);
+        default -> throw ApiTextException.notFound(METHOD404);
       };
       case "constraint" -> switch (method) {
-        case "add" -> addConstraint(model, table(request), name);
-        case "drop" -> dropConstraint(model, table(request), name);
-        default -> throw ApiTextException.notFound("method not found");
+        case ADD -> addConstraint(model, table(request), name);
+        case DROP -> dropConstraint(model, table(request), name);
+        default -> throw ApiTextException.notFound(METHOD404);
       };
       case "sequence" -> switch (method) {
-        case "add" -> addSequence(model, name);
-        case "drop" -> dropSequence(model, name);
-        default -> throw ApiTextException.notFound("method not found");
+        case ADD -> addSequence(model, name);
+        case DROP -> dropSequence(model, name);
+        default -> throw ApiTextException.notFound(METHOD404);
       };
       default -> throw ApiTextException.notFound("subject not found");
     };
