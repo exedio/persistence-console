@@ -376,37 +376,50 @@ final class SchemaNewCop extends ConsoleCop<Void> {
   }
 
   static SqlResponse alterSchema(
-    final String endpoint,
     final Model model,
     final HttpServletRequest request
   ) throws ApiTextException {
+    final String subject = requireParameter("subject", request);
     final String name = requireParameter("name", request);
-    return switch (endpoint) {
-      case "addTable" -> addTable(model, name);
-      case "dropTable" -> dropTable(model, name);
-      case "addColumn" -> addColumn(
-        model,
-        requireParameter("table", request),
-        name
-      );
-      case "dropColumn" -> dropColumn(
-        model,
-        requireParameter("table", request),
-        name
-      );
-      case "addConstraint" -> addConstraint(
-        model,
-        requireParameter("table", request),
-        name
-      );
-      case "dropConstraint" -> dropConstraint(
-        model,
-        requireParameter("table", request),
-        name
-      );
-      case "addSequence" -> addSequence(model, name);
-      case "dropSequence" -> dropSequence(model, name);
-      default -> throw ApiTextException.notFound("endpoint not found");
+    final String method = requireParameter("method", request);
+    return switch (subject) {
+      case "table" -> switch (method) {
+        case "add" -> addTable(model, name);
+        case "drop" -> dropTable(model, name);
+        default -> throw ApiTextException.notFound("method not found");
+      };
+      case "column" -> switch (method) {
+        case "add" -> addColumn(
+          model,
+          requireParameter("table", request),
+          name
+        );
+        case "drop" -> dropColumn(
+          model,
+          requireParameter("table", request),
+          name
+        );
+        default -> throw ApiTextException.notFound("method not found");
+      };
+      case "constraint" -> switch (method) {
+        case "add" -> addConstraint(
+          model,
+          requireParameter("table", request),
+          name
+        );
+        case "drop" -> dropConstraint(
+          model,
+          requireParameter("table", request),
+          name
+        );
+        default -> throw ApiTextException.notFound("method not found");
+      };
+      case "sequence" -> switch (method) {
+        case "add" -> addSequence(model, name);
+        case "drop" -> dropSequence(model, name);
+        default -> throw ApiTextException.notFound("method not found");
+      };
+      default -> throw ApiTextException.notFound("subject not found");
     };
   }
 

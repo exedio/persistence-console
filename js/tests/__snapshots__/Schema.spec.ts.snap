@@ -828,7 +828,8 @@ exports[`Schema > should render a missing table and fix fails 1`] = `
 "<li class="svelte-6n243d">
   <span class="nodeType svelte-6n243d">table</span> myTable1Name
   <span class="red svelte-6n243d"
-    >schema/addTable?name=myTable1Name: response code 400 myError</span
+    >alterSchema?subject=table&amp;name=myTable1Name&amp;method=add: response
+    code 400 myError</span
   ><!---->
 </li>
 "

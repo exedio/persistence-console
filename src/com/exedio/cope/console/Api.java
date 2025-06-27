@@ -68,19 +68,6 @@ final class Api {
     final HttpServletResponse response,
     final Model model
   ) throws IOException, ApiTextException {
-    final String SCHEMA_ENDPOINT_PATHELEMENT = "schema/";
-    if (endpoint.startsWith(SCHEMA_ENDPOINT_PATHELEMENT)) {
-      requireGet(request);
-      writeJson(
-        SchemaNewCop.alterSchema(
-          endpoint.substring(SCHEMA_ENDPOINT_PATHELEMENT.length()),
-          model,
-          request
-        ),
-        response
-      );
-      return;
-    }
     switch (endpoint) {
       case "connect" -> {
         servlet.connect();
@@ -104,6 +91,10 @@ final class Api {
       case "schema" -> {
         requireGet(request);
         writeJson(SchemaNewCop.schema(model), response);
+      }
+      case "alterSchema" -> {
+        requireGet(request);
+        writeJson(SchemaNewCop.alterSchema(model, request), response);
       }
       default -> throw ApiTextException.notFound("endpoint not found");
     }
