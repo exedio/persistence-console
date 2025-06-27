@@ -69,30 +69,15 @@
     existence,
   }: Checkbox): string {
     const method = existence === "missing" ? "add" : "drop";
-    switch (subject) {
-      case "table":
-        return "subject=table&name=" + name + "&method=" + method;
-      case "column":
-        return (
-          "subject=column&table=" +
-          tableName +
-          "&name=" +
-          name +
-          "&method=" +
-          method
-        );
-      case "constraint":
-        return (
-          "subject=constraint&table=" +
-          tableName +
-          "&name=" +
-          name +
-          "&method=" +
-          method
-        );
-      case "sequence":
-        return "subject=sequence&name=" + name + "&method=" + method;
-    }
+    return (
+      "subject=" +
+      subject +
+      (tableName ? "&table=" + tableName : "") +
+      "&name=" +
+      name +
+      "&method=" +
+      method
+    );
   }
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
