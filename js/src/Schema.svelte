@@ -50,54 +50,34 @@
     })),
   );
 
-  const fixesCache = new Map<String, Promise<AlterSchemaResponse>>(); // must not be SvelteMap!
+  const fixesCacheByUrl = new Map<String, Promise<AlterSchemaResponse>>(); // must not be SvelteMap!
 
   function checkboxToPromise(checkbox: Checkbox): Promise<AlterSchemaResponse> {
-    const key =
-      checkbox.subject +
-      "." +
-      checkbox.tableName +
-      "." +
-      checkbox.name +
-      "." +
-      checkbox.existence;
-    const cached = fixesCache.get(key);
+    const url = checkboxToUrl(checkbox);
+    const cached = fixesCacheByUrl.get(url);
     if (cached) return cached;
 
-    const result = checkboxToPromiseUncached(checkbox);
-    fixesCache.set(key, result);
+    const result = get<AlterSchemaResponse>("schema/" + url);
+    fixesCacheByUrl.set(url, result);
     return result;
   }
 
-  function checkboxToPromiseUncached({
+  function checkboxToUrl({
     subject,
     tableName,
     name,
     existence,
-  }: Checkbox): Promise<AlterSchemaResponse> {
+  }: Checkbox): string {
     const method = existence === "missing" ? "add" : "drop";
     switch (subject) {
       case "table":
-        return get<AlterSchemaResponse>(
-          "schema/" + method + "Table?name=" + name,
-        );
+        return method + "Table?name=" + name;
       case "column":
-        return get<AlterSchemaResponse>(
-          "schema/" + method + "Column?table=" + tableName + "&name=" + name,
-        );
+        return method + "Column?table=" + tableName + "&name=" + name;
       case "constraint":
-        return get<AlterSchemaResponse>(
-          "schema/" +
-            method +
-            "Constraint?table=" +
-            tableName +
-            "&name=" +
-            name,
-        );
+        return method + "Constraint?table=" + tableName + "&name=" + name;
       case "sequence":
-        return get<AlterSchemaResponse>(
-          "schema/" + method + "Sequence?name=" + name,
-        );
+        return method + "Sequence?name=" + name;
     }
   }
 
