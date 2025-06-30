@@ -387,46 +387,61 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     final String MODIFY = "modify";
     final String METHOD404 = "method not found";
     return switch (subject) {
-      case "table" -> switch (method) {
-        case ADD -> addTable(model, name);
-        case DROP -> dropTable(model, name);
-        default -> throw ApiTextException.notFound(METHOD404);
-      };
-      case "column" -> switch (method) {
-        case ADD -> addColumn(model, table(request), name);
-        case DROP -> dropColumn(model, table(request), name);
-        case MODIFY -> modifyColumn(model, table(request), name);
-        default -> throw ApiTextException.notFound(METHOD404);
-      };
-      case "constraint" -> switch (method) {
-        case ADD -> addConstraint(model, table(request), name);
-        case DROP -> dropConstraint(model, table(request), name);
-        default -> throw ApiTextException.notFound(METHOD404);
-      };
-      case "sequence" -> switch (method) {
-        case ADD -> addSequence(model, name);
-        case DROP -> dropSequence(model, name);
-        default -> throw ApiTextException.notFound(METHOD404);
-      };
+      case "table" -> {
+        final var node = getTable(model, name);
+        yield switch (method) {
+          case ADD -> new SL().apply(node::create);
+          case DROP -> new SL().apply(node::drop);
+          default -> throw ApiTextException.notFound(METHOD404);
+        };
+      }
+      case "column" -> {
+        final var node = requireFound(
+          table(model, request).getColumn(name),
+          "column",
+          model
+        );
+        yield switch (method) {
+          case ADD -> new SL().apply(node::create);
+          case DROP -> new SL().apply(node::drop);
+          case MODIFY -> new SL()
+            .apply(sl -> node.modify(node.getRequiredType(), sl));
+          default -> throw ApiTextException.notFound(METHOD404);
+        };
+      }
+      case "constraint" -> {
+        final var node = requireFound(
+          table(model, request).getConstraint(name),
+          "constraint",
+          model
+        );
+        yield switch (method) {
+          case ADD -> new SL().apply(node::create);
+          case DROP -> new SL().apply(node::drop);
+          default -> throw ApiTextException.notFound(METHOD404);
+        };
+      }
+      case "sequence" -> {
+        final var node = requireFound(
+          model.getVerifiedSchema().getSequence(name),
+          "sequence",
+          model
+        );
+        yield switch (method) {
+          case ADD -> new SL().apply(node::create);
+          case DROP -> new SL().apply(node::drop);
+          default -> throw ApiTextException.notFound(METHOD404);
+        };
+      }
       default -> throw ApiTextException.notFound("subject not found");
     };
   }
 
-  private static String table(final HttpServletRequest request)
-    throws ApiTextException {
-    return requireParameter("table", request);
-  }
-
-  private static SqlResponse addTable(final Model model, final String name)
-    throws ApiTextException {
-    final var node = getTable(model, name);
-    return new SL().apply(node::create);
-  }
-
-  private static SqlResponse dropTable(final Model model, final String name)
-    throws ApiTextException {
-    final var node = getTable(model, name);
-    return new SL().apply(node::drop);
+  private static Table table(
+    final Model model,
+    final HttpServletRequest request
+  ) throws ApiTextException {
+    return getTable(model, requireParameter("table", request));
   }
 
   private static Table getTable(final Model model, final String name)
@@ -434,96 +449,6 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     return requireFound(
       model.getVerifiedSchema().getTable(name),
       "table",
-      model
-    );
-  }
-
-  private static SqlResponse addColumn(
-    final Model model,
-    final String table,
-    final String name
-  ) throws ApiTextException {
-    final var node = getColumn(model, table, name);
-    return new SL().apply(node::create);
-  }
-
-  private static SqlResponse dropColumn(
-    final Model model,
-    final String table,
-    final String name
-  ) throws ApiTextException {
-    final var node = getColumn(model, table, name);
-    return new SL().apply(node::drop);
-  }
-
-  private static SqlResponse modifyColumn(
-    final Model model,
-    final String table,
-    final String name
-  ) throws ApiTextException {
-    final var node = getColumn(model, table, name);
-    return new SL().apply(sl -> node.modify(node.getRequiredType(), sl));
-  }
-
-  private static Column getColumn(
-    final Model model,
-    final String tableName,
-    final String name
-  ) throws ApiTextException {
-    return requireFound(
-      getTable(model, tableName).getColumn(name),
-      "column",
-      model
-    );
-  }
-
-  private static SqlResponse addConstraint(
-    final Model model,
-    final String tableName,
-    final String name
-  ) throws ApiTextException {
-    final var node = getConstraint(model, tableName, name);
-    return new SL().apply(node::create);
-  }
-
-  private static SqlResponse dropConstraint(
-    final Model model,
-    final String tableName,
-    final String name
-  ) throws ApiTextException {
-    final var node = getConstraint(model, tableName, name);
-    return new SL().apply(node::drop);
-  }
-
-  private static Constraint getConstraint(
-    final Model model,
-    final String tableName,
-    final String name
-  ) throws ApiTextException {
-    return requireFound(
-      getTable(model, tableName).getConstraint(name),
-      "constraint",
-      model
-    );
-  }
-
-  private static SqlResponse addSequence(final Model model, final String name)
-    throws ApiTextException {
-    final var node = getSequence(model, name);
-    return new SL().apply(node::create);
-  }
-
-  private static SqlResponse dropSequence(final Model model, final String name)
-    throws ApiTextException {
-    final var node = getSequence(model, name);
-    return new SL().apply(node::drop);
-  }
-
-  private static Sequence getSequence(final Model model, final String name)
-    throws ApiTextException {
-    return requireFound(
-      model.getVerifiedSchema().getSequence(name),
-      "sequence",
       model
     );
   }
