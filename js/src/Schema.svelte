@@ -20,6 +20,7 @@
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
   import { Expander } from "@/Expander.js";
+  import { type SchemaCheckbox as Checkbox } from "@/SchemaCheckbox";
 
   const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
 
@@ -34,13 +35,6 @@
     tableName: string;
     name: string;
     label: "adjust";
-  };
-
-  type Checkbox = {
-    readonly subject: "table" | "column" | "constraint" | "sequence";
-    readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
-    readonly name: string;
-    readonly method: "add" | "drop" | "modify";
   };
 
   const checkboxes = new SvelteMap<String, Checkbox>();
