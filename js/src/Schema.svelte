@@ -46,20 +46,24 @@
 
   type Fix = {
     readonly checkbox: Checkbox;
+    readonly url: string;
     readonly promise: Promise<AlterSchemaResponse>;
   };
 
   const fixes: Fix[] = $derived(
-    Array.from(checkboxes.values()).map((cb) => ({
-      checkbox: cb,
-      promise: checkboxToPromise(cb),
-    })),
+    Array.from(checkboxes.values()).map((checkbox) => {
+      const url = checkboxToUrl(checkbox);
+      return {
+        checkbox,
+        url,
+        promise: urlToPromise(url),
+      };
+    }),
   );
 
   const fixesCacheByUrl = new Map<String, Promise<AlterSchemaResponse>>(); // must not be SvelteMap!
 
-  function checkboxToPromise(checkbox: Checkbox): Promise<AlterSchemaResponse> {
-    const url = checkboxToUrl(checkbox);
+  function urlToPromise(url: string): Promise<AlterSchemaResponse> {
     const cached = fixesCacheByUrl.get(url);
     if (cached) return cached;
 
@@ -201,7 +205,7 @@
   </div>
   {#if fixes.length > 0}
     <ul class="sql">
-      {#each fixes as { checkbox, promise } (checkbox.subject + "." + checkbox.tableName + "." + checkbox.name)}
+      {#each fixes as { checkbox, url, promise } (url)}
         <li>
           <span class="nodeType">{checkbox.subject}</span>
           {checkbox.name}
