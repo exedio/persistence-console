@@ -498,6 +498,19 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        "ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type",
+      ),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/alterSchema?subject=column&table=myTable1Name&name=myColumn1Name&method=modify",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a column with a remaining error", async () => {

@@ -804,6 +804,19 @@ public class SchemaCopTest {
   }
 
   @Test
+  void testColumnModify() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" ALTER \\"this\\" SET DATA TYPE INTEGER not null"
+      }""",
+      writeJson(
+        alterSchema(MODEL, request("column", "MyType", "this", "modify"))
+      )
+    );
+  }
+
+  @Test
   void testColumnAddNotExistsTable() {
     assertFails(
       () -> alterSchema(MODEL, request("column", "MyTypex", "this", "add")),

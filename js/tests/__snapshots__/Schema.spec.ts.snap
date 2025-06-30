@@ -133,8 +133,9 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         ><!---->
         <span class="nodeType svelte-6n243d">col</span> myColumn1Name
         <!----><!---->
-        <!----><!----><span class="red svelte-6n243d">type mismatch</span
-        ><!---->
+        <!----><!----><span class="red svelte-6n243d">type mismatch</span>
+        <!----><label><input type="checkbox" />adjust</label
+        ><!----><!---->
         <!---->
         <!---->
       </li>
@@ -171,6 +172,8 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!----><!----><!----><span class="red svelte-6n243d"
           >type mismatch:</span
         >
+        <!----><label><input type="checkbox" />adjust</label
+        ><!---->
         <table class="comparison svelte-6n243d">
           <tbody>
             <tr>
@@ -197,6 +200,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <!---->
 </ul>
 <!---->
+"
+`;
+
+exports[`Schema > should render a column with a wrong type 4`] = `
+"<li class="svelte-6n243d">
+  <span class="nodeType svelte-6n243d">column</span> myColumn1Name
+  <small>ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type</small
+  ><!---->
+</li>
 "
 `;
 
@@ -331,6 +343,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!----><!----><!----><span class="red svelte-6n243d"
           >clause mismatch:</span
         >
+        <!----><!---->
         <table class="comparison svelte-6n243d">
           <tbody>
             <tr>
@@ -447,6 +460,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
             <!----><!----><!----><span class="red svelte-6n243d"
               >clause mismatch:</span
             >
+            <!----><!---->
             <table class="comparison svelte-6n243d">
               <tbody>
                 <tr>
@@ -1128,6 +1142,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!----><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!----><span class="red svelte-6n243d">start mismatch:</span>
+    <!----><!---->
     <table class="comparison svelte-6n243d">
       <tbody>
         <tr>
@@ -1163,6 +1178,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">seq</span> myOnlyName
     <!----><!---->
     <!----><!----><!----><span class="red svelte-6n243d">type mismatch:</span>
+    <!----><!---->
     <table class="comparison svelte-6n243d">
       <tbody>
         <tr>

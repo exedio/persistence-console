@@ -29,11 +29,17 @@
     (c) => c.tableName + "." + c.name,
   );
 
+  type Modify = {
+    subject: "column";
+    tableName: string;
+    name: string;
+  };
+
   type Checkbox = {
     readonly subject: "table" | "column" | "constraint" | "sequence";
     readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
     readonly name: string;
-    readonly method: "add" | "drop";
+    readonly method: "add" | "drop" | "modify";
   };
 
   const checkboxes = new SvelteMap<String, Checkbox>();
@@ -95,6 +101,19 @@
   function asInputElement(target: EventTarget | null): HTMLInputElement {
     return target as HTMLInputElement;
   }
+
+  // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
+  function asModify(
+    subject: "column",
+    tableName: String,
+    name: String,
+  ): Modify {
+    return {
+      subject,
+      tableName,
+      name,
+    };
+  }
 </script>
 
 <div class="container">
@@ -135,7 +154,11 @@
                       table.name,
                       column.name,
                     )}
-                    {@render comparison(column.type, columnExpanded)}
+                    {@render comparison(
+                      column.type,
+                      asModify("column", table.name, column.name),
+                      columnExpanded,
+                    )}
                     {#if columnExpanded}
                       {@render remainder(column.remainingErrors)}
                     {/if}
@@ -162,8 +185,8 @@
               undefined,
               sequence.name,
             )}
-            {@render comparison(sequence.type, true)}
-            {@render comparison(sequence.start, true)}
+            {@render comparison(sequence.type, undefined, true)}
+            {@render comparison(sequence.start, undefined, true)}
             {@render remainder(sequence.remainingErrors)}
           </li>
         {/each}
@@ -207,7 +230,7 @@
         constraint.tableName,
         constraint.name,
       )}
-      {@render comparison(constraint.clause, true)}
+      {@render comparison(constraint.clause, undefined, true)}
       {@render remainder(constraint.remainingErrors)}
     </li>
   {/each}
@@ -257,11 +280,16 @@
   {/if}
 {/snippet}
 
-{#snippet comparison(value: UseComparison | undefined, expanded: Boolean)}
+{#snippet comparison(
+  value: UseComparison | undefined,
+  modify: Modify | undefined,
+  expanded: Boolean,
+)}
   {#if value}
     {#if expanded}
       {#if value.actual}
         <span class={value.color}>{value.name} mismatch:</span>
+        {@render comparisonAdjust(modify)}
         <table class="comparison">
           <tbody>
             <tr><td>required:</td><td>{value.shortener(value.expected)}</td></tr
@@ -277,7 +305,32 @@
       {/if}
     {:else if value.actual}
       <span class={value.color}>{value.name} mismatch</span>
+      {@render comparisonAdjust(modify)}
     {/if}
+  {/if}
+{/snippet}
+
+{#snippet comparisonAdjust(modify: Modify | undefined)}
+  {#if modify}
+    {@const key = modify.subject + "/" + modify.tableName + "/" + modify.name}
+    <label
+      ><input
+        type="checkbox"
+        checked={checkboxes.has(key)}
+        oninput={(e) => {
+          if (asInputElement(e.target).checked) {
+            checkboxes.set(key, {
+              subject: modify.subject,
+              tableName: modify.tableName,
+              name: modify.name,
+              method: "modify",
+            });
+          } else {
+            checkboxes.delete(key);
+          }
+        }}
+      />adjust</label
+    >
   {/if}
 {/snippet}
 
