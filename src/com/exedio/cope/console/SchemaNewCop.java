@@ -32,6 +32,7 @@ import com.exedio.dsmf.Table;
 import com.exedio.dsmf.misc.DefaultStatementListener;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -390,8 +391,8 @@ final class SchemaNewCop extends ConsoleCop<Void> {
       case "table" -> {
         final var node = getTable(model, name);
         yield switch (method) {
-          case ADD -> new SL().apply(node::create);
-          case DROP -> new SL().apply(node::drop);
+          case ADD -> apply(node::create);
+          case DROP -> apply(node::drop);
           default -> throw ApiTextException.notFound(METHOD404);
         };
       }
@@ -402,10 +403,9 @@ final class SchemaNewCop extends ConsoleCop<Void> {
           model
         );
         yield switch (method) {
-          case ADD -> new SL().apply(node::create);
-          case DROP -> new SL().apply(node::drop);
-          case MODIFY -> new SL()
-            .apply(sl -> node.modify(node.getRequiredType(), sl));
+          case ADD -> apply(node::create);
+          case DROP -> apply(node::drop);
+          case MODIFY -> apply(sl -> node.modify(node.getRequiredType(), sl));
           default -> throw ApiTextException.notFound(METHOD404);
         };
       }
@@ -416,8 +416,8 @@ final class SchemaNewCop extends ConsoleCop<Void> {
           model
         );
         yield switch (method) {
-          case ADD -> new SL().apply(node::create);
-          case DROP -> new SL().apply(node::drop);
+          case ADD -> apply(node::create);
+          case DROP -> apply(node::drop);
           default -> throw ApiTextException.notFound(METHOD404);
         };
       }
@@ -428,8 +428,8 @@ final class SchemaNewCop extends ConsoleCop<Void> {
           model
         );
         yield switch (method) {
-          case ADD -> new SL().apply(node::create);
-          case DROP -> new SL().apply(node::drop);
+          case ADD -> apply(node::create);
+          case DROP -> apply(node::drop);
           default -> throw ApiTextException.notFound(METHOD404);
         };
       }
@@ -453,20 +453,17 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     );
   }
 
-  private static class SL extends DefaultStatementListener {
-
-    String statement;
-
-    @Override
-    public boolean beforeExecute(final String statement) {
-      this.statement = statement;
-      return false;
-    }
-
-    SqlResponse apply(final Consumer<StatementListener> listener) {
-      listener.accept(this);
-      return new SqlResponse(statement);
-    }
+  private static SqlResponse apply(final Consumer<StatementListener> listener) {
+    final AtomicReference<String> sql = new AtomicReference<>();
+    final DefaultStatementListener sl = new DefaultStatementListener() {
+      @Override
+      public boolean beforeExecute(final String statement) {
+        sql.set(statement);
+        return false;
+      }
+    };
+    listener.accept(sl);
+    return new SqlResponse(sql.get());
   }
 
   record SqlResponse(String sql) {}
