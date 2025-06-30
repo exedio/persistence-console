@@ -33,6 +33,7 @@
     subject: "column";
     tableName: string;
     name: string;
+    label: "adjust";
   };
 
   type Checkbox = {
@@ -111,11 +112,13 @@
     subject: "column",
     tableName: String,
     name: String,
+    label: "adjust",
   ): Modify {
     return {
       subject,
       tableName,
       name,
+      label,
     };
   }
 </script>
@@ -160,7 +163,7 @@
                     )}
                     {@render comparison(
                       column.type,
-                      asModify("column", table.name, column.name),
+                      asModify("column", table.name, column.name, "adjust"),
                       columnExpanded,
                     )}
                     {#if columnExpanded}
@@ -333,7 +336,7 @@
             checkboxes.delete(key);
           }
         }}
-      />adjust</label
+      />{modify.label}</label
     >
   {/if}
 {/snippet}
