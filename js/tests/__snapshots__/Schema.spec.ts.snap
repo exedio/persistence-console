@@ -343,7 +343,8 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!----><!----><!----><span class="red svelte-6n243d"
           >clause mismatch:</span
         >
-        <!----><!---->
+        <!----><label><input type="checkbox" />recreate</label
+        ><!---->
         <table class="comparison svelte-6n243d">
           <tbody>
             <tr>
@@ -372,6 +373,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <!---->
 </ul>
 <!---->
+"
+`;
+
+exports[`Schema > should render a constraint with a wrong clause 3`] = `
+"<li class="svelte-6n243d">
+  <span class="nodeType svelte-6n243d">constraint</span> myConstraint1Name
+  <small>ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name</small
+  ><!---->
+</li>
+<li class="svelte-6n243d">
+  <span class="nodeType svelte-6n243d">constraint</span> myConstraint1Name
+  <small>ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name</small
+  ><!---->
+</li>
 "
 `;
 
@@ -460,7 +475,8 @@ Schema <button class="reload svelte-dizlwz">🗘</button
             <!----><!----><!----><span class="red svelte-6n243d"
               >clause mismatch:</span
             >
-            <!----><!---->
+            <!----><label><input type="checkbox" />recreate</label
+            ><!---->
             <table class="comparison svelte-6n243d">
               <tbody>
                 <tr>
