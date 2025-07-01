@@ -49,4 +49,131 @@ describe("Checkbox", () => {
       },
     ]);
   });
+  it("should order", async () => {
+    expect(
+      workOnCheckboxes([
+        {
+          subject: "constraint",
+          tableName: "myTableName",
+          name: "myName",
+          method: "add",
+        },
+        {
+          subject: "constraint",
+          tableName: "myTableName",
+          name: "myName",
+          method: "drop",
+        },
+        {
+          subject: "column",
+          tableName: "myTableName",
+          name: "myName",
+          method: "add",
+        },
+        {
+          subject: "column",
+          tableName: "myTableName",
+          name: "myName",
+          method: "modify",
+        },
+        {
+          subject: "column",
+          tableName: "myTableName",
+          name: "myName",
+          method: "drop",
+        },
+        {
+          subject: "table",
+          tableName: undefined,
+          name: "myName",
+          method: "add",
+        },
+        {
+          subject: "table",
+          tableName: undefined,
+          name: "myName",
+          method: "drop",
+        },
+        {
+          subject: "sequence",
+          tableName: undefined,
+          name: "myName",
+          method: "add",
+        },
+        {
+          subject: "sequence",
+          tableName: undefined,
+          name: "myName",
+          method: "drop",
+        },
+        {
+          subject: "sequence",
+          tableName: undefined,
+          name: "myName2",
+          method: "drop",
+        },
+      ]),
+    ).toStrictEqual([
+      {
+        subject: "constraint",
+        tableName: "myTableName",
+        name: "myName",
+        method: "drop",
+      },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName",
+        method: "drop",
+      },
+      {
+        subject: "table",
+        tableName: undefined,
+        name: "myName",
+        method: "drop",
+      },
+      {
+        subject: "sequence",
+        tableName: undefined,
+        name: "myName",
+        method: "drop",
+      },
+      {
+        subject: "sequence",
+        tableName: undefined,
+        name: "myName2",
+        method: "drop",
+      },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName",
+        method: "modify",
+      },
+      {
+        subject: "sequence",
+        tableName: undefined,
+        name: "myName",
+        method: "add",
+      },
+      {
+        subject: "table",
+        tableName: undefined,
+        name: "myName",
+        method: "add",
+      },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName",
+        method: "add",
+      },
+      {
+        subject: "constraint",
+        tableName: "myTableName",
+        name: "myName",
+        method: "add",
+      },
+    ]);
+  });
 });
