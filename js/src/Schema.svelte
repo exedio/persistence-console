@@ -20,7 +20,10 @@
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
   import { Expander } from "@/Expander.js";
-  import { type SchemaCheckbox as Checkbox } from "@/SchemaCheckbox";
+  import {
+    type SchemaCheckbox as Checkbox,
+    workOnCheckboxes,
+  } from "@/SchemaCheckbox";
 
   const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
 
@@ -31,10 +34,10 @@
   );
 
   type Modify = {
-    subject: "column";
+    subject: "column" | "constraint";
     tableName: string;
     name: string;
-    label: "adjust";
+    label: "adjust" | "recreate";
   };
 
   const checkboxes = new SvelteMap<String, Checkbox>();
@@ -46,7 +49,7 @@
   };
 
   const fixes: Fix[] = $derived(
-    Array.from(checkboxes.values()).map((checkbox) => {
+    workOnCheckboxes(Array.from(checkboxes.values())).map((checkbox) => {
       const url = checkboxToUrl(checkbox);
       return {
         checkbox,
@@ -103,10 +106,10 @@
 
   // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
   function asModify(
-    subject: "column",
+    subject: "column" | "constraint",
     tableName: String,
     name: String,
-    label: "adjust",
+    label: "adjust" | "recreate",
   ): Modify {
     return {
       subject,
@@ -231,7 +234,16 @@
         constraint.tableName,
         constraint.name,
       )}
-      {@render comparison(constraint.clause, undefined, true)}
+      {@render comparison(
+        constraint.clause,
+        asModify(
+          "constraint",
+          constraint.tableName,
+          constraint.name,
+          "recreate",
+        ),
+        true,
+      )}
       {@render remainder(constraint.remainingErrors)}
     </li>
   {/each}

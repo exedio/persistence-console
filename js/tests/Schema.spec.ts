@@ -684,6 +684,29 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        "ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",
+      ),
+    );
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        "ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",
+      ),
+    );
+    checkbox().click();
+    await flushPromises();
+    expect(mockFix).toHaveBeenNthCalledWith(
+      1,
+      "/myApiPath/alterSchema?subject=constraint&table=myTable1Name&name=myConstraint1Name&method=drop",
+    );
+    expect(mockFix).toHaveBeenNthCalledWith(
+      2,
+      "/myApiPath/alterSchema?subject=constraint&table=myTable1Name&name=myConstraint1Name&method=add",
+    );
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
   it("should render a constraint with shortener", async () => {
