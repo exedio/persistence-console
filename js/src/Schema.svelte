@@ -37,7 +37,7 @@
     label: "adjust" | "recreate";
   };
 
-  const fixes = new SvelteMap<String, Fix>();
+  const fixes = new SvelteMap<string, Fix>();
 
   type Patch = {
     readonly fix: Fix;
@@ -56,7 +56,7 @@
     }),
   );
 
-  const patchesCacheByUrl = new Map<String, Promise<AlterSchemaResponse>>(); // must not be SvelteMap!
+  const patchesCacheByUrl = new Map<string, Promise<AlterSchemaResponse>>(); // must not be SvelteMap!
 
   function urlToPromise(url: string): Promise<AlterSchemaResponse> {
     const cached = patchesCacheByUrl.get(url);
@@ -99,8 +99,8 @@
   // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
   function asModify(
     subject: "column" | "constraint",
-    tableName: String,
-    name: String,
+    tableName: string,
+    name: string,
     label: "adjust" | "recreate",
   ): Modify {
     return {
