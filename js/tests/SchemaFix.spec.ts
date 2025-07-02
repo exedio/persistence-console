@@ -1,11 +1,11 @@
 import { expect } from "vitest";
 import { workOnFixes } from "@/SchemaFix";
 
-describe("Checkbox", () => {
+describe("Fix", () => {
   it("should pass through empty array", async () => {
     expect(workOnFixes([])).toStrictEqual([]);
   });
-  it("should pass through normal checkbox", async () => {
+  it("should pass through normal fix", async () => {
     expect(
       workOnFixes([
         {
