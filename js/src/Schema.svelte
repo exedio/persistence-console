@@ -20,10 +20,7 @@
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
   import { Expander } from "@/Expander.js";
-  import {
-    type SchemaFix as Fix,
-    workOnFixes,
-  } from "@/SchemaFix";
+  import { type SchemaFix as Fix, workOnFixes } from "@/SchemaFix";
 
   const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
 
@@ -70,12 +67,7 @@
     return result;
   }
 
-  function checkboxToUrl({
-    subject,
-    tableName,
-    name,
-    method,
-  }: Fix): string {
+  function checkboxToUrl({ subject, tableName, name, method }: Fix): string {
     return (
       "subject=" +
       subject +
