@@ -67,7 +67,13 @@
     return result;
   }
 
-  function checkboxToUrl({ subject, tableName, name, method }: Fix): string {
+  function checkboxToUrl({
+    subject,
+    tableName,
+    name,
+    method,
+    value,
+  }: Fix): string {
     return (
       "subject=" +
       subject +
@@ -75,7 +81,8 @@
       "&name=" +
       name +
       "&method=" +
-      method
+      method +
+      (value ? "&value=" + value : "")
     );
   }
 
@@ -128,7 +135,13 @@
             {@render expander(expandedTables, table, table.bulletColor)}
             <span class="nodeType">tab</span>
             {table.name}
-            {@render existence(table.existence, "table", undefined, table.name)}
+            {@render existence(
+              table.existence,
+              "table",
+              undefined,
+              table.name,
+              table.renameTo(schema),
+            )}
             {#if tableExpanded}
               {@render remainder(table.remainingErrors)}
             {/if}
@@ -149,6 +162,7 @@
                       "column",
                       table.name,
                       column.name,
+                      [], // TODO missing columns in the same table
                     )}
                     {@render comparison(
                       column.type,
@@ -180,6 +194,7 @@
               "sequence",
               undefined,
               sequence.name,
+              [], // TODO missing sequences
             )}
             {@render comparison(sequence.type, undefined, true)}
             {@render comparison(sequence.start, undefined, true)}
@@ -225,6 +240,7 @@
         "constraint",
         constraint.tableName,
         constraint.name,
+        [],
       )}
       {@render comparison(
         constraint.clause,
@@ -256,21 +272,25 @@
   subject: "table" | "column" | "constraint" | "sequence",
   tableName: String | undefined,
   name: String,
+  renameTo: String[],
 )}
   {#if existence}
     {@const key = subject + "/" + tableName + "/" + name}
+    {@const method = existence.text === "missing" ? "add" : "drop"}
+    {@const fix = fixes.get(key)}
     <span class={existence.color}>{existence.text}</span>
     <label
       ><input
         type="checkbox"
-        checked={fixes.has(key)}
+        checked={fix && fix.method === method}
         oninput={(e) => {
           if (asInputElement(e.target).checked) {
             fixes.set(key, {
               subject,
               tableName,
               name,
-              method: existence.text === "missing" ? "add" : "drop",
+              method,
+              value: undefined,
             });
           } else {
             fixes.delete(key);
@@ -280,8 +300,40 @@
         ? subject === "table" || subject === "sequence"
           ? "create"
           : "add"
-        : "drop"}</label
-    >
+        : "drop"}
+    </label>
+    {#if renameTo.length}
+      <label>
+        <select
+          oninput={(e) => {
+            const value = asInputElement(e.target).value;
+            if (value) {
+              fixes.set(key, {
+                subject,
+                tableName,
+                name,
+                method: "rename",
+                value: value,
+              });
+            } else {
+              fixes.delete(key);
+            }
+          }}
+        >
+          <option selected={!fix || fix.method !== "rename"}
+            >rename to ...</option
+          >
+          {#each renameTo as option}
+            <option
+              selected={fix && fix.method === "rename" && fix.value === option}
+              value={option}
+            >
+              {option}
+            </option>
+          {/each}
+        </select>
+      </label>
+    {/if}
   {/if}
 {/snippet}
 
@@ -329,6 +381,7 @@
               tableName: modify.tableName,
               name: modify.name,
               method: "modify",
+              value: undefined,
             });
           } else {
             fixes.delete(key);
