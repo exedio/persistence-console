@@ -854,7 +854,7 @@ exports[`Schema > should render a missing table 3`] = `
 "
 `;
 
-exports[`Schema > should render a missing table and fix fails 1`] = `
+exports[`Schema > should render a missing table and patch fails 1`] = `
 "<li class="svelte-6n243d">
   <span class="nodeType svelte-6n243d">table</span> myTable1Name
   <span class="red svelte-6n243d"

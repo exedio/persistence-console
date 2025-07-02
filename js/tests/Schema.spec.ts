@@ -221,7 +221,7 @@ describe("Schema", () => {
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
-  it("should render a missing table and fix fails", async () => {
+  it("should render a missing table and patch fails", async () => {
     const mock = mockFetch();
     mock.mockResolvedValueOnce(
       responseSuccess({
