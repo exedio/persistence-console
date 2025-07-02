@@ -1,13 +1,13 @@
 import { expect } from "vitest";
-import { workOnCheckboxes } from "@/SchemaCheckbox";
+import { workOnFixes } from "@/SchemaFix";
 
 describe("Checkbox", () => {
   it("should pass through empty array", async () => {
-    expect(workOnCheckboxes([])).toStrictEqual([]);
+    expect(workOnFixes([])).toStrictEqual([]);
   });
   it("should pass through normal checkbox", async () => {
     expect(
-      workOnCheckboxes([
+      workOnFixes([
         {
           subject: "constraint",
           tableName: "myTableName",
@@ -26,7 +26,7 @@ describe("Checkbox", () => {
   });
   it("should handle constraint modify", async () => {
     expect(
-      workOnCheckboxes([
+      workOnFixes([
         {
           subject: "constraint",
           tableName: "myTableName",
@@ -51,7 +51,7 @@ describe("Checkbox", () => {
   });
   it("should order", async () => {
     expect(
-      workOnCheckboxes([
+      workOnFixes([
         {
           subject: "constraint",
           tableName: "myTableName",
