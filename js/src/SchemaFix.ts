@@ -1,12 +1,12 @@
-export type SchemaCheckbox = {
+export type SchemaFix = {
   readonly subject: "table" | "column" | "constraint" | "sequence";
   readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
   readonly name: string;
   readonly method: "add" | "drop" | "modify";
 };
 
-export function workOnCheckboxes(source: SchemaCheckbox[]): SchemaCheckbox[] {
-  let result: SchemaCheckbox[] = [];
+export function workOnFixes(source: SchemaFix[]): SchemaFix[] {
+  let result: SchemaFix[] = [];
   source.forEach((i) => {
     if (i.subject === "constraint" && i.method === "modify") {
       result.push({
@@ -14,13 +14,13 @@ export function workOnCheckboxes(source: SchemaCheckbox[]): SchemaCheckbox[] {
         tableName: i.tableName,
         name: i.name,
         method: "drop",
-      } satisfies SchemaCheckbox);
+      } satisfies SchemaFix);
       result.push({
         subject: i.subject,
         tableName: i.tableName,
         name: i.name,
         method: "add",
-      } satisfies SchemaCheckbox);
+      } satisfies SchemaFix);
     } else result.push(i);
   });
   result.sort((a, b) => {
@@ -32,7 +32,7 @@ export function workOnCheckboxes(source: SchemaCheckbox[]): SchemaCheckbox[] {
 /**
  * Order taken from SchemaCop#writeApply
  */
-function orderIndex(cb: SchemaCheckbox): number {
+function orderIndex(cb: SchemaFix): number {
   if (cb.subject === "constraint") {
     if (cb.method === "drop") return -19;
     else if (cb.method === "add") return 19;

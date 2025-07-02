@@ -20,10 +20,7 @@
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
   import { Expander } from "@/Expander.js";
-  import {
-    type SchemaCheckbox as Checkbox,
-    workOnCheckboxes,
-  } from "@/SchemaCheckbox";
+  import { type SchemaFix as Fix, workOnFixes } from "@/SchemaFix";
 
   const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
 
@@ -40,19 +37,19 @@
     label: "adjust" | "recreate";
   };
 
-  const checkboxes = new SvelteMap<String, Checkbox>();
+  const fixes = new SvelteMap<String, Fix>();
 
   type Patch = {
-    readonly checkbox: Checkbox;
+    readonly fix: Fix;
     readonly url: string;
     readonly promise: Promise<AlterSchemaResponse>;
   };
 
   const patches: Patch[] = $derived(
-    workOnCheckboxes(Array.from(checkboxes.values())).map((checkbox) => {
-      const url = checkboxToUrl(checkbox);
+    workOnFixes(Array.from(fixes.values())).map((fix) => {
+      const url = checkboxToUrl(fix);
       return {
-        checkbox,
+        fix,
         url,
         promise: urlToPromise(url),
       };
@@ -70,12 +67,7 @@
     return result;
   }
 
-  function checkboxToUrl({
-    subject,
-    tableName,
-    name,
-    method,
-  }: Checkbox): string {
+  function checkboxToUrl({ subject, tableName, name, method }: Fix): string {
     return (
       "subject=" +
       subject +
@@ -205,12 +197,12 @@
   </div>
   {#if patches.length > 0}
     <ul class="sql">
-      {#each patches as { checkbox, url, promise } (url)}
+      {#each patches as { fix, url, promise } (url)}
         <li>
-          <span class="nodeType">{checkbox.subject}</span>
-          {checkbox.name}
+          <span class="nodeType">{fix.subject}</span>
+          {fix.name}
           {#await promise}
-            {checkbox.method}
+            {fix.method}
           {:then response}
             <small>{response.sql}</small>
           {:catch error}
@@ -271,17 +263,17 @@
     <label
       ><input
         type="checkbox"
-        checked={checkboxes.has(key)}
+        checked={fixes.has(key)}
         oninput={(e) => {
           if (asInputElement(e.target).checked) {
-            checkboxes.set(key, {
+            fixes.set(key, {
               subject,
               tableName,
               name,
               method: existence.text === "missing" ? "add" : "drop",
             });
           } else {
-            checkboxes.delete(key);
+            fixes.delete(key);
           }
         }}
       />{existence.text === "missing"
@@ -329,17 +321,17 @@
     <label
       ><input
         type="checkbox"
-        checked={checkboxes.has(key)}
+        checked={fixes.has(key)}
         oninput={(e) => {
           if (asInputElement(e.target).checked) {
-            checkboxes.set(key, {
+            fixes.set(key, {
               subject: modify.subject,
               tableName: modify.tableName,
               name: modify.name,
               method: "modify",
             });
           } else {
-            checkboxes.delete(key);
+            fixes.delete(key);
           }
         }}
       />{modify.label}</label
