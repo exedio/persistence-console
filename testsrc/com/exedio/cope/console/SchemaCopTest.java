@@ -328,8 +328,9 @@ public class SchemaCopTest {
 
   @Test
   void testColumnMissing() throws IOException, ApiTextException {
-    final Table table = MODEL.getSchema()
-      .getTable(SchemaInfo.getTableName(MyType.TYPE));
+    final Table table = MODEL.getSchema().getTable(
+      SchemaInfo.getTableName(MyType.TYPE)
+    );
     table.getConstraint("MyType_unique_Unq").drop();
     table.getColumn("myString").drop();
     assertEquals(
@@ -363,8 +364,9 @@ public class SchemaCopTest {
   @Test
   void testColumnUnexpectedType()
     throws IOException, SQLException, ApiTextException {
-    final Table table = MODEL.getSchema()
-      .getTable(SchemaInfo.getTableName(MyType.TYPE));
+    final Table table = MODEL.getSchema().getTable(
+      SchemaInfo.getTableName(MyType.TYPE)
+    );
     table.getConstraint("MyType_unique_Unq").drop();
     table.getColumn("myString").drop();
     execute(
@@ -462,8 +464,9 @@ public class SchemaCopTest {
   @Test
   void testConstraintUnexpectedType()
     throws IOException, SQLException, ApiTextException {
-    final Table table = MODEL.getSchema()
-      .getTable(SchemaInfo.getTableName(MyType.TYPE));
+    final Table table = MODEL.getSchema().getTable(
+      SchemaInfo.getTableName(MyType.TYPE)
+    );
     table.getConstraint("MyType_this_MN").drop();
     table.getConstraint("MyType_PK").drop();
     execute(
@@ -1026,9 +1029,10 @@ public class SchemaCopTest {
   }
 
   private static void execute(final String sql) throws SQLException {
+    //noinspection UnnecessarySemicolon OK: prettier
     try (
       Connection con = SchemaInfo.newConnection(MODEL);
-      Statement stmt = con.createStatement()
+      Statement stmt = con.createStatement();
     ) {
       stmt.execute(sql);
     }
