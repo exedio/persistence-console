@@ -10,15 +10,11 @@ export function workOnFixes(source: SchemaFix[]): SchemaFix[] {
   source.forEach((i) => {
     if (i.subject === "constraint" && i.method === "modify") {
       result.push({
-        subject: i.subject,
-        tableName: i.tableName,
-        name: i.name,
+        ...i,
         method: "drop",
       } satisfies SchemaFix);
       result.push({
-        subject: i.subject,
-        tableName: i.tableName,
-        name: i.name,
+        ...i,
         method: "add",
       } satisfies SchemaFix);
     } else result.push(i);
