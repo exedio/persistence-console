@@ -11,12 +11,23 @@
   } from "@/api/types";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
+  import { UseHashes } from "@/UseHashes.svelte";
+  import { useWithStore } from "@/utils";
 
-  const hashes = new PromiseTracker(() => get<HashesResponse[]>("hashes"));
+  const hashesStore = new Map<string, UseHashes>();
+
+  const hashes = new PromiseTracker(() =>
+    get<HashesResponse[]>("hashes").then((response) =>
+      useWithStore(
+        hashesStore,
+        toId,
+        (source) => new UseHashes(source),
+        (target, source) => target.update(source),
+        response,
+      ),
+    ),
+  );
   const measurements = new SvelteMap<string, number>();
-  let hashToggled: string | undefined = $state(undefined);
-  let plainText = $state("");
-  let plainTextHashed: string | undefined = $state(undefined);
   const errors: Error[] = $state([]);
 
   function measure(hash: HashesResponse): Promise<void> {
@@ -34,16 +45,16 @@
     hashes.forEach((h) => (p = p.then(async () => await measure(h))));
   }
 
-  function toggleHash(hash: string) {
-    if (hashToggled === hash) hashToggled = undefined;
-    else hashToggled = hash;
+  function toggleHash(hash: UseHashes) {
+    hash.toggled = !hash.toggled;
 
-    plainTextHashed = undefined;
+    hash.plainText = ""; // drop when hidden, because it may contain sensitive data
+    hash.plainTextHashed = undefined;
   }
 
-  function computeHash(hash: HashesResponse) {
-    doHash(hash, plainText)
-      .then((r) => (plainTextHashed = r.hash))
+  function computeHash(hash: UseHashes) {
+    doHash(hash, hash.plainText)
+      .then((r) => (hash.plainTextHashed = r.hash))
       .catch((e) => errors.push(e));
   }
 
@@ -101,8 +112,8 @@
         {@const measurement = measurements.get(hashId)}
         <tr class="relative">
           <td>
-            <button class="hash" onclick={() => toggleHash(hashId)}>
-              {#if hashToggled === hashId}
+            <button class="hash" onclick={() => toggleHash(hash)}>
+              {#if hash.toggled}
                 &#8594;
               {:else}
                 &#8595;
@@ -126,13 +137,13 @@
             </button>
           </td>
         </tr>
-        {#if hashToggled === hashId}
+        {#if hash.toggled}
           <tr in:fly={{ y: -10, duration: 200 }}>
             <td colspan="7" class="expansion">
-              <input bind:value={plainText} placeholder="Plain Text" />
+              <input bind:value={hash.plainText} placeholder="Plain Text" />
               <button onclick={() => computeHash(hash)}>Hash</button>
               <br />
-              <small>{plainTextHashed}</small>
+              <small>{hash.plainTextHashed}</small>
             </td>
           </tr>
         {/if}
