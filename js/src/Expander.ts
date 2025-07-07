@@ -1,5 +1,6 @@
 import { SvelteSet } from "svelte/reactivity";
 
+// TODO: export class Expander<E extends UseTable | UseColumn> {
 export class Expander<E> {
   private expanded = new SvelteSet<string>();
 
