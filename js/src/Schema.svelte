@@ -358,22 +358,13 @@
 
 {#snippet comparisonAdjust(modify: Modify | undefined)}
   {#if modify}
-    {@const key = modify.subject + "/" + modify.tableName + "/" + modify.name}
+    {@const key = fixableString(modify)}
     <label
       ><input
         type="checkbox"
         checked={fixes.has(key)}
         oninput={(e) => {
-          setFix(
-            asInputElement(e.target).checked,
-            {
-              subject: modify.subject,
-              tableName: modify.tableName,
-              name: modify.name,
-            },
-            "modify",
-            undefined,
-          );
+          setFix(asInputElement(e.target).checked, modify, "modify", undefined);
         }}
       />{modify.label}</label
     >
