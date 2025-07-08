@@ -776,6 +776,19 @@ public class SchemaCopTest {
   }
 
   @Test
+  void testTableRename() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" RENAME TO \\"MyTypeX\\""
+      }""",
+      writeJson(
+        alterSchema(MODEL, request("table", "", "MyType", "rename", "MyTypeX"))
+      )
+    );
+  }
+
+  @Test
   void testTableAddNotExists() {
     assertFails(
       () -> alterSchema(MODEL, request("table", "", "MyTypex", "add")),
@@ -948,6 +961,29 @@ public class SchemaCopTest {
   ) {
     return new ParameterRequest(
       Map.of("subject", subject, "table", table, "name", name, "method", method)
+    );
+  }
+
+  private static ParameterRequest request(
+    final String subject,
+    final String table,
+    final String name,
+    final String method,
+    final String value
+  ) {
+    return new ParameterRequest(
+      Map.of(
+        "subject",
+        subject,
+        "table",
+        table,
+        "name",
+        name,
+        "method",
+        method,
+        "value",
+        value
+      )
     );
   }
 

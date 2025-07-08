@@ -293,6 +293,62 @@ describe("Schema", () => {
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
+  it("should render a unused table to be renamed to a missing", async () => {
+    const mock = mockFetch();
+    mock.mockResolvedValueOnce(
+      responseSuccess({
+        tables: [
+          {
+            name: "myUnusedTableName",
+            columns: undefined,
+            constraints: undefined,
+            error: {
+              existence: "unused",
+              remainder: undefined,
+            },
+          },
+          {
+            name: "myMissingTableName",
+            columns: undefined,
+            constraints: undefined,
+            error: {
+              existence: "missing",
+              remainder: undefined,
+            },
+          },
+          {
+            name: "myMissingTableName2",
+            columns: undefined,
+            constraints: undefined,
+            error: {
+              existence: "missing",
+              remainder: undefined,
+            },
+          },
+        ],
+        sequences: undefined,
+      } satisfies SchemaResponse),
+    );
+    await mountComponent();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        'ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"',
+      ),
+    );
+    select().value = "myMissingTableName";
+    select().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/alterSchema?subject=table&name=myUnusedTableName&method=rename&value=myMissingTableName",
+    );
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(await formatHtml(sql())).toMatchSnapshot();
+  });
+
   it("should render a table with a remaining error", async () => {
     const mock = mockFetch();
     mock.mockResolvedValueOnce(
@@ -1022,6 +1078,10 @@ function checkbox(): HTMLElement {
   return document
     .querySelectorAll("input[type='checkbox']")
     .item(0) as HTMLElement;
+}
+
+function select(): HTMLSelectElement {
+  return document.querySelectorAll("select").item(0) as HTMLSelectElement;
 }
 
 function sql(): HTMLElement {

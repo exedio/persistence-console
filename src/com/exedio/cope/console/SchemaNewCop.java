@@ -388,6 +388,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     final String method = requireParameter("method", request);
     final String ADD = "add";
     final String DROP = "drop";
+    final String RENAME = "rename";
     final String MODIFY = "modify";
     final String METHOD404 = "method not found";
     return switch (subject) {
@@ -396,6 +397,10 @@ final class SchemaNewCop extends ConsoleCop<Void> {
         yield switch (method) {
           case ADD -> apply(node::create);
           case DROP -> apply(node::drop);
+          case RENAME -> {
+            final String value = requireParameter("value", request);
+            yield apply(l -> node.renameTo(value, l));
+          }
           default -> throw ApiTextException.notFound(METHOD404);
         };
       }
