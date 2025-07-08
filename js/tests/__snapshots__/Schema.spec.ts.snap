@@ -1628,7 +1628,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <label><input type="checkbox" />drop</label>
     <label
       ><select>
-        <option selected="">rename to ...</option>
+        <option value="<NONE>" selected="">rename to ...</option>
         <option value="myMissingTableName">myMissingTableName</option>
         <option value="myMissingTableName2">myMissingTableName2</option>
         <!---->
@@ -1678,7 +1678,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <label><input type="checkbox" />drop</label>
     <label
       ><select>
-        <option>rename to ...</option>
+        <option value="<NONE>">rename to ...</option>
         <option value="myMissingTableName" selected="">
           myMissingTableName
         </option>
