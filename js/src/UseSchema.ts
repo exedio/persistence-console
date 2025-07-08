@@ -6,6 +6,7 @@ import type {
   SchemaSequenceResponse,
   SchemaTableResponse,
 } from "@/api/types";
+import type { SchemaFixable } from "@/SchemaFix";
 
 export type UseSchema = {
   readonly tables: readonly UseTable[];
@@ -34,6 +35,7 @@ export type UseTable = {
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
   readonly renameTo: (schema: UseSchema) => string[];
+  readonly fixable: SchemaFixable;
 };
 
 export function useTable(api: SchemaTableResponse): UseTable {
@@ -66,6 +68,11 @@ export function useTable(api: SchemaTableResponse): UseTable {
         .filter((t) => t.existence && t.existence.text === "missing")
         .map((t) => t.name);
     },
+    fixable: {
+      subject: "table",
+      tableName: undefined,
+      name,
+    },
   } satisfies UseTable;
 }
 
@@ -77,6 +84,7 @@ export type UseColumn = {
   readonly constraints: readonly UseConstraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
+  readonly fixable: SchemaFixable;
 };
 
 export function useColumn(
@@ -109,6 +117,11 @@ export function useColumn(
       remainderColor(api.error),
       worst(constraints.map((i) => i.bulletColor)),
     ]),
+    fixable: {
+      subject: "column",
+      tableName,
+      name,
+    },
   } satisfies UseColumn;
 }
 
@@ -132,6 +145,7 @@ export type UseConstraint = {
   readonly clause: UseComparison | undefined;
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
+  readonly fixable: SchemaFixable;
 };
 
 type UseConstraintType = "pk" | "fk" | "unq" | "chk";
@@ -181,6 +195,11 @@ export function useConstraint(
       clause?.color,
       remainderColor(api.error),
     ]),
+    fixable: {
+      subject: "constraint",
+      tableName,
+      name,
+    },
   } satisfies UseConstraint;
 }
 
@@ -210,6 +229,7 @@ export type UseSequence = {
   readonly start: UseComparison;
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
+  readonly fixable: SchemaFixable;
 };
 
 export function useSequence(api: SchemaSequenceResponse): UseSequence {
@@ -242,6 +262,11 @@ export function useSequence(api: SchemaSequenceResponse): UseSequence {
       start.color,
       remainderColor(api.error),
     ]),
+    fixable: {
+      subject: "sequence",
+      tableName: undefined,
+      name: api.name,
+    },
   } satisfies UseSequence;
 }
 
