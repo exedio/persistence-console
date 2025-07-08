@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE ivy-module [
 		<!ENTITY jackson.version "2.15.2">
-		<!ENTITY junit.version.minor "11.3">
+		<!ENTITY junit.version.minor "13.3">
 	]>
 <ivy-module
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
