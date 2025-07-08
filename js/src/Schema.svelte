@@ -302,14 +302,15 @@
         : "drop"}
     </label>
     {#if renameTo.length}
+      {@const NONE = "<NONE>"}
       <label>
         <select
           oninput={(e) => {
             const value = asInputElement(e.target).value;
-            setFix(!!value, fixable, "rename", value);
+            setFix(value !== NONE, fixable, "rename", value);
           }}
         >
-          <option selected={!fix || fix.method !== "rename"}
+          <option selected={!fix || fix.method !== "rename"} value={NONE}
             >rename to ...</option
           >
           {#each renameTo as option}

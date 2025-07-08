@@ -363,7 +363,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    select().value = "";
+    select().value = "<NONE>";
     select().dispatchEvent(new Event("input", { bubbles: true }));
     await flushPromises();
     expect(sql()).toBeNull();
