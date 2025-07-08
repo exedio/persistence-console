@@ -348,6 +348,8 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
     expect(select().value).toBe("<NONE>");
+    expect(select(1).value).toBe("<NONE>");
+    expect(select(2).value).toBe("<NONE>");
 
     const mockFix = mockFetch();
     mockFix.mockResolvedValueOnce(
@@ -364,12 +366,87 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
     expect(select().value).toBe("myMissingTableName");
+    expect(select(1).value).toBe("myUnusedTableName");
+    expect(select(2).value).toBe("<NONE>");
 
     select().value = "<NONE>";
     select().dispatchEvent(new Event("input", { bubbles: true }));
     await flushPromises();
     expect(sql()).toBeNull();
     expect(select().value).toBe("<NONE>");
+    expect(select(1).value).toBe("<NONE>");
+    expect(select(2).value).toBe("<NONE>");
+  });
+
+  it("should render a missing table to be renamed to an unused", async () => {
+    const mock = mockFetch();
+    mock.mockResolvedValueOnce(
+      responseSuccess({
+        tables: [
+          {
+            name: "myMissingTableName",
+            columns: undefined,
+            constraints: undefined,
+            error: {
+              existence: "missing",
+              remainder: undefined,
+            },
+          },
+          {
+            name: "myUnusedTableName",
+            columns: undefined,
+            constraints: undefined,
+            error: {
+              existence: "unused",
+              remainder: undefined,
+            },
+          },
+          {
+            name: "myUnusedTableName2",
+            columns: undefined,
+            constraints: undefined,
+            error: {
+              existence: "unused",
+              remainder: undefined,
+            },
+          },
+        ],
+        sequences: undefined,
+      } satisfies SchemaResponse),
+    );
+    await mountComponent();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(sql()).toBeNull();
+    expect(select().value).toBe("<NONE>");
+    expect(select(1).value).toBe("<NONE>");
+    expect(select(2).value).toBe("<NONE>");
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        'ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"',
+      ),
+    );
+    select().value = "myUnusedTableName";
+    select().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/alterSchema?subject=table&name=myUnusedTableName&method=rename&value=myMissingTableName",
+    );
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(await formatHtml(sql())).toMatchSnapshot();
+    expect(select().value).toBe("myUnusedTableName");
+    expect(select(1).value).toBe("myMissingTableName");
+    expect(select(2).value).toBe("<NONE>");
+
+    select().value = "<NONE>";
+    select().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(sql()).toBeNull();
+    expect(select().value).toBe("<NONE>");
+    expect(select(1).value).toBe("<NONE>");
+    expect(select(2).value).toBe("<NONE>");
   });
 
   it("should render a table with a remaining error", async () => {
@@ -1143,8 +1220,8 @@ function checkbox(): HTMLElement {
     .item(0) as HTMLElement;
 }
 
-function select(): HTMLSelectElement {
-  return document.querySelectorAll("select").item(0) as HTMLSelectElement;
+function select(index: number = 0): HTMLSelectElement {
+  return document.querySelectorAll("select").item(index) as HTMLSelectElement;
 }
 
 function sql(): HTMLElement {

@@ -62,6 +62,18 @@
     }
   }
 
+  function renameFromValue(fixable: Fixable): string {
+    for (const i of fixes.values()) {
+      if (
+        i.subject === fixable.subject &&
+        i.tableName === fixable.tableName &&
+        i.value === fixable.name
+      )
+        return i.name;
+    }
+    return RENAME_NONE;
+  }
+
   type Patch = {
     readonly fix: Fix;
     readonly url: string;
@@ -163,6 +175,7 @@
             {@render existence(
               table.existence,
               table.fixable,
+              table.renameFrom(schema),
               table.renameTo(schema),
             )}
             {#if tableExpanded}
@@ -183,6 +196,7 @@
                     {@render existence(
                       column.existence,
                       column.fixable,
+                      [], // TODO unused columns in the same table
                       [], // TODO missing columns in the same table
                     )}
                     {@render comparison(
@@ -213,6 +227,7 @@
             {@render existence(
               sequence.existence,
               sequence.fixable,
+              [], // TODO unused sequences
               [], // TODO missing sequences
             )}
             {@render comparison(sequence.type, undefined, true)}
@@ -254,7 +269,7 @@
       {@render expanderDisabled(constraint.bulletColor)}
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
-      {@render existence(constraint.existence, constraint.fixable, [])}
+      {@render existence(constraint.existence, constraint.fixable, [], [])}
       {@render comparison(
         constraint.clause,
         asModify(
@@ -283,6 +298,7 @@
 {#snippet existence(
   existence: UseExistence,
   fixable: Fixable,
+  renameFrom: String[],
   renameTo: String[],
 )}
   {#if existence}
@@ -303,6 +319,36 @@
           : "add"
         : "drop"}
     </label>
+    {#if renameFrom.length}
+      <label>
+        <select
+          value={renameFromValue(fixable)}
+          oninput={(e) => {
+            const value = asInputElement(e.target).value;
+            if (value !== RENAME_NONE) {
+              setFix(true, { ...fixable, name: value }, "rename", fixable.name);
+            } else {
+              fixes.forEach((value, key, map) => {
+                if (
+                  value.subject === fixable.subject &&
+                  value.tableName === fixable.tableName &&
+                  value.method === "rename" &&
+                  value.value === fixable.name
+                )
+                  map.delete(fixableString(value));
+              });
+            }
+          }}
+        >
+          <option value={RENAME_NONE}>rename from ...</option>
+          {#each renameFrom as option}
+            <option value={option}>
+              {option}
+            </option>
+          {/each}
+        </select>
+      </label>
+    {/if}
     {#if renameTo.length}
       <label>
         <select
