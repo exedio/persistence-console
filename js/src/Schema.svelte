@@ -44,6 +44,24 @@
 
   const fixes = new SvelteMap<string, Fix>();
 
+  function setFix(
+    set: boolean,
+    fixable: Fixable,
+    method: "add" | "drop" | "modify" | "rename",
+    value: string | undefined,
+  ) {
+    const key = fixableString(fixable);
+    if (set) {
+      fixes.set(key, {
+        ...fixable,
+        method,
+        value,
+      });
+    } else {
+      fixes.delete(key);
+    }
+  }
+
   type Patch = {
     readonly fix: Fix;
     readonly url: string;
@@ -275,15 +293,7 @@
         type="checkbox"
         checked={fix && fix.method === method}
         oninput={(e) => {
-          if (asInputElement(e.target).checked) {
-            fixes.set(key, {
-              ...fixable,
-              method,
-              value: undefined,
-            });
-          } else {
-            fixes.delete(key);
-          }
+          setFix(asInputElement(e.target).checked, fixable, method, undefined);
         }}
       />{existence.text === "missing"
         ? fixable.subject === "table" || fixable.subject === "sequence"
@@ -296,15 +306,7 @@
         <select
           oninput={(e) => {
             const value = asInputElement(e.target).value;
-            if (value) {
-              fixes.set(key, {
-                ...fixable,
-                method: "rename",
-                value: value,
-              });
-            } else {
-              fixes.delete(key);
-            }
+            setFix(!!value, fixable, "rename", value);
           }}
         >
           <option selected={!fix || fix.method !== "rename"}
@@ -362,17 +364,16 @@
         type="checkbox"
         checked={fixes.has(key)}
         oninput={(e) => {
-          if (asInputElement(e.target).checked) {
-            fixes.set(key, {
+          setFix(
+            asInputElement(e.target).checked,
+            {
               subject: modify.subject,
               tableName: modify.tableName,
               name: modify.name,
-              method: "modify",
-              value: undefined,
-            });
-          } else {
-            fixes.delete(key);
-          }
+            },
+            "modify",
+            undefined,
+          );
         }}
       />{modify.label}</label
     >
