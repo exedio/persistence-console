@@ -1,7 +1,14 @@
-export type SchemaFix = {
+export type SchemaFixable = {
   readonly subject: "table" | "column" | "constraint" | "sequence";
   readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
   readonly name: string;
+};
+
+export function schemaFixableString(f: SchemaFixable): string {
+  return f.subject + "/" + f.tableName + "/" + f.name;
+}
+
+export type SchemaFix = SchemaFixable & {
   readonly method: "add" | "drop" | "modify" | "rename";
   readonly value: string | undefined; // new name for method "rename"
 };

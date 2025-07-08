@@ -20,7 +20,12 @@
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
   import { Expander } from "@/Expander.js";
-  import { type SchemaFix as Fix, workOnFixes } from "@/SchemaFix";
+  import {
+    type SchemaFix as Fix,
+    type SchemaFixable as Fixable,
+    schemaFixableString as fixableString,
+    workOnFixes,
+  } from "@/SchemaFix";
 
   const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
 
@@ -137,9 +142,7 @@
             {table.name}
             {@render existence(
               table.existence,
-              "table",
-              undefined,
-              table.name,
+              table.fixable,
               table.renameTo(schema),
             )}
             {#if tableExpanded}
@@ -159,9 +162,7 @@
                     {column.name}
                     {@render existence(
                       column.existence,
-                      "column",
-                      table.name,
-                      column.name,
+                      column.fixable,
                       [], // TODO missing columns in the same table
                     )}
                     {@render comparison(
@@ -191,9 +192,7 @@
             {sequence.name}
             {@render existence(
               sequence.existence,
-              "sequence",
-              undefined,
-              sequence.name,
+              sequence.fixable,
               [], // TODO missing sequences
             )}
             {@render comparison(sequence.type, undefined, true)}
@@ -235,13 +234,7 @@
       {@render expanderDisabled(constraint.bulletColor)}
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
-      {@render existence(
-        constraint.existence,
-        "constraint",
-        constraint.tableName,
-        constraint.name,
-        [],
-      )}
+      {@render existence(constraint.existence, constraint.fixable, [])}
       {@render comparison(
         constraint.clause,
         asModify(
@@ -269,13 +262,11 @@
 
 {#snippet existence(
   existence: UseExistence,
-  subject: "table" | "column" | "constraint" | "sequence",
-  tableName: String | undefined,
-  name: String,
+  fixable: Fixable,
   renameTo: String[],
 )}
   {#if existence}
-    {@const key = subject + "/" + tableName + "/" + name}
+    {@const key = fixableString(fixable)}
     {@const method = existence.text === "missing" ? "add" : "drop"}
     {@const fix = fixes.get(key)}
     <span class={existence.color}>{existence.text}</span>
@@ -286,9 +277,7 @@
         oninput={(e) => {
           if (asInputElement(e.target).checked) {
             fixes.set(key, {
-              subject,
-              tableName,
-              name,
+              ...fixable,
               method,
               value: undefined,
             });
@@ -297,7 +286,7 @@
           }
         }}
       />{existence.text === "missing"
-        ? subject === "table" || subject === "sequence"
+        ? fixable.subject === "table" || fixable.subject === "sequence"
           ? "create"
           : "add"
         : "drop"}
@@ -309,9 +298,7 @@
             const value = asInputElement(e.target).value;
             if (value) {
               fixes.set(key, {
-                subject,
-                tableName,
-                name,
+                ...fixable,
                 method: "rename",
                 value: value,
               });
