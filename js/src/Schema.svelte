@@ -310,9 +310,7 @@
             setFix(value !== NONE, fixable, "rename", value);
           }}
         >
-          <option selected={!fix || fix.method !== "rename"} value={NONE}
-            >rename to ...</option
-          >
+          <option value={NONE}>rename to ...</option>
           {#each renameTo as option}
             <option
               selected={fix && fix.method === "rename" && fix.value === option}
