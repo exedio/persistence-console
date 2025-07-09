@@ -118,14 +118,14 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 			column("Table", (out, table) -> UnsupportedCheckConstraintByTable_Jspm.writeTableValue(this, out, table)),
 			columnNonFilterable("Condition", (out, table) ->
 			{
-				final StringBuilder bf = new StringBuilder();
-				appendSQL(table, bf);
-				writeValueLong(out, bf.toString());
+				final StringBuilder sb = new StringBuilder();
+				appendSQL(table, sb);
+				writeValueLong(out, sb.toString());
 			})
 		);
 	}
 
-	private static void appendSQL(final Table table, final StringBuilder bf)
+	private static void appendSQL(final Table table, final StringBuilder sb)
 	{
 		boolean first = true;
 
@@ -136,9 +136,9 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 				if(first)
 					first = false;
 				else
-					bf.append(" AND ");
+					sb.append(" AND ");
 
-				bf.append('(').
+				sb.append('(').
 					append(constraint.getRequiredCondition()).
 					append(')');
 			}
@@ -184,18 +184,18 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 	long check(final Table table)
 	{
 		final Model model = app.model;
-		final StringBuilder bf = new StringBuilder();
-		bf.append("SELECT COUNT(*) FROM ").
+		final StringBuilder sb = new StringBuilder();
+		sb.append("SELECT COUNT(*) FROM ").
 			append(quoteName(model, table.getName())).
 			append(" WHERE NOT(");
-		appendSQL(table, bf);
-		bf.append(')');
+		appendSQL(table, sb);
+		sb.append(')');
 
 		try(
 			Connection con = newConnection(model);
 			Statement st = con.createStatement())
 		{
-			try(ResultSet rs = st.executeQuery(bf.toString()))
+			try(ResultSet rs = st.executeQuery(sb.toString()))
 			{
 				rs.next();
 				return rs.getLong(1);
@@ -203,7 +203,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 		}
 		catch(final SQLException e)
 		{
-			throw new SQLRuntimeException(e, bf.toString());
+			throw new SQLRuntimeException(e, sb.toString());
 		}
 	}
 }

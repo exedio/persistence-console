@@ -65,13 +65,13 @@ final class ConnectCop extends ConsoleCop<Void>
 		final File f = new File(source);
 		try(InputStreamReader r = new InputStreamReader(new FileInputStream(f), US_ASCII))
 		{
-			final StringBuilder bf = new StringBuilder();
+			final StringBuilder sb = new StringBuilder();
 
 			final char[] b = new char[20*1024];
 			for(int len = r.read(b); len>=0; len = r.read(b))
-				bf.append(b, 0, len);
+				sb.append(b, 0, len);
 
-			sourceContent = XMLEncoder.encode(bf.toString());
+			sourceContent = XMLEncoder.encode(sb.toString());
 			for(final Properties.Field<?> field : props.getFields())
 			{
 				if(field.hasHiddenValue())
