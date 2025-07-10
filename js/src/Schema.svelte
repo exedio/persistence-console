@@ -305,6 +305,7 @@
       {@const NONE = "<NONE>"}
       <label>
         <select
+          value={fix && fix.method === "rename" ? fix.value : NONE}
           oninput={(e) => {
             const value = asInputElement(e.target).value;
             setFix(value !== NONE, fixable, "rename", value);
@@ -312,10 +313,7 @@
         >
           <option value={NONE}>rename to ...</option>
           {#each renameTo as option}
-            <option
-              selected={fix && fix.method === "rename" && fix.value === option}
-              value={option}
-            >
+            <option value={option}>
               {option}
             </option>
           {/each}
