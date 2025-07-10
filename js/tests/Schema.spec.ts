@@ -347,6 +347,7 @@ describe("Schema", () => {
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
+    expect(select().value).toBe("<NONE>");
 
     const mockFix = mockFetch();
     mockFix.mockResolvedValueOnce(
@@ -362,11 +363,13 @@ describe("Schema", () => {
     );
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
+    expect(select().value).toBe("myMissingTableName");
 
     select().value = "<NONE>";
     select().dispatchEvent(new Event("input", { bubbles: true }));
     await flushPromises();
     expect(sql()).toBeNull();
+    expect(select().value).toBe("<NONE>");
   });
 
   it("should render a table with a remaining error", async () => {
