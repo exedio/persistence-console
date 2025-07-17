@@ -35,7 +35,6 @@ import com.exedio.cope.console.HashCop.DoHashRequest;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.HashAlgorithm;
 import java.io.IOException;
-import java.security.SecureRandom;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
@@ -216,12 +215,6 @@ public class HashCopTest {
       final Item exceptionItem,
       final Hash hash
     ) throws Hash.InvalidPlainTextException {
-      throw new AssertionFailedError();
-    }
-
-    @Override
-    @Deprecated
-    protected String newRandomPlainText(final SecureRandom secureRandom) {
       throw new AssertionFailedError();
     }
 

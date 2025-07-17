@@ -23,9 +23,9 @@ import static com.exedio.cope.console.SuspicionsCop.suspicions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
-import com.exedio.cope.Feature;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
+import com.exedio.cope.Pattern;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import java.io.IOException;
@@ -77,7 +77,7 @@ public class SuspicionsCopTest {
     }
   }
 
-  private static final class MyFeature extends Feature {
+  private static final class MyFeature extends Pattern {
 
     final List<String> suspicions;
 

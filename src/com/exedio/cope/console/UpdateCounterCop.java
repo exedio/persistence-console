@@ -64,6 +64,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
+	@SuppressWarnings("deprecation") // TODO: drop whole cop
 	List<Type<?>> getItems()
 	{
 		final ArrayList<Type<?>> result = new ArrayList<>();
@@ -100,6 +101,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
+	@SuppressWarnings("deprecation") // TODO: drop whole cop
 	long check(final Type<?> type)
 	{
 		try(TransactionTry tx = app.model.startTransactionTry("Console UpdateCounter " + id))
@@ -110,6 +112,7 @@ final class UpdateCounterCop extends TestCop<Type<?>>
 	}
 
 	@Override
+	@SuppressWarnings("deprecation") // TODO: drop whole cop
 	String getViolationSql(final Type<?> type)
 	{
 		return SchemaInfo.checkUpdateCounter(type);
