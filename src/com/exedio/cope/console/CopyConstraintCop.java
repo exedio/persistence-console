@@ -76,7 +76,6 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 		return COLUMNS;
 	}
 
-	@SuppressWarnings("Convert2MethodRef")
 	private static final List<Column<CopyConstraint>> COLUMNS = List.of(
 			column("Constraint", constraint -> constraint.toString()),
 			column("Target",     constraint -> constraint.getTarget().getValueType().getID())
