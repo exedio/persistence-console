@@ -208,6 +208,16 @@ final class Media_Jspm
 		<% writeToggle(out, cop.toggleContentTypeMismatch(), cop.contentTypeMismatch); %> Show Mismatching Content-Type only<%
 	}
 
+	if (!media.isWithLocator())
+	{
+		%>
+		<div>(URL is not available for this media: <code>isWithLocator()==false</code>.)</div><%
+	}
+	if (other!=null && !other.isWithLocator())
+	{
+		%>
+		<div>(URL is not available for source media <a href="<%=cop.toOther()%>"><%=other.getName()%></a>: <code>isWithLocator()==false</code>.)</div><%
+	}
 	if(form)
 	{
 		%>
@@ -221,7 +231,9 @@ final class Media_Jspm
 			%>
 			<tr>
 				<th>Item</th>
-				<th>URL <a href="<%=cop.toggleInlineMedia()%>">IN</a></th>
+				<% if (media.isWithLocator()) { %>
+					<th>URL <a href="<%=cop.toggleInlineMedia()%>">IN</a></th>
+				<% } %>
 				<th>Content Type</th>
 				<th>Last Modified</th><%
 
@@ -230,7 +242,7 @@ final class Media_Jspm
 				%>
 				<th>Length</th><%
 				}
-				if(other!=null)
+				if(other!=null && other.isWithLocator())
 				{
 				%>
 				<th><a href="<%=
@@ -246,7 +258,9 @@ final class Media_Jspm
 				%>
 			<tr>
 				<td class="text"><%=item.getCopeID()%></td>
-				<td class="text"><% writeLocator(out, media, item, mediaInline); %></td>
+				<% if (media.isWithLocator()) { %>
+					<td class="text"><% writeLocator(out, media, item, mediaInline); %></td>
+				<% } %>
 				<td class="text"><%if(contentType!=null){%><%=contentType%><%}%></td>
 				<td><%=media.getLastModified(item)%><%
 
@@ -262,7 +276,7 @@ final class Media_Jspm
 				%>
 				<td><%=format(mediaLength.getLength(item))%></td><%
 				}
-				if(other!=null)
+				if(other!=null && other.isWithLocator())
 				{
 				%>
 				<td class="text"><% writeLocator(out, other, item, otherInline); %></td><%
@@ -294,16 +308,7 @@ final class Media_Jspm
 
 	private static void writeLocator(final Out out, final MediaPath mediaPath, final Item item, final boolean inline)
 	{
-		final MediaPath.Locator locator;
-		try
-		{
-			locator = mediaPath.getLocator(item);
-		}
-		catch (final UnsupportedOperationException e)
-		{
-			%><%=e.getClass().getSimpleName()%>: <%=e.getMessage()%><%
-			return;
-		}
+		final MediaPath.Locator locator = mediaPath.getLocator(item);
 		if(locator!=null)
 		{
 			final String contentType = locator.getContentType();
