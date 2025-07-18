@@ -201,7 +201,6 @@
 			<classpath>
 				<pathelement location="build/classes/src" />
 				<fileset dir="lib/test" />
-				<pathelement location="lib/instrument/exedio-cope-instrument-annotations.jar" />
 			</classpath>
 		</compile>
 	</target>
@@ -297,7 +296,6 @@
 			<arg value="-Xdoclint:all,-missing" />
 			<classpath>
 				<fileset dir="lib/runtime" />
-				<pathelement location="lib/instrument/exedio-cope-instrument-annotations.jar" />
 				<fileset dir="lib/compile-annotations" />
 			</classpath>
 		</javadoc>
