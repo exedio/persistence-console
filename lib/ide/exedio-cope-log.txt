@@ -7,6 +7,63 @@ omit bug fixes.
 The items are sorted inversely, i.e. the latest items are on top.
 
 --------------------------------------------------------------------------
+* Check constraints affecting just the super type are supported now.
+	This affects database schema. Adds new check constraints,
+	that have been checked by COPE Console tab "Multi-Table Check Constraints" before.
+* PatternItem in package com.exedio.cope.pattern renamed to "Entry".
+	The class itself is not public, but the results of methods
+	[Type|Feature].getLocalizationKeys() are affected.
+* SuppressWarnings("DataFlowIssue") should no longer be required for instrumentor-generated code, because
+	@Nullable is removed from DataField#getArray.
+* JDK 17 required.
+* access to MediaPaths via MediaServlet can be forbidden; see Media#withLocator and MediaThumbnail#withLocator
+	copeconsole should be updated to version 7173 or newer - otherwise the media.html screen for MediaPaths using
+	this feature will fail.
+* ConnectProperties#getVaultAlgorithm() dropped.
+	You may use BucketProperties#getAlgorithm() instead.
+	This breaks backwards API compatibility, may cause compiler errors.
+* VaultServiceParameters#getVaultProperties() dropped.
+	You may use #getBucketProperties() instead.
+	This breaks backwards API compatibility, may cause compiler errors.
+* ConnectProperties: keys for Vault Trails can be set for each bucket individually as well.
+	This affects vault.trail.[startLimit|fieldLimit|originLimit].
+	Methods VaultProperties#getTrail[Start|Field|Origin]Limit() where dropped,
+	may cause compiler errors.
+* VaultFileService adds new properties probes:
+	- AtomicMove
+	- directory.AtomicMove
+	- directory.AtomicMoveEmpty
+	You MUST run these probes on all your deployed systems!
+	That includes ALL nodes of any cluster.
+* exedio-cope-instrument-annotations.jar is now available via a new Ivy configuration
+  "instrument-annotations".
+  You can now do the following:
+  - add "instrument-annotations" to "compile-annotations" ivy configuration
+  - remove any hard reference to
+    "lib/instrument/exedio-cope-instrument-annotations.jar" from your build process
+* VaultService interface modified.
+	- getLength(String hash) dropped
+	- put methods drop 3rd parameter VaultPutInfo info
+	- probeGenuineServiceKey renamed to probeBucketTag
+	This breaks backwards API compatibility, may cause compiler errors.
+	You MUST update (if present in your project) copevault to rev>=143
+	and servletvault to rev>=74.
+* Vault Trails MUST be complete.
+	From now on, DataField#getLength relies on the corresponding Vault Trail.
+	Check in COPE Console tab "Data Vault Trail".
+* Trailing spaces become significant on MySQL and hsqldb.
+	Before, searching for field.equal("x ") did find "x ", but also "x  " and "x".
+	The same when searching for field.equal("x   ") or field.equal("x").
+	Now, field.equal("x ") finds just "x " and nothing else.
+* Instrumentor enables serialAnnotation by default. Affects instrumented code.
+	Use this parameter:
+		<instrument serialAnnotation="false" ...
+	to revert to previous default behaviour.
+* servlet-api 4.0.1 required.
+* Media#contentTypeSub (rarely used) stores contentType of total length 61
+	by default.
+	This breaks backwards API compatibility, changes semantics of this method.
+	Affects database schema.
 * DataField#startsWithIfSupported supports vault.
 	Allows COPE Console tab "Media Types" to check medias in vault.
 	Requires copeconsole rev>=7146 (recommended).
