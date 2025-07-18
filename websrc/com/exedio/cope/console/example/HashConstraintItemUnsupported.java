@@ -28,7 +28,7 @@ import com.exedio.cope.pattern.HashConstraint;
 final class HashConstraintItemUnsupported extends Item
 {
 	static final StringField hash = new StringField();
-	@Wrapper(wrap="getArray", suppressWarnings="DataFlowIssue")
+	@Wrapper(wrap="getArray")
 	static final DataField data = new DataField();
 	@UsageEntryPoint
 	static final HashConstraint constraint = new HashConstraint(hash, () -> "MD2", data);
@@ -110,7 +110,7 @@ final class HashConstraintItemUnsupported extends Item
 	 * Returns the value of the persistent field {@link #data}.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getArray")
-	@java.lang.SuppressWarnings({"DataFlowIssue","FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
 	@javax.annotation.Nonnull
 	final byte[] getDataArray()
 	{
