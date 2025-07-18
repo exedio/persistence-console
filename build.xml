@@ -177,7 +177,6 @@
 		<instrument
 				dir="websrc"
 				nullabilityAnnotations="true"
-				serialAnnotation="true"
 				verify="${instrument.verify}">
 			<classpath>
 				<fileset dir="lib/test" />
