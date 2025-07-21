@@ -54,7 +54,15 @@ final class AMediaItem extends Item
 	@Vault("other")
 	static final Media finger = new Media().optional();
 
+	static final Media noUrl = new Media().withLocator(false).optional();
+
 	static final MediaThumbnail thumbnail = new MediaThumbnail(content, 150, 150);
+
+	static final MediaThumbnail thumbnailOfNoUrl = new MediaThumbnail(noUrl, 150, 150);
+
+	static final MediaThumbnail noUrlThumbnail = new MediaThumbnail(content, 150, 150).withLocator(false);
+
+	static final MediaThumbnail noUrlThumbnailOfNoUrl = new MediaThumbnail(noUrl, 150, 150).withLocator(false);
 
 	@WrapperIgnore static final AMediaTestable testableOk1  = new AMediaTestable(content, false);
 	@WrapperIgnore static final AMediaTestable testableOk2  = new AMediaTestable(content, false);
@@ -1278,6 +1286,136 @@ final class AMediaItem extends Item
 	}
 
 	/**
+	 * Returns the content type of the media {@link #noUrl}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getContentType")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
+	final java.lang.String getNoUrlContentType()
+	{
+		return AMediaItem.noUrl.getContentType(this);
+	}
+
+	/**
+	 * Returns whether media {@link #noUrl} is null.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="isNull")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final boolean isNoUrlNull()
+	{
+		return AMediaItem.noUrl.isNull(this);
+	}
+
+	/**
+	 * Returns the last modification date of media {@link #noUrl}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLastModified")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
+	final java.util.Date getNoUrlLastModified()
+	{
+		return AMediaItem.noUrl.getLastModified(this);
+	}
+
+	/**
+	 * Returns the body length of the media {@link #noUrl}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLength")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final long getNoUrlLength()
+	{
+		return AMediaItem.noUrl.getLength(this);
+	}
+
+	/**
+	 * Returns the body of the media {@link #noUrl}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getBody")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
+	final byte[] getNoUrlBody()
+	{
+		return AMediaItem.noUrl.getBody(this);
+	}
+
+	/**
+	 * Writes the body of media {@link #noUrl} into the given stream.
+	 * Does nothing, if the media is null.
+	 * @throws java.io.IOException if accessing {@code body} throws an IOException.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getBody")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getNoUrlBody(@javax.annotation.Nonnull final java.io.OutputStream body)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.noUrl.getBody(this,body);
+	}
+
+	/**
+	 * Writes the body of media {@link #noUrl} into the given file.
+	 * Does nothing, if the media is null.
+	 * @throws java.io.IOException if accessing {@code body} throws an IOException.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getBody")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void getNoUrlBody(@javax.annotation.Nonnull final java.nio.file.Path body)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.noUrl.getBody(this,body);
+	}
+
+	/**
+	 * Sets the content of media {@link #noUrl}.
+	 * @throws java.io.IOException if accessing {@code body} throws an IOException.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setNoUrl(@javax.annotation.Nullable final com.exedio.cope.pattern.Media.Value noUrl)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.noUrl.set(this,noUrl);
+	}
+
+	/**
+	 * Sets the content of media {@link #noUrl}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setNoUrl(@javax.annotation.Nullable final byte[] body,@javax.annotation.Nullable final java.lang.String contentType)
+	{
+		AMediaItem.noUrl.set(this,body,contentType);
+	}
+
+	/**
+	 * Sets the content of media {@link #noUrl}.
+	 * @throws java.io.IOException if accessing {@code body} throws an IOException.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setNoUrl(@javax.annotation.Nullable final java.io.InputStream body,@javax.annotation.Nullable final java.lang.String contentType)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.noUrl.set(this,body,contentType);
+	}
+
+	/**
+	 * Sets the content of media {@link #noUrl}.
+	 * @throws java.io.IOException if accessing {@code body} throws an IOException.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="set")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	final void setNoUrl(@javax.annotation.Nullable final java.nio.file.Path body,@javax.annotation.Nullable final java.lang.String contentType)
+			throws
+				java.io.IOException
+	{
+		AMediaItem.noUrl.set(this,body,contentType);
+	}
+
+	/**
 	 * Returns a URL the content of {@link #thumbnail} is available under.
 	 */
 	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getURL")
@@ -1332,6 +1470,67 @@ final class AMediaItem extends Item
 				java.io.IOException
 	{
 		return AMediaItem.thumbnail.get(this);
+	}
+
+	/**
+	 * Returns a URL the content of {@link #thumbnailOfNoUrl} is available under.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getURL")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
+	final java.lang.String getThumbnailOfNoUrlURL()
+	{
+		return AMediaItem.thumbnailOfNoUrl.getURL(this);
+	}
+
+	/**
+	 * Returns a Locator the content of {@link #thumbnailOfNoUrl} is available under.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="getLocator")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
+	final com.exedio.cope.pattern.MediaPath.Locator getThumbnailOfNoUrlLocator()
+	{
+		return AMediaItem.thumbnailOfNoUrl.getLocator(this);
+	}
+
+	/**
+	 * Returns the body of {@link #thumbnailOfNoUrl}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
+	final byte[] getThumbnailOfNoUrl()
+			throws
+				java.io.IOException
+	{
+		return AMediaItem.thumbnailOfNoUrl.get(this);
+	}
+
+	/**
+	 * Returns the body of {@link #noUrlThumbnail}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
+	final byte[] getNoUrlThumbnail()
+			throws
+				java.io.IOException
+	{
+		return AMediaItem.noUrlThumbnail.get(this);
+	}
+
+	/**
+	 * Returns the body of {@link #noUrlThumbnailOfNoUrl}.
+	 */
+	@com.exedio.cope.instrument.Generated // customize with @Wrapper(wrap="get")
+	@java.lang.SuppressWarnings({"FinalMethodInFinalClass","RedundantSuppression","UnnecessarilyQualifiedStaticUsage"})
+	@javax.annotation.Nullable
+	final byte[] getNoUrlThumbnailOfNoUrl()
+			throws
+				java.io.IOException
+	{
+		return AMediaItem.noUrlThumbnailOfNoUrl.get(this);
 	}
 
 	@com.exedio.cope.instrument.Generated

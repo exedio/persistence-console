@@ -249,6 +249,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 			new AMediaItem().setName("someName");
 			new AMediaItem().setName("someName error");
+			new AMediaItem().setNoUrl(resource("test.png"), "image/png");
 			new UniqueHashedMediaItem(Media.toValue(resource("test.png"), "image/png"));
 			new TypeItem(AnItem.TYPE, AnItem.TYPE);
 			new TypeItem(UniqueHashedMediaItem.TYPE, ASubItem.TYPE);
