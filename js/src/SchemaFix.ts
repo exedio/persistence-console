@@ -53,6 +53,8 @@ function orderIndex(cb: SchemaFix): number {
           return -18;
         case "add":
           return 18;
+        case "rename":
+          return 2;
         case "modify":
           return 1;
       }

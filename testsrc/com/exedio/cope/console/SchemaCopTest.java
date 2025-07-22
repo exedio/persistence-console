@@ -820,6 +820,22 @@ public class SchemaCopTest {
   }
 
   @Test
+  void testColumnRename() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" ALTER COLUMN \\"this\\" RENAME TO \\"thisX\\""
+      }""",
+      writeJson(
+        alterSchema(
+          MODEL,
+          request("column", "MyType", "this", "rename", "thisX")
+        )
+      )
+    );
+  }
+
+  @Test
   void testColumnModify() throws IOException, ApiTextException {
     assertEquals(
       """

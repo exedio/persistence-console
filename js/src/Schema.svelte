@@ -194,8 +194,8 @@
                     {@render existence(
                       column.existence,
                       column.fixable,
-                      [], // TODO unused columns in the same table
-                      [], // TODO missing columns in the same table
+                      column.renameFrom(table),
+                      column.renameTo(table),
                     )}
                     {@render comparison(
                       column.type,

@@ -82,6 +82,13 @@ describe("Fix", () => {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
+          method: "rename",
+          value: "myValue",
+        },
+        {
+          subject: "column",
+          tableName: "myTableName",
+          name: "myName",
           method: "modify",
           value: "myValue",
         },
@@ -183,6 +190,13 @@ describe("Fix", () => {
         tableName: "myTableName",
         name: "myName",
         method: "modify",
+        value: "myValue",
+      },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName",
+        method: "rename",
         value: "myValue",
       },
       {

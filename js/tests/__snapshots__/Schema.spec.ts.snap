@@ -702,6 +702,177 @@ exports[`Schema > should render a missing column 4`] = `
 "
 `;
 
+exports[`Schema > should render a missing column to be renamed to a unused 1`] = `
+"<!----><button disabled="" class="bullet red svelte-6n243d">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-6n243d">
+    <button class="bullet red svelte-6n243d">-</button
+    ><!---->
+    myTableName
+    <!----><!---->
+    <!----><!---->
+    <ul>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myMissingColumnName
+        <!----><span class="red svelte-6n243d">missing</span>
+        <label><input type="checkbox" />add</label>
+        <label
+          ><select>
+            <option value="<NONE>">rename from ...</option>
+            <option value="myUnusedColumnName">myUnusedColumnName</option>
+            <option value="myUnusedColumnName2">myUnusedColumnName2</option>
+            <!---->
+          </select></label
+        ><!---->
+        <!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myUnusedColumnName
+        <!----><span class="yellow svelte-6n243d">unused</span>
+        <label><input type="checkbox" />drop</label>
+        <!---->
+        <label
+          ><select>
+            <option value="<NONE>">rename to ...</option>
+            <option value="myMissingColumnName">myMissingColumnName</option>
+            <!---->
+          </select></label
+        ><!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myUnusedColumnName2
+        <!----><span class="yellow svelte-6n243d">unused</span>
+        <label><input type="checkbox" />drop</label>
+        <!---->
+        <label
+          ><select>
+            <option value="<NONE>">rename to ...</option>
+            <option value="myMissingColumnName">myMissingColumnName</option>
+            <!---->
+          </select></label
+        ><!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <!---->
+      <!----><!---->
+    </ul>
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a missing column to be renamed to a unused 2`] = `
+"<!----><button disabled="" class="bullet red svelte-6n243d">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-6n243d">
+    <button class="bullet red svelte-6n243d">-</button
+    ><!---->
+    myTableName
+    <!----><!---->
+    <!----><!---->
+    <ul>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myMissingColumnName
+        <!----><span class="red svelte-6n243d">missing</span>
+        <label><input type="checkbox" />add</label>
+        <label
+          ><select>
+            <option value="<NONE>">rename from ...</option>
+            <option value="myUnusedColumnName">myUnusedColumnName</option>
+            <option value="myUnusedColumnName2">myUnusedColumnName2</option>
+            <!---->
+          </select></label
+        ><!---->
+        <!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myUnusedColumnName
+        <!----><span class="yellow svelte-6n243d">unused</span>
+        <label><input type="checkbox" />drop</label>
+        <!---->
+        <label
+          ><select>
+            <option value="<NONE>">rename to ...</option>
+            <option value="myMissingColumnName">myMissingColumnName</option>
+            <!---->
+          </select></label
+        ><!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myUnusedColumnName2
+        <!----><span class="yellow svelte-6n243d">unused</span>
+        <label><input type="checkbox" />drop</label>
+        <!---->
+        <label
+          ><select>
+            <option value="<NONE>">rename to ...</option>
+            <option value="myMissingColumnName">myMissingColumnName</option>
+            <!---->
+          </select></label
+        ><!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <!---->
+      <!----><!---->
+    </ul>
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a missing column to be renamed to a unused 3`] = `
+"<li class="svelte-6n243d">
+  <span class="nodeType svelte-6n243d">column</span> myUnusedColumnName
+  <small
+    >ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO
+    "myMissingColumnName"</small
+  ><!---->
+</li>
+"
+`;
+
 exports[`Schema > should render a missing constraint 1`] = `
 "<!----><button disabled="" class="bullet red svelte-6n243d">.</button
 ><!---->
@@ -1604,6 +1775,177 @@ exports[`Schema > should render a unused column 4`] = `
 "<li class="svelte-6n243d">
   <span class="nodeType svelte-6n243d">column</span> myColumn1Name
   <small>ALTER TABLE myTable1Name DROP COLUMN myColumn1Name</small
+  ><!---->
+</li>
+"
+`;
+
+exports[`Schema > should render a unused column to be renamed to a missing 1`] = `
+"<!----><button disabled="" class="bullet red svelte-6n243d">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-6n243d">
+    <button class="bullet red svelte-6n243d">-</button
+    ><!---->
+    myTableName
+    <!----><!---->
+    <!----><!---->
+    <ul>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myUnusedColumnName
+        <!----><span class="yellow svelte-6n243d">unused</span>
+        <label><input type="checkbox" />drop</label>
+        <!---->
+        <label
+          ><select>
+            <option value="<NONE>">rename to ...</option>
+            <option value="myMissingColumnName">myMissingColumnName</option>
+            <option value="myMissingColumnName2">myMissingColumnName2</option>
+            <!---->
+          </select></label
+        ><!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myMissingColumnName
+        <!----><span class="red svelte-6n243d">missing</span>
+        <label><input type="checkbox" />add</label>
+        <label
+          ><select>
+            <option value="<NONE>">rename from ...</option>
+            <option value="myUnusedColumnName">myUnusedColumnName</option>
+            <!---->
+          </select></label
+        ><!---->
+        <!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myMissingColumnName2
+        <!----><span class="red svelte-6n243d">missing</span>
+        <label><input type="checkbox" />add</label>
+        <label
+          ><select>
+            <option value="<NONE>">rename from ...</option>
+            <option value="myUnusedColumnName">myUnusedColumnName</option>
+            <!---->
+          </select></label
+        ><!---->
+        <!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <!---->
+      <!----><!---->
+    </ul>
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a unused column to be renamed to a missing 2`] = `
+"<!----><button disabled="" class="bullet red svelte-6n243d">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-6n243d">
+    <button class="bullet red svelte-6n243d">-</button
+    ><!---->
+    myTableName
+    <!----><!---->
+    <!----><!---->
+    <ul>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myUnusedColumnName
+        <!----><span class="yellow svelte-6n243d">unused</span>
+        <label><input type="checkbox" />drop</label>
+        <!---->
+        <label
+          ><select>
+            <option value="<NONE>">rename to ...</option>
+            <option value="myMissingColumnName">myMissingColumnName</option>
+            <option value="myMissingColumnName2">myMissingColumnName2</option>
+            <!---->
+          </select></label
+        ><!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myMissingColumnName
+        <!----><span class="red svelte-6n243d">missing</span>
+        <label><input type="checkbox" />add</label>
+        <label
+          ><select>
+            <option value="<NONE>">rename from ...</option>
+            <option value="myUnusedColumnName">myUnusedColumnName</option>
+            <!---->
+          </select></label
+        ><!---->
+        <!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <li class="column svelte-6n243d">
+        <button class="bullet red svelte-6n243d">+</button
+        ><!---->
+        myMissingColumnName2
+        <!----><span class="red svelte-6n243d">missing</span>
+        <label><input type="checkbox" />add</label>
+        <label
+          ><select>
+            <option value="<NONE>">rename from ...</option>
+            <option value="myUnusedColumnName">myUnusedColumnName</option>
+            <!---->
+          </select></label
+        ><!---->
+        <!----><!---->
+        <!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <!---->
+      <!----><!---->
+    </ul>
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a unused column to be renamed to a missing 3`] = `
+"<li class="svelte-6n243d">
+  <span class="nodeType svelte-6n243d">column</span> myUnusedColumnName
+  <small
+    >ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO
+    "myMissingColumnName"</small
   ><!---->
 </li>
 "
