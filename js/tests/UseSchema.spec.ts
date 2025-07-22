@@ -10,7 +10,7 @@ import type {
 } from "@/api/types";
 
 describe("UseSchema", () => {
-  it("table renameTo", async () => {
+  it("table renameTo/From", async () => {
     const schema = useSchema({
       tables: [
         {
@@ -74,6 +74,8 @@ describe("UseSchema", () => {
     const unused2 = schema.tables.find((t) => t.name === "tableUnused2");
     expect(missing1!.renameTo(schema)).toStrictEqual([]);
     expect(missing2!.renameTo(schema)).toStrictEqual([]);
+    expect(unused1!.renameFrom(schema)).toStrictEqual([]);
+    expect(unused2!.renameFrom(schema)).toStrictEqual([]);
     expect(unused1!.renameTo(schema)).toStrictEqual([
       "tableMissing1",
       "tableMissing2",
@@ -81,6 +83,14 @@ describe("UseSchema", () => {
     expect(unused2!.renameTo(schema)).toStrictEqual([
       "tableMissing1",
       "tableMissing2",
+    ]);
+    expect(missing1!.renameFrom(schema)).toStrictEqual([
+      "tableUnused1",
+      "tableUnused2",
+    ]);
+    expect(missing2!.renameFrom(schema)).toStrictEqual([
+      "tableUnused1",
+      "tableUnused2",
     ]);
   });
 });
