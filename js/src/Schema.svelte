@@ -109,6 +109,8 @@
     );
   }
 
+  const RENAME_NONE = "<NONE>";
+
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyUseConstraintArray = readonly UseConstraint[];
 
@@ -302,16 +304,15 @@
         : "drop"}
     </label>
     {#if renameTo.length}
-      {@const NONE = "<NONE>"}
       <label>
         <select
-          value={fix && fix.method === "rename" ? fix.value : NONE}
+          value={fix && fix.method === "rename" ? fix.value : RENAME_NONE}
           oninput={(e) => {
             const value = asInputElement(e.target).value;
-            setFix(value !== NONE, fixable, "rename", value);
+            setFix(value !== RENAME_NONE, fixable, "rename", value);
           }}
         >
-          <option value={NONE}>rename to ...</option>
+          <option value={RENAME_NONE}>rename to ...</option>
           {#each renameTo as option}
             <option value={option}>
               {option}
