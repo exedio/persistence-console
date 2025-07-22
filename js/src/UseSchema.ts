@@ -34,6 +34,7 @@ export type UseTable = {
   readonly constraints: readonly UseConstraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
+  readonly renameFrom: (schema: UseSchema) => string[];
   readonly renameTo: (schema: UseSchema) => string[];
   readonly fixable: SchemaFixable;
 };
@@ -62,6 +63,12 @@ export function useTable(api: SchemaTableResponse): UseTable {
       worst(columns.map((i) => i.bulletColor)),
       worst(constraints.map((i) => i.bulletColor)),
     ]),
+    renameFrom: (schema) => {
+      if (!existence || existence.text !== "missing") return [];
+      return (schema.tables ?? [])
+        .filter((t) => t.existence && t.existence.text === "unused")
+        .map((t) => t.name);
+    },
     renameTo: (schema) => {
       if (!existence || existence.text !== "unused") return [];
       return (schema.tables ?? [])

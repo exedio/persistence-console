@@ -638,6 +638,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <span class="nodeType svelte-6n243d">col</span> myColumn1Name
         <!----><span class="red svelte-6n243d">missing</span>
         <label><input type="checkbox" />add</label>
+        <!---->
         <!----><!---->
         <!----><!----><!---->
         <!---->
@@ -674,6 +675,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <span class="nodeType svelte-6n243d">col</span> myColumn1Name
         <!----><span class="red svelte-6n243d">missing</span>
         <label><input type="checkbox" />add</label>
+        <!---->
         <!----><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!----><!---->
@@ -742,6 +744,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <span class="nodeType svelte-6n243d">chk</span> myConstraint1Name
         <!----><span class="red svelte-6n243d">missing</span>
         <label><input type="checkbox" />add</label>
+        <!---->
         <!----><!---->
         <!----><!----><!---->myConstraint1Clause<!---->
         <!----><!---->
@@ -779,6 +782,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">seq</span> myOnlyName
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
+    <!---->
     <!----><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!---->55<!---->
@@ -811,6 +815,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myTable1Name
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
+    <!---->
     <!----><!---->
     <!---->
     <!---->
@@ -834,6 +839,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myTable1Name
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
+    <!---->
     <!----><!---->
     <!----><!---->
     <!---->
@@ -860,6 +866,145 @@ exports[`Schema > should render a missing table and patch fails 1`] = `
   <span class="red svelte-6n243d"
     >alterSchema?subject=table&amp;name=myTable1Name&amp;method=add: response
     code 400 myError</span
+  ><!---->
+</li>
+"
+`;
+
+exports[`Schema > should render a missing table to be renamed to an unused 1`] = `
+"<!----><button disabled="" class="bullet red svelte-6n243d">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-6n243d">
+    <button class="bullet red svelte-6n243d">+</button
+    ><!---->
+    <span class="nodeType svelte-6n243d">tab</span> myMissingTableName
+    <!----><span class="red svelte-6n243d">missing</span>
+    <label><input type="checkbox" />create</label>
+    <label
+      ><select>
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedTableName">myUnusedTableName</option>
+        <option value="myUnusedTableName2">myUnusedTableName2</option>
+        <!---->
+      </select></label
+    ><!---->
+    <!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <li class="table svelte-6n243d">
+    <button class="bullet yellow svelte-6n243d">+</button
+    ><!---->
+    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName
+    <!----><span class="yellow svelte-6n243d">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <!---->
+    <label
+      ><select>
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingTableName">myMissingTableName</option>
+        <!---->
+      </select></label
+    ><!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <li class="table svelte-6n243d">
+    <button class="bullet yellow svelte-6n243d">+</button
+    ><!---->
+    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName2
+    <!----><span class="yellow svelte-6n243d">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <!---->
+    <label
+      ><select>
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingTableName">myMissingTableName</option>
+        <!---->
+      </select></label
+    ><!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a missing table to be renamed to an unused 2`] = `
+"<!----><button disabled="" class="bullet red svelte-6n243d">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-6n243d">
+    <button class="bullet red svelte-6n243d">+</button
+    ><!---->
+    <span class="nodeType svelte-6n243d">tab</span> myMissingTableName
+    <!----><span class="red svelte-6n243d">missing</span>
+    <label><input type="checkbox" />create</label>
+    <label
+      ><select>
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedTableName">myUnusedTableName</option>
+        <option value="myUnusedTableName2">myUnusedTableName2</option>
+        <!---->
+      </select></label
+    ><!---->
+    <!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <li class="table svelte-6n243d">
+    <button class="bullet yellow svelte-6n243d">+</button
+    ><!---->
+    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName
+    <!----><span class="yellow svelte-6n243d">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <!---->
+    <label
+      ><select>
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingTableName">myMissingTableName</option>
+        <!---->
+      </select></label
+    ><!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <li class="table svelte-6n243d">
+    <button class="bullet yellow svelte-6n243d">+</button
+    ><!---->
+    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName2
+    <!----><span class="yellow svelte-6n243d">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <!---->
+    <label
+      ><select>
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingTableName">myMissingTableName</option>
+        <!---->
+      </select></label
+    ><!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a missing table to be renamed to an unused 3`] = `
+"<li class="svelte-6n243d">
+  <span class="nodeType svelte-6n243d">table</span> myUnusedTableName
+  <small>ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"</small
   ><!---->
 </li>
 "
@@ -1305,6 +1450,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <span class="nodeType svelte-6n243d">col</span> myColumn1Name
         <!----><span class="red svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
+        <!---->
         <!----><!---->
         <!----><!----><!---->
         <!---->
@@ -1341,6 +1487,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <span class="nodeType svelte-6n243d">col</span> myColumn1Name
         <!----><span class="red svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
+        <!---->
         <!----><!---->
         <!----><!----><!---->myColumn1Type not null<!---->
         <!----><!---->
@@ -1398,6 +1545,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <span class="nodeType svelte-6n243d">col</span> myColumn1Name
         <!----><span class="yellow svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
+        <!---->
         <!----><!---->
         <!----><!----><!---->
         <!---->
@@ -1434,6 +1582,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <span class="nodeType svelte-6n243d">col</span> myColumn1Name
         <!----><span class="yellow svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
+        <!---->
         <!----><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!----><!---->
@@ -1502,6 +1651,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <span class="nodeType svelte-6n243d">chk</span> myConstraint1Name
         <!----><span class="red svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
+        <!---->
         <!----><!---->
         <!----><!----><!---->myConstraint1Clause<!---->
         <!----><!---->
@@ -1539,6 +1689,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">seq</span> myOnlyName
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
+    <!---->
     <!----><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!---->55<!---->
@@ -1571,6 +1722,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myTable1Name
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
+    <!---->
     <!----><!---->
     <!---->
     <!---->
@@ -1594,6 +1746,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myTable1Name
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
+    <!---->
     <!----><!---->
     <!----><!---->
     <!---->
@@ -1626,6 +1779,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
+    <!---->
     <label
       ><select>
         <option value="<NONE>">rename to ...</option>
@@ -1643,6 +1797,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myMissingTableName
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
+    <label
+      ><select>
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedTableName">myUnusedTableName</option>
+        <!---->
+      </select></label
+    ><!---->
     <!----><!---->
     <!---->
     <!---->
@@ -1653,6 +1814,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myMissingTableName2
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
+    <label
+      ><select>
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedTableName">myUnusedTableName</option>
+        <!---->
+      </select></label
+    ><!---->
     <!----><!---->
     <!---->
     <!---->
@@ -1676,6 +1844,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
+    <!---->
     <label
       ><select>
         <option value="<NONE>">rename to ...</option>
@@ -1693,6 +1862,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myMissingTableName
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
+    <label
+      ><select>
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedTableName">myUnusedTableName</option>
+        <!---->
+      </select></label
+    ><!---->
     <!----><!---->
     <!---->
     <!---->
@@ -1703,6 +1879,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <span class="nodeType svelte-6n243d">tab</span> myMissingTableName2
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
+    <label
+      ><select>
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedTableName">myUnusedTableName</option>
+        <!---->
+      </select></label
+    ><!---->
     <!----><!---->
     <!---->
     <!---->
