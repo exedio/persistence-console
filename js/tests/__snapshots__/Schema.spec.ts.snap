@@ -9,7 +9,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -30,14 +30,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">+</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!---->
         <!---->
@@ -64,14 +64,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">-</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!---->
@@ -103,7 +103,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -124,14 +124,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">+</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><span class="red svelte-6n243d">type mismatch</span>
         <!----><label><input type="checkbox" />adjust</label
@@ -160,14 +160,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">-</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!----><span class="red svelte-6n243d"
           >type mismatch:</span
@@ -227,7 +227,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -248,7 +248,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -269,7 +269,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
@@ -278,7 +278,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
       <li class="svelte-6n243d">
         <button disabled="" class="bullet red svelte-6n243d">.</button
         ><!---->
-        <span class="nodeType svelte-6n243d">chk</span> myConstraint1Name
+        <span class="nodeType svelte-6n243d">check</span> myConstraint1Name
         <!----><!---->
         <!----><!----><!---->myConstraint1Clause<!---->
         <!---->
@@ -308,7 +308,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -329,7 +329,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
@@ -338,7 +338,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
       <li class="svelte-6n243d">
         <button disabled="" class="bullet red svelte-6n243d">.</button
         ><!---->
-        <span class="nodeType svelte-6n243d">chk</span> myConstraint1Name
+        <span class="nodeType svelte-6n243d">check</span> myConstraint1Name
         <!----><!---->
         <!----><!----><!----><span class="red svelte-6n243d"
           >clause mismatch:</span
@@ -399,7 +399,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -420,14 +420,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">+</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!---->
         <!---->
@@ -454,14 +454,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">-</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!----><!---->
@@ -470,7 +470,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
           <li class="svelte-6n243d">
             <button disabled="" class="bullet red svelte-6n243d">.</button
             ><!---->
-            <span class="nodeType svelte-6n243d">chk</span> myConstraint1Name
+            <span class="nodeType svelte-6n243d">check</span> myConstraint1Name
             <!----><!---->
             <!----><!----><!----><span class="red svelte-6n243d"
               >clause mismatch:</span
@@ -523,7 +523,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="sequence svelte-6n243d">
     <button disabled="" class="bullet svelte-6n243d">.</button
     ><!---->
-    <span class="nodeType svelte-6n243d">seq</span> myOnlyName
+    <span class="nodeType svelte-6n243d">sequence</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!---->55<!---->
@@ -544,7 +544,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myOnlyName
+    myOnlyName
     <!----><!---->
     <!---->
     <!---->
@@ -565,7 +565,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myOnlyName
+    myOnlyName
     <!----><!---->
     <!----><!---->
     <!---->
@@ -586,7 +586,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myOnlyNameReloaded
+    myOnlyNameReloaded
     <!----><!---->
     <!---->
     <!---->
@@ -607,7 +607,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -628,14 +628,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">+</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><span class="red svelte-6n243d">missing</span>
         <label><input type="checkbox" />add</label>
         <!---->
@@ -665,14 +665,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">-</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><span class="red svelte-6n243d">missing</span>
         <label><input type="checkbox" />add</label>
         <!---->
@@ -711,7 +711,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -732,7 +732,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
@@ -741,7 +741,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
       <li class="svelte-6n243d">
         <button disabled="" class="bullet red svelte-6n243d">.</button
         ><!---->
-        <span class="nodeType svelte-6n243d">chk</span> myConstraint1Name
+        <span class="nodeType svelte-6n243d">check</span> myConstraint1Name
         <!----><span class="red svelte-6n243d">missing</span>
         <label><input type="checkbox" />add</label>
         <!---->
@@ -779,7 +779,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="sequence svelte-6n243d">
     <button disabled="" class="bullet red svelte-6n243d">.</button
     ><!---->
-    <span class="nodeType svelte-6n243d">seq</span> myOnlyName
+    <span class="nodeType svelte-6n243d">sequence</span> myOnlyName
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <!---->
@@ -812,7 +812,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <!---->
@@ -836,7 +836,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <!---->
@@ -880,7 +880,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myMissingTableName
+    myMissingTableName
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <label
@@ -898,7 +898,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName
+    myUnusedTableName
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -915,7 +915,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName2
+    myUnusedTableName2
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -945,7 +945,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myMissingTableName
+    myMissingTableName
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <label
@@ -963,7 +963,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName
+    myUnusedTableName
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -980,7 +980,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName2
+    myUnusedTableName2
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -1019,7 +1019,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -1040,14 +1040,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet svelte-6n243d">+</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!---->
         <!---->
@@ -1091,14 +1091,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet svelte-6n243d">-</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!----><!---->
@@ -1116,7 +1116,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
           <li class="svelte-6n243d">
             <button disabled="" class="bullet svelte-6n243d">.</button
             ><!---->
-            <span class="nodeType svelte-6n243d">chk</span>
+            <span class="nodeType svelte-6n243d">check</span>
             myColumn1Constraint2Name
             <!----><!---->
             <!----><!----><!---->myColumn1Constraint2Clause<!---->
@@ -1134,7 +1134,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
           <li class="svelte-6n243d">
             <button disabled="" class="bullet svelte-6n243d">.</button
             ><!---->
-            <span class="nodeType svelte-6n243d">chk</span>
+            <span class="nodeType svelte-6n243d">check</span>
             myColumn1ConstraintArrowName
             <!----><!---->
             <!----><!----><!---->myColumn1ConstraintArrowClause hsqldb:⬁ mysql:⬁<!---->
@@ -1182,7 +1182,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -1203,14 +1203,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet svelte-6n243d">+</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!---->
         <!---->
@@ -1237,14 +1237,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet svelte-6n243d">-</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!----><!---->
@@ -1272,7 +1272,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="sequence svelte-6n243d">
     <button disabled="" class="bullet red svelte-6n243d">.</button
     ><!---->
-    <span class="nodeType svelte-6n243d">seq</span> myOnlyName
+    <span class="nodeType svelte-6n243d">sequence</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!---->55<!---->
@@ -1299,7 +1299,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="sequence svelte-6n243d">
     <button disabled="" class="bullet red svelte-6n243d">.</button
     ><!---->
-    <span class="nodeType svelte-6n243d">seq</span> myOnlyName
+    <span class="nodeType svelte-6n243d">sequence</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!----><span class="red svelte-6n243d">start mismatch:</span>
@@ -1336,7 +1336,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="sequence svelte-6n243d">
     <button disabled="" class="bullet red svelte-6n243d">.</button
     ><!---->
-    <span class="nodeType svelte-6n243d">seq</span> myOnlyName
+    <span class="nodeType svelte-6n243d">sequence</span> myOnlyName
     <!----><!---->
     <!----><!----><!----><span class="red svelte-6n243d">type mismatch:</span>
     <!----><!---->
@@ -1372,7 +1372,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -1393,7 +1393,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <ul>
@@ -1419,7 +1419,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -1440,14 +1440,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">+</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><span class="red svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
@@ -1477,14 +1477,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet red svelte-6n243d">-</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><span class="red svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
@@ -1514,7 +1514,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -1535,14 +1535,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet yellow svelte-6n243d">+</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><span class="yellow svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
@@ -1572,14 +1572,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
       <li class="column svelte-6n243d">
         <button class="bullet yellow svelte-6n243d">-</button
         ><!---->
-        <span class="nodeType svelte-6n243d">col</span> myColumn1Name
+        myColumn1Name
         <!----><span class="yellow svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
@@ -1618,7 +1618,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!---->
     <!---->
@@ -1639,7 +1639,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
@@ -1648,7 +1648,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
       <li class="svelte-6n243d">
         <button disabled="" class="bullet red svelte-6n243d">.</button
         ><!---->
-        <span class="nodeType svelte-6n243d">chk</span> myConstraint1Name
+        <span class="nodeType svelte-6n243d">check</span> myConstraint1Name
         <!----><span class="red svelte-6n243d">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
@@ -1686,7 +1686,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="sequence svelte-6n243d">
     <button disabled="" class="bullet yellow svelte-6n243d">.</button
     ><!---->
-    <span class="nodeType svelte-6n243d">seq</span> myOnlyName
+    <span class="nodeType svelte-6n243d">sequence</span> myOnlyName
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -1719,7 +1719,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -1743,7 +1743,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">-</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myTable1Name
+    myTable1Name
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -1776,7 +1776,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName
+    myUnusedTableName
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -1794,7 +1794,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myMissingTableName
+    myMissingTableName
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <label
@@ -1811,7 +1811,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myMissingTableName2
+    myMissingTableName2
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <label
@@ -1841,7 +1841,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet yellow svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myUnusedTableName
+    myUnusedTableName
     <!----><span class="yellow svelte-6n243d">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
@@ -1859,7 +1859,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myMissingTableName
+    myMissingTableName
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <label
@@ -1876,7 +1876,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <li class="table svelte-6n243d">
     <button class="bullet red svelte-6n243d">+</button
     ><!---->
-    <span class="nodeType svelte-6n243d">tab</span> myMissingTableName2
+    myMissingTableName2
     <!----><span class="red svelte-6n243d">missing</span>
     <label><input type="checkbox" />create</label>
     <label

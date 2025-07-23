@@ -170,7 +170,6 @@
           {@const tableExpanded = expandedTables.has(table)}
           <li class="table">
             {@render expander(expandedTables, table, table.bulletColor)}
-            <span class="nodeType">tab</span>
             {table.name}
             {@render existence(
               table.existence,
@@ -191,7 +190,6 @@
                       column,
                       column.bulletColor,
                     )}
-                    <span class="nodeType">col</span>
                     {column.name}
                     {@render existence(
                       column.existence,
@@ -222,7 +220,7 @@
         {#each schema.sequences as sequence (sequence.name)}
           <li class="sequence">
             {@render expanderDisabled(sequence.bulletColor)}
-            <span class="nodeType">seq</span>
+            <span class="nodeType">sequence</span>
             {sequence.name}
             {@render existence(
               sequence.existence,
