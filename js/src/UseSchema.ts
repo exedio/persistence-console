@@ -155,7 +155,7 @@ export type UseConstraint = {
   readonly fixable: SchemaFixable;
 };
 
-type UseConstraintType = "pk" | "fk" | "unq" | "chk";
+type UseConstraintType = "pk" | "fk" | "unique" | "check";
 
 export function useConstraint(
   api: SchemaConstraintResponse,
@@ -223,9 +223,9 @@ function useConstraintType(api: SchemaConstraintResponse): UseConstraintType {
     case "ForeignKey":
       return "fk";
     case "Unique":
-      return "unq";
+      return "unique";
     case "Check":
-      return "chk";
+      return "check";
   }
 }
 
