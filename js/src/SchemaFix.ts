@@ -40,21 +40,21 @@ function orderIndex(cb: SchemaFix): number {
   if (cb.subject === "constraint") {
     if (cb.method === "drop") return -19;
     else if (cb.method === "add") return 19;
-    else throw JSON.stringify(cb);
+    else throw new Error(JSON.stringify(cb));
   } else if (cb.subject === "column") {
     if (cb.method === "drop") return -18;
     else if (cb.method === "add") return 18;
     else if (cb.method === "modify") return 1;
-    else throw JSON.stringify(cb);
+    else throw new Error(JSON.stringify(cb));
   } else if (cb.subject === "table") {
     if (cb.method === "drop") return -17;
     else if (cb.method === "add") return 17;
     else if (cb.method === "rename") return 0;
-    else throw JSON.stringify(cb);
+    else throw new Error(JSON.stringify(cb));
   } else if (cb.subject === "sequence") {
     if (cb.method === "drop") return -16;
     else if (cb.method === "add") return 16;
-    else throw JSON.stringify(cb);
+    else throw new Error(JSON.stringify(cb));
   }
-  throw JSON.stringify(cb);
+  throw new Error(JSON.stringify(cb));
 }
