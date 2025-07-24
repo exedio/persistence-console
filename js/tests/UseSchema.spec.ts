@@ -1,13 +1,5 @@
 import { expect } from "vitest";
-import { workOnFixes } from "@/SchemaFix";
 import { useSchema } from "@/UseSchema";
-import type {
-  SchemaColumnResponse,
-  SchemaConstraintResponse,
-  SchemaExistence,
-  SchemaRemainder,
-  SchemaTableError,
-} from "@/api/types";
 
 describe("UseSchema", () => {
   it("table renameTo/From", async () => {
