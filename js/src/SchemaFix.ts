@@ -37,24 +37,47 @@ export function workOnFixes(source: SchemaFix[]): SchemaFix[] {
  * Order taken from SchemaCop#writeApply
  */
 function orderIndex(cb: SchemaFix): number {
-  if (cb.subject === "constraint") {
-    if (cb.method === "drop") return -19;
-    else if (cb.method === "add") return 19;
-    else throw new Error(JSON.stringify(cb));
-  } else if (cb.subject === "column") {
-    if (cb.method === "drop") return -18;
-    else if (cb.method === "add") return 18;
-    else if (cb.method === "modify") return 1;
-    else throw new Error(JSON.stringify(cb));
-  } else if (cb.subject === "table") {
-    if (cb.method === "drop") return -17;
-    else if (cb.method === "add") return 17;
-    else if (cb.method === "rename") return 0;
-    else throw new Error(JSON.stringify(cb));
-  } else if (cb.subject === "sequence") {
-    if (cb.method === "drop") return -16;
-    else if (cb.method === "add") return 16;
-    else throw new Error(JSON.stringify(cb));
+  switch (cb.subject) {
+    case "constraint": {
+      switch (cb.method) {
+        case "drop":
+          return -19;
+        case "add":
+          return 19;
+      }
+      break;
+    }
+    case "column": {
+      switch (cb.method) {
+        case "drop":
+          return -18;
+        case "add":
+          return 18;
+        case "modify":
+          return 1;
+      }
+      break;
+    }
+    case "table": {
+      switch (cb.method) {
+        case "drop":
+          return -17;
+        case "add":
+          return 17;
+        case "rename":
+          return 0;
+      }
+      break;
+    }
+    case "sequence": {
+      switch (cb.method) {
+        case "drop":
+          return -16;
+        case "add":
+          return 16;
+      }
+      break;
+    }
   }
   throw new Error(JSON.stringify(cb));
 }
