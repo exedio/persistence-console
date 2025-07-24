@@ -91,6 +91,8 @@ export type UseColumn = {
   readonly constraints: readonly UseConstraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
+  readonly renameFrom: (table: UseTable) => string[];
+  readonly renameTo: (table: UseTable) => string[];
   readonly fixable: SchemaFixable;
 };
 
@@ -124,6 +126,18 @@ export function useColumn(
       remainderColor(api.error),
       worst(constraints.map((i) => i.bulletColor)),
     ]),
+    renameFrom: (table) => {
+      if (!existence || existence.text !== "missing") return [];
+      return (table.columns ?? [])
+        .filter((c) => c.existence && c.existence.text === "unused")
+        .map((c) => c.name);
+    },
+    renameTo: (table) => {
+      if (!existence || existence.text !== "unused") return [];
+      return (table.columns ?? [])
+        .filter((c) => c.existence && c.existence.text === "missing")
+        .map((c) => c.name);
+    },
     fixable: {
       subject: "column",
       tableName,

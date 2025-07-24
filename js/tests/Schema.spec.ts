@@ -627,6 +627,172 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
+  it("should render a unused column to be renamed to a missing", async () => {
+    const mock = mockFetch();
+    mock.mockResolvedValueOnce(
+      responseSuccess({
+        tables: [
+          {
+            name: "myTableName",
+            columns: [
+              {
+                name: "myUnusedColumnName",
+                type: "myType",
+                error: {
+                  existence: "unused",
+                  type: undefined,
+                  remainder: [],
+                },
+                constraints: [],
+              },
+              {
+                name: "myMissingColumnName",
+                type: "myType",
+                error: {
+                  existence: "missing",
+                  type: undefined,
+                  remainder: [],
+                },
+                constraints: [],
+              },
+              {
+                name: "myMissingColumnName2",
+                type: "myType",
+                error: {
+                  existence: "missing",
+                  type: undefined,
+                  remainder: [],
+                },
+                constraints: [],
+              },
+            ],
+            constraints: undefined,
+            error: undefined,
+          },
+        ],
+        sequences: undefined,
+      } satisfies SchemaResponse),
+    );
+    await mountComponent();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(sql()).toBeNull();
+    expect(select().value).toBe("<NONE>");
+    expect(select(1).value).toBe("<NONE>");
+    expect(select(2).value).toBe("<NONE>");
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        'ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO "myMissingColumnName"',
+      ),
+    );
+    select().value = "myMissingColumnName";
+    select().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/alterSchema?subject=column&table=myTableName&name=myUnusedColumnName&method=rename&value=myMissingColumnName",
+    );
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(await formatHtml(sql())).toMatchSnapshot();
+    expect(select().value).toBe("myMissingColumnName");
+    expect(select(1).value).toBe("myUnusedColumnName");
+    expect(select(2).value).toBe("<NONE>");
+
+    select().value = "<NONE>";
+    select().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(sql()).toBeNull();
+    expect(select().value).toBe("<NONE>");
+    expect(select(1).value).toBe("<NONE>");
+    expect(select(2).value).toBe("<NONE>");
+  });
+
+  it("should render a missing column to be renamed to a unused", async () => {
+    const mock = mockFetch();
+    mock.mockResolvedValueOnce(
+      responseSuccess({
+        tables: [
+          {
+            name: "myTableName",
+            columns: [
+              {
+                name: "myMissingColumnName",
+                type: "myType",
+                error: {
+                  existence: "missing",
+                  type: undefined,
+                  remainder: [],
+                },
+                constraints: [],
+              },
+              {
+                name: "myUnusedColumnName",
+                type: "myType",
+                error: {
+                  existence: "unused",
+                  type: undefined,
+                  remainder: [],
+                },
+                constraints: [],
+              },
+              {
+                name: "myUnusedColumnName2",
+                type: "myType",
+                error: {
+                  existence: "unused",
+                  type: undefined,
+                  remainder: [],
+                },
+                constraints: [],
+              },
+            ],
+            constraints: undefined,
+            error: undefined,
+          },
+        ],
+        sequences: undefined,
+      } satisfies SchemaResponse),
+    );
+    await mountComponent();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(sql()).toBeNull();
+    expect(select().value).toBe("<NONE>");
+    expect(select(1).value).toBe("<NONE>");
+    expect(select(2).value).toBe("<NONE>");
+
+    const mockFix = mockFetch();
+    mockFix.mockResolvedValueOnce(
+      responseSuccessAlter(
+        'ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO "myMissingColumnName"',
+      ),
+    );
+    select().value = "myUnusedColumnName";
+    select().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(mockFix).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/alterSchema?subject=column&table=myTableName&name=myUnusedColumnName&method=rename&value=myMissingColumnName",
+    );
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(await formatHtml(sql())).toMatchSnapshot();
+    expect(select().value).toBe("myUnusedColumnName");
+    expect(select(1).value).toBe("myMissingColumnName");
+    expect(select(2).value).toBe("<NONE>");
+
+    select().value = "<NONE>";
+    select().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(sql()).toBeNull();
+    expect(select().value).toBe("<NONE>");
+    expect(select(1).value).toBe("<NONE>");
+    expect(select(2).value).toBe("<NONE>");
+  });
+
   it("should render a column with a wrong type", async () => {
     const mock = mockFetch();
     mock.mockResolvedValueOnce(
