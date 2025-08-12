@@ -67,7 +67,7 @@
       </tr>
     {:then hashes}
       {#each hashes as hash (toId(hash))}
-        {@const measurement = hash.measurement}
+        {@const measurement = hash.getMeasurement()}
         <tr class="relative">
           <td>
             <button class="hash" onclick={() => hash.toggle()}>
@@ -101,7 +101,7 @@
               <input bind:value={hash.plainText} placeholder="Plain Text" />
               <button onclick={() => hash.computeHash(errors)}>Hash</button>
               <br />
-              <small>{hash.plainTextHashed}</small>
+              <small>{hash.getPlainTextHashed()}</small>
             </td>
           </tr>
         {/if}

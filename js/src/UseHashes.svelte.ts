@@ -16,8 +16,8 @@ export class UseHashes {
 
   private toggled = $state(false);
   plainText = $state("");
-  plainTextHashed: string | undefined = $state(undefined);
-  measurement: number | undefined = $state(undefined);
+  private plainTextHashed: string | undefined = $state(undefined);
+  private measurement: number | undefined = $state(undefined);
 
   constructor(api: HashesResponse) {
     this.api = $state(api);
@@ -54,10 +54,18 @@ export class UseHashes {
       });
   }
 
+  getMeasurement(): number | undefined {
+    return this.measurement;
+  }
+
   computeHash(errors: Error[]) {
     this.doHash(this.plainText)
       .then((r) => (this.plainTextHashed = r.hash))
       .catch((e) => errors.push(e));
+  }
+
+  getPlainTextHashed(): string | undefined {
+    return this.plainTextHashed;
   }
 
   doHash(plainText: string): Promise<DoHashResponse> {
