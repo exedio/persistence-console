@@ -1,6 +1,5 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { SvelteMap } from "svelte/reactivity";
   import "@/table-grey.css";
   import { get, post } from "@/api/api";
   import {
@@ -27,20 +26,19 @@
       ),
     ),
   );
-  const measurements = new SvelteMap<string, number>();
   const errors: Error[] = $state([]);
 
-  function measure(hash: HashesResponse): Promise<void> {
+  function measure(hash: UseHashes): Promise<void> {
     return doHash(hash, "example password")
       .then((r) => {
-        measurements.set(toId(hash), r.elapsedNanos);
+        hash.measurement = r.elapsedNanos;
       })
       .catch((e) => {
         errors.push(e);
       });
   }
 
-  function measureAll(hashes: HashesResponse[]) {
+  function measureAll(hashes: UseHashes[]) {
     let p = Promise.resolve();
     hashes.forEach((h) => (p = p.then(async () => await measure(h))));
   }
@@ -101,8 +99,7 @@
       </tr>
     {:then hashes}
       {#each hashes as hash (toId(hash))}
-        {@const hashId = toId(hash)}
-        {@const measurement = measurements.get(hashId)}
+        {@const measurement = hash.measurement}
         <tr class="relative">
           <td>
             <button class="hash" onclick={() => hash.toggle()}>
@@ -122,7 +119,7 @@
           <td>{hash.algorithmID}</td>
           <td>{hash.algorithmDescription}</td>
           <td class="number">
-            {#if measurement}
+            {#if measurement !== undefined}
               {measurement.toLocaleString("en-US")}
             {/if}
             <button class="measure" onclick={() => measure(hash)}
