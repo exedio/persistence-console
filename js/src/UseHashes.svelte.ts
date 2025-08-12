@@ -9,7 +9,7 @@ export class UseHashes {
   readonly algorithmID: string;
   readonly algorithmDescription: string;
 
-  toggled = $state(false);
+  private toggled = $state(false);
   plainText = $state("");
   plainTextHashed: string | undefined = $state(undefined);
 
@@ -25,5 +25,16 @@ export class UseHashes {
 
   update(api: HashesResponse) {
     this.api = api;
+  }
+
+  isToggled() {
+    return this.toggled;
+  }
+
+  toggle() {
+    this.toggled = !this.toggled;
+
+    this.plainText = ""; // drop when hidden, because it may contain sensitive data
+    this.plainTextHashed = undefined;
   }
 }

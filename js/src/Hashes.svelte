@@ -45,13 +45,6 @@
     hashes.forEach((h) => (p = p.then(async () => await measure(h))));
   }
 
-  function toggleHash(hash: UseHashes) {
-    hash.toggled = !hash.toggled;
-
-    hash.plainText = ""; // drop when hidden, because it may contain sensitive data
-    hash.plainTextHashed = undefined;
-  }
-
   function computeHash(hash: UseHashes) {
     doHash(hash, hash.plainText)
       .then((r) => (hash.plainTextHashed = r.hash))
@@ -112,8 +105,8 @@
         {@const measurement = measurements.get(hashId)}
         <tr class="relative">
           <td>
-            <button class="hash" onclick={() => toggleHash(hash)}>
-              {#if hash.toggled}
+            <button class="hash" onclick={() => hash.toggle()}>
+              {#if hash.isToggled()}
                 &#8594;
               {:else}
                 &#8595;
@@ -137,7 +130,7 @@
             </button>
           </td>
         </tr>
-        {#if hash.toggled}
+        {#if hash.isToggled()}
           <tr in:fly={{ y: -10, duration: 200 }}>
             <td colspan="7" class="expansion">
               <input bind:value={hash.plainText} placeholder="Plain Text" />
