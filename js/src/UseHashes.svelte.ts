@@ -44,6 +44,16 @@ export class UseHashes {
     this.plainTextHashed = undefined;
   }
 
+  computeHash(errors: Error[]) {
+    this.doHash(this.plainText)
+      .then((r) => (this.plainTextHashed = r.hash))
+      .catch((e) => errors.push(e));
+  }
+
+  getPlainTextHashed(): string | undefined {
+    return this.plainTextHashed;
+  }
+
   measure(errors: Error[]): Promise<void> {
     return this.doHash("example password")
       .then((r) => {
@@ -56,16 +66,6 @@ export class UseHashes {
 
   getMeasurement(): number | undefined {
     return this.measurement;
-  }
-
-  computeHash(errors: Error[]) {
-    this.doHash(this.plainText)
-      .then((r) => (this.plainTextHashed = r.hash))
-      .catch((e) => errors.push(e));
-  }
-
-  getPlainTextHashed(): string | undefined {
-    return this.plainTextHashed;
   }
 
   doHash(plainText: string): Promise<DoHashResponse> {
