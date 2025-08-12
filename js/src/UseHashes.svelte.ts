@@ -12,6 +12,7 @@ export class UseHashes {
   private toggled = $state(false);
   plainText = $state("");
   plainTextHashed: string | undefined = $state(undefined);
+  measurement: number | undefined = $state(undefined);
 
   constructor(api: HashesResponse) {
     this.api = $state(api);
