@@ -68,7 +68,7 @@ export class UseHashes {
     return this.measurement;
   }
 
-  doHash(plainText: string): Promise<DoHashResponse> {
+  private doHash(plainText: string): Promise<DoHashResponse> {
     return post<DoHashRequest, DoHashResponse>("doHash", {
       type: this.type,
       name: this.name,
