@@ -1,13 +1,8 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import "@/table-grey.css";
-  import { get, post } from "@/api/api";
-  import {
-    type DoHashRequest,
-    type DoHashResponse,
-    type HashesResponse,
-    toId,
-  } from "@/api/types";
+  import { get } from "@/api/api";
+  import { type HashesResponse, toId } from "@/api/types";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import { UseHashes } from "@/UseHashes.svelte";
@@ -28,36 +23,9 @@
   );
   const errors: Error[] = $state([]);
 
-  function measure(hash: UseHashes): Promise<void> {
-    return doHash(hash, "example password")
-      .then((r) => {
-        hash.measurement = r.elapsedNanos;
-      })
-      .catch((e) => {
-        errors.push(e);
-      });
-  }
-
   function measureAll(hashes: UseHashes[]) {
     let p = Promise.resolve();
-    hashes.forEach((h) => (p = p.then(async () => await measure(h))));
-  }
-
-  function computeHash(hash: UseHashes) {
-    doHash(hash, hash.plainText)
-      .then((r) => (hash.plainTextHashed = r.hash))
-      .catch((e) => errors.push(e));
-  }
-
-  function doHash(
-    { type, name }: HashesResponse,
-    plainText: string,
-  ): Promise<DoHashResponse> {
-    return post<DoHashRequest, DoHashResponse>("doHash", {
-      type,
-      name,
-      plainText,
-    });
+    hashes.forEach((h) => (p = p.then(async () => await h.measure(errors))));
   }
 </script>
 
@@ -122,7 +90,7 @@
             {#if measurement !== undefined}
               {measurement.toLocaleString("en-US")}
             {/if}
-            <button class="measure" onclick={() => measure(hash)}
+            <button class="measure" onclick={() => hash.measure(errors)}
               >&#128336;
             </button>
           </td>
@@ -131,7 +99,7 @@
           <tr in:fly={{ y: -10, duration: 200 }}>
             <td colspan="7" class="expansion">
               <input bind:value={hash.plainText} placeholder="Plain Text" />
-              <button onclick={() => computeHash(hash)}>Hash</button>
+              <button onclick={() => hash.computeHash(errors)}>Hash</button>
               <br />
               <small>{hash.plainTextHashed}</small>
             </td>

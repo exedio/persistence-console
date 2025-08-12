@@ -1,4 +1,9 @@
-import type { HashesResponse } from "@/api/types";
+import type {
+  DoHashRequest,
+  DoHashResponse,
+  HashesResponse,
+} from "@/api/types";
+import { post } from "@/api/api";
 
 export class UseHashes {
   private api: HashesResponse;
@@ -37,5 +42,29 @@ export class UseHashes {
 
     this.plainText = ""; // drop when hidden, because it may contain sensitive data
     this.plainTextHashed = undefined;
+  }
+
+  measure(errors: Error[]): Promise<void> {
+    return this.doHash("example password")
+      .then((r) => {
+        this.measurement = r.elapsedNanos;
+      })
+      .catch((e) => {
+        errors.push(e);
+      });
+  }
+
+  computeHash(errors: Error[]) {
+    this.doHash(this.plainText)
+      .then((r) => (this.plainTextHashed = r.hash))
+      .catch((e) => errors.push(e));
+  }
+
+  doHash(plainText: string): Promise<DoHashResponse> {
+    return post<DoHashRequest, DoHashResponse>("doHash", {
+      type: this.type,
+      name: this.name,
+      plainText,
+    });
   }
 }
