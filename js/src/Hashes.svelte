@@ -2,7 +2,7 @@
   import { fly } from "svelte/transition";
   import "@/table-grey.css";
   import { get } from "@/api/api";
-  import { type HashesResponse, toId } from "@/api/types";
+  import { type HashesResponse } from "@/api/types";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import { UseHashes } from "@/UseHashes.svelte";
@@ -26,6 +26,10 @@
   function measureAll(hashes: UseHashes[]) {
     let p = Promise.resolve();
     hashes.forEach((h) => (p = p.then(async () => await h.measure(errors))));
+  }
+
+  function toId(response: HashesResponse): string {
+    return response.type + "." + response.name;
   }
 </script>
 
