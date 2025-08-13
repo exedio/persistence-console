@@ -98,7 +98,3 @@ export type SuspicionsResponse = {
   readonly name: string;
   readonly suspicions: readonly string[];
 };
-
-export function toId(response: HashesResponse): string {
-  return response.type + "." + response.name;
-}
