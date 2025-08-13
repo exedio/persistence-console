@@ -14,6 +14,23 @@ export function delay<T>(
   });
 }
 
+export function useWithStoreSingle<S, T>(
+  store: Map<string, T>,
+  createFunction: (source: S) => T,
+  updateFunction: (target: T, source: S) => void,
+  source: S,
+): T {
+  const result = useWithStore(
+    store,
+    (_source) => "theOneAndOnly",
+    createFunction,
+    updateFunction,
+    [source],
+  );
+  if (result.length !== 1) throw new Error("" + result.length);
+  return result[0];
+}
+
 export function useWithStore<S, T>(
   store: Map<string, T>,
   keyFunction: (source: S) => string,
