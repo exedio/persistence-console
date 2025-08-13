@@ -19,7 +19,7 @@ export function useWithStore<S, T>(
   keyFunction: (source: S) => string,
   createFunction: (source: S) => T,
   updateFunction: (target: T, source: S) => void,
-  sources: S[],
+  sources: readonly S[],
 ): T[] {
   return sources.map((source) => {
     const key: string = keyFunction(source);
