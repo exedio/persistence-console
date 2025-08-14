@@ -584,6 +584,27 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-6n243d">
+    <button class="bullet svelte-6n243d">-</button
+    ><!---->
+    myOnlyName
+    <!----><!---->
+    <!----><!---->
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a minimal table 4`] = `
+"<!----><button disabled="" class="bullet svelte-6n243d">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-6n243d">
     <button class="bullet svelte-6n243d">+</button
     ><!---->
     myOnlyNameReloaded
