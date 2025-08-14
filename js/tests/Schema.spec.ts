@@ -54,6 +54,25 @@ describe("Schema", () => {
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
+    const mockReloadedEqual = mockFetch();
+    mockReloadedEqual.mockResolvedValueOnce(
+      responseSuccess({
+        tables: [
+          {
+            name: "myOnlyName",
+            columns: undefined,
+            constraints: undefined,
+            error: undefined,
+          },
+        ],
+        sequences: undefined,
+      } satisfies SchemaResponse),
+    );
+    (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
+    await flushPromises();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    expect(await formatHtml(tree())).toMatchSnapshot();
+
     const mockReloaded = mockFetch();
     mockReloaded.mockResolvedValueOnce(
       responseSuccess({
