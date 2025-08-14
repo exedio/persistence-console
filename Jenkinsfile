@@ -4,6 +4,8 @@ import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
 
 @Field
+String projectNamePattern = "^exedio/([a-z]*)/.*" // depends on location of multibranch pipeline in jenkins
+@Field
 String jdk = 'openjdk-17'
 @Field
 String idea = '2025.1.2-PATCHED'
@@ -12,7 +14,6 @@ String ideaSHA256 = 'b86f5c434ab49ba40f4eec24020955320f73f47798ca26f63b1a0d1dad9
 @Field
 String nodejs = '22'
 
-String projectName = env.JOB_NAME.substring(0, env.JOB_NAME.indexOf("/")) // depends on name and location of multibranch pipeline in jenkins
 boolean isRelease = env.BRANCH_NAME=="master"
 
 Map<String, ?> recordIssuesDefaults = [
@@ -138,7 +139,7 @@ try
 	}
 
 	parallelBranches["Ivy"] = {
-		def cache = 'jenkins-build-survivor-' + projectName + "-Ivy"
+		def cache = 'jenkins-build-survivor-' + projectName() + "-Ivy"
 		lockNodeCheckoutAndDelete(cache) {
 			mainImage(imageName('Ivy')).inside(
 				dockerRunDefaults('bridge') +
@@ -228,6 +229,19 @@ finally
 
 // ------------------- LIBRARY ----------------------------
 // The code below is meant to be equal across all projects.
+
+String projectName()
+{
+	String jobName = env.JOB_NAME;
+	java.util.regex.Matcher m = java.util.regex.Pattern.compile(projectNamePattern).
+			matcher(jobName)
+	if(!m.matches())
+		error "illegal jobName >" + jobName + "<, must match " + projectNamePattern
+
+	String result = m.group(1)
+	echo("project name >" + result + "< computed from >" + jobName + "<")
+	return result;
+}
 
 void lockNodeCheckoutAndDelete(String resource, Closure body)
 {
