@@ -65,13 +65,13 @@ export function useTable(api: SchemaTableResponse): UseTable {
     ]),
     renameFrom: (schema) => {
       if (!existence || existence.text !== "missing") return [];
-      return (schema.tables ?? [])
+      return schema.tables
         .filter((t) => t.existence && t.existence.text === "unused")
         .map((t) => t.name);
     },
     renameTo: (schema) => {
       if (!existence || existence.text !== "unused") return [];
-      return (schema.tables ?? [])
+      return schema.tables
         .filter((t) => t.existence && t.existence.text === "missing")
         .map((t) => t.name);
     },
@@ -128,13 +128,13 @@ export function useColumn(
     ]),
     renameFrom: (table) => {
       if (!existence || existence.text !== "missing") return [];
-      return (table.columns ?? [])
+      return table.columns
         .filter((c) => c.existence && c.existence.text === "unused")
         .map((c) => c.name);
     },
     renameTo: (table) => {
       if (!existence || existence.text !== "unused") return [];
-      return (table.columns ?? [])
+      return table.columns
         .filter((c) => c.existence && c.existence.text === "missing")
         .map((c) => c.name);
     },
