@@ -8,9 +8,9 @@ String projectNamePattern = "^exedio/([a-z]*)/.*" // depends on location of mult
 @Field
 String jdk = 'openjdk-17'
 @Field
-String idea = '2025.1.2-PATCHED'
+String idea = '2025.2-PATCHED'
 @Field
-String ideaSHA256 = 'b86f5c434ab49ba40f4eec24020955320f73f47798ca26f63b1a0d1dad974d9b'
+String ideaSHA256 = 'd530962a6aabcbf2387c14c1ae7641e1bfa18d8fa435819a2f797a34a0ecf83c'
 @Field
 String nodejs = '22'
 
