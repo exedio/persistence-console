@@ -1432,9 +1432,21 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
 
+    expect(checkbox().checked).toBe(false); // add constraint
+
+    // check "add constraint"
+    const mockAddConstraint = mockFetch();
+    mockAddConstraint.mockResolvedValueOnce(responseSuccessAlter("SOME SQL"));
+    checkbox().click();
+    await flushPromises();
+    expect(mockAddConstraint).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/alterSchema?subject=constraint&table=ExpandedTable&name=expandedColumnConstraintName&method=add",
+    );
+
     expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
     );
+    expect(checkbox().checked).toBe(true); // add constraint
 
     const mockReloadedEqual = mockFetch();
     mockReloadedEqual.mockResolvedValueOnce(responseSuccess(response));
@@ -1444,6 +1456,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
     );
+    expect(checkbox().checked).toBe(true); // add constraint
   });
 
   it("should render an error message", async () => {
@@ -1505,10 +1518,10 @@ function responseSuccessAlter(sql: string) {
   } satisfies AlterSchemaResponse);
 }
 
-function checkbox(): HTMLElement {
+function checkbox(): HTMLInputElement {
   return document
     .querySelectorAll("input[type='checkbox']")
-    .item(0) as HTMLElement;
+    .item(0) as HTMLInputElement;
 }
 
 function select(index: number = 0): HTMLSelectElement {
