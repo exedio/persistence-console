@@ -1352,7 +1352,7 @@ describe("Schema", () => {
               error: undefined,
               constraints: [
                 {
-                  name: "expandedColumnConstraintName",
+                  name: "expandedColumnConstraint",
                   type: "PrimaryKey",
                   clause: undefined,
                   error: {
@@ -1370,7 +1370,7 @@ describe("Schema", () => {
               error: undefined,
               constraints: [
                 {
-                  name: "collapsedColumnConstraintName",
+                  name: "collapsedColumnConstraint",
                   type: "PrimaryKey",
                   clause: undefined,
                   error: undefined,
@@ -1440,7 +1440,7 @@ describe("Schema", () => {
     checkbox().click();
     await flushPromises();
     expect(mockAddConstraint).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/alterSchema?subject=constraint&table=ExpandedTable&name=expandedColumnConstraintName&method=add",
+      "/myApiPath/alterSchema?subject=constraint&table=ExpandedTable&name=expandedColumnConstraint&method=add",
     );
 
     expect(await formatHtml(tree())).toMatchFileSnapshot(
