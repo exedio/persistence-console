@@ -15,55 +15,63 @@ import type {
 
 describe("Hashes", () => {
   it("should render an empty table", async () => {
-    const mock = mockFetch();
-    mock.mockResolvedValueOnce(responseSuccess([] satisfies HashesResponse[]));
-    await mountComponent();
-    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess([] satisfies HashesResponse[]),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    }
     expect(await formatHtml(document.body)).toMatchSnapshot();
   });
 
   it("should render a non-empty table", async () => {
-    const mock = mockFetch();
-    mock.mockResolvedValueOnce(
-      responseSuccess([
-        {
-          type: "myType",
-          name: "myName",
-          plainTextLimit: 150,
-          plainTextValidator: "myValidator",
-          algorithmID: "myAlgorithmID",
-          algorithmDescription: "myAlgorithmDescription",
-        },
-        {
-          type: "myTypeWithoutLimit",
-          name: "myNameWithoutLimit",
-          plainTextLimit: 155,
-          plainTextValidator: undefined,
-          algorithmID: "myAlgorithmIDWithoutLimit",
-          algorithmDescription: "myAlgorithmDescriptionWithoutLimit",
-        },
-      ] satisfies HashesResponse[]),
-    );
-    await mountComponent();
-    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess([
+          {
+            type: "myType",
+            name: "myName",
+            plainTextLimit: 150,
+            plainTextValidator: "myValidator",
+            algorithmID: "myAlgorithmID",
+            algorithmDescription: "myAlgorithmDescription",
+          },
+          {
+            type: "myTypeWithoutLimit",
+            name: "myNameWithoutLimit",
+            plainTextLimit: 155,
+            plainTextValidator: undefined,
+            algorithmID: "myAlgorithmIDWithoutLimit",
+            algorithmDescription: "myAlgorithmDescriptionWithoutLimit",
+          },
+        ] satisfies HashesResponse[]),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    }
     expect(await formatHtml(document.body)).toMatchSnapshot();
 
-    const mockReloaded = mockFetch();
-    mockReloaded.mockResolvedValueOnce(
-      responseSuccess([
-        {
-          type: "myTypeReloaded",
-          name: "myNameReloaded",
-          plainTextLimit: 155,
-          plainTextValidator: "myValidatorReloaded",
-          algorithmID: "myAlgorithmIDReloaded",
-          algorithmDescription: "myAlgorithmDescriptionReloaded",
-        },
-      ] satisfies HashesResponse[]),
-    );
-    (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
-    await flushPromises();
-    expect(mockReloaded).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess([
+          {
+            type: "myTypeReloaded",
+            name: "myNameReloaded",
+            plainTextLimit: 155,
+            plainTextValidator: "myValidatorReloaded",
+            algorithmID: "myAlgorithmIDReloaded",
+            algorithmDescription: "myAlgorithmDescriptionReloaded",
+          },
+        ] satisfies HashesResponse[]),
+      );
+      (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    }
     expect(await formatHtml(document.body)).toMatchSnapshot();
   });
 
@@ -71,56 +79,58 @@ describe("Hashes", () => {
     mockFetch().mockResolvedValueOnce(responseSuccess(threeHashes));
     await mountComponent();
 
-    const mock = mockFetch();
-    mock
-      .mockResolvedValueOnce(
-        responseSuccess({
-          hash: "DO NOT ASSERT myHash1",
-          elapsedNanos: 50010,
-        } satisfies DoHashResponse),
-      )
-      .mockResolvedValueOnce(
-        responseSuccess({
-          hash: "DO NOT ASSERT myHash2",
-          elapsedNanos: 50020,
-        } satisfies DoHashResponse),
-      )
-      .mockResolvedValueOnce(
-        responseSuccess({
-          hash: "DO NOT ASSERT myHash3",
-          elapsedNanos: 50030,
-        } satisfies DoHashResponse),
+    {
+      const mock = mockFetch();
+      mock
+        .mockResolvedValueOnce(
+          responseSuccess({
+            hash: "DO NOT ASSERT myHash1",
+            elapsedNanos: 50010,
+          } satisfies DoHashResponse),
+        )
+        .mockResolvedValueOnce(
+          responseSuccess({
+            hash: "DO NOT ASSERT myHash2",
+            elapsedNanos: 50020,
+          } satisfies DoHashResponse),
+        )
+        .mockResolvedValueOnce(
+          responseSuccess({
+            hash: "DO NOT ASSERT myHash3",
+            elapsedNanos: 50030,
+          } satisfies DoHashResponse),
+        );
+      (document.querySelectorAll(".measure").item(0) as HTMLElement).click();
+      await flushPromises();
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
+        "/myApiPath/doHash",
+        request({
+          type: "myType1",
+          name: "myName1",
+          plainText: "example password",
+        } satisfies DoHashRequest),
       );
-    (document.querySelectorAll(".measure").item(0) as HTMLElement).click();
-    await flushPromises();
-    expect(mock).toHaveBeenNthCalledWith(
-      1,
-      "/myApiPath/doHash",
-      request({
-        type: "myType1",
-        name: "myName1",
-        plainText: "example password",
-      } satisfies DoHashRequest),
-    );
-    expect(mock).toHaveBeenNthCalledWith(
-      2,
-      "/myApiPath/doHash",
-      request({
-        type: "myType2",
-        name: "myName2",
-        plainText: "example password",
-      } satisfies DoHashRequest),
-    );
-    expect(mock).toHaveBeenNthCalledWith(
-      3,
-      "/myApiPath/doHash",
-      request({
-        type: "myType3",
-        name: "myName3",
-        plainText: "example password",
-      } satisfies DoHashRequest),
-    );
-    expect(mock).toHaveBeenCalledTimes(3);
+      expect(mock).toHaveBeenNthCalledWith(
+        2,
+        "/myApiPath/doHash",
+        request({
+          type: "myType2",
+          name: "myName2",
+          plainText: "example password",
+        } satisfies DoHashRequest),
+      );
+      expect(mock).toHaveBeenNthCalledWith(
+        3,
+        "/myApiPath/doHash",
+        request({
+          type: "myType3",
+          name: "myName3",
+          plainText: "example password",
+        } satisfies DoHashRequest),
+      );
+      expect(mock).toHaveBeenCalledTimes(3);
+    }
     expect(
       await formatHtml(document.body.querySelector("tbody")!),
     ).toMatchSnapshot();
@@ -130,23 +140,25 @@ describe("Hashes", () => {
     mockFetch().mockResolvedValueOnce(responseSuccess(threeHashes));
     await mountComponent();
 
-    const mock = mockFetch();
-    mock.mockResolvedValueOnce(
-      responseSuccess({
-        hash: "DO NOT ASSERT myHash2",
-        elapsedNanos: 50020,
-      } satisfies DoHashResponse),
-    );
-    (document.querySelectorAll(".measure").item(2) as HTMLElement).click();
-    await flushPromises();
-    expect(mock).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/doHash",
-      request({
-        type: "myType2",
-        name: "myName2",
-        plainText: "example password",
-      } satisfies DoHashRequest),
-    );
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          hash: "DO NOT ASSERT myHash2",
+          elapsedNanos: 50020,
+        } satisfies DoHashResponse),
+      );
+      (document.querySelectorAll(".measure").item(2) as HTMLElement).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        "/myApiPath/doHash",
+        request({
+          type: "myType2",
+          name: "myName2",
+          plainText: "example password",
+        } satisfies DoHashRequest),
+      );
+    }
     expect(
       await formatHtml(document.body.querySelector("tbody")!),
     ).toMatchSnapshot();
@@ -162,35 +174,39 @@ describe("Hashes", () => {
       await formatHtml(document.body.querySelector("tbody")!),
     ).toMatchSnapshot();
 
-    const mock = mockFetch();
-    mock.mockResolvedValueOnce(
-      responseSuccess({
-        hash: "myHash2",
-        elapsedNanos: 50020,
-      } satisfies DoHashResponse),
-    );
-    (
-      document.querySelectorAll("td.expansion button").item(0) as HTMLElement
-    ).click();
-    await flushPromises();
-    expect(mock).toHaveBeenCalledExactlyOnceWith(
-      "/myApiPath/doHash",
-      request({
-        type: "myType2",
-        name: "myName2",
-        plainText: "",
-      } satisfies DoHashRequest),
-    );
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          hash: "myHash2",
+          elapsedNanos: 50020,
+        } satisfies DoHashResponse),
+      );
+      (
+        document.querySelectorAll("td.expansion button").item(0) as HTMLElement
+      ).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        "/myApiPath/doHash",
+        request({
+          type: "myType2",
+          name: "myName2",
+          plainText: "",
+        } satisfies DoHashRequest),
+      );
+    }
     expect(
       await formatHtml(document.body.querySelector("tbody")!),
     ).toMatchSnapshot();
   });
 
   it("should render an error message", async () => {
-    const mock = mockFetch();
-    mock.mockResolvedValueOnce(responseFailure("myError"));
-    await mountComponent();
-    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(responseFailure("myError"));
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
+    }
     expect(await formatHtml(document.body)).toMatchSnapshot();
   });
 });
