@@ -1465,7 +1465,7 @@ describe("Schema", () => {
       "/myApiPath/alterSchema?subject=sequence&name=SomeSequence&method=add",
     );
 
-    expect(await formatHtml(tree())).toMatchFileSnapshot(
+    await expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
     );
     expect(checkbox().checked).toBe(true); // add constraint
@@ -1476,7 +1476,7 @@ describe("Schema", () => {
     (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
     await flushPromises();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    expect(await formatHtml(tree())).toMatchFileSnapshot(
+    await expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
     );
     expect(checkbox().checked).toBe(true); // add constraint
