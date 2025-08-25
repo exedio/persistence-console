@@ -1340,6 +1340,112 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
+  it("should keep the state after reload", async () => {
+    const response: SchemaResponse = {
+      tables: [
+        {
+          name: "ExpandedTable",
+          columns: [
+            {
+              name: "expandedColumn",
+              type: "expandedColumnType",
+              error: undefined,
+              constraints: [
+                {
+                  name: "expandedColumnConstraintName",
+                  type: "PrimaryKey",
+                  clause: undefined,
+                  error: {
+                    existence: "missing",
+                    clause: undefined,
+                    clauseRaw: undefined,
+                    remainder: undefined,
+                  },
+                },
+              ],
+            },
+            {
+              name: "collapsedColumn",
+              type: "collapsedColumnType",
+              error: undefined,
+              constraints: [
+                {
+                  name: "collapsedColumnConstraintName",
+                  type: "PrimaryKey",
+                  clause: undefined,
+                  error: undefined,
+                },
+              ],
+            },
+          ],
+          constraints: [
+            {
+              name: "expandedTableConstraintName",
+              type: "PrimaryKey",
+              clause: undefined,
+              error: undefined,
+            },
+          ],
+          error: undefined,
+        },
+        {
+          name: "CollapsedTable",
+          columns: [
+            {
+              name: "columnInCollapsedTable",
+              type: "columnInCollapsedTableType",
+              error: undefined,
+              constraints: [
+                {
+                  name: "constraintInCollapsedTableColumn",
+                  type: "PrimaryKey",
+                  clause: undefined,
+                  error: undefined,
+                },
+              ],
+            },
+          ],
+          constraints: [
+            {
+              name: "constraintInCollapsedTable",
+              type: "PrimaryKey",
+              clause: undefined,
+              error: undefined,
+            },
+          ],
+          error: undefined,
+        },
+      ],
+      sequences: undefined,
+    };
+
+    const mock = mockFetch();
+    mock.mockResolvedValueOnce(responseSuccess(response));
+    await mountComponent();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+
+    // expand table
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+
+    // expand column
+    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    await flushPromises();
+
+    expect(await formatHtml(tree())).toMatchFileSnapshot(
+      "Schema-reload.output.html",
+    );
+
+    const mockReloadedEqual = mockFetch();
+    mockReloadedEqual.mockResolvedValueOnce(responseSuccess(response));
+    (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
+    await flushPromises();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    expect(await formatHtml(tree())).toMatchFileSnapshot(
+      "Schema-reload.output.html",
+    );
+  });
+
   it("should render an error message", async () => {
     const mock = mockFetch();
     mock.mockResolvedValueOnce(responseFailure("myError"));
