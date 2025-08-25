@@ -1416,7 +1416,19 @@ describe("Schema", () => {
           error: undefined,
         },
       ],
-      sequences: undefined,
+      sequences: [
+        {
+          name: "SomeSequence",
+          type: "someSequenceType",
+          start: 55,
+          error: {
+            existence: "missing",
+            type: undefined,
+            start: undefined,
+            remainder: undefined,
+          },
+        },
+      ],
     };
 
     const mock = mockFetch();
@@ -1433,6 +1445,7 @@ describe("Schema", () => {
     await flushPromises();
 
     expect(checkbox().checked).toBe(false); // add constraint
+    expect(checkbox(1).checked).toBe(false); // create sequence
 
     // check "add constraint"
     const mockAddConstraint = mockFetch();
@@ -1443,10 +1456,20 @@ describe("Schema", () => {
       "/myApiPath/alterSchema?subject=constraint&table=ExpandedTable&name=expandedColumnConstraint&method=add",
     );
 
+    // check "create sequence"
+    const mockCreateSequence = mockFetch();
+    mockCreateSequence.mockResolvedValueOnce(responseSuccessAlter("SOME SQL"));
+    checkbox(1).click();
+    await flushPromises();
+    expect(mockCreateSequence).toHaveBeenCalledExactlyOnceWith(
+      "/myApiPath/alterSchema?subject=sequence&name=SomeSequence&method=add",
+    );
+
     expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
     );
     expect(checkbox().checked).toBe(true); // add constraint
+    expect(checkbox(1).checked).toBe(true); // create sequence
 
     const mockReloadedEqual = mockFetch();
     mockReloadedEqual.mockResolvedValueOnce(responseSuccess(response));
@@ -1457,6 +1480,7 @@ describe("Schema", () => {
       "Schema-reload.output.html",
     );
     expect(checkbox().checked).toBe(true); // add constraint
+    expect(checkbox(1).checked).toBe(true); // create sequence
   });
 
   it("should render an error message", async () => {
@@ -1518,10 +1542,10 @@ function responseSuccessAlter(sql: string) {
   } satisfies AlterSchemaResponse);
 }
 
-function checkbox(): HTMLInputElement {
+function checkbox(index: number = 0): HTMLInputElement {
   return document
     .querySelectorAll("input[type='checkbox']")
-    .item(0) as HTMLInputElement;
+    .item(index) as HTMLInputElement;
 }
 
 function select(index: number = 0): HTMLSelectElement {
