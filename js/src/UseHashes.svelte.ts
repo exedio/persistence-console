@@ -30,6 +30,9 @@ export class UseHashes {
   }
 
   update(api: HashesResponse) {
+    if (this.type !== api.type) throw new Error(this.type);
+    if (this.name !== api.name) throw new Error(this.name);
+
     this.api = api;
   }
 
