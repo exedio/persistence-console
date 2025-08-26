@@ -52,6 +52,16 @@ exports[`Suspicions > should render a non-empty table 2`] = `
   <tbody>
     <!----><!---->
     <tr>
+      <td rowspan="2">myOnlyType.myOnlyName</td>
+      <!---->
+      <td>myOnlySuspicionChanged</td>
+    </tr>
+    <tr>
+      <!---->
+      <td>myOnlySuspicionChangedOther</td>
+    </tr>
+    <!---->
+    <tr>
       <td rowspan="1">myOnlyTypeReloaded.myOnlyNameReloaded</td>
       <!---->
       <td>myOnlySuspicionReloaded</td>

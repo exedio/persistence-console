@@ -45,6 +45,14 @@ describe("Suspicions", () => {
       mock.mockResolvedValueOnce(
         responseSuccess([
           {
+            type: "myOnlyType",
+            name: "myOnlyName",
+            suspicions: [
+              "myOnlySuspicionChanged",
+              "myOnlySuspicionChangedOther",
+            ],
+          },
+          {
             type: "myOnlyTypeReloaded",
             name: "myOnlyNameReloaded",
             suspicions: ["myOnlySuspicionReloaded"],
