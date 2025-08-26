@@ -1571,13 +1571,35 @@ describe("Schema", () => {
 
     {
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(responseSuccess(response));
+      mock.mockResolvedValueOnce(responseSuccess(deepCopy(response)));
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
     await expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
+    );
+    expect(checkbox().checked).toBe(true); // add constraint
+    expect(checkbox(1).checked).toBe(true); // create sequence
+
+    const responseChanged: SchemaResponse = deepCopy(response);
+    (responseChanged.tables![0].columns![0].type as string) =
+      "expandedColumnTypeChange";
+    (responseChanged.tables![0].columns![0].constraints![0].clause as string) =
+      "expandedColumnConstraintConditionChange";
+    (responseChanged.tables![0].constraints![0].clause as string) =
+      "expandedTableConstraintConditionChange";
+    (responseChanged.sequences![0].type as string) = "someSequenceTypeChange";
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(responseSuccess(responseChanged));
+      (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    }
+    await expect(await formatHtml(tree())).toMatchFileSnapshot(
+      "Schema-reload-changed.output.html",
     );
     expect(checkbox().checked).toBe(true); // add constraint
     expect(checkbox(1).checked).toBe(true); // create sequence
@@ -1662,6 +1684,10 @@ function select(index: number = 0): HTMLSelectElement {
 
 function sql(): HTMLElement {
   return document.querySelectorAll(".sql").item(0) as HTMLElement;
+}
+
+function deepCopy(o: any): any {
+  return JSON.parse(JSON.stringify(o));
 }
 
 beforeAll(() => {
