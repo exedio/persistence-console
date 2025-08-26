@@ -94,6 +94,21 @@ exports[`Hashes > should render a non-empty table 2`] = `
     <!---->
     <tr class="relative svelte-109884">
       <td>
+        <button class="hash svelte-109884">↓<!----></button> myType
+      </td>
+      <td>myName</td>
+      <td class="number">155</td>
+      <td>myValidator</td>
+      <td>myAlgorithmID</td>
+      <td>myAlgorithmDescription</td>
+      <td class="number">
+        <!---->
+        <button class="measure svelte-109884">🕐</button>
+      </td>
+    </tr>
+    <!---->
+    <tr class="relative svelte-109884">
+      <td>
         <button class="hash svelte-109884">↓<!----></button> myTypeReloaded
       </td>
       <td>myNameReloaded</td>
