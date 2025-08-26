@@ -1,4 +1,4 @@
-FROM alpine:3.16.2 AS idea-fetcher
+FROM alpine:3.22.1 AS idea-fetcher
 RUN apk --no-cache add curl
 ARG IDEA
 ARG IDEA_SHA256
