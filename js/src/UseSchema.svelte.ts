@@ -61,8 +61,6 @@ export class UseTable {
   readonly constraints: readonly UseConstraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
-  readonly renameFrom: (schema: UseSchema) => string[];
-  readonly renameTo: (schema: UseSchema) => string[];
   readonly fixable: SchemaFixable;
 
   private readonly columnsStore = new Map<string, UseColumn>();
@@ -95,20 +93,6 @@ export class UseTable {
         worst(this.constraints.map((i) => i.bulletColor)),
       ]),
     );
-    this.renameFrom = (schema) => {
-      if (!this.existence || this.existence.text !== "missing") return [];
-      return schema
-        .tables()
-        .filter((t) => t.existence && t.existence.text === "unused")
-        .map((t) => t.name);
-    };
-    this.renameTo = (schema) => {
-      if (!this.existence || this.existence.text !== "unused") return [];
-      return schema
-        .tables()
-        .filter((t) => t.existence && t.existence.text === "missing")
-        .map((t) => t.name);
-    };
     this.fixable = {
       subject: "table",
       tableName: undefined,
@@ -138,6 +122,22 @@ export class UseTable {
       columns ?? [],
     );
   }
+
+  renameFrom(schema: UseSchema): string[] {
+    if (!this.existence || this.existence.text !== "missing") return [];
+    return schema
+      .tables()
+      .filter((t) => t.existence && t.existence.text === "unused")
+      .map((t) => t.name);
+  }
+
+  renameTo(schema: UseSchema): string[] {
+    if (!this.existence || this.existence.text !== "unused") return [];
+    return schema
+      .tables()
+      .filter((t) => t.existence && t.existence.text === "missing")
+      .map((t) => t.name);
+  }
 }
 
 export class UseColumn {
@@ -149,8 +149,6 @@ export class UseColumn {
   readonly constraints: readonly UseConstraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
-  readonly renameFrom: (table: UseTable) => string[];
-  readonly renameTo: (table: UseTable) => string[];
   readonly fixable: SchemaFixable;
 
   expanded: boolean = $state(false);
@@ -186,20 +184,6 @@ export class UseColumn {
         worst(this.constraints.map((i) => i.bulletColor)),
       ]),
     );
-    this.renameFrom = (table) => {
-      if (!this.existence || this.existence.text !== "missing") return [];
-      return table
-        .columns()
-        .filter((c) => c.existence && c.existence.text === "unused")
-        .map((c) => c.name);
-    };
-    this.renameTo = (table) => {
-      if (!this.existence || this.existence.text !== "unused") return [];
-      return table
-        .columns()
-        .filter((c) => c.existence && c.existence.text === "missing")
-        .map((c) => c.name);
-    };
     this.fixable = {
       subject: "column",
       tableName,
@@ -211,6 +195,22 @@ export class UseColumn {
     if (this.name !== api.name) throw new Error(this.name);
 
     this.api = api;
+  }
+
+  renameFrom(table: UseTable): string[] {
+    if (!this.existence || this.existence.text !== "missing") return [];
+    return table
+      .columns()
+      .filter((c) => c.existence && c.existence.text === "unused")
+      .map((c) => c.name);
+  }
+
+  renameTo(table: UseTable): string[] {
+    if (!this.existence || this.existence.text !== "unused") return [];
+    return table
+      .columns()
+      .filter((c) => c.existence && c.existence.text === "missing")
+      .map((c) => c.name);
   }
 }
 
