@@ -7,83 +7,141 @@ import type {
   SchemaTableResponse,
 } from "@/api/types";
 import type { SchemaFixable } from "@/SchemaFix";
+import { useWithStore } from "@/utils";
 
-export type UseSchema = {
-  readonly tables: readonly UseTable[];
+export class UseSchema {
+  private api: SchemaResponse;
+  private _tables: readonly UseTable[];
   readonly sequences: readonly UseSequence[];
   readonly bulletColor: Color;
-};
 
-export function useSchema(api: SchemaResponse): UseSchema {
-  const tables = (api.tables ?? []).map((i) => useTable(i));
-  const sequences = (api.sequences ?? []).map((i) => useSequence(i));
-  return {
-    tables,
-    sequences,
-    bulletColor: worse(
-      worst(tables.map((i) => i.bulletColor)),
-      worst(sequences.map((i) => i.bulletColor)),
-    ),
-  } satisfies UseSchema;
+  private readonly tablesStore = new Map<string, UseTable>();
+
+  constructor(apiParameterNotToBeUsedExceptForAssigment: SchemaResponse) {
+    this.api = $state(apiParameterNotToBeUsedExceptForAssigment);
+    this._tables = $state(this.useTables(this.api.tables));
+    this.sequences = $derived(
+      (this.api.sequences ?? []).map((i) => useSequence(i)),
+    );
+    this.bulletColor = $derived(
+      worse(
+        worst(this._tables.map((i) => i.bulletColor)),
+        worst(this.sequences.map((i) => i.bulletColor)),
+      ),
+    );
+  }
+
+  tables(): readonly UseTable[] {
+    return this._tables;
+  }
+
+  update(api: SchemaResponse) {
+    this.api = api;
+    this._tables = this.useTables(api.tables);
+  }
+
+  private useTables(
+    tables: readonly SchemaTableResponse[] | undefined,
+  ): UseTable[] {
+    return useWithStore(
+      this.tablesStore,
+      (source) => source.name,
+      (source) => new UseTable(source),
+      (target, source) => target.update(source),
+      tables ?? [],
+    );
+  }
 }
 
-export type UseTable = {
+export class UseTable {
+  private api: SchemaTableResponse;
   readonly name: string;
   readonly existence: UseExistence;
-  readonly columns: readonly UseColumn[];
+  private _columns: readonly UseColumn[];
   readonly constraints: readonly UseConstraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
   readonly renameFrom: (schema: UseSchema) => string[];
   readonly renameTo: (schema: UseSchema) => string[];
   readonly fixable: SchemaFixable;
-};
 
-export function useTable(api: SchemaTableResponse): UseTable {
-  const name = api.name;
-  const existence: UseExistence =
-    api.error && api.error.existence
-      ? api.error.existence === "unused"
-        ? { text: api.error.existence, color: "yellow" }
-        : { text: api.error.existence, color: "red" }
-      : undefined;
-  const columns = (api.columns ?? []).map((i) => useColumn(i, name));
-  const constraints = (api.constraints ?? []).map((i) =>
-    useConstraint(i, name, undefined),
-  );
-  return {
-    name,
-    existence,
-    columns,
-    constraints,
-    remainingErrors: useRemainder(api.error?.remainder),
-    bulletColor: worst([
-      existence?.color,
-      remainderColor(api.error),
-      worst(columns.map((i) => i.bulletColor)),
-      worst(constraints.map((i) => i.bulletColor)),
-    ]),
-    renameFrom: (schema) => {
-      if (!existence || existence.text !== "missing") return [];
-      return schema.tables
+  private readonly columnsStore = new Map<string, UseColumn>();
+
+  expanded: boolean = $state(false);
+
+  constructor(apiParameterForAssigmentOnly: SchemaTableResponse) {
+    this.api = $state(apiParameterForAssigmentOnly);
+    const name = this.api.name;
+    this.name = this.api.name;
+    this.existence = $derived(
+      this.api.error && this.api.error.existence
+        ? this.api.error.existence === "unused"
+          ? { text: this.api.error.existence, color: "yellow" }
+          : { text: this.api.error.existence, color: "red" }
+        : undefined,
+    );
+    this._columns = $state(this.useColumns(this.api.columns));
+    this.constraints = $derived(
+      (this.api.constraints ?? []).map((i) =>
+        useConstraint(i, name, undefined),
+      ),
+    );
+    this.remainingErrors = $derived(useRemainder(this.api.error?.remainder));
+    this.bulletColor = $derived(
+      worst([
+        this.existence?.color,
+        remainderColor(this.api.error),
+        worst(this._columns.map((i) => i.bulletColor)),
+        worst(this.constraints.map((i) => i.bulletColor)),
+      ]),
+    );
+    this.renameFrom = (schema) => {
+      if (!this.existence || this.existence.text !== "missing") return [];
+      return schema
+        .tables()
         .filter((t) => t.existence && t.existence.text === "unused")
         .map((t) => t.name);
-    },
-    renameTo: (schema) => {
-      if (!existence || existence.text !== "unused") return [];
-      return schema.tables
+    };
+    this.renameTo = (schema) => {
+      if (!this.existence || this.existence.text !== "unused") return [];
+      return schema
+        .tables()
         .filter((t) => t.existence && t.existence.text === "missing")
         .map((t) => t.name);
-    },
-    fixable: {
+    };
+    this.fixable = {
       subject: "table",
       tableName: undefined,
       name,
-    },
-  } satisfies UseTable;
+    };
+  }
+
+  columns(): readonly UseColumn[] {
+    return this._columns;
+  }
+
+  update(api: SchemaTableResponse) {
+    if (this.name !== api.name) throw new Error(this.name);
+
+    this.api = api;
+    this._columns = this.useColumns(api.columns);
+  }
+
+  private useColumns(
+    columns: readonly SchemaColumnResponse[] | undefined,
+  ): UseColumn[] {
+    return useWithStore(
+      this.columnsStore,
+      (source) => source.name,
+      (source) => new UseColumn(source, this.name),
+      (target, source) => target.update(source),
+      columns ?? [],
+    );
+  }
 }
 
-export type UseColumn = {
+export class UseColumn {
+  private api: SchemaColumnResponse;
   readonly tableName: string;
   readonly name: string;
   readonly existence: UseExistence;
@@ -94,56 +152,66 @@ export type UseColumn = {
   readonly renameFrom: (table: UseTable) => string[];
   readonly renameTo: (table: UseTable) => string[];
   readonly fixable: SchemaFixable;
-};
 
-export function useColumn(
-  api: SchemaColumnResponse,
-  tableName: string,
-): UseColumn {
-  const name = api.name;
-  const existence = columnExistence(api);
-  const type: UseComparison = {
-    name: "type",
-    expected: api.type,
-    actual: api.error?.type,
-    actualRaw: undefined,
-    shortener: (s) => s,
-    color: api.error?.type ? "red" : undefined,
-  };
-  const constraints = (api.constraints ?? []).map((i) =>
-    useConstraint(i, tableName, name),
-  );
-  return {
-    tableName,
-    name,
-    existence,
-    type,
-    constraints,
-    remainingErrors: useRemainder(api.error?.remainder),
-    bulletColor: worst([
-      existence?.color,
-      type?.color,
-      remainderColor(api.error),
-      worst(constraints.map((i) => i.bulletColor)),
-    ]),
-    renameFrom: (table) => {
-      if (!existence || existence.text !== "missing") return [];
-      return table.columns
+  expanded: boolean = $state(false);
+
+  constructor(
+    apiParameterForAssigmentOnly: SchemaColumnResponse,
+    tableName: string,
+  ) {
+    this.api = $state(apiParameterForAssigmentOnly);
+    this.tableName = tableName;
+    const name = this.api.name;
+    this.name = name;
+    this.existence = $derived(columnExistence(this.api));
+    this.type = $derived({
+      name: "type",
+      expected: this.api.type,
+      actual: this.api.error?.type,
+      actualRaw: undefined,
+      shortener: (s) => s,
+      color: this.api.error?.type ? "red" : undefined,
+    });
+    this.constraints = $derived(
+      (this.api.constraints ?? []).map((i) =>
+        useConstraint(i, tableName, name),
+      ),
+    );
+    this.remainingErrors = $derived(useRemainder(this.api.error?.remainder));
+    this.bulletColor = $derived(
+      worst([
+        this.existence?.color,
+        this.type?.color,
+        remainderColor(this.api.error),
+        worst(this.constraints.map((i) => i.bulletColor)),
+      ]),
+    );
+    this.renameFrom = (table) => {
+      if (!this.existence || this.existence.text !== "missing") return [];
+      return table
+        .columns()
         .filter((c) => c.existence && c.existence.text === "unused")
         .map((c) => c.name);
-    },
-    renameTo: (table) => {
-      if (!existence || existence.text !== "unused") return [];
-      return table.columns
+    };
+    this.renameTo = (table) => {
+      if (!this.existence || this.existence.text !== "unused") return [];
+      return table
+        .columns()
         .filter((c) => c.existence && c.existence.text === "missing")
         .map((c) => c.name);
-    },
-    fixable: {
+    };
+    this.fixable = {
       subject: "column",
       tableName,
       name,
-    },
-  } satisfies UseColumn;
+    };
+  }
+
+  update(api: SchemaColumnResponse) {
+    if (this.name !== api.name) throw new Error(this.name);
+
+    this.api = api;
+  }
 }
 
 function columnExistence(api: SchemaColumnResponse): UseExistence {

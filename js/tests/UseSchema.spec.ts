@@ -1,9 +1,9 @@
 import { expect } from "vitest";
-import { useSchema } from "@/UseSchema";
+import { UseSchema } from "@/UseSchema.svelte";
 
 describe("UseSchema", () => {
   it("table renameTo/From", async () => {
-    const schema = useSchema({
+    const schema = new UseSchema({
       tables: [
         {
           name: "tableOk",
@@ -60,10 +60,10 @@ describe("UseSchema", () => {
       sequences: [],
     });
 
-    const missing1 = schema.tables.find((t) => t.name === "tableMissing1");
-    const missing2 = schema.tables.find((t) => t.name === "tableMissing2");
-    const unused1 = schema.tables.find((t) => t.name === "tableUnused1");
-    const unused2 = schema.tables.find((t) => t.name === "tableUnused2");
+    const missing1 = schema.tables().find((t) => t.name === "tableMissing1");
+    const missing2 = schema.tables().find((t) => t.name === "tableMissing2");
+    const unused1 = schema.tables().find((t) => t.name === "tableUnused1");
+    const unused2 = schema.tables().find((t) => t.name === "tableUnused2");
     expect(missing1!.renameTo(schema)).toStrictEqual([]);
     expect(missing2!.renameTo(schema)).toStrictEqual([]);
     expect(unused1!.renameFrom(schema)).toStrictEqual([]);
@@ -86,7 +86,7 @@ describe("UseSchema", () => {
     ]);
   });
   it("column renameTo/From", async () => {
-    const schema = useSchema({
+    const schema = new UseSchema({
       tables: [
         {
           name: "myTable",
@@ -145,11 +145,11 @@ describe("UseSchema", () => {
       sequences: [],
     });
 
-    const table = schema.tables.find((t) => t.name === "myTable");
-    const missing1 = table?.columns.find((t) => t.name === "columnMissing1");
-    const missing2 = table?.columns.find((t) => t.name === "columnMissing2");
-    const unused1 = table?.columns.find((t) => t.name === "columnUnused1");
-    const unused2 = table?.columns.find((t) => t.name === "columnUnused2");
+    const table = schema.tables().find((t) => t.name === "myTable");
+    const missing1 = table?.columns().find((t) => t.name === "columnMissing1");
+    const missing2 = table?.columns().find((t) => t.name === "columnMissing2");
+    const unused1 = table?.columns().find((t) => t.name === "columnUnused1");
+    const unused2 = table?.columns().find((t) => t.name === "columnUnused2");
     expect(missing1!.renameTo(table!)).toStrictEqual([]);
     expect(missing2!.renameTo(table!)).toStrictEqual([]);
     expect(unused1!.renameFrom(table!)).toStrictEqual([]);

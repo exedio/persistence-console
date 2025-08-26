@@ -8,32 +8,40 @@
   } from "@/api/types";
   import { SvelteMap } from "svelte/reactivity";
   import {
-    type UseColumn,
-    useSchema,
-    type UseTable,
+    UseSchema,
     type UseExistence,
     type UseComparison,
     type UseConstraint,
     type Color,
-  } from "@/UseSchema.js";
+  } from "@/UseSchema.svelte.js";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
-  import { Expander } from "@/Expander.js";
   import {
     type SchemaFix as Fix,
     type SchemaFixable as Fixable,
     schemaFixableString as fixableString,
     workOnFixes,
   } from "@/SchemaFix";
+  import { useWithStoreSingle } from "@/utils";
 
-  const schemaT = new PromiseTracker(() => get<SchemaResponse>("schema"));
+  const schemaStore = new Map<string, UseSchema>();
 
-  const expandedTables = new Expander<UseTable>((t) => t.name);
-
-  const expandedColumns = new Expander<UseColumn>(
-    (c) => c.tableName + "." + c.name,
+  const schemaT = new PromiseTracker(() =>
+    get<SchemaResponse>("schema").then((response) =>
+      useWithStoreSingle(
+        schemaStore,
+        (source) => new UseSchema(source),
+        (target, source) => target.update(source),
+        response,
+      ),
+    ),
   );
+
+  type Expandable = {
+    readonly bulletColor: Color;
+    expanded: boolean;
+  };
 
   type Modify = {
     subject: "column" | "constraint";
@@ -160,16 +168,15 @@
   <div class="tree">
     {#await schemaT.promise()}
       fetching data
-    {:then schemaApi}
-      {@const schema = useSchema(schemaApi)}
+    {:then schema}
       {@render expanderDisabled(schema.bulletColor)}
       Schema
       <PromiseTrackerReload tracker={schemaT} />
       <ul>
-        {#each schema.tables as table (table.name)}
-          {@const tableExpanded = expandedTables.has(table)}
+        {#each schema.tables() as table (table.name)}
+          {@const tableExpanded = table.expanded}
           <li class="table">
-            {@render expander(expandedTables, table, table.bulletColor)}
+            {@render expander(table)}
             {table.name}
             {@render existence(
               table.existence,
@@ -180,16 +187,12 @@
             {#if tableExpanded}
               {@render remainder(table.remainingErrors)}
             {/if}
-            {#if tableExpanded && (table.columns.length || table.constraints.length)}
+            {#if tableExpanded && (table.columns().length || table.constraints.length)}
               <ul in:fly={{ y: -10, duration: 200 }}>
-                {#each table.columns as column (column.name)}
-                  {@const columnExpanded = expandedColumns.has(column)}
+                {#each table.columns() as column (column.name)}
+                  {@const columnExpanded = column.expanded}
                   <li class="column">
-                    {@render expander(
-                      expandedColumns,
-                      column,
-                      column.bulletColor,
-                    )}
+                    {@render expander(column)}
                     {column.name}
                     {@render existence(
                       column.existence,
@@ -283,9 +286,12 @@
   {/each}
 {/snippet}
 
-{#snippet expander<E>(expander: Expander<E>, element: E, color: Color)}
-  <button class={["bullet", color]} onclick={() => expander.toggle(element)}>
-    {expander.has(element) ? "-" : "+"}
+{#snippet expander(expandable: Expandable)}
+  <button
+    class={["bullet", expandable.bulletColor]}
+    onclick={() => (expandable.expanded = !expandable.expanded)}
+  >
+    {expandable.expanded ? "-" : "+"}
   </button>
 {/snippet}
 
