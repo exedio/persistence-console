@@ -98,9 +98,9 @@ exports[`Hashes > should render a non-empty table 2`] = `
       </td>
       <td>myName</td>
       <td class="number">155</td>
-      <td>myValidator</td>
-      <td>myAlgorithmID</td>
-      <td>myAlgorithmDescription</td>
+      <td>myValidatorChanged</td>
+      <td>myAlgorithmIDChanged</td>
+      <td>myAlgorithmDescriptionChanged</td>
       <td class="number">
         <!---->
         <button class="measure svelte-109884">🕐</button>

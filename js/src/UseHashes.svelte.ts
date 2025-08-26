@@ -24,9 +24,9 @@ export class UseHashes {
     this.type = api.type;
     this.name = api.name;
     this.plainTextLimit = $derived(this.api.plainTextLimit);
-    this.plainTextValidator = $derived(api.plainTextValidator);
-    this.algorithmID = $derived(api.algorithmID);
-    this.algorithmDescription = $derived(api.algorithmDescription);
+    this.plainTextValidator = $derived(this.api.plainTextValidator);
+    this.algorithmID = $derived(this.api.algorithmID);
+    this.algorithmDescription = $derived(this.api.algorithmDescription);
   }
 
   update(api: HashesResponse) {
