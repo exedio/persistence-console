@@ -19,10 +19,10 @@ export class UseHashes {
   private plainTextHashed: string | undefined = $state(undefined);
   private measurement: number | undefined = $state(undefined);
 
-  constructor(api: HashesResponse) {
-    this.api = $state(api);
-    this.type = api.type;
-    this.name = api.name;
+  constructor(apiParameterForAssigmentOnly: HashesResponse) {
+    this.api = $state(apiParameterForAssigmentOnly);
+    this.type = this.api.type;
+    this.name = this.api.name;
     this.plainTextLimit = $derived(this.api.plainTextLimit);
     this.plainTextValidator = $derived(this.api.plainTextValidator);
     this.algorithmID = $derived(this.api.algorithmID);
