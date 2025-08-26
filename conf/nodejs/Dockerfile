@@ -1,9 +1,6 @@
 ARG NODEJS
 FROM node:${NODEJS}-alpine3.18
 
-# Without bash jenkins sh step fails: sh: /bin/bash: not found
-RUN apk --no-cache add bash
-
 # There is no need to install yarn here, because the docker image already contains
 # yarn version 1.22.19:
 #
