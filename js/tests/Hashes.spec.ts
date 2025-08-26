@@ -59,6 +59,14 @@ describe("Hashes", () => {
       mock.mockResolvedValueOnce(
         responseSuccess([
           {
+            type: "myType",
+            name: "myName",
+            plainTextLimit: 155,
+            plainTextValidator: "myValidatorChanged",
+            algorithmID: "myAlgorithmIDChanged",
+            algorithmDescription: "myAlgorithmDescriptionChanged",
+          },
+          {
             type: "myTypeReloaded",
             name: "myNameReloaded",
             plainTextLimit: 155,
