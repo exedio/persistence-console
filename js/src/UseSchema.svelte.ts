@@ -12,21 +12,20 @@ import { useWithStore } from "@/utils";
 export class UseSchema {
   private api: SchemaResponse;
   private _tables: readonly UseTable[];
-  readonly sequences: readonly UseSequence[];
+  private _sequences: readonly UseSequence[];
   readonly bulletColor: Color;
 
   private readonly tablesStore = new Map<string, UseTable>();
+  private readonly sequencesStore = new Map<string, UseSequence>();
 
   constructor(apiParameterNotToBeUsedExceptForAssigment: SchemaResponse) {
     this.api = $state(apiParameterNotToBeUsedExceptForAssigment);
     this._tables = $state(this.useTables(this.api.tables));
-    this.sequences = $derived(
-      (this.api.sequences ?? []).map((i) => useSequence(i)),
-    );
+    this._sequences = $state(this.useSequences(this.api.sequences));
     this.bulletColor = $derived(
       worse(
         worst(this._tables.map((i) => i.bulletColor)),
-        worst(this.sequences.map((i) => i.bulletColor)),
+        worst(this._sequences.map((i) => i.bulletColor)),
       ),
     );
   }
@@ -35,9 +34,14 @@ export class UseSchema {
     return this._tables;
   }
 
+  sequences(): readonly UseSequence[] {
+    return this._sequences;
+  }
+
   update(api: SchemaResponse) {
     this.api = api;
     this._tables = this.useTables(api.tables);
+    this._sequences = this.useSequences(api.sequences);
   }
 
   private useTables(
@@ -49,6 +53,18 @@ export class UseSchema {
       (source) => new UseTable(source),
       (target, source) => target.update(source),
       tables ?? [],
+    );
+  }
+
+  private useSequences(
+    sequences: readonly SchemaSequenceResponse[] | undefined,
+  ): UseSequence[] {
+    return useWithStore(
+      this.sequencesStore,
+      (source) => source.name,
+      (source) => new UseSequence(source),
+      (target, source) => target.update(source),
+      sequences ?? [],
     );
   }
 }
@@ -373,7 +389,8 @@ function useConstraintType(api: SchemaConstraintResponse): UseConstraintType {
   }
 }
 
-export type UseSequence = {
+export class UseSequence {
+  private api: SchemaSequenceResponse;
   readonly name: string;
   readonly existence: UseExistence;
   readonly type: UseComparison;
@@ -381,44 +398,46 @@ export type UseSequence = {
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
   readonly fixable: SchemaFixable;
-};
 
-export function useSequence(api: SchemaSequenceResponse): UseSequence {
-  const existence = sequenceExistence(api);
-  const type: UseComparison = {
-    name: "type",
-    expected: api.type,
-    actual: api.error?.type,
-    actualRaw: undefined,
-    shortener: (s) => s,
-    color: api.error?.type ? "red" : undefined,
-  };
-  const start: UseComparison = {
-    name: "start",
-    expected: api.start.toString(),
-    actual: api.error?.start?.toString(),
-    actualRaw: undefined,
-    shortener: (s) => s,
-    color: api.error?.start ? "red" : undefined,
-  };
-  return {
-    name: api.name,
-    existence,
-    type,
-    start,
-    remainingErrors: useRemainder(api.error?.remainder),
-    bulletColor: worst([
-      existence?.color,
-      type.color,
-      start.color,
-      remainderColor(api.error),
-    ]),
-    fixable: {
+  constructor(apiParameterForAssigmentOnly: SchemaSequenceResponse) {
+    this.api = $state(apiParameterForAssigmentOnly);
+    this.name = this.api.name;
+    this.existence = $derived(sequenceExistence(this.api));
+    this.type = $derived({
+      name: "type",
+      expected: this.api.type,
+      actual: this.api.error?.type,
+      actualRaw: undefined,
+      shortener: (s) => s,
+      color: this.api.error?.type ? "red" : undefined,
+    });
+    this.start = $derived({
+      name: "start",
+      expected: this.api.start.toString(),
+      actual: this.api.error?.start?.toString(),
+      actualRaw: undefined,
+      shortener: (s) => s,
+      color: this.api.error?.start ? "red" : undefined,
+    });
+    (this.remainingErrors = useRemainder(this.api.error?.remainder)),
+      (this.bulletColor = worst([
+        this.existence?.color,
+        this.type.color,
+        this.start.color,
+        remainderColor(this.api.error),
+      ]));
+    this.fixable = {
       subject: "sequence",
       tableName: undefined,
-      name: api.name,
-    },
-  } satisfies UseSequence;
+      name: this.api.name,
+    };
+  }
+
+  update(api: SchemaSequenceResponse) {
+    if (this.name !== api.name) throw new Error(this.name);
+
+    this.api = api;
+  }
 }
 
 function sequenceExistence(api: SchemaSequenceResponse): UseExistence {

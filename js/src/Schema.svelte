@@ -220,7 +220,7 @@
             {/if}
           </li>
         {/each}
-        {#each schema.sequences as sequence (sequence.name)}
+        {#each schema.sequences() as sequence (sequence.name)}
           <li class="sequence">
             {@render expanderDisabled(sequence.bulletColor)}
             <span class="nodeType">sequence</span>
