@@ -419,13 +419,15 @@ export class UseSequence {
       shortener: (s) => s,
       color: this.api.error?.start ? "red" : undefined,
     });
-    (this.remainingErrors = useRemainder(this.api.error?.remainder)),
-      (this.bulletColor = worst([
+    this.remainingErrors = $derived(useRemainder(this.api.error?.remainder));
+    this.bulletColor = $derived(
+      worst([
         this.existence?.color,
         this.type.color,
         this.start.color,
         remainderColor(this.api.error),
-      ]));
+      ]),
+    );
     this.fixable = {
       subject: "sequence",
       tableName: undefined,
