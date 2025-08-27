@@ -299,8 +299,8 @@ type UseConstraintType = "pk" | "fk" | "unique" | "check";
 export class UseConstraint {
   private api: SchemaConstraintResponse;
   readonly tableName: string;
+  private readonly columnName: string | undefined;
   readonly name: string;
-  readonly nameShort: () => string;
   readonly existence: UseExistence;
   readonly type: UseConstraintType;
   readonly clause: UseComparison | undefined;
@@ -315,6 +315,7 @@ export class UseConstraint {
   ) {
     this.api = $state(apiParameterForAssigmentOnly);
     this.tableName = tableName;
+    this.columnName = columnName;
     this.name = this.api.name;
     this.existence = $derived(constraintExistence(this.api));
     this.clause = $derived(
@@ -335,18 +336,6 @@ export class UseConstraint {
         : undefined,
     );
 
-    this.nameShort = () => {
-      if (columnName) {
-        const prefix = tableName + "_" + columnName + "_";
-        if (this.name.startsWith(prefix))
-          return "~" + this.name.substring(prefix.length);
-      }
-      const prefix = tableName + "_";
-      if (this.name.startsWith(prefix))
-        return "~" + this.name.substring(prefix.length);
-
-      return this.name;
-    };
     this.type = $derived(useConstraintType(this.api));
     this.remainingErrors = $derived(useRemainder(this.api.error?.remainder));
     this.bulletColor = $derived(
@@ -367,6 +356,19 @@ export class UseConstraint {
     if (this.name !== api.name) throw new Error(this.name);
 
     this.api = api;
+  }
+
+  nameShort(): string {
+    if (this.columnName) {
+      const prefix = this.tableName + "_" + this.columnName + "_";
+      if (this.name.startsWith(prefix))
+        return "~" + this.name.substring(prefix.length);
+    }
+    const prefix = this.tableName + "_";
+    if (this.name.startsWith(prefix))
+      return "~" + this.name.substring(prefix.length);
+
+    return this.name;
   }
 }
 
