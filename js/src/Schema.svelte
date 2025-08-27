@@ -187,7 +187,7 @@
             {#if tableExpanded}
               {@render remainder(table.remainingErrors)}
             {/if}
-            {#if tableExpanded && (table.columns().length || table.constraints.length)}
+            {#if tableExpanded && (table.columns().length || table.constraints().length)}
               <ul in:fly={{ y: -10, duration: 200 }}>
                 {#each table.columns() as column (column.name)}
                   {@const columnExpanded = column.expanded}
@@ -208,14 +208,14 @@
                     {#if columnExpanded}
                       {@render remainder(column.remainingErrors)}
                     {/if}
-                    {#if columnExpanded && column.constraints.length > 0}
+                    {#if columnExpanded && column.constraints().length > 0}
                       <ul in:fly={{ y: -10, duration: 200 }}>
-                        {@render constraints(column.constraints)}
+                        {@render constraints(column.constraints())}
                       </ul>
                     {/if}
                   </li>
                 {/each}
-                {@render constraints(table.constraints)}
+                {@render constraints(table.constraints())}
               </ul>
             {/if}
           </li>
