@@ -1,4 +1,4 @@
-FROM debian:bullseye-20220418
+FROM debian:bullseye-20240904
 
 ARG JDK
 RUN <<EOF
