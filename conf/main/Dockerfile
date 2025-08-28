@@ -15,6 +15,3 @@ set -e
 mkdir /var/jenkins-build-survivor
 chown ${JENKINS_OWNER} /var/jenkins-build-survivor
 EOF
-
-LABEL purpose=jenkins
-LABEL jdk=${JDK}
