@@ -18,7 +18,3 @@ set -e
 mkdir /.yarn
 chown ${JENKINS_OWNER} /.yarn
 EOF
-
-LABEL purpose=jenkins
-LABEL nodejs=yes
-LABEL yarnpkg=yes
