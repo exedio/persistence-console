@@ -1,16 +1,3 @@
-FROM alpine:3.22.1 AS idea-fetcher
-RUN apk --no-cache add curl
-ARG IDEA
-ARG IDEA_SHA256
-RUN <<EOF
-set -e
-curl \
-	--output /tmp/ideaIC.tar.gz \
-	https://ivyartifacts.exedio.com/idea/ideaIC-${IDEA}.tar.gz
-(echo "${IDEA_SHA256}  /tmp/ideaIC.tar.gz" | sha256sum -c -)
-EOF
-
-
 FROM debian:bullseye-20240904
 
 ARG JDK
@@ -22,7 +9,9 @@ apt-get install --no-install-recommends --assume-yes \
 rm -rf /var/lib/apt/lists/*
 EOF
 
-COPY --from=idea-fetcher /tmp/ideaIC.tar.gz /tmp
+ARG IDEA
+ARG IDEA_SHA256
+ADD --checksum=sha256:${IDEA_SHA256} https://ivyartifacts.exedio.com/idea/ideaIC-${IDEA}.tar.gz /tmp/ideaIC.tar.gz
 RUN <<EOF
 set -e
 mkdir /opt/idea
