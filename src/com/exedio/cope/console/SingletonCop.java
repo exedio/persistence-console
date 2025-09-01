@@ -119,14 +119,9 @@ final class SingletonCop extends TestCop<SingletonCop.Line>
 		try(TransactionTry tx = app.model.startTransactionTry("Console [Enum]Singleton " + id))
 		{
 			return Math.subtractExact(
-					expected(singleton),
+					singleton.expected(),
 					tx.commit(getQuery(singleton).total()));
 		}
-	}
-
-	private static int expected(final Line singleton) // TODO inline
-	{
-		return singleton.expected();
 	}
 
 	private static Query<?> getQuery(final Line singleton)
@@ -137,7 +132,7 @@ final class SingletonCop extends TestCop<SingletonCop.Line>
 	@Override
 	String getViolationSql(final Line singleton)
 	{
-		return SchemaInfo.total(getQuery(singleton)) + " < " + expected(singleton);
+		return SchemaInfo.total(getQuery(singleton)) + " < " + singleton.expected();
 	}
 
 	abstract static class Line
