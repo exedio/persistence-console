@@ -117,6 +117,8 @@
 /websrc/com/exedio/cope/console/example/PropertiesInitializer.java
 /websrc/com/exedio/cope/console/example/Revisions.java
 /websrc/com/exedio/cope/console/example/SequenceItem.java
+/websrc/com/exedio/cope/console/example/SingletonComplete.java
+/websrc/com/exedio/cope/console/example/SingletonIncomplete.java
 /websrc/com/exedio/cope/console/example/StandardConsole.java
 /websrc/com/exedio/cope/console/example/StringLengthItem.java
 /websrc/com/exedio/cope/console/example/SuspicionFeature.java

@@ -44,6 +44,8 @@ public final class Main
 				AHashItem.TYPE,
 				CopyItem.TYPE,
 				CopyOriginItem.TYPE,
+				SingletonComplete.TYPE,
+				SingletonIncomplete.TYPE,
 				EnumSingletonComplete.TYPE,
 				EnumSingletonIncomplete.TYPE,
 				HashConstraintItem.TYPE,

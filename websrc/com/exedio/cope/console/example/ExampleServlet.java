@@ -228,6 +228,7 @@ public final class ExampleServlet extends CopsServlet
 			new OptionalItem("mandatory", "optional", null);
 			new StringLengthItem("empty", "emptyOk", "normal", "normalOk", "min10xxxxx", "min10Okxxx");
 			new StringLengthItem("empty", "",        "normal", "x",        "min10xxxxx", "min10Okxxx");
+			SingletonComplete.createSampleData();
 			EnumSingletonComplete.createSampleData();
 			EnumSingletonIncomplete.createSampleData();
 			new AMediaItem();
