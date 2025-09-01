@@ -1,3 +1,4 @@
+# check=error=true;skip=InvalidDefaultArgInFrom
 ARG NODEJS
 FROM node:${NODEJS}-alpine3.18
 

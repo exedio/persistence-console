@@ -1,3 +1,4 @@
+# check=error=true;skip=InvalidDefaultArgInFrom
 FROM debian:bullseye-20240904
 
 ARG JDK
