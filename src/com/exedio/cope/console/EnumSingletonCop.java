@@ -19,21 +19,23 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
+import com.exedio.cope.Pattern;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.EnumSingleton;
+import com.exedio.cope.pattern.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
-final class EnumSingletonCop extends TestCop<EnumSingleton<?>>
+final class EnumSingletonCop extends TestCop<EnumSingletonCop.Line> // TODO rename
 {
 	static final String TAB = "enumsingleton";
 
 	EnumSingletonCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Enum Singletons", args, testArgs);
+		super(TAB, "[Enum]Singletons", args, testArgs);
 	}
 
 	@Override
@@ -53,51 +55,68 @@ final class EnumSingletonCop extends TestCop<EnumSingleton<?>>
 	{
 		return new String[]
 		{
-			"Verifies that EnumSingletons are complete, " +
-				"that is for each facet of the enum there is an item as well.",
+			"Verifies that [Enum]Singletons are complete.",
+			"For Singleton this means, that the item exists.",
+			"For EnumSingleton this means, that for each facet of the enum there is an item as well.",
 		};
 	}
 
 	@Override
-	List<EnumSingleton<?>> getItems()
+	List<Line> getItems()
 	{
-		final ArrayList<EnumSingleton<?>> result = new ArrayList<>();
+		final ArrayList<Line> result = new ArrayList<>();
 
 		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof EnumSingleton)
-					result.add((EnumSingleton<?>)feature);
+			{
+				final Line line = wrap(feature);
+				if(line!=null)
+					result.add(line);
+			}
 
 		return result;
 	}
 
+	private static Line wrap(final Feature feature)
+	{
+		if(feature instanceof final Singleton s)
+			return new SingleLine(s);
+		else if(feature instanceof final EnumSingleton<?> s)
+			return new EnumLine(s);
+		else
+			return null;
+	}
+
 	@Override
-	List<Column<EnumSingleton<?>>> columns()
+	List<Column<Line>> columns()
 	{
 		return COLUMNS;
 	}
 
-	private static final List<Column<EnumSingleton<?>>> COLUMNS = List.of(
-			column("EnumSingleton", EnumSingleton::getID),
-			column("Enum class", (out, singleton) -> out.write(singleton.getOnce().getValueClass()))
+	private static final List<Column<Line>> COLUMNS = List.of(
+			column("[Enum]Singleton", x -> x.feature.getID()),
+			column("Enum class", (out, singleton) -> singleton.writeEnumClass(out))
 	);
 
 	@Override
-	String getID(final EnumSingleton<?> singleton)
+	String getID(final Line singleton)
 	{
-		return singleton.getID();
+		return singleton.feature.getID();
 	}
 
 	@Override
-	EnumSingleton<?> forID(final String id)
+	Line forID(final String id)
 	{
-		return (EnumSingleton<?>)app.model.getFeature(id);
+		final Line feature = wrap(app.model.getFeature(id));
+		if(feature==null)
+			throw new ClassCastException(id);
+		return feature;
 	}
 
 	@Override
-	long check(final EnumSingleton<?> singleton)
+	long check(final Line singleton)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console EnumSingleton " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console [Enum]Singleton " + id))
 		{
 			return Math.subtractExact(
 					expected(singleton),
@@ -105,19 +124,76 @@ final class EnumSingletonCop extends TestCop<EnumSingleton<?>>
 		}
 	}
 
-	private static int expected(final EnumSingleton<?> singleton)
+	private static int expected(final Line singleton) // TODO inline
 	{
-		return singleton.getOnce().getValueClass().getEnumConstants().length;
+		return singleton.expected();
 	}
 
-	private static Query<?> getQuery(final EnumSingleton<?> singleton)
+	private static Query<?> getQuery(final Line singleton)
 	{
-		return singleton.getType().newQuery();
+		return singleton.feature.getType().newQuery();
 	}
 
 	@Override
-	String getViolationSql(final EnumSingleton<?> singleton)
+	String getViolationSql(final Line singleton)
 	{
 		return SchemaInfo.total(getQuery(singleton)) + " < " + expected(singleton);
+	}
+
+	abstract static class Line
+	{
+		final Pattern feature;
+
+		Line(final Pattern feature)
+		{
+			this.feature = feature;
+		}
+
+		abstract void writeEnumClass(Out out);
+
+		abstract int expected();
+	}
+
+	private static final class SingleLine extends Line
+	{
+		SingleLine(final Singleton feature)
+		{
+			super(feature);
+		}
+
+		@Override
+		void writeEnumClass(final Out out)
+		{
+			out.write("-");
+		}
+
+		@Override
+		int expected()
+		{
+			return 1;
+		}
+	}
+
+	private static final class EnumLine extends Line
+	{
+		private final EnumSingleton<?> feature;
+
+		EnumLine(final EnumSingleton<?> feature)
+		{
+			super(feature);
+			this.feature = feature;
+		}
+
+		@Override
+		void writeEnumClass(final Out out)
+		{
+			out.write(feature.getOnce().getValueClass());
+		}
+
+		@Override
+		int expected()
+		{
+			return feature.getOnce().getValueClass().getEnumConstants().length;
+		}
 	}
 }
