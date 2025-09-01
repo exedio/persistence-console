@@ -31,7 +31,7 @@ import java.util.List;
 
 final class SingletonCop extends TestCop<SingletonCop.Line>
 {
-	static final String TAB = "enumsingleton";
+	static final String TAB = "singleton";
 
 	SingletonCop(final Args args, final TestArgs testArgs)
 	{
