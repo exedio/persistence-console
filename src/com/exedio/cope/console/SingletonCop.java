@@ -29,25 +29,25 @@ import com.exedio.cope.pattern.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
-final class EnumSingletonCop extends TestCop<EnumSingletonCop.Line> // TODO rename
+final class SingletonCop extends TestCop<SingletonCop.Line>
 {
 	static final String TAB = "enumsingleton";
 
-	EnumSingletonCop(final Args args, final TestArgs testArgs)
+	SingletonCop(final Args args, final TestArgs testArgs)
 	{
 		super(TAB, "[Enum]Singletons", args, testArgs);
 	}
 
 	@Override
-	protected EnumSingletonCop newArgs(final Args args)
+	protected SingletonCop newArgs(final Args args)
 	{
-		return new EnumSingletonCop(args, testArgs);
+		return new SingletonCop(args, testArgs);
 	}
 
 	@Override
-	protected EnumSingletonCop newTestArgs(final TestArgs testArgs)
+	protected SingletonCop newTestArgs(final TestArgs testArgs)
 	{
-		return new EnumSingletonCop(args, testArgs);
+		return new SingletonCop(args, testArgs);
 	}
 
 	@Override

@@ -30,7 +30,6 @@
 /src/com/exedio/cope/console/EmptyStringFieldCop.java
 /src/com/exedio/cope/console/EnumCop.java
 /src/com/exedio/cope/console/EnumsCop.java
-/src/com/exedio/cope/console/EnumSingletonCop.java
 /src/com/exedio/cope/console/EnvironmentCop.java
 /src/com/exedio/cope/console/FeatureFieldCop.java
 /src/com/exedio/cope/console/Format.java
@@ -64,6 +63,7 @@
 /src/com/exedio/cope/console/SequenceCop.java
 /src/com/exedio/cope/console/SerializationCheckCop.java
 /src/com/exedio/cope/console/ServletUtilX.java
+/src/com/exedio/cope/console/SingletonCop.java
 /src/com/exedio/cope/console/SuspicionsCop.java
 /src/com/exedio/cope/console/TestCop.java
 /src/com/exedio/cope/console/ThreadCop.java
