@@ -180,7 +180,7 @@
             {table.name}
             {@render existence(
               table.existence,
-              table.fixable,
+              table,
               table.renameFrom(schema),
               table.renameTo(schema),
             )}
@@ -196,7 +196,7 @@
                     {column.name}
                     {@render existence(
                       column.existence,
-                      column.fixable,
+                      column,
                       column.renameFrom(table),
                       column.renameTo(table),
                     )}
@@ -227,7 +227,7 @@
             {sequence.name}
             {@render existence(
               sequence.existence,
-              sequence.fixable,
+              sequence,
               [], // TODO unused sequences
               [], // TODO missing sequences
             )}
@@ -270,7 +270,7 @@
       {@render expanderDisabled(constraint.bulletColor)}
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
-      {@render existence(constraint.existence, constraint.fixable, [], [])}
+      {@render existence(constraint.existence, constraint, [], [])}
       {@render comparison(
         constraint.clause,
         asModify(

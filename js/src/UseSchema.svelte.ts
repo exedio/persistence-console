@@ -67,15 +67,16 @@ export class Schema {
   }
 }
 
-export class Table {
+export class Table implements SchemaFixable {
   private api: ApiTable;
+  readonly subject = "table";
+  readonly tableName = undefined;
   readonly name: string;
   readonly existence: Existence;
   private _columns: readonly Column[];
   private _constraints: readonly Constraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
-  readonly fixable: SchemaFixable;
 
   private readonly columnsStore = new Map<string, Column>();
   private readonly constraintsStore = new Map<string, Constraint>();
@@ -108,11 +109,6 @@ export class Table {
         worst(this._constraints.map((i) => i.bulletColor)),
       ]),
     );
-    this.fixable = {
-      subject: "table",
-      tableName: undefined,
-      name,
-    };
   }
 
   columns(): readonly Column[] {
@@ -171,8 +167,9 @@ export class Table {
   }
 }
 
-export class Column {
+export class Column implements SchemaFixable {
   private api: ApiColumn;
+  readonly subject = "column";
   readonly tableName: string;
   readonly name: string;
   readonly existence: Existence;
@@ -180,7 +177,6 @@ export class Column {
   private _constraints: readonly Constraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
-  readonly fixable: SchemaFixable;
 
   expanded: boolean = $state(false);
 
@@ -213,11 +209,6 @@ export class Column {
         worst(this._constraints.map((i) => i.bulletColor)),
       ]),
     );
-    this.fixable = {
-      subject: "column",
-      tableName,
-      name: this.name,
-    };
   }
 
   constraints(): readonly Constraint[] {
@@ -291,8 +282,9 @@ function columnExistence(api: ApiColumn): Existence {
 
 type ConstraintType = "pk" | "fk" | "unique" | "check";
 
-export class Constraint {
+export class Constraint implements SchemaFixable {
   private api: ApiConstraint;
+  readonly subject = "constraint";
   readonly tableName: string;
   private readonly columnName: string | undefined;
   readonly name: string;
@@ -301,7 +293,6 @@ export class Constraint {
   readonly clause: Comparison | undefined;
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
-  readonly fixable: SchemaFixable;
 
   constructor(
     apiParameterForAssigmentOnly: ApiConstraint,
@@ -340,11 +331,6 @@ export class Constraint {
         remainderColor(this.api.error),
       ]),
     );
-    this.fixable = {
-      subject: "constraint",
-      tableName,
-      name: this.name,
-    };
   }
 
   update(api: ApiConstraint) {
@@ -386,15 +372,16 @@ function useConstraintType(api: ApiConstraint): ConstraintType {
   }
 }
 
-export class Sequence {
+export class Sequence implements SchemaFixable {
   private api: ApiSequence;
+  readonly subject = "sequence";
+  readonly tableName = undefined;
   readonly name: string;
   readonly existence: Existence;
   readonly type: Comparison;
   readonly start: Comparison;
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
-  readonly fixable: SchemaFixable;
 
   constructor(apiParameterForAssigmentOnly: ApiSequence) {
     this.api = $state(apiParameterForAssigmentOnly);
@@ -425,11 +412,6 @@ export class Sequence {
         remainderColor(this.api.error),
       ]),
     );
-    this.fixable = {
-      subject: "sequence",
-      tableName: undefined,
-      name: this.api.name,
-    };
   }
 
   update(api: ApiSequence) {
