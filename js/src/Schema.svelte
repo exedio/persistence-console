@@ -163,14 +163,14 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
-      {@render expanderDisabled(schema.bulletColor)}
+      {@render bullet(schema.bulletColor)}
       Schema
       <PromiseTrackerReload tracker={schemaT} />
       <ul>
         {#each schema.tables() as table (table.name)}
           {@const tableExpanded = table.expanded}
           <li class="table">
-            {@render expander(table)}
+            {@render bulletExpandable(table)}
             {table.name}
             {@render existence(
               table.existence,
@@ -186,7 +186,7 @@
                 {#each table.columns() as column (column.name)}
                   {@const columnExpanded = column.expanded}
                   <li class="column">
-                    {@render expander(column)}
+                    {@render bulletExpandable(column)}
                     {column.name}
                     {@render existence(
                       column.existence,
@@ -216,7 +216,7 @@
         {/each}
         {#each schema.sequences() as sequence (sequence.name)}
           <li class="sequence">
-            {@render expanderDisabled(sequence.bulletColor)}
+            {@render bullet(sequence.bulletColor)}
             <span class="nodeType">sequence</span>
             {sequence.name}
             {@render existence(
@@ -261,7 +261,7 @@
 {#snippet constraints(constraints: ReadonlyConstraintArray)}
   {#each constraints as constraint (constraint.name)}
     <li>
-      {@render expanderDisabled(constraint.bulletColor)}
+      {@render bullet(constraint.bulletColor)}
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
       {@render existence(constraint.existence, constraint, [], [])}
@@ -280,7 +280,7 @@
   {/each}
 {/snippet}
 
-{#snippet expander(expandable: Expandable)}
+{#snippet bulletExpandable(expandable: Expandable)}
   <button
     class={["bullet", expandable.bulletColor]}
     onclick={() => (expandable.expanded = !expandable.expanded)}
@@ -289,7 +289,7 @@
   </button>
 {/snippet}
 
-{#snippet expanderDisabled(color: Color)}
+{#snippet bullet(color: Color)}
   <button class={["bullet", color]} disabled={true}>.</button>
 {/snippet}
 
