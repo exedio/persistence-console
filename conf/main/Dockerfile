@@ -1,5 +1,7 @@
 # check=error=true;skip=InvalidDefaultArgInFrom
-FROM debian:bullseye-20240904
+ARG DEBIAN_RELEASE
+ARG DEBIAN_SNAPSHOT
+FROM debian:${DEBIAN_RELEASE}-${DEBIAN_SNAPSHOT}
 
 ARG JDK
 RUN <<EOF
