@@ -1,5 +1,7 @@
 # check=error=true;skip=InvalidDefaultArgInFrom
-FROM debian:bullseye-20240904
+ARG DEBIAN_RELEASE
+ARG DEBIAN_SNAPSHOT
+FROM debian:${DEBIAN_RELEASE}-${DEBIAN_SNAPSHOT}
 
 ARG JDK
 RUN <<EOF
@@ -24,5 +26,4 @@ rm /tmp/ideaIC.tar.gz
 EOF
 
 # keeping idea files  out of workspace, where they are scanned by idea inspections
-COPY idea64.vmoptions /tmp
-RUN cat /tmp/idea64.vmoptions >> /opt/idea/bin/idea64.vmoptions
+RUN echo "-Duser.home=/tmp/idea" >> /opt/idea/bin/idea64.vmoptions

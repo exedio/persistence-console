@@ -6,6 +6,10 @@ import groovy.transform.stc.SimpleType
 @Field
 String projectNamePattern = "^exedio/([a-z]*)/.*" // depends on location of multibranch pipeline in jenkins
 @Field
+String debianRelease = 'bullseye'
+@Field
+String debianSnapshot = '20240904'
+@Field
 String jdk = 'openjdk-17'
 @Field
 String idea = '2025.2-PATCHED'
@@ -70,6 +74,8 @@ try
 				testResults: 'build/testresults/*.xml',
 				skipPublishingChecks: true
 			)
+			assertGitUnchanged()
+
 			archiveArtifacts fingerprint: true, artifacts: 'build/success/*'
 			archiveArtifacts 'build/testprotocol.*,build/*.log,tomcat/logs/*,build/testtmpdir'
 			plot(
@@ -119,6 +125,8 @@ try
 		nodeCheckoutAndDelete {
 			def ideaImage = docker.build(
 				imageName('Idea'),
+				'--build-arg DEBIAN_RELEASE=' + debianRelease + ' ' +
+				'--build-arg DEBIAN_SNAPSHOT=' + debianSnapshot + ' ' +
 				'--build-arg JDK=' + jdk + ' ' +
 				'--build-arg IDEA=' + idea + ' ' +
 				'--build-arg IDEA_SHA256=' + ideaSHA256 + ' ' +
@@ -126,8 +134,9 @@ try
 			ideaImage.inside(dockerRunDefaults()) {
 				ant "src -Dskip.instrument=true"
 				shSilent "/opt/idea/bin/inspect.sh " + env.WORKSPACE + " 'Project Default' idea-inspection-output"
+				shSilent 'cp /tmp/idea/.cache/JetBrains/*/log/idea.log .'
 			}
-			archiveArtifacts 'idea-inspection-output/**'
+			archiveArtifacts 'idea-inspection-output/**,idea.log'
 			// replace project dir to prevent UnsupportedOperationException - will not be exposed in artifacts
 			shSilent "find idea-inspection-output -name '*.xml' | " +
 			         "xargs --no-run-if-empty sed --in-place -- 's=\\\$PROJECT_DIR\\\$=" + env.WORKSPACE + "=g'"
@@ -232,7 +241,7 @@ finally
 
 String projectName()
 {
-	String jobName = env.JOB_NAME;
+	String jobName = env.JOB_NAME
 	java.util.regex.Matcher m = java.util.regex.Pattern.compile(projectNamePattern).
 			matcher(jobName)
 	if(!m.matches())
@@ -240,7 +249,7 @@ String projectName()
 
 	String result = m.group(1)
 	echo("project name >" + result + "< computed from >" + jobName + "<")
-	return result;
+	return result
 }
 
 void lockNodeCheckoutAndDelete(String resource, Closure body)
@@ -278,6 +287,8 @@ def mainImage(String imageName)
 {
 	return docker.build(
 		imageName,
+		'--build-arg DEBIAN_RELEASE=' + debianRelease + ' ' +
+		'--build-arg DEBIAN_SNAPSHOT=' + debianSnapshot + ' ' +
 		'--build-arg JDK=' + jdk + ' ' +
 		'--build-arg JENKINS_OWNER=' + env.JENKINS_OWNER + ' ' +
 		'conf/main')
