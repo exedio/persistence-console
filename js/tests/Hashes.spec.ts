@@ -10,16 +10,14 @@ import { flushPromises, formatHtml } from "@t/utils";
 import type {
   DoHashRequest,
   DoHashResponse,
-  HashesResponse,
+  Hash as ApiHash,
 } from "@/api/types";
 
 describe("Hashes", () => {
   it("should render an empty table", async () => {
     {
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccess([] satisfies HashesResponse[]),
-      );
+      mock.mockResolvedValueOnce(responseSuccess([] satisfies ApiHash[]));
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
     }
@@ -47,7 +45,7 @@ describe("Hashes", () => {
             algorithmID: "myAlgorithmIDWithoutLimit",
             algorithmDescription: "myAlgorithmDescriptionWithoutLimit",
           },
-        ] satisfies HashesResponse[]),
+        ] satisfies ApiHash[]),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/hashes");
@@ -74,7 +72,7 @@ describe("Hashes", () => {
             algorithmID: "myAlgorithmIDReloaded",
             algorithmDescription: "myAlgorithmDescriptionReloaded",
           },
-        ] satisfies HashesResponse[]),
+        ] satisfies ApiHash[]),
       );
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
       await flushPromises();
@@ -224,13 +222,13 @@ async function mountComponent() {
   await flushPromises();
 }
 
-const threeHashes: HashesResponse[] = [
+const threeHashes: ApiHash[] = [
   numberedHash(1),
   numberedHash(2),
   numberedHash(3),
 ];
 
-function numberedHash(n: number): HashesResponse {
+function numberedHash(n: number): ApiHash {
   return {
     type: "myType" + n,
     name: "myName" + n,

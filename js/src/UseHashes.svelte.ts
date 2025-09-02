@@ -1,12 +1,12 @@
 import type {
   DoHashRequest,
   DoHashResponse,
-  HashesResponse,
+  Hash as ApiHash,
 } from "@/api/types";
 import { post } from "@/api/api";
 
-export class UseHashes {
-  private api: HashesResponse;
+export class Hash {
+  private api: ApiHash;
   readonly type: string;
   readonly name: string;
   readonly plainTextLimit: number;
@@ -19,7 +19,7 @@ export class UseHashes {
   private plainTextHashed: string | undefined = $state(undefined);
   private measurement: number | undefined = $state(undefined);
 
-  constructor(apiParameterForAssigmentOnly: HashesResponse) {
+  constructor(apiParameterForAssigmentOnly: ApiHash) {
     this.api = $state(apiParameterForAssigmentOnly);
     this.type = this.api.type;
     this.name = this.api.name;
@@ -29,7 +29,7 @@ export class UseHashes {
     this.algorithmDescription = $derived(this.api.algorithmDescription);
   }
 
-  update(api: HashesResponse) {
+  update(api: ApiHash) {
     if (this.type !== api.type) throw new Error(this.type);
     if (this.name !== api.name) throw new Error(this.name);
 
