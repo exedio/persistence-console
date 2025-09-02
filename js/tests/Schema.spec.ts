@@ -14,7 +14,7 @@ import type {
   AlterSchemaResponse,
   ConnectRequest,
   ConnectResponse,
-  SchemaResponse,
+  Schema as ApiSchema,
 } from "@/api/types";
 
 describe("Schema", () => {
@@ -25,7 +25,7 @@ describe("Schema", () => {
         responseSuccess({
           tables: undefined,
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -47,7 +47,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -71,7 +71,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
       await flushPromises();
@@ -92,7 +92,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
       await flushPromises();
@@ -122,7 +122,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -198,7 +198,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -231,7 +231,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -278,7 +278,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -320,7 +320,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -385,7 +385,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -460,7 +460,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -517,7 +517,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -554,7 +554,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -615,7 +615,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -676,7 +676,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -737,7 +737,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -824,7 +824,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -891,7 +891,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -952,7 +952,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -994,7 +994,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1052,7 +1052,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1110,7 +1110,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1185,7 +1185,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1227,7 +1227,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1253,7 +1253,7 @@ describe("Schema", () => {
               error: undefined,
             },
           ],
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1280,7 +1280,7 @@ describe("Schema", () => {
               },
             },
           ],
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1325,7 +1325,7 @@ describe("Schema", () => {
               },
             },
           ],
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1370,7 +1370,7 @@ describe("Schema", () => {
               },
             },
           ],
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1397,7 +1397,7 @@ describe("Schema", () => {
               },
             },
           ],
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1424,7 +1424,7 @@ describe("Schema", () => {
               },
             },
           ],
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1433,7 +1433,7 @@ describe("Schema", () => {
   });
 
   it("should keep the state after reload", async () => {
-    const response: SchemaResponse = {
+    const response: ApiSchema = {
       tables: [
         {
           name: "ExpandedTable",
@@ -1582,7 +1582,7 @@ describe("Schema", () => {
     expect(checkbox().checked).toBe(true); // add constraint
     expect(checkbox(1).checked).toBe(true); // create sequence
 
-    const responseChanged: SchemaResponse = deepCopy(response);
+    const responseChanged: ApiSchema = deepCopy(response);
     (responseChanged.tables![0].columns![0].type as string) =
       "expandedColumnTypeChange";
     (responseChanged.tables![0].columns![0].constraints![0].clause as string) =
@@ -1640,7 +1640,7 @@ describe("Schema", () => {
             },
           ],
           sequences: undefined,
-        } satisfies SchemaResponse),
+        } satisfies ApiSchema),
       );
       (
         document.querySelectorAll(".tree button").item(0) as HTMLElement

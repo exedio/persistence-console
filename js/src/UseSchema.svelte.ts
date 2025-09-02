@@ -1,24 +1,24 @@
 import type {
-  SchemaColumnResponse,
-  SchemaConstraintResponse,
-  SchemaRemainder,
-  SchemaResponse,
-  SchemaSequenceResponse,
-  SchemaTableResponse,
+  SchemaColumn as ApiColumn,
+  SchemaConstraint as ApiConstraint,
+  SchemaRemainder as ApiRemainder,
+  Schema as ApiSchema,
+  SchemaSequence as ApiSequence,
+  SchemaTable as ApiTable,
 } from "@/api/types";
 import type { SchemaFixable } from "@/SchemaFix";
 import { useWithStore } from "@/utils";
 
-export class UseSchema {
-  private api: SchemaResponse;
-  private _tables: readonly UseTable[];
-  private _sequences: readonly UseSequence[];
+export class Schema {
+  private api: ApiSchema;
+  private _tables: readonly Table[];
+  private _sequences: readonly Sequence[];
   readonly bulletColor: Color;
 
-  private readonly tablesStore = new Map<string, UseTable>();
-  private readonly sequencesStore = new Map<string, UseSequence>();
+  private readonly tablesStore = new Map<string, Table>();
+  private readonly sequencesStore = new Map<string, Sequence>();
 
-  constructor(apiParameterNotToBeUsedExceptForAssigment: SchemaResponse) {
+  constructor(apiParameterNotToBeUsedExceptForAssigment: ApiSchema) {
     this.api = $state(apiParameterNotToBeUsedExceptForAssigment);
     this._tables = $state(this.useTables(this.api.tables));
     this._sequences = $state(this.useSequences(this.api.sequences));
@@ -30,61 +30,59 @@ export class UseSchema {
     );
   }
 
-  tables(): readonly UseTable[] {
+  tables(): readonly Table[] {
     return this._tables;
   }
 
-  sequences(): readonly UseSequence[] {
+  sequences(): readonly Sequence[] {
     return this._sequences;
   }
 
-  update(api: SchemaResponse) {
+  update(api: ApiSchema) {
     this.api = api;
     this._tables = this.useTables(api.tables);
     this._sequences = this.useSequences(api.sequences);
   }
 
-  private useTables(
-    tables: readonly SchemaTableResponse[] | undefined,
-  ): UseTable[] {
+  private useTables(tables: readonly ApiTable[] | undefined): Table[] {
     return useWithStore(
       this.tablesStore,
       (source) => source.name,
-      (source) => new UseTable(source),
+      (source) => new Table(source),
       (target, source) => target.update(source),
       tables ?? [],
     );
   }
 
   private useSequences(
-    sequences: readonly SchemaSequenceResponse[] | undefined,
-  ): UseSequence[] {
+    sequences: readonly ApiSequence[] | undefined,
+  ): Sequence[] {
     return useWithStore(
       this.sequencesStore,
       (source) => source.name,
-      (source) => new UseSequence(source),
+      (source) => new Sequence(source),
       (target, source) => target.update(source),
       sequences ?? [],
     );
   }
 }
 
-export class UseTable {
-  private api: SchemaTableResponse;
+export class Table {
+  private api: ApiTable;
   readonly name: string;
-  readonly existence: UseExistence;
-  private _columns: readonly UseColumn[];
-  private _constraints: readonly UseConstraint[];
+  readonly existence: Existence;
+  private _columns: readonly Column[];
+  private _constraints: readonly Constraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
   readonly fixable: SchemaFixable;
 
-  private readonly columnsStore = new Map<string, UseColumn>();
-  private readonly constraintsStore = new Map<string, UseConstraint>();
+  private readonly columnsStore = new Map<string, Column>();
+  private readonly constraintsStore = new Map<string, Constraint>();
 
   expanded: boolean = $state(false);
 
-  constructor(apiParameterForAssigmentOnly: SchemaTableResponse) {
+  constructor(apiParameterForAssigmentOnly: ApiTable) {
     this.api = $state(apiParameterForAssigmentOnly);
     const name = this.api.name;
     this.name = this.api.name;
@@ -117,15 +115,15 @@ export class UseTable {
     };
   }
 
-  columns(): readonly UseColumn[] {
+  columns(): readonly Column[] {
     return this._columns;
   }
 
-  constraints(): readonly UseConstraint[] {
+  constraints(): readonly Constraint[] {
     return this._constraints;
   }
 
-  update(api: SchemaTableResponse) {
+  update(api: ApiTable) {
     if (this.name !== api.name) throw new Error(this.name);
 
     this.api = api;
@@ -137,26 +135,26 @@ export class UseTable {
   }
 
   private useColumns(
-    columns: readonly SchemaColumnResponse[] | undefined,
-    constraintsStore: Map<string, UseConstraint>,
-  ): UseColumn[] {
+    columns: readonly ApiColumn[] | undefined,
+    constraintsStore: Map<string, Constraint>,
+  ): Column[] {
     return useWithStore(
       this.columnsStore,
       (source) => source.name,
-      (source) => new UseColumn(source, this.name, constraintsStore),
+      (source) => new Column(source, this.name, constraintsStore),
       (target, source) => target.update(source, constraintsStore),
       columns ?? [],
     );
   }
 
   private useConstraints(
-    constraints: readonly SchemaConstraintResponse[] | undefined,
-    constraintsStore: Map<string, UseConstraint>,
+    constraints: readonly ApiConstraint[] | undefined,
+    constraintsStore: Map<string, Constraint>,
   ) {
     return useConstraints(constraintsStore, constraints, this.name, undefined);
   }
 
-  renameFrom(schema: UseSchema): string[] {
+  renameFrom(schema: Schema): string[] {
     if (!this.existence || this.existence.text !== "missing") return [];
     return schema
       .tables()
@@ -164,7 +162,7 @@ export class UseTable {
       .map((t) => t.name);
   }
 
-  renameTo(schema: UseSchema): string[] {
+  renameTo(schema: Schema): string[] {
     if (!this.existence || this.existence.text !== "unused") return [];
     return schema
       .tables()
@@ -173,13 +171,13 @@ export class UseTable {
   }
 }
 
-export class UseColumn {
-  private api: SchemaColumnResponse;
+export class Column {
+  private api: ApiColumn;
   readonly tableName: string;
   readonly name: string;
-  readonly existence: UseExistence;
-  readonly type: UseComparison;
-  private _constraints: readonly UseConstraint[];
+  readonly existence: Existence;
+  readonly type: Comparison;
+  private _constraints: readonly Constraint[];
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
   readonly fixable: SchemaFixable;
@@ -187,9 +185,9 @@ export class UseColumn {
   expanded: boolean = $state(false);
 
   constructor(
-    apiParameterForAssigmentOnly: SchemaColumnResponse,
+    apiParameterForAssigmentOnly: ApiColumn,
     tableName: string,
-    constraintsStore: Map<string, UseConstraint>,
+    constraintsStore: Map<string, Constraint>,
   ) {
     this.api = $state(apiParameterForAssigmentOnly);
     this.tableName = tableName;
@@ -222,14 +220,11 @@ export class UseColumn {
     };
   }
 
-  constraints(): readonly UseConstraint[] {
+  constraints(): readonly Constraint[] {
     return this._constraints;
   }
 
-  update(
-    api: SchemaColumnResponse,
-    constraintsStore: Map<string, UseConstraint>,
-  ) {
+  update(api: ApiColumn, constraintsStore: Map<string, Constraint>) {
     if (this.name !== api.name) throw new Error(this.name);
 
     this.api = api;
@@ -240,8 +235,8 @@ export class UseColumn {
   }
 
   private useConstraints(
-    constraints: readonly SchemaConstraintResponse[] | undefined,
-    constraintsStore: Map<string, UseConstraint>,
+    constraints: readonly ApiConstraint[] | undefined,
+    constraintsStore: Map<string, Constraint>,
   ) {
     return useConstraints(
       constraintsStore,
@@ -251,7 +246,7 @@ export class UseColumn {
     );
   }
 
-  renameFrom(table: UseTable): string[] {
+  renameFrom(table: Table): string[] {
     if (!this.existence || this.existence.text !== "missing") return [];
     return table
       .columns()
@@ -259,7 +254,7 @@ export class UseColumn {
       .map((c) => c.name);
   }
 
-  renameTo(table: UseTable): string[] {
+  renameTo(table: Table): string[] {
     if (!this.existence || this.existence.text !== "unused") return [];
     return table
       .columns()
@@ -269,21 +264,21 @@ export class UseColumn {
 }
 
 function useConstraints(
-  store: Map<string, UseConstraint>,
-  constraints: readonly SchemaConstraintResponse[] | undefined,
+  store: Map<string, Constraint>,
+  constraints: readonly ApiConstraint[] | undefined,
   tableName: string,
   columnName: string | undefined,
-): UseConstraint[] {
+): Constraint[] {
   return useWithStore(
     store,
     (source) => source.name,
-    (source) => new UseConstraint(source, tableName, columnName),
+    (source) => new Constraint(source, tableName, columnName),
     (target, source) => target.update(source),
     constraints ?? [],
   );
 }
 
-function columnExistence(api: SchemaColumnResponse): UseExistence {
+function columnExistence(api: ApiColumn): Existence {
   const error = api.error;
   if (!error || !error.existence) return undefined;
 
@@ -294,22 +289,22 @@ function columnExistence(api: SchemaColumnResponse): UseExistence {
   return { text: error.existence, color: "red" };
 }
 
-type UseConstraintType = "pk" | "fk" | "unique" | "check";
+type ConstraintType = "pk" | "fk" | "unique" | "check";
 
-export class UseConstraint {
-  private api: SchemaConstraintResponse;
+export class Constraint {
+  private api: ApiConstraint;
   readonly tableName: string;
   private readonly columnName: string | undefined;
   readonly name: string;
-  readonly existence: UseExistence;
-  readonly type: UseConstraintType;
-  readonly clause: UseComparison | undefined;
+  readonly existence: Existence;
+  readonly type: ConstraintType;
+  readonly clause: Comparison | undefined;
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
   readonly fixable: SchemaFixable;
 
   constructor(
-    apiParameterForAssigmentOnly: SchemaConstraintResponse,
+    apiParameterForAssigmentOnly: ApiConstraint,
     tableName: string,
     columnName: string | undefined,
   ) {
@@ -352,7 +347,7 @@ export class UseConstraint {
     };
   }
 
-  update(api: SchemaConstraintResponse) {
+  update(api: ApiConstraint) {
     if (this.name !== api.name) throw new Error(this.name);
 
     this.api = api;
@@ -372,13 +367,13 @@ export class UseConstraint {
   }
 }
 
-function constraintExistence(api: SchemaConstraintResponse): UseExistence {
+function constraintExistence(api: ApiConstraint): Existence {
   const error = api.error;
   if (!error || !error.existence) return undefined;
   return { text: error.existence, color: "red" };
 }
 
-function useConstraintType(api: SchemaConstraintResponse): UseConstraintType {
+function useConstraintType(api: ApiConstraint): ConstraintType {
   switch (api.type) {
     case "PrimaryKey":
       return "pk";
@@ -391,17 +386,17 @@ function useConstraintType(api: SchemaConstraintResponse): UseConstraintType {
   }
 }
 
-export class UseSequence {
-  private api: SchemaSequenceResponse;
+export class Sequence {
+  private api: ApiSequence;
   readonly name: string;
-  readonly existence: UseExistence;
-  readonly type: UseComparison;
-  readonly start: UseComparison;
+  readonly existence: Existence;
+  readonly type: Comparison;
+  readonly start: Comparison;
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
   readonly fixable: SchemaFixable;
 
-  constructor(apiParameterForAssigmentOnly: SchemaSequenceResponse) {
+  constructor(apiParameterForAssigmentOnly: ApiSequence) {
     this.api = $state(apiParameterForAssigmentOnly);
     this.name = this.api.name;
     this.existence = $derived(sequenceExistence(this.api));
@@ -437,14 +432,14 @@ export class UseSequence {
     };
   }
 
-  update(api: SchemaSequenceResponse) {
+  update(api: ApiSequence) {
     if (this.name !== api.name) throw new Error(this.name);
 
     this.api = api;
   }
 }
 
-function sequenceExistence(api: SchemaSequenceResponse): UseExistence {
+function sequenceExistence(api: ApiSequence): Existence {
   const error = api.error;
   if (!error || !error.existence) return undefined;
   return error.existence === "missing"
@@ -452,18 +447,18 @@ function sequenceExistence(api: SchemaSequenceResponse): UseExistence {
     : { text: error.existence, color: "yellow" };
 }
 
-export function useRemainder(api: SchemaRemainder): readonly string[] {
+export function useRemainder(api: ApiRemainder): readonly string[] {
   return api ? api : [];
 }
 
-export type UseExistence =
+export type Existence =
   | {
       text: "missing" | "unused";
       color: "red" | "yellow";
     }
   | undefined;
 
-export type UseComparison = {
+export type Comparison = {
   name: string;
   expected: string;
   actual: string | undefined;
@@ -493,7 +488,7 @@ function worse(a: Color, b: Color): Color {
 function remainderColor(
   error:
     | {
-        readonly remainder: SchemaRemainder;
+        readonly remainder: ApiRemainder;
       }
     | undefined,
 ): Color {

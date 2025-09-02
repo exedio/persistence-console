@@ -4,14 +4,14 @@
   import {
     type AlterSchemaResponse,
     isNotConnected,
-    type SchemaResponse,
+    type Schema as ApiSchema,
   } from "@/api/types";
   import { SvelteMap } from "svelte/reactivity";
   import {
-    UseSchema,
-    type UseExistence,
-    type UseComparison,
-    type UseConstraint,
+    Schema,
+    type Existence,
+    type Comparison,
+    type Constraint,
     type Color,
   } from "@/UseSchema.svelte.js";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
@@ -25,13 +25,13 @@
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
 
-  const schemaStore = new Map<string, UseSchema>();
+  const schemaStore = new Map<string, Schema>();
 
   const schemaT = new PromiseTracker(() =>
-    get<SchemaResponse>("schema").then((response) =>
+    get<ApiSchema>("schema").then((response) =>
       useWithStoreSingle(
         schemaStore,
-        (source) => new UseSchema(source),
+        (source) => new Schema(source),
         (target, source) => target.update(source),
         response,
       ),
@@ -132,7 +132,7 @@
   const RENAME_NONE = "<NONE>";
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
-  type ReadonlyUseConstraintArray = readonly UseConstraint[];
+  type ReadonlyUseConstraintArray = readonly Constraint[];
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyStringArray = readonly string[];
@@ -300,7 +300,7 @@
 {/snippet}
 
 {#snippet existence(
-  existence: UseExistence,
+  existence: Existence,
   fixable: Fixable,
   renameFrom: String[],
   renameTo: String[],
@@ -375,7 +375,7 @@
 {/snippet}
 
 {#snippet comparison(
-  value: UseComparison | undefined,
+  value: Comparison | undefined,
   modify: Modify | undefined,
   expanded: Boolean,
 )}

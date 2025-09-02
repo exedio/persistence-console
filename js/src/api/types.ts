@@ -6,15 +6,15 @@ export function isNotConnected(error: any) {
   return error.message.toString().includes("model not connected");
 }
 
-export type SchemaResponse = {
-  readonly tables: readonly SchemaTableResponse[] | undefined;
-  readonly sequences: readonly SchemaSequenceResponse[] | undefined;
+export type Schema = {
+  readonly tables: readonly SchemaTable[] | undefined;
+  readonly sequences: readonly SchemaSequence[] | undefined;
 };
 
-export type SchemaTableResponse = {
+export type SchemaTable = {
   readonly name: string;
-  readonly columns: readonly SchemaColumnResponse[] | undefined;
-  readonly constraints: readonly SchemaConstraintResponse[] | undefined;
+  readonly columns: readonly SchemaColumn[] | undefined;
+  readonly constraints: readonly SchemaConstraint[] | undefined;
   readonly error: SchemaTableError | undefined;
 };
 
@@ -23,11 +23,11 @@ export type SchemaTableError = {
   readonly remainder: SchemaRemainder;
 };
 
-export type SchemaColumnResponse = {
+export type SchemaColumn = {
   readonly name: string;
   readonly type: string;
   readonly error: SchemaColumnError | undefined;
-  readonly constraints: readonly SchemaConstraintResponse[] | undefined;
+  readonly constraints: readonly SchemaConstraint[] | undefined;
 };
 
 export type SchemaColumnError = {
@@ -36,7 +36,7 @@ export type SchemaColumnError = {
   readonly remainder: SchemaRemainder;
 };
 
-export type SchemaConstraintResponse = {
+export type SchemaConstraint = {
   readonly name: string;
   readonly type: "PrimaryKey" | "ForeignKey" | "Unique" | "Check";
   readonly clause: string | undefined;
@@ -50,7 +50,7 @@ export type SchemaConstraintError = {
   readonly remainder: SchemaRemainder;
 };
 
-export type SchemaSequenceResponse = {
+export type SchemaSequence = {
   readonly name: string;
   readonly type: string;
   readonly start: number;
@@ -77,7 +77,7 @@ export type HashID = {
   readonly name: string;
 };
 
-export type HashesResponse = HashID & {
+export type Hash = HashID & {
   readonly plainTextLimit: number;
   readonly plainTextValidator: string | undefined;
   readonly algorithmID: string;
@@ -93,7 +93,7 @@ export type DoHashResponse = {
   readonly elapsedNanos: number;
 };
 
-export type SuspicionsResponse = {
+export type Suspicion = {
   readonly type: string;
   readonly name: string;
   readonly suspicions: readonly string[];

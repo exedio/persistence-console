@@ -3,15 +3,13 @@ import { default as Suspicions } from "@/Suspicions.svelte";
 import { mockFetch, responseFailure, responseSuccess } from "@t/mockApi";
 import { flushPromises, formatHtml } from "@t/utils";
 import { expect } from "vitest";
-import type { SuspicionsResponse } from "@/api/types";
+import type { Suspicion } from "@/api/types";
 
 describe("Suspicions", () => {
   it("should render an empty table", async () => {
     {
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccess([] satisfies SuspicionsResponse[]),
-      );
+      mock.mockResolvedValueOnce(responseSuccess([] satisfies Suspicion[]));
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/suspicions");
     }
@@ -33,7 +31,7 @@ describe("Suspicions", () => {
             name: "myMultiName",
             suspicions: ["myFirstSuspicion", "mySecondSuspicion"],
           },
-        ] satisfies SuspicionsResponse[]),
+        ] satisfies Suspicion[]),
       );
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/suspicions");
@@ -57,7 +55,7 @@ describe("Suspicions", () => {
             name: "myOnlyNameReloaded",
             suspicions: ["myOnlySuspicionReloaded"],
           },
-        ] satisfies SuspicionsResponse[]),
+        ] satisfies Suspicion[]),
       );
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
       await flushPromises();

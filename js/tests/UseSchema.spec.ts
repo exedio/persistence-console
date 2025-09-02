@@ -1,9 +1,9 @@
 import { expect } from "vitest";
-import { UseSchema } from "@/UseSchema.svelte";
+import { Schema } from "@/UseSchema.svelte";
 
 describe("UseSchema", () => {
   it("table renameTo/From", async () => {
-    const schema = new UseSchema({
+    const schema = new Schema({
       tables: [
         {
           name: "tableOk",
@@ -86,7 +86,7 @@ describe("UseSchema", () => {
     ]);
   });
   it("column renameTo/From", async () => {
-    const schema = new UseSchema({
+    const schema = new Schema({
       tables: [
         {
           name: "myTable",

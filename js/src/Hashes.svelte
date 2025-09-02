@@ -2,20 +2,20 @@
   import { fly } from "svelte/transition";
   import "@/table-grey.css";
   import { get } from "@/api/api";
-  import { type HashesResponse } from "@/api/types";
+  import { type Hash as ApiHash } from "@/api/types";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
-  import { UseHashes } from "@/UseHashes.svelte";
+  import { Hash } from "@/UseHashes.svelte";
   import { useWithStore } from "@/utils";
 
-  const hashesStore = new Map<string, UseHashes>();
+  const hashesStore = new Map<string, Hash>();
 
   const hashes = new PromiseTracker(() =>
-    get<HashesResponse[]>("hashes").then((response) =>
+    get<ApiHash[]>("hashes").then((response) =>
       useWithStore(
         hashesStore,
         toId,
-        (source) => new UseHashes(source),
+        (source) => new Hash(source),
         (target, source) => target.update(source),
         response,
       ),
@@ -23,12 +23,12 @@
   );
   const errors: Error[] = $state([]);
 
-  function measureAll(hashes: UseHashes[]) {
+  function measureAll(hashes: Hash[]) {
     let p = Promise.resolve();
     hashes.forEach((h) => (p = p.then(async () => await h.measure(errors))));
   }
 
-  function toId(response: HashesResponse): string {
+  function toId(response: ApiHash): string {
     return response.type + "." + response.name;
   }
 </script>

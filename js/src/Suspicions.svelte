@@ -1,13 +1,11 @@
 <script lang="ts">
   import "@/table-grey.css";
   import { get } from "@/api/api";
-  import type { SuspicionsResponse } from "@/api/types";
+  import type { Suspicion } from "@/api/types";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
 
-  const features = new PromiseTracker(() =>
-    get<SuspicionsResponse[]>("suspicions"),
-  );
+  const features = new PromiseTracker(() => get<Suspicion[]>("suspicions"));
 </script>
 
 <table class="grey">
