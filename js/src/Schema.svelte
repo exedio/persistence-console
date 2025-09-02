@@ -132,7 +132,7 @@
   const RENAME_NONE = "<NONE>";
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
-  type ReadonlyUseConstraintArray = readonly Constraint[];
+  type ReadonlyConstraintArray = readonly Constraint[];
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyStringArray = readonly string[];
@@ -264,7 +264,7 @@
   {/if}
 </div>
 
-{#snippet constraints(constraints: ReadonlyUseConstraintArray)}
+{#snippet constraints(constraints: ReadonlyConstraintArray)}
   {#each constraints as constraint (constraint.name)}
     <li>
       {@render expanderDisabled(constraint.bulletColor)}
