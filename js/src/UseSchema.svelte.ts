@@ -187,7 +187,16 @@ export class Column implements Fixable {
     this.api = $state(apiParameterForAssigmentOnly);
     this.tableName = tableName;
     this.name = this.api.name;
-    this.existence = $derived(columnExistence(this.api));
+    this.existence = $derived.by(() => {
+      const error = this.api.error;
+      if (!error || !error.existence) return undefined;
+
+      // TODO "not null" should be replaced by explicit API
+      if (error.existence === "unused" && !this.api.type.endsWith(" not null"))
+        return { text: "unused", color: "yellow" };
+
+      return { text: error.existence, color: "red" };
+    });
     this.type = $derived({
       name: "type",
       expected: this.api.type,
@@ -266,17 +275,6 @@ function useConstraints(
     (target, source) => target.update(source),
     constraints ?? [],
   );
-}
-
-function columnExistence(api: ApiColumn): Existence {
-  const error = api.error;
-  if (!error || !error.existence) return undefined;
-
-  // TODO "not null" should be replaced by explicit API
-  if (error.existence === "unused" && !api.type.endsWith(" not null"))
-    return { text: "unused", color: "yellow" };
-
-  return { text: error.existence, color: "red" };
 }
 
 type ConstraintType = "pk" | "fk" | "unique" | "check";
