@@ -85,7 +85,6 @@ export class Table implements Fixable {
 
   constructor(apiParameterForAssigmentOnly: ApiTable) {
     this.api = $state(apiParameterForAssigmentOnly);
-    const name = this.api.name;
     this.name = this.api.name;
     this.existence = $derived(
       this.api.error && this.api.error.existence
