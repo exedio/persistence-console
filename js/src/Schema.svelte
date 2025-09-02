@@ -12,7 +12,8 @@
     type Existence,
     type Comparison,
     type Constraint,
-    type Color,
+    type Bullet,
+    type ExpandableBullet,
   } from "@/UseSchema.svelte.js";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
@@ -37,11 +38,6 @@
       ),
     ),
   );
-
-  type Expandable = {
-    readonly bulletColor: Color;
-    expanded: boolean;
-  };
 
   type Modify = {
     subject: "column" | "constraint";
@@ -163,7 +159,7 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
-      {@render bullet(schema.bulletColor)}
+      {@render bullet(schema)}
       Schema
       <PromiseTrackerReload tracker={schemaT} />
       <ul>
@@ -216,7 +212,7 @@
         {/each}
         {#each schema.sequences() as sequence (sequence.name)}
           <li class="sequence">
-            {@render bullet(sequence.bulletColor)}
+            {@render bullet(sequence)}
             <span class="nodeType">sequence</span>
             {sequence.name}
             {@render existence(
@@ -261,7 +257,7 @@
 {#snippet constraints(constraints: ReadonlyConstraintArray)}
   {#each constraints as constraint (constraint.name)}
     <li>
-      {@render bullet(constraint.bulletColor)}
+      {@render bullet(constraint)}
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
       {@render existence(constraint.existence, constraint, [], [])}
@@ -280,17 +276,17 @@
   {/each}
 {/snippet}
 
-{#snippet bulletExpandable(expandable: Expandable)}
+{#snippet bulletExpandable(bullet: ExpandableBullet)}
   <button
-    class={["bullet", expandable.bulletColor]}
-    onclick={() => (expandable.expanded = !expandable.expanded)}
+    class={["bullet", bullet.bulletColor]}
+    onclick={() => (bullet.expanded = !bullet.expanded)}
   >
-    {expandable.expanded ? "-" : "+"}
+    {bullet.expanded ? "-" : "+"}
   </button>
 {/snippet}
 
-{#snippet bullet(color: Color)}
-  <button class={["bullet", color]} disabled={true}>.</button>
+{#snippet bullet(bullet: Bullet)}
+  <button class={["bullet", bullet.bulletColor]} disabled={true}>.</button>
 {/snippet}
 
 {#snippet existence(
