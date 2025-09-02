@@ -381,7 +381,13 @@ export class Sequence implements Fixable {
   constructor(apiParameterForAssigmentOnly: ApiSequence) {
     this.api = $state(apiParameterForAssigmentOnly);
     this.name = this.api.name;
-    this.existence = $derived(sequenceExistence(this.api));
+    this.existence = $derived.by(() => {
+      const error = this.api.error;
+      if (!error || !error.existence) return undefined;
+      return error.existence === "missing"
+        ? { text: error.existence, color: "red" }
+        : { text: error.existence, color: "yellow" };
+    });
     this.type = $derived({
       name: "type",
       expected: this.api.type,
@@ -414,14 +420,6 @@ export class Sequence implements Fixable {
 
     this.api = api;
   }
-}
-
-function sequenceExistence(api: ApiSequence): Existence {
-  const error = api.error;
-  if (!error || !error.existence) return undefined;
-  return error.existence === "missing"
-    ? { text: error.existence, color: "red" }
-    : { text: error.existence, color: "yellow" };
 }
 
 export function useRemainder(api: ApiRemainder): readonly string[] {
