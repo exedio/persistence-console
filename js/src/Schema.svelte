@@ -137,12 +137,6 @@
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyStringArray = readonly string[];
 
-  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
-  type Boolean = boolean;
-
-  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
-  type String = string;
-
   // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
   function asInputElement(target: EventTarget | null): HTMLInputElement {
     return target as HTMLInputElement;
