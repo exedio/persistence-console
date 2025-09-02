@@ -1,30 +1,30 @@
-export type SchemaFixable = {
+export type Fixable = {
   readonly subject: "table" | "column" | "constraint" | "sequence";
   readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
   readonly name: string;
 };
 
-export function schemaFixableString(f: SchemaFixable): string {
+export function fixableString(f: Fixable): string {
   return f.subject + "/" + f.tableName + "/" + f.name;
 }
 
-export type SchemaFix = SchemaFixable & {
+export type Fix = Fixable & {
   readonly method: "add" | "drop" | "modify" | "rename";
   readonly value: string | undefined; // new name for method "rename"
 };
 
-export function workOnFixes(source: SchemaFix[]): SchemaFix[] {
-  let result: SchemaFix[] = [];
+export function workOnFixes(source: Fix[]): Fix[] {
+  let result: Fix[] = [];
   source.forEach((i) => {
     if (i.subject === "constraint" && i.method === "modify") {
       result.push({
         ...i,
         method: "drop",
-      } satisfies SchemaFix);
+      } satisfies Fix);
       result.push({
         ...i,
         method: "add",
-      } satisfies SchemaFix);
+      } satisfies Fix);
     } else result.push(i);
   });
   result.sort((a, b) => {
@@ -36,7 +36,7 @@ export function workOnFixes(source: SchemaFix[]): SchemaFix[] {
 /**
  * Order taken from SchemaCop#writeApply
  */
-function orderIndex(cb: SchemaFix): number {
+function orderIndex(cb: Fix): number {
   switch (cb.subject) {
     case "constraint": {
       switch (cb.method) {

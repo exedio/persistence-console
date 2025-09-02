@@ -18,9 +18,9 @@
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
   import {
-    type SchemaFix as Fix,
-    type SchemaFixable as Fixable,
-    schemaFixableString as fixableString,
+    type Fix,
+    type Fixable,
+    fixableString,
     workOnFixes,
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";

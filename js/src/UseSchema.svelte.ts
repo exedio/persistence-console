@@ -6,7 +6,7 @@ import type {
   SchemaSequence as ApiSequence,
   SchemaTable as ApiTable,
 } from "@/api/types";
-import type { SchemaFixable } from "@/SchemaFix";
+import type { Fixable } from "@/SchemaFix";
 import { useWithStore } from "@/utils";
 
 export class Schema {
@@ -67,7 +67,7 @@ export class Schema {
   }
 }
 
-export class Table implements SchemaFixable {
+export class Table implements Fixable {
   private api: ApiTable;
   readonly subject = "table";
   readonly tableName = undefined;
@@ -167,7 +167,7 @@ export class Table implements SchemaFixable {
   }
 }
 
-export class Column implements SchemaFixable {
+export class Column implements Fixable {
   private api: ApiColumn;
   readonly subject = "column";
   readonly tableName: string;
@@ -282,7 +282,7 @@ function columnExistence(api: ApiColumn): Existence {
 
 type ConstraintType = "pk" | "fk" | "unique" | "check";
 
-export class Constraint implements SchemaFixable {
+export class Constraint implements Fixable {
   private api: ApiConstraint;
   readonly subject = "constraint";
   readonly tableName: string;
@@ -372,7 +372,7 @@ function useConstraintType(api: ApiConstraint): ConstraintType {
   }
 }
 
-export class Sequence implements SchemaFixable {
+export class Sequence implements Fixable {
   private api: ApiSequence;
   readonly subject = "sequence";
   readonly tableName = undefined;
