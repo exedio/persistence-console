@@ -9,7 +9,7 @@ import type {
 import type { Fixable } from "@/SchemaFix";
 import { useWithStore } from "@/utils";
 
-export class Schema {
+export class Schema implements Bullet {
   private api: ApiSchema;
   private _tables: readonly Table[];
   private _sequences: readonly Sequence[];
@@ -67,7 +67,7 @@ export class Schema {
   }
 }
 
-export class Table implements Fixable {
+export class Table implements ExpandableBullet, Fixable {
   private api: ApiTable;
   readonly subject = "table";
   readonly tableName = undefined;
@@ -166,7 +166,7 @@ export class Table implements Fixable {
   }
 }
 
-export class Column implements Fixable {
+export class Column implements ExpandableBullet, Fixable {
   private api: ApiColumn;
   readonly subject = "column";
   readonly tableName: string;
@@ -279,7 +279,7 @@ function useConstraints(
 
 type ConstraintType = "pk" | "fk" | "unique" | "check";
 
-export class Constraint implements Fixable {
+export class Constraint implements Bullet, Fixable {
   private api: ApiConstraint;
   readonly subject = "constraint";
   readonly tableName: string;
@@ -367,7 +367,7 @@ function useConstraintType(api: ApiConstraint): ConstraintType {
   }
 }
 
-export class Sequence implements Fixable {
+export class Sequence implements Bullet, Fixable {
   private api: ApiSequence;
   readonly subject = "sequence";
   readonly tableName = undefined;
@@ -469,3 +469,11 @@ function remainderColor(
 ): Color {
   return error?.remainder ? "red" : undefined;
 }
+
+export type Bullet = {
+  readonly bulletColor: Color;
+};
+
+export type ExpandableBullet = Bullet & {
+  expanded: boolean;
+};
