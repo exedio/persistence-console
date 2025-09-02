@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE ivy-module [
+		<!ENTITY artifacts.name "exedio-cope-console">
 		<!ENTITY jackson.version "2.15.2">
 		<!ENTITY junit.version.minor "13.3">
 	]>
@@ -35,9 +36,9 @@
 				description="classpath for IDEs such as Eclipse and IntelliJ, includes java sources and changelogs" />
 	</configurations>
 	<publications>
-		<artifact name="exedio-cope-console" conf="runtime"   type="jar" ext="jar" />
-		<artifact name="exedio-cope-console" conf="sources"   type="src" ext="zip" />
-		<artifact name="exedio-cope-console" conf="changelog" type="log" ext="txt" />
+		<artifact name="&artifacts.name;" conf="runtime"   type="jar" ext="jar" />
+		<artifact name="&artifacts.name;" conf="sources"   type="src" ext="zip" />
+		<artifact name="&artifacts.name;" conf="changelog" type="log" ext="txt" />
 	</publications>
 	<dependencies>
 		<dependency org="javax.servlet" name="javax.servlet-api" rev="4.0.1" conf="runtime->default; ide->sources" />
