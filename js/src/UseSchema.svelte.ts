@@ -300,7 +300,11 @@ export class Constraint implements Fixable {
     this.tableName = tableName;
     this.columnName = columnName;
     this.name = this.api.name;
-    this.existence = $derived(constraintExistence(this.api));
+    this.existence = $derived.by(() => {
+      const error = this.api.error;
+      if (!error || !error.existence) return undefined;
+      return { text: error.existence, color: "red" };
+    });
     this.clause = $derived(
       this.api.clause
         ? {
@@ -348,12 +352,6 @@ export class Constraint implements Fixable {
 
     return this.name;
   }
-}
-
-function constraintExistence(api: ApiConstraint): Existence {
-  const error = api.error;
-  if (!error || !error.existence) return undefined;
-  return { text: error.existence, color: "red" };
 }
 
 function useConstraintType(api: ApiConstraint): ConstraintType {
