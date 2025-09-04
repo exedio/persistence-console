@@ -6,7 +6,7 @@ import type {
   SchemaSequence as ApiSequence,
   SchemaTable as ApiTable,
 } from "@/api/types";
-import type { Fixable } from "@/SchemaFix";
+import type { Fix, Fixable, FixedFixable } from "@/SchemaFix";
 import { useWithStore } from "@/utils";
 
 export class Schema implements Bullet {
@@ -65,6 +65,51 @@ export class Schema implements Bullet {
       sequences ?? [],
     );
   }
+
+  fixables(): FixedFixable[] {
+    let result: FixedFixable[] = [];
+    this._tables.forEach((i) => {
+      i.addFixables(result);
+    });
+    this._sequences.forEach((i) => {
+      pushFixed(result, i);
+    });
+    return result;
+  }
+
+  fixable(key: {
+    subject: "table" | "column" | "constraint" | "sequence";
+    tableName: string | undefined;
+    name: string;
+  }): Fixable {
+    for (const tab of this._tables) {
+      if (isFixable(tab, key)) return tab;
+      for (const col of tab.columns()) {
+        if (isFixable(col, key)) return col;
+        for (const con of col.constraints())
+          if (isFixable(con, key)) return con;
+      }
+      for (const con of tab.constraints()) {
+        if (isFixable(con, key)) return con;
+      }
+    }
+    for (const seq of this._sequences) {
+      if (isFixable(seq, key)) return seq;
+    }
+    throw new Error(JSON.stringify(key));
+  }
+
+  dropRenames(key: {
+    subject: "table" | "column" | "constraint" | "sequence";
+    tableName: string | undefined;
+    name: string;
+  }): void {
+    // constraints cannot be renamed
+    if (key.subject === "constraint") throw new Error(JSON.stringify(key));
+
+    for (const tab of this._tables) tab.dropRenames(key);
+    for (const seq of this._sequences) dropRename(seq, key);
+  }
 }
 
 export class Table implements ExpandableBullet, Fixable {
@@ -82,6 +127,7 @@ export class Table implements ExpandableBullet, Fixable {
   private readonly constraintsStore = new Map<string, Constraint>();
 
   expanded: boolean = $state(false);
+  fix: Fix | undefined = $state(undefined);
 
   constructor(apiParameterForAssigmentOnly: ApiTable) {
     this.api = $state(apiParameterForAssigmentOnly);
@@ -164,6 +210,29 @@ export class Table implements ExpandableBullet, Fixable {
       .filter((t) => t.existence && t.existence.text === "missing")
       .map((t) => t.name);
   }
+
+  addFixables(result: FixedFixable[]) {
+    pushFixed(result, this);
+    this._columns.forEach((i) => {
+      i.addFixables(result);
+    });
+    this._constraints.forEach((i) => {
+      pushFixed(result, i);
+    });
+    return result;
+  }
+
+  dropRenames(key: {
+    subject: "table" | "column" | "constraint" | "sequence";
+    tableName: string | undefined;
+    name: string;
+  }): void {
+    // constraints cannot be renamed
+    if (key.subject === "constraint") throw new Error(JSON.stringify(key));
+
+    dropRename(this, key);
+    for (const col of this._columns) dropRename(col, key);
+  }
 }
 
 export class Column implements ExpandableBullet, Fixable {
@@ -178,6 +247,7 @@ export class Column implements ExpandableBullet, Fixable {
   readonly bulletColor: Color;
 
   expanded: boolean = $state(false);
+  fix: Fix | undefined = $state(undefined);
 
   constructor(
     apiParameterForAssigmentOnly: ApiColumn,
@@ -260,6 +330,14 @@ export class Column implements ExpandableBullet, Fixable {
       .filter((c) => c.existence && c.existence.text === "missing")
       .map((c) => c.name);
   }
+
+  addFixables(result: FixedFixable[]) {
+    pushFixed(result, this);
+    this._constraints.forEach((i) => {
+      pushFixed(result, i);
+    });
+    return result;
+  }
 }
 
 function useConstraints(
@@ -290,6 +368,8 @@ export class Constraint implements Bullet, Fixable {
   readonly clause: Comparison | undefined;
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
+
+  fix: Fix | undefined = $state(undefined);
 
   constructor(
     apiParameterForAssigmentOnly: ApiConstraint,
@@ -377,6 +457,8 @@ export class Sequence implements Bullet, Fixable {
   readonly start: Comparison;
   readonly remainingErrors: readonly string[];
   readonly bulletColor: Color;
+
+  fix: Fix | undefined = $state(undefined);
 
   constructor(apiParameterForAssigmentOnly: ApiSequence) {
     this.api = $state(apiParameterForAssigmentOnly);
@@ -477,3 +559,39 @@ export type Bullet = {
 export type ExpandableBullet = Bullet & {
   expanded: boolean;
 };
+
+function pushFixed(result: FixedFixable[], fixable: Fixable) {
+  if (fixable.fix) result.push(fixable as FixedFixable);
+}
+
+function isFixable(
+  fixable: Fixable,
+  key: {
+    subject: "table" | "column" | "constraint" | "sequence";
+    tableName: string | undefined;
+    name: string;
+  },
+): boolean {
+  return (
+    fixable.subject === key.subject &&
+    fixable.tableName === key.tableName &&
+    fixable.name === key.name
+  );
+}
+
+function dropRename(
+  fixable: Fixable,
+  key: {
+    subject: "table" | "column" | "constraint" | "sequence";
+    tableName: string | undefined;
+    name: string;
+  },
+): void {
+  if (
+    fixable.subject === key.subject &&
+    fixable.tableName === key.tableName &&
+    fixable.fix?.method === "rename" &&
+    fixable.fix?.value === key.name
+  )
+    fixable.fix = undefined;
+}
