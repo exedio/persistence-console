@@ -151,11 +151,11 @@ final class QueryCacheCop extends ConsoleCop<Void>
 					{
 						final String qx = replaceParameters(q);
 
-						final Condense dongs = histogramCondensed.get(qx);
-						if(dongs==null)
+						final Condense existing = histogramCondensed.get(qx);
+						if(existing==null)
 							histogramCondensed.put(qx, new Condense(qx, recentUsage, info));
 						else
-							dongs.accumulate(qx, recentUsage, info);
+							existing.accumulate(qx, recentUsage, info);
 					}
 
 					final int keyLength = q.length();
