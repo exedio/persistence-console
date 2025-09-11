@@ -94,13 +94,13 @@ public class QueryCacheTest
 			final QueryCacheCop.Content content = new QueryCacheCop.Content(histogram, true);
 			assertSame(histogram, content.histogram);
 			final QueryCacheCop.Condense[] cn = content.histogramCondensed;
-			assertInfo(cn[0], 2, 0, 24, 64, "query1 ? and ? order by");
-			assertInfo(cn[1], 1, 2, 14, 34, "query2 nixus");
-			assertInfo(cn[2], 1, 3, 15, 35, "query3 ?");
-			assertInfo(cn[3], 1, 4, 16, 36, "? query4");
-			assertInfo(cn[4], 1, 5, 17, 37, "? query5");
-			assertInfo(cn[5], 1, 6, 18, 38, "query6 ?");
-			assertInfo(cn[6], 1, 7, 19, 39, "query7 ? order by");
+			assertInfo(cn[0], 2, 0, 1, 11, 13, 31, 33, "query1 ? and ? order by");
+			assertInfo(cn[1], 1, 2, 2, 14, 14, 34, 34, "query2 nixus");
+			assertInfo(cn[2], 1, 3, 3, 15, 15, 35, 35, "query3 ?");
+			assertInfo(cn[3], 1, 4, 4, 16, 16, 36, 36, "? query4");
+			assertInfo(cn[4], 1, 5, 5, 17, 17, 37, 37, "? query5");
+			assertInfo(cn[5], 1, 6, 6, 18, 18, 38, 38, "query6 ?");
+			assertInfo(cn[6], 1, 7, 7, 19, 19, 39, 39, "query7 ? order by");
 			assertEquals(7, cn.length);
 		}
 	}
@@ -108,15 +108,21 @@ public class QueryCacheTest
 	private static void assertInfo(
 			final QueryCacheCop.Condense actual,
 			final int count,
-			final int recentUsage,
-			final int resultSize,
-			final long hits,
+			final int minRecentUsage,
+			final int maxRecentUsage,
+			final int minResultSize,
+			final int maxResultSize,
+			final long minHits,
+			final long maxHits,
 			final String query)
 	{
 		assertEquals(count, actual.getCount());
-		assertEquals(recentUsage, actual.getRecentUsage());
-		assertEquals(resultSize, actual.getResultSize());
-		assertEquals(hits, actual.getHits());
+		assertEquals(minRecentUsage, actual.getRecentUsage().getMin());
+		assertEquals(maxRecentUsage, actual.getRecentUsage().getMax());
+		assertEquals(minResultSize, actual.getResultSize().getMin());
+		assertEquals(maxResultSize, actual.getResultSize().getMax());
+		assertEquals(minHits, actual.getHits().getMin());
+		assertEquals(maxHits, actual.getHits().getMax());
 		assertEquals(query, actual.query);
 	}
 

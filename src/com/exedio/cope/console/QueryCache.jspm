@@ -27,9 +27,20 @@ import static com.exedio.cope.console.QueryCacheCop.HISTOGRAM_LIMIT;
 
 import com.exedio.cope.QueryCacheHistogram;
 import com.exedio.cope.QueryCacheInfo;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 final class QueryCache_Jspm
 {
+	private static final String[] SUBNAMES_MIN_AVG_MAX = {
+		"min",
+		"avg",
+		"max"
+	};
+
+	private static final String[] SUBNAMES_SINGLE_EMPTY = {""};
+
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static void writeStatistics(
 			final Out out,
@@ -94,10 +105,10 @@ final class QueryCache_Jspm
 		{
 
 		final String[] names = {
-			"Recent Usage (LRU) (Average)",
+			"Recent Usage (LRU)",
 			"Count",
-			"Result Size (Sum)",
-			"Cache Hits (Sum)",
+			"Result Size",
+			"Cache Hits",
 			"Query",
 		};
 		final String[] shortNames = {
@@ -106,10 +117,17 @@ final class QueryCache_Jspm
 			"rs",
 			"ch",
 		};
+		final String[][] subNames = {
+			SUBNAMES_MIN_AVG_MAX,
+			SUBNAMES_SINGLE_EMPTY,
+			SUBNAMES_MIN_AVG_MAX,
+			SUBNAMES_MIN_AVG_MAX,
+			SUBNAMES_SINGLE_EMPTY
+		};
 		%>
 		<table id="coloredTable">
 			<caption>Histogram</caption><%
-			ColoredTable_Jspm.writeHeader(out, names, shortNames);
+			ColoredTable_Jspm.writeHeader(out, names, shortNames, subNames);
 
 		final int histogramLimit = cop.histogramLimit;
 
@@ -132,12 +150,10 @@ final class QueryCache_Jspm
 				break;
 			}
 			final QueryCacheCop.Condense condense = content.histogramCondensed[i];
-			final String[] data = {
-					format(condense.getRecentUsage()),
-					format(condense.getCount()),
-					format(condense.getResultSize()),
-					formatAndHide(0, condense.getHits()),
-				};
+			final List<ColoredTableCell> data = new ArrayList<>(rangeCells(condense.getRecentUsage()));
+			data.add(new ColoredTableCell(format(condense.getCount()), 1, true));
+			data.addAll(rangeCells(condense.getResultSize()));
+			data.addAll(rangeCells(condense.getHits()));
 			%>
 			<tr><%
 				ColoredTable_Jspm.writeData(out, data); %>
@@ -201,6 +217,19 @@ final class QueryCache_Jspm
 		}
 		%>
 		</table><%
+	}
+
+	static Collection<ColoredTableCell> rangeCells(final QueryCacheCop.CondenseRange condenseRange)
+	{
+		final long min = condenseRange.getMin();
+		final long max = condenseRange.getMax();
+		return min == max ?
+			List.of( new ColoredTableCell(format(min), 3, true) ) :
+			List.of(
+				new ColoredTableCell(format(min), 1, true),
+				new ColoredTableCell(format(condenseRange.getAverage()), 1, false),
+				new ColoredTableCell(format(max), 1, false)
+			);
 	}
 
 	private QueryCache_Jspm()

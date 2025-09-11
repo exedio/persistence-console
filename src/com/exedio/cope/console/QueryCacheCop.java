@@ -193,7 +193,11 @@ final class QueryCacheCop extends ConsoleCop<Void>
 				if(histogramCondensed!=null)
 				{
 					this.histogramCondensed = histogramCondensed.values().toArray(EMPTY_CONDENSE);
-					Arrays.sort(this.histogramCondensed, Comparator.comparing(Condense::getRecentUsage).thenComparing(c->c.query));
+					Arrays.sort(this.histogramCondensed,
+						Comparator.<Condense,Long>comparing(c->c.getRecentUsage().getMin()).
+							thenComparing(c->c.getRecentUsage().getAverage()).
+							thenComparing(c->c.getRecentUsage().getMax()).
+							thenComparing(c->c.query));
 				}
 				else
 				{
@@ -273,26 +277,26 @@ final class QueryCacheCop extends ConsoleCop<Void>
 	{
 		final String query;
 		private int count;
-		private long recentUsage;
-		private long resultSize;
-		private long hits;
+		private final CondenseRange recentUsage;
+		private final CondenseRange resultSize;
+		private final CondenseRange hits;
 
 		Condense(final String query, final int recentUsage, final QueryCacheHistogram info)
 		{
 			this.query = query;
 			this.count = 1;
-			this.recentUsage = recentUsage;
-			this.resultSize  = info.getResultSize();
-			this.hits        = info.getHits();
+			this.recentUsage = new CondenseRange(recentUsage);
+			this.resultSize  = new CondenseRange(info.getResultSize());
+			this.hits        = new CondenseRange(info.getHits());
 		}
 
 		void accumulate(final String query, final int recentUsage, final QueryCacheHistogram info)
 		{
 			assert this.query.equals(query);
 			this.count++;
-			this.recentUsage += recentUsage;
-			this.resultSize  += info.getResultSize();
-			this.hits        += info.getHits();
+			this.recentUsage.accumulate(recentUsage);
+			resultSize.accumulate(info.getResultSize());
+			hits.accumulate(info.getHits());
 		}
 
 		int getCount()
@@ -300,17 +304,17 @@ final class QueryCacheCop extends ConsoleCop<Void>
 			return count;
 		}
 
-		long getRecentUsage()
+		CondenseRange getRecentUsage()
 		{
-			return recentUsage / count;
+			return recentUsage;
 		}
 
-		long getResultSize()
+		CondenseRange getResultSize()
 		{
 			return resultSize;
 		}
 
-		long getHits()
+		CondenseRange getHits()
 		{
 			return hits;
 		}
@@ -363,5 +367,44 @@ final class QueryCacheCop extends ConsoleCop<Void>
 		final QueryCacheHistogram[] histogram = model.getQueryCacheHistogram();
 		QueryCache_Jspm.writeHistogram(this, out,
 				new Content(histogram, condense));
+	}
+
+	static final class CondenseRange
+	{
+		private int count;
+		private long min;
+		private long max;
+		private long sum;
+
+		private CondenseRange(final long value)
+		{
+			count = 1;
+			sum = value;
+			min = value;
+			max = value;
+		}
+
+		private void accumulate(final long value)
+		{
+			count++;
+			sum += value;
+			min = Math.min(min, value);
+			max = Math.max(max, value);
+		}
+
+		long getMin()
+		{
+			return min;
+		}
+
+		long getMax()
+		{
+			return max;
+		}
+
+		double getAverage()
+		{
+			return ((double)sum) / count;
+		}
 	}
 }
