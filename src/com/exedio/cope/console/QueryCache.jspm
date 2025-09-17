@@ -124,6 +124,7 @@ final class QueryCache_Jspm
 					<form action="<%=cop%>" method="GET">
 						New limit:
 						<input type="text" name="<%=HISTOGRAM_LIMIT%>" value="<%=histogramLimit%>">
+						<% cop.writeHiddenParametersOtherThanHistogramLimit(out); %>
 						<input type="submit" value="set">
 					</form>
 				</td>
@@ -177,6 +178,7 @@ final class QueryCache_Jspm
 					<form action="<%=cop%>" method="GET">
 						New limit:
 						<input type="text" name="<%=HISTOGRAM_LIMIT%>" value="<%=histogramLimit%>">
+						<% cop.writeHiddenParametersOtherThanHistogramLimit(out); %>
 						<input type="submit" value="set">
 					</form>
 				</td>
