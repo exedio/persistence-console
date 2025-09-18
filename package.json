@@ -29,5 +29,10 @@
     "vite": "7.1.5",
     "vitest": "3.2.4"
   },
+  "dependenciesMeta": {
+    "esbuild@0.25.4": {
+      "built": true
+    }
+  },
   "packageManager": "yarn@4.9.1"
 }
