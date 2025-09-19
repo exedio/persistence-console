@@ -141,7 +141,7 @@ final class QueryCache_Jspm
 			%>
 			<tr><%
 				ColoredTable_Jspm.writeData(out, data); %>
-				<td class="text"><% out.writeSQL(condense.query); %></td>
+				<td class="text"><div class="limitheight"><% out.writeSQL(condense.query); %></div></td>
 			</tr><%
 		}
 
@@ -194,7 +194,7 @@ final class QueryCache_Jspm
 			%>
 			<tr><%
 				ColoredTable_Jspm.writeData(out, data); %>
-				<td class="text"><% out.writeSQL(histogram.getQuery()); %></td>
+				<td class="text"><div class="limitheight"><% out.writeSQL(histogram.getQuery()); %></div></td>
 			</tr><%
 		}
 

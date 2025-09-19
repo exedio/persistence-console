@@ -225,3 +225,9 @@ input.filter
 	border: none;
 	background-color: #eee;
 }
+
+div.limitheight
+{
+	max-height: 4em;
+	overflow-y: scroll;
+}
