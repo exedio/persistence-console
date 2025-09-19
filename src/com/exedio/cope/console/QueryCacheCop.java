@@ -68,6 +68,14 @@ final class QueryCacheCop extends ConsoleCop<Void>
 				getBooleanParameter(request, CONDENSE));
 	}
 
+	void writeHiddenParametersOtherThanHistogramLimit(final Out out)
+	{
+		if (deprecated)
+			out.writeRaw("<input type=\"hidden\" name=\"" + DEPRECATED + "\" value=\"t\">");
+		if (condense)
+			out.writeRaw("<input type=\"hidden\" name=\"" + CONDENSE + "\" value=\"t\">");
+	}
+
 	@Override
 	protected QueryCacheCop newArgs(final Args args)
 	{
