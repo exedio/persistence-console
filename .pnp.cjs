@@ -32,6 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@tsconfig/svelte", "npm:5.0.4"],\
           ["@types/node", "npm:22.15.18"],\
           ["@vitest/coverage-v8", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.1.3"],\
+          ["adm-zip", "npm:0.5.16"],\
           ["js", "workspace:."],\
           ["jsdom", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:26.1.0"],\
           ["prettier", "npm:3.5.3"],\
@@ -1102,6 +1103,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["adm-zip", [\
+      ["npm:0.5.16", {\
+        "packageLocation": "./.yarn/cache/adm-zip-npm-0.5.16-4556fea098-6f10119d45.zip/node_modules/adm-zip/",\
+        "packageDependencies": [\
+          ["adm-zip", "npm:0.5.16"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["agent-base", [\
       ["npm:7.1.3", {\
         "packageLocation": "./.yarn/cache/agent-base-npm-7.1.3-b2c16e72fb-6192b580c5.zip/node_modules/agent-base/",\
@@ -1485,7 +1495,7 @@ const RAW_RUNTIME_STATE =
     ]],\
     ["esbuild", [\
       ["npm:0.25.4", {\
-        "packageLocation": "./.yarn/unplugged/esbuild-npm-0.25.4-81710cfb14/node_modules/esbuild/",\
+        "packageLocation": "./.yarn/cache/esbuild-npm-0.25.4-81710cfb14-db9f51248f.zip/node_modules/esbuild/",\
         "packageDependencies": [\
           ["@esbuild/aix-ppc64", "npm:0.25.4"],\
           ["@esbuild/android-arm", "npm:0.25.4"],\
@@ -1862,6 +1872,7 @@ const RAW_RUNTIME_STATE =
           ["@tsconfig/svelte", "npm:5.0.4"],\
           ["@types/node", "npm:22.15.18"],\
           ["@vitest/coverage-v8", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.1.3"],\
+          ["adm-zip", "npm:0.5.16"],\
           ["js", "workspace:."],\
           ["jsdom", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:26.1.0"],\
           ["prettier", "npm:3.5.3"],\

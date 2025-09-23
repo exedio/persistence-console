@@ -171,6 +171,7 @@ try
 
 	parallelBranches["Yarn"] = {
 		nodeCheckoutAndDelete {
+			int yarnResult = 999
 			nodejsImage(imageName('Yarn')).inside(dockerRunDefaults()) {
 				shSilent(
 					"yarnpkg install --immutable --immutable-cache && " +
@@ -180,6 +181,7 @@ try
 					"yarnpkg test && " +
 					"yarnpkg check-format"
 				)
+				yarnResult = shStatus "yarnpkg audit:lifecycle > yarnpkg-audit-lifecycle.txt"
 			}
 			junit(
 					allowEmptyResults: false,
@@ -195,6 +197,12 @@ try
 					skipPublishingChecks: true,
 					sourceDirectories: [[path: 'js/src']]
 			)
+
+			if (yarnResult == 0) return
+
+			sh 'cat yarnpkg-audit-lifecycle.txt'
+			archiveArtifacts 'yarnpkg-audit-lifecycle.txt'
+			error 'FAILURE: yarn audit lifecycle finds unexpected scripts, see log above. Exit code is ' + yarnResult + '.'
 		}
 	}
 
