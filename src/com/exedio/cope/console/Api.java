@@ -70,6 +70,7 @@ final class Api {
   ) throws IOException, ApiTextException {
     switch (endpoint) {
       case "connect" -> {
+        requirePost(request);
         servlet.connect();
         writeJson(null, response);
       }
@@ -117,7 +118,7 @@ final class Api {
     final Class<T> jsonClass,
     final HttpServletRequest request
   ) throws IOException, ApiTextException {
-    ApiTextException.requireMethod("POST", request);
+    requirePost(request);
     ApiTextException.requireContentType(APPLICATION_JSON, request);
 
     final ObjectReader reader = mapper.readerFor(jsonClass);
@@ -139,6 +140,11 @@ final class Api {
       );
     }
     return jsonClass.cast(result);
+  }
+
+  private static void requirePost(final HttpServletRequest request)
+    throws ApiTextException {
+    ApiTextException.requireMethod("POST", request);
   }
 
   private static final String APPLICATION_JSON =
