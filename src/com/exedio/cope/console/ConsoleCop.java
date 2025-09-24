@@ -248,7 +248,7 @@ abstract class ConsoleCop<S> extends Cop
 				new ConsoleCop<?>[]{
 					new VmCop(args, false, false),
 					new OutOfMemoryErrorCop(args),
-					new RegisteredDriversCop(args, false, false, false),
+					new RegisteredDriversCop(args),
 					new EnumsCop(args),
 					new HiddenCop(args),
 					new DataFieldCop(args),
@@ -463,7 +463,7 @@ abstract class ConsoleCop<S> extends Cop
 			case OutOfMemoryErrorCop.TAB:
 				return OutOfMemoryErrorCop.getOutOfMemoryErrorCop(args);
 			case RegisteredDriversCop.TAB:
-				return RegisteredDriversCop.getRegisteredDriversCop(args, request);
+				return RegisteredDriversCop.getRegisteredDriversCop(args);
 			case EnumsCop.TAB:
 				return new EnumsCop(args);
 			case EnumCop.TAB:
