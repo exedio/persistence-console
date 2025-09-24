@@ -15,7 +15,7 @@
     "audit:lifecycle": "node js/scripts/lifecycle-audit.mjs"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "5.0.3",
+    "@sveltejs/vite-plugin-svelte": "6.2.0",
     "@tsconfig/svelte": "5.0.4",
     "@types/node": "22.15.18",
     "@vitest/coverage-v8": "3.1.3",
