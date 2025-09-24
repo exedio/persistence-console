@@ -48,7 +48,7 @@ final class ApiTextException extends Exception {
   ) throws ApiTextException {
     if (!method.equals(request.getMethod())) throw new ApiTextException(
       SC_METHOD_NOT_ALLOWED,
-      method + "required"
+      method + " required"
     );
   }
 
