@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Model;
 import java.sql.Driver;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -27,57 +28,63 @@ final class RegisteredDriversCop extends ConsoleCop<Void>
 {
 	static final String TAB = "registereddrivers";
 
-	private static final String SHOW_DRIVERS = "sd";
-	private static final String SHOW_SERVICES = "ss";
-	private static final String SHOW_SERVICES_INSTALLED = "ssi";
+	static final String SHOW_DRIVERS = "sd";
+	static final String SHOW_SERVICES = "ss";
+	static final String SHOW_SERVICES_INSTALLED = "ssi";
 
-	final boolean showDrivers;
-	final boolean showServices;
-	final boolean showServicesInstalled;
+	private static boolean showDrivers = false;
+	private static boolean showServices = false;
+	private static boolean showServicesInstalled = false;
 
 	RegisteredDriversCop(
-			final Args args,
-			final boolean showDrivers,
-			final boolean showServices,
-			final boolean showServicesInstalled)
+			final Args args)
 	{
 		super(TAB, "Registered Drivers", args);
-		this.showDrivers = showDrivers;
-		this.showServices = showServices;
-		this.showServicesInstalled = showServicesInstalled;
-
-		addParameter(SHOW_DRIVERS, showDrivers);
-		addParameter(SHOW_SERVICES, showServices);
-		addParameter(SHOW_SERVICES_INSTALLED, showServicesInstalled);
 	}
 
-	static RegisteredDriversCop getRegisteredDriversCop(final Args args, final HttpServletRequest request)
+	static RegisteredDriversCop getRegisteredDriversCop(final Args args)
 	{
-		return new RegisteredDriversCop(args,
-				getBooleanParameter(request, SHOW_DRIVERS),
-				getBooleanParameter(request, SHOW_SERVICES),
-				getBooleanParameter(request, SHOW_SERVICES_INSTALLED));
+		return new RegisteredDriversCop(args);
 	}
 
 	@Override
 	protected RegisteredDriversCop newArgs(final Args args)
 	{
-		return new RegisteredDriversCop(args, showDrivers, showServices, showServicesInstalled);
+		return new RegisteredDriversCop(args);
 	}
 
-	RegisteredDriversCop showDrivers()
+	boolean showDrivers()
 	{
-		return new RegisteredDriversCop(args, true, showServices, showServicesInstalled);
+		return showDrivers;
 	}
 
-	RegisteredDriversCop showServices()
+	boolean showServices()
 	{
-		return new RegisteredDriversCop(args, showDrivers, true, showServicesInstalled);
+		return showServices;
 	}
 
-	RegisteredDriversCop showServicesInstalled()
+	boolean showServicesInstalled()
 	{
-		return new RegisteredDriversCop(args, showDrivers, showServices, true);
+		return showServicesInstalled;
+	}
+
+	@Override
+	void initialize(final HttpServletRequest request, final Model model)
+	{
+		super.initialize(request, model);
+
+		if(isPost(request))
+		{
+			if(request.getParameter(SHOW_DRIVERS)!=null)
+				//noinspection AssignmentToStaticFieldFromInstanceMethod
+				showDrivers = true;
+			if(request.getParameter(SHOW_SERVICES)!=null)
+				//noinspection AssignmentToStaticFieldFromInstanceMethod
+				showServices = true;
+			if(request.getParameter(SHOW_SERVICES_INSTALLED)!=null)
+				//noinspection AssignmentToStaticFieldFromInstanceMethod
+				showServicesInstalled = true;
+		}
 	}
 
 	@Override

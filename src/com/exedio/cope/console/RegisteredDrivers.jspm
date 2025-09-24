@@ -20,6 +20,9 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.ConnectProperties.getDialectUrlMappers;
+import static com.exedio.cope.console.RegisteredDriversCop.SHOW_DRIVERS;
+import static com.exedio.cope.console.RegisteredDriversCop.SHOW_SERVICES;
+import static com.exedio.cope.console.RegisteredDriversCop.SHOW_SERVICES_INSTALLED;
 
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -36,9 +39,9 @@ final class RegisteredDrivers_Jspm
 			final RegisteredDriversCop cop)
 	{
 		writeDialectUrlMappers(out);
-		writeTable(out, "DriverManager.getDrivers",         cop.showDrivers,  cop.showDrivers(),  () -> RegisteredDriversCop.it(DriverManager.getDrivers()));
-		writeTable(out, "ServiceLoader.load(Driver.class)", cop.showServices, cop.showServices(), () -> ServiceLoader.load(Driver.class).iterator());
-		writeTable(out, "ServiceLoader.loadInstalled(Driver.class)", cop.showServicesInstalled, cop.showServicesInstalled(), () -> ServiceLoader.loadInstalled(Driver.class).iterator());
+		writeTable(cop, out, "DriverManager.getDrivers",                  cop.showDrivers(),           SHOW_DRIVERS,            () -> RegisteredDriversCop.it(DriverManager.getDrivers()));
+		writeTable(cop, out, "ServiceLoader.load(Driver.class)",          cop.showServices(),          SHOW_SERVICES,           () -> ServiceLoader.load(Driver.class).iterator());
+		writeTable(cop, out, "ServiceLoader.loadInstalled(Driver.class)", cop.showServicesInstalled(), SHOW_SERVICES_INSTALLED, () -> ServiceLoader.loadInstalled(Driver.class).iterator());
 	}
 
 	private static void writeDialectUrlMappers(
@@ -105,10 +108,11 @@ final class RegisteredDrivers_Jspm
 	}
 
 	private static void writeTable(
+			final RegisteredDriversCop cop,
 			final Out out,
 			final String caption,
 			final boolean enabled,
-			final RegisteredDriversCop enableCop,
+			final String enableCopParameter,
 			final Supplier<Iterator<Driver>> rows)
 	{
 		%>
@@ -143,7 +147,12 @@ final class RegisteredDrivers_Jspm
 		else
 		{
 			%>
-			<tr><td class="text" colspan="5"><a href="<%= enableCop %>">show</a> (<b>BEWARE:</b> may load drivers)</td></tr><%
+			<tr><td class="text" colspan="5">
+					<form action="<%=cop%>" method="POST">
+						<input type="submit" name="<%=enableCopParameter%>" value="enable">
+					</form>
+					(<b>BEWARE:</b> may load drivers)
+			</td></tr><%
 		}
 		%>
 		</table><%
