@@ -31,7 +31,7 @@ const RAW_RUNTIME_STATE =
           ["@sveltejs/vite-plugin-svelte", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:6.2.0"],\
           ["@tsconfig/svelte", "npm:5.0.4"],\
           ["@types/node", "npm:22.15.18"],\
-          ["@vitest/coverage-v8", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.1.3"],\
+          ["@vitest/coverage-v8", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.2.4"],\
           ["adm-zip", "npm:0.5.16"],\
           ["js", "workspace:."],\
           ["jsdom", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:26.1.0"],\
@@ -54,7 +54,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@ampproject/remapping", "npm:2.3.0"],\
           ["@jridgewell/gen-mapping", "npm:0.3.8"],\
-          ["@jridgewell/trace-mapping", "npm:0.3.25"]\
+          ["@jridgewell/trace-mapping", "npm:0.3.31"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -540,7 +540,7 @@ const RAW_RUNTIME_STATE =
           ["@jridgewell/gen-mapping", "npm:0.3.8"],\
           ["@jridgewell/set-array", "npm:1.2.1"],\
           ["@jridgewell/sourcemap-codec", "npm:1.5.0"],\
-          ["@jridgewell/trace-mapping", "npm:0.3.25"]\
+          ["@jridgewell/trace-mapping", "npm:0.3.31"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -551,7 +551,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@jridgewell/gen-mapping", "npm:0.3.8"],\
           ["@jridgewell/remapping", "npm:2.3.5"],\
-          ["@jridgewell/trace-mapping", "npm:0.3.25"]\
+          ["@jridgewell/trace-mapping", "npm:0.3.31"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -584,12 +584,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@jridgewell/trace-mapping", [\
-      ["npm:0.3.25", {\
-        "packageLocation": "./.yarn/cache/@jridgewell-trace-mapping-npm-0.3.25-c076fd2279-3d1ce6ebc6.zip/node_modules/@jridgewell/trace-mapping/",\
+      ["npm:0.3.31", {\
+        "packageLocation": "./.yarn/cache/@jridgewell-trace-mapping-npm-0.3.31-1ae81d75ac-4b30ec8cd5.zip/node_modules/@jridgewell/trace-mapping/",\
         "packageDependencies": [\
           ["@jridgewell/resolve-uri", "npm:3.1.2"],\
           ["@jridgewell/sourcemap-codec", "npm:1.5.0"],\
-          ["@jridgewell/trace-mapping", "npm:0.3.25"]\
+          ["@jridgewell/trace-mapping", "npm:0.3.31"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -948,22 +948,23 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@vitest/coverage-v8", [\
-      ["npm:3.1.3", {\
-        "packageLocation": "./.yarn/cache/@vitest-coverage-v8-npm-3.1.3-67d16f7a6f-82b5c33ae2.zip/node_modules/@vitest/coverage-v8/",\
+      ["npm:3.2.4", {\
+        "packageLocation": "./.yarn/cache/@vitest-coverage-v8-npm-3.2.4-11f6061269-cae3e58d81.zip/node_modules/@vitest/coverage-v8/",\
         "packageDependencies": [\
-          ["@vitest/coverage-v8", "npm:3.1.3"]\
+          ["@vitest/coverage-v8", "npm:3.2.4"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.1.3", {\
-        "packageLocation": "./.yarn/__virtual__/@vitest-coverage-v8-virtual-bfd64544b4/0/cache/@vitest-coverage-v8-npm-3.1.3-67d16f7a6f-82b5c33ae2.zip/node_modules/@vitest/coverage-v8/",\
+      ["virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.2.4", {\
+        "packageLocation": "./.yarn/__virtual__/@vitest-coverage-v8-virtual-b9d6d03178/0/cache/@vitest-coverage-v8-npm-3.2.4-11f6061269-cae3e58d81.zip/node_modules/@vitest/coverage-v8/",\
         "packageDependencies": [\
           ["@ampproject/remapping", "npm:2.3.0"],\
           ["@bcoe/v8-coverage", "npm:1.0.2"],\
           ["@types/vitest", null],\
           ["@types/vitest__browser", null],\
           ["@vitest/browser", null],\
-          ["@vitest/coverage-v8", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.1.3"],\
+          ["@vitest/coverage-v8", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.2.4"],\
+          ["ast-v8-to-istanbul", "npm:0.3.5"],\
           ["debug", "virtual:2044be20b9d80cd18bc7f326184cd5cb8bc6c8442ef65551f8897b069383c55db1fe3abf09fc94929b1e42ccbaccd2ad8f0994ad2f19b03f3bb2efe474259cb0#npm:4.4.1"],\
           ["istanbul-lib-coverage", "npm:3.2.2"],\
           ["istanbul-lib-report", "npm:3.0.1"],\
@@ -1167,6 +1168,18 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/assertion-error-npm-2.0.1-8169d136f2-bbbcb117ac.zip/node_modules/assertion-error/",\
         "packageDependencies": [\
           ["assertion-error", "npm:2.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["ast-v8-to-istanbul", [\
+      ["npm:0.3.5", {\
+        "packageLocation": "./.yarn/cache/ast-v8-to-istanbul-npm-0.3.5-c4d8a5f626-6796d2e79d.zip/node_modules/ast-v8-to-istanbul/",\
+        "packageDependencies": [\
+          ["@jridgewell/trace-mapping", "npm:0.3.31"],\
+          ["ast-v8-to-istanbul", "npm:0.3.5"],\
+          ["estree-walker", "npm:3.0.3"],\
+          ["js-tokens", "npm:9.0.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1821,7 +1834,7 @@ const RAW_RUNTIME_STATE =
       ["npm:5.0.6", {\
         "packageLocation": "./.yarn/cache/istanbul-lib-source-maps-npm-5.0.6-e18ad1aaae-ffe75d70b3.zip/node_modules/istanbul-lib-source-maps/",\
         "packageDependencies": [\
-          ["@jridgewell/trace-mapping", "npm:0.3.25"],\
+          ["@jridgewell/trace-mapping", "npm:0.3.31"],\
           ["debug", "virtual:2044be20b9d80cd18bc7f326184cd5cb8bc6c8442ef65551f8897b069383c55db1fe3abf09fc94929b1e42ccbaccd2ad8f0994ad2f19b03f3bb2efe474259cb0#npm:4.4.1"],\
           ["istanbul-lib-coverage", "npm:3.2.2"],\
           ["istanbul-lib-source-maps", "npm:5.0.6"]\
@@ -1870,7 +1883,7 @@ const RAW_RUNTIME_STATE =
           ["@sveltejs/vite-plugin-svelte", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:6.2.0"],\
           ["@tsconfig/svelte", "npm:5.0.4"],\
           ["@types/node", "npm:22.15.18"],\
-          ["@vitest/coverage-v8", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.1.3"],\
+          ["@vitest/coverage-v8", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.2.4"],\
           ["adm-zip", "npm:0.5.16"],\
           ["js", "workspace:."],\
           ["jsdom", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:26.1.0"],\
@@ -2706,7 +2719,7 @@ const RAW_RUNTIME_STATE =
       ["virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:4.2.1", {\
         "packageLocation": "./.yarn/__virtual__/svelte-check-virtual-d25617fa20/0/cache/svelte-check-npm-4.2.1-a9a95b7f94-95d969a181.zip/node_modules/svelte-check/",\
         "packageDependencies": [\
-          ["@jridgewell/trace-mapping", "npm:0.3.25"],\
+          ["@jridgewell/trace-mapping", "npm:0.3.31"],\
           ["@types/svelte", null],\
           ["@types/typescript", null],\
           ["chokidar", "npm:4.0.3"],\
