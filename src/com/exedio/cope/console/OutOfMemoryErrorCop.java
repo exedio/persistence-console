@@ -22,6 +22,7 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,8 +61,8 @@ final class OutOfMemoryErrorCop extends ConsoleCop<Void>
 	private static final List<double[]> memoryLeak =
 			Collections.synchronizedList(new ArrayList<>());
 
-	private static void post(
-			final HttpServletRequest request)
+	@Override
+	void doPost(final HttpServletRequest request, final Model model)
 	{
 		if(request.getParameter(LOG_OUT)!=null)
 			System.out.println(OutOfMemoryError.class.getName());
@@ -89,10 +90,6 @@ final class OutOfMemoryErrorCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		final HttpServletRequest request = out.request;
-		if(isPost(request))
-			post(request);
-
 		OutOfMemoryError_Jspm.writeBody(out, memoryLeak.size());
 	}
 
