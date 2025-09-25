@@ -69,11 +69,8 @@ final class RegisteredDriversCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-
-		if(isPost(request))
 		{
 			if(request.getParameter(SHOW_DRIVERS)!=null)
 				//noinspection AssignmentToStaticFieldFromInstanceMethod

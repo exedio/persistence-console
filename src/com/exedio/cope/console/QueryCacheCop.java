@@ -95,11 +95,8 @@ final class QueryCacheCop extends ConsoleCop<Void>
 	static final String CLEAR = "cache.clear";
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-
-		if(isPost(request))
 		{
 			if(request.getParameter(CLEAR)!=null)
 			{

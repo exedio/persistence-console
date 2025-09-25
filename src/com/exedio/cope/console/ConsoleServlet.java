@@ -232,7 +232,9 @@ public class ConsoleServlet extends CopsServlet
 			}
 
 			final ConsoleCop<?> cop = ConsoleCop.getCop(app, model, request, this);
-			cop.initialize(request, model);
+			cop.start = System.currentTimeMillis();
+			if(Cop.isPost(request))
+				cop.doPost(request, model);
 			response.setStatus(cop.getResponseStatus());
 
 			final String externalImgSrc = cop.getExternalImgSrc();

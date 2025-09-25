@@ -52,10 +52,8 @@ final class DataVaultCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-		if(isPost(request))
 		{
 			if(request.getParameter(SET_MARK_PUT_SUBMIT)!=null)
 				model.setVaultRequiredToMarkPut(
