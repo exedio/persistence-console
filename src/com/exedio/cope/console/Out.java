@@ -222,11 +222,6 @@ final class Out extends OutBasic
 		return servlet.getMediaURLPrefixes(request);
 	}
 
-	void connect()
-	{
-		servlet.connect();
-	}
-
 	boolean willBeReturned(final ConnectToken token)
 	{
 		return servlet.willBeReturned(token);

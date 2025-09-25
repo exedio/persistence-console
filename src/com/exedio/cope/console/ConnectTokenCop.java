@@ -51,17 +51,12 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	void writeBody(final Out out)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		final HttpServletRequest request = out.request;
-		final Model model = app.model;
-		final ConnectProperties properties = ConnectToken.getProperties(model);
-
-		if(isPost(request))
 		{
 			if(request.getParameter(ISSUE)!=null)
 			{
-				out.connect();
+				app.connect();
 			}
 			if(request.getParameter(RETURN_SELECTED)!=null)
 			{
@@ -77,7 +72,13 @@ final class ConnectTokenCop extends ConsoleCop<Void>
 				}
 			}
 		}
+	}
 
+	@Override
+	void writeBody(final Out out)
+	{
+		final Model model = app.model;
+		final ConnectProperties properties = ConnectToken.getProperties(model);
 		ConnectToken_Jspm.writeBody(
 				out, this,
 				properties,

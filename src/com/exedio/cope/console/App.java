@@ -52,6 +52,11 @@ final class App
 		this.servlet = requireNonNull(servlet);
 	}
 
+	void connect()
+	{
+		servlet.connect();
+	}
+
 	List<Query<?>> getCustomQueryConstraints()
 	{
 		return servlet.getCustomQueryConstraints(); // TODO cache
