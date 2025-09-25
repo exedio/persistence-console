@@ -84,11 +84,8 @@ final class RevisionCop extends ConsoleCop<Void> implements Pageable
 	static final String NICE_DROP   = "nice.drop";
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-
-		if(isPost(request))
 		{
 			if(request.getParameter(REVISE)!=null)
 				model.revise();

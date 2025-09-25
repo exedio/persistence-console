@@ -192,11 +192,8 @@ final class MediaStatsCop extends ConsoleCop<Void>
 			"Do you really want to do this?";
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-
-		if(isPost(request))
 		{
 			final MediaFingerprintOffset offset =
 					model.getConnectProperties().mediaFingerprintOffset();

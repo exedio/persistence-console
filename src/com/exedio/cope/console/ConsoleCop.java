@@ -146,9 +146,9 @@ abstract class ConsoleCop<S> extends Cop
 	 * @param request used in subclasses
 	 * @param model used in subclasses
 	 */
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		start = System.currentTimeMillis();
+		// empty default implementation
 	}
 
 	@Nonnull

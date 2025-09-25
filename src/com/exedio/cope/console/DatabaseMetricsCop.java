@@ -49,10 +49,8 @@ final class DatabaseMetricsCop extends ConsoleCop<ArrayList<DatabaseMetricsCop.M
 	}
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-		if(isPost(request))
 		{
 			final String sql = request.getParameter(SQL).trim();
 			final int loop = Integer.parseInt(request.getParameter(LOOP).trim());

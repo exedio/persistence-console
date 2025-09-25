@@ -106,11 +106,8 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	static final String SAVEPOINT = "savepoint";
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-
-		if(isPost(request))
 		{
 			if(request.getParameter(SAVEPOINT)!=null)
 			{

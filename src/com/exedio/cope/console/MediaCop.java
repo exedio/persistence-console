@@ -164,10 +164,8 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-		if(isPost(request))
 		{
 			final String[] touchIds = request.getParameterValues(TOUCH);
 			final String[] touchOtherIds = request.getParameterValues(TOUCH_OTHER);

@@ -41,10 +41,8 @@ final class ThreadCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-		if(isPost(request))
 		{
 			if(request.getParameter(RESTART)!=null)
 			{

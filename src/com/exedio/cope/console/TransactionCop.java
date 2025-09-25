@@ -80,11 +80,8 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@Override
-	void initialize(final HttpServletRequest request, final Model model)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		super.initialize(request, model);
-
-		if(isPost(request))
 		{
 			if(request.getParameter(ENABLE)!=null && !model.getChangeListeners().contains(listener))
 			{
