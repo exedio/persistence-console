@@ -80,12 +80,8 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 	@Override boolean requiresUnsafeInlineScript() { return true; }
 
 	@Override
-	void writeBody(final Out out)
+	void doPost(final HttpServletRequest request, final Model model)
 	{
-		final HttpServletRequest request = out.request;
-		final Model model = app.model;
-
-		if(isPost(request))
 		{
 			if(request.getParameter(REMOVE_SELECTED)!=null)
 			{
@@ -106,7 +102,12 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 				model.removeAllChangeListeners();
 			}
 		}
+	}
 
+	@Override
+	void writeBody(final Out out)
+	{
+		final Model model = app.model;
 		ChangeListener_Jspm.writeBody(this, out,
 				model.getChangeListenersInfo(),
 				pager.init(model.getChangeListeners()),
