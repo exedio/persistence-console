@@ -18,15 +18,16 @@
 
 package com.exedio.cope.console.example;
 
+import static com.exedio.cope.instrument.Visibility.NONE;
+
 import com.exedio.cope.Item;
 import com.exedio.cope.SetValue;
 import com.exedio.cope.Type;
-import com.exedio.cope.instrument.Visibility;
 import com.exedio.cope.instrument.WrapperInitial;
 import com.exedio.cope.instrument.WrapperType;
 import com.exedio.cope.reflect.TypeField;
 
-@WrapperType(constructor=Visibility.NONE)
+@WrapperType(constructor=NONE)
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class TypeItem extends Item
 {
