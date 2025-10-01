@@ -191,9 +191,10 @@ try
 			recordCoverage(
 					id: 'coverage-vitest',
 					name: 'Coverage Vitest',
-					tools: [[parser: 'COBERTURA', pattern: 'build/vitestcoverage/cobertura-coverage.xml']],
+					tools: [[parser: 'CLOVER', pattern: 'build/vitestcoverage/clover.xml']],
 					ignoreParsingErrors: true,
 					enabledForFailure: true,
+					failOnError: true,
 					skipPublishingChecks: true,
 					sourceDirectories: [[path: 'js/src']]
 			)
