@@ -43,7 +43,7 @@ export default defineConfig(({ mode }) => {
       coverage: {
         provider: "v8",
         reportsDirectory: "build/vitestcoverage",
-        reporter: ["text", "html", "cobertura"],
+        reporter: ["text", "html", "clover"],
         include: ["js/src/**/*.{ts,svelte}"],
       },
     },
