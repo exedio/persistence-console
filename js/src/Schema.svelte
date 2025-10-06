@@ -19,6 +19,7 @@
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
   import {
+    encodeJava,
     type Fix,
     type Fixable,
     fixableString,
@@ -244,7 +245,7 @@
             {fix.name}
             {fix.method}
           {:then response}
-            <small>{response.sql}</small>
+            <small>{encodeJava(response.sql)}</small>
           {:catch error}
             <span class="red">{error.message}</span>
           {/await}

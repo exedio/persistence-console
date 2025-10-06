@@ -83,3 +83,7 @@ function orderIndex(cb: Fix): number {
   }
   throw new Error(JSON.stringify(cb));
 }
+
+export function encodeJava(s: string): string {
+  return '"' + s.replaceAll('"', '\\"') + '",';
+}
