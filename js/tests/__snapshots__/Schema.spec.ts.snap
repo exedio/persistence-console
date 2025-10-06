@@ -207,7 +207,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a column with a wrong type 4`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">column</span> myColumn1Name
   <small>ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type</small
   ><!---->
 </li>
@@ -380,12 +379,10 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a constraint with a wrong clause 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">constraint</span> myConstraint1Name
   <small>ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name</small
   ><!---->
 </li>
 <li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">constraint</span> myConstraint1Name
   <small>ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name</small
   ><!---->
 </li>
@@ -718,7 +715,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a missing column 4`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">column</span> myColumn1Name
   <small>ALTER TABLE myTable1Name ADD COLUMN myColumn1Name</small
   ><!---->
 </li>
@@ -887,7 +883,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a missing column to be renamed to a unused 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">column</span> myUnusedColumnName
   <small
     >ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO
     "myMissingColumnName"</small
@@ -956,7 +951,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a missing constraint 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">constraint</span> myConstraint1Name
   <small>ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name</small
   ><!---->
 </li>
@@ -990,7 +984,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a missing sequence 2`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">sequence</span> myOnlyName
   <small>CREATE SEQUENCE myOnlyName</small
   ><!---->
 </li>
@@ -1047,7 +1040,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a missing table 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">table</span> myTable1Name
   <small>CREATE TABLE myTable1Name</small
   ><!---->
 </li>
@@ -1056,7 +1048,6 @@ exports[`Schema > should render a missing table 3`] = `
 
 exports[`Schema > should render a missing table and patch fails 1`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">table</span> myTable1Name
   <span class="red svelte-6n243d"
     >alterSchema?subject=table&amp;name=myTable1Name&amp;method=add: response
     code 400 myError</span
@@ -1197,7 +1188,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a missing table to be renamed to an unused 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">table</span> myUnusedTableName
   <small>ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"</small
   ><!---->
 </li>
@@ -1796,7 +1786,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a unused column 4`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">column</span> myColumn1Name
   <small>ALTER TABLE myTable1Name DROP COLUMN myColumn1Name</small
   ><!---->
 </li>
@@ -1965,7 +1954,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a unused column to be renamed to a missing 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">column</span> myUnusedColumnName
   <small
     >ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO
     "myMissingColumnName"</small
@@ -2034,7 +2022,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a unused constraint 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">constraint</span> myConstraint1Name
   <small>ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name</small
   ><!---->
 </li>
@@ -2068,7 +2055,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a unused sequence 2`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">sequence</span> myOnlyName
   <small>DROP SEQUENCE myOnlyName</small
   ><!---->
 </li>
@@ -2125,7 +2111,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a unused table 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">table</span> myTable1Name
   <small>DROP TABLE myTable1Name</small
   ><!---->
 </li>
@@ -2264,7 +2249,6 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 
 exports[`Schema > should render a unused table to be renamed to a missing 3`] = `
 "<li class="svelte-6n243d">
-  <span class="nodeType svelte-6n243d">table</span> myUnusedTableName
   <small>ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"</small
   ><!---->
 </li>
