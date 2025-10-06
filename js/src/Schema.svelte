@@ -239,9 +239,9 @@
     <ul class="sql">
       {#each patches as { fix, url, promise } (url)}
         <li>
-          <span class="nodeType">{fix.subject}</span>
-          {fix.name}
           {#await promise}
+            <span class="nodeType">{fix.subject}</span>
+            {fix.name}
             {fix.method}
           {:then response}
             <small>{response.sql}</small>
