@@ -1582,18 +1582,17 @@ describe("Schema", () => {
     expect(checkbox().checked).toBe(true); // add constraint
     expect(checkbox(1).checked).toBe(true); // create sequence
 
-    const responseChanged: ApiSchema = response;
-    (responseChanged.tables![0].columns![0].type as string) =
+    (response.tables![0].columns![0].type as string) =
       "expandedColumnTypeChange";
-    (responseChanged.tables![0].columns![0].constraints![0].clause as string) =
+    (response.tables![0].columns![0].constraints![0].clause as string) =
       "expandedColumnConstraintConditionChange";
-    (responseChanged.tables![0].constraints![0].clause as string) =
+    (response.tables![0].constraints![0].clause as string) =
       "expandedTableConstraintConditionChange";
-    (responseChanged.sequences![0].type as string) = "someSequenceTypeChange";
+    (response.sequences![0].type as string) = "someSequenceTypeChange";
 
     {
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(responseSuccess(responseChanged));
+      mock.mockResolvedValueOnce(responseSuccess(response));
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
