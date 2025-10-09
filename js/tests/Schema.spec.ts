@@ -1571,7 +1571,7 @@ describe("Schema", () => {
 
     {
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(responseSuccess(deepCopy(response)));
+      mock.mockResolvedValueOnce(responseSuccess(response));
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
@@ -1582,7 +1582,7 @@ describe("Schema", () => {
     expect(checkbox().checked).toBe(true); // add constraint
     expect(checkbox(1).checked).toBe(true); // create sequence
 
-    const responseChanged: ApiSchema = deepCopy(response);
+    const responseChanged: ApiSchema = response;
     (responseChanged.tables![0].columns![0].type as string) =
       "expandedColumnTypeChange";
     (responseChanged.tables![0].columns![0].constraints![0].clause as string) =
@@ -1684,10 +1684,6 @@ function select(index: number = 0): HTMLSelectElement {
 
 function sql(): HTMLElement {
   return document.querySelectorAll(".sql").item(0) as HTMLElement;
-}
-
-function deepCopy(o: any): any {
-  return JSON.parse(JSON.stringify(o));
 }
 
 beforeAll(() => {
