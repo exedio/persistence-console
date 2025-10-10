@@ -1,0 +1,6 @@
+/idea-inspection-output/
+/idea.log
+/coverage-sources.zip
+/coverage-vitest/
+/yarnpkg-audit-lifecycle.txt
+/yarnpkg-audit.txt
