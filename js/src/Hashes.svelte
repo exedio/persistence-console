@@ -142,6 +142,7 @@
     right: -25px;
     border: 0;
     background: white;
+    font-size: 120%;
   }
 
   button.hash {
