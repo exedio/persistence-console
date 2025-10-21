@@ -1,21 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Hashes > should render a non-empty table 1`] = `
-"<table class="grey svelte-109884">
+"<table class="grey svelte-bbnarq">
   <caption>
     Hashes
     <button class="reload svelte-dizlwz">🗘</button
     ><!---->
   </caption>
   <thead>
-    <tr class="relative svelte-109884">
+    <tr class="relative svelte-bbnarq">
       <th rowspan="2">Type</th>
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte-109884">
+      <th rowspan="2" class="time svelte-bbnarq">
         Time<small>/ns</small>
-        <!----><button class="measure svelte-109884">🕐︎</button
+        <!----><button class="measure svelte-bbnarq">🕐︎</button
         ><!---->
       </th>
     </tr>
@@ -28,9 +28,9 @@ exports[`Hashes > should render a non-empty table 1`] = `
   </thead>
   <tbody>
     <!---->
-    <tr class="relative svelte-109884">
+    <tr class="relative svelte-bbnarq">
       <td>
-        <button class="hash svelte-109884">↓<!----></button> myType
+        <button class="hash svelte-bbnarq">↓<!----></button> myType
       </td>
       <td>myName</td>
       <td class="number">150</td>
@@ -39,13 +39,13 @@ exports[`Hashes > should render a non-empty table 1`] = `
       <td>myAlgorithmDescription</td>
       <td class="number">
         <!---->
-        <button class="measure svelte-109884">🕐︎</button>
+        <button class="measure svelte-bbnarq">🕐︎</button>
       </td>
     </tr>
     <!---->
-    <tr class="relative svelte-109884">
+    <tr class="relative svelte-bbnarq">
       <td>
-        <button class="hash svelte-109884">↓<!----></button> myTypeWithoutLimit
+        <button class="hash svelte-bbnarq">↓<!----></button> myTypeWithoutLimit
       </td>
       <td>myNameWithoutLimit</td>
       <td class="number">155</td>
@@ -54,7 +54,7 @@ exports[`Hashes > should render a non-empty table 1`] = `
       <td>myAlgorithmDescriptionWithoutLimit</td>
       <td class="number">
         <!---->
-        <button class="measure svelte-109884">🕐︎</button>
+        <button class="measure svelte-bbnarq">🕐︎</button>
       </td>
     </tr>
     <!----><!---->
@@ -65,21 +65,21 @@ exports[`Hashes > should render a non-empty table 1`] = `
 `;
 
 exports[`Hashes > should render a non-empty table 2`] = `
-"<table class="grey svelte-109884">
+"<table class="grey svelte-bbnarq">
   <caption>
     Hashes
     <button class="reload svelte-dizlwz">🗘</button
     ><!---->
   </caption>
   <thead>
-    <tr class="relative svelte-109884">
+    <tr class="relative svelte-bbnarq">
       <th rowspan="2">Type</th>
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte-109884">
+      <th rowspan="2" class="time svelte-bbnarq">
         Time<small>/ns</small>
-        <!----><button class="measure svelte-109884">🕐︎</button
+        <!----><button class="measure svelte-bbnarq">🕐︎</button
         ><!---->
       </th>
     </tr>
@@ -92,9 +92,9 @@ exports[`Hashes > should render a non-empty table 2`] = `
   </thead>
   <tbody>
     <!---->
-    <tr class="relative svelte-109884">
+    <tr class="relative svelte-bbnarq">
       <td>
-        <button class="hash svelte-109884">↓<!----></button> myType
+        <button class="hash svelte-bbnarq">↓<!----></button> myType
       </td>
       <td>myName</td>
       <td class="number">155</td>
@@ -103,13 +103,13 @@ exports[`Hashes > should render a non-empty table 2`] = `
       <td>myAlgorithmDescriptionChanged</td>
       <td class="number">
         <!---->
-        <button class="measure svelte-109884">🕐︎</button>
+        <button class="measure svelte-bbnarq">🕐︎</button>
       </td>
     </tr>
     <!---->
-    <tr class="relative svelte-109884">
+    <tr class="relative svelte-bbnarq">
       <td>
-        <button class="hash svelte-109884">↓<!----></button> myTypeReloaded
+        <button class="hash svelte-bbnarq">↓<!----></button> myTypeReloaded
       </td>
       <td>myNameReloaded</td>
       <td class="number">155</td>
@@ -118,7 +118,7 @@ exports[`Hashes > should render a non-empty table 2`] = `
       <td>myAlgorithmDescriptionReloaded</td>
       <td class="number">
         <!---->
-        <button class="measure svelte-109884">🕐︎</button>
+        <button class="measure svelte-bbnarq">🕐︎</button>
       </td>
     </tr>
     <!----><!---->
@@ -130,9 +130,9 @@ exports[`Hashes > should render a non-empty table 2`] = `
 
 exports[`Hashes > should render a table body with all hashes measured 1`] = `
 "<!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType1
+    <button class="hash svelte-bbnarq">↓<!----></button> myType1
   </td>
   <td>myName1</td>
   <td class="number">151</td>
@@ -141,13 +141,13 @@ exports[`Hashes > should render a table body with all hashes measured 1`] = `
   <td>myAlgorithmDescription1</td>
   <td class="number">
     50,010<!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType2
+    <button class="hash svelte-bbnarq">↓<!----></button> myType2
   </td>
   <td>myName2</td>
   <td class="number">152</td>
@@ -156,13 +156,13 @@ exports[`Hashes > should render a table body with all hashes measured 1`] = `
   <td>myAlgorithmDescription2</td>
   <td class="number">
     50,020<!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType3
+    <button class="hash svelte-bbnarq">↓<!----></button> myType3
   </td>
   <td>myName3</td>
   <td class="number">153</td>
@@ -171,7 +171,7 @@ exports[`Hashes > should render a table body with all hashes measured 1`] = `
   <td>myAlgorithmDescription3</td>
   <td class="number">
     50,030<!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!----><!---->
@@ -180,9 +180,9 @@ exports[`Hashes > should render a table body with all hashes measured 1`] = `
 
 exports[`Hashes > should render a table body with one hash expanded 1`] = `
 "<!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType1
+    <button class="hash svelte-bbnarq">↓<!----></button> myType1
   </td>
   <td>myName1</td>
   <td class="number">151</td>
@@ -191,13 +191,13 @@ exports[`Hashes > should render a table body with one hash expanded 1`] = `
   <td>myAlgorithmDescription1</td>
   <td class="number">
     <!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">→<!----></button> myType2
+    <button class="hash svelte-bbnarq">→<!----></button> myType2
   </td>
   <td>myName2</td>
   <td class="number">152</td>
@@ -206,20 +206,20 @@ exports[`Hashes > should render a table body with one hash expanded 1`] = `
   <td>myAlgorithmDescription2</td>
   <td class="number">
     <!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <tr>
-  <td colspan="7" class="expansion svelte-109884">
-    <input placeholder="Plain Text" class="svelte-109884" />
+  <td colspan="7" class="expansion svelte-bbnarq">
+    <input placeholder="Plain Text" class="svelte-bbnarq" />
     <button>Hash</button> <br />
     <small></small>
   </td>
 </tr>
 <!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType3
+    <button class="hash svelte-bbnarq">↓<!----></button> myType3
   </td>
   <td>myName3</td>
   <td class="number">153</td>
@@ -228,7 +228,7 @@ exports[`Hashes > should render a table body with one hash expanded 1`] = `
   <td>myAlgorithmDescription3</td>
   <td class="number">
     <!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!----><!---->
@@ -237,9 +237,9 @@ exports[`Hashes > should render a table body with one hash expanded 1`] = `
 
 exports[`Hashes > should render a table body with one hash expanded 2`] = `
 "<!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType1
+    <button class="hash svelte-bbnarq">↓<!----></button> myType1
   </td>
   <td>myName1</td>
   <td class="number">151</td>
@@ -248,13 +248,13 @@ exports[`Hashes > should render a table body with one hash expanded 2`] = `
   <td>myAlgorithmDescription1</td>
   <td class="number">
     <!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">→<!----></button> myType2
+    <button class="hash svelte-bbnarq">→<!----></button> myType2
   </td>
   <td>myName2</td>
   <td class="number">152</td>
@@ -263,20 +263,20 @@ exports[`Hashes > should render a table body with one hash expanded 2`] = `
   <td>myAlgorithmDescription2</td>
   <td class="number">
     <!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <tr>
-  <td colspan="7" class="expansion svelte-109884">
-    <input placeholder="Plain Text" class="svelte-109884" />
+  <td colspan="7" class="expansion svelte-bbnarq">
+    <input placeholder="Plain Text" class="svelte-bbnarq" />
     <button>Hash</button> <br />
     <small>myHash2</small>
   </td>
 </tr>
 <!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType3
+    <button class="hash svelte-bbnarq">↓<!----></button> myType3
   </td>
   <td>myName3</td>
   <td class="number">153</td>
@@ -285,7 +285,7 @@ exports[`Hashes > should render a table body with one hash expanded 2`] = `
   <td>myAlgorithmDescription3</td>
   <td class="number">
     <!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!----><!---->
@@ -294,9 +294,9 @@ exports[`Hashes > should render a table body with one hash expanded 2`] = `
 
 exports[`Hashes > should render a table body with one hash measured 1`] = `
 "<!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType1
+    <button class="hash svelte-bbnarq">↓<!----></button> myType1
   </td>
   <td>myName1</td>
   <td class="number">151</td>
@@ -305,13 +305,13 @@ exports[`Hashes > should render a table body with one hash measured 1`] = `
   <td>myAlgorithmDescription1</td>
   <td class="number">
     <!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType2
+    <button class="hash svelte-bbnarq">↓<!----></button> myType2
   </td>
   <td>myName2</td>
   <td class="number">152</td>
@@ -320,13 +320,13 @@ exports[`Hashes > should render a table body with one hash measured 1`] = `
   <td>myAlgorithmDescription2</td>
   <td class="number">
     50,020<!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!---->
-<tr class="relative svelte-109884">
+<tr class="relative svelte-bbnarq">
   <td>
-    <button class="hash svelte-109884">↓<!----></button> myType3
+    <button class="hash svelte-bbnarq">↓<!----></button> myType3
   </td>
   <td>myName3</td>
   <td class="number">153</td>
@@ -335,7 +335,7 @@ exports[`Hashes > should render a table body with one hash measured 1`] = `
   <td>myAlgorithmDescription3</td>
   <td class="number">
     <!---->
-    <button class="measure svelte-109884">🕐︎</button>
+    <button class="measure svelte-bbnarq">🕐︎</button>
   </td>
 </tr>
 <!----><!---->
@@ -343,19 +343,19 @@ exports[`Hashes > should render a table body with one hash measured 1`] = `
 `;
 
 exports[`Hashes > should render an empty table 1`] = `
-"<table class="grey svelte-109884">
+"<table class="grey svelte-bbnarq">
   <caption>
     Hashes
     <button class="reload svelte-dizlwz">🗘</button
     ><!---->
   </caption>
   <thead>
-    <tr class="relative svelte-109884">
+    <tr class="relative svelte-bbnarq">
       <th rowspan="2">Type</th>
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte-109884">
+      <th rowspan="2" class="time svelte-bbnarq">
         Time<small>/ns</small>
         <!----><!---->
       </th>
@@ -380,19 +380,19 @@ exports[`Hashes > should render an empty table 1`] = `
 `;
 
 exports[`Hashes > should render an error message 1`] = `
-"<table class="grey svelte-109884">
+"<table class="grey svelte-bbnarq">
   <caption>
     Hashes
     <button class="reload svelte-dizlwz">🗘</button
     ><!---->
   </caption>
   <thead>
-    <tr class="relative svelte-109884">
+    <tr class="relative svelte-bbnarq">
       <th rowspan="2">Type</th>
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte-109884">
+      <th rowspan="2" class="time svelte-bbnarq">
         Time<small>/ns</small> &nbsp;<!---->
       </th>
     </tr>
