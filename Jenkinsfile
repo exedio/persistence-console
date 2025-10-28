@@ -18,7 +18,7 @@ String ideaSHA256 = 'd530962a6aabcbf2387c14c1ae7641e1bfa18d8fa435819a2f797a34a0e
 @Field
 String nodejs = '22'
 
-boolean isRelease = env.BRANCH_NAME=="master"
+boolean isRelease = env.BRANCH_NAME=="master" || env.BRANCH_NAME=="main"
 
 Map<String, ?> recordIssuesDefaults = [
 	failOnError         : true,
@@ -316,7 +316,7 @@ String imageName(String pipelineBranch, String subImage = '')
 {
 	String isoToday = new Date().format("yyyyMMdd")
 	String name = 'exedio-jenkins:' + jobNameAndBuildNumber() + '-' + pipelineBranch + '-' + isoToday
-	if (!subImage.isBlank()) name += '-' + subImage
+	if (!subImage.isEmpty()) name += '-' + subImage
 	return name
 }
 
