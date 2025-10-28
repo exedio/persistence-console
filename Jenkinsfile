@@ -206,6 +206,15 @@ try
 
 	parallelBranches["YarnAudit"] = {
 		// TODO when pipelineTriggers causes build skip all other branches
+
+		// You may set a global environment variable in jenkins to skip npm audit
+		// in all projects when the external resources are not available.
+		if (env.SKIP_NPM_AUDIT == "yes")
+		{
+			echo 'Skipping yarn npm audit because environment variable SKIP_NPM_AUDIT is set to yes'
+			return
+		}
+
 		nodeCheckoutAndDelete {
 			int yarnResult = 999
 			nodejsImage(imageName('YarnAudit')).inside(dockerRunDefaults('bridge')) {
