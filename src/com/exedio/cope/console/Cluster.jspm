@@ -152,12 +152,12 @@ final class Cluster_Jspm
 	private static void write(final Out out, final SequenceChecker.Info ic)
 	{
 				%>
-				<td><%=formatAndHide(0, ic.getPending())%></td>
-				<td><%=formatAndHide(0, ic.getInOrder())%></td>
-				<td><%=formatAndHide(0, ic.getOutOfOrder())%></td>
-				<td><%=formatAndHide(0, ic.getDuplicate())%></td>
-				<td><%=formatAndHide(0, ic.getLost())%></td>
-				<td><%=formatAndHide(0, ic.getLate())%></td><%
+				<td><%=formatAndHide(0, ic.pending())%></td>
+				<td><%=formatAndHide(0, ic.inOrder())%></td>
+				<td><%=formatAndHide(0, ic.outOfOrder())%></td>
+				<td><%=formatAndHide(0, ic.duplicate())%></td>
+				<td><%=formatAndHide(0, ic.lost())%></td>
+				<td><%=formatAndHide(0, ic.late())%></td><%
 	}
 
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
