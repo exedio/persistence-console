@@ -10,6 +10,32 @@ beforeEach(() => {
       : "URL=" + input.toString();
     assert.fail("fetch must be mocked in unit tests: " + url);
   };
+
+  vi.mock("svelte/transition", async (importOriginal) => {
+    const actual = await importOriginal();
+    return {
+      fade: () => ({
+        delay: 0,
+        duration: 0,
+        css: () => "",
+      }),
+      fly: () => ({
+        delay: 0,
+        duration: 0,
+        css: () => "",
+      }),
+      scale: () => ({
+        delay: 0,
+        duration: 0,
+        css: () => "",
+      }),
+      slide: () => ({
+        delay: 0,
+        duration: 0,
+        css: () => "",
+      }),
+    };
+  });
 });
 
 // a type guard
