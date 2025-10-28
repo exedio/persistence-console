@@ -40,6 +40,7 @@ export default defineConfig(({ mode }) => {
       restoreMocks: true,
       reporters: ["default", "junit", "hanging-process"],
       outputFile: "build/vitestresults/junit.xml",
+      exclude: ["**/node_modules/**", "**/.git/**", ".idea-output/**"],
       coverage: {
         provider: "v8",
         reportsDirectory: "build/vitestcoverage",
