@@ -1,5 +1,5 @@
 import { expect } from "vitest";
-import { workOnFixes } from "@/SchemaFix";
+import { type Fix, workOnFixes } from "@/SchemaFix";
 
 describe("Fix", () => {
   it("should pass through empty array", async () => {
@@ -12,8 +12,10 @@ describe("Fix", () => {
           subject: "constraint",
           tableName: "myTableName",
           name: "myName",
-          method: "drop",
-          value: "myValue",
+          fix: {
+            method: "drop",
+            value: "myValue",
+          },
         },
       ]),
     ).toStrictEqual([
@@ -21,8 +23,10 @@ describe("Fix", () => {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        method: "drop",
-        value: "myValue",
+        fix: {
+          method: "drop",
+          value: "myValue",
+        },
       },
     ]);
   });
@@ -33,8 +37,10 @@ describe("Fix", () => {
           subject: "constraint",
           tableName: "myTableName",
           name: "myName",
-          method: "modify",
-          value: "myValue",
+          fix: {
+            method: "modify",
+            value: "myValue",
+          },
         },
       ]),
     ).toStrictEqual([
@@ -42,15 +48,19 @@ describe("Fix", () => {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        method: "drop",
-        value: "myValue",
+        fix: {
+          method: "drop",
+          value: undefined,
+        },
       },
       {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        method: "add",
-        value: "myValue",
+        fix: {
+          method: "add",
+          value: undefined,
+        },
       },
     ]);
   });
@@ -61,85 +71,109 @@ describe("Fix", () => {
           subject: "constraint",
           tableName: "myTableName",
           name: "myName",
-          method: "add",
-          value: "myValue",
+          fix: {
+            method: "add",
+            value: "myValue",
+          },
         },
         {
           subject: "constraint",
           tableName: "myTableName",
           name: "myName",
-          method: "drop",
-          value: "myValue",
+          fix: {
+            method: "drop",
+            value: "myValue",
+          },
         },
         {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
-          method: "add",
-          value: "myValue",
+          fix: {
+            method: "add",
+            value: "myValue",
+          },
         },
         {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
-          method: "rename",
-          value: "myValue",
+          fix: {
+            method: "rename",
+            value: "myValue",
+          },
         },
         {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
-          method: "modify",
-          value: "myValue",
+          fix: {
+            method: "modify",
+            value: "myValue",
+          },
         },
         {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
-          method: "drop",
-          value: "myValue",
+          fix: {
+            method: "drop",
+            value: "myValue",
+          },
         },
         {
           subject: "table",
           tableName: undefined,
           name: "myName",
-          method: "add",
-          value: "myValue",
+          fix: {
+            method: "add",
+            value: "myValue",
+          },
         },
         {
           subject: "table",
           tableName: undefined,
           name: "myName",
-          method: "drop",
-          value: "myValue",
+          fix: {
+            method: "drop",
+            value: "myValue",
+          },
         },
         {
           subject: "table",
           tableName: undefined,
           name: "myName",
-          method: "rename",
-          value: "myValue",
+          fix: {
+            method: "rename",
+            value: "myValue",
+          },
         },
         {
           subject: "sequence",
           tableName: undefined,
           name: "myName",
-          method: "add",
-          value: "myValue",
+          fix: {
+            method: "add",
+            value: "myValue",
+          },
         },
         {
           subject: "sequence",
           tableName: undefined,
           name: "myName",
-          method: "drop",
-          value: "myValue",
+          fix: {
+            method: "drop",
+            value: "myValue",
+          },
         },
         {
           subject: "sequence",
           tableName: undefined,
           name: "myName2",
-          method: "drop",
-          value: "myValue",
+          fix: {
+            method: "drop",
+            value: "myValue",
+          },
         },
       ]),
     ).toStrictEqual([
@@ -147,85 +181,82 @@ describe("Fix", () => {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        method: "drop",
-        value: "myValue",
+        fix: {
+          method: "drop",
+          value: "myValue",
+        },
       },
       {
         subject: "column",
         tableName: "myTableName",
         name: "myName",
-        method: "drop",
-        value: "myValue",
+        fix: {
+          method: "drop",
+          value: "myValue",
+        },
       },
       {
         subject: "table",
         tableName: undefined,
         name: "myName",
-        method: "drop",
-        value: "myValue",
+        fix: {
+          method: "drop",
+          value: "myValue",
+        },
       },
       {
         subject: "sequence",
         tableName: undefined,
         name: "myName",
-        method: "drop",
-        value: "myValue",
+        fix: { method: "drop", value: "myValue" },
       },
       {
         subject: "sequence",
         tableName: undefined,
         name: "myName2",
-        method: "drop",
-        value: "myValue",
+        fix: { method: "drop", value: "myValue" },
       },
       {
         subject: "table",
         tableName: undefined,
         name: "myName",
-        method: "rename",
-        value: "myValue",
+        fix: { method: "rename", value: "myValue" },
       },
       {
         subject: "column",
         tableName: "myTableName",
         name: "myName",
-        method: "modify",
-        value: "myValue",
+        fix: { method: "modify", value: "myValue" },
       },
       {
         subject: "column",
         tableName: "myTableName",
         name: "myName",
-        method: "rename",
-        value: "myValue",
+        fix: { method: "rename", value: "myValue" },
       },
       {
         subject: "sequence",
         tableName: undefined,
         name: "myName",
-        method: "add",
-        value: "myValue",
+        fix: { method: "add", value: "myValue" },
       },
       {
         subject: "table",
         tableName: undefined,
         name: "myName",
-        method: "add",
-        value: "myValue",
+        fix: { method: "add", value: "myValue" },
       },
       {
         subject: "column",
         tableName: "myTableName",
         name: "myName",
-        method: "add",
-        value: "myValue",
+        fix: { method: "add", value: "myValue" },
       },
       {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        method: "add",
-        value: "myValue",
+        fix: { method: "add", value: "myValue" },
       },
     ]);
   });

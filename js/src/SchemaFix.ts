@@ -2,29 +2,33 @@ export type Fixable = {
   readonly subject: "table" | "column" | "constraint" | "sequence";
   readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
   readonly name: string;
+  fix: Fix | undefined;
 };
 
-export function fixableString(f: Fixable): string {
-  return f.subject + "/" + f.tableName + "/" + f.name;
-}
-
-export type Fix = Fixable & {
+export type Fix = {
   readonly method: "add" | "drop" | "modify" | "rename";
   readonly value: string | undefined; // new name for method "rename"
 };
 
-export function workOnFixes(source: Fix[]): Fix[] {
-  let result: Fix[] = [];
+export type FixedFixable = {
+  readonly subject: "table" | "column" | "constraint" | "sequence";
+  readonly tableName: string | undefined; // undefined for subject "table" and "sequence"
+  readonly name: string;
+  fix: Fix;
+};
+
+export function workOnFixes(source: FixedFixable[]): FixedFixable[] {
+  let result: FixedFixable[] = [];
   source.forEach((i) => {
-    if (i.subject === "constraint" && i.method === "modify") {
+    if (i.subject === "constraint" && i.fix.method === "modify") {
       result.push({
         ...i,
-        method: "drop",
-      } satisfies Fix);
+        fix: { method: "drop", value: undefined } satisfies Fix,
+      } satisfies FixedFixable);
       result.push({
         ...i,
-        method: "add",
-      } satisfies Fix);
+        fix: { method: "add", value: undefined } satisfies Fix,
+      } satisfies FixedFixable);
     } else result.push(i);
   });
   result.sort((a, b) => {
@@ -36,10 +40,10 @@ export function workOnFixes(source: Fix[]): Fix[] {
 /**
  * Order taken from SchemaCop#writeApply
  */
-function orderIndex(cb: Fix): number {
+function orderIndex(cb: FixedFixable): number {
   switch (cb.subject) {
     case "constraint": {
-      switch (cb.method) {
+      switch (cb.fix.method) {
         case "drop":
           return -19;
         case "add":
@@ -48,7 +52,7 @@ function orderIndex(cb: Fix): number {
       break;
     }
     case "column": {
-      switch (cb.method) {
+      switch (cb.fix.method) {
         case "drop":
           return -18;
         case "add":
@@ -61,7 +65,7 @@ function orderIndex(cb: Fix): number {
       break;
     }
     case "table": {
-      switch (cb.method) {
+      switch (cb.fix.method) {
         case "drop":
           return -17;
         case "add":
@@ -72,7 +76,7 @@ function orderIndex(cb: Fix): number {
       break;
     }
     case "sequence": {
-      switch (cb.method) {
+      switch (cb.fix.method) {
         case "drop":
           return -16;
         case "add":

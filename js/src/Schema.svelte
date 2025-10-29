@@ -6,7 +6,6 @@
     isNotConnected,
     type Schema as ApiSchema,
   } from "@/api/types";
-  import { SvelteMap } from "svelte/reactivity";
   import {
     Schema,
     type Existence,
@@ -20,10 +19,9 @@
   import Connect from "@/Connect.svelte";
   import {
     encodeJava,
-    type Fix,
     type Fixable,
-    fixableString,
     workOnFixes,
+    type FixedFixable,
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
 
@@ -40,14 +38,9 @@
     ),
   );
 
-  type Modify = {
-    subject: "column" | "constraint";
-    tableName: string;
-    name: string;
-    label: "adjust" | "recreate";
-  };
+  type Modify = "adjust" | "recreate";
 
-  const fixes = new SvelteMap<string, Fix>();
+  const fixes: FixedFixable[] = $derived(schemaT.last()?.fixables() ?? []);
 
   function setFix(
     set: boolean,
@@ -55,24 +48,15 @@
     method: "add" | "drop" | "modify" | "rename",
     value: string | undefined,
   ) {
-    const key = fixableString(fixable);
-    if (set) {
-      fixes.set(key, {
-        ...fixable,
-        method,
-        value,
-      });
-    } else {
-      fixes.delete(key);
-    }
+    fixable.fix = set ? { method, value } : undefined;
   }
 
   function renameFromValue(fixable: Fixable): string {
-    for (const i of fixes.values()) {
+    for (const i of fixes) {
       if (
         i.subject === fixable.subject &&
         i.tableName === fixable.tableName &&
-        i.value === fixable.name
+        i.fix.value === fixable.name
       )
         return i.name;
     }
@@ -80,13 +64,13 @@
   }
 
   type Patch = {
-    readonly fix: Fix;
+    readonly fix: FixedFixable;
     readonly url: string;
     readonly promise: Promise<AlterSchemaResponse>;
   };
 
   const patches: Patch[] = $derived(
-    workOnFixes(Array.from(fixes.values())).map((fix) => {
+    workOnFixes(fixes).map((fix) => {
       const url = checkboxToUrl(fix);
       return {
         fix,
@@ -111,9 +95,8 @@
     subject,
     tableName,
     name,
-    method,
-    value,
-  }: Fix): string {
+    fix,
+  }: FixedFixable): string {
     return (
       "subject=" +
       subject +
@@ -121,8 +104,8 @@
       "&name=" +
       name +
       "&method=" +
-      method +
-      (value ? "&value=" + value : "")
+      fix.method +
+      (fix.value ? "&value=" + fix.value : "")
     );
   }
 
@@ -137,21 +120,6 @@
   // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
   function asInputElement(target: EventTarget | null): HTMLInputElement {
     return target as HTMLInputElement;
-  }
-
-  // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
-  function asModify(
-    subject: "column" | "constraint",
-    tableName: string,
-    name: string,
-    label: "adjust" | "recreate",
-  ): Modify {
-    return {
-      subject,
-      tableName,
-      name,
-      label,
-    };
   }
 </script>
 
@@ -192,8 +160,9 @@
                       column.renameTo(table),
                     )}
                     {@render comparison(
+                      column,
                       column.type,
-                      asModify("column", table.name, column.name, "adjust"),
+                      "adjust",
                       columnExpanded,
                     )}
                     {#if columnExpanded}
@@ -222,8 +191,8 @@
               [], // TODO unused sequences
               [], // TODO missing sequences
             )}
-            {@render comparison(sequence.type, undefined, true)}
-            {@render comparison(sequence.start, undefined, true)}
+            {@render comparison(sequence, sequence.type, undefined, true)}
+            {@render comparison(sequence, sequence.start, undefined, true)}
             {@render remainder(sequence.remainingErrors)}
           </li>
         {/each}
@@ -243,7 +212,7 @@
           {#await promise}
             <span class="nodeType">{fix.subject}</span>
             {fix.name}
-            {fix.method}
+            {fix.fix.method}
           {:then response}
             <small>{encodeJava(response.sql)}</small>
           {:catch error}
@@ -262,16 +231,7 @@
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}
       {@render existence(constraint.existence, constraint, [], [])}
-      {@render comparison(
-        constraint.clause,
-        asModify(
-          "constraint",
-          constraint.tableName,
-          constraint.name,
-          "recreate",
-        ),
-        true,
-      )}
+      {@render comparison(constraint, constraint.clause, "recreate", true)}
       {@render remainder(constraint.remainingErrors)}
     </li>
   {/each}
@@ -297,9 +257,8 @@
   renameTo: String[],
 )}
   {#if existence}
-    {@const key = fixableString(fixable)}
     {@const method = existence.text === "missing" ? "add" : "drop"}
-    {@const fix = fixes.get(key)}
+    {@const fix = fixable.fix}
     <span class={existence.color}>{existence.text}</span>
     <label
       ><input
@@ -319,19 +278,22 @@
         <select
           value={renameFromValue(fixable)}
           oninput={(e) => {
+            const schema = schemaT.last();
+            if (!schema) return;
+
             const value = asInputElement(e.target).value;
             if (value !== RENAME_NONE) {
-              setFix(true, { ...fixable, name: value }, "rename", fixable.name);
+              setFix(
+                true,
+                schema.fixable({
+                  ...fixable,
+                  name: value,
+                }),
+                "rename",
+                fixable.name,
+              );
             } else {
-              fixes.forEach((value, key, map) => {
-                if (
-                  value.subject === fixable.subject &&
-                  value.tableName === fixable.tableName &&
-                  value.method === "rename" &&
-                  value.value === fixable.name
-                )
-                  map.delete(fixableString(value));
-              });
+              schema.dropRenames(fixable);
             }
           }}
         >
@@ -366,6 +328,7 @@
 {/snippet}
 
 {#snippet comparison(
+  fixable: Fixable,
   value: Comparison | undefined,
   modify: Modify | undefined,
   expanded: Boolean,
@@ -374,7 +337,7 @@
     {#if expanded}
       {#if value.actual}
         <span class={value.color}>{value.name} mismatch:</span>
-        {@render comparisonAdjust(modify)}
+        {@render comparisonAdjust(fixable, modify)}
         <table class="comparison">
           <tbody>
             <tr><td>required:</td><td>{value.shortener(value.expected)}</td></tr
@@ -390,22 +353,26 @@
       {/if}
     {:else if value.actual}
       <span class={value.color}>{value.name} mismatch</span>
-      {@render comparisonAdjust(modify)}
+      {@render comparisonAdjust(fixable, modify)}
     {/if}
   {/if}
 {/snippet}
 
-{#snippet comparisonAdjust(modify: Modify | undefined)}
+{#snippet comparisonAdjust(fixable: Fixable, modify: Modify | undefined)}
   {#if modify}
-    {@const key = fixableString(modify)}
     <label
       ><input
         type="checkbox"
-        checked={fixes.has(key)}
+        checked={fixable.fix?.method === "modify"}
         oninput={(e) => {
-          setFix(asInputElement(e.target).checked, modify, "modify", undefined);
+          setFix(
+            asInputElement(e.target).checked,
+            fixable,
+            "modify",
+            undefined,
+          );
         }}
-      />{modify.label}</label
+      />{modify}</label
     >
   {/if}
 {/snippet}
