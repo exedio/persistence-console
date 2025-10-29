@@ -238,14 +238,3 @@ function numberedHash(n: number): ApiHash {
     algorithmDescription: "myAlgorithmDescription" + n,
   };
 }
-
-beforeAll(() => {
-  // https://github.com/jsdom/jsdom/issues/3429
-  // @ts-expect-error
-  Element.prototype.animate = () => ({});
-});
-
-afterAll(() => {
-  // @ts-expect-error
-  Element.prototype.animate = undefined;
-});

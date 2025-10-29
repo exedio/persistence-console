@@ -1706,14 +1706,3 @@ function select(index: number = 0): HTMLSelectElement {
 function sql(): HTMLElement {
   return document.querySelectorAll(".sql").item(0) as HTMLElement;
 }
-
-beforeAll(() => {
-  // https://github.com/jsdom/jsdom/issues/3429
-  // @ts-expect-error
-  Element.prototype.animate = () => ({});
-});
-
-afterAll(() => {
-  // @ts-expect-error
-  Element.prototype.animate = undefined;
-});
