@@ -1635,7 +1635,10 @@ describe("Schema", () => {
               name: "myTable1Name",
               columns: undefined,
               constraints: undefined,
-              error: undefined,
+              error: {
+                existence: "missing",
+                remainder: undefined,
+              },
             },
           ],
           sequences: undefined,
@@ -1653,6 +1656,25 @@ describe("Schema", () => {
       expect(mock).toHaveBeenNthCalledWith(2, "/myApiPath/schema");
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(sql()).toBeNull();
+
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+    expect(sql()).toBeNull();
+
+    // test reactivity after connect
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter("CREATE TABLE myTable1Name"),
+      );
+      checkbox().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        "/myApiPath/alterSchema?subject=table&name=myTable1Name&method=add",
+      );
+    }
+    expect(await formatHtml(sql())).toMatchSnapshot();
   });
 });
 

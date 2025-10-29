@@ -221,15 +221,18 @@ exports[`Schema > should render a connect button 1`] = `
 `;
 
 exports[`Schema > should render a connect button 2`] = `
-"<!----><button disabled="" class="bullet svelte-6n243d">.</button
+"<!----><button disabled="" class="bullet red svelte-6n243d">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <li class="table svelte-6n243d">
-    <button class="bullet svelte-6n243d">+</button
+    <button class="bullet red svelte-6n243d">+</button
     ><!---->
     myTable1Name
+    <!----><span class="red svelte-6n243d">missing</span>
+    <label><input type="checkbox" />create</label>
+    <!---->
     <!----><!---->
     <!---->
     <!---->
@@ -238,6 +241,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
   <!---->
 </ul>
 <!---->
+"
+`;
+
+exports[`Schema > should render a connect button 3`] = `
+"<li class="svelte-6n243d">
+  <small>"CREATE TABLE myTable1Name",</small
+  ><!---->
+</li>
 "
 `;
 
