@@ -25,6 +25,7 @@ import static com.exedio.cope.console.Console_Jspm.writeJsComponentMountPoint;
 import com.exedio.cope.Model;
 import com.exedio.dsmf.Column;
 import com.exedio.dsmf.Constraint;
+import com.exedio.dsmf.Node;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.StatementListener;
@@ -32,12 +33,11 @@ import com.exedio.dsmf.Table;
 import com.exedio.dsmf.misc.DefaultStatementListener;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 final class SchemaNewCop extends ConsoleCop<Void> {
@@ -112,22 +112,10 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     List<String> remainder
   ) {
     static TableError convert(final Table t) {
-      Existence existence = null;
-      String remainder = t.getError();
-      if (remainder != null) {
-        switch (remainder) {
-          case MISSING -> {
-            existence = Existence.missing;
-            remainder = null;
-          }
-          case UNUSED -> {
-            existence = Existence.unused;
-            remainder = null;
-          }
-        }
-      }
+      final Existence existence = Existence.forNode(t);
+      final List<String> remainder = emptyToNull(t.getAdditionalErrors());
       return existence != null || remainder != null
-        ? new TableError(existence, splitRemainder(remainder))
+        ? new TableError(existence, remainder)
         : null;
     }
   }
@@ -156,37 +144,16 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     List<String> remainder
   ) {
     static ColumnError convert(final Existence tableExistence, final Column c) {
-      Existence existence = null;
-      String type = null;
-      String remainder = c.getError();
-      if (remainder != null) {
-        switch (remainder) {
-          case MISSING -> {
-            existence = Existence.missing;
-            remainder = null;
-          }
-          case UNUSED -> {
-            existence = Existence.unused;
-            remainder = null;
-          }
-          default -> {
-            final Matcher mType = UNEXPECTED_TYPE.matcher(remainder);
-            if (mType.matches()) {
-              type = mType.group(1);
-              remainder = null;
-            }
-          }
-        }
-      }
-      existence = filterContainer(tableExistence, existence);
+      final Existence existence = filterContainer(
+        tableExistence,
+        Existence.forNode(c)
+      );
+      final String type = c.getMismatchingType();
+      final List<String> remainder = emptyToNull(c.getAdditionalErrors());
       return existence != null || type != null || remainder != null
-        ? new ColumnError(existence, type, splitRemainder(remainder))
+        ? new ColumnError(existence, type, remainder)
         : null;
     }
-
-    private static final Pattern UNEXPECTED_TYPE = Pattern.compile(
-      "^unexpected type >(.*)<" // Should be replaced by explicit API
-    );
   }
 
   private record ConstraintResponse(
@@ -213,7 +180,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     ) {
       return map(
         list,
-        c -> c.getRequiredCondition() == null || c.isSupported(),
+        c -> !c.required() || c.isSupported(),
         c -> convert(tableExistence, c)
       );
     }
@@ -232,7 +199,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     final Function<T, R> mapper
   ) {
     final List<R> result = c.stream().filter(predicate).map(mapper).toList();
-    return result.isEmpty() ? null : result;
+    return emptyToNull(result);
   }
 
   record ConstraintError(
@@ -246,44 +213,22 @@ final class SchemaNewCop extends ConsoleCop<Void> {
       final Existence tableExistence,
       final Constraint c
     ) {
-      Existence existence = null;
-      String clause = null;
-      String clauseRaw = null;
-      String remainder = c.getError();
-      if (remainder != null) {
-        switch (remainder) {
-          case MISSING -> {
-            existence = Existence.missing;
-            remainder = null;
-          }
-          case UNUSED -> {
-            existence = Existence.unused;
-            remainder = null;
-          }
-          default -> {
-            final Matcher mType = UNEXPECTED_CLAUSE.matcher(remainder);
-            if (mType.matches()) {
-              clause = mType.group(1);
-              clauseRaw = mType.groupCount() > 2 ? mType.group(3) : null;
-              remainder = null;
-            }
-          }
-        }
-      }
-      existence = filterContainer(tableExistence, existence);
+      final Existence existence = filterContainer(
+        tableExistence,
+        Existence.forNode(c)
+      );
+      final String clause = c.getMismatchingCondition();
+      final String clauseRaw = c.getMismatchingConditionRaw();
+      final List<String> remainder = emptyToNull(c.getAdditionalErrors());
       return existence != null || clause != null || remainder != null
         ? new ConstraintError(
           existence,
           clause,
-          clauseRaw,
-          splitRemainder(remainder)
+          Objects.equals(clause, clauseRaw) ? null : clauseRaw,
+          remainder
         )
         : null;
     }
-
-    private static final Pattern UNEXPECTED_CLAUSE = Pattern.compile(
-      "^unexpected condition >>>(.*)<<<( \\(originally >>>(.*)<<<\\))?$" // Should be replaced by explicit API
-    );
   }
 
   private static Existence filterContainer(
@@ -311,72 +256,48 @@ final class SchemaNewCop extends ConsoleCop<Void> {
 
   record SequenceError(
     Existence existence,
-    String type,
+    Sequence.Type type,
     Long start,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder
   ) {
     static SequenceError convert(final Sequence s) {
-      Existence existence = null;
-      String type = null;
-      Long start = null;
-      String remainder = s.getError();
-      if (remainder != null) {
-        switch (remainder) {
-          case MISSING -> {
-            existence = Existence.missing;
-            remainder = null;
-          }
-          case UNUSED -> {
-            existence = Existence.unused;
-            remainder = null;
-          }
-          default -> {
-            {
-              final Matcher mType = UNEXPECTED_TYPE.matcher(remainder);
-              if (mType.matches()) {
-                type = mType.group(1);
-                remainder = null;
-              } else {
-                final Matcher mStart = UNEXPECTED_START.matcher(remainder);
-                if (mStart.matches()) {
-                  start = Long.parseLong(mStart.group(1));
-                  remainder = null;
-                }
-              }
-            }
-          }
-        }
-      }
-
+      final Existence existence = Existence.forNode(s);
+      final Sequence.Type type = s.getMismatchingType();
+      final Long start = s.getMismatchingStart();
+      final List<String> remainder = emptyToNull(s.getAdditionalErrors());
       return (
           existence != null ||
           type != null ||
           start != null ||
           remainder != null
         )
-        ? new SequenceError(existence, type, start, splitRemainder(remainder))
+        ? new SequenceError(existence, type, start, remainder)
         : null;
     }
-
-    private static final Pattern UNEXPECTED_TYPE = Pattern.compile(
-      "^unexpected type (\\w*)$" // Should be replaced by explicit API
-    );
-    private static final Pattern UNEXPECTED_START = Pattern.compile(
-      "^unexpected start (\\d*)$" // Should be replaced by explicit API
-    );
   }
 
   enum Existence {
     missing,
-    unused,
+    unused;
+
+    static Existence forNode(final Node n) {
+      // prettier-ignore
+      if (n.required())
+        if (n.exists())
+          return null;
+        else
+          return missing;
+      else
+        if (n.exists())
+          return unused;
+        else
+          throw new RuntimeException(n.toString());
+    }
   }
 
-  private static final String MISSING = "missing"; // Should be replaced by explicit API
-  private static final String UNUSED = "unused"; // Should be replaced by explicit API
-
-  private static List<String> splitRemainder(final String s) {
-    return s != null ? List.of(s.split(", ")) : null;
+  private static <E> List<E> emptyToNull(final List<E> l) {
+    return l.isEmpty() ? null : l;
   }
 
   static SqlResponse alterSchema(

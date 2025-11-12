@@ -619,7 +619,6 @@ public class SchemaCopTest {
       "FOREIGN KEY (\"myInt\") REFERENCES \"MyTarget\" " +
       "ON DELETE CASCADE ON UPDATE CASCADE"
     );
-    // TODO should complain about "ON DELETE CASCADE/UPDATE" as well
     assertEquals(
       """
       {
@@ -627,7 +626,8 @@ public class SchemaCopTest {
         "type" : "ForeignKey",
         "clause" : "myTarget->MyTarget.this",
         "error" : {
-          "clause" : "myInt->MyTarget.this"
+          "clause" : "myInt->MyTarget.this",
+          "remainder" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
         }
       }""",
       writeJson(myTypeTable().columns().get(4).constraints().get(2))
@@ -728,7 +728,6 @@ public class SchemaCopTest {
     execute(
       "CREATE SEQUENCE \"MyType_myInt_Seq\" AS BIGINT START WITH 88 INCREMENT BY 1"
     );
-    // TODO report mismatching start as well
     assertEquals(
       """
       {
@@ -736,7 +735,8 @@ public class SchemaCopTest {
         "type" : "bit31",
         "start" : 77,
         "error" : {
-          "type" : "bit63"
+          "type" : "bit63",
+          "start" : 88
         }
       }""",
       writeJson(myIntSequence())
