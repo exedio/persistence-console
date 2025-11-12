@@ -126,7 +126,7 @@ public class SchemaCopTest {
             } ]
           } ],
           "constraints" : [ {
-            "name" : "MyType_unique_Unq",
+            "name" : "MyType_unique",
             "type" : "Unique",
             "clause" : "(\\"myString\\",\\"myString2\\")"
           } ]
@@ -238,7 +238,7 @@ public class SchemaCopTest {
           } ]
         } ],
         "constraints" : [ {
-          "name" : "MyType_unique_Unq",
+          "name" : "MyType_unique",
           "type" : "Unique",
           "clause" : "(\\"myString\\",\\"myString2\\")"
         } ]
@@ -318,7 +318,7 @@ public class SchemaCopTest {
           "name" : "MyType_myTarget_MX",
           "type" : "Check"
         }, {
-          "name" : "MyType_unique_Unq",
+          "name" : "MyType_unique",
           "type" : "Unique"
         } ]
       }""",
@@ -331,7 +331,7 @@ public class SchemaCopTest {
     final Table table = MODEL.getSchema().getTable(
       SchemaInfo.getTableName(MyType.TYPE)
     );
-    table.getConstraint("MyType_unique_Unq").drop();
+    table.getConstraint("MyType_unique").drop();
     table.getColumn("myString").drop();
     assertEquals(
       """
@@ -367,7 +367,7 @@ public class SchemaCopTest {
     final Table table = MODEL.getSchema().getTable(
       SchemaInfo.getTableName(MyType.TYPE)
     );
-    table.getConstraint("MyType_unique_Unq").drop();
+    table.getConstraint("MyType_unique").drop();
     table.getColumn("myString").drop();
     execute(
       "ALTER TABLE \"MyType\" ADD COLUMN \"myString\" VARCHAR(44) not null"
@@ -758,7 +758,7 @@ public class SchemaCopTest {
     assertEquals(
       """
       {
-        "sql" : "CREATE TABLE \\"MyType\\"(\\"this\\" INTEGER not null,\\"myString\\" VARCHAR(80) not null,\\"myString2\\" VARCHAR(80) not null,\\"myInt\\" INTEGER not null,\\"myTarget\\" INTEGER not null,CONSTRAINT \\"MyType_PK\\" PRIMARY KEY(\\"this\\"),CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0),CONSTRAINT \\"MyType_this_MX\\" CHECK(\\"this\\"<=2147483647),CONSTRAINT \\"MyType_myString_MN\\" CHECK(CHAR_LENGTH(\\"myString\\")>=1),CONSTRAINT \\"MyType_myString_MX\\" CHECK(CHAR_LENGTH(\\"myString\\")<=80),CONSTRAINT \\"MyType_myString2_MN\\" CHECK(CHAR_LENGTH(\\"myString2\\")>=1),CONSTRAINT \\"MyType_myString2_MX\\" CHECK(CHAR_LENGTH(\\"myString2\\")<=80),CONSTRAINT \\"MyType_myInt_MN\\" CHECK(\\"myInt\\">=-2147483648),CONSTRAINT \\"MyType_myInt_MX\\" CHECK(\\"myInt\\"<=2147483647),CONSTRAINT \\"MyType_myTarget_MN\\" CHECK(\\"myTarget\\">=0),CONSTRAINT \\"MyType_myTarget_MX\\" CHECK(\\"myTarget\\"<=2147483647),CONSTRAINT \\"MyType_unique_Unq\\" UNIQUE(\\"myString\\",\\"myString2\\"))"
+        "sql" : "CREATE TABLE \\"MyType\\"(\\"this\\" INTEGER not null,\\"myString\\" VARCHAR(80) not null,\\"myString2\\" VARCHAR(80) not null,\\"myInt\\" INTEGER not null,\\"myTarget\\" INTEGER not null,CONSTRAINT \\"MyType_PK\\" PRIMARY KEY(\\"this\\"),CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0),CONSTRAINT \\"MyType_this_MX\\" CHECK(\\"this\\"<=2147483647),CONSTRAINT \\"MyType_myString_MN\\" CHECK(CHAR_LENGTH(\\"myString\\")>=1),CONSTRAINT \\"MyType_myString_MX\\" CHECK(CHAR_LENGTH(\\"myString\\")<=80),CONSTRAINT \\"MyType_myString2_MN\\" CHECK(CHAR_LENGTH(\\"myString2\\")>=1),CONSTRAINT \\"MyType_myString2_MX\\" CHECK(CHAR_LENGTH(\\"myString2\\")<=80),CONSTRAINT \\"MyType_myInt_MN\\" CHECK(\\"myInt\\">=-2147483648),CONSTRAINT \\"MyType_myInt_MX\\" CHECK(\\"myInt\\"<=2147483647),CONSTRAINT \\"MyType_myTarget_MN\\" CHECK(\\"myTarget\\">=0),CONSTRAINT \\"MyType_myTarget_MX\\" CHECK(\\"myTarget\\"<=2147483647),CONSTRAINT \\"MyType_unique\\" UNIQUE(\\"myString\\",\\"myString2\\"))"
       }""",
       writeJson(alterSchema(MODEL, request("table", "", "MyType", "add")))
     );
@@ -1060,7 +1060,6 @@ public class SchemaCopTest {
     props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
     props.setProperty("connection.username", "sa");
     props.setProperty("connection.password", "");
-    props.setProperty("schema.redundantUnq", "true"); // TODO reduces diff in tests, drop afterwards
     MODEL.connect(ConnectProperties.create(Sources.view(props, "DESC")));
   }
 
