@@ -201,7 +201,6 @@ abstract class ConsoleCop<S> extends Cop
 					new UnsupportedConstraintCop(args, testArgs),
 					new UnsupportedCheckConstraintByTableCop(args, testArgs),
 					new MultiTableCheckConstraintCop(args, testArgs),
-					new UpdateCounterCop(args, testArgs),
 					new SequenceCop(args, testArgs),
 					new TypeColumnCop(args, testArgs),
 					new TypeCompletenessCop(args, testArgs),
@@ -386,8 +385,6 @@ abstract class ConsoleCop<S> extends Cop
 				return new TypeColumnCop(args, new TestCop.TestArgs(request));
 			case TypeCompletenessCop.TAB:
 				return new TypeCompletenessCop(args, new TestCop.TestArgs(request));
-			case UpdateCounterCop.TAB:
-				return new UpdateCounterCop(args, new TestCop.TestArgs(request));
 			case CopyConstraintCop.TAB:
 				return new CopyConstraintCop(args, new TestCop.TestArgs(request));
 			case SingletonCop.TAB:
