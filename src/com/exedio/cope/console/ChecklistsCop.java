@@ -52,7 +52,6 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new SchemaCop(args),
 						new UnsupportedCheckConstraintByTableCop(args, testArgs),
 						new MultiTableCheckConstraintCop(args, testArgs),
-						new UpdateCounterCop(args, testArgs),
 						new SequenceCop(args, testArgs),
 						new TypeColumnCop(args, testArgs),
 						new TypeCompletenessCop(args, testArgs),
