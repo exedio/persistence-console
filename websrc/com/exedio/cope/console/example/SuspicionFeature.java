@@ -18,12 +18,12 @@
 
 package com.exedio.cope.console.example;
 
-import com.exedio.cope.Feature;
+import com.exedio.cope.Pattern;
 import java.io.Serial;
 import java.util.Arrays;
 import java.util.Collection;
 
-public final class SuspicionFeature extends Feature
+public final class SuspicionFeature extends Pattern
 {
 	@Override
 	public Collection<String> getSuspicions()

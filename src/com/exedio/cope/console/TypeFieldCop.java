@@ -101,7 +101,6 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 		return COLUMNS;
 	}
 
-	@SuppressWarnings("Convert2MethodRef")
 	private static final List<Column<TypeField<?>>> COLUMNS = List.of(
 			column("Type", field -> field.getType().getID()),
 			column("Name", field -> field.getName()),

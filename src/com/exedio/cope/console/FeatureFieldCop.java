@@ -101,7 +101,6 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 		return COLUMNS;
 	}
 
-	@SuppressWarnings("Convert2MethodRef")
 	private static final List<Column<FeatureField<?>>> COLUMNS = List.of(
 			column("Type", field -> field.getType().getID()),
 			column("Name", field -> field.getName()),

@@ -43,7 +43,7 @@
 	<dependencies>
 		<dependency org="javax.servlet" name="javax.servlet-api" rev="4.0.1" conf="runtime->default; ide->sources" />
 		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; ide->runtime,sources,changelog" />
-		<dependency org="com.exedio" name="cope" rev="11740" conf="runtime->runtime; compile-annotations->instrument-annotations; test,example->hsqldb,mysql; instrument->instrument,servlet; ide->sources,changelog" />
+		<dependency org="com.exedio" name="cope" rev="12141" conf="runtime->runtime; compile-annotations->instrument-annotations; test,example->hsqldb,mysql; instrument->instrument,servlet; ide->sources,changelog" />
 		<dependency org="com.exedio" name="copeutil" rev="1109" conf="runtime->runtime; ide->sources,changelog" />
 		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="&jackson.version;" conf="runtime->default; ide->sources" />
 		<dependency org="com.fasterxml.jackson.core" name="jackson-databind"    rev="&jackson.version;" conf="runtime->default; ide->sources" />

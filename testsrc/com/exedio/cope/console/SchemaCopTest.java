@@ -1060,6 +1060,7 @@ public class SchemaCopTest {
     props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
     props.setProperty("connection.username", "sa");
     props.setProperty("connection.password", "");
+    props.setProperty("schema.redundantUnq", "true"); // TODO reduces diff in tests, drop afterwards
     MODEL.connect(ConnectProperties.create(Sources.view(props, "DESC")));
   }
 
