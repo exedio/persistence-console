@@ -1,14 +1,3 @@
-# TEMPORARY SUPPRESS, avoid resorting of imports
-src/com/exedio/cope/console/Api.java
-src/com/exedio/cope/console/ApiTextException.java
-src/com/exedio/cope/console/SchemaNewCop.java
-testsrc/com/exedio/cope/console/ApiTest.java
-testsrc/com/exedio/cope/console/AssertionFailedHttpServletRequest.java
-testsrc/com/exedio/cope/console/AssertionFailedHttpServletResponse.java
-testsrc/com/exedio/cope/console/AssertionFailedServletInputStream.java
-testsrc/com/exedio/cope/console/AssertionFailedServletOutputStream.java
-# / TEMPORARY SUPPRESS, avoid resorting of imports
-
 /.github/workflows/ant.yml
 /index.html
 /ivy/artifacts/
