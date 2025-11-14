@@ -25,11 +25,11 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Transaction;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class TransactionCop extends ConsoleCop<Void> implements Pageable
 {

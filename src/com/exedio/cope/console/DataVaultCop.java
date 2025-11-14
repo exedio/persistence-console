@@ -26,11 +26,11 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import com.exedio.cope.misc.DataFieldVaultSummary;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class DataVaultCop extends ConsoleCop<Void>
 {

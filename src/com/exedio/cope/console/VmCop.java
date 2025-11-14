@@ -18,12 +18,12 @@
 
 package com.exedio.cope.console;
 
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class VmCop extends ConsoleCop<Void>
 {

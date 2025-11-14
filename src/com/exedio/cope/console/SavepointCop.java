@@ -20,13 +20,13 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.SchemaSavepointNotAvailableException;
+import jakarta.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 {

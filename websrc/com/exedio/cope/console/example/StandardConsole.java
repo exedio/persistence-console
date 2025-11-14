@@ -22,10 +22,10 @@ import com.exedio.cope.Query;
 import com.exedio.cope.console.ConsoleServlet;
 import com.exedio.cope.reflect.FeatureField;
 import com.exedio.cope.reflect.TypeField;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.Serial;
 import java.util.Arrays;
 import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 
 public final class StandardConsole extends ConsoleServlet
 {

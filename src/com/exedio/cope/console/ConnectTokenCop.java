@@ -21,8 +21,8 @@ package com.exedio.cope.console;
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ConnectToken;
-import java.util.HashMap;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 
 final class ConnectTokenCop extends ConsoleCop<Void>
 {

@@ -21,10 +21,10 @@ package com.exedio.cope.console.example;
 import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.misc.ServletUtil;
-import java.io.File;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
+import java.io.File;
 
 public class PropertiesInitializer implements ServletContextListener
 {

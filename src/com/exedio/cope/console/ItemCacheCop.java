@@ -22,9 +22,9 @@ import com.exedio.cope.ItemCacheInfo;
 import com.exedio.cope.ItemCacheStatistics;
 import com.exedio.cope.Type;
 import io.micrometer.core.instrument.Tags;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class ItemCacheCop extends ConsoleCop<Void>
 {

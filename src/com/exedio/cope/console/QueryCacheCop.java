@@ -25,11 +25,11 @@ import com.exedio.cope.QueryCacheHistogram;
 import com.exedio.cope.QueryCacheInfo;
 import com.exedio.cope.console.MeterTable.ListItem;
 import io.micrometer.core.instrument.Tags;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class QueryCacheCop extends ConsoleCop<Void>
 {

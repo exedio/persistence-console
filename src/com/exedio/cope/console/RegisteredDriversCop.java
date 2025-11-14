@@ -19,10 +19,10 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
+import jakarta.servlet.http.HttpServletRequest;
 import java.sql.Driver;
 import java.util.Enumeration;
 import java.util.Iterator;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class RegisteredDriversCop extends ConsoleCop<Void>
 {

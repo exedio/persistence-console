@@ -23,10 +23,10 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class DataVaultTrailCop extends TestCop<DataField>
 {
