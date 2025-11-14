@@ -25,9 +25,9 @@ import com.exedio.dsmf.CheckConstraint;
 import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Table;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class UnsupportedConstraintCop extends TestCop<Constraint>
 {

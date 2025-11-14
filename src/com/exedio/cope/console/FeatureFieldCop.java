@@ -24,9 +24,9 @@ import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.reflect.FeatureField;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class FeatureFieldCop extends TestCop<FeatureField<?>>
 {

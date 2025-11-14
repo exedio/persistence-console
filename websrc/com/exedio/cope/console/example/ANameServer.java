@@ -25,10 +25,10 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaUtil;
-import java.io.IOException;
-import java.io.Serial;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.Serial;
 
 /**
  * A test subclass of MediaPath for unit-testing custom extentions of MediaPath.

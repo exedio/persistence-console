@@ -31,6 +31,7 @@ import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.StatementListener;
 import com.exedio.dsmf.Table;
 import com.exedio.dsmf.misc.DefaultStatementListener;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -38,7 +39,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class SchemaNewCop extends ConsoleCop<Void> {
 

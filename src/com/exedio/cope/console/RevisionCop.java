@@ -27,12 +27,12 @@ import com.exedio.cope.misc.SchemaView;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
 import com.exedio.dsmf.SQLRuntimeException;
+import jakarta.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class RevisionCop extends ConsoleCop<Void> implements Pageable
 {

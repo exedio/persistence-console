@@ -25,6 +25,7 @@ import com.exedio.cops.Cop;
 import com.exedio.cops.Resource;
 import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Node;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.nio.charset.Charset;
@@ -34,7 +35,6 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class Out extends OutBasic
 {

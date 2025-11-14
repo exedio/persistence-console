@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
+import jakarta.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class DatabaseMetricsCop extends ConsoleCop<ArrayList<DatabaseMetricsCop.Measurement>>
 {

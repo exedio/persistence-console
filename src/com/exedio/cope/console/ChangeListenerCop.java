@@ -23,9 +23,9 @@ import com.exedio.cope.ChangeListenerDispatcherInfo;
 import com.exedio.cope.Model;
 import com.exedio.cops.Pageable;
 import com.exedio.cops.Pager;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.HashSet;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 {

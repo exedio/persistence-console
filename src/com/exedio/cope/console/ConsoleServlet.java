@@ -29,6 +29,9 @@ import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import com.exedio.cops.Resource;
 import com.exedio.dsmf.Node;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.Serial;
@@ -38,9 +41,6 @@ import java.security.Principal;
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.List;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * The servlet providing the COPE Console application.

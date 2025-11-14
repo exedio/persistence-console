@@ -26,10 +26,10 @@ import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.StatementListener;
 import com.exedio.dsmf.Table;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
-import jakarta.servlet.http.HttpServletRequest;
 
 final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 {
