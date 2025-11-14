@@ -543,6 +543,7 @@ describe("Schema", () => {
                   type: "myColumn1Type",
                   error: {
                     existence: "missing",
+                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: undefined,
                   },
@@ -604,6 +605,7 @@ describe("Schema", () => {
                   type: "myColumn1Type",
                   error: {
                     existence: "unused",
+                    toleratesInsertIfUnused: true,
                     type: undefined,
                     remainder: undefined,
                   },
@@ -665,6 +667,7 @@ describe("Schema", () => {
                   type: "myColumn1Type not null",
                   error: {
                     existence: "unused",
+                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: undefined,
                   },
@@ -706,6 +709,7 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "unused",
+                    toleratesInsertIfUnused: true,
                     type: undefined,
                     remainder: [],
                   },
@@ -716,6 +720,7 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "missing",
+                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: [],
                   },
@@ -726,6 +731,7 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "missing",
+                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: [],
                   },
@@ -793,6 +799,7 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "missing",
+                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: [],
                   },
@@ -803,6 +810,7 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "unused",
+                    toleratesInsertIfUnused: true,
                     type: undefined,
                     remainder: [],
                   },
@@ -813,6 +821,7 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "unused",
+                    toleratesInsertIfUnused: true,
                     type: undefined,
                     remainder: [],
                   },
@@ -880,6 +889,7 @@ describe("Schema", () => {
                   type: "myColumn1Type",
                   error: {
                     existence: undefined,
+                    toleratesInsertIfUnused: undefined,
                     type: "myColumn1TypeX",
                     remainder: undefined,
                   },
@@ -941,6 +951,7 @@ describe("Schema", () => {
                   type: "myColumn1Type",
                   error: {
                     existence: undefined,
+                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: ["remainder1", "remainder2"],
                   },

@@ -32,6 +32,7 @@ export type SchemaColumn = {
 
 export type SchemaColumnError = {
   readonly existence: SchemaExistence;
+  readonly toleratesInsertIfUnused: true | undefined;
   readonly type: string | undefined;
   readonly remainder: SchemaRemainder;
 };

@@ -261,8 +261,7 @@ export class Column implements ExpandableBullet, Fixable {
       const error = this.api.error;
       if (!error || !error.existence) return undefined;
 
-      // TODO "not null" should be replaced by explicit API
-      if (error.existence === "unused" && !this.api.type.endsWith(" not null"))
+      if (error.existence === "unused" && error.toleratesInsertIfUnused)
         return { text: "unused", color: "yellow" };
 
       return { text: error.existence, color: "red" };

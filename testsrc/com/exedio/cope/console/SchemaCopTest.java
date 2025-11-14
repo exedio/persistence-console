@@ -439,14 +439,14 @@ public class SchemaCopTest {
   void testColumnUnusedOptional()
     throws IOException, SQLException, ApiTextException {
     execute("ALTER TABLE \"MyType\" ADD COLUMN \"myStringZ\" VARCHAR(80)");
-    // prepares Column.toleratesInsertIfUnused when available in newer cope version
     assertEquals(
       """
       {
         "name" : "myStringZ",
         "type" : "VARCHAR(80)",
         "error" : {
-          "existence" : "unused"
+          "existence" : "unused",
+          "toleratesInsertIfUnused" : true
         }
       }""",
       writeJson(myTypeTable().columns().get(5))
