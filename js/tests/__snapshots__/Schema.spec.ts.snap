@@ -1687,7 +1687,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <label><input type="checkbox" />drop</label>
         <!---->
         <!----><!---->
-        <!----><!----><!---->myColumn1Type not null<!---->
+        <!----><!----><!---->myColumn1Type<!---->
         <!----><!---->
         <!---->
       </li>

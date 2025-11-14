@@ -664,7 +664,7 @@ describe("Schema", () => {
               columns: [
                 {
                   name: "myColumn1Name",
-                  type: "myColumn1Type not null",
+                  type: "myColumn1Type",
                   error: {
                     existence: "unused",
                     toleratesInsertIfUnused: undefined,
