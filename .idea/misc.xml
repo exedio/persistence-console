@@ -6,6 +6,7 @@
       <item index="1" class="java.lang.String" itemvalue="com.exedio.cope.console.example.UsageEntryPoint" />
       <item index="2" class="java.lang.String" itemvalue="com.exedio.cope.instrument.Generated" />
     </list>
+    <pattern value="com.exedio.cope.console.ConsoleServlet" method="doRequest" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="javax.annotation.Nullable" />

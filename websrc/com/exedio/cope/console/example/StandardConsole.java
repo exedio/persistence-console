@@ -25,7 +25,7 @@ import com.exedio.cope.reflect.TypeField;
 import java.io.Serial;
 import java.util.Arrays;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 public final class StandardConsole extends ConsoleServlet
 {

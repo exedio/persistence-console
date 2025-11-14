@@ -22,7 +22,7 @@ import com.exedio.cope.Model;
 import java.sql.Driver;
 import java.util.Enumeration;
 import java.util.Iterator;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class RegisteredDriversCop extends ConsoleCop<Void>
 {

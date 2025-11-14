@@ -5,7 +5,7 @@
 	<classpathentry kind="src" path="websrc"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/junit.jar"/>
-	<classpathentry kind="lib" path="lib/javax.servlet-api.jar" sourcepath="lib/javax.servlet-api-source.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta.servlet-api.jar" sourcepath="lib/jakarta.servlet-api-source.jar"/>
 	<classpathentry kind="lib" path="lib/trove4j.jar"/>
 	<classpathentry kind="lib" path="lib/exedio-cope-util.jar" sourcepath="lib/exedio-cope-util-src.zip"/>
 	<classpathentry kind="lib" path="lib/exedio-cops.jar" sourcepath="lib/exedio-cops-src.zip"/>

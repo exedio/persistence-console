@@ -20,9 +20,9 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
 import com.exedio.cope.misc.ModelByString;
-import javax.servlet.Servlet;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 
 /**
  * Partial copy of {@link com.exedio.cope.misc.ServletUtil}.

@@ -26,7 +26,7 @@ import com.exedio.cope.Type;
 import com.exedio.cope.reflect.FeatureField;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class FeatureFieldCop extends TestCop<FeatureField<?>>
 {

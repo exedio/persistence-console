@@ -29,7 +29,7 @@ import com.exedio.dsmf.Table;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 {

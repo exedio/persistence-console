@@ -23,7 +23,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 import com.exedio.cope.Model.NotConnectedException;
 import com.exedio.cops.Pageable;

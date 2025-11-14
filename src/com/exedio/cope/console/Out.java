@@ -34,7 +34,7 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class Out extends OutBasic
 {

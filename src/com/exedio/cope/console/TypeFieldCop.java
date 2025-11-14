@@ -26,7 +26,7 @@ import com.exedio.cope.Type;
 import com.exedio.cope.reflect.TypeField;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 final class TypeFieldCop extends TestCop<TypeField<?>>
 {

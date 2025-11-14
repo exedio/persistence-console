@@ -28,8 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletOutputStream;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.ServletOutputStream;
 
 final class ApiTest {
 
