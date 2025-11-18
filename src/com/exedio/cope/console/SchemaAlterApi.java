@@ -31,7 +31,7 @@ import java.util.function.Consumer;
 
 final class SchemaAlterApi {
 
-  static SqlResponse alterSchema(
+  static Response alterSchema(
     final Model model,
     final HttpServletRequest request
   ) throws ApiTextException {
@@ -117,7 +117,7 @@ final class SchemaAlterApi {
     );
   }
 
-  private static SqlResponse apply(final Consumer<StatementListener> listener) {
+  private static Response apply(final Consumer<StatementListener> listener) {
     final AtomicReference<String> sql = new AtomicReference<>();
     final DefaultStatementListener sl = new DefaultStatementListener() {
       @Override
@@ -127,10 +127,10 @@ final class SchemaAlterApi {
       }
     };
     listener.accept(sl);
-    return new SqlResponse(sql.get());
+    return new Response(sql.get());
   }
 
-  private record SqlResponse(String sql) {}
+  private record Response(String sql) {}
 
   private SchemaAlterApi() {
     // prevent instantiation
