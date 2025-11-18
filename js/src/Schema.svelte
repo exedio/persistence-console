@@ -1,9 +1,11 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { get } from "@/api/api";
+  import { get, post } from "@/api/api";
   import {
     type SchemaAlterResponse,
     isNotConnected,
+    type SchemaMaintainRequest,
+    type SchemaMaintainResponse,
     type Schema as ApiSchema,
   } from "@/api/types";
   import {
@@ -24,6 +26,34 @@
     type FixedFixable,
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
+
+  function maintain(
+    operation: "create" | "tearDown" | "drop" | "delete",
+    confirmMessage: string | undefined,
+  ): boolean {
+    if (
+      confirmMessage &&
+      !confirm(confirmMessage + "\nDo you really want to do this?")
+    )
+      return false;
+    maintainRunning = true;
+    maintainMessage = operation + " started ...";
+    post<SchemaMaintainRequest, SchemaMaintainResponse>("schema/maintain", {
+      operation: operation,
+    })
+      .then((r) => {
+        maintainMessage =
+          operation + " succeeded after " + r.elapsedNanos / 1000000 + "ms";
+      })
+      .catch((e) => {
+        maintainMessage = operation + " failed: " + e.message;
+      })
+      .finally(() => (maintainRunning = false));
+    return true;
+  }
+
+  let maintainRunning: boolean = $state(false);
+  let maintainMessage: string | undefined = $state(undefined);
 
   const schemaStore = new Map<string, Schema>();
 
@@ -123,7 +153,37 @@
   }
 </script>
 
-<div class="maintain"></div>
+<div class="maintain">
+  <button
+    disabled={maintainRunning}
+    onclick={() => maintain("create", undefined)}>create</button
+  >
+  <button
+    disabled={maintainRunning}
+    onclick={() =>
+      maintain(
+        "tearDown",
+        "This operation will desperately try to drop all your database tables.",
+      )}>tear down</button
+  >
+  <button
+    disabled={maintainRunning}
+    onclick={() =>
+      maintain("drop", "This operation will drop all your database tables.")}
+    >drop</button
+  >
+  <button
+    disabled={maintainRunning}
+    onclick={() =>
+      maintain(
+        "delete",
+        "This operation will delete the contents of your database tables.",
+      )}>delete</button
+  >
+  {#if maintainMessage}
+    <div>{maintainMessage}</div>
+  {/if}
+</div>
 
 <div class="container">
   <div class="tree">
