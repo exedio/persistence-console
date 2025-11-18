@@ -99,11 +99,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  record TableError(
-    Existence existence,
-    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
-    List<String> remainder
-  ) {
+  private record TableError(Existence existence, List<String> remainder) {
     static TableError convert(final Table t) {
       final Existence existence = Existence.forNode(t);
       final List<String> remainder = emptyToNull(t.getAdditionalErrors());
@@ -130,11 +126,10 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  record ColumnError(
+  private record ColumnError(
     Existence existence,
     Boolean toleratesInsertIfUnused,
     String type,
-    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder
   ) {
     static ColumnError convert(final Existence tableExistence, final Column c) {
@@ -203,11 +198,10 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     return emptyToNull(result);
   }
 
-  record ConstraintError(
+  private record ConstraintError(
     Existence existence,
     String clause,
     String clauseRaw,
-    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder
   ) {
     static ConstraintError convert(
@@ -239,7 +233,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     return (container == own) ? null : own;
   }
 
-  record SequenceResponse(
+  private record SequenceResponse(
     String name,
     String type,
     long start,
@@ -255,11 +249,10 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  record SequenceError(
+  private record SequenceError(
     Existence existence,
     Sequence.Type type,
     Long start,
-    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder
   ) {
     static SequenceError convert(final Sequence s) {
@@ -278,7 +271,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  enum Existence {
+  private enum Existence {
     missing,
     unused;
 
