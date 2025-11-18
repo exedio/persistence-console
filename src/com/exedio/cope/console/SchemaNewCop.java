@@ -99,10 +99,7 @@ final class SchemaNewCop extends ConsoleCop<Void> {
     }
   }
 
-  private record TableError(
-    Existence existence,
-    List<String> remainder
-  ) {
+  private record TableError(Existence existence, List<String> remainder) {
     static TableError convert(final Table t) {
       final Existence existence = Existence.forNode(t);
       final List<String> remainder = emptyToNull(t.getAdditionalErrors());
