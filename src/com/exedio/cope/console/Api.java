@@ -95,7 +95,7 @@ final class Api {
       }
       case "alterSchema" -> {
         requireGet(request);
-        writeJson(SchemaNewCop.alterSchema(model, request), response);
+        writeJson(SchemaAlterApi.alterSchema(model, request), response);
       }
       default -> throw ApiTextException.notFound("endpoint not found");
     }
