@@ -19,7 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.SchemaNewCop.alterSchema;
+import static com.exedio.cope.console.SchemaAlterApi.alterSchema;
 import static com.exedio.cope.console.SchemaNewCop.schema;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
