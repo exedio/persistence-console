@@ -42,17 +42,15 @@ final class SuspicionsCop {
     );
   }
 
-	/**
-	 * Must be consistent to {@link SuspicionsApi#suspicions(Model)}
-	 */
-	static ChecklistIcon getChecklistIcon(final Model model)
-	{
-		for(final Type<?> t : model.getTypes())
-			for(final Feature f : t.getDeclaredFeatures())
-				if(!f.getSuspicions().isEmpty())
-					return ChecklistIcon.error;
-		return ChecklistIcon.empty;
-	}
+  /**
+   * Must be consistent to {@link SuspicionsApi#suspicions(Model)}
+   */
+  static ChecklistIcon getChecklistIcon(final Model model) {
+    for (final Type<?> t : model.getTypes())
+      for (final Feature f : t.getDeclaredFeatures())
+        if (!f.getSuspicions().isEmpty()) return ChecklistIcon.error;
+    return ChecklistIcon.empty;
+  }
 
   private SuspicionsCop() {
     // prevent instantiation
