@@ -18,28 +18,18 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.Console_Jspm.writeJsComponentMountPoint;
+import com.exedio.cope.console.ConsoleCop.Args;
+import java.util.List;
 
-final class SchemaNewCop extends ConsoleCop<Void> {
+final class SchemaNewCop {
 
   static final String TAB = "schemaNew";
 
-  SchemaNewCop(final Args args) {
-    super(TAB, "Schema", args);
+  static JsCop newCop(final Args args) {
+    return new JsCop(TAB, "schema", "Schema", args, List.of(), null);
   }
 
-  @Override
-  protected SchemaNewCop newArgs(final Args args) {
-    return new SchemaNewCop(args);
-  }
-
-  @Override
-  boolean hasJsComponent() {
-    return true;
-  }
-
-  @Override
-  void writeBody(final Out out) {
-    writeJsComponentMountPoint(out, "schema");
+  private SchemaNewCop() {
+    // prevent instantiation
   }
 }

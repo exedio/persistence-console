@@ -123,7 +123,7 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	private static final String NAME_POSTFIX = ".html";
-	private static final String[] EMPTY_STRING_ARRAY = new String[0];
+	static final String[] EMPTY_STRING_ARRAY = new String[0];
 	final String name;
 	final Args args;
 	final App app;
@@ -251,9 +251,9 @@ abstract class ConsoleCop<S> extends Cop
 					new EnumsCop(args),
 					new HiddenCop(args),
 					new DataFieldCop(args),
-					new SuspicionsCop(args),
+					SuspicionsCop.newCop(args),
 					new SerializationCheckCop(args),
-					new HashCop(args),
+					HashCop.newCop(args),
 				},
 				new ConsoleCop<?>[]{
 					new ChecklistsCop(args),
@@ -372,7 +372,7 @@ abstract class ConsoleCop<S> extends Cop
 			case SchemaCop.TAB:
 				return SchemaCop.getSchemaCop(args, request);
 			case SchemaNewCop.TAB:
-				return new SchemaNewCop(args);
+				return SchemaNewCop.newCop(args);
 			case SavepointCop.TAB:
 				return new SavepointCop(args);
 			case UnsupportedConstraintCop.TAB:
@@ -430,7 +430,7 @@ abstract class ConsoleCop<S> extends Cop
 			case SequenceCop.TAB:
 				return new SequenceCop(args, new TestCop.TestArgs(request));
 			case SuspicionsCop.TAB:
-				return new SuspicionsCop(args);
+				return SuspicionsCop.newCop(args);
 			case SerializationCheckCop.TAB:
 				return new SerializationCheckCop(args);
 			case DataFieldCop.TAB:
@@ -468,7 +468,7 @@ abstract class ConsoleCop<S> extends Cop
 			case EnvironmentCop.TAB:
 				return new EnvironmentCop(args);
 			case HashCop.TAB:
-				return new HashCop(args);
+				return HashCop.newCop(args);
 			case HiddenCop.TAB:
 				return new HiddenCop(args);
 			case ChangeListenerCop.TAB:

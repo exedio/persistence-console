@@ -18,32 +18,18 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.Console_Jspm.writeJsComponentMountPoint;
+import com.exedio.cope.console.ConsoleCop.Args;
+import java.util.List;
 
-final class HashCop extends ConsoleCop<Void>
-{
-	static final String TAB = "hash";
+final class HashCop {
 
-	HashCop(final Args args)
-	{
-		super(TAB, "Hashes", args);
-	}
+  static final String TAB = "hash";
 
-	@Override
-	protected HashCop newArgs(final Args args)
-	{
-		return new HashCop(args);
-	}
+  static JsCop newCop(final Args args) {
+    return new JsCop(TAB, "hashes", "Hashes", args, List.of(), null);
+  }
 
-	@Override
-	boolean hasJsComponent()
-	{
-		return true;
-	}
-
-	@Override
-	void writeBody(final Out out)
-	{
-		writeJsComponentMountPoint(out, "hashes");
-	}
+  private HashCop() {
+    // prevent instantiation
+  }
 }

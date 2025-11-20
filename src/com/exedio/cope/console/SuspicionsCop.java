@@ -18,59 +18,43 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.Console_Jspm.writeJsComponentMountPoint;
-
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
+import com.exedio.cope.console.ConsoleCop.Args;
+import java.util.List;
 
-final class SuspicionsCop extends ConsoleCop<Void>
-{
-	static final String TAB = "defaultToNow";
+final class SuspicionsCop {
 
-	SuspicionsCop(final Args args)
-	{
-		super(TAB, "Suspicions", args);
-	}
+  static final String TAB = "defaultToNow";
 
-	@Override
-	protected SuspicionsCop newArgs(final Args args)
-	{
-		return new SuspicionsCop(args);
-	}
-
-	@Override
-	String[] getHeadingHelp()
-	{
-		return new String[]
-		{
-			"Checks DateFields and DayFields whether their default constants are equal or close to time of model initialization.",
-			"This means, that you probably should have used defaultToNow instead."
-		};
-	}
-
-	@Override
-	boolean hasJsComponent()
-	{
-		return true;
-	}
+  static JsCop newCop(final Args args) {
+    return new JsCop(
+      TAB,
+      "suspicions",
+      "Suspicions",
+      args,
+      List.of(
+        "Checks DateFields and DayFields whether their default constants are equal or close to time of model initialization.",
+        "This means, that you probably should have used defaultToNow instead."
+      ),
+      SuspicionsCop::getChecklistIcon
+    );
+  }
 
 	/**
 	 * Must be consistent to {@link SuspicionsApi#suspicions(Model)}
 	 */
-	@Override
-	ChecklistIcon getChecklistIcon()
+	static ChecklistIcon getChecklistIcon(final Model model)
 	{
-		for(final Type<?> t : app.model.getTypes())
+		for(final Type<?> t : model.getTypes())
 			for(final Feature f : t.getDeclaredFeatures())
 				if(!f.getSuspicions().isEmpty())
 					return ChecklistIcon.error;
 		return ChecklistIcon.empty;
 	}
 
-	@Override
-	void writeBody(final Out out)
-	{
-		writeJsComponentMountPoint(out, "suspicions");
-	}
+  private SuspicionsCop() {
+    // prevent instantiation
+  }
 }
