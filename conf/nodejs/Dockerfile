@@ -1,6 +1,6 @@
 # check=error=true;skip=InvalidDefaultArgInFrom
 ARG NODEJS
-FROM node:${NODEJS}-alpine3.18
+FROM node:${NODEJS}-alpine3.22
 
 # There is no need to install yarn here, because the docker image already contains
 # yarn version 1.22.19:
