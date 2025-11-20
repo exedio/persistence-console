@@ -34,7 +34,7 @@ import java.util.Collection;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-public class SuspicionsCopTest {
+public class SuspicionsApiTest {
 
   @Test
   void testSuspicions() throws IOException {
