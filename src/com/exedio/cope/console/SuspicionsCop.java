@@ -23,9 +23,6 @@ import static com.exedio.cope.console.Console_Jspm.writeJsComponentMountPoint;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 final class SuspicionsCop extends ConsoleCop<Void>
 {
@@ -58,28 +55,9 @@ final class SuspicionsCop extends ConsoleCop<Void>
 		return true;
 	}
 
-	@SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-	static List<SuspicionsResponse> suspicions(final Model model)
-	{
-		ArrayList<SuspicionsResponse> result = null;
-		for(final Type<?> t : model.getTypes())
-			for(final Feature f : t.getDeclaredFeatures())
-			{
-				final Collection<String> suspicions = f.getSuspicions();
-				if(!suspicions.isEmpty())
-				{
-					if(result==null)
-						result = new ArrayList<>();
-
-					result.add(new SuspicionsResponse(
-							t.getID(),
-							f.getName(),
-							List.copyOf(suspicions)));
-				}
-			}
-		return result!=null ? result : List.of();
-	}
-
+	/**
+	 * Must be consistent to {@link SuspicionsApi#suspicions(Model)}
+	 */
 	@Override
 	ChecklistIcon getChecklistIcon()
 	{
@@ -95,10 +73,4 @@ final class SuspicionsCop extends ConsoleCop<Void>
 	{
 		writeJsComponentMountPoint(out, "suspicions");
 	}
-
-	private record SuspicionsResponse(
-			String type,
-			String name,
-			List<String> suspicions)
-	{ }
 }

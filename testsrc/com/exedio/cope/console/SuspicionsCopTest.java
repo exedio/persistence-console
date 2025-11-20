@@ -19,7 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.SuspicionsCop.suspicions;
+import static com.exedio.cope.console.SuspicionsApi.suspicions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
