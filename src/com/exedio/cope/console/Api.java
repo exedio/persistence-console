@@ -76,12 +76,12 @@ final class Api {
       }
       case "hashes" -> {
         requireGet(request);
-        writeJson(HashCop.hashes(model), response);
+        writeJson(HashApi.hashes(model), response);
       }
       case "doHash" -> writeJson(
-        HashCop.doHash(
+        HashApi.doHash(
           model,
-          readJsonPost(HashCop.DoHashRequest.class, request)
+          readJsonPost(HashApi.DoHashRequest.class, request)
         ),
         response
       );
