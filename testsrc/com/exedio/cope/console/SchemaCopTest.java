@@ -33,6 +33,8 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.UniqueConstraint;
+import com.exedio.cope.console.SchemaAnalyzeApi.ColumnResponse;
+import com.exedio.cope.console.SchemaAnalyzeApi.TableResponse;
 import com.exedio.cope.util.Sources;
 import com.exedio.dsmf.Table;
 import java.io.IOException;
@@ -244,8 +246,7 @@ public class SchemaCopTest {
     );
   }
 
-  private static SchemaAnalyzeApi.TableResponse myTypeTable()
-    throws ApiTextException {
+  private static TableResponse myTypeTable() throws ApiTextException {
     return schema(MODEL).tables().get(0);
   }
 
@@ -409,8 +410,7 @@ public class SchemaCopTest {
     );
   }
 
-  private static SchemaAnalyzeApi.ColumnResponse myStringColumn()
-    throws ApiTextException {
+  private static ColumnResponse myStringColumn() throws ApiTextException {
     return myTypeTable().columns().get(1);
   }
 
