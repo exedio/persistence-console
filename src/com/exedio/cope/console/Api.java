@@ -87,7 +87,7 @@ final class Api {
       );
       case "suspicions" -> {
         requireGet(request);
-        writeJson(SuspicionsCop.suspicions(model), response);
+        writeJson(SuspicionsApi.suspicions(model), response);
       }
       case "schema" -> {
         requireGet(request);
