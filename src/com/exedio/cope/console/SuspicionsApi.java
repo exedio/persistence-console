@@ -28,7 +28,7 @@ import java.util.List;
 final class SuspicionsApi {
 
   /**
-   * Must be consistent to {@link SuspicionsCop#getChecklistIcon()}.
+   * Must be consistent to {@link SuspicionsCop#getChecklistIcon(Model)}.
    */
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
   static List<SuspicionsResponse> suspicions(final Model model) {

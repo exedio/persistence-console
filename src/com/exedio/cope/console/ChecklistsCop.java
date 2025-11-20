@@ -70,7 +70,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new MediaTestableCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{ // application
-						new SuspicionsCop(args),
+						SuspicionsCop.newCop(args),
 						new SerializationCheckCop(args),
 				},
 				new ConsoleCop<?>[]{ // operations
@@ -83,7 +83,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 						new ChangeListenerCop(args),
 						new ClusterCop(args),
 						new MediaStatsCop(args, MediaStatsCop.Variant.all),
-						new HashCop(args)
+						HashCop.newCop(args)
 				});
 	}
 }
