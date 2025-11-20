@@ -246,8 +246,7 @@ public class SchemaCopTest {
     );
   }
 
-  private static TableResponse myTypeTable()
-    throws ApiTextException {
+  private static TableResponse myTypeTable() throws ApiTextException {
     return schema(MODEL).tables().get(0);
   }
 
@@ -411,8 +410,7 @@ public class SchemaCopTest {
     );
   }
 
-  private static ColumnResponse myStringColumn()
-    throws ApiTextException {
+  private static ColumnResponse myStringColumn() throws ApiTextException {
     return myTypeTable().columns().get(1);
   }
 
