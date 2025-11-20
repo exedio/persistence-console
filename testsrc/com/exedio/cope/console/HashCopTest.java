@@ -20,8 +20,8 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.readJson;
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.HashCop.doHash;
-import static com.exedio.cope.console.HashCop.hashes;
+import static com.exedio.cope.console.HashApi.doHash;
+import static com.exedio.cope.console.HashApi.hashes;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,7 +31,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
-import com.exedio.cope.console.HashCop.DoHashRequest;
+import com.exedio.cope.console.HashApi.DoHashRequest;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.HashAlgorithm;
 import java.io.IOException;
@@ -152,7 +152,7 @@ public class HashCopTest {
       ApiTextException.class,
       "400 Missing required creator property 'type' (index 0) / " +
       "line: 4, column: 1 / " +
-      "com.exedio.cope.console.HashCop$DoHashRequest[\"type\"]"
+      "com.exedio.cope.console.HashApi$DoHashRequest[\"type\"]"
     );
   }
 
