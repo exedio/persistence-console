@@ -26,7 +26,7 @@ final class SchemaNewCop {
   static final String TAB = "schemaNew";
 
   static JsCop newCop(final Args args) {
-    return new JsCop(TAB, "schema", "Schema", args, List.of(), null);
+    return new JsCop(TAB, "schema", "Schema (experimental)", args, List.of(), null);
   }
 
   private SchemaNewCop() {
