@@ -19,7 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.SchemaNewCop.schema;
+import static com.exedio.cope.console.SchemaAnalyzeApi.schema;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
@@ -244,7 +244,7 @@ public class SchemaCopTest {
     );
   }
 
-  private static SchemaNewCop.TableResponse myTypeTable()
+  private static SchemaAnalyzeApi.TableResponse myTypeTable()
     throws ApiTextException {
     return schema(MODEL).tables().get(0);
   }
@@ -409,7 +409,7 @@ public class SchemaCopTest {
     );
   }
 
-  private static SchemaNewCop.ColumnResponse myStringColumn()
+  private static SchemaAnalyzeApi.ColumnResponse myStringColumn()
     throws ApiTextException {
     return myTypeTable().columns().get(1);
   }
