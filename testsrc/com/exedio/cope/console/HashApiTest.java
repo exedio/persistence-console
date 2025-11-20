@@ -38,7 +38,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-public class HashCopTest {
+public class HashApiTest {
 
   @Test
   void testHashes() throws IOException {
