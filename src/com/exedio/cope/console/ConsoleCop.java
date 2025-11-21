@@ -198,6 +198,7 @@ abstract class ConsoleCop<S> extends Cop
 				},
 				new ConsoleCop<?>[]{
 					new SchemaCop(args),
+					SchemaNewCop.newCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
 					new UnsupportedCheckConstraintByTableCop(args, testArgs),
 					new MultiTableCheckConstraintCop(args, testArgs),

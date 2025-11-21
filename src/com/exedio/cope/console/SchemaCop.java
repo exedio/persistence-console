@@ -67,11 +67,6 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		return new SchemaCop(args, !detailed);
 	}
 
-	JsCop toNew()
-	{
-		return SchemaNewCop.newCop(args);
-	}
-
 	@Override
 	String[] getHeadingHelp()
 	{
