@@ -19,7 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.SchemaAlterApi.alterSchema;
+import static com.exedio.cope.console.SchemaAlterApi.alter;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -51,7 +51,7 @@ public class SchemaAlterApiTest {
       {
         "sql" : "CREATE TABLE \\"MyType\\"(\\"this\\" INTEGER not null,\\"myString\\" VARCHAR(80) not null,\\"myString2\\" VARCHAR(80) not null,\\"myInt\\" INTEGER not null,\\"myTarget\\" INTEGER not null,CONSTRAINT \\"MyType_PK\\" PRIMARY KEY(\\"this\\"),CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0),CONSTRAINT \\"MyType_this_MX\\" CHECK(\\"this\\"<=2147483647),CONSTRAINT \\"MyType_myString_MN\\" CHECK(CHAR_LENGTH(\\"myString\\")>=1),CONSTRAINT \\"MyType_myString_MX\\" CHECK(CHAR_LENGTH(\\"myString\\")<=80),CONSTRAINT \\"MyType_myString2_MN\\" CHECK(CHAR_LENGTH(\\"myString2\\")>=1),CONSTRAINT \\"MyType_myString2_MX\\" CHECK(CHAR_LENGTH(\\"myString2\\")<=80),CONSTRAINT \\"MyType_myInt_MN\\" CHECK(\\"myInt\\">=-2147483648),CONSTRAINT \\"MyType_myInt_MX\\" CHECK(\\"myInt\\"<=2147483647),CONSTRAINT \\"MyType_myTarget_MN\\" CHECK(\\"myTarget\\">=0),CONSTRAINT \\"MyType_myTarget_MX\\" CHECK(\\"myTarget\\"<=2147483647),CONSTRAINT \\"MyType_unique\\" UNIQUE(\\"myString\\",\\"myString2\\"))"
       }""",
-      writeJson(alterSchema(MODEL, request("table", "", "MyType", "add")))
+      writeJson(alter(MODEL, request("table", "", "MyType", "add")))
     );
   }
 
@@ -62,7 +62,7 @@ public class SchemaAlterApiTest {
       {
         "sql" : "DROP TABLE \\"MyType\\""
       }""",
-      writeJson(alterSchema(MODEL, request("table", "", "MyType", "drop")))
+      writeJson(alter(MODEL, request("table", "", "MyType", "drop")))
     );
   }
 
@@ -74,7 +74,7 @@ public class SchemaAlterApiTest {
         "sql" : "ALTER TABLE \\"MyType\\" RENAME TO \\"MyTypeX\\""
       }""",
       writeJson(
-        alterSchema(MODEL, request("table", "", "MyType", "rename", "MyTypeX"))
+        alter(MODEL, request("table", "", "MyType", "rename", "MyTypeX"))
       )
     );
   }
@@ -82,7 +82,7 @@ public class SchemaAlterApiTest {
   @Test
   void testTableAddNotExists() {
     assertFails(
-      () -> alterSchema(MODEL, request("table", "", "MyTypex", "add")),
+      () -> alter(MODEL, request("table", "", "MyTypex", "add")),
       ApiTextException.class,
       "404 table not found within " + MODEL
     );
@@ -95,7 +95,7 @@ public class SchemaAlterApiTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null"
       }""",
-      writeJson(alterSchema(MODEL, request("column", "MyType", "this", "add")))
+      writeJson(alter(MODEL, request("column", "MyType", "this", "add")))
     );
   }
 
@@ -106,7 +106,7 @@ public class SchemaAlterApiTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" DROP COLUMN \\"this\\""
       }""",
-      writeJson(alterSchema(MODEL, request("column", "MyType", "this", "drop")))
+      writeJson(alter(MODEL, request("column", "MyType", "this", "drop")))
     );
   }
 
@@ -118,10 +118,7 @@ public class SchemaAlterApiTest {
         "sql" : "ALTER TABLE \\"MyType\\" ALTER COLUMN \\"this\\" RENAME TO \\"thisX\\""
       }""",
       writeJson(
-        alterSchema(
-          MODEL,
-          request("column", "MyType", "this", "rename", "thisX")
-        )
+        alter(MODEL, request("column", "MyType", "this", "rename", "thisX"))
       )
     );
   }
@@ -133,16 +130,14 @@ public class SchemaAlterApiTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" ALTER \\"this\\" SET DATA TYPE INTEGER not null"
       }""",
-      writeJson(
-        alterSchema(MODEL, request("column", "MyType", "this", "modify"))
-      )
+      writeJson(alter(MODEL, request("column", "MyType", "this", "modify")))
     );
   }
 
   @Test
   void testColumnAddNotExistsTable() {
     assertFails(
-      () -> alterSchema(MODEL, request("column", "MyTypex", "this", "add")),
+      () -> alter(MODEL, request("column", "MyTypex", "this", "add")),
       ApiTextException.class,
       "404 table not found within " + MODEL
     );
@@ -151,7 +146,7 @@ public class SchemaAlterApiTest {
   @Test
   void testColumnAddNotExistsColumn() {
     assertFails(
-      () -> alterSchema(MODEL, request("column", "MyType", "thisx", "add")),
+      () -> alter(MODEL, request("column", "MyType", "thisx", "add")),
       ApiTextException.class,
       "404 column not found within " + MODEL
     );
@@ -165,10 +160,7 @@ public class SchemaAlterApiTest {
         "sql" : "ALTER TABLE \\"MyType\\" ADD CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0)"
       }""",
       writeJson(
-        alterSchema(
-          MODEL,
-          request("constraint", "MyType", "MyType_this_MN", "add")
-        )
+        alter(MODEL, request("constraint", "MyType", "MyType_this_MN", "add"))
       )
     );
   }
@@ -181,10 +173,7 @@ public class SchemaAlterApiTest {
         "sql" : "ALTER TABLE \\"MyType\\" DROP CONSTRAINT \\"MyType_this_MN\\""
       }""",
       writeJson(
-        alterSchema(
-          MODEL,
-          request("constraint", "MyType", "MyType_this_MN", "drop")
-        )
+        alter(MODEL, request("constraint", "MyType", "MyType_this_MN", "drop"))
       )
     );
   }
@@ -193,10 +182,7 @@ public class SchemaAlterApiTest {
   void testConstraintAddNotExistsTable() {
     assertFails(
       () ->
-        alterSchema(
-          MODEL,
-          request("constraint", "MyTypex", "MyType_this_MN", "add")
-        ),
+        alter(MODEL, request("constraint", "MyTypex", "MyType_this_MN", "add")),
       ApiTextException.class,
       "404 table not found within " + MODEL
     );
@@ -206,10 +192,7 @@ public class SchemaAlterApiTest {
   void testConstraintAddNotExistsConstraint() {
     assertFails(
       () ->
-        alterSchema(
-          MODEL,
-          request("constraint", "MyType", "MyType_this_MNx", "add")
-        ),
+        alter(MODEL, request("constraint", "MyType", "MyType_this_MNx", "add")),
       ApiTextException.class,
       "404 constraint not found within " + MODEL
     );
@@ -223,7 +206,7 @@ public class SchemaAlterApiTest {
         "sql" : "CREATE SEQUENCE \\"MyType_myInt_Seq\\" AS INTEGER START WITH 77 INCREMENT BY 1"
       }""",
       writeJson(
-        alterSchema(MODEL, request("sequence", "", "MyType_myInt_Seq", "add"))
+        alter(MODEL, request("sequence", "", "MyType_myInt_Seq", "add"))
       )
     );
   }
@@ -236,7 +219,7 @@ public class SchemaAlterApiTest {
         "sql" : "DROP SEQUENCE \\"MyType_myInt_Seq\\""
       }""",
       writeJson(
-        alterSchema(MODEL, request("sequence", "", "MyType_myInt_Seq", "drop"))
+        alter(MODEL, request("sequence", "", "MyType_myInt_Seq", "drop"))
       )
     );
   }
@@ -244,8 +227,7 @@ public class SchemaAlterApiTest {
   @Test
   void testSequenceAddNotExists() {
     assertFails(
-      () ->
-        alterSchema(MODEL, request("sequence", "", "MyType_myInt_Seqx", "add")),
+      () -> alter(MODEL, request("sequence", "", "MyType_myInt_Seqx", "add")),
       ApiTextException.class,
       "404 sequence not found within " + MODEL
     );
@@ -254,7 +236,7 @@ public class SchemaAlterApiTest {
   @Test
   void testParameterRequired() {
     assertFails(
-      () -> alterSchema(MODEL, request("sequence", "", "", "add")),
+      () -> alter(MODEL, request("sequence", "", "", "add")),
       ApiTextException.class,
       "404 parameter name must be set"
     );

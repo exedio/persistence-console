@@ -33,7 +33,7 @@ import javax.annotation.Nonnull;
 final class HashApi {
 
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-  static List<HashesResponse> hashes(final Model model) {
+  static List<HashesResponse> get(final Model model) {
     final ArrayList<HashesResponse> hashes = new ArrayList<>();
     for (final Type<?> type : model.getTypes())
       for (final Feature f : type.getDeclaredFeatures())
@@ -64,7 +64,7 @@ final class HashApi {
   }
 
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-  static DoHashResponse doHash(final Model model, final DoHashRequest request)
+  static HashResponse hash(final Model model, final HashRequest request)
     throws ApiTextException {
     final HashAlgorithm algorithm = request.get(model).getAlgorithm2();
     final String plainText = request.plainText;
@@ -73,16 +73,16 @@ final class HashApi {
     final String hashResult = algorithm.hash(plainText);
     final long end = System.nanoTime();
 
-    return new DoHashResponse(hashResult, end - start);
+    return new HashResponse(hashResult, end - start);
   }
 
-  record DoHashRequest(
+  record HashRequest(
     @JsonProperty(required = true) String type,
     @JsonProperty(required = true) String name,
     @JsonProperty(required = true) String plainText
   ) {
     @JsonCreator
-    DoHashRequest {}
+    HashRequest {}
 
     @Nonnull
     Hash get(final Model model) throws ApiTextException {
@@ -90,7 +90,7 @@ final class HashApi {
     }
   }
 
-  private record DoHashResponse(String hash, long elapsedNanos) {}
+  private record HashResponse(String hash, long elapsedNanos) {}
 
   private HashApi() {
     // prevent instantiation

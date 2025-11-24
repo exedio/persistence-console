@@ -31,10 +31,10 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-final class SchemaAnalyzeApi {
+final class SchemaGetApi {
 
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-  static SchemaResponse schema(final Model model) throws ApiTextException {
+  static SchemaResponse get(final Model model) throws ApiTextException {
     try {
       return new SchemaResponse(model.getVerifiedSchema());
     } catch (final Model.NotConnectedException e) {
@@ -271,7 +271,7 @@ final class SchemaAnalyzeApi {
     return l.isEmpty() ? null : l;
   }
 
-  private SchemaAnalyzeApi() {
+  private SchemaGetApi() {
     // prevent instantiation
   }
 }

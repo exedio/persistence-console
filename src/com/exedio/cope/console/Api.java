@@ -77,26 +77,23 @@ final class Api {
       }
       case "hashes" -> {
         requireGet(request);
-        writeJson(HashApi.hashes(model), response);
+        writeJson(HashApi.get(model), response);
       }
       case "hashes/hash" -> writeJson(
-        HashApi.doHash(
-          model,
-          readJsonPost(HashApi.DoHashRequest.class, request)
-        ),
+        HashApi.hash(model, readJsonPost(HashApi.HashRequest.class, request)),
         response
       );
       case "schema" -> {
         requireGet(request);
-        writeJson(SchemaAnalyzeApi.schema(model), response);
+        writeJson(SchemaGetApi.get(model), response);
       }
       case "schema/alter" -> {
         requireGet(request);
-        writeJson(SchemaAlterApi.alterSchema(model, request), response);
+        writeJson(SchemaAlterApi.alter(model, request), response);
       }
       case "suspicions" -> {
         requireGet(request);
-        writeJson(SuspicionsApi.suspicions(model), response);
+        writeJson(SuspicionsApi.get(model), response);
       }
       default -> throw ApiTextException.notFound("endpoint not found");
     }
