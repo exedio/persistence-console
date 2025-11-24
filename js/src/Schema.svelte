@@ -36,6 +36,7 @@
       !confirm(confirmMessage + "\nDo you really want to do this?")
     )
       return false;
+
     maintainRunning = true;
     maintainMessage = operation + " started ...";
     post<SchemaMaintainRequest, SchemaMaintainResponse>("schema/maintain", {
