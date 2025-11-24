@@ -110,7 +110,7 @@ describe("Hashes", () => {
       await flushPromises();
       expect(mock).toHaveBeenNthCalledWith(
         1,
-        "/myApiPath/doHash",
+        "/myApiPath/hashes/hash",
         request({
           type: "myType1",
           name: "myName1",
@@ -119,7 +119,7 @@ describe("Hashes", () => {
       );
       expect(mock).toHaveBeenNthCalledWith(
         2,
-        "/myApiPath/doHash",
+        "/myApiPath/hashes/hash",
         request({
           type: "myType2",
           name: "myName2",
@@ -128,7 +128,7 @@ describe("Hashes", () => {
       );
       expect(mock).toHaveBeenNthCalledWith(
         3,
-        "/myApiPath/doHash",
+        "/myApiPath/hashes/hash",
         request({
           type: "myType3",
           name: "myName3",
@@ -157,7 +157,7 @@ describe("Hashes", () => {
       (document.querySelectorAll(".measure").item(2) as HTMLElement).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
-        "/myApiPath/doHash",
+        "/myApiPath/hashes/hash",
         request({
           type: "myType2",
           name: "myName2",
@@ -193,7 +193,7 @@ describe("Hashes", () => {
       ).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
-        "/myApiPath/doHash",
+        "/myApiPath/hashes/hash",
         request({
           type: "myType2",
           name: "myName2",
