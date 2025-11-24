@@ -1061,7 +1061,7 @@ exports[`Schema > should render a missing table 3`] = `
 exports[`Schema > should render a missing table and patch fails 1`] = `
 "<li class="svelte-6n243d">
   <span class="red svelte-6n243d"
-    >alterSchema?subject=table&amp;name=myTable1Name&amp;method=add: response
+    >schema/alter?subject=table&amp;name=myTable1Name&amp;method=add: response
     code 400 myError</span
   ><!---->
 </li>

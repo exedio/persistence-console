@@ -86,7 +86,7 @@
     const cached = patchesCacheByUrl.get(url);
     if (cached) return cached;
 
-    const result = get<AlterSchemaResponse>("alterSchema?" + url);
+    const result = get<AlterSchemaResponse>("schema/alter?" + url);
     patchesCacheByUrl.set(url, result);
     return result;
   }
