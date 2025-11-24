@@ -123,6 +123,8 @@
   }
 </script>
 
+<div class="maintain"></div>
+
 <div class="container">
   <div class="tree">
     {#await schemaT.promise()}
@@ -388,6 +390,10 @@
 {/snippet}
 
 <style>
+  div.maintain {
+    margin-bottom: 20px;
+  }
+
   div.container {
     display: flex;
     flex-direction: row;
