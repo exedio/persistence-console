@@ -38,7 +38,7 @@ final class SchemaGetApi {
     try {
       return new SchemaResponse(model.getVerifiedSchema());
     } catch (final Model.NotConnectedException e) {
-      throw ApiTextException.badRequest(e.getMessage(), e); // TODO should be SC_FORBIDDEN
+      throw ApiTextException.onException(e);
     }
   }
 

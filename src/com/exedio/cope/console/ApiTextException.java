@@ -73,6 +73,10 @@ final class ApiTextException extends Exception {
     return new ApiTextException(SC_BAD_REQUEST, body, e);
   }
 
+  static ApiTextException onException(final Model.NotConnectedException e) {
+    return badRequest(e.getMessage(), e); // TODO should be SC_FORBIDDEN
+  }
+
   private final int status;
 
   @Nonnull
