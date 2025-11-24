@@ -72,7 +72,7 @@ export class Hash {
   }
 
   private doHash(plainText: string): Promise<DoHashResponse> {
-    return post<DoHashRequest, DoHashResponse>("doHash", {
+    return post<DoHashRequest, DoHashResponse>("hashes/hash", {
       type: this.type,
       name: this.name,
       plainText,

@@ -78,7 +78,7 @@ final class Api {
         requireGet(request);
         writeJson(HashApi.hashes(model), response);
       }
-      case "doHash" -> writeJson(
+      case "hashes/hash" -> writeJson(
         HashApi.doHash(
           model,
           readJsonPost(HashApi.DoHashRequest.class, request)
