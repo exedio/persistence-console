@@ -7,11 +7,7 @@ import {
   responseSuccess,
 } from "@t/mockApi";
 import { flushPromises, formatHtml } from "@t/utils";
-import type {
-  HashRequest,
-  HashResponse,
-  Hash as ApiHash,
-} from "@/api/types";
+import type { HashRequest, HashResponse, Hash as ApiHash } from "@/api/types";
 
 describe("Hashes", () => {
   it("should render an empty table", async () => {

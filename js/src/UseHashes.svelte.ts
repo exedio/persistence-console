@@ -1,8 +1,4 @@
-import type {
-  HashRequest,
-  HashResponse,
-  Hash as ApiHash,
-} from "@/api/types";
+import type { HashRequest, HashResponse, Hash as ApiHash } from "@/api/types";
 import { post } from "@/api/api";
 
 export class Hash {
