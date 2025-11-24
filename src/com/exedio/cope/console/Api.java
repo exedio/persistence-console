@@ -69,6 +69,7 @@ final class Api {
     final Model model
   ) throws IOException, ApiTextException {
     switch (endpoint) {
+      // ordered alphabetically
       case "connect" -> {
         requirePost(request);
         servlet.connect();
@@ -85,10 +86,6 @@ final class Api {
         ),
         response
       );
-      case "suspicions" -> {
-        requireGet(request);
-        writeJson(SuspicionsApi.suspicions(model), response);
-      }
       case "schema" -> {
         requireGet(request);
         writeJson(SchemaAnalyzeApi.schema(model), response);
@@ -96,6 +93,10 @@ final class Api {
       case "schema/alter" -> {
         requireGet(request);
         writeJson(SchemaAlterApi.alterSchema(model, request), response);
+      }
+      case "suspicions" -> {
+        requireGet(request);
+        writeJson(SuspicionsApi.suspicions(model), response);
       }
       default -> throw ApiTextException.notFound("endpoint not found");
     }
