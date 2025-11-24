@@ -2,7 +2,7 @@
   import { fly } from "svelte/transition";
   import { get } from "@/api/api";
   import {
-    type AlterSchemaResponse,
+    type SchemaAlterResponse,
     isNotConnected,
     type Schema as ApiSchema,
   } from "@/api/types";
@@ -66,7 +66,7 @@
   type Patch = {
     readonly fix: FixedFixable;
     readonly url: string;
-    readonly promise: Promise<AlterSchemaResponse>;
+    readonly promise: Promise<SchemaAlterResponse>;
   };
 
   const patches: Patch[] = $derived(
@@ -80,13 +80,13 @@
     }),
   );
 
-  const patchesCacheByUrl = new Map<string, Promise<AlterSchemaResponse>>(); // must not be SvelteMap!
+  const patchesCacheByUrl = new Map<string, Promise<SchemaAlterResponse>>(); // must not be SvelteMap!
 
-  function urlToPromise(url: string): Promise<AlterSchemaResponse> {
+  function urlToPromise(url: string): Promise<SchemaAlterResponse> {
     const cached = patchesCacheByUrl.get(url);
     if (cached) return cached;
 
-    const result = get<AlterSchemaResponse>("schema/alter?" + url);
+    const result = get<SchemaAlterResponse>("schema/alter?" + url);
     patchesCacheByUrl.set(url, result);
     return result;
   }

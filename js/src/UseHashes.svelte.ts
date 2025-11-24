@@ -1,6 +1,6 @@
 import type {
-  DoHashRequest,
-  DoHashResponse,
+  HashRequest,
+  HashResponse,
   Hash as ApiHash,
 } from "@/api/types";
 import { post } from "@/api/api";
@@ -71,8 +71,8 @@ export class Hash {
     return this.measurement;
   }
 
-  private doHash(plainText: string): Promise<DoHashResponse> {
-    return post<DoHashRequest, DoHashResponse>("hashes/hash", {
+  private doHash(plainText: string): Promise<HashResponse> {
+    return post<HashRequest, HashResponse>("hashes/hash", {
       type: this.type,
       name: this.name,
       plainText,

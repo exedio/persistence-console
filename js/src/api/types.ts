@@ -69,7 +69,7 @@ export type SchemaExistence = "missing" | "unused" | undefined;
 
 export type SchemaRemainder = readonly string[] | undefined;
 
-export type AlterSchemaResponse = {
+export type SchemaAlterResponse = {
   readonly sql: string;
 };
 
@@ -85,11 +85,11 @@ export type Hash = HashID & {
   readonly algorithmDescription: string;
 };
 
-export type DoHashRequest = HashID & {
+export type HashRequest = HashID & {
   readonly plainText: string;
 };
 
-export type DoHashResponse = {
+export type HashResponse = {
   readonly hash: string;
   readonly elapsedNanos: number;
 };

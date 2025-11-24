@@ -11,7 +11,7 @@ import {
 import { flushPromises, formatHtml } from "@t/utils";
 import { expect } from "vitest";
 import type {
-  AlterSchemaResponse,
+  SchemaAlterResponse,
   ConnectRequest,
   ConnectResponse,
   Schema as ApiSchema,
@@ -1701,7 +1701,7 @@ function tree(): HTMLElement {
 function responseSuccessAlter(sql: string) {
   return responseSuccess({
     sql: sql,
-  } satisfies AlterSchemaResponse);
+  } satisfies SchemaAlterResponse);
 }
 
 function checkbox(index: number = 0): HTMLInputElement {
