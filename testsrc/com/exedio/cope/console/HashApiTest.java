@@ -20,8 +20,8 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.readJson;
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.HashApi.hash;
 import static com.exedio.cope.console.HashApi.get;
+import static com.exedio.cope.console.HashApi.hash;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

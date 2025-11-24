@@ -31,10 +31,8 @@ import java.util.function.Consumer;
 
 final class SchemaAlterApi {
 
-  static Response alter(
-    final Model model,
-    final HttpServletRequest request
-  ) throws ApiTextException {
+  static Response alter(final Model model, final HttpServletRequest request)
+    throws ApiTextException {
     final String subject = requireParameter("subject", request);
     final String name = requireParameter("name", request);
     final String method = requireParameter("method", request);

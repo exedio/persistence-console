@@ -118,10 +118,7 @@ public class SchemaAlterApiTest {
         "sql" : "ALTER TABLE \\"MyType\\" ALTER COLUMN \\"this\\" RENAME TO \\"thisX\\""
       }""",
       writeJson(
-        alter(
-          MODEL,
-          request("column", "MyType", "this", "rename", "thisX")
-        )
+        alter(MODEL, request("column", "MyType", "this", "rename", "thisX"))
       )
     );
   }
@@ -133,9 +130,7 @@ public class SchemaAlterApiTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" ALTER \\"this\\" SET DATA TYPE INTEGER not null"
       }""",
-      writeJson(
-        alter(MODEL, request("column", "MyType", "this", "modify"))
-      )
+      writeJson(alter(MODEL, request("column", "MyType", "this", "modify")))
     );
   }
 
@@ -165,10 +160,7 @@ public class SchemaAlterApiTest {
         "sql" : "ALTER TABLE \\"MyType\\" ADD CONSTRAINT \\"MyType_this_MN\\" CHECK(\\"this\\">=0)"
       }""",
       writeJson(
-        alter(
-          MODEL,
-          request("constraint", "MyType", "MyType_this_MN", "add")
-        )
+        alter(MODEL, request("constraint", "MyType", "MyType_this_MN", "add"))
       )
     );
   }
@@ -181,10 +173,7 @@ public class SchemaAlterApiTest {
         "sql" : "ALTER TABLE \\"MyType\\" DROP CONSTRAINT \\"MyType_this_MN\\""
       }""",
       writeJson(
-        alter(
-          MODEL,
-          request("constraint", "MyType", "MyType_this_MN", "drop")
-        )
+        alter(MODEL, request("constraint", "MyType", "MyType_this_MN", "drop"))
       )
     );
   }
@@ -193,10 +182,7 @@ public class SchemaAlterApiTest {
   void testConstraintAddNotExistsTable() {
     assertFails(
       () ->
-        alter(
-          MODEL,
-          request("constraint", "MyTypex", "MyType_this_MN", "add")
-        ),
+        alter(MODEL, request("constraint", "MyTypex", "MyType_this_MN", "add")),
       ApiTextException.class,
       "404 table not found within " + MODEL
     );
@@ -206,10 +192,7 @@ public class SchemaAlterApiTest {
   void testConstraintAddNotExistsConstraint() {
     assertFails(
       () ->
-        alter(
-          MODEL,
-          request("constraint", "MyType", "MyType_this_MNx", "add")
-        ),
+        alter(MODEL, request("constraint", "MyType", "MyType_this_MNx", "add")),
       ApiTextException.class,
       "404 constraint not found within " + MODEL
     );
@@ -244,8 +227,7 @@ public class SchemaAlterApiTest {
   @Test
   void testSequenceAddNotExists() {
     assertFails(
-      () ->
-        alter(MODEL, request("sequence", "", "MyType_myInt_Seqx", "add")),
+      () -> alter(MODEL, request("sequence", "", "MyType_myInt_Seqx", "add")),
       ApiTextException.class,
       "404 sequence not found within " + MODEL
     );

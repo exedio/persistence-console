@@ -80,10 +80,7 @@ final class Api {
         writeJson(HashApi.get(model), response);
       }
       case "hashes/hash" -> writeJson(
-        HashApi.hash(
-          model,
-          readJsonPost(HashApi.HashRequest.class, request)
-        ),
+        HashApi.hash(model, readJsonPost(HashApi.HashRequest.class, request)),
         response
       );
       case "schema" -> {
