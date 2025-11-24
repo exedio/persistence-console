@@ -1,5 +1,28 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Schema > should maintain a schema 1`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button>
+<button>delete</button>
+<!---->
+"
+`;
+
+exports[`Schema > should maintain a schema 2`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button>
+<button>delete</button>
+<div>create succeeded after 1.234567ms</div>
+<!---->
+"
+`;
+
+exports[`Schema > should maintain a schema 3`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button>
+<button>delete</button>
+<div>create failed: schema/maintain: response code 400 myError</div>
+<!---->
+"
+`;
+
 exports[`Schema > should render a column with a remaining error 1`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->

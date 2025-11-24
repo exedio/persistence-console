@@ -26,11 +26,13 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
 
 import com.exedio.cope.Model;
+import com.exedio.dsmf.SQLRuntimeException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serial;
+import java.sql.SQLException;
 import javax.annotation.Nonnull;
 
 final class ApiTextException extends Exception {
@@ -75,6 +77,15 @@ final class ApiTextException extends Exception {
 
   static ApiTextException onException(final Model.NotConnectedException e) {
     return badRequest(e.getMessage(), e); // TODO should be SC_FORBIDDEN
+  }
+
+  static ApiTextException onException(final SQLRuntimeException e) {
+    final Throwable cause = e.getCause();
+    // TODO should be SC_FORBIDDEN
+    return badRequest(
+      (cause instanceof SQLException ? cause : e).getMessage(),
+      e
+    );
   }
 
   private final int status;

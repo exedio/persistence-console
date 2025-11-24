@@ -73,6 +73,14 @@ export type SchemaAlterResponse = {
   readonly sql: string;
 };
 
+export type SchemaMaintainRequest = {
+  readonly operation: "create" | "tearDown" | "drop" | "delete";
+};
+
+export type SchemaMaintainResponse = {
+  readonly elapsedNanos: number;
+};
+
 export type HashID = {
   readonly type: string;
   readonly name: string;

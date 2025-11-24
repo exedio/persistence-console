@@ -91,6 +91,13 @@ final class Api {
         requireGet(request);
         writeJson(SchemaAlterApi.alter(model, request), response);
       }
+      case "schema/maintain" -> writeJson(
+        SchemaMaintainApi.maintain(
+          model,
+          readJsonPost(SchemaMaintainApi.Request.class, request)
+        ),
+        response
+      );
       case "suspicions" -> {
         requireGet(request);
         writeJson(SuspicionsApi.get(model), response);
