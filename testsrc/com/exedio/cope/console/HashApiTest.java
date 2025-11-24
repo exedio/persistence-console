@@ -20,8 +20,8 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.readJson;
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.HashApi.doHash;
-import static com.exedio.cope.console.HashApi.hashes;
+import static com.exedio.cope.console.HashApi.hash;
+import static com.exedio.cope.console.HashApi.get;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,7 +31,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
-import com.exedio.cope.console.HashApi.DoHashRequest;
+import com.exedio.cope.console.HashApi.HashRequest;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.HashAlgorithm;
 import java.io.IOException;
@@ -41,7 +41,7 @@ import org.opentest4j.AssertionFailedError;
 public class HashApiTest {
 
   @Test
-  void testHashes() throws IOException {
+  void testGet() throws IOException {
     assertEquals(
       """
       [ {
@@ -58,14 +58,14 @@ public class HashApiTest {
         "algorithmID" : "myID",
         "algorithmDescription" : "myDescription"
       } ]""",
-      writeJson(hashes(MODEL))
+      writeJson(get(MODEL))
     );
   }
 
   @Test
-  void testDoHash() throws IOException, ApiTextException {
-    final DoHashRequest request = readJson(
-      DoHashRequest.class,
+  void testHash() throws IOException, ApiTextException {
+    final HashRequest request = readJson(
+      HashRequest.class,
       """
       {
         "type": "MyType",
@@ -76,7 +76,7 @@ public class HashApiTest {
     );
     // prettier-ignore
     assertEquals(
-      "DoHashRequest[" +
+      "HashRequest[" +
         "type=MyType, " +
         "name=myName, " +
         "plainText=myPlainText" +
@@ -90,58 +90,58 @@ public class HashApiTest {
         "hash" : "[[myPlainText]]",
         "elapsedNanos" : NNN
       }""",
-      writeJson(doHash(MODEL, request)).replaceAll("[0-9]+", "NNN")
+      writeJson(hash(MODEL, request)).replaceAll("[0-9]+", "NNN")
     );
   }
 
   @Test
-  void testDoHash404Type() {
-    final DoHashRequest request = new DoHashRequest(
+  void testHash404Type() {
+    final HashApi.HashRequest request = new HashRequest(
       "MyTypeX",
       "myNameX",
       "myPlainText"
     );
     assertFails(
-      () -> doHash(MODEL, request),
+      () -> hash(MODEL, request),
       ApiTextException.class,
       "404 type not found within " + MODEL
     );
   }
 
   @Test
-  void testDoHash404Name() {
-    final DoHashRequest request = new DoHashRequest(
+  void testHash404Name() {
+    final HashRequest request = new HashApi.HashRequest(
       "MyType",
       "myNameX",
       "myPlainText"
     );
     assertFails(
-      () -> doHash(MODEL, request),
+      () -> hash(MODEL, request),
       ApiTextException.class,
       "404 name not found within " + MODEL
     );
   }
 
   @Test
-  void testDoHash404NoHash() {
-    final DoHashRequest request = new DoHashRequest(
+  void testHash404NoHash() {
+    final HashApi.HashRequest request = new HashApi.HashRequest(
       "MyType",
       "noHash",
       "myPlainText"
     );
     assertFails(
-      () -> doHash(MODEL, request),
+      () -> hash(MODEL, request),
       ApiTextException.class,
       "404 name not a com.exedio.cope.pattern.Hash within " + MODEL
     );
   }
 
   @Test
-  void testDoHashNoType() {
+  void testHashNoType() {
     assertFails(
       () ->
         readJson(
-          DoHashRequest.class,
+          HashApi.HashRequest.class,
           """
           {
             "name": "myName",
@@ -152,7 +152,7 @@ public class HashApiTest {
       ApiTextException.class,
       "400 Missing required creator property 'type' (index 0) / " +
       "line: 4, column: 1 / " +
-      "com.exedio.cope.console.HashApi$DoHashRequest[\"type\"]"
+      "com.exedio.cope.console.HashApi$HashRequest[\"type\"]"
     );
   }
 

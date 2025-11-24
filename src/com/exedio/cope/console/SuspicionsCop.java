@@ -43,7 +43,7 @@ final class SuspicionsCop {
   }
 
   /**
-   * Must be consistent to {@link SuspicionsApi#suspicions(Model)}
+   * Must be consistent to {@link SuspicionsApi#get(Model)}
    */
   static ChecklistIcon getChecklistIcon(final Model model) {
     for (final Type<?> t : model.getTypes())

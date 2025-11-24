@@ -19,7 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.SchemaAnalyzeApi.schema;
+import static com.exedio.cope.console.SchemaGetApi.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
@@ -33,8 +33,8 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.UniqueConstraint;
-import com.exedio.cope.console.SchemaAnalyzeApi.ColumnResponse;
-import com.exedio.cope.console.SchemaAnalyzeApi.TableResponse;
+import com.exedio.cope.console.SchemaGetApi.ColumnResponse;
+import com.exedio.cope.console.SchemaGetApi.TableResponse;
 import com.exedio.cope.util.Sources;
 import com.exedio.dsmf.Table;
 import java.io.IOException;
@@ -47,10 +47,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class SchemaAnalyzeApiTest {
+public class SchemaGetApiTest {
 
   @Test
-  void testSchema() throws IOException, ApiTextException {
+  void testOk() throws IOException, ApiTextException {
     assertEquals(
       """
       {
@@ -154,7 +154,7 @@ public class SchemaAnalyzeApiTest {
           "start" : 77
         } ]
       }""",
-      writeJson(schema(MODEL))
+      writeJson(get(MODEL))
     );
   }
 
@@ -247,7 +247,7 @@ public class SchemaAnalyzeApiTest {
   }
 
   private static TableResponse myTypeTable() throws ApiTextException {
-    return schema(MODEL).tables().get(0);
+    return get(MODEL).tables().get(0);
   }
 
   @Test
@@ -332,7 +332,7 @@ public class SchemaAnalyzeApiTest {
           "clause" : "(\\"myString\\",\\"myString2\\")"
         } ]
       }""",
-      writeJson(schema(MODEL).tables().get(2))
+      writeJson(get(MODEL).tables().get(2))
     );
   }
 
@@ -741,7 +741,7 @@ public class SchemaAnalyzeApiTest {
   }
 
   private static Object myIntSequence() throws ApiTextException {
-    return schema(MODEL).sequences().get(0);
+    return get(MODEL).sequences().get(0);
   }
 
   @Test
@@ -759,7 +759,7 @@ public class SchemaAnalyzeApiTest {
           "existence" : "unused"
         }
       }""",
-      writeJson(schema(MODEL).sequences().get(1))
+      writeJson(get(MODEL).sequences().get(1))
     );
   }
 

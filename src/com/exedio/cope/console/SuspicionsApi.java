@@ -31,7 +31,7 @@ final class SuspicionsApi {
    * Must be consistent to {@link SuspicionsCop#getChecklistIcon(Model)}.
    */
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-  static List<SuspicionsResponse> suspicions(final Model model) {
+  static List<SuspicionsResponse> get(final Model model) {
     ArrayList<SuspicionsResponse> result = null;
     for (final Type<?> t : model.getTypes())
       for (final Feature f : t.getDeclaredFeatures()) {

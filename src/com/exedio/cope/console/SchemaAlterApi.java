@@ -31,7 +31,7 @@ import java.util.function.Consumer;
 
 final class SchemaAlterApi {
 
-  static Response alterSchema(
+  static Response alter(
     final Model model,
     final HttpServletRequest request
   ) throws ApiTextException {

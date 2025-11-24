@@ -19,7 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.SuspicionsApi.suspicions;
+import static com.exedio.cope.console.SuspicionsApi.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 public class SuspicionsApiTest {
 
   @Test
-  void testSuspicions() throws IOException {
+  void testGet() throws IOException {
     assertEquals(
       """
       [ {
@@ -49,7 +49,7 @@ public class SuspicionsApiTest {
         "name" : "myOnly",
         "suspicions" : [ "Only example suspicion" ]
       } ]""",
-      writeJson(suspicions(MODEL))
+      writeJson(get(MODEL))
     );
   }
 
@@ -97,8 +97,8 @@ public class SuspicionsApiTest {
   private static final Model MODEL = new Model(MyType.TYPE);
 
   @Test
-  void testSuspicionsEmpty() throws IOException {
-    assertEquals("[ ]", writeJson(suspicions(MODEL_EMPTY)));
+  void testGetEmpty() throws IOException {
+    assertEquals("[ ]", writeJson(get(MODEL_EMPTY)));
   }
 
   private static final class MyTypeEmpty extends Item {
