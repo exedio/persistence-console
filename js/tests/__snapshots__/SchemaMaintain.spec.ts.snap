@@ -1,40 +1,84 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Schema Maintain > should create 2`] = `
-"<button>create</button> <button>tear down</button> <button>drop</button>
-<button>delete</button>
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
 <div>create succeeded after 123ms</div>
 <!---->
 "
 `;
 
 exports[`Schema Maintain > should create and fail 2`] = `
-"<button>create</button> <button>tear down</button> <button>drop</button>
-<button>delete</button>
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
 <div>create failed: schema/maintain: response code 400 myError</div>
 <!---->
 "
 `;
 
 exports[`Schema Maintain > should delete 2`] = `
-"<button>create</button> <button>tear down</button> <button>drop</button>
-<button>delete</button>
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
 <div>delete succeeded after 123ms</div>
 <!---->
 "
 `;
 
+exports[`Schema Maintain > should drop & create 2`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
+<div>drop succeeded after 123ms, create succeeded after 235ms</div>
+<!---->
+"
+`;
+
+exports[`Schema Maintain > should drop & create and fail 2`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
+<div>drop failed: schema/maintain: response code 400 myError</div>
+<!---->
+"
+`;
+
+exports[`Schema Maintain > should drop & create and fail on create 2`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
+<div>
+  drop succeeded after 123ms, create failed: schema/maintain: response code 400
+  myError
+</div>
+<!---->
+"
+`;
+
 exports[`Schema Maintain > should drop 2`] = `
-"<button>create</button> <button>tear down</button> <button>drop</button>
-<button>delete</button>
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
 <div>drop succeeded after 123ms</div>
 <!---->
 "
 `;
 
+exports[`Schema Maintain > should tear down & create 2`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
+<div>tearDown succeeded after 123ms, create succeeded after 235ms</div>
+<!---->
+"
+`;
+
 exports[`Schema Maintain > should tear down 2`] = `
-"<button>create</button> <button>tear down</button> <button>drop</button>
-<button>delete</button>
+"<button>create</button> <button>tear down</button> <button>drop</button> &nbsp;
+<button>tear down &amp; create</button>
+<button>drop &amp; create</button> &nbsp; <button>delete</button>
 <div>tearDown succeeded after 123ms</div>
 <!---->
 "

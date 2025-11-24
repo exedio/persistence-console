@@ -29,19 +29,41 @@
   import { useWithStoreSingle } from "@/utils";
   import { successMessage } from "@/UseSchemaMaintain";
 
-  function maintain(operation: SchemaMaintainOperation): boolean {
+  function maintain(
+    operation: SchemaMaintainOperation,
+    create: boolean = false,
+  ): boolean {
     const confirmMessage = maintainConfirmMessage(operation);
     if (
       confirmMessage &&
-      !confirm(confirmMessage + "\nDo you really want to do this?")
+      !confirm(
+        confirmMessage +
+          "\nDo you really want to do this?" +
+          (create ? "\nAfterwards all tables will be recreated." : ""),
+      )
     )
       return false;
 
     maintainRunning = true;
     maintainMessage = operation + " started ...";
+    maintainCreateMessage = undefined;
     maintainPost(operation)
       .then((r) => {
         maintainMessage = successMessage(operation, r);
+
+        if (!create) {
+          return Promise.resolve();
+        } else {
+          maintainCreateMessage = "create started ...";
+
+          return maintainPost("create")
+            .then((r2) => {
+              maintainCreateMessage = successMessage("create", r2);
+            })
+            .catch((e2) => {
+              maintainCreateMessage = "create failed: " + e2.message;
+            });
+        }
       })
       .catch((e) => {
         maintainMessage = operation + " failed: " + e.message;
@@ -76,6 +98,7 @@
 
   let maintainRunning: boolean = $state(false);
   let maintainMessage: string | undefined = $state(undefined);
+  let maintainCreateMessage: string | undefined = $state(undefined);
 
   const schemaStore = new Map<string, Schema>();
 
@@ -185,11 +208,23 @@
   <button disabled={maintainRunning} onclick={() => maintain("drop")}
     >drop</button
   >
+  &nbsp;
+  <button disabled={maintainRunning} onclick={() => maintain("tearDown", true)}
+    >tear down & create</button
+  >
+  <button disabled={maintainRunning} onclick={() => maintain("drop", true)}
+    >drop & create</button
+  >
+  &nbsp;
   <button disabled={maintainRunning} onclick={() => maintain("delete")}
     >delete</button
   >
   {#if maintainMessage}
-    <div>{maintainMessage}</div>
+    <div>
+      {maintainMessage}{maintainCreateMessage
+        ? ", " + maintainCreateMessage
+        : ""}
+    </div>
   {/if}
 </div>
 
