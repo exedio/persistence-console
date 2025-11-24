@@ -93,7 +93,7 @@ final class Api {
         requireGet(request);
         writeJson(SchemaAnalyzeApi.schema(model), response);
       }
-      case "alterSchema" -> {
+      case "schema/alter" -> {
         requireGet(request);
         writeJson(SchemaAlterApi.alterSchema(model, request), response);
       }
