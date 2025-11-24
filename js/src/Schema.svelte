@@ -29,8 +29,8 @@
 
   function maintain(
     operation: "create" | "tearDown" | "drop" | "delete",
-    confirmMessage: string | undefined,
   ): boolean {
+    const confirmMessage = maintainConfirmMessage(operation);
     if (
       confirmMessage &&
       !confirm(confirmMessage + "\nDo you really want to do this?")
@@ -51,6 +51,21 @@
       })
       .finally(() => (maintainRunning = false));
     return true;
+  }
+
+  function maintainConfirmMessage(
+    operation: "create" | "tearDown" | "drop" | "delete",
+  ) {
+    switch (operation) {
+      case "tearDown":
+        return "This operation will desperately try to drop all your database tables.";
+      case "drop":
+        return "This operation will drop all your database tables.";
+      case "delete":
+        return "This operation will delete the contents of your database tables.";
+      default:
+        return undefined;
+    }
   }
 
   let maintainRunning: boolean = $state(false);
@@ -155,31 +170,17 @@
 </script>
 
 <div class="maintain">
-  <button
-    disabled={maintainRunning}
-    onclick={() => maintain("create", undefined)}>create</button
+  <button disabled={maintainRunning} onclick={() => maintain("create")}
+    >create</button
   >
-  <button
-    disabled={maintainRunning}
-    onclick={() =>
-      maintain(
-        "tearDown",
-        "This operation will desperately try to drop all your database tables.",
-      )}>tear down</button
+  <button disabled={maintainRunning} onclick={() => maintain("tearDown")}
+    >tear down</button
   >
-  <button
-    disabled={maintainRunning}
-    onclick={() =>
-      maintain("drop", "This operation will drop all your database tables.")}
+  <button disabled={maintainRunning} onclick={() => maintain("drop")}
     >drop</button
   >
-  <button
-    disabled={maintainRunning}
-    onclick={() =>
-      maintain(
-        "delete",
-        "This operation will delete the contents of your database tables.",
-      )}>delete</button
+  <button disabled={maintainRunning} onclick={() => maintain("delete")}
+    >delete</button
   >
   {#if maintainMessage}
     <div>{maintainMessage}</div>
