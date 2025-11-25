@@ -8,6 +8,6 @@ export function successMessage(
   response: SchemaMaintainResponse,
 ): string {
   return (
-    operation + " succeeded after " + response.elapsedNanos / 1000000 + "ms"
+    operation + " succeeded after " + Math.round(response.elapsedNanos / 1000000) + "ms"
   );
 }

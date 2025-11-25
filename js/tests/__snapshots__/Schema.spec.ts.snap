@@ -10,7 +10,7 @@ exports[`Schema > should maintain a schema 1`] = `
 exports[`Schema > should maintain a schema 2`] = `
 "<button>create</button> <button>tear down</button> <button>drop</button>
 <button>delete</button>
-<div>create succeeded after 123.456789ms</div>
+<div>create succeeded after 123ms</div>
 <!---->
 "
 `;
