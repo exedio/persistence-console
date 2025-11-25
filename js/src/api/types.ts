@@ -73,8 +73,10 @@ export type SchemaAlterResponse = {
   readonly sql: string;
 };
 
+export type SchemaMaintainOperation = "create" | "tearDown" | "drop" | "delete";
+
 export type SchemaMaintainRequest = {
-  readonly operation: "create" | "tearDown" | "drop" | "delete";
+  readonly operation: SchemaMaintainOperation;
 };
 
 export type SchemaMaintainResponse = {
