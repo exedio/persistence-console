@@ -6,7 +6,11 @@ import {
 } from "@t/mockApi";
 import { flushPromises, formatHtml } from "@t/utils";
 import { expect } from "vitest";
-import type { SchemaMaintainResponse, Schema as ApiSchema } from "@/api/types";
+import type {
+  SchemaMaintainResponse,
+  Schema as ApiSchema,
+  SchemaMaintainRequest,
+} from "@/api/types";
 import { mount } from "svelte";
 import Schema from "@/Schema.svelte";
 
@@ -39,7 +43,7 @@ describe("Schema Maintain", () => {
         "/myApiPath/schema/maintain",
         request({
           operation: "create",
-        }),
+        } satisfies SchemaMaintainRequest),
       );
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
@@ -56,7 +60,7 @@ describe("Schema Maintain", () => {
         "/myApiPath/schema/maintain",
         request({
           operation: "create",
-        }),
+        } satisfies SchemaMaintainRequest),
       );
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
