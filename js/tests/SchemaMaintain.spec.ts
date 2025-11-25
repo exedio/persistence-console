@@ -7,7 +7,8 @@ import {
 import { flushPromises, formatHtml } from "@t/utils";
 import { expect } from "vitest";
 import type { SchemaMaintainResponse, Schema as ApiSchema } from "@/api/types";
-import { mountComponent } from "@t/Schema.spec";
+import { mount } from "svelte";
+import Schema from "@/Schema.svelte";
 
 describe("Schema Maintain", () => {
   it("should create", async () => {
@@ -51,6 +52,11 @@ describe("Schema Maintain", () => {
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
 });
+
+async function mountComponent() {
+  mount(Schema, { target: document.body }); // `document` exists because of jsdom
+  await flushPromises();
+}
 
 function maintain(): HTMLElement {
   return document.querySelectorAll(".maintain").item(0) as HTMLElement;

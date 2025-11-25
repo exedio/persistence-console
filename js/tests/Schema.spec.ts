@@ -1690,7 +1690,7 @@ describe("Schema", () => {
   });
 });
 
-export async function mountComponent() {
+async function mountComponent() {
   mount(Schema, { target: document.body }); // `document` exists because of jsdom
   await flushPromises();
 }
