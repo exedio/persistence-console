@@ -43,6 +43,10 @@ describe("Schema Maintain", () => {
       );
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
+  });
+
+  it("should create and fail", async () => {
+    await prepare();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseFailure("myError"));
