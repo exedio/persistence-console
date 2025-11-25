@@ -26,7 +26,7 @@ async function prepare() {
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
   }
-  expect(await formatHtml(maintain())).toMatchFileSnapshot(
+  await expect(await formatHtml(maintain())).toMatchFileSnapshot(
     "SchemaMaintain-initial.output.html",
   );
 }
@@ -124,7 +124,7 @@ describe("Schema Maintain", () => {
       (document.querySelectorAll("button").item(2) as HTMLInputElement).click();
       await flushPromises();
     }
-    expect(await formatHtml(maintain())).toMatchFileSnapshot(
+    await expect(await formatHtml(maintain())).toMatchFileSnapshot(
       "SchemaMaintain-initial.output.html",
     );
   });
