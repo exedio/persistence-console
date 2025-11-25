@@ -10,20 +10,26 @@ import type { SchemaMaintainResponse, Schema as ApiSchema } from "@/api/types";
 import { mount } from "svelte";
 import Schema from "@/Schema.svelte";
 
+async function prepare() {
+  {
+    const mock = mockFetch();
+    mock.mockResolvedValueOnce(
+      responseSuccess({
+        tables: undefined,
+        sequences: undefined,
+      } satisfies ApiSchema),
+    );
+    await mountComponent();
+    expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+  }
+  expect(await formatHtml(maintain())).toMatchFileSnapshot(
+    "SchemaMaintain-initial.output.html",
+  );
+}
+
 describe("Schema Maintain", () => {
   it("should create", async () => {
-    {
-      const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccess({
-          tables: undefined,
-          sequences: undefined,
-        } satisfies ApiSchema),
-      );
-      await mountComponent();
-      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    }
-    expect(await formatHtml(maintain())).toMatchSnapshot();
+    await prepare();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessMaintain());
