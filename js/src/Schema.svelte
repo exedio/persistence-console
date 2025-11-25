@@ -27,6 +27,7 @@
     type FixedFixable,
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
+  import { successMessage } from "@/UseSchemaMaintain";
 
   function maintain(operation: SchemaMaintainOperation): boolean {
     const confirmMessage = maintainConfirmMessage(operation);
@@ -40,8 +41,7 @@
     maintainMessage = operation + " started ...";
     maintainPost(operation)
       .then((r) => {
-        maintainMessage =
-          operation + " succeeded after " + r.elapsedNanos / 1000000 + "ms";
+        maintainMessage = successMessage(operation, r);
       })
       .catch((e) => {
         maintainMessage = operation + " failed: " + e.message;
