@@ -43,3 +43,7 @@ function isRequest(object: unknown): object is Request {
   if (!object) return false;
   return typeof object === "object" && object.hasOwnProperty("url");
 }
+
+window.confirm = function (message?: string): boolean {
+  assert.fail("window.confirm must be mocked in unit tests: " + message);
+};

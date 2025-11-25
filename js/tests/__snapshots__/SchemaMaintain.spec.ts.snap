@@ -15,3 +15,27 @@ exports[`Schema Maintain > should create and fail 1`] = `
 <!---->
 "
 `;
+
+exports[`Schema Maintain > should delete 1`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button>
+<button>delete</button>
+<div>delete succeeded after 123ms</div>
+<!---->
+"
+`;
+
+exports[`Schema Maintain > should drop 1`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button>
+<button>delete</button>
+<div>drop succeeded after 123ms</div>
+<!---->
+"
+`;
+
+exports[`Schema Maintain > should tear down 1`] = `
+"<button>create</button> <button>tear down</button> <button>drop</button>
+<button>delete</button>
+<div>tearDown succeeded after 123ms</div>
+<!---->
+"
+`;
