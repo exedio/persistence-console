@@ -7,6 +7,7 @@
     type SchemaMaintainRequest,
     type SchemaMaintainResponse,
     type Schema as ApiSchema,
+    type SchemaMaintainOperation,
   } from "@/api/types";
   import {
     Schema,
@@ -27,9 +28,7 @@
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
 
-  function maintain(
-    operation: "create" | "tearDown" | "drop" | "delete",
-  ): boolean {
+  function maintain(operation: SchemaMaintainOperation): boolean {
     const confirmMessage = maintainConfirmMessage(operation);
     if (
       confirmMessage &&
@@ -53,9 +52,7 @@
     return true;
   }
 
-  function maintainConfirmMessage(
-    operation: "create" | "tearDown" | "drop" | "delete",
-  ) {
+  function maintainConfirmMessage(operation: SchemaMaintainOperation) {
     switch (operation) {
       case "tearDown":
         return "This operation will desperately try to drop all your database tables.";
