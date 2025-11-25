@@ -38,9 +38,7 @@
 
     maintainRunning = true;
     maintainMessage = operation + " started ...";
-    post<SchemaMaintainRequest, SchemaMaintainResponse>("schema/maintain", {
-      operation: operation,
-    })
+    maintainPost(operation)
       .then((r) => {
         maintainMessage =
           operation + " succeeded after " + r.elapsedNanos / 1000000 + "ms";
@@ -63,6 +61,17 @@
       default:
         return undefined;
     }
+  }
+
+  function maintainPost(
+    operation: SchemaMaintainOperation,
+  ): Promise<SchemaMaintainResponse> {
+    return post<SchemaMaintainRequest, SchemaMaintainResponse>(
+      "schema/maintain",
+      {
+        operation: operation,
+      },
+    );
   }
 
   let maintainRunning: boolean = $state(false);
