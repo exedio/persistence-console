@@ -19,47 +19,6 @@ import type {
 } from "@/api/types";
 
 describe("Schema", () => {
-  it("should maintain a schema", async () => {
-    {
-      const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccess({
-          tables: undefined,
-          sequences: undefined,
-        } satisfies ApiSchema),
-      );
-      await mountComponent();
-      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
-    }
-    expect(await formatHtml(maintain())).toMatchSnapshot();
-    {
-      const mock = mockFetch();
-      mock.mockResolvedValueOnce(responseSuccessMaintain());
-      (document.querySelectorAll("button").item(0) as HTMLInputElement).click();
-      await flushPromises();
-      expect(mock).toHaveBeenCalledExactlyOnceWith(
-        "/myApiPath/schema/maintain",
-        request({
-          operation: "create",
-        }),
-      );
-    }
-    expect(await formatHtml(maintain())).toMatchSnapshot();
-    {
-      const mock = mockFetch();
-      mock.mockResolvedValueOnce(responseFailure("myError"));
-      (document.querySelectorAll("button").item(0) as HTMLInputElement).click();
-      await flushPromises();
-      expect(mock).toHaveBeenCalledExactlyOnceWith(
-        "/myApiPath/schema/maintain",
-        request({
-          operation: "create",
-        }),
-      );
-    }
-    expect(await formatHtml(maintain())).toMatchSnapshot();
-  });
-
   it("should render an empty schema", async () => {
     {
       const mock = mockFetch();
@@ -1731,23 +1690,13 @@ describe("Schema", () => {
   });
 });
 
-async function mountComponent() {
+export async function mountComponent() {
   mount(Schema, { target: document.body }); // `document` exists because of jsdom
   await flushPromises();
 }
 
-function maintain(): HTMLElement {
-  return document.querySelectorAll(".maintain").item(0) as HTMLElement;
-}
-
 function tree(): HTMLElement {
   return document.querySelectorAll(".tree").item(0) as HTMLElement;
-}
-
-function responseSuccessMaintain() {
-  return responseSuccess({
-    elapsedNanos: 123456789,
-  } satisfies SchemaMaintainResponse);
 }
 
 function responseSuccessAlter(sql: string) {
