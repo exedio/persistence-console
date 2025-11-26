@@ -17,12 +17,7 @@ import Schema from "@/Schema.svelte";
 async function prepare() {
   {
     const mock = mockFetch();
-    mock.mockResolvedValueOnce(
-      responseSuccess({
-        tables: undefined,
-        sequences: undefined,
-      } satisfies ApiSchema),
-    );
+    mock.mockResolvedValueOnce(responseSuccessEmptySchema);
     await mountComponent();
     expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
   }
@@ -283,3 +278,8 @@ function responseSuccessMaintain(elapsedNanos: number = 123456789) {
     elapsedNanos: elapsedNanos,
   } satisfies SchemaMaintainResponse);
 }
+
+const responseSuccessEmptySchema = responseSuccess({
+  tables: undefined,
+  sequences: undefined,
+} satisfies ApiSchema);
