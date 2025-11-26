@@ -5,7 +5,6 @@
     SchemaMaintainRequest as Request,
     SchemaMaintainResponse as Response,
   } from "@/api/types";
-  import { successMessage } from "@/UseSchemaMaintain";
   import { post } from "@/api/api";
 
   const { reloadTracker } = $props<{
@@ -72,6 +71,18 @@
     return post<Request, Response>("schema/maintain", {
       operation: operation,
     });
+  }
+
+  export function successMessage(
+    operation: Operation,
+    response: Response,
+  ): string {
+    return (
+      operation +
+      " succeeded after " +
+      Math.round(response.elapsedNanos / 1000000) +
+      "ms"
+    );
   }
 
   let running: boolean = $state(false);
