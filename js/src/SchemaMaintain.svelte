@@ -1,9 +1,9 @@
 <script lang="ts">
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import type {
-    SchemaMaintainOperation,
-    SchemaMaintainRequest,
-    SchemaMaintainResponse,
+    SchemaMaintainOperation as Operation,
+    SchemaMaintainRequest as Request,
+    SchemaMaintainResponse as Response,
   } from "@/api/types";
   import { successMessage } from "@/UseSchemaMaintain";
   import { post } from "@/api/api";
@@ -13,7 +13,7 @@
   }>();
 
   function onClick(
-    operation: SchemaMaintainOperation,
+    operation: Operation,
     create: boolean = false,
   ): boolean {
     const confirmMessage = getConfirmMessage(operation);
@@ -58,7 +58,7 @@
     return true;
   }
 
-  function getConfirmMessage(operation: SchemaMaintainOperation) {
+  function getConfirmMessage(operation: Operation) {
     switch (operation) {
       case "tearDown":
         return "This operation will desperately try to drop all your database tables.";
@@ -72,9 +72,9 @@
   }
 
   function doPost(
-    operation: SchemaMaintainOperation,
-  ): Promise<SchemaMaintainResponse> {
-    return post<SchemaMaintainRequest, SchemaMaintainResponse>(
+    operation: Operation,
+  ): Promise<Response> {
+    return post<Request, Response>(
       "schema/maintain",
       {
         operation: operation,
