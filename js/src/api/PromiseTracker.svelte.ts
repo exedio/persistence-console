@@ -23,9 +23,9 @@ export class PromiseTracker<E> {
     return this._last;
   }
 
-  reload(): void {
+  reload(): Promise<void> {
     this._pending = true;
-    this.factory()
+    return this.factory()
       .then((e) => {
         this._promise = Promise.resolve(e);
         this._last = e;
