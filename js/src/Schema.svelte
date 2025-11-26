@@ -68,7 +68,10 @@
       .catch((e) => {
         maintainMessage = operation + " failed: " + e.message;
       })
-      .finally(() => (maintainRunning = false));
+      .finally(() => {
+        maintainRunning = false;
+        if (operation !== "delete") return schemaT.reload();
+      });
     return true;
   }
 

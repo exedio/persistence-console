@@ -32,14 +32,18 @@ describe("Schema Maintain", () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessMaintain());
+      mock.mockResolvedValueOnce(responseSuccessEmptySchema);
       (document.querySelectorAll("button").item(0) as HTMLInputElement).click();
       await flushPromises();
-      expect(mock).toHaveBeenCalledExactlyOnceWith(
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
         "/myApiPath/schema/maintain",
         request({
           operation: "create",
         } satisfies SchemaMaintainRequest),
       );
+      expect(mock).toHaveBeenNthCalledWith(2, "/myApiPath/schema");
+      expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
@@ -49,14 +53,18 @@ describe("Schema Maintain", () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseFailure("myError"));
+      mock.mockResolvedValueOnce(responseSuccessEmptySchema);
       (document.querySelectorAll("button").item(0) as HTMLInputElement).click();
       await flushPromises();
-      expect(mock).toHaveBeenCalledExactlyOnceWith(
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
         "/myApiPath/schema/maintain",
         request({
           operation: "create",
         } satisfies SchemaMaintainRequest),
       );
+      expect(mock).toHaveBeenNthCalledWith(2, "/myApiPath/schema");
+      expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
@@ -66,6 +74,7 @@ describe("Schema Maintain", () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessMaintain());
+      mock.mockResolvedValueOnce(responseSuccessEmptySchema);
       window.confirm = function (message?: string): boolean {
         expect(message).toBe(
           "This operation will desperately try to drop all your database tables.\nDo you really want to do this?",
@@ -74,12 +83,15 @@ describe("Schema Maintain", () => {
       };
       (document.querySelectorAll("button").item(1) as HTMLInputElement).click();
       await flushPromises();
-      expect(mock).toHaveBeenCalledExactlyOnceWith(
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
         "/myApiPath/schema/maintain",
         request({
           operation: "tearDown",
         } satisfies SchemaMaintainRequest),
       );
+      expect(mock).toHaveBeenNthCalledWith(2, "/myApiPath/schema");
+      expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
@@ -89,6 +101,7 @@ describe("Schema Maintain", () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessMaintain());
+      mock.mockResolvedValueOnce(responseSuccessEmptySchema);
       window.confirm = function (message?: string): boolean {
         expect(message).toBe(
           "This operation will drop all your database tables.\nDo you really want to do this?",
@@ -97,12 +110,15 @@ describe("Schema Maintain", () => {
       };
       (document.querySelectorAll("button").item(2) as HTMLInputElement).click();
       await flushPromises();
-      expect(mock).toHaveBeenCalledExactlyOnceWith(
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
         "/myApiPath/schema/maintain",
         request({
           operation: "drop",
         } satisfies SchemaMaintainRequest),
       );
+      expect(mock).toHaveBeenNthCalledWith(2, "/myApiPath/schema");
+      expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
@@ -130,6 +146,7 @@ describe("Schema Maintain", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessMaintain());
       mock.mockResolvedValueOnce(responseSuccessMaintain(234567891));
+      mock.mockResolvedValueOnce(responseSuccessEmptySchema);
       window.confirm = function (message?: string): boolean {
         expect(message).toBe(
           "This operation will desperately try to drop all your database tables.\nDo you really want to do this?\nAfterwards all tables will be recreated.",
@@ -152,7 +169,8 @@ describe("Schema Maintain", () => {
           operation: "create",
         } satisfies SchemaMaintainRequest),
       );
-      expect(mock).toHaveBeenCalledTimes(2);
+      expect(mock).toHaveBeenNthCalledWith(3, "/myApiPath/schema");
+      expect(mock).toHaveBeenCalledTimes(3);
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
@@ -163,6 +181,7 @@ describe("Schema Maintain", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessMaintain());
       mock.mockResolvedValueOnce(responseSuccessMaintain(234567891));
+      mock.mockResolvedValueOnce(responseSuccessEmptySchema);
       window.confirm = function (message?: string): boolean {
         expect(message).toBe(
           "This operation will drop all your database tables.\nDo you really want to do this?\nAfterwards all tables will be recreated.",
@@ -185,7 +204,8 @@ describe("Schema Maintain", () => {
           operation: "create",
         } satisfies SchemaMaintainRequest),
       );
-      expect(mock).toHaveBeenCalledTimes(2);
+      expect(mock).toHaveBeenNthCalledWith(3, "/myApiPath/schema");
+      expect(mock).toHaveBeenCalledTimes(3);
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
@@ -195,17 +215,21 @@ describe("Schema Maintain", () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseFailure("myError"));
+      mock.mockResolvedValueOnce(responseSuccessEmptySchema);
       window.confirm = function (message?: string): boolean {
         return true;
       };
       (document.querySelectorAll("button").item(4) as HTMLInputElement).click();
       await flushPromises();
-      expect(mock).toHaveBeenCalledExactlyOnceWith(
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
         "/myApiPath/schema/maintain",
         request({
           operation: "drop",
         } satisfies SchemaMaintainRequest),
       );
+      expect(mock).toHaveBeenNthCalledWith(2, "/myApiPath/schema");
+      expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
@@ -216,6 +240,7 @@ describe("Schema Maintain", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessMaintain());
       mock.mockResolvedValueOnce(responseFailure("myError"));
+      mock.mockResolvedValueOnce(responseSuccessEmptySchema);
       window.confirm = function (message?: string): boolean {
         return true;
       };
@@ -235,7 +260,8 @@ describe("Schema Maintain", () => {
           operation: "create",
         } satisfies SchemaMaintainRequest),
       );
-      expect(mock).toHaveBeenCalledTimes(2);
+      expect(mock).toHaveBeenNthCalledWith(3, "/myApiPath/schema");
+      expect(mock).toHaveBeenCalledTimes(3);
     }
     expect(await formatHtml(maintain())).toMatchSnapshot();
   });
