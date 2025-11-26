@@ -12,11 +12,11 @@
     reloadTracker: PromiseTracker<unknown>;
   }>();
 
-  function maintain(
+  function onClick(
     operation: SchemaMaintainOperation,
     create: boolean = false,
   ): boolean {
-    const confirmMessage = maintainConfirmMessage(operation);
+    const confirmMessage = getConfirmMessage(operation);
     if (
       confirmMessage &&
       !confirm(
@@ -27,38 +27,38 @@
     )
       return false;
 
-    maintainRunning = true;
-    maintainMessage = operation + " started ...";
-    maintainCreateMessage = undefined;
-    maintainPost(operation)
+    running = true;
+    message = operation + " started ...";
+    createMessage = undefined;
+    doPost(operation)
       .then((r) => {
-        maintainMessage = successMessage(operation, r);
+        message = successMessage(operation, r);
 
         if (!create) {
           return Promise.resolve();
         } else {
-          maintainCreateMessage = "create started ...";
+          createMessage = "create started ...";
 
-          return maintainPost("create")
+          return doPost("create")
             .then((r2) => {
-              maintainCreateMessage = successMessage("create", r2);
+              createMessage = successMessage("create", r2);
             })
             .catch((e2) => {
-              maintainCreateMessage = "create failed: " + e2.message;
+              createMessage = "create failed: " + e2.message;
             });
         }
       })
       .catch((e) => {
-        maintainMessage = operation + " failed: " + e.message;
+        message = operation + " failed: " + e.message;
       })
       .finally(() => {
-        maintainRunning = false;
+        running = false;
         if (operation !== "delete") return reloadTracker.reload();
       });
     return true;
   }
 
-  function maintainConfirmMessage(operation: SchemaMaintainOperation) {
+  function getConfirmMessage(operation: SchemaMaintainOperation) {
     switch (operation) {
       case "tearDown":
         return "This operation will desperately try to drop all your database tables.";
@@ -71,7 +71,7 @@
     }
   }
 
-  function maintainPost(
+  function doPost(
     operation: SchemaMaintainOperation,
   ): Promise<SchemaMaintainResponse> {
     return post<SchemaMaintainRequest, SchemaMaintainResponse>(
@@ -82,32 +82,32 @@
     );
   }
 
-  let maintainRunning: boolean = $state(false);
-  let maintainMessage: string | undefined = $state(undefined);
-  let maintainCreateMessage: string | undefined = $state(undefined);
+  let running: boolean = $state(false);
+  let message: string | undefined = $state(undefined);
+  let createMessage: string | undefined = $state(undefined);
 </script>
 
-<button disabled={maintainRunning} onclick={() => maintain("create")}
+<button disabled={running} onclick={() => onClick("create")}
   >create</button
 >
-<button disabled={maintainRunning} onclick={() => maintain("tearDown")}
+<button disabled={running} onclick={() => onClick("tearDown")}
   >tear down</button
 >
-<button disabled={maintainRunning} onclick={() => maintain("drop")}>drop</button
+<button disabled={running} onclick={() => onClick("drop")}>drop</button
 >
 &nbsp;
-<button disabled={maintainRunning} onclick={() => maintain("tearDown", true)}
+<button disabled={running} onclick={() => onClick("tearDown", true)}
   >tear down & create</button
 >
-<button disabled={maintainRunning} onclick={() => maintain("drop", true)}
+<button disabled={running} onclick={() => onClick("drop", true)}
   >drop & create</button
 >
 &nbsp;
-<button disabled={maintainRunning} onclick={() => maintain("delete")}
+<button disabled={running} onclick={() => onClick("delete")}
   >delete</button
 >
-{#if maintainMessage}
+{#if message}
   <div>
-    {maintainMessage}{maintainCreateMessage ? ", " + maintainCreateMessage : ""}
+    {message}{createMessage ? ", " + createMessage : ""}
   </div>
 {/if}
