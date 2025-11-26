@@ -12,10 +12,7 @@
     reloadTracker: PromiseTracker<unknown>;
   }>();
 
-  function onClick(
-    operation: Operation,
-    create: boolean = false,
-  ): boolean {
+  function onClick(operation: Operation, create: boolean = false): boolean {
     const confirmMessage = getConfirmMessage(operation);
     if (
       confirmMessage &&
@@ -71,15 +68,10 @@
     }
   }
 
-  function doPost(
-    operation: Operation,
-  ): Promise<Response> {
-    return post<Request, Response>(
-      "schema/maintain",
-      {
-        operation: operation,
-      },
-    );
+  function doPost(operation: Operation): Promise<Response> {
+    return post<Request, Response>("schema/maintain", {
+      operation: operation,
+    });
   }
 
   let running: boolean = $state(false);
