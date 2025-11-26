@@ -87,14 +87,10 @@
   let createMessage: string | undefined = $state(undefined);
 </script>
 
-<button disabled={running} onclick={() => onClick("create")}
-  >create</button
+<button disabled={running} onclick={() => onClick("create")}>create</button>
+<button disabled={running} onclick={() => onClick("tearDown")}>tear down</button
 >
-<button disabled={running} onclick={() => onClick("tearDown")}
-  >tear down</button
->
-<button disabled={running} onclick={() => onClick("drop")}>drop</button
->
+<button disabled={running} onclick={() => onClick("drop")}>drop</button>
 &nbsp;
 <button disabled={running} onclick={() => onClick("tearDown", true)}
   >tear down & create</button
@@ -103,9 +99,7 @@
   >drop & create</button
 >
 &nbsp;
-<button disabled={running} onclick={() => onClick("delete")}
-  >delete</button
->
+<button disabled={running} onclick={() => onClick("delete")}>delete</button>
 {#if message}
   <div>
     {message}{createMessage ? ", " + createMessage : ""}
