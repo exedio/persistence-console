@@ -1,5 +1,8 @@
 <div class="checkboxCollector svelte">
-  <button disabled="" class="bullet redFixed svelte">&nbsp;</button> Schema
+  <label class="bullet redFixed svelte"
+    ><input type="checkbox" class="svelte" disabled="" />&nbsp;</label
+  >
+  Schema
   <label class="checkbox-as-button svelte" title="show all tables / sequences"
     ><input type="checkbox" class="svelte" /><span class="svelte"
       >∀</span
@@ -13,7 +16,10 @@
 </div>
 <ul>
   <li class="node svelte">
-    <button class="bullet redFixed svelte">-</button> ExpandedTable
+    <label class="bullet redFixed svelte"
+      ><input type="checkbox" class="svelte" />-</label
+    >
+    ExpandedTable
     <label class="checkbox-as-button svelte" title="show all columns"
       ><input type="checkbox" class="svelte" /><span class="svelte"
         >∀</span
@@ -21,8 +27,10 @@
     >
     <ul class="svelte">
       <li class="node svelte">
-        <button class="bullet redFixed svelte">-</button> expandedColumn
-        expandedColumnTypeChange<button
+        <label class="bullet redFixed svelte"
+          ><input type="checkbox" class="svelte" />-</label
+        >
+        expandedColumn expandedColumnTypeChange<button
           class="clipboard svelte"
           title="expandedColumnTypeChange"
         >
@@ -30,7 +38,9 @@
         </button>
         <ul class="svelte">
           <li class="node svelte">
-            <button disabled="" class="bullet redFixed svelte">&nbsp;</button>
+            <label class="bullet redFixed svelte"
+              ><input type="checkbox" class="svelte" disabled="" />&nbsp;</label
+            >
             <span class="nodeType svelte">pk</span>
             expandedColumnConstraint<button
               class="clipboard svelte"
@@ -50,10 +60,15 @@
         </ul>
       </li>
       <li class="node svelte">
-        <button class="bullet svelte">+</button> collapsedColumn
+        <label class="bullet svelte"
+          ><input type="checkbox" class="svelte" />+</label
+        >
+        collapsedColumn
       </li>
       <li class="node svelte">
-        <button disabled="" class="bullet svelte">&nbsp;</button>
+        <label class="bullet svelte"
+          ><input type="checkbox" class="svelte" disabled="" />&nbsp;</label
+        >
         <span class="nodeType svelte">pk</span>
         expandedTableConstraintName<button
           class="clipboard svelte"
@@ -71,10 +86,15 @@
     </ul>
   </li>
   <li class="node svelte">
-    <button class="bullet svelte">+</button> CollapsedTable
+    <label class="bullet svelte"
+      ><input type="checkbox" class="svelte" />+</label
+    >
+    CollapsedTable
   </li>
   <li class="node svelte">
-    <button disabled="" class="bullet redFixed svelte">&nbsp;</button>
+    <label class="bullet redFixed svelte"
+      ><input type="checkbox" class="svelte" disabled="" />&nbsp;</label
+    >
     <span class="nodeType svelte">sequence</span> SomeSequence
     <span class="redFixed svelte">missing</span>
     <label class="svelte"><input type="checkbox" />create</label>
