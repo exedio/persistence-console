@@ -15,7 +15,6 @@ describe("UseSchema", () => {
           columns: undefined,
           constraints: undefined,
           error: {
-            existence: undefined,
             remainder: ["someRemainder"],
           },
         },
