@@ -13,7 +13,7 @@ export type Schema = {
 
 export type SchemaTable = {
   readonly name: string;
-  readonly columns: readonly SchemaColumn[] | undefined;
+  readonly columns?: readonly SchemaColumn[];
   readonly constraints?: readonly SchemaConstraint[];
   readonly error?: SchemaTableError;
 };

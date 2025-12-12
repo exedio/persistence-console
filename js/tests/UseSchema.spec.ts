@@ -7,39 +7,33 @@ describe("UseSchema", () => {
       tables: [
         {
           name: "tableOk",
-          columns: undefined,
         },
         {
           name: "tableExisting",
-          columns: undefined,
           error: {
             remainder: ["someRemainder"],
           },
         },
         {
           name: "tableMissing1",
-          columns: undefined,
           error: {
             existence: "missing",
           },
         },
         {
           name: "tableMissing2",
-          columns: undefined,
           error: {
             existence: "missing",
           },
         },
         {
           name: "tableUnused1",
-          columns: undefined,
           error: {
             existence: "unused",
           },
         },
         {
           name: "tableUnused2",
-          columns: undefined,
           error: {
             existence: "unused",
           },

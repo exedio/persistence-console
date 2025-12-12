@@ -41,7 +41,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myOnlyName",
-              columns: undefined,
             },
           ],
           sequences: undefined,
@@ -63,7 +62,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myOnlyName",
-              columns: undefined,
             },
           ],
           sequences: undefined,
@@ -82,7 +80,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myOnlyNameReloaded",
-              columns: undefined,
             },
           ],
           sequences: undefined,
@@ -204,7 +201,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               error: {
                 existence: "missing",
               },
@@ -249,7 +245,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               error: {
                 existence: "missing",
               },
@@ -289,7 +284,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               error: {
                 existence: "unused",
               },
@@ -334,21 +328,18 @@ describe("Schema", () => {
           tables: [
             {
               name: "myUnusedTableName",
-              columns: undefined,
               error: {
                 existence: "unused",
               },
             },
             {
               name: "myMissingTableName",
-              columns: undefined,
               error: {
                 existence: "missing",
               },
             },
             {
               name: "myMissingTableName2",
-              columns: undefined,
               error: {
                 existence: "missing",
               },
@@ -403,21 +394,18 @@ describe("Schema", () => {
           tables: [
             {
               name: "myMissingTableName",
-              columns: undefined,
               error: {
                 existence: "missing",
               },
             },
             {
               name: "myUnusedTableName",
-              columns: undefined,
               error: {
                 existence: "unused",
               },
             },
             {
               name: "myUnusedTableName2",
-              columns: undefined,
               error: {
                 existence: "unused",
               },
@@ -472,7 +460,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               error: {
                 remainder: ["remainder1", "remainder2"],
               },
@@ -907,7 +894,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               constraints: [
                 {
                   name: "myConstraint1Name",
@@ -963,7 +949,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               constraints: [
                 {
                   name: "myConstraint1Name",
@@ -1019,7 +1004,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               constraints: [
                 {
                   name: "myConstraint1Name",
@@ -1128,7 +1112,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               constraints: [
                 {
                   name: "myConstraint1Name",
@@ -1531,7 +1514,6 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: undefined,
               error: {
                 existence: "missing",
               },
