@@ -901,8 +901,6 @@ describe("Schema", () => {
                   clause: "myConstraint1Clause",
                   error: {
                     existence: "missing",
-                    clause: undefined,
-                    clauseRaw: undefined,
                   },
                 },
               ],
@@ -956,8 +954,6 @@ describe("Schema", () => {
                   clause: "myConstraint1Clause",
                   error: {
                     existence: "unused",
-                    clause: undefined,
-                    clauseRaw: undefined,
                   },
                 },
               ],
@@ -1118,8 +1114,6 @@ describe("Schema", () => {
                   type: "Check",
                   clause: "myConstraint1Clause",
                   error: {
-                    clause: undefined,
-                    clauseRaw: undefined,
                     remainder: ["remainder1", "remainder2"],
                   },
                 },
@@ -1340,8 +1334,6 @@ describe("Schema", () => {
                   clause: undefined,
                   error: {
                     existence: "missing",
-                    clause: undefined,
-                    clauseRaw: undefined,
                   },
                 },
               ],
