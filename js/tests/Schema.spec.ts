@@ -23,7 +23,6 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: undefined,
           sequences: undefined,
         } satisfies ApiSchema),
       );
@@ -1134,7 +1133,6 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: undefined,
           sequences: [
             {
               name: "myOnlyName",
@@ -1155,7 +1153,6 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: undefined,
           sequences: [
             {
               name: "myOnlyName",
@@ -1197,7 +1194,6 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: undefined,
           sequences: [
             {
               name: "myOnlyName",
@@ -1239,7 +1235,6 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: undefined,
           sequences: [
             {
               name: "myOnlyName",
@@ -1263,7 +1258,6 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: undefined,
           sequences: [
             {
               name: "myOnlyName",
@@ -1287,7 +1281,6 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: undefined,
           sequences: [
             {
               name: "myOnlyName",
