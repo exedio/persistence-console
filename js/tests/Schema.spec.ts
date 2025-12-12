@@ -498,7 +498,6 @@ describe("Schema", () => {
               columns: undefined,
               constraints: undefined,
               error: {
-                existence: undefined,
                 remainder: ["remainder1", "remainder2"],
               },
             },
@@ -870,7 +869,6 @@ describe("Schema", () => {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
                   error: {
-                    existence: undefined,
                     toleratesInsertIfUnused: undefined,
                     type: "myColumn1TypeX",
                     remainder: undefined,
@@ -931,7 +929,6 @@ describe("Schema", () => {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
                   error: {
-                    existence: undefined,
                     toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: ["remainder1", "remainder2"],
@@ -1088,7 +1085,6 @@ describe("Schema", () => {
                   type: "Check",
                   clause: "myConstraint1Clause",
                   error: {
-                    existence: undefined,
                     clause: "myConstraint1ClauseX",
                     clauseRaw: "myConstraint1ClauseX Raw",
                     remainder: undefined,
@@ -1158,7 +1154,6 @@ describe("Schema", () => {
                       type: "Check",
                       clause: "(`myColumn1Name`) myConstraint1Clause", // MySQL
                       error: {
-                        existence: undefined,
                         clause: '("myColumn1Name") myConstraint1ClauseX', // hsqldb, PostgreSQL
                         clauseRaw: '("myColumn1Name") myConstraint1ClauseX Raw',
                         remainder: undefined,
@@ -1202,7 +1197,6 @@ describe("Schema", () => {
                   type: "Check",
                   clause: "myConstraint1Clause",
                   error: {
-                    existence: undefined,
                     clause: undefined,
                     clauseRaw: undefined,
                     remainder: ["remainder1", "remainder2"],
@@ -1347,7 +1341,6 @@ describe("Schema", () => {
               type: "myType",
               start: 55,
               error: {
-                existence: undefined,
                 type: "myTypeX",
                 start: undefined,
                 remainder: undefined,
@@ -1374,7 +1367,6 @@ describe("Schema", () => {
               type: "myType",
               start: 55,
               error: {
-                existence: undefined,
                 type: undefined,
                 start: 66,
                 remainder: undefined,
@@ -1401,7 +1393,6 @@ describe("Schema", () => {
               type: "myType",
               start: 55,
               error: {
-                existence: undefined,
                 type: undefined,
                 start: undefined,
                 remainder: ["remainder1", "remainder2"],
