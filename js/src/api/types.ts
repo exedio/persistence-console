@@ -15,7 +15,7 @@ export type SchemaTable = {
   readonly name: string;
   readonly columns: readonly SchemaColumn[] | undefined;
   readonly constraints: readonly SchemaConstraint[] | undefined;
-  readonly error: SchemaTableError | undefined;
+  readonly error?: SchemaTableError;
 };
 
 export type SchemaTableError = {
@@ -26,7 +26,7 @@ export type SchemaTableError = {
 export type SchemaColumn = {
   readonly name: string;
   readonly type: string;
-  readonly error: SchemaColumnError | undefined;
+  readonly error?: SchemaColumnError;
   readonly constraints: readonly SchemaConstraint[] | undefined;
 };
 
@@ -41,7 +41,7 @@ export type SchemaConstraint = {
   readonly name: string;
   readonly type: "PrimaryKey" | "ForeignKey" | "Unique" | "Check";
   readonly clause: string | undefined;
-  readonly error: SchemaConstraintError | undefined;
+  readonly error?: SchemaConstraintError;
 };
 
 export type SchemaConstraintError = {
@@ -55,7 +55,7 @@ export type SchemaSequence = {
   readonly name: string;
   readonly type: string;
   readonly start: number;
-  readonly error: SchemaSequenceError | undefined;
+  readonly error?: SchemaSequenceError;
 };
 
 export type SchemaSequenceError = {

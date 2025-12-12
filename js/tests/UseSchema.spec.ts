@@ -9,7 +9,6 @@ describe("UseSchema", () => {
           name: "tableOk",
           columns: undefined,
           constraints: undefined,
-          error: undefined,
         },
         {
           name: "tableExisting",
@@ -95,7 +94,6 @@ describe("UseSchema", () => {
               name: "columnExisting",
               type: "myType",
               constraints: undefined,
-              error: undefined,
             },
             {
               name: "columnMissing1",
@@ -143,7 +141,6 @@ describe("UseSchema", () => {
             },
           ],
           constraints: undefined,
-          error: undefined,
         },
       ],
       sequences: [],
