@@ -20,7 +20,7 @@ export type SchemaTable = {
 
 export type SchemaTableError = {
   readonly existence?: SchemaExistence;
-  readonly remainder: SchemaRemainder;
+  readonly remainder?: SchemaRemainder;
 };
 
 export type SchemaColumn = {
@@ -34,7 +34,7 @@ export type SchemaColumnError = {
   readonly existence?: SchemaExistence;
   readonly toleratesInsertIfUnused: true | undefined;
   readonly type: string | undefined;
-  readonly remainder: SchemaRemainder;
+  readonly remainder?: SchemaRemainder;
 };
 
 export type SchemaConstraint = {
@@ -48,7 +48,7 @@ export type SchemaConstraintError = {
   readonly existence?: SchemaExistence;
   readonly clause: string | undefined;
   readonly clauseRaw: string | undefined;
-  readonly remainder: SchemaRemainder;
+  readonly remainder?: SchemaRemainder;
 };
 
 export type SchemaSequence = {
@@ -62,12 +62,12 @@ export type SchemaSequenceError = {
   readonly existence?: SchemaExistence;
   readonly type: string | undefined;
   readonly start: number | undefined;
-  readonly remainder: SchemaRemainder;
+  readonly remainder?: SchemaRemainder;
 };
 
 export type SchemaExistence = "missing" | "unused";
 
-export type SchemaRemainder = readonly string[] | undefined;
+export type SchemaRemainder = readonly string[];
 
 export type SchemaAlterResponse = {
   readonly sql: string;

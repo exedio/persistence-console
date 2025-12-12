@@ -503,7 +503,7 @@ export class Sequence implements Bullet, Fixable {
   }
 }
 
-export function useRemainder(api: ApiRemainder): readonly string[] {
+export function useRemainder(api: ApiRemainder | undefined): readonly string[] {
   return api ? api : [];
 }
 
@@ -544,7 +544,7 @@ function worse(a: Color, b: Color): Color {
 function remainderColor(
   error:
     | {
-        readonly remainder: ApiRemainder;
+        readonly remainder?: ApiRemainder;
       }
     | undefined,
 ): Color {

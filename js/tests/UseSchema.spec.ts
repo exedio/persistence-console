@@ -24,7 +24,6 @@ describe("UseSchema", () => {
           constraints: undefined,
           error: {
             existence: "missing",
-            remainder: [],
           },
         },
         {
@@ -33,7 +32,6 @@ describe("UseSchema", () => {
           constraints: undefined,
           error: {
             existence: "missing",
-            remainder: [],
           },
         },
         {
@@ -42,7 +40,6 @@ describe("UseSchema", () => {
           constraints: undefined,
           error: {
             existence: "unused",
-            remainder: [],
           },
         },
         {
@@ -51,7 +48,6 @@ describe("UseSchema", () => {
           constraints: undefined,
           error: {
             existence: "unused",
-            remainder: [],
           },
         },
       ],
@@ -102,7 +98,6 @@ describe("UseSchema", () => {
                 existence: "missing",
                 toleratesInsertIfUnused: undefined,
                 type: undefined,
-                remainder: undefined,
               },
             },
             {
@@ -113,7 +108,6 @@ describe("UseSchema", () => {
                 existence: "missing",
                 toleratesInsertIfUnused: undefined,
                 type: undefined,
-                remainder: undefined,
               },
             },
             {
@@ -124,7 +118,6 @@ describe("UseSchema", () => {
                 existence: "unused",
                 toleratesInsertIfUnused: undefined,
                 type: undefined,
-                remainder: undefined,
               },
             },
             {
@@ -135,7 +128,6 @@ describe("UseSchema", () => {
                 existence: "unused",
                 toleratesInsertIfUnused: undefined,
                 type: undefined,
-                remainder: undefined,
               },
             },
           ],
