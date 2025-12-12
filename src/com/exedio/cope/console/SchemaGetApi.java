@@ -72,7 +72,7 @@ final class SchemaGetApi {
         t.getName(),
         existence,
         emptyToNull(t.getAdditionalErrors()),
-        map(t.getColumns(), c -> new ColumnResponse(existence, c)),
+        map(t.getColumns(), c -> ColumnResponse.convert(existence, c)),
         ConstraintResponse.convert(existence, t.getTableConstraints())
       );
     }
@@ -81,43 +81,53 @@ final class SchemaGetApi {
   record ColumnResponse(
     String name,
     String type,
-    ColumnError error,
+    Existence existence,
+    Boolean toleratesInsertIfUnused,
+    String errorType,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
+    List<String> remainder,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<ConstraintResponse> constraints
   ) {
-    ColumnResponse(final Existence tableExistence, final Column c) {
+    private ColumnResponse(
+      final Existence tableExistence,
+      final Existence existence,
+      final Boolean toleratesInsertIfUnused,
+      final String errorType,
+      final List<String> remainder,
+      final Column c
+    ) {
       this(
         c.getName(),
         c.getType(),
-        ColumnError.convert(tableExistence, c),
+        existence,
+        toleratesInsertIfUnused ? Boolean.TRUE : null,
+        errorType,
+        remainder,
         ConstraintResponse.convert(tableExistence, c.getConstraints())
       );
     }
-  }
 
-  private record ColumnError(
-    Existence existence,
-    Boolean toleratesInsertIfUnused,
-    String type,
-    List<String> remainder
-  ) {
-    static ColumnError convert(final Existence tableExistence, final Column c) {
+    static ColumnResponse convert(
+      final Existence tableExistence,
+      final Column c
+    ) {
       final Existence existence = filterContainer(
         tableExistence,
         Existence.forNode(c)
       );
-      final String type = c.getMismatchingType();
+      final String errorType = c.getMismatchingType(); // TODO rename
       final boolean toleratesInsertIfUnused =
         existence == Existence.unused && c.toleratesInsertIfUnused();
       final List<String> remainder = emptyToNull(c.getAdditionalErrors());
-      return existence != null || type != null || remainder != null
-        ? new ColumnError(
-          existence,
-          toleratesInsertIfUnused ? Boolean.TRUE : null,
-          type,
-          remainder
-        )
-        : null;
+      return new ColumnResponse(
+        tableExistence,
+        existence,
+        toleratesInsertIfUnused,
+        errorType,
+        remainder,
+        c
+      );
     }
   }
 

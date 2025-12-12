@@ -344,9 +344,7 @@ public class SchemaGetApiTest {
       {
         "name" : "myString",
         "type" : "VARCHAR(80) not null",
-        "error" : {
-          "existence" : "missing"
-        },
+        "existence" : "missing",
         "constraints" : [ {
           "name" : "MyType_myString_MN",
           "type" : "Check",
@@ -389,9 +387,7 @@ public class SchemaGetApiTest {
       {
         "name" : "myString",
         "type" : "VARCHAR(80) not null",
-        "error" : {
-          "type" : "VARCHAR(44) not null"
-        },
+        "errorType" : "VARCHAR(44) not null",
         "constraints" : [ {
           "name" : "MyType_myString_MN",
           "type" : "Check",
@@ -420,9 +416,7 @@ public class SchemaGetApiTest {
       {
         "name" : "myStringZ",
         "type" : "VARCHAR(80) not null",
-        "error" : {
-          "existence" : "unused"
-        }
+        "existence" : "unused"
       }""",
       writeJson(myTypeTable().columns().get(5))
     );
@@ -437,10 +431,8 @@ public class SchemaGetApiTest {
       {
         "name" : "myStringZ",
         "type" : "VARCHAR(80)",
-        "error" : {
-          "existence" : "unused",
-          "toleratesInsertIfUnused" : true
-        }
+        "existence" : "unused",
+        "toleratesInsertIfUnused" : true
       }""",
       writeJson(myTypeTable().columns().get(5))
     );

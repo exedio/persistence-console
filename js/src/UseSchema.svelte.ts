@@ -258,31 +258,31 @@ export class Column implements ExpandableBullet, Fixable {
     this.tableName = tableName;
     this.name = this.api.name;
     this.existence = $derived.by(() => {
-      const error = this.api.error;
-      if (!error || !error.existence) return undefined;
+      const api = this.api;
+      if (!api.existence) return undefined;
 
-      if (error.existence === "unused" && error.toleratesInsertIfUnused)
+      if (api.existence === "unused" && api.toleratesInsertIfUnused)
         return { text: "unused", color: "yellow" };
 
-      return { text: error.existence, color: "red" };
+      return { text: api.existence, color: "red" };
     });
     this.type = $derived({
       name: "type",
       expected: this.api.type,
-      actual: this.api.error?.type,
+      actual: this.api.errorType,
       actualRaw: undefined,
       shortener: (s) => s,
-      color: this.api.error?.type ? "red" : undefined,
+      color: this.api.errorType ? "red" : undefined,
     });
     this._constraints = $state(
       this.useConstraints(this.api.constraints, constraintsStore),
     );
-    this.remainingErrors = $derived(useRemainder(this.api.error?.remainder));
+    this.remainingErrors = $derived(useRemainder(this.api.remainder));
     this.bulletColor = $derived(
       worst([
         this.existence?.color,
         this.type?.color,
-        remainderColor(this.api.error),
+        remainderColor(this.api),
         worst(this._constraints.map((i) => i.bulletColor)),
       ]),
     );

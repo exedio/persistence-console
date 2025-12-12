@@ -450,9 +450,7 @@ describe("Schema", () => {
                 {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
-                  error: {
-                    existence: "missing",
-                  },
+                  existence: "missing",
                 },
               ],
             },
@@ -505,10 +503,8 @@ describe("Schema", () => {
                 {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
-                  error: {
-                    existence: "unused",
-                    toleratesInsertIfUnused: true,
-                  },
+                  existence: "unused",
+                  toleratesInsertIfUnused: true,
                 },
               ],
             },
@@ -561,9 +557,7 @@ describe("Schema", () => {
                 {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
-                  error: {
-                    existence: "unused",
-                  },
+                  existence: "unused",
                 },
               ],
             },
@@ -596,29 +590,23 @@ describe("Schema", () => {
                 {
                   name: "myUnusedColumnName",
                   type: "myType",
-                  error: {
-                    existence: "unused",
-                    toleratesInsertIfUnused: true,
-                    remainder: [],
-                  },
+                  existence: "unused",
+                  toleratesInsertIfUnused: true,
+                  remainder: [],
                   constraints: [],
                 },
                 {
                   name: "myMissingColumnName",
                   type: "myType",
-                  error: {
-                    existence: "missing",
-                    remainder: [],
-                  },
+                  existence: "missing",
+                  remainder: [],
                   constraints: [],
                 },
                 {
                   name: "myMissingColumnName2",
                   type: "myType",
-                  error: {
-                    existence: "missing",
-                    remainder: [],
-                  },
+                  existence: "missing",
+                  remainder: [],
                   constraints: [],
                 },
               ],
@@ -678,30 +666,24 @@ describe("Schema", () => {
                 {
                   name: "myMissingColumnName",
                   type: "myType",
-                  error: {
-                    existence: "missing",
-                    remainder: [],
-                  },
+                  existence: "missing",
+                  remainder: [],
                   constraints: [],
                 },
                 {
                   name: "myUnusedColumnName",
                   type: "myType",
-                  error: {
-                    existence: "unused",
-                    toleratesInsertIfUnused: true,
-                    remainder: [],
-                  },
+                  existence: "unused",
+                  toleratesInsertIfUnused: true,
+                  remainder: [],
                   constraints: [],
                 },
                 {
                   name: "myUnusedColumnName2",
                   type: "myType",
-                  error: {
-                    existence: "unused",
-                    toleratesInsertIfUnused: true,
-                    remainder: [],
-                  },
+                  existence: "unused",
+                  toleratesInsertIfUnused: true,
+                  remainder: [],
                   constraints: [],
                 },
               ],
@@ -761,9 +743,7 @@ describe("Schema", () => {
                 {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
-                  error: {
-                    type: "myColumn1TypeX",
-                  },
+                  errorType: "myColumn1TypeX",
                 },
               ],
             },
@@ -816,9 +796,7 @@ describe("Schema", () => {
                 {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
-                  error: {
-                    remainder: ["remainder1", "remainder2"],
-                  },
+                  remainder: ["remainder1", "remainder2"],
                 },
               ],
             },
