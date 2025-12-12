@@ -14,7 +14,7 @@ export type Schema = {
 export type SchemaTable = {
   readonly name: string;
   readonly columns: readonly SchemaColumn[] | undefined;
-  readonly constraints: readonly SchemaConstraint[] | undefined;
+  readonly constraints?: readonly SchemaConstraint[];
   readonly error?: SchemaTableError;
 };
 
@@ -27,7 +27,7 @@ export type SchemaColumn = {
   readonly name: string;
   readonly type: string;
   readonly error?: SchemaColumnError;
-  readonly constraints: readonly SchemaConstraint[] | undefined;
+  readonly constraints?: readonly SchemaConstraint[];
 };
 
 export type SchemaColumnError = {

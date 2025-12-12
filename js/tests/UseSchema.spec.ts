@@ -8,12 +8,10 @@ describe("UseSchema", () => {
         {
           name: "tableOk",
           columns: undefined,
-          constraints: undefined,
         },
         {
           name: "tableExisting",
           columns: undefined,
-          constraints: undefined,
           error: {
             remainder: ["someRemainder"],
           },
@@ -21,7 +19,6 @@ describe("UseSchema", () => {
         {
           name: "tableMissing1",
           columns: undefined,
-          constraints: undefined,
           error: {
             existence: "missing",
           },
@@ -29,7 +26,6 @@ describe("UseSchema", () => {
         {
           name: "tableMissing2",
           columns: undefined,
-          constraints: undefined,
           error: {
             existence: "missing",
           },
@@ -37,7 +33,6 @@ describe("UseSchema", () => {
         {
           name: "tableUnused1",
           columns: undefined,
-          constraints: undefined,
           error: {
             existence: "unused",
           },
@@ -45,7 +40,6 @@ describe("UseSchema", () => {
         {
           name: "tableUnused2",
           columns: undefined,
-          constraints: undefined,
           error: {
             existence: "unused",
           },
@@ -88,12 +82,10 @@ describe("UseSchema", () => {
             {
               name: "columnExisting",
               type: "myType",
-              constraints: undefined,
             },
             {
               name: "columnMissing1",
               type: "myType",
-              constraints: undefined,
               error: {
                 existence: "missing",
               },
@@ -101,7 +93,6 @@ describe("UseSchema", () => {
             {
               name: "columnMissing2",
               type: "myType",
-              constraints: undefined,
               error: {
                 existence: "missing",
               },
@@ -109,7 +100,6 @@ describe("UseSchema", () => {
             {
               name: "columnUnused1",
               type: "myType",
-              constraints: undefined,
               error: {
                 existence: "unused",
               },
@@ -117,13 +107,11 @@ describe("UseSchema", () => {
             {
               name: "columnUnused2",
               type: "myType",
-              constraints: undefined,
               error: {
                 existence: "unused",
               },
             },
           ],
-          constraints: undefined,
         },
       ],
       sequences: [],

@@ -42,7 +42,6 @@ describe("Schema", () => {
             {
               name: "myOnlyName",
               columns: undefined,
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -65,7 +64,6 @@ describe("Schema", () => {
             {
               name: "myOnlyName",
               columns: undefined,
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -85,7 +83,6 @@ describe("Schema", () => {
             {
               name: "myOnlyNameReloaded",
               columns: undefined,
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -110,10 +107,8 @@ describe("Schema", () => {
                 {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
-                  constraints: undefined,
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -210,7 +205,6 @@ describe("Schema", () => {
             {
               name: "myTable1Name",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "missing",
               },
@@ -256,7 +250,6 @@ describe("Schema", () => {
             {
               name: "myTable1Name",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "missing",
               },
@@ -297,7 +290,6 @@ describe("Schema", () => {
             {
               name: "myTable1Name",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "unused",
               },
@@ -343,7 +335,6 @@ describe("Schema", () => {
             {
               name: "myUnusedTableName",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "unused",
               },
@@ -351,7 +342,6 @@ describe("Schema", () => {
             {
               name: "myMissingTableName",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "missing",
               },
@@ -359,7 +349,6 @@ describe("Schema", () => {
             {
               name: "myMissingTableName2",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "missing",
               },
@@ -415,7 +404,6 @@ describe("Schema", () => {
             {
               name: "myMissingTableName",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "missing",
               },
@@ -423,7 +411,6 @@ describe("Schema", () => {
             {
               name: "myUnusedTableName",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "unused",
               },
@@ -431,7 +418,6 @@ describe("Schema", () => {
             {
               name: "myUnusedTableName2",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "unused",
               },
@@ -487,7 +473,6 @@ describe("Schema", () => {
             {
               name: "myTable1Name",
               columns: undefined,
-              constraints: undefined,
               error: {
                 remainder: ["remainder1", "remainder2"],
               },
@@ -521,10 +506,8 @@ describe("Schema", () => {
                   error: {
                     existence: "missing",
                   },
-                  constraints: undefined,
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -580,10 +563,8 @@ describe("Schema", () => {
                     existence: "unused",
                     toleratesInsertIfUnused: true,
                   },
-                  constraints: undefined,
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -638,10 +619,8 @@ describe("Schema", () => {
                   error: {
                     existence: "unused",
                   },
-                  constraints: undefined,
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -699,7 +678,6 @@ describe("Schema", () => {
                   constraints: [],
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -784,7 +762,6 @@ describe("Schema", () => {
                   constraints: [],
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -845,10 +822,8 @@ describe("Schema", () => {
                   error: {
                     type: "myColumn1TypeX",
                   },
-                  constraints: undefined,
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -903,10 +878,8 @@ describe("Schema", () => {
                   error: {
                     remainder: ["remainder1", "remainder2"],
                   },
-                  constraints: undefined,
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -1128,7 +1101,6 @@ describe("Schema", () => {
                   ],
                 },
               ],
-              constraints: undefined,
             },
           ],
           sequences: undefined,
@@ -1560,7 +1532,6 @@ describe("Schema", () => {
             {
               name: "myTable1Name",
               columns: undefined,
-              constraints: undefined,
               error: {
                 existence: "missing",
               },
