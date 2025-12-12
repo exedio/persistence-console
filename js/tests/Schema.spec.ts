@@ -141,7 +141,6 @@ describe("Schema", () => {
                     {
                       name: "myColumn1Constraint1Name",
                       type: "PrimaryKey",
-                      clause: undefined,
                     },
                     {
                       name: "myColumn1Constraint2Name",
@@ -151,7 +150,6 @@ describe("Schema", () => {
                     {
                       name: "myTable1Name_myColumn1Name_ConstraintTildeNameColumn",
                       type: "PrimaryKey",
-                      clause: undefined,
                     },
                     {
                       name: "myColumn1ConstraintArrowName",
@@ -166,12 +164,10 @@ describe("Schema", () => {
                 {
                   name: "myTable1Constraint1Name",
                   type: "PrimaryKey",
-                  clause: undefined,
                 },
                 {
                   name: "myTable1Name_constraintTildeNameTable",
                   type: "PrimaryKey",
-                  clause: undefined,
                 },
               ],
             },
@@ -1323,7 +1319,6 @@ describe("Schema", () => {
                 {
                   name: "expandedColumnConstraint",
                   type: "PrimaryKey",
-                  clause: undefined,
                   error: {
                     existence: "missing",
                   },
@@ -1337,7 +1332,6 @@ describe("Schema", () => {
                 {
                   name: "collapsedColumnConstraint",
                   type: "PrimaryKey",
-                  clause: undefined,
                 },
               ],
             },
@@ -1346,7 +1340,6 @@ describe("Schema", () => {
             {
               name: "expandedTableConstraintName",
               type: "PrimaryKey",
-              clause: undefined,
             },
           ],
         },
@@ -1360,7 +1353,6 @@ describe("Schema", () => {
                 {
                   name: "constraintInCollapsedTableColumn",
                   type: "PrimaryKey",
-                  clause: undefined,
                 },
               ],
             },
@@ -1369,7 +1361,6 @@ describe("Schema", () => {
             {
               name: "constraintInCollapsedTable",
               type: "PrimaryKey",
-              clause: undefined,
             },
           ],
         },

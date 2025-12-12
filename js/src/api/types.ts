@@ -40,7 +40,7 @@ export type SchemaColumnError = {
 export type SchemaConstraint = {
   readonly name: string;
   readonly type: "PrimaryKey" | "ForeignKey" | "Unique" | "Check";
-  readonly clause: string | undefined;
+  readonly clause?: string;
   readonly error?: SchemaConstraintError;
 };
 
