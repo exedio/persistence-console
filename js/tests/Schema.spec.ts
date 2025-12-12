@@ -520,7 +520,6 @@ describe("Schema", () => {
                   type: "myColumn1Type",
                   error: {
                     existence: "missing",
-                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                   },
                   constraints: undefined,
@@ -640,7 +639,6 @@ describe("Schema", () => {
                   type: "myColumn1Type",
                   error: {
                     existence: "unused",
-                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                   },
                   constraints: undefined,
@@ -691,7 +689,6 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "missing",
-                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: [],
                   },
@@ -702,7 +699,6 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "missing",
-                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: [],
                   },
@@ -769,7 +765,6 @@ describe("Schema", () => {
                   type: "myType",
                   error: {
                     existence: "missing",
-                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: [],
                   },
@@ -857,7 +852,6 @@ describe("Schema", () => {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
                   error: {
-                    toleratesInsertIfUnused: undefined,
                     type: "myColumn1TypeX",
                   },
                   constraints: undefined,
@@ -916,7 +910,6 @@ describe("Schema", () => {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
                   error: {
-                    toleratesInsertIfUnused: undefined,
                     type: undefined,
                     remainder: ["remainder1", "remainder2"],
                   },
