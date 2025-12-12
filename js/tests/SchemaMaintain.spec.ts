@@ -306,6 +306,5 @@ function responseSuccessMaintain(elapsedNanos: number = 123456789) {
 }
 
 const responseSuccessEmptySchema = responseSuccess({
-  tables: undefined,
   sequences: undefined,
 } satisfies ApiSchema);
