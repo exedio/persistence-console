@@ -21,10 +21,7 @@ describe("Schema", () => {
   it("should render an empty schema", async () => {
     {
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccess({
-        } satisfies ApiSchema),
-      );
+      mock.mockResolvedValueOnce(responseSuccess({} satisfies ApiSchema));
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
