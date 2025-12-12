@@ -96,7 +96,6 @@ describe("UseSchema", () => {
               constraints: undefined,
               error: {
                 existence: "missing",
-                type: undefined,
               },
             },
             {
@@ -105,7 +104,6 @@ describe("UseSchema", () => {
               constraints: undefined,
               error: {
                 existence: "missing",
-                type: undefined,
               },
             },
             {
@@ -114,7 +112,6 @@ describe("UseSchema", () => {
               constraints: undefined,
               error: {
                 existence: "unused",
-                type: undefined,
               },
             },
             {
@@ -123,7 +120,6 @@ describe("UseSchema", () => {
               constraints: undefined,
               error: {
                 existence: "unused",
-                type: undefined,
               },
             },
           ],
