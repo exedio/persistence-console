@@ -21,11 +21,7 @@ describe("Schema", () => {
   it("should render an empty schema", async () => {
     {
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccess({
-          sequences: undefined,
-        } satisfies ApiSchema),
-      );
+      mock.mockResolvedValueOnce(responseSuccess({} satisfies ApiSchema));
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
@@ -42,7 +38,6 @@ describe("Schema", () => {
               name: "myOnlyName",
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -63,7 +58,6 @@ describe("Schema", () => {
               name: "myOnlyName",
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
@@ -81,7 +75,6 @@ describe("Schema", () => {
               name: "myOnlyNameReloaded",
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
@@ -107,7 +100,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -171,7 +163,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -201,7 +192,6 @@ describe("Schema", () => {
               },
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -245,7 +235,6 @@ describe("Schema", () => {
               },
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -284,7 +273,6 @@ describe("Schema", () => {
               },
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -340,7 +328,6 @@ describe("Schema", () => {
               },
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -406,7 +393,6 @@ describe("Schema", () => {
               },
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -460,7 +446,6 @@ describe("Schema", () => {
               },
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -492,7 +477,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -549,7 +533,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -605,7 +588,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -662,7 +644,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -746,7 +727,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -808,7 +788,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -864,7 +843,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -901,7 +879,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -954,7 +931,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -1008,7 +984,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -1078,7 +1053,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -1115,7 +1089,6 @@ describe("Schema", () => {
               ],
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -1485,7 +1458,6 @@ describe("Schema", () => {
               },
             },
           ],
-          sequences: undefined,
         } satisfies ApiSchema),
       );
       (

@@ -8,7 +8,7 @@ export function isNotConnected(error: any) {
 
 export type Schema = {
   readonly tables?: readonly SchemaTable[];
-  readonly sequences: readonly SchemaSequence[] | undefined;
+  readonly sequences?: readonly SchemaSequence[];
 };
 
 export type SchemaTable = {

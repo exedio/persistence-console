@@ -39,7 +39,6 @@ describe("UseSchema", () => {
           },
         },
       ],
-      sequences: [],
     });
 
     const missing1 = schema.tables().find((t) => t.name === "tableMissing1");
@@ -108,7 +107,6 @@ describe("UseSchema", () => {
           ],
         },
       ],
-      sequences: [],
     });
 
     const table = schema.tables().find((t) => t.name === "myTable");
