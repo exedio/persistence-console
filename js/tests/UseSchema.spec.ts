@@ -10,33 +10,23 @@ describe("UseSchema", () => {
         },
         {
           name: "tableExisting",
-          error: {
-            remainder: ["someRemainder"],
-          },
+          remainder: ["someRemainder"],
         },
         {
           name: "tableMissing1",
-          error: {
-            existence: "missing",
-          },
+          existence: "missing",
         },
         {
           name: "tableMissing2",
-          error: {
-            existence: "missing",
-          },
+          existence: "missing",
         },
         {
           name: "tableUnused1",
-          error: {
-            existence: "unused",
-          },
+          existence: "unused",
         },
         {
           name: "tableUnused2",
-          error: {
-            existence: "unused",
-          },
+          existence: "unused",
         },
       ],
     });
