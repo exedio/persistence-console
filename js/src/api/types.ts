@@ -60,7 +60,7 @@ export type SchemaSequence = {
 
 export type SchemaSequenceError = {
   readonly existence?: SchemaExistence;
-  readonly type: string | undefined;
+  readonly type?: string;
   readonly start: number | undefined;
   readonly remainder?: SchemaRemainder;
 };
