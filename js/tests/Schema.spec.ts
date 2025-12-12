@@ -1167,7 +1167,6 @@ describe("Schema", () => {
               start: 55,
               error: {
                 existence: "missing",
-                start: undefined,
               },
             },
           ],
@@ -1210,7 +1209,6 @@ describe("Schema", () => {
               start: 55,
               error: {
                 existence: "unused",
-                start: undefined,
               },
             },
           ],
@@ -1253,7 +1251,6 @@ describe("Schema", () => {
               start: 55,
               error: {
                 type: "myTypeX",
-                start: undefined,
               },
             },
           ],
@@ -1301,7 +1298,6 @@ describe("Schema", () => {
               type: "myType",
               start: 55,
               error: {
-                start: undefined,
                 remainder: ["remainder1", "remainder2"],
               },
             },
@@ -1385,7 +1381,6 @@ describe("Schema", () => {
           start: 55,
           error: {
             existence: "missing",
-            start: undefined,
           },
         },
       ],
