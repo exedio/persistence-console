@@ -213,7 +213,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "missing",
-                remainder: undefined,
               },
             },
           ],
@@ -260,7 +259,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "missing",
-                remainder: undefined,
               },
             },
           ],
@@ -302,7 +300,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "unused",
-                remainder: undefined,
               },
             },
           ],
@@ -349,7 +346,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "unused",
-                remainder: undefined,
               },
             },
             {
@@ -358,7 +354,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "missing",
-                remainder: undefined,
               },
             },
             {
@@ -367,7 +362,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "missing",
-                remainder: undefined,
               },
             },
           ],
@@ -424,7 +418,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "missing",
-                remainder: undefined,
               },
             },
             {
@@ -433,7 +426,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "unused",
-                remainder: undefined,
               },
             },
             {
@@ -442,7 +434,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "unused",
-                remainder: undefined,
               },
             },
           ],
@@ -531,7 +522,6 @@ describe("Schema", () => {
                     existence: "missing",
                     toleratesInsertIfUnused: undefined,
                     type: undefined,
-                    remainder: undefined,
                   },
                   constraints: undefined,
                 },
@@ -592,7 +582,6 @@ describe("Schema", () => {
                     existence: "unused",
                     toleratesInsertIfUnused: true,
                     type: undefined,
-                    remainder: undefined,
                   },
                   constraints: undefined,
                 },
@@ -653,7 +642,6 @@ describe("Schema", () => {
                     existence: "unused",
                     toleratesInsertIfUnused: undefined,
                     type: undefined,
-                    remainder: undefined,
                   },
                   constraints: undefined,
                 },
@@ -871,7 +859,6 @@ describe("Schema", () => {
                   error: {
                     toleratesInsertIfUnused: undefined,
                     type: "myColumn1TypeX",
-                    remainder: undefined,
                   },
                   constraints: undefined,
                 },
@@ -974,7 +961,6 @@ describe("Schema", () => {
                     existence: "missing",
                     clause: undefined,
                     clauseRaw: undefined,
-                    remainder: undefined,
                   },
                 },
               ],
@@ -1031,7 +1017,6 @@ describe("Schema", () => {
                     existence: "unused",
                     clause: undefined,
                     clauseRaw: undefined,
-                    remainder: undefined,
                   },
                 },
               ],
@@ -1087,7 +1072,6 @@ describe("Schema", () => {
                   error: {
                     clause: "myConstraint1ClauseX",
                     clauseRaw: "myConstraint1ClauseX Raw",
-                    remainder: undefined,
                   },
                 },
               ],
@@ -1156,7 +1140,6 @@ describe("Schema", () => {
                       error: {
                         clause: '("myColumn1Name") myConstraint1ClauseX', // hsqldb, PostgreSQL
                         clauseRaw: '("myColumn1Name") myConstraint1ClauseX Raw',
-                        remainder: undefined,
                       },
                     },
                   ],
@@ -1254,7 +1237,6 @@ describe("Schema", () => {
                 existence: "missing",
                 type: undefined,
                 start: undefined,
-                remainder: undefined,
               },
             },
           ],
@@ -1299,7 +1281,6 @@ describe("Schema", () => {
                 existence: "unused",
                 type: undefined,
                 start: undefined,
-                remainder: undefined,
               },
             },
           ],
@@ -1343,7 +1324,6 @@ describe("Schema", () => {
               error: {
                 type: "myTypeX",
                 start: undefined,
-                remainder: undefined,
               },
             },
           ],
@@ -1369,7 +1349,6 @@ describe("Schema", () => {
               error: {
                 type: undefined,
                 start: 66,
-                remainder: undefined,
               },
             },
           ],
@@ -1425,7 +1404,6 @@ describe("Schema", () => {
                     existence: "missing",
                     clause: undefined,
                     clauseRaw: undefined,
-                    remainder: undefined,
                   },
                 },
               ],
@@ -1483,7 +1461,6 @@ describe("Schema", () => {
             existence: "missing",
             type: undefined,
             start: undefined,
-            remainder: undefined,
           },
         },
       ],
@@ -1603,7 +1580,6 @@ describe("Schema", () => {
               constraints: undefined,
               error: {
                 existence: "missing",
-                remainder: undefined,
               },
             },
           ],
