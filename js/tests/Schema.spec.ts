@@ -14,7 +14,6 @@ import type {
   SchemaAlterResponse,
   ConnectRequest,
   ConnectResponse,
-  SchemaMaintainResponse,
   Schema as ApiSchema,
 } from "@/api/types";
 
