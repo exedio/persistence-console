@@ -815,9 +815,7 @@ describe("Schema", () => {
                   name: "myConstraint1Name",
                   type: "Check",
                   clause: "myConstraint1Clause",
-                  error: {
-                    existence: "missing",
-                  },
+                  existence: "missing",
                 },
               ],
             },
@@ -867,9 +865,7 @@ describe("Schema", () => {
                   name: "myConstraint1Name",
                   type: "Check",
                   clause: "myConstraint1Clause",
-                  error: {
-                    existence: "unused",
-                  },
+                  existence: "unused",
                 },
               ],
             },
@@ -919,10 +915,8 @@ describe("Schema", () => {
                   name: "myConstraint1Name",
                   type: "Check",
                   clause: "myConstraint1Clause",
-                  error: {
-                    clause: "myConstraint1ClauseX",
-                    clauseRaw: "myConstraint1ClauseX Raw",
-                  },
+                  errorClause: "myConstraint1ClauseX",
+                  errorClauseRaw: "myConstraint1ClauseX Raw",
                 },
               ],
             },
@@ -986,10 +980,9 @@ describe("Schema", () => {
                       name: "myConstraint1Name",
                       type: "Check",
                       clause: "(`myColumn1Name`) myConstraint1Clause", // MySQL
-                      error: {
-                        clause: '("myColumn1Name") myConstraint1ClauseX', // hsqldb, PostgreSQL
-                        clauseRaw: '("myColumn1Name") myConstraint1ClauseX Raw',
-                      },
+                      errorClause: '("myColumn1Name") myConstraint1ClauseX', // hsqldb, PostgreSQL
+                      errorClauseRaw:
+                        '("myColumn1Name") myConstraint1ClauseX Raw',
                     },
                   ],
                 },
@@ -1025,9 +1018,7 @@ describe("Schema", () => {
                   name: "myConstraint1Name",
                   type: "Check",
                   clause: "myConstraint1Clause",
-                  error: {
-                    remainder: ["remainder1", "remainder2"],
-                  },
+                  remainder: ["remainder1", "remainder2"],
                 },
               ],
             },
@@ -1228,9 +1219,7 @@ describe("Schema", () => {
                 {
                   name: "expandedColumnConstraint",
                   type: "PrimaryKey",
-                  error: {
-                    existence: "missing",
-                  },
+                  existence: "missing",
                 },
               ],
             },

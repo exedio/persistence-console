@@ -348,16 +348,12 @@ public class SchemaGetApiTest {
           "name" : "MyType_myString_MN",
           "type" : "Check",
           "clause" : "CHAR_LENGTH(\\"myString\\")>=1",
-          "error" : {
-            "existence" : "missing"
-          }
+          "existence" : "missing"
         }, {
           "name" : "MyType_myString_MX",
           "type" : "Check",
           "clause" : "CHAR_LENGTH(\\"myString\\")<=80",
-          "error" : {
-            "existence" : "missing"
-          }
+          "existence" : "missing"
         } ]
       }""",
       writeJson(myStringColumn())
@@ -449,9 +445,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_this_MN",
         "type" : "Check",
         "clause" : "\\"this\\">=0",
-        "error" : {
-          "existence" : "missing"
-        }
+        "existence" : "missing"
       }""",
       writeJson(thisMaxConstraint())
     );
@@ -475,9 +469,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_this_MN",
         "type" : "Check",
         "clause" : "\\"this\\">=0",
-        "error" : {
-          "clause" : "(\\"this\\")"
-        }
+        "errorClause" : "(\\"this\\")"
       }""",
       writeJson(thisMaxConstraint())
     );
@@ -499,9 +491,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_this_MN",
         "type" : "Check",
         "clause" : "\\"this\\">=0",
-        "error" : {
-          "clause" : "\\"this\\">=44"
-        }
+        "errorClause" : "\\"this\\">=44"
       }""",
       writeJson(thisMaxConstraint())
     );
@@ -523,10 +513,8 @@ public class SchemaGetApiTest {
         "name" : "MyType_this_MN",
         "type" : "Check",
         "clause" : "\\"this\\">=0",
-        "error" : {
-          "clause" : "\\"this\\"<>44",
-          "clauseRaw" : "\\"this\\"!=44"
-        }
+        "errorClause" : "\\"this\\"<>44",
+        "errorClauseRaw" : "\\"this\\"!=44"
       }""",
       writeJson(thisMaxConstraint())
     );
@@ -555,9 +543,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myTarget_Fk",
         "type" : "ForeignKey",
         "clause" : "myTarget->MyTarget.this",
-        "error" : {
-          "remainder" : [ "unexpected delete rule CASCADE" ]
-        }
+        "remainder" : [ "unexpected delete rule CASCADE" ]
       }""",
       writeJson(myTypeTable().columns().get(4).constraints().get(2))
     );
@@ -582,9 +568,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myTarget_Fk",
         "type" : "ForeignKey",
         "clause" : "myTarget->MyTarget.this",
-        "error" : {
-          "remainder" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
-        }
+        "remainder" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
       }""",
       writeJson(myTypeTable().columns().get(4).constraints().get(2))
     );
@@ -609,10 +593,8 @@ public class SchemaGetApiTest {
         "name" : "MyType_myTarget_Fk",
         "type" : "ForeignKey",
         "clause" : "myTarget->MyTarget.this",
-        "error" : {
-          "clause" : "myInt->MyTarget.this",
-          "remainder" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
-        }
+        "errorClause" : "myInt->MyTarget.this",
+        "remainder" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
       }""",
       writeJson(myTypeTable().columns().get(4).constraints().get(2))
     );
@@ -630,9 +612,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_this_MZ",
         "type" : "Check",
         "clause" : "\\"this\\">=44",
-        "error" : {
-          "existence" : "unused"
-        }
+        "existence" : "unused"
       }""",
       writeJson(myTypeTable().constraints().get(1))
     );

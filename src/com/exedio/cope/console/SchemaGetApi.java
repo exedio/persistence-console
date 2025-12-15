@@ -112,17 +112,30 @@ final class SchemaGetApi {
     String name,
     String type,
     String clause,
-    ConstraintError error
+    Existence existence,
+    String errorClause,
+    String errorClauseRaw,
+    List<String> remainder
   ) {
     private static Constraint convert(
       final Existence tableExistence,
       final com.exedio.dsmf.Constraint c
     ) {
+      final Existence existence = filterContainer(
+        tableExistence,
+        Existence.forNode(c)
+      );
+      final String clause = c.getMismatchingCondition();
+      final String clauseRaw = c.getMismatchingConditionRaw();
+      final List<String> remainder = emptyToNull(c.getAdditionalErrors());
       return new Constraint(
         c.getName(),
         c.getType().name(),
         c.getCondition(),
-        ConstraintError.convert(tableExistence, c)
+        existence,
+        clause,
+        Objects.equals(clause, clauseRaw) ? null : clauseRaw,
+        remainder
       );
     }
 
@@ -152,34 +165,6 @@ final class SchemaGetApi {
   ) {
     final List<R> result = c.stream().filter(predicate).map(mapper).toList();
     return emptyToNull(result);
-  }
-
-  private record ConstraintError(
-    Existence existence,
-    String clause,
-    String clauseRaw,
-    List<String> remainder
-  ) {
-    static ConstraintError convert(
-      final Existence tableExistence,
-      final com.exedio.dsmf.Constraint c
-    ) {
-      final Existence existence = filterContainer(
-        tableExistence,
-        Existence.forNode(c)
-      );
-      final String clause = c.getMismatchingCondition();
-      final String clauseRaw = c.getMismatchingConditionRaw();
-      final List<String> remainder = emptyToNull(c.getAdditionalErrors());
-      return existence != null || clause != null || remainder != null
-        ? new ConstraintError(
-          existence,
-          clause,
-          Objects.equals(clause, clauseRaw) ? null : clauseRaw,
-          remainder
-        )
-        : null;
-    }
   }
 
   private static Existence filterContainer(
