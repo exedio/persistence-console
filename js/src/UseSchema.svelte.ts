@@ -548,7 +548,7 @@ function remainderColor(
       }
     | undefined,
 ): Color {
-  return error?.remainder ? "red" : undefined;
+  return error?.remainder && error?.remainder.length > 0 ? "red" : undefined;
 }
 
 export type Bullet = {
