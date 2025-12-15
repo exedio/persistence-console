@@ -25,7 +25,7 @@ export type SchemaColumn = {
   readonly constraints?: readonly SchemaConstraint[];
   readonly existence?: SchemaExistence;
   readonly toleratesInsertIfUnused?: true;
-  readonly errorType?: string;
+  readonly mismatchingType?: string;
   readonly remainder?: SchemaRemainder;
 };
 
@@ -44,7 +44,7 @@ export type SchemaSequence = {
   readonly type: string;
   readonly start: number;
   readonly existence?: SchemaExistence;
-  readonly errorType?: string;
+  readonly mismatchingType?: string;
   readonly errorStart?: number;
   readonly remainder?: SchemaRemainder;
 };

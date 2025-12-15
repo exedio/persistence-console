@@ -269,10 +269,10 @@ export class Column implements ExpandableBullet, Fixable {
     this.type = $derived({
       name: "type",
       expected: this.api.type,
-      actual: this.api.errorType,
+      actual: this.api.mismatchingType,
       actualRaw: undefined,
       shortener: (s) => s,
-      color: this.api.errorType ? "red" : undefined,
+      color: this.api.mismatchingType ? "red" : undefined,
     });
     this._constraints = $state(
       this.useConstraints(this.api.constraints, constraintsStore),
@@ -468,10 +468,10 @@ export class Sequence implements Bullet, Fixable {
     this.type = $derived({
       name: "type",
       expected: this.api.type,
-      actual: this.api.errorType,
+      actual: this.api.mismatchingType,
       actualRaw: undefined,
       shortener: (s) => s,
-      color: this.api.errorType ? "red" : undefined,
+      color: this.api.mismatchingType ? "red" : undefined,
     });
     this.start = $derived({
       name: "start",

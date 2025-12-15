@@ -78,7 +78,7 @@ final class SchemaGetApi {
     String type,
     Existence existence,
     Boolean toleratesInsertIfUnused,
-    String errorType, // TODO rename
+    String mismatchingType,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
@@ -172,7 +172,7 @@ final class SchemaGetApi {
     com.exedio.dsmf.Sequence.Type type,
     long start,
     Existence existence,
-    com.exedio.dsmf.Sequence.Type errorType,
+    com.exedio.dsmf.Sequence.Type mismatchingType,
     Long errorStart,
     List<String> remainder
   ) {
