@@ -598,13 +598,11 @@ describe("Schema", () => {
                   name: "myMissingColumnName",
                   type: "myType",
                   existence: "missing",
-                  remainder: [],
                 },
                 {
                   name: "myMissingColumnName2",
                   type: "myType",
                   existence: "missing",
-                  remainder: [],
                 },
               ],
             },
@@ -664,7 +662,6 @@ describe("Schema", () => {
                   name: "myMissingColumnName",
                   type: "myType",
                   existence: "missing",
-                  remainder: [],
                 },
                 {
                   name: "myUnusedColumnName",
