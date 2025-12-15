@@ -915,8 +915,8 @@ describe("Schema", () => {
                   name: "myConstraint1Name",
                   type: "Check",
                   clause: "myConstraint1Clause",
-                  errorClause: "myConstraint1ClauseX",
-                  errorClauseRaw: "myConstraint1ClauseX Raw",
+                  mismatchingClause: "myConstraint1ClauseX",
+                  mismatchingClauseRaw: "myConstraint1ClauseX Raw",
                 },
               ],
             },
@@ -980,8 +980,8 @@ describe("Schema", () => {
                       name: "myConstraint1Name",
                       type: "Check",
                       clause: "(`myColumn1Name`) myConstraint1Clause", // MySQL
-                      errorClause: '("myColumn1Name") myConstraint1ClauseX', // hsqldb, PostgreSQL
-                      errorClauseRaw:
+                      mismatchingClause: '("myColumn1Name") myConstraint1ClauseX', // hsqldb, PostgreSQL
+                      mismatchingClauseRaw:
                         '("myColumn1Name") myConstraint1ClauseX Raw',
                     },
                   ],
