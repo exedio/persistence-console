@@ -33,10 +33,9 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.UniqueConstraint;
-import com.exedio.cope.console.SchemaGetApi.ColumnResponse;
-import com.exedio.cope.console.SchemaGetApi.TableResponse;
+import com.exedio.cope.console.SchemaGetApi.Column;
+import com.exedio.cope.console.SchemaGetApi.Table;
 import com.exedio.cope.util.Sources;
-import com.exedio.dsmf.Table;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -244,7 +243,7 @@ public class SchemaGetApiTest {
     );
   }
 
-  private static TableResponse myTypeTable() throws ApiTextException {
+  private static Table myTypeTable() throws ApiTextException {
     return get(MODEL).tables().get(0);
   }
 
@@ -334,7 +333,7 @@ public class SchemaGetApiTest {
 
   @Test
   void testColumnMissing() throws IOException, ApiTextException {
-    final Table table = MODEL.getSchema().getTable(
+    final com.exedio.dsmf.Table table = MODEL.getSchema().getTable(
       SchemaInfo.getTableName(MyType.TYPE)
     );
     table.getConstraint("MyType_unique").drop();
@@ -368,7 +367,7 @@ public class SchemaGetApiTest {
   @Test
   void testColumnUnexpectedType()
     throws IOException, SQLException, ApiTextException {
-    final Table table = MODEL.getSchema().getTable(
+    final com.exedio.dsmf.Table table = MODEL.getSchema().getTable(
       SchemaInfo.getTableName(MyType.TYPE)
     );
     table.getConstraint("MyType_unique").drop();
@@ -402,7 +401,7 @@ public class SchemaGetApiTest {
     );
   }
 
-  private static ColumnResponse myStringColumn() throws ApiTextException {
+  private static Column myStringColumn() throws ApiTextException {
     return myTypeTable().columns().get(1);
   }
 
@@ -461,7 +460,7 @@ public class SchemaGetApiTest {
   @Test
   void testConstraintUnexpectedType()
     throws IOException, SQLException, ApiTextException {
-    final Table table = MODEL.getSchema().getTable(
+    final com.exedio.dsmf.Table table = MODEL.getSchema().getTable(
       SchemaInfo.getTableName(MyType.TYPE)
     );
     table.getConstraint("MyType_this_MN").drop();

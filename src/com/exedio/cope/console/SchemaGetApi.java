@@ -19,12 +19,7 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
-import com.exedio.dsmf.Column;
-import com.exedio.dsmf.Constraint;
 import com.exedio.dsmf.Node;
-import com.exedio.dsmf.Schema;
-import com.exedio.dsmf.Sequence;
-import com.exedio.dsmf.Table;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -34,51 +29,51 @@ import java.util.function.Predicate;
 final class SchemaGetApi {
 
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-  static SchemaResponse get(final Model model) throws ApiTextException {
+  static Schema get(final Model model) throws ApiTextException {
     try {
-      return new SchemaResponse(model.getVerifiedSchema());
+      return new Schema(model.getVerifiedSchema());
     } catch (final Model.NotConnectedException e) {
       throw ApiTextException.onException(e);
     }
   }
 
-  record SchemaResponse(
+  record Schema(
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
-    List<TableResponse> tables,
+    List<Table> tables,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
-    List<SequenceResponse> sequences
+    List<Sequence> sequences
   ) {
-    SchemaResponse(final Schema s) {
+    Schema(final com.exedio.dsmf.Schema s) {
       this(
-        map(s.getTables(), TableResponse::convert),
-        map(s.getSequences(), SequenceResponse::convert)
+        map(s.getTables(), Table::convert),
+        map(s.getSequences(), Sequence::convert)
       );
     }
   }
 
-  record TableResponse(
+  record Table(
     String name,
     Existence existence,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
-    List<ColumnResponse> columns,
+    List<Column> columns,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
-    List<ConstraintResponse> constraints
+    List<Constraint> constraints
   ) {
-    static TableResponse convert(final Table t) {
+    static Table convert(final com.exedio.dsmf.Table t) {
       final Existence existence = Existence.forNode(t);
-      return new TableResponse(
+      return new Table(
         t.getName(),
         existence,
         emptyToNull(t.getAdditionalErrors()),
-        map(t.getColumns(), c -> ColumnResponse.convert(existence, c)),
-        ConstraintResponse.convert(existence, t.getTableConstraints())
+        map(t.getColumns(), c -> Column.convert(existence, c)),
+        Constraint.convert(existence, t.getTableConstraints())
       );
     }
   }
 
-  record ColumnResponse(
+  record Column(
     String name,
     String type,
     Existence existence,
@@ -87,15 +82,15 @@ final class SchemaGetApi {
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
-    List<ConstraintResponse> constraints
+    List<Constraint> constraints
   ) {
-    private ColumnResponse(
+    private Column(
       final Existence tableExistence,
       final Existence existence,
       final Boolean toleratesInsertIfUnused,
       final String errorType,
       final List<String> remainder,
-      final Column c
+      final com.exedio.dsmf.Column c
     ) {
       this(
         c.getName(),
@@ -104,13 +99,13 @@ final class SchemaGetApi {
         toleratesInsertIfUnused ? Boolean.TRUE : null,
         errorType,
         remainder,
-        ConstraintResponse.convert(tableExistence, c.getConstraints())
+        Constraint.convert(tableExistence, c.getConstraints())
       );
     }
 
-    static ColumnResponse convert(
+    static Column convert(
       final Existence tableExistence,
-      final Column c
+      final com.exedio.dsmf.Column c
     ) {
       final Existence existence = filterContainer(
         tableExistence,
@@ -120,7 +115,7 @@ final class SchemaGetApi {
       final boolean toleratesInsertIfUnused =
         existence == Existence.unused && c.toleratesInsertIfUnused();
       final List<String> remainder = emptyToNull(c.getAdditionalErrors());
-      return new ColumnResponse(
+      return new Column(
         tableExistence,
         existence,
         toleratesInsertIfUnused,
@@ -131,17 +126,17 @@ final class SchemaGetApi {
     }
   }
 
-  private record ConstraintResponse(
+  private record Constraint(
     String name,
     String type,
     String clause,
     ConstraintError error
   ) {
-    private static ConstraintResponse convert(
+    private static Constraint convert(
       final Existence tableExistence,
-      final Constraint c
+      final com.exedio.dsmf.Constraint c
     ) {
-      return new ConstraintResponse(
+      return new Constraint(
         c.getName(),
         c.getType().name(),
         c.getCondition(),
@@ -149,9 +144,9 @@ final class SchemaGetApi {
       );
     }
 
-    static List<ConstraintResponse> convert(
+    static List<Constraint> convert(
       final Existence tableExistence,
-      final Collection<Constraint> list
+      final Collection<com.exedio.dsmf.Constraint> list
     ) {
       return map(
         list,
@@ -185,7 +180,7 @@ final class SchemaGetApi {
   ) {
     static ConstraintError convert(
       final Existence tableExistence,
-      final Constraint c
+      final com.exedio.dsmf.Constraint c
     ) {
       final Existence existence = filterContainer(
         tableExistence,
@@ -212,14 +207,14 @@ final class SchemaGetApi {
     return (container == own) ? null : own;
   }
 
-  private record SequenceResponse(
+  private record Sequence(
     String name,
     String type,
     long start,
     SequenceError error
   ) {
-    static SequenceResponse convert(final Sequence s) {
-      return new SequenceResponse(
+    static Sequence convert(final com.exedio.dsmf.Sequence s) {
+      return new Sequence(
         s.getName(),
         s.getType().name(),
         s.getStartL(),
@@ -230,13 +225,13 @@ final class SchemaGetApi {
 
   private record SequenceError(
     Existence existence,
-    Sequence.Type type,
+    com.exedio.dsmf.Sequence.Type type,
     Long start,
     List<String> remainder
   ) {
-    static SequenceError convert(final Sequence s) {
+    static SequenceError convert(final com.exedio.dsmf.Sequence s) {
       final Existence existence = Existence.forNode(s);
-      final Sequence.Type type = s.getMismatchingType();
+      final com.exedio.dsmf.Sequence.Type type = s.getMismatchingType();
       final Long start = s.getMismatchingStart();
       final List<String> remainder = emptyToNull(s.getAdditionalErrors());
       return (
