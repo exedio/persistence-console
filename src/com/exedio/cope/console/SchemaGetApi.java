@@ -84,25 +84,6 @@ final class SchemaGetApi {
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<Constraint> constraints
   ) {
-    private Column(
-      final Existence tableExistence,
-      final Existence existence,
-      final Boolean toleratesInsertIfUnused,
-      final String errorType,
-      final List<String> remainder,
-      final com.exedio.dsmf.Column c
-    ) {
-      this(
-        c.getName(),
-        c.getType(),
-        existence,
-        toleratesInsertIfUnused ? Boolean.TRUE : null,
-        errorType,
-        remainder,
-        Constraint.convert(tableExistence, c.getConstraints())
-      );
-    }
-
     static Column convert(
       final Existence tableExistence,
       final com.exedio.dsmf.Column c
@@ -116,12 +97,13 @@ final class SchemaGetApi {
         existence == Existence.unused && c.toleratesInsertIfUnused();
       final List<String> remainder = emptyToNull(c.getAdditionalErrors());
       return new Column(
-        tableExistence,
+        c.getName(),
+        c.getType(),
         existence,
-        toleratesInsertIfUnused,
+        toleratesInsertIfUnused ? Boolean.TRUE : null,
         errorType,
         remainder,
-        c
+        Constraint.convert(tableExistence, c.getConstraints())
       );
     }
   }
