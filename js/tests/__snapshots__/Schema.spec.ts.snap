@@ -196,8 +196,8 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!----><!----><!---->myColumn1Type<!---->
         <!---->
         <ul>
-          <li class="svelte-bzf5hi">remainder1</li>
-          <li class="svelte-bzf5hi">remainder2</li>
+          <li class="svelte-bzf5hi">additionalErrors1</li>
+          <li class="svelte-bzf5hi">additionalErrors2</li>
         </ul>
         <!---->
         <!---->
@@ -385,8 +385,8 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!----><!----><!---->myConstraint1Clause<!---->
         <!---->
         <ul>
-          <li class="svelte-bzf5hi">remainder1</li>
-          <li class="svelte-bzf5hi">remainder2</li>
+          <li class="svelte-bzf5hi">additionalErrors1</li>
+          <li class="svelte-bzf5hi">additionalErrors2</li>
         </ul>
         <!---->
       </li>
@@ -1476,8 +1476,8 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!----><!----><!---->55<!---->
     <!---->
     <ul>
-      <li class="svelte-bzf5hi">remainder1</li>
-      <li class="svelte-bzf5hi">remainder2</li>
+      <li class="svelte-bzf5hi">additionalErrors1</li>
+      <li class="svelte-bzf5hi">additionalErrors2</li>
     </ul>
     <!---->
   </li>
@@ -1595,8 +1595,8 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!----><!---->
     <!---->
     <ul>
-      <li class="svelte-bzf5hi">remainder1</li>
-      <li class="svelte-bzf5hi">remainder2</li>
+      <li class="svelte-bzf5hi">additionalErrors1</li>
+      <li class="svelte-bzf5hi">additionalErrors2</li>
     </ul>
     <!---->
     <!---->

@@ -423,7 +423,7 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              additionalErrors: ["remainder1", "remainder2"],
+              additionalErrors: ["additionalErrors1", "additionalErrors2"],
             },
           ],
         } satisfies ApiSchema),
@@ -781,7 +781,7 @@ describe("Schema", () => {
                 {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
-                  additionalErrors: ["remainder1", "remainder2"],
+                  additionalErrors: ["additionalErrors1", "additionalErrors2"],
                 },
               ],
             },
@@ -1019,7 +1019,7 @@ describe("Schema", () => {
                   name: "myConstraint1Name",
                   type: "Check",
                   clause: "myConstraint1Clause",
-                  additionalErrors: ["remainder1", "remainder2"],
+                  additionalErrors: ["additionalErrors1", "additionalErrors2"],
                 },
               ],
             },
@@ -1186,7 +1186,7 @@ describe("Schema", () => {
               name: "myOnlyName",
               type: "myType",
               start: 55,
-              additionalErrors: ["remainder1", "remainder2"],
+              additionalErrors: ["additionalErrors1", "additionalErrors2"],
             },
           ],
         } satisfies ApiSchema),
