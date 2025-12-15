@@ -55,7 +55,7 @@ final class SchemaGetApi {
     String name,
     Existence existence,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
-    List<String> remainder,
+    List<String> additionalErrors,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<Column> columns,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
@@ -80,7 +80,7 @@ final class SchemaGetApi {
     Boolean toleratesInsertIfUnused,
     String mismatchingType,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
-    List<String> remainder,
+    List<String> additionalErrors,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<Constraint> constraints
   ) {
@@ -113,7 +113,7 @@ final class SchemaGetApi {
     Existence existence,
     String mismatchingClause,
     String mismatchingClauseRaw,
-    List<String> remainder
+    List<String> additionalErrors
   ) {
     private static Constraint convert(
       final Existence tableExistence,
@@ -174,7 +174,7 @@ final class SchemaGetApi {
     Existence existence,
     com.exedio.dsmf.Sequence.Type mismatchingType,
     Long mismatchingStart,
-    List<String> remainder
+    List<String> additionalErrors
   ) {
     static Sequence convert(final com.exedio.dsmf.Sequence s) {
       return new Sequence(
