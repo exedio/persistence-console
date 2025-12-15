@@ -503,7 +503,9 @@ export class Sequence implements Bullet, Fixable {
   }
 }
 
-export function useRemainder(api: ApiAdditionalErrors | undefined): readonly string[] {
+export function useRemainder(
+  api: ApiAdditionalErrors | undefined,
+): readonly string[] {
   return api ? api : [];
 }
 
