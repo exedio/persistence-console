@@ -34,8 +34,8 @@ export type SchemaConstraint = {
   readonly type: "PrimaryKey" | "ForeignKey" | "Unique" | "Check";
   readonly clause?: string;
   readonly existence?: SchemaExistence;
-  readonly errorClause?: string;
-  readonly errorClauseRaw?: string;
+  readonly mismatchingClause?: string;
+  readonly mismatchingClauseRaw?: string;
   readonly remainder?: SchemaRemainder;
 };
 

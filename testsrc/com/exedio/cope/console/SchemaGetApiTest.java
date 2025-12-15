@@ -469,7 +469,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_this_MN",
         "type" : "Check",
         "clause" : "\\"this\\">=0",
-        "errorClause" : "(\\"this\\")"
+        "mismatchingClause" : "(\\"this\\")"
       }""",
       writeJson(thisMaxConstraint())
     );
@@ -491,7 +491,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_this_MN",
         "type" : "Check",
         "clause" : "\\"this\\">=0",
-        "errorClause" : "\\"this\\">=44"
+        "mismatchingClause" : "\\"this\\">=44"
       }""",
       writeJson(thisMaxConstraint())
     );
@@ -513,8 +513,8 @@ public class SchemaGetApiTest {
         "name" : "MyType_this_MN",
         "type" : "Check",
         "clause" : "\\"this\\">=0",
-        "errorClause" : "\\"this\\"<>44",
-        "errorClauseRaw" : "\\"this\\"!=44"
+        "mismatchingClause" : "\\"this\\"<>44",
+        "mismatchingClauseRaw" : "\\"this\\"!=44"
       }""",
       writeJson(thisMaxConstraint())
     );
@@ -593,7 +593,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myTarget_Fk",
         "type" : "ForeignKey",
         "clause" : "myTarget->MyTarget.this",
-        "errorClause" : "myInt->MyTarget.this",
+        "mismatchingClause" : "myInt->MyTarget.this",
         "remainder" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
       }""",
       writeJson(myTypeTable().columns().get(4).constraints().get(2))

@@ -111,8 +111,8 @@ final class SchemaGetApi {
     String type,
     String clause,
     Existence existence,
-    String errorClause,
-    String errorClauseRaw,
+    String mismatchingClause,
+    String mismatchingClauseRaw,
     List<String> remainder
   ) {
     private static Constraint convert(

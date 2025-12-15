@@ -389,15 +389,15 @@ export class Constraint implements Bullet, Fixable {
         ? {
             name: "clause",
             expected: this.api.clause,
-            actual: this.api.errorClause,
-            actualRaw: this.api.errorClauseRaw,
+            actual: this.api.mismatchingClause,
+            actualRaw: this.api.mismatchingClauseRaw,
             shortener: (s) => {
               if (!columnName) return s;
               return s
                 .replace('"' + columnName + '"', "⬁") // hsqldb, PostgreSQL
                 .replace("`" + columnName + "`", "⬁"); // MySQL
             },
-            color: this.api.errorClause ? "red" : undefined,
+            color: this.api.mismatchingClause ? "red" : undefined,
           }
         : undefined,
     );
