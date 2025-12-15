@@ -728,7 +728,7 @@ describe("Schema", () => {
                 {
                   name: "myColumn1Name",
                   type: "myColumn1Type",
-                  errorType: "myColumn1TypeX",
+                  mismatchingType: "myColumn1TypeX",
                 },
               ],
             },
@@ -1143,7 +1143,7 @@ describe("Schema", () => {
               name: "myOnlyName",
               type: "myType",
               start: 55,
-              errorType: "myTypeX",
+              mismatchingType: "myTypeX",
             },
           ],
         } satisfies ApiSchema),

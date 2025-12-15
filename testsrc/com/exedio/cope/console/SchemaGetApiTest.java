@@ -382,7 +382,7 @@ public class SchemaGetApiTest {
       {
         "name" : "myString",
         "type" : "VARCHAR(80) not null",
-        "errorType" : "VARCHAR(44) not null",
+        "mismatchingType" : "VARCHAR(44) not null",
         "constraints" : [ {
           "name" : "MyType_myString_MN",
           "type" : "Check",
@@ -650,7 +650,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myInt_Seq",
         "type" : "bit31",
         "start" : 77,
-        "errorType" : "bit63"
+        "mismatchingType" : "bit63"
       }""",
       writeJson(myIntSequence())
     );
@@ -692,7 +692,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myInt_Seq",
         "type" : "bit31",
         "start" : 77,
-        "errorType" : "bit63",
+        "mismatchingType" : "bit63",
         "errorStart" : 88
       }""",
       writeJson(myIntSequence())
