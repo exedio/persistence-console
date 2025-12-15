@@ -33,13 +33,9 @@ export type SchemaConstraint = {
   readonly name: string;
   readonly type: "PrimaryKey" | "ForeignKey" | "Unique" | "Check";
   readonly clause?: string;
-  readonly error?: SchemaConstraintError;
-};
-
-export type SchemaConstraintError = {
   readonly existence?: SchemaExistence;
-  readonly clause?: string;
-  readonly clauseRaw?: string;
+  readonly errorClause?: string;
+  readonly errorClauseRaw?: string;
   readonly remainder?: SchemaRemainder;
 };
 

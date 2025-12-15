@@ -380,30 +380,30 @@ export class Constraint implements Bullet, Fixable {
     this.columnName = columnName;
     this.name = this.api.name;
     this.existence = $derived.by(() => {
-      const error = this.api.error;
-      if (!error || !error.existence) return undefined;
-      return { text: error.existence, color: "red" };
+      const api = this.api;
+      if (!api.existence) return undefined;
+      return { text: api.existence, color: "red" };
     });
     this.clause = $derived(
       this.api.clause
         ? {
             name: "clause",
             expected: this.api.clause,
-            actual: this.api.error?.clause,
-            actualRaw: this.api.error?.clauseRaw,
+            actual: this.api.errorClause,
+            actualRaw: this.api.errorClauseRaw,
             shortener: (s) => {
               if (!columnName) return s;
               return s
                 .replace('"' + columnName + '"', "⬁") // hsqldb, PostgreSQL
                 .replace("`" + columnName + "`", "⬁"); // MySQL
             },
-            color: this.api.error?.clause ? "red" : undefined,
+            color: this.api.errorClause ? "red" : undefined,
           }
         : undefined,
     );
 
     this.type = $derived(useConstraintType(this.api));
-    this.remainingErrors = $derived(useRemainder(this.api.error?.remainder));
+    this.remainingErrors = $derived(useRemainder(this.api.remainder));
     this.bulletColor = $derived(
       worst([this.existence?.color, this.clause?.color, remainderColor(this)]),
     );
