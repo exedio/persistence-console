@@ -525,7 +525,7 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintRemainingError()
+  void testConstraintAdditionalError()
     throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
@@ -543,14 +543,14 @@ public class SchemaGetApiTest {
         "name" : "MyType_myTarget_Fk",
         "type" : "ForeignKey",
         "clause" : "myTarget->MyTarget.this",
-        "remainder" : [ "unexpected delete rule CASCADE" ]
+        "additionalErrors" : [ "unexpected delete rule CASCADE" ]
       }""",
       writeJson(myTypeTable().columns().get(4).constraints().get(2))
     );
   }
 
   @Test
-  void testConstraintRemainingErrorMultiple()
+  void testConstraintAdditionalErrorMultiple()
     throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
@@ -568,14 +568,14 @@ public class SchemaGetApiTest {
         "name" : "MyType_myTarget_Fk",
         "type" : "ForeignKey",
         "clause" : "myTarget->MyTarget.this",
-        "remainder" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
+        "additionalErrors" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
       }""",
       writeJson(myTypeTable().columns().get(4).constraints().get(2))
     );
   }
 
   @Test
-  void testConstraintRemainingErrorAndClause()
+  void testConstraintAdditionalErrorAndClause()
     throws IOException, SQLException, ApiTextException {
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
@@ -594,7 +594,7 @@ public class SchemaGetApiTest {
         "type" : "ForeignKey",
         "clause" : "myTarget->MyTarget.this",
         "mismatchingClause" : "myInt->MyTarget.this",
-        "remainder" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
+        "additionalErrors" : [ "unexpected delete rule CASCADE", "unexpected update rule CASCADE" ]
       }""",
       writeJson(myTypeTable().columns().get(4).constraints().get(2))
     );
