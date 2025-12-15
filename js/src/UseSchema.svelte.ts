@@ -1,7 +1,7 @@
 import type {
   SchemaColumn as ApiColumn,
   SchemaConstraint as ApiConstraint,
-  SchemaRemainder as ApiRemainder,
+  SchemaAdditionalErrors as ApiAdditionalErrors,
   Schema as ApiSchema,
   SchemaSequence as ApiSequence,
   SchemaTable as ApiTable,
@@ -503,7 +503,7 @@ export class Sequence implements Bullet, Fixable {
   }
 }
 
-export function useRemainder(api: ApiRemainder | undefined): readonly string[] {
+export function useRemainder(api: ApiAdditionalErrors | undefined): readonly string[] {
   return api ? api : [];
 }
 
