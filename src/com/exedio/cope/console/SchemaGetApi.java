@@ -178,37 +178,21 @@ final class SchemaGetApi {
     String name,
     String type,
     long start,
-    SequenceError error
+    Existence existence,
+    com.exedio.dsmf.Sequence.Type errorType,
+    Long errorStart,
+    List<String> remainder
   ) {
     static Sequence convert(final com.exedio.dsmf.Sequence s) {
       return new Sequence(
         s.getName(),
         s.getType().name(),
         s.getStartL(),
-        SequenceError.convert(s)
+        Existence.forNode(s),
+        s.getMismatchingType(),
+        s.getMismatchingStart(),
+        emptyToNull(s.getAdditionalErrors())
       );
-    }
-  }
-
-  private record SequenceError(
-    Existence existence,
-    com.exedio.dsmf.Sequence.Type type,
-    Long start,
-    List<String> remainder
-  ) {
-    static SequenceError convert(final com.exedio.dsmf.Sequence s) {
-      final Existence existence = Existence.forNode(s);
-      final com.exedio.dsmf.Sequence.Type type = s.getMismatchingType();
-      final Long start = s.getMismatchingStart();
-      final List<String> remainder = emptyToNull(s.getAdditionalErrors());
-      return (
-          existence != null ||
-          type != null ||
-          start != null ||
-          remainder != null
-        )
-        ? new SequenceError(existence, type, start, remainder)
-        : null;
     }
   }
 

@@ -43,13 +43,9 @@ export type SchemaSequence = {
   readonly name: string;
   readonly type: string;
   readonly start: number;
-  readonly error?: SchemaSequenceError;
-};
-
-export type SchemaSequenceError = {
   readonly existence?: SchemaExistence;
-  readonly type?: string;
-  readonly start?: number;
+  readonly errorType?: string;
+  readonly errorStart?: number;
   readonly remainder?: SchemaRemainder;
 };
 
