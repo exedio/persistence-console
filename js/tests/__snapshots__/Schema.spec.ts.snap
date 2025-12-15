@@ -1,99 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Schema > should render a column with an additional error 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
-><!---->
-Schema <button class="reload svelte-dizlwz">🗘</button
-><!---->
-<ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
-    ><!---->
-    myTable1Name
-    <!----><!---->
-    <!---->
-    <!---->
-  </li>
-  <!---->
-  <!---->
-</ul>
-<!---->
-"
-`;
-
-exports[`Schema > should render a column with an additional error 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
-><!---->
-Schema <button class="reload svelte-dizlwz">🗘</button
-><!---->
-<ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
-    ><!---->
-    myTable1Name
-    <!----><!---->
-    <!----><!---->
-    <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
-        ><!---->
-        myColumn1Name
-        <!----><!---->
-        <!----><!----><!----><!---->
-        <!---->
-        <!---->
-      </li>
-      <!---->
-      <!----><!---->
-    </ul>
-    <!---->
-  </li>
-  <!---->
-  <!---->
-</ul>
-<!---->
-"
-`;
-
-exports[`Schema > should render a column with an additional error 3`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
-><!---->
-Schema <button class="reload svelte-dizlwz">🗘</button
-><!---->
-<ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
-    ><!---->
-    myTable1Name
-    <!----><!---->
-    <!----><!---->
-    <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">-</button
-        ><!---->
-        myColumn1Name
-        <!----><!---->
-        <!----><!----><!---->myColumn1Type<!---->
-        <!---->
-        <ul>
-          <li class="svelte-bzf5hi">remainder1</li>
-          <li class="svelte-bzf5hi">remainder2</li>
-        </ul>
-        <!---->
-        <!---->
-      </li>
-      <!---->
-      <!----><!---->
-    </ul>
-    <!---->
-  </li>
-  <!---->
-  <!---->
-</ul>
-<!---->
-"
-`;
-
 exports[`Schema > should render a column with a wrong type 1`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
@@ -214,6 +120,100 @@ exports[`Schema > should render a column with a wrong type 4`] = `
 "
 `;
 
+exports[`Schema > should render a column with an additional error 1`] = `
+"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-bzf5hi">
+    <button class="bullet red svelte-bzf5hi">+</button
+    ><!---->
+    myTable1Name
+    <!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a column with an additional error 2`] = `
+"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-bzf5hi">
+    <button class="bullet red svelte-bzf5hi">-</button
+    ><!---->
+    myTable1Name
+    <!----><!---->
+    <!----><!---->
+    <ul>
+      <li class="column svelte-bzf5hi">
+        <button class="bullet red svelte-bzf5hi">+</button
+        ><!---->
+        myColumn1Name
+        <!----><!---->
+        <!----><!----><!----><!---->
+        <!---->
+        <!---->
+      </li>
+      <!---->
+      <!----><!---->
+    </ul>
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a column with an additional error 3`] = `
+"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-bzf5hi">
+    <button class="bullet red svelte-bzf5hi">-</button
+    ><!---->
+    myTable1Name
+    <!----><!---->
+    <!----><!---->
+    <ul>
+      <li class="column svelte-bzf5hi">
+        <button class="bullet red svelte-bzf5hi">-</button
+        ><!---->
+        myColumn1Name
+        <!----><!---->
+        <!----><!----><!---->myColumn1Type<!---->
+        <!---->
+        <ul>
+          <li class="svelte-bzf5hi">remainder1</li>
+          <li class="svelte-bzf5hi">remainder2</li>
+        </ul>
+        <!---->
+        <!---->
+      </li>
+      <!---->
+      <!----><!---->
+    </ul>
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
 exports[`Schema > should render a connect button 1`] = `
 "<!----><button>connect</button
 ><!---->
@@ -249,66 +249,6 @@ exports[`Schema > should render a connect button 3`] = `
   <small>"CREATE TABLE myTable1Name",</small
   ><!---->
 </li>
-"
-`;
-
-exports[`Schema > should render a constraint with an additional error 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
-><!---->
-Schema <button class="reload svelte-dizlwz">🗘</button
-><!---->
-<ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
-    ><!---->
-    myTable1Name
-    <!----><!---->
-    <!---->
-    <!---->
-  </li>
-  <!---->
-  <!---->
-</ul>
-<!---->
-"
-`;
-
-exports[`Schema > should render a constraint with an additional error 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
-><!---->
-Schema <button class="reload svelte-dizlwz">🗘</button
-><!---->
-<ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
-    ><!---->
-    myTable1Name
-    <!----><!---->
-    <!----><!---->
-    <ul>
-      <!---->
-      <!---->
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet red svelte-bzf5hi">.</button
-        ><!---->
-        <span class="nodeType svelte-bzf5hi">check</span> myConstraint1Name
-        <!----><!---->
-        <!----><!----><!---->myConstraint1Clause<!---->
-        <!---->
-        <ul>
-          <li class="svelte-bzf5hi">remainder1</li>
-          <li class="svelte-bzf5hi">remainder2</li>
-        </ul>
-        <!---->
-      </li>
-      <!---->
-    </ul>
-    <!---->
-  </li>
-  <!---->
-  <!---->
-</ul>
-<!---->
 "
 `;
 
@@ -398,6 +338,66 @@ exports[`Schema > should render a constraint with a wrong clause 3`] = `
   <small>"ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",</small
   ><!---->
 </li>
+"
+`;
+
+exports[`Schema > should render a constraint with an additional error 1`] = `
+"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-bzf5hi">
+    <button class="bullet red svelte-bzf5hi">+</button
+    ><!---->
+    myTable1Name
+    <!----><!---->
+    <!---->
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
+"
+`;
+
+exports[`Schema > should render a constraint with an additional error 2`] = `
+"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+><!---->
+Schema <button class="reload svelte-dizlwz">🗘</button
+><!---->
+<ul>
+  <li class="table svelte-bzf5hi">
+    <button class="bullet red svelte-bzf5hi">-</button
+    ><!---->
+    myTable1Name
+    <!----><!---->
+    <!----><!---->
+    <ul>
+      <!---->
+      <!---->
+      <li class="svelte-bzf5hi">
+        <button disabled="" class="bullet red svelte-bzf5hi">.</button
+        ><!---->
+        <span class="nodeType svelte-bzf5hi">check</span> myConstraint1Name
+        <!----><!---->
+        <!----><!----><!---->myConstraint1Clause<!---->
+        <!---->
+        <ul>
+          <li class="svelte-bzf5hi">remainder1</li>
+          <li class="svelte-bzf5hi">remainder2</li>
+        </ul>
+        <!---->
+      </li>
+      <!---->
+    </ul>
+    <!---->
+  </li>
+  <!---->
+  <!---->
+</ul>
+<!---->
 "
 `;
 
