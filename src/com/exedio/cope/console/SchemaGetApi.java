@@ -78,7 +78,7 @@ final class SchemaGetApi {
     String type,
     Existence existence,
     Boolean toleratesInsertIfUnused,
-    String errorType,
+    String errorType, // TODO rename
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<String> remainder,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
@@ -92,17 +92,15 @@ final class SchemaGetApi {
         tableExistence,
         Existence.forNode(c)
       );
-      final String errorType = c.getMismatchingType(); // TODO rename
-      final boolean toleratesInsertIfUnused =
-        existence == Existence.unused && c.toleratesInsertIfUnused();
-      final List<String> remainder = emptyToNull(c.getAdditionalErrors());
       return new Column(
         c.getName(),
         c.getType(),
         existence,
-        toleratesInsertIfUnused ? Boolean.TRUE : null,
-        errorType,
-        remainder,
+        existence == Existence.unused && c.toleratesInsertIfUnused()
+          ? Boolean.TRUE
+          : null,
+        c.getMismatchingType(),
+        emptyToNull(c.getAdditionalErrors()),
         Constraint.convert(tableExistence, c.getConstraints())
       );
     }
@@ -121,21 +119,16 @@ final class SchemaGetApi {
       final Existence tableExistence,
       final com.exedio.dsmf.Constraint c
     ) {
-      final Existence existence = filterContainer(
-        tableExistence,
-        Existence.forNode(c)
-      );
       final String clause = c.getMismatchingCondition();
       final String clauseRaw = c.getMismatchingConditionRaw();
-      final List<String> remainder = emptyToNull(c.getAdditionalErrors());
       return new Constraint(
         c.getName(),
         c.getType().name(),
         c.getCondition(),
-        existence,
+        filterContainer(tableExistence, Existence.forNode(c)),
         clause,
         Objects.equals(clause, clauseRaw) ? null : clauseRaw,
-        remainder
+        emptyToNull(c.getAdditionalErrors())
       );
     }
 
