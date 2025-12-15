@@ -120,7 +120,7 @@ export class Table implements ExpandableBullet, Fixable {
   readonly existence: Existence;
   private _columns: readonly Column[];
   private _constraints: readonly Constraint[];
-  readonly remainingErrors: readonly string[];
+  readonly additionalErrors: readonly string[];
   readonly bulletColor: Color;
 
   private readonly columnsStore = new Map<string, Column>();
@@ -145,7 +145,7 @@ export class Table implements ExpandableBullet, Fixable {
     this._constraints = $state(
       this.useConstraints(this.api.constraints, this.constraintsStore),
     );
-    this.remainingErrors = $derived(useRemainder(this.api.additionalErrors));
+    this.additionalErrors = $derived(useRemainder(this.api.additionalErrors));
     this.bulletColor = $derived(
       worst([
         this.existence?.color,
@@ -243,7 +243,7 @@ export class Column implements ExpandableBullet, Fixable {
   readonly existence: Existence;
   readonly type: Comparison;
   private _constraints: readonly Constraint[];
-  readonly remainingErrors: readonly string[];
+  readonly additionalErrors: readonly string[];
   readonly bulletColor: Color;
 
   expanded: boolean = $state(false);
@@ -277,7 +277,7 @@ export class Column implements ExpandableBullet, Fixable {
     this._constraints = $state(
       this.useConstraints(this.api.constraints, constraintsStore),
     );
-    this.remainingErrors = $derived(useRemainder(this.api.additionalErrors));
+    this.additionalErrors = $derived(useRemainder(this.api.additionalErrors));
     this.bulletColor = $derived(
       worst([
         this.existence?.color,
@@ -365,7 +365,7 @@ export class Constraint implements Bullet, Fixable {
   readonly existence: Existence;
   readonly type: ConstraintType;
   readonly clause: Comparison | undefined;
-  readonly remainingErrors: readonly string[];
+  readonly additionalErrors: readonly string[];
   readonly bulletColor: Color;
 
   fix: Fix | undefined = $state(undefined);
@@ -403,7 +403,7 @@ export class Constraint implements Bullet, Fixable {
     );
 
     this.type = $derived(useConstraintType(this.api));
-    this.remainingErrors = $derived(useRemainder(this.api.additionalErrors));
+    this.additionalErrors = $derived(useRemainder(this.api.additionalErrors));
     this.bulletColor = $derived(
       worst([this.existence?.color, this.clause?.color, remainderColor(this)]),
     );
@@ -450,7 +450,7 @@ export class Sequence implements Bullet, Fixable {
   readonly existence: Existence;
   readonly type: Comparison;
   readonly start: Comparison;
-  readonly remainingErrors: readonly string[];
+  readonly additionalErrors: readonly string[];
   readonly bulletColor: Color;
 
   fix: Fix | undefined = $state(undefined);
@@ -481,7 +481,7 @@ export class Sequence implements Bullet, Fixable {
       shortener: (s) => s,
       color: this.api.mismatchingStart ? "red" : undefined,
     });
-    this.remainingErrors = $derived(useRemainder(this.api.additionalErrors));
+    this.additionalErrors = $derived(useRemainder(this.api.additionalErrors));
     this.bulletColor = $derived(
       worst([
         this.existence?.color,
@@ -538,9 +538,9 @@ function worse(a: Color, b: Color): Color {
 }
 
 function remainderColor(node: {
-  readonly remainingErrors: readonly string[];
+  readonly additionalErrors: readonly string[];
 }): Color {
-  return node.remainingErrors.length > 0 ? "red" : undefined;
+  return node.additionalErrors.length > 0 ? "red" : undefined;
 }
 
 export type Bullet = {
