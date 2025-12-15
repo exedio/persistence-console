@@ -405,7 +405,11 @@ export class Constraint implements Bullet, Fixable {
     this.type = $derived(useConstraintType(this.api));
     this.additionalErrors = $derived(useRemainder(this.api.additionalErrors));
     this.bulletColor = $derived(
-      worst([this.existence?.color, this.clause?.color, additionalErrorsColor(this)]),
+      worst([
+        this.existence?.color,
+        this.clause?.color,
+        additionalErrorsColor(this),
+      ]),
     );
   }
 
