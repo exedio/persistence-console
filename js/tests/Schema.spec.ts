@@ -1065,9 +1065,7 @@ describe("Schema", () => {
               name: "myOnlyName",
               type: "myType",
               start: 55,
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
           ],
         } satisfies ApiSchema),
@@ -1106,9 +1104,7 @@ describe("Schema", () => {
               name: "myOnlyName",
               type: "myType",
               start: 55,
-              error: {
-                existence: "unused",
-              },
+              existence: "unused",
             },
           ],
         } satisfies ApiSchema),
@@ -1147,9 +1143,7 @@ describe("Schema", () => {
               name: "myOnlyName",
               type: "myType",
               start: 55,
-              error: {
-                type: "myTypeX",
-              },
+              errorType: "myTypeX",
             },
           ],
         } satisfies ApiSchema),
@@ -1170,9 +1164,7 @@ describe("Schema", () => {
               name: "myOnlyName",
               type: "myType",
               start: 55,
-              error: {
-                start: 66,
-              },
+              errorStart: 66,
             },
           ],
         } satisfies ApiSchema),
@@ -1193,9 +1185,7 @@ describe("Schema", () => {
               name: "myOnlyName",
               type: "myType",
               start: 55,
-              error: {
-                remainder: ["remainder1", "remainder2"],
-              },
+              remainder: ["remainder1", "remainder2"],
             },
           ],
         } satisfies ApiSchema),
@@ -1268,9 +1258,7 @@ describe("Schema", () => {
           name: "SomeSequence",
           type: "someSequenceType",
           start: 55,
-          error: {
-            existence: "missing",
-          },
+          existence: "missing",
         },
       ],
     };

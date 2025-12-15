@@ -629,9 +629,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myInt_Seq",
         "type" : "bit31",
         "start" : 77,
-        "error" : {
-          "existence" : "missing"
-        }
+        "existence" : "missing"
       }""",
       writeJson(myIntSequence())
     );
@@ -652,9 +650,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myInt_Seq",
         "type" : "bit31",
         "start" : 77,
-        "error" : {
-          "type" : "bit63"
-        }
+        "errorType" : "bit63"
       }""",
       writeJson(myIntSequence())
     );
@@ -675,9 +671,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myInt_Seq",
         "type" : "bit31",
         "start" : 77,
-        "error" : {
-          "start" : 88
-        }
+        "errorStart" : 88
       }""",
       writeJson(myIntSequence())
     );
@@ -698,10 +692,8 @@ public class SchemaGetApiTest {
         "name" : "MyType_myInt_Seq",
         "type" : "bit31",
         "start" : 77,
-        "error" : {
-          "type" : "bit63",
-          "start" : 88
-        }
+        "errorType" : "bit63",
+        "errorStart" : 88
       }""",
       writeJson(myIntSequence())
     );
@@ -722,9 +714,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myIntZ_Seq",
         "type" : "bit31",
         "start" : 77,
-        "error" : {
-          "existence" : "unused"
-        }
+        "existence" : "unused"
       }""",
       writeJson(get(MODEL).sequences().get(1))
     );

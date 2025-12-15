@@ -459,29 +459,29 @@ export class Sequence implements Bullet, Fixable {
     this.api = $state(apiParameterForAssigmentOnly);
     this.name = this.api.name;
     this.existence = $derived.by(() => {
-      const error = this.api.error;
-      if (!error || !error.existence) return undefined;
-      return error.existence === "missing"
-        ? { text: error.existence, color: "red" }
-        : { text: error.existence, color: "yellow" };
+      const api = this.api;
+      if (!api.existence) return undefined;
+      return api.existence === "missing"
+        ? { text: api.existence, color: "red" }
+        : { text: api.existence, color: "yellow" };
     });
     this.type = $derived({
       name: "type",
       expected: this.api.type,
-      actual: this.api.error?.type,
+      actual: this.api.errorType,
       actualRaw: undefined,
       shortener: (s) => s,
-      color: this.api.error?.type ? "red" : undefined,
+      color: this.api.errorType ? "red" : undefined,
     });
     this.start = $derived({
       name: "start",
       expected: this.api.start.toString(),
-      actual: this.api.error?.start?.toString(),
+      actual: this.api.errorStart?.toString(),
       actualRaw: undefined,
       shortener: (s) => s,
-      color: this.api.error?.start ? "red" : undefined,
+      color: this.api.errorStart ? "red" : undefined,
     });
-    this.remainingErrors = $derived(useRemainder(this.api.error?.remainder));
+    this.remainingErrors = $derived(useRemainder(this.api.remainder));
     this.bulletColor = $derived(
       worst([
         this.existence?.color,
