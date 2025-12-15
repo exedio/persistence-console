@@ -671,7 +671,7 @@ public class SchemaGetApiTest {
         "name" : "MyType_myInt_Seq",
         "type" : "bit31",
         "start" : 77,
-        "errorStart" : 88
+        "mismatchingStart" : 88
       }""",
       writeJson(myIntSequence())
     );
@@ -693,7 +693,7 @@ public class SchemaGetApiTest {
         "type" : "bit31",
         "start" : 77,
         "mismatchingType" : "bit63",
-        "errorStart" : 88
+        "mismatchingStart" : 88
       }""",
       writeJson(myIntSequence())
     );

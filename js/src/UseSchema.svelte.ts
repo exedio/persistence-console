@@ -476,10 +476,10 @@ export class Sequence implements Bullet, Fixable {
     this.start = $derived({
       name: "start",
       expected: this.api.start.toString(),
-      actual: this.api.errorStart?.toString(),
+      actual: this.api.mismatchingStart?.toString(),
       actualRaw: undefined,
       shortener: (s) => s,
-      color: this.api.errorStart ? "red" : undefined,
+      color: this.api.mismatchingStart ? "red" : undefined,
     });
     this.remainingErrors = $derived(useRemainder(this.api.remainder));
     this.bulletColor = $derived(
