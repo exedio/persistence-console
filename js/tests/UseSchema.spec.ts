@@ -69,30 +69,22 @@ describe("UseSchema", () => {
             {
               name: "columnMissing1",
               type: "myType",
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
             {
               name: "columnMissing2",
               type: "myType",
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
             {
               name: "columnUnused1",
               type: "myType",
-              error: {
-                existence: "unused",
-              },
+              existence: "unused",
             },
             {
               name: "columnUnused2",
               type: "myType",
-              error: {
-                existence: "unused",
-              },
+              existence: "unused",
             },
           ],
         },

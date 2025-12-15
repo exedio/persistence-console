@@ -22,14 +22,10 @@ export type SchemaTable = {
 export type SchemaColumn = {
   readonly name: string;
   readonly type: string;
-  readonly error?: SchemaColumnError;
   readonly constraints?: readonly SchemaConstraint[];
-};
-
-export type SchemaColumnError = {
   readonly existence?: SchemaExistence;
   readonly toleratesInsertIfUnused?: true;
-  readonly type?: string;
+  readonly errorType?: string;
   readonly remainder?: SchemaRemainder;
 };
 
