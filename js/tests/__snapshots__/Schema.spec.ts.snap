@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Schema > should render a column with a remaining error 1`] = `
+exports[`Schema > should render a column with an additional error 1`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
@@ -21,7 +21,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 "
 `;
 
-exports[`Schema > should render a column with a remaining error 2`] = `
+exports[`Schema > should render a column with an additional error 2`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
@@ -55,7 +55,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 "
 `;
 
-exports[`Schema > should render a column with a remaining error 3`] = `
+exports[`Schema > should render a column with an additional error 3`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
@@ -252,7 +252,7 @@ exports[`Schema > should render a connect button 3`] = `
 "
 `;
 
-exports[`Schema > should render a constraint with a remaining error 1`] = `
+exports[`Schema > should render a constraint with an additional error 1`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
@@ -273,7 +273,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 "
 `;
 
-exports[`Schema > should render a constraint with a remaining error 2`] = `
+exports[`Schema > should render a constraint with an additional error 2`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
@@ -1460,7 +1460,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 "
 `;
 
-exports[`Schema > should render a sequence with a remaining error 1`] = `
+exports[`Schema > should render a sequence with an additional error 1`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
@@ -1561,7 +1561,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 "
 `;
 
-exports[`Schema > should render a table with a remaining error 1`] = `
+exports[`Schema > should render a table with an additional error 1`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
@@ -1582,7 +1582,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 "
 `;
 
-exports[`Schema > should render a table with a remaining error 2`] = `
+exports[`Schema > should render a table with an additional error 2`] = `
 "<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button

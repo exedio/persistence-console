@@ -415,7 +415,7 @@ describe("Schema", () => {
     expect(select(2).value).toBe("<NONE>");
   });
 
-  it("should render a table with a remaining error", async () => {
+  it("should render a table with an additional error", async () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -769,7 +769,7 @@ describe("Schema", () => {
     expect(sql()).toBeNull();
   });
 
-  it("should render a column with a remaining error", async () => {
+  it("should render a column with an additional error", async () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -1006,7 +1006,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
-  it("should render a constraint with a remaining error", async () => {
+  it("should render a constraint with an additional error", async () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -1176,7 +1176,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
-  it("should render a sequence with a remaining error", async () => {
+  it("should render a sequence with an additional error", async () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
