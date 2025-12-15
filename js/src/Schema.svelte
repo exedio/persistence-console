@@ -382,10 +382,10 @@
   {/if}
 {/snippet}
 
-{#snippet additionalErrors(remainder: ReadonlyStringArray)}
-  {#if remainder.length}
+{#snippet additionalErrors(rr: ReadonlyStringArray)}
+  {#if rr.length}
     <ul>
-      {#each remainder as r}
+      {#each rr as r}
         <li>{r}</li>
       {/each}
     </ul>
