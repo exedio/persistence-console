@@ -15,10 +15,6 @@ export type SchemaTable = {
   readonly name: string;
   readonly columns?: readonly SchemaColumn[];
   readonly constraints?: readonly SchemaConstraint[];
-  readonly error?: SchemaTableError;
-};
-
-export type SchemaTableError = {
   readonly existence?: SchemaExistence;
   readonly remainder?: SchemaRemainder;
 };

@@ -133,10 +133,10 @@ export class Table implements ExpandableBullet, Fixable {
     this.api = $state(apiParameterForAssigmentOnly);
     this.name = this.api.name;
     this.existence = $derived(
-      this.api.error && this.api.error.existence
-        ? this.api.error.existence === "unused"
-          ? { text: this.api.error.existence, color: "yellow" }
-          : { text: this.api.error.existence, color: "red" }
+      this.api.existence
+        ? this.api.existence === "unused"
+          ? { text: this.api.existence, color: "yellow" }
+          : { text: this.api.existence, color: "red" }
         : undefined,
     );
     this._columns = $state(
@@ -145,11 +145,11 @@ export class Table implements ExpandableBullet, Fixable {
     this._constraints = $state(
       this.useConstraints(this.api.constraints, this.constraintsStore),
     );
-    this.remainingErrors = $derived(useRemainder(this.api.error?.remainder));
+    this.remainingErrors = $derived(useRemainder(this.api.remainder));
     this.bulletColor = $derived(
       worst([
         this.existence?.color,
-        remainderColor(this.api.error),
+        remainderColor(this.api),
         worst(this._columns.map((i) => i.bulletColor)),
         worst(this._constraints.map((i) => i.bulletColor)),
       ]),

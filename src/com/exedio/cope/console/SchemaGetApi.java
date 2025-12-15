@@ -58,31 +58,23 @@ final class SchemaGetApi {
 
   record TableResponse(
     String name,
-    TableError error,
+    Existence existence,
+    @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
+    List<String> remainder,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<ColumnResponse> columns,
     @SuppressWarnings("AssignmentOrReturnOfFieldWithMutableType") // OK: just json
     List<ConstraintResponse> constraints
   ) {
     static TableResponse convert(final Table t) {
-      final TableError error = TableError.convert(t);
-      final Existence existence = error != null ? error.existence : null;
+      final Existence existence = Existence.forNode(t);
       return new TableResponse(
         t.getName(),
-        error,
+        existence,
+        emptyToNull(t.getAdditionalErrors()),
         map(t.getColumns(), c -> new ColumnResponse(existence, c)),
         ConstraintResponse.convert(existence, t.getTableConstraints())
       );
-    }
-  }
-
-  private record TableError(Existence existence, List<String> remainder) {
-    static TableError convert(final Table t) {
-      final Existence existence = Existence.forNode(t);
-      final List<String> remainder = emptyToNull(t.getAdditionalErrors());
-      return existence != null || remainder != null
-        ? new TableError(existence, remainder)
-        : null;
     }
   }
 

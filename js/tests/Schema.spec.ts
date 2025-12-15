@@ -187,9 +187,7 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
           ],
         } satisfies ApiSchema),
@@ -230,9 +228,7 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
           ],
         } satisfies ApiSchema),
@@ -268,9 +264,7 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              error: {
-                existence: "unused",
-              },
+              existence: "unused",
             },
           ],
         } satisfies ApiSchema),
@@ -311,21 +305,15 @@ describe("Schema", () => {
           tables: [
             {
               name: "myUnusedTableName",
-              error: {
-                existence: "unused",
-              },
+              existence: "unused",
             },
             {
               name: "myMissingTableName",
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
             {
               name: "myMissingTableName2",
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
           ],
         } satisfies ApiSchema),
@@ -376,21 +364,15 @@ describe("Schema", () => {
           tables: [
             {
               name: "myMissingTableName",
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
             {
               name: "myUnusedTableName",
-              error: {
-                existence: "unused",
-              },
+              existence: "unused",
             },
             {
               name: "myUnusedTableName2",
-              error: {
-                existence: "unused",
-              },
+              existence: "unused",
             },
           ],
         } satisfies ApiSchema),
@@ -441,9 +423,7 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              error: {
-                remainder: ["remainder1", "remainder2"],
-              },
+              remainder: ["remainder1", "remainder2"],
             },
           ],
         } satisfies ApiSchema),
@@ -1453,9 +1433,7 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              error: {
-                existence: "missing",
-              },
+              existence: "missing",
             },
           ],
         } satisfies ApiSchema),

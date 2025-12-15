@@ -165,9 +165,7 @@ public class SchemaGetApiTest {
       """
       {
         "name" : "MyType",
-        "error" : {
-          "existence" : "missing"
-        },
+        "existence" : "missing",
         "columns" : [ {
           "name" : "this",
           "type" : "INTEGER not null",
@@ -259,9 +257,7 @@ public class SchemaGetApiTest {
       """
       {
         "name" : "MyTypeZ",
-        "error" : {
-          "existence" : "unused"
-        },
+        "existence" : "unused",
         "columns" : [ {
           "name" : "this",
           "type" : "INTEGER not null"
