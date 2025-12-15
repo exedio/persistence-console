@@ -149,7 +149,7 @@
               table.renameTo(schema),
             )}
             {#if tableExpanded}
-              {@render remainder(table.remainingErrors)}
+              {@render remainder(table.additionalErrors)}
             {/if}
             {#if tableExpanded && (table.columns().length || table.constraints().length)}
               <ul in:fly={{ y: -10, duration: 200 }}>
@@ -171,7 +171,7 @@
                       columnExpanded,
                     )}
                     {#if columnExpanded}
-                      {@render remainder(column.remainingErrors)}
+                      {@render remainder(column.additionalErrors)}
                     {/if}
                     {#if columnExpanded && column.constraints().length > 0}
                       <ul in:fly={{ y: -10, duration: 200 }}>
@@ -198,7 +198,7 @@
             )}
             {@render comparison(sequence, sequence.type, undefined, true)}
             {@render comparison(sequence, sequence.start, undefined, true)}
-            {@render remainder(sequence.remainingErrors)}
+            {@render remainder(sequence.additionalErrors)}
           </li>
         {/each}
       </ul>
@@ -237,7 +237,7 @@
       {constraint.nameShort()}
       {@render existence(constraint.existence, constraint, [], [])}
       {@render comparison(constraint, constraint.clause, "recreate", true)}
-      {@render remainder(constraint.remainingErrors)}
+      {@render remainder(constraint.additionalErrors)}
     </li>
   {/each}
 {/snippet}
