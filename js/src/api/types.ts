@@ -16,7 +16,7 @@ export type SchemaTable = {
   readonly columns?: readonly SchemaColumn[];
   readonly constraints?: readonly SchemaConstraint[];
   readonly existence?: SchemaExistence;
-  readonly additionalErrors?: SchemaRemainder;
+  readonly additionalErrors?: SchemaAdditionalErrors;
 };
 
 export type SchemaColumn = {
@@ -26,7 +26,7 @@ export type SchemaColumn = {
   readonly existence?: SchemaExistence;
   readonly toleratesInsertIfUnused?: true;
   readonly mismatchingType?: string;
-  readonly additionalErrors?: SchemaRemainder;
+  readonly additionalErrors?: SchemaAdditionalErrors;
 };
 
 export type SchemaConstraint = {
@@ -36,7 +36,7 @@ export type SchemaConstraint = {
   readonly existence?: SchemaExistence;
   readonly mismatchingClause?: string;
   readonly mismatchingClauseRaw?: string;
-  readonly additionalErrors?: SchemaRemainder;
+  readonly additionalErrors?: SchemaAdditionalErrors;
 };
 
 export type SchemaSequence = {
@@ -46,12 +46,12 @@ export type SchemaSequence = {
   readonly existence?: SchemaExistence;
   readonly mismatchingType?: string;
   readonly mismatchingStart?: number;
-  readonly additionalErrors?: SchemaRemainder;
+  readonly additionalErrors?: SchemaAdditionalErrors;
 };
 
 export type SchemaExistence = "missing" | "unused";
 
-export type SchemaRemainder = readonly string[];
+export type SchemaAdditionalErrors = readonly string[];
 
 export type SchemaAlterResponse = {
   readonly sql: string;
