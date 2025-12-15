@@ -176,7 +176,7 @@ final class SchemaGetApi {
 
   private record Sequence(
     String name,
-    String type,
+    com.exedio.dsmf.Sequence.Type type,
     long start,
     Existence existence,
     com.exedio.dsmf.Sequence.Type errorType,
@@ -186,7 +186,7 @@ final class SchemaGetApi {
     static Sequence convert(final com.exedio.dsmf.Sequence s) {
       return new Sequence(
         s.getName(),
-        s.getType().name(),
+        s.getType(),
         s.getStartL(),
         Existence.forNode(s),
         s.getMismatchingType(),
