@@ -10,7 +10,7 @@ describe("UseSchema", () => {
         },
         {
           name: "tableExisting",
-          additionalErrors: ["someRemainder"],
+          additionalErrors: ["someAdditionalErrors"],
         },
         {
           name: "tableMissing1",
