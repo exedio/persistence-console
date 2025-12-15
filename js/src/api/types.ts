@@ -45,7 +45,7 @@ export type SchemaSequence = {
   readonly start: number;
   readonly existence?: SchemaExistence;
   readonly mismatchingType?: string;
-  readonly errorStart?: number;
+  readonly mismatchingStart?: number;
   readonly remainder?: SchemaRemainder;
 };
 

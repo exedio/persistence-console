@@ -173,7 +173,7 @@ final class SchemaGetApi {
     long start,
     Existence existence,
     com.exedio.dsmf.Sequence.Type mismatchingType,
-    Long errorStart,
+    Long mismatchingStart,
     List<String> remainder
   ) {
     static Sequence convert(final com.exedio.dsmf.Sequence s) {

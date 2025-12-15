@@ -1165,7 +1165,7 @@ describe("Schema", () => {
               name: "myOnlyName",
               type: "myType",
               start: 55,
-              errorStart: 66,
+              mismatchingStart: 66,
             },
           ],
         } satisfies ApiSchema),
