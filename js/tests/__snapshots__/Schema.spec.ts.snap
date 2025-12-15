@@ -769,7 +769,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <button class="bullet red svelte-bzf5hi">+</button
         ><!---->
         myUnusedColumnName
-        <!----><span class="yellow svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-bzf5hi">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
@@ -787,7 +787,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <button class="bullet red svelte-bzf5hi">+</button
         ><!---->
         myUnusedColumnName2
-        <!----><span class="yellow svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-bzf5hi">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
@@ -849,7 +849,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <button class="bullet red svelte-bzf5hi">+</button
         ><!---->
         myUnusedColumnName
-        <!----><span class="yellow svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-bzf5hi">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
@@ -867,7 +867,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <button class="bullet red svelte-bzf5hi">+</button
         ><!---->
         myUnusedColumnName2
-        <!----><span class="yellow svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-bzf5hi">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
@@ -1823,7 +1823,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <button class="bullet red svelte-bzf5hi">+</button
         ><!---->
         myUnusedColumnName
-        <!----><span class="yellow svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-bzf5hi">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
@@ -1903,7 +1903,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <button class="bullet red svelte-bzf5hi">+</button
         ><!---->
         myUnusedColumnName
-        <!----><span class="yellow svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-bzf5hi">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
