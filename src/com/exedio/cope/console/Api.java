@@ -176,6 +176,7 @@ final class Api {
     final ObjectMapper mapper = new ObjectMapper();
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
     mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
     mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);

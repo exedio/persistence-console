@@ -209,7 +209,7 @@ final class SchemaGetApi {
   }
 
   private static <E> List<E> emptyToNull(final List<E> l) {
-    return l.isEmpty() ? null : l;
+    return l; // TODO inline
   }
 
   private SchemaGetApi() {
