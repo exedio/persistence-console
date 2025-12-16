@@ -156,8 +156,7 @@ final class SchemaGetApi {
     final Predicate<? super T> predicate,
     final Function<T, R> mapper
   ) {
-    final List<R> result = c.stream().filter(predicate).map(mapper).toList();
-    return result;
+    return c.stream().filter(predicate).map(mapper).toList();
   }
 
   private static Existence filterContainer(
