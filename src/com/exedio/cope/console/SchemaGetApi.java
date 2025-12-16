@@ -66,7 +66,7 @@ final class SchemaGetApi {
       return new Table(
         t.getName(),
         existence,
-        emptyToNull(t.getAdditionalErrors()),
+        t.getAdditionalErrors(),
         map(t.getColumns(), c -> Column.convert(existence, c)),
         Constraint.convert(existence, t.getTableConstraints())
       );
@@ -100,7 +100,7 @@ final class SchemaGetApi {
           ? Boolean.TRUE
           : null,
         c.getMismatchingType(),
-        emptyToNull(c.getAdditionalErrors()),
+        c.getAdditionalErrors(),
         Constraint.convert(tableExistence, c.getConstraints())
       );
     }
@@ -128,7 +128,7 @@ final class SchemaGetApi {
         filterContainer(tableExistence, Existence.forNode(c)),
         clause,
         Objects.equals(clause, clauseRaw) ? null : clauseRaw,
-        emptyToNull(c.getAdditionalErrors())
+        c.getAdditionalErrors()
       );
     }
 
@@ -156,8 +156,7 @@ final class SchemaGetApi {
     final Predicate<? super T> predicate,
     final Function<T, R> mapper
   ) {
-    final List<R> result = c.stream().filter(predicate).map(mapper).toList();
-    return emptyToNull(result);
+    return c.stream().filter(predicate).map(mapper).toList();
   }
 
   private static Existence filterContainer(
@@ -184,7 +183,7 @@ final class SchemaGetApi {
         Existence.forNode(s),
         s.getMismatchingType(),
         s.getMismatchingStart(),
-        emptyToNull(s.getAdditionalErrors())
+        s.getAdditionalErrors()
       );
     }
   }
@@ -206,10 +205,6 @@ final class SchemaGetApi {
         else
           throw new RuntimeException(n.toString());
     }
-  }
-
-  private static <E> List<E> emptyToNull(final List<E> l) {
-    return l; // TODO inline
   }
 
   private SchemaGetApi() {
