@@ -32,6 +32,7 @@ import com.exedio.cope.DataField;
 import com.exedio.cope.DataFieldVaultInfo;
 import com.exedio.cope.Pattern;
 import com.exedio.cope.Type;
+import com.exedio.cope.Vault;
 import com.exedio.cope.console.DataVaultCop.Bucket;
 import com.exedio.cope.misc.DataFieldVaultSummary;
 import com.exedio.cope.pattern.MediaPath;
@@ -64,7 +65,7 @@ final class DataVault_Jspm
 			if(bucket.isNone)
 			{
 				%>
-				<td class="notavailable" colspan="3">/none/</td><% // TODO use Vault#NONE when available after cope update
+				<td class="notavailable" colspan="3"><%=Vault.NONE%></td><%
 			}
 			else
 			{
