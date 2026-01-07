@@ -20,6 +20,7 @@
 package com.exedio.cope.console;
 
 import java.util.Arrays;
+import java.util.List;
 
 final class ColoredTable_Jspm
 {
@@ -27,8 +28,15 @@ final class ColoredTable_Jspm
 
 	static void writeHeader(final Out out, final String[] names, final String[] shortNames)
 	{
+		writeHeader(out, names, shortNames, null);
+	}
+
+	static void writeHeader(final Out out, final String[] names, final String[] shortNames, final String[][] subNames)
+	{
 			if(names.length<=shortNames.length)
 				throw new RuntimeException(Arrays.toString(names) + Arrays.toString(shortNames));
+			if (subNames!=null && subNames.length!=names.length)
+				throw new RuntimeException(subNames.length + "!=" + names.length);
 
 			for(int i = 0; i<shortNames.length; i++)
 			{
@@ -36,10 +44,10 @@ final class ColoredTable_Jspm
 			<tr style="display:none;"> <%
 				if (i!=0)
 				{ %>
-					<th rowspan="<%= shortNames.length - i %>" class="color<%= (i-1)%COLORS %>"></th> <%
+					<th rowspan="<%= shortNames.length - i %>" colspan="<%= subNames==null ? 1 : subNames[i-1].length %>" class="color<%= (i-1)%COLORS %>"></th> <%
 				}
 				%>
-				<th colspan="<%=      names.length - i %>" class="color<%= i%COLORS %>"><% out.writeRaw(names[i]); %></th>
+				<th colspan="<%= subNames==null ? (names.length - i) : Arrays.stream(subNames, i, subNames.length).mapToInt(a->a.length).sum() %>" class="color<%= i%COLORS %>"><% out.writeRaw(names[i]); %></th>
 			</tr><%
 			}
 			%>
@@ -62,7 +70,7 @@ final class ColoredTable_Jspm
 			for(; i<shortNames.length; i++)
 			{
 				%>
-				<th class="color<%= i%COLORS %>s" title="<%=names[i]%>"><%
+				<th class="color<%= i%COLORS %>s" title="<%=names[i]%>" colspan="<%=subNames==null ? 1 : subNames[i].length%>"><%
 					out.writeRaw(shortNames[i]); %><%
 					if(i==0)
 					{
@@ -77,15 +85,47 @@ final class ColoredTable_Jspm
 			}
 			%>
 			</tr><%
+			if (subNames!=null)
+			{
+				%>
+				<tr><%
+					int subNameCount = 0;
+					for(int j = 0; j<subNames.length; j++)
+					{
+						final String[] nextSubNames = subNames[j];
+						for (final String subName: nextSubNames)
+						{
+							%>
+							<th class="color<%= j%COLORS %>s"><%=subName%></th>
+							<%
+							subNameCount++;
+						}
+					}
+					for (int j = subNameCount; j<names.length; j++)
+					{
+						%>
+						<th></th><%
+					}
+					%>
+				</tr><%
+			}
 	}
 
 	static void writeData(final Out out, final String[] data)
 	{
-			for(int i = 0; i<data.length; i++)
-			{
+		writeData(out, ColoredTableCell.forStrings(data));
+	}
+
+	static void writeData(final Out out, final List<ColoredTableCell> cells)
+	{
+		int i = -1;
+		for (final ColoredTableCell cell: cells)
+		{
+			if (cell.nextColor())
+				i++;
 			%>
-				<td class="color<%= i%COLORS %>"><% out.writeRaw(data[i]); %></td><%
-			}
+			<td class="color<%= i%COLORS %>" colspan="<%=cell.colspan()%>"><% out.writeRaw(cell.value()); %></td><%
+		}
 	}
 
 	static void writeData(final Out out, final Out.Consumer[] data)

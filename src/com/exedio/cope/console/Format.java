@@ -36,6 +36,8 @@ final class Format
 		nfs.setDecimalSeparator(',');
 		nfs.setGroupingSeparator('\'');
 		numberFormat = new DecimalFormat("", nfs);
+		numberFormat.setMinimumIntegerDigits(1);
+		numberFormat.setMaximumFractionDigits(1);
 	}
 
 	static String format(final long number)
@@ -51,6 +53,12 @@ final class Format
 
 		//noinspection AccessToNonThreadSafeStaticField TODO
 		return /*"fm" +*/ numberFormat.format(number);
+	}
+
+	static String format(final double number)
+	{
+		//noinspection AccessToNonThreadSafeStaticField TODO
+		return numberFormat.format(number);
 	}
 
 	static String formatAndHide(final long hidden, final long number)
