@@ -28,6 +28,7 @@ import io.micrometer.core.instrument.Tags;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -192,22 +193,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 				if(histogramCondensed!=null)
 				{
 					this.histogramCondensed = histogramCondensed.values().toArray(EMPTY_CONDENSE);
-					Arrays.sort(this.histogramCondensed, (c1, c2) ->
-					{
-						if(c1==c2)
-							return 0;
-
-						{
-							final long r1 = c1.getRecentUsage();
-							final long r2 = c2.getRecentUsage();
-							if(r1<r2)
-								return -1;
-							else if(r1>r2)
-								return 1;
-						}
-
-						return c1.query.compareTo(c2.query);
-					});
+					Arrays.sort(this.histogramCondensed, Comparator.comparing(Condense::getRecentUsage).thenComparing(c->c.query));
 				}
 				else
 				{
