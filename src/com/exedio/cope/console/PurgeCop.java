@@ -54,7 +54,7 @@ final class PurgeCop extends ConsoleCop<Void>
 		Purge_Jspm.writeBody(
 				out, model, this,
 				purge,
-				model.contains(RevisionStatistics.types),
+				RevisionStatistics.isContainedIn(model),
 				revisionStatistics,
 				(purge||revisionStatistics) ? new Context(out) : null);
 	}
