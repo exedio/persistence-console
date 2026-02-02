@@ -112,6 +112,20 @@
 
   const RENAME_NONE = "<NONE>";
 
+  $effect(() => {
+    const schema: Schema | undefined = schemaT.last();
+    if (!schema) return;
+
+    const all = schema.constraintsWithClauseMismatch;
+    const checked = schema.constraintsWithClauseMismatchCheckedFix;
+    const checkbox = document.getElementById(
+      "constraintsWithClauseMismatchCheckboxId",
+    );
+    if (!checkbox) return;
+    asInputElement(checkbox).indeterminate =
+      0 < checked.length && checked.length < all.length;
+  });
+
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
@@ -133,6 +147,32 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
+      {#if schema.constraintsWithClauseMismatch.length > 0}
+        <div class="checkboxCollector">
+          {#if schema.constraintsWithClauseMismatch.length > 0}
+            <label
+              ><input
+                id="constraintsWithClauseMismatchCheckboxId"
+                type="checkbox"
+                checked={schema.constraintsWithClauseMismatchCheckedFix.length >
+                  0}
+                oninput={(e) => {
+                  schema.constraintsWithClauseMismatch.forEach((constraint) =>
+                    setFix(
+                      asInputElement(e.target).checked,
+                      constraint,
+                      "modify",
+                      undefined,
+                    ),
+                  );
+                }}
+              />recreate constraints with clause mismatch ({schema
+                .constraintsWithClauseMismatchCheckedFix.length}/{schema
+                .constraintsWithClauseMismatch.length})
+            </label><br />
+          {/if}
+        </div>
+      {/if}
       {@render bullet(schema)}
       Schema
       <PromiseTrackerReload tracker={schemaT} />

@@ -140,7 +140,15 @@ exports[`Schema > should render a connect button 3`] = `
 `;
 
 exports[`Schema > should render a constraint with a wrong clause 1`] = `
-"<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
+"<div class="checkboxCollector">
+  <label
+    ><input
+      id="constraintsWithClauseMismatchCheckboxId"
+      type="checkbox"
+    />recreate constraints with clause mismatch (0/1)</label
+  ><br />
+</div>
+<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button>
 <ul>
   <li class="table svelte-rxuasg">
@@ -151,7 +159,15 @@ exports[`Schema > should render a constraint with a wrong clause 1`] = `
 `;
 
 exports[`Schema > should render a constraint with a wrong clause 2`] = `
-"<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
+"<div class="checkboxCollector">
+  <label
+    ><input
+      id="constraintsWithClauseMismatchCheckboxId"
+      type="checkbox"
+    />recreate constraints with clause mismatch (0/1)</label
+  ><br />
+</div>
+<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button>
 <ul>
   <li class="table svelte-rxuasg">
@@ -229,7 +245,15 @@ exports[`Schema > should render a constraint with an additional error 2`] = `
 `;
 
 exports[`Schema > should render a constraint with shortener 1`] = `
-"<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
+"<div class="checkboxCollector">
+  <label
+    ><input
+      id="constraintsWithClauseMismatchCheckboxId"
+      type="checkbox"
+    />recreate constraints with clause mismatch (0/1)</label
+  ><br />
+</div>
+<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button>
 <ul>
   <li class="table svelte-rxuasg">
@@ -240,7 +264,15 @@ exports[`Schema > should render a constraint with shortener 1`] = `
 `;
 
 exports[`Schema > should render a constraint with shortener 2`] = `
-"<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
+"<div class="checkboxCollector">
+  <label
+    ><input
+      id="constraintsWithClauseMismatchCheckboxId"
+      type="checkbox"
+    />recreate constraints with clause mismatch (0/1)</label
+  ><br />
+</div>
+<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button>
 <ul>
   <li class="table svelte-rxuasg">
@@ -256,7 +288,15 @@ exports[`Schema > should render a constraint with shortener 2`] = `
 `;
 
 exports[`Schema > should render a constraint with shortener 3`] = `
-"<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
+"<div class="checkboxCollector">
+  <label
+    ><input
+      id="constraintsWithClauseMismatchCheckboxId"
+      type="checkbox"
+    />recreate constraints with clause mismatch (0/1)</label
+  ><br />
+</div>
+<button disabled="" class="bullet red svelte-rxuasg">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button>
 <ul>
   <li class="table svelte-rxuasg">
@@ -698,6 +738,76 @@ exports[`Schema > should render a missing table to be renamed to an unused 3`] =
     \\"myMissingTableName\\"",</small
   >
 </li>
+"
+`;
+
+exports[`Schema > should render a multiple constraints with a wrong clause 1`] = `
+"<label
+  ><input
+    id="constraintsWithClauseMismatchCheckboxId"
+    type="checkbox"
+  />recreate constraints with clause mismatch (0/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple constraints with a wrong clause 2`] = `
+"<label
+  ><input
+    id="constraintsWithClauseMismatchCheckboxId"
+    type="checkbox"
+  />recreate constraints with clause mismatch (1/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple constraints with a wrong clause 3`] = `
+"<label
+  ><input
+    id="constraintsWithClauseMismatchCheckboxId"
+    type="checkbox"
+  />recreate constraints with clause mismatch (2/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple constraints with a wrong clause 4`] = `
+"<label
+  ><input
+    id="constraintsWithClauseMismatchCheckboxId"
+    type="checkbox"
+  />recreate constraints with clause mismatch (0/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple constraints with a wrong clause 5`] = `
+"<label
+  ><input
+    id="constraintsWithClauseMismatchCheckboxId"
+    type="checkbox"
+  />recreate constraints with clause mismatch (2/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple constraints with a wrong clause 6`] = `
+"<label
+  ><input
+    id="constraintsWithClauseMismatchCheckboxId"
+    type="checkbox"
+  />recreate constraints with clause mismatch (1/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple constraints with a wrong clause 7`] = `
+"<label
+  ><input
+    id="constraintsWithClauseMismatchCheckboxId"
+    type="checkbox"
+  />recreate constraints with clause mismatch (0/2)</label
+><br />
 "
 `;
 
