@@ -281,6 +281,7 @@
     {#if renameFrom.length}
       <label>
         <select
+          class="renameFrom"
           value={renameFromValue(fixable)}
           oninput={(e) => {
             const schema = schemaT.last();
@@ -314,6 +315,7 @@
     {#if renameTo.length}
       <label>
         <select
+          class="renameTo"
           value={fix && fix.method === "rename" ? fix.value : RENAME_NONE}
           oninput={(e) => {
             const value = asInputElement(e.target).value;
@@ -452,5 +454,13 @@
 
   table.comparison td {
     vertical-align: top;
+  }
+
+  select.renameTo {
+    width: 6.5em;
+  }
+
+  select.renameFrom {
+    width: 8em;
   }
 </style>
