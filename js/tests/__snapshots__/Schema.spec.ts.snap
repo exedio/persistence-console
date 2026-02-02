@@ -1,13 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Schema > should render a column with a wrong type 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -22,24 +22,24 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a column with a wrong type 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myColumn1Name
         <!----><!---->
-        <!----><!----><!----><span class="red svelte-bzf5hi"
+        <!----><!----><!----><span class="red svelte-rxuasg"
           >type mismatch</span
         >
         <!----><label><input type="checkbox" />adjust</label
@@ -60,37 +60,37 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a column with a wrong type 3`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">-</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">-</button
         ><!---->
         myColumn1Name
         <!----><!---->
-        <!----><!----><!----><span class="red svelte-bzf5hi"
+        <!----><!----><!----><span class="red svelte-rxuasg"
           >type mismatch:</span
         >
         <!----><label><input type="checkbox" />adjust</label
         ><!---->
-        <table class="comparison svelte-bzf5hi">
+        <table class="comparison svelte-rxuasg">
           <tbody>
             <tr>
-              <td class="svelte-bzf5hi">required:</td>
-              <td class="svelte-bzf5hi">myColumn1Type</td>
+              <td class="svelte-rxuasg">required:</td>
+              <td class="svelte-rxuasg">myColumn1Type</td>
             </tr>
             <tr>
-              <td class="svelte-bzf5hi">actual:</td>
-              <td class="svelte-bzf5hi">myColumn1TypeX</td>
+              <td class="svelte-rxuasg">actual:</td>
+              <td class="svelte-rxuasg">myColumn1TypeX</td>
             </tr>
             <!---->
           </tbody>
@@ -112,7 +112,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a column with a wrong type 4`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small
     >"ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type",</small
   ><!---->
@@ -121,13 +121,13 @@ exports[`Schema > should render a column with a wrong type 4`] = `
 `;
 
 exports[`Schema > should render a column with an additional error 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -142,20 +142,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a column with an additional error 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myColumn1Name
         <!----><!---->
@@ -176,28 +176,28 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a column with an additional error 3`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">-</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">-</button
         ><!---->
         myColumn1Name
         <!----><!---->
         <!----><!----><!---->myColumn1Type<!---->
         <!---->
         <ul>
-          <li class="svelte-bzf5hi">additionalErrors1</li>
-          <li class="svelte-bzf5hi">additionalErrors2</li>
+          <li class="svelte-rxuasg">additionalErrors1</li>
+          <li class="svelte-rxuasg">additionalErrors2</li>
         </ul>
         <!---->
         <!---->
@@ -221,16 +221,16 @@ exports[`Schema > should render a connect button 1`] = `
 `;
 
 exports[`Schema > should render a connect button 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <!---->
     <!----><!---->
@@ -245,7 +245,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a connect button 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"CREATE TABLE myTable1Name",</small
   ><!---->
 </li>
@@ -253,13 +253,13 @@ exports[`Schema > should render a connect button 3`] = `
 `;
 
 exports[`Schema > should render a constraint with a wrong clause 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -274,13 +274,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a constraint with a wrong clause 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -288,29 +288,29 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <ul>
       <!---->
       <!---->
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet red svelte-bzf5hi">.</button
+      <li class="svelte-rxuasg">
+        <button disabled="" class="bullet red svelte-rxuasg">.</button
         ><!---->
-        <span class="nodeType svelte-bzf5hi">check</span> myConstraint1Name
+        <span class="nodeType svelte-rxuasg">check</span> myConstraint1Name
         <!----><!---->
-        <!----><!----><!----><span class="red svelte-bzf5hi"
+        <!----><!----><!----><span class="red svelte-rxuasg"
           >clause mismatch:</span
         >
         <!----><label><input type="checkbox" />recreate</label
         ><!---->
-        <table class="comparison svelte-bzf5hi">
+        <table class="comparison svelte-rxuasg">
           <tbody>
             <tr>
-              <td class="svelte-bzf5hi">required:</td>
-              <td class="svelte-bzf5hi">myConstraint1Clause</td>
+              <td class="svelte-rxuasg">required:</td>
+              <td class="svelte-rxuasg">myConstraint1Clause</td>
             </tr>
             <tr>
-              <td class="svelte-bzf5hi">actual:</td>
-              <td class="svelte-bzf5hi">myConstraint1ClauseX</td>
+              <td class="svelte-rxuasg">actual:</td>
+              <td class="svelte-rxuasg">myConstraint1ClauseX</td>
             </tr>
             <tr>
-              <td class="svelte-bzf5hi">raw:</td>
-              <td class="svelte-bzf5hi">myConstraint1ClauseX Raw</td>
+              <td class="svelte-rxuasg">raw:</td>
+              <td class="svelte-rxuasg">myConstraint1ClauseX Raw</td>
             </tr>
             <!---->
           </tbody>
@@ -330,11 +330,11 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a constraint with a wrong clause 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",</small
   ><!---->
 </li>
-<li class="svelte-bzf5hi">
+<li class="svelte-rxuasg">
   <small>"ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",</small
   ><!---->
 </li>
@@ -342,13 +342,13 @@ exports[`Schema > should render a constraint with a wrong clause 3`] = `
 `;
 
 exports[`Schema > should render a constraint with an additional error 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -363,13 +363,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a constraint with an additional error 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -377,16 +377,16 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <ul>
       <!---->
       <!---->
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet red svelte-bzf5hi">.</button
+      <li class="svelte-rxuasg">
+        <button disabled="" class="bullet red svelte-rxuasg">.</button
         ><!---->
-        <span class="nodeType svelte-bzf5hi">check</span> myConstraint1Name
+        <span class="nodeType svelte-rxuasg">check</span> myConstraint1Name
         <!----><!---->
         <!----><!----><!---->myConstraint1Clause<!---->
         <!---->
         <ul>
-          <li class="svelte-bzf5hi">additionalErrors1</li>
-          <li class="svelte-bzf5hi">additionalErrors2</li>
+          <li class="svelte-rxuasg">additionalErrors1</li>
+          <li class="svelte-rxuasg">additionalErrors2</li>
         </ul>
         <!---->
       </li>
@@ -402,13 +402,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a constraint with shortener 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -423,20 +423,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a constraint with shortener 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myColumn1Name
         <!----><!---->
@@ -457,20 +457,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a constraint with shortener 3`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">-</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">-</button
         ><!---->
         myColumn1Name
         <!----><!---->
@@ -478,29 +478,29 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!----><!---->
         <ul>
           <!---->
-          <li class="svelte-bzf5hi">
-            <button disabled="" class="bullet red svelte-bzf5hi">.</button
+          <li class="svelte-rxuasg">
+            <button disabled="" class="bullet red svelte-rxuasg">.</button
             ><!---->
-            <span class="nodeType svelte-bzf5hi">check</span> myConstraint1Name
+            <span class="nodeType svelte-rxuasg">check</span> myConstraint1Name
             <!----><!---->
-            <!----><!----><!----><span class="red svelte-bzf5hi"
+            <!----><!----><!----><span class="red svelte-rxuasg"
               >clause mismatch:</span
             >
             <!----><label><input type="checkbox" />recreate</label
             ><!---->
-            <table class="comparison svelte-bzf5hi">
+            <table class="comparison svelte-rxuasg">
               <tbody>
                 <tr>
-                  <td class="svelte-bzf5hi">required:</td>
-                  <td class="svelte-bzf5hi">(⬁) myConstraint1Clause</td>
+                  <td class="svelte-rxuasg">required:</td>
+                  <td class="svelte-rxuasg">(⬁) myConstraint1Clause</td>
                 </tr>
                 <tr>
-                  <td class="svelte-bzf5hi">actual:</td>
-                  <td class="svelte-bzf5hi">(⬁) myConstraint1ClauseX</td>
+                  <td class="svelte-rxuasg">actual:</td>
+                  <td class="svelte-rxuasg">(⬁) myConstraint1ClauseX</td>
                 </tr>
                 <tr>
-                  <td class="svelte-bzf5hi">raw:</td>
-                  <td class="svelte-bzf5hi">(⬁) myConstraint1ClauseX Raw</td>
+                  <td class="svelte-rxuasg">raw:</td>
+                  <td class="svelte-rxuasg">(⬁) myConstraint1ClauseX Raw</td>
                 </tr>
                 <!---->
               </tbody>
@@ -525,16 +525,16 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a minimal sequence 1`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
-  <li class="sequence svelte-bzf5hi">
-    <button disabled="" class="bullet svelte-bzf5hi">.</button
+  <li class="sequence svelte-rxuasg">
+    <button disabled="" class="bullet svelte-rxuasg">.</button
     ><!---->
-    <span class="nodeType svelte-bzf5hi">sequence</span> myOnlyName
+    <span class="nodeType svelte-rxuasg">sequence</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!---->55<!---->
@@ -547,13 +547,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a minimal table 1`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">+</button
     ><!---->
     myOnlyName
     <!----><!---->
@@ -568,13 +568,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a minimal table 2`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">-</button
     ><!---->
     myOnlyName
     <!----><!---->
@@ -589,13 +589,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a minimal table 3`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">-</button
     ><!---->
     myOnlyName
     <!----><!---->
@@ -610,13 +610,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a minimal table 4`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">+</button
     ><!---->
     myOnlyNameReloaded
     <!----><!---->
@@ -631,13 +631,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing column 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -652,23 +652,23 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing column 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myColumn1Name
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <!---->
         <!----><!---->
@@ -689,23 +689,23 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing column 3`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">-</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">-</button
         ><!---->
         myColumn1Name
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <!---->
         <!----><!---->
@@ -726,7 +726,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing column 4`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"ALTER TABLE myTable1Name ADD COLUMN myColumn1Name",</small
   ><!---->
 </li>
@@ -734,26 +734,26 @@ exports[`Schema > should render a missing column 4`] = `
 `;
 
 exports[`Schema > should render a missing column to be renamed to a unused 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTableName
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myMissingColumnName
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <label
-          ><select>
+          ><select class="renameFrom svelte-rxuasg">
             <option value="<NONE>">rename from ...</option>
             <option value="myUnusedColumnName">myUnusedColumnName</option>
             <option value="myUnusedColumnName2">myUnusedColumnName2</option>
@@ -765,15 +765,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!---->
         <!---->
       </li>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myUnusedColumnName
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
-          ><select>
+          ><select class="renameTo svelte-rxuasg">
             <option value="<NONE>">rename to ...</option>
             <option value="myMissingColumnName">myMissingColumnName</option>
             <!---->
@@ -783,15 +783,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!---->
         <!---->
       </li>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myUnusedColumnName2
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
-          ><select>
+          ><select class="renameTo svelte-rxuasg">
             <option value="<NONE>">rename to ...</option>
             <option value="myMissingColumnName">myMissingColumnName</option>
             <!---->
@@ -814,26 +814,26 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing column to be renamed to a unused 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTableName
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myMissingColumnName
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <label
-          ><select>
+          ><select class="renameFrom svelte-rxuasg">
             <option value="<NONE>">rename from ...</option>
             <option value="myUnusedColumnName">myUnusedColumnName</option>
             <option value="myUnusedColumnName2">myUnusedColumnName2</option>
@@ -845,15 +845,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!---->
         <!---->
       </li>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myUnusedColumnName
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
-          ><select>
+          ><select class="renameTo svelte-rxuasg">
             <option value="<NONE>">rename to ...</option>
             <option value="myMissingColumnName">myMissingColumnName</option>
             <!---->
@@ -863,15 +863,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!---->
         <!---->
       </li>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myUnusedColumnName2
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
-          ><select>
+          ><select class="renameTo svelte-rxuasg">
             <option value="<NONE>">rename to ...</option>
             <option value="myMissingColumnName">myMissingColumnName</option>
             <!---->
@@ -894,7 +894,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing column to be renamed to a unused 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small
     >"ALTER TABLE \\"myTableName\\" ALTER COLUMN \\"myUnusedColumnName\\" RENAME TO
     \\"myMissingColumnName\\"",</small
@@ -904,13 +904,13 @@ exports[`Schema > should render a missing column to be renamed to a unused 3`] =
 `;
 
 exports[`Schema > should render a missing constraint 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -925,13 +925,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing constraint 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -939,11 +939,11 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <ul>
       <!---->
       <!---->
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet red svelte-bzf5hi">.</button
+      <li class="svelte-rxuasg">
+        <button disabled="" class="bullet red svelte-rxuasg">.</button
         ><!---->
-        <span class="nodeType svelte-bzf5hi">check</span> myConstraint1Name
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <span class="nodeType svelte-rxuasg">check</span> myConstraint1Name
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <!---->
         <!----><!---->
@@ -962,7 +962,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing constraint 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",</small
   ><!---->
 </li>
@@ -970,17 +970,17 @@ exports[`Schema > should render a missing constraint 3`] = `
 `;
 
 exports[`Schema > should render a missing sequence 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
-  <li class="sequence svelte-bzf5hi">
-    <button disabled="" class="bullet red svelte-bzf5hi">.</button
+  <li class="sequence svelte-rxuasg">
+    <button disabled="" class="bullet red svelte-rxuasg">.</button
     ><!---->
-    <span class="nodeType svelte-bzf5hi">sequence</span> myOnlyName
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <span class="nodeType svelte-rxuasg">sequence</span> myOnlyName
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <!---->
     <!----><!---->
@@ -995,7 +995,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing sequence 2`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"CREATE SEQUENCE myOnlyName",</small
   ><!---->
 </li>
@@ -1003,16 +1003,16 @@ exports[`Schema > should render a missing sequence 2`] = `
 `;
 
 exports[`Schema > should render a missing table 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <!---->
     <!----><!---->
@@ -1027,16 +1027,16 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing table 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <!---->
     <!----><!---->
@@ -1051,7 +1051,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing table 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"CREATE TABLE myTable1Name",</small
   ><!---->
 </li>
@@ -1059,8 +1059,8 @@ exports[`Schema > should render a missing table 3`] = `
 `;
 
 exports[`Schema > should render a missing table and patch fails 1`] = `
-"<li class="svelte-bzf5hi">
-  <span class="red svelte-bzf5hi"
+"<li class="svelte-rxuasg">
+  <span class="red svelte-rxuasg"
     >schema/alter?subject=table&amp;name=myTable1Name&amp;method=add: response
     code 400 myError</span
   ><!---->
@@ -1069,19 +1069,19 @@ exports[`Schema > should render a missing table and patch fails 1`] = `
 `;
 
 exports[`Schema > should render a missing table to be renamed to an unused 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myMissingTableName
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <label
-      ><select>
+      ><select class="renameFrom svelte-rxuasg">
         <option value="<NONE>">rename from ...</option>
         <option value="myUnusedTableName">myUnusedTableName</option>
         <option value="myUnusedTableName2">myUnusedTableName2</option>
@@ -1092,15 +1092,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!---->
     <!---->
   </li>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">+</button
     ><!---->
     myUnusedTableName
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <label
-      ><select>
+      ><select class="renameTo svelte-rxuasg">
         <option value="<NONE>">rename to ...</option>
         <option value="myMissingTableName">myMissingTableName</option>
         <!---->
@@ -1109,15 +1109,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!---->
     <!---->
   </li>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">+</button
     ><!---->
     myUnusedTableName2
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <label
-      ><select>
+      ><select class="renameTo svelte-rxuasg">
         <option value="<NONE>">rename to ...</option>
         <option value="myMissingTableName">myMissingTableName</option>
         <!---->
@@ -1134,19 +1134,19 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing table to be renamed to an unused 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myMissingTableName
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <label
-      ><select>
+      ><select class="renameFrom svelte-rxuasg">
         <option value="<NONE>">rename from ...</option>
         <option value="myUnusedTableName">myUnusedTableName</option>
         <option value="myUnusedTableName2">myUnusedTableName2</option>
@@ -1157,15 +1157,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!---->
     <!---->
   </li>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">+</button
     ><!---->
     myUnusedTableName
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <label
-      ><select>
+      ><select class="renameTo svelte-rxuasg">
         <option value="<NONE>">rename to ...</option>
         <option value="myMissingTableName">myMissingTableName</option>
         <!---->
@@ -1174,15 +1174,15 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!---->
     <!---->
   </li>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">+</button
     ><!---->
     myUnusedTableName2
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <label
-      ><select>
+      ><select class="renameTo svelte-rxuasg">
         <option value="<NONE>">rename to ...</option>
         <option value="myMissingTableName">myMissingTableName</option>
         <!---->
@@ -1199,7 +1199,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a missing table to be renamed to an unused 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small
     >"ALTER TABLE \\"myUnusedTableName\\" RENAME TO
     \\"myMissingTableName\\"",</small
@@ -1209,13 +1209,13 @@ exports[`Schema > should render a missing table to be renamed to an unused 3`] =
 `;
 
 exports[`Schema > should render a normal table with constraints 1`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -1230,20 +1230,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a normal table with constraints 2`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet svelte-rxuasg">+</button
         ><!---->
         myColumn1Name
         <!----><!---->
@@ -1253,18 +1253,18 @@ Schema <button class="reload svelte-dizlwz">🗘</button
       </li>
       <!---->
       <!---->
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet svelte-bzf5hi">.</button
+      <li class="svelte-rxuasg">
+        <button disabled="" class="bullet svelte-rxuasg">.</button
         ><!---->
-        <span class="nodeType svelte-bzf5hi">pk</span> myTable1Constraint1Name
+        <span class="nodeType svelte-rxuasg">pk</span> myTable1Constraint1Name
         <!----><!---->
         <!----><!---->
         <!----><!---->
       </li>
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet svelte-bzf5hi">.</button
+      <li class="svelte-rxuasg">
+        <button disabled="" class="bullet svelte-rxuasg">.</button
         ><!---->
-        <span class="nodeType svelte-bzf5hi">pk</span> ~constraintTildeNameTable
+        <span class="nodeType svelte-rxuasg">pk</span> ~constraintTildeNameTable
         <!----><!---->
         <!----><!---->
         <!----><!---->
@@ -1281,20 +1281,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a normal table with constraints 3`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet svelte-bzf5hi">-</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet svelte-rxuasg">-</button
         ><!---->
         myColumn1Name
         <!----><!---->
@@ -1302,37 +1302,37 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!----><!---->
         <ul>
           <!---->
-          <li class="svelte-bzf5hi">
-            <button disabled="" class="bullet svelte-bzf5hi">.</button
+          <li class="svelte-rxuasg">
+            <button disabled="" class="bullet svelte-rxuasg">.</button
             ><!---->
-            <span class="nodeType svelte-bzf5hi">pk</span>
+            <span class="nodeType svelte-rxuasg">pk</span>
             myColumn1Constraint1Name
             <!----><!---->
             <!----><!---->
             <!----><!---->
           </li>
-          <li class="svelte-bzf5hi">
-            <button disabled="" class="bullet svelte-bzf5hi">.</button
+          <li class="svelte-rxuasg">
+            <button disabled="" class="bullet svelte-rxuasg">.</button
             ><!---->
-            <span class="nodeType svelte-bzf5hi">check</span>
+            <span class="nodeType svelte-rxuasg">check</span>
             myColumn1Constraint2Name
             <!----><!---->
             <!----><!----><!---->myColumn1Constraint2Clause<!---->
             <!----><!---->
           </li>
-          <li class="svelte-bzf5hi">
-            <button disabled="" class="bullet svelte-bzf5hi">.</button
+          <li class="svelte-rxuasg">
+            <button disabled="" class="bullet svelte-rxuasg">.</button
             ><!---->
-            <span class="nodeType svelte-bzf5hi">pk</span>
+            <span class="nodeType svelte-rxuasg">pk</span>
             ~ConstraintTildeNameColumn
             <!----><!---->
             <!----><!---->
             <!----><!---->
           </li>
-          <li class="svelte-bzf5hi">
-            <button disabled="" class="bullet svelte-bzf5hi">.</button
+          <li class="svelte-rxuasg">
+            <button disabled="" class="bullet svelte-rxuasg">.</button
             ><!---->
-            <span class="nodeType svelte-bzf5hi">check</span>
+            <span class="nodeType svelte-rxuasg">check</span>
             myColumn1ConstraintArrowName
             <!----><!---->
             <!----><!----><!---->myColumn1ConstraintArrowClause hsqldb:⬁ mysql:⬁<!---->
@@ -1344,18 +1344,18 @@ Schema <button class="reload svelte-dizlwz">🗘</button
       </li>
       <!---->
       <!---->
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet svelte-bzf5hi">.</button
+      <li class="svelte-rxuasg">
+        <button disabled="" class="bullet svelte-rxuasg">.</button
         ><!---->
-        <span class="nodeType svelte-bzf5hi">pk</span> myTable1Constraint1Name
+        <span class="nodeType svelte-rxuasg">pk</span> myTable1Constraint1Name
         <!----><!---->
         <!----><!---->
         <!----><!---->
       </li>
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet svelte-bzf5hi">.</button
+      <li class="svelte-rxuasg">
+        <button disabled="" class="bullet svelte-rxuasg">.</button
         ><!---->
-        <span class="nodeType svelte-bzf5hi">pk</span> ~constraintTildeNameTable
+        <span class="nodeType svelte-rxuasg">pk</span> ~constraintTildeNameTable
         <!----><!---->
         <!----><!---->
         <!----><!---->
@@ -1372,13 +1372,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a normal table without constraints 1`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -1393,20 +1393,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a normal table without constraints 2`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet svelte-rxuasg">+</button
         ><!---->
         myColumn1Name
         <!----><!---->
@@ -1427,20 +1427,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a normal table without constraints 3`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet svelte-bzf5hi">-</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet svelte-rxuasg">-</button
         ><!---->
         myColumn1Name
         <!----><!---->
@@ -1461,23 +1461,23 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a sequence with an additional error 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
-  <li class="sequence svelte-bzf5hi">
-    <button disabled="" class="bullet red svelte-bzf5hi">.</button
+  <li class="sequence svelte-rxuasg">
+    <button disabled="" class="bullet red svelte-rxuasg">.</button
     ><!---->
-    <span class="nodeType svelte-bzf5hi">sequence</span> myOnlyName
+    <span class="nodeType svelte-rxuasg">sequence</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
     <!----><!----><!---->55<!---->
     <!---->
     <ul>
-      <li class="svelte-bzf5hi">additionalErrors1</li>
-      <li class="svelte-bzf5hi">additionalErrors2</li>
+      <li class="svelte-rxuasg">additionalErrors1</li>
+      <li class="svelte-rxuasg">additionalErrors2</li>
     </ul>
     <!---->
   </li>
@@ -1488,29 +1488,29 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a sequence with wrong start 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
-  <li class="sequence svelte-bzf5hi">
-    <button disabled="" class="bullet red svelte-bzf5hi">.</button
+  <li class="sequence svelte-rxuasg">
+    <button disabled="" class="bullet red svelte-rxuasg">.</button
     ><!---->
-    <span class="nodeType svelte-bzf5hi">sequence</span> myOnlyName
+    <span class="nodeType svelte-rxuasg">sequence</span> myOnlyName
     <!----><!---->
     <!----><!----><!---->myType<!---->
-    <!----><!----><!----><span class="red svelte-bzf5hi">start mismatch:</span>
+    <!----><!----><!----><span class="red svelte-rxuasg">start mismatch:</span>
     <!----><!---->
-    <table class="comparison svelte-bzf5hi">
+    <table class="comparison svelte-rxuasg">
       <tbody>
         <tr>
-          <td class="svelte-bzf5hi">required:</td>
-          <td class="svelte-bzf5hi">55</td>
+          <td class="svelte-rxuasg">required:</td>
+          <td class="svelte-rxuasg">55</td>
         </tr>
         <tr>
-          <td class="svelte-bzf5hi">actual:</td>
-          <td class="svelte-bzf5hi">66</td>
+          <td class="svelte-rxuasg">actual:</td>
+          <td class="svelte-rxuasg">66</td>
         </tr>
         <!---->
       </tbody>
@@ -1525,28 +1525,28 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a sequence with wrong type 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
-  <li class="sequence svelte-bzf5hi">
-    <button disabled="" class="bullet red svelte-bzf5hi">.</button
+  <li class="sequence svelte-rxuasg">
+    <button disabled="" class="bullet red svelte-rxuasg">.</button
     ><!---->
-    <span class="nodeType svelte-bzf5hi">sequence</span> myOnlyName
+    <span class="nodeType svelte-rxuasg">sequence</span> myOnlyName
     <!----><!---->
-    <!----><!----><!----><span class="red svelte-bzf5hi">type mismatch:</span>
+    <!----><!----><!----><span class="red svelte-rxuasg">type mismatch:</span>
     <!----><!---->
-    <table class="comparison svelte-bzf5hi">
+    <table class="comparison svelte-rxuasg">
       <tbody>
         <tr>
-          <td class="svelte-bzf5hi">required:</td>
-          <td class="svelte-bzf5hi">myType</td>
+          <td class="svelte-rxuasg">required:</td>
+          <td class="svelte-rxuasg">myType</td>
         </tr>
         <tr>
-          <td class="svelte-bzf5hi">actual:</td>
-          <td class="svelte-bzf5hi">myTypeX</td>
+          <td class="svelte-rxuasg">actual:</td>
+          <td class="svelte-rxuasg">myTypeX</td>
         </tr>
         <!---->
       </tbody>
@@ -1562,13 +1562,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a table with an additional error 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -1583,20 +1583,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a table with an additional error 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!---->
     <ul>
-      <li class="svelte-bzf5hi">additionalErrors1</li>
-      <li class="svelte-bzf5hi">additionalErrors2</li>
+      <li class="svelte-rxuasg">additionalErrors1</li>
+      <li class="svelte-rxuasg">additionalErrors2</li>
     </ul>
     <!---->
     <!---->
@@ -1609,13 +1609,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused NOT NULL column 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -1630,23 +1630,23 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused NOT NULL column 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myColumn1Name
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <!----><!---->
@@ -1667,23 +1667,23 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused NOT NULL column 3`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">-</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">-</button
         ><!---->
         myColumn1Name
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <!----><!---->
@@ -1704,13 +1704,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused column 1`] = `
-"<!----><button disabled="" class="bullet yellow svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet yellow svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -1725,23 +1725,23 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused column 2`] = `
-"<!----><button disabled="" class="bullet yellow svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet yellow svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet yellow svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet yellow svelte-rxuasg">+</button
         ><!---->
         myColumn1Name
-        <!----><span class="yellow svelte-bzf5hi">unused</span>
+        <!----><span class="yellow svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <!----><!---->
@@ -1762,23 +1762,23 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused column 3`] = `
-"<!----><button disabled="" class="bullet yellow svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet yellow svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet yellow svelte-bzf5hi">-</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet yellow svelte-rxuasg">-</button
         ><!---->
         myColumn1Name
-        <!----><span class="yellow svelte-bzf5hi">unused</span>
+        <!----><span class="yellow svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <!----><!---->
@@ -1799,7 +1799,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused column 4`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"ALTER TABLE myTable1Name DROP COLUMN myColumn1Name",</small
   ><!---->
 </li>
@@ -1807,27 +1807,27 @@ exports[`Schema > should render a unused column 4`] = `
 `;
 
 exports[`Schema > should render a unused column to be renamed to a missing 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTableName
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myUnusedColumnName
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
-          ><select>
+          ><select class="renameTo svelte-rxuasg">
             <option value="<NONE>">rename to ...</option>
             <option value="myMissingColumnName">myMissingColumnName</option>
             <option value="myMissingColumnName2">myMissingColumnName2</option>
@@ -1838,14 +1838,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!---->
         <!---->
       </li>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myMissingColumnName
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <label
-          ><select>
+          ><select class="renameFrom svelte-rxuasg">
             <option value="<NONE>">rename from ...</option>
             <option value="myUnusedColumnName">myUnusedColumnName</option>
             <!---->
@@ -1856,14 +1856,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!---->
         <!---->
       </li>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myMissingColumnName2
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <label
-          ><select>
+          ><select class="renameFrom svelte-rxuasg">
             <option value="<NONE>">rename from ...</option>
             <option value="myUnusedColumnName">myUnusedColumnName</option>
             <!---->
@@ -1887,27 +1887,27 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused column to be renamed to a missing 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTableName
     <!----><!---->
     <!----><!---->
     <ul>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myUnusedColumnName
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <label
-          ><select>
+          ><select class="renameTo svelte-rxuasg">
             <option value="<NONE>">rename to ...</option>
             <option value="myMissingColumnName">myMissingColumnName</option>
             <option value="myMissingColumnName2">myMissingColumnName2</option>
@@ -1918,14 +1918,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!---->
         <!---->
       </li>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myMissingColumnName
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <label
-          ><select>
+          ><select class="renameFrom svelte-rxuasg">
             <option value="<NONE>">rename from ...</option>
             <option value="myUnusedColumnName">myUnusedColumnName</option>
             <!---->
@@ -1936,14 +1936,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
         <!---->
         <!---->
       </li>
-      <li class="column svelte-bzf5hi">
-        <button class="bullet red svelte-bzf5hi">+</button
+      <li class="column svelte-rxuasg">
+        <button class="bullet red svelte-rxuasg">+</button
         ><!---->
         myMissingColumnName2
-        <!----><span class="red svelte-bzf5hi">missing</span>
+        <!----><span class="red svelte-rxuasg">missing</span>
         <label><input type="checkbox" />add</label>
         <label
-          ><select>
+          ><select class="renameFrom svelte-rxuasg">
             <option value="<NONE>">rename from ...</option>
             <option value="myUnusedColumnName">myUnusedColumnName</option>
             <!---->
@@ -1967,7 +1967,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused column to be renamed to a missing 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small
     >"ALTER TABLE \\"myTableName\\" ALTER COLUMN \\"myUnusedColumnName\\" RENAME TO
     \\"myMissingColumnName\\"",</small
@@ -1977,13 +1977,13 @@ exports[`Schema > should render a unused column to be renamed to a missing 3`] =
 `;
 
 exports[`Schema > should render a unused constraint 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -1998,13 +1998,13 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused constraint 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">-</button
     ><!---->
     myTable1Name
     <!----><!---->
@@ -2012,11 +2012,11 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <ul>
       <!---->
       <!---->
-      <li class="svelte-bzf5hi">
-        <button disabled="" class="bullet red svelte-bzf5hi">.</button
+      <li class="svelte-rxuasg">
+        <button disabled="" class="bullet red svelte-rxuasg">.</button
         ><!---->
-        <span class="nodeType svelte-bzf5hi">check</span> myConstraint1Name
-        <!----><span class="red svelte-bzf5hi">unused</span>
+        <span class="nodeType svelte-rxuasg">check</span> myConstraint1Name
+        <!----><span class="red svelte-rxuasg">unused</span>
         <label><input type="checkbox" />drop</label>
         <!---->
         <!----><!---->
@@ -2035,7 +2035,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused constraint 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",</small
   ><!---->
 </li>
@@ -2043,17 +2043,17 @@ exports[`Schema > should render a unused constraint 3`] = `
 `;
 
 exports[`Schema > should render a unused sequence 1`] = `
-"<!----><button disabled="" class="bullet yellow svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet yellow svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
   <!---->
-  <li class="sequence svelte-bzf5hi">
-    <button disabled="" class="bullet yellow svelte-bzf5hi">.</button
+  <li class="sequence svelte-rxuasg">
+    <button disabled="" class="bullet yellow svelte-rxuasg">.</button
     ><!---->
-    <span class="nodeType svelte-bzf5hi">sequence</span> myOnlyName
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <span class="nodeType svelte-rxuasg">sequence</span> myOnlyName
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <!----><!---->
@@ -2068,7 +2068,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused sequence 2`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"DROP SEQUENCE myOnlyName",</small
   ><!---->
 </li>
@@ -2076,16 +2076,16 @@ exports[`Schema > should render a unused sequence 2`] = `
 `;
 
 exports[`Schema > should render a unused table 1`] = `
-"<!----><button disabled="" class="bullet yellow svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet yellow svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">+</button
     ><!---->
     myTable1Name
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <!----><!---->
@@ -2100,16 +2100,16 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused table 2`] = `
-"<!----><button disabled="" class="bullet yellow svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet yellow svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">-</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">-</button
     ><!---->
     myTable1Name
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <!----><!---->
@@ -2124,7 +2124,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused table 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small>"DROP TABLE myTable1Name",</small
   ><!---->
 </li>
@@ -2132,20 +2132,20 @@ exports[`Schema > should render a unused table 3`] = `
 `;
 
 exports[`Schema > should render a unused table to be renamed to a missing 1`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">+</button
     ><!---->
     myUnusedTableName
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <label
-      ><select>
+      ><select class="renameTo svelte-rxuasg">
         <option value="<NONE>">rename to ...</option>
         <option value="myMissingTableName">myMissingTableName</option>
         <option value="myMissingTableName2">myMissingTableName2</option>
@@ -2155,14 +2155,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!---->
     <!---->
   </li>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myMissingTableName
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <label
-      ><select>
+      ><select class="renameFrom svelte-rxuasg">
         <option value="<NONE>">rename from ...</option>
         <option value="myUnusedTableName">myUnusedTableName</option>
         <!---->
@@ -2172,14 +2172,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!---->
     <!---->
   </li>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myMissingTableName2
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <label
-      ><select>
+      ><select class="renameFrom svelte-rxuasg">
         <option value="<NONE>">rename from ...</option>
         <option value="myUnusedTableName">myUnusedTableName</option>
         <!---->
@@ -2197,20 +2197,20 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused table to be renamed to a missing 2`] = `
-"<!----><button disabled="" class="bullet red svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet red svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
 <ul>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet yellow svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet yellow svelte-rxuasg">+</button
     ><!---->
     myUnusedTableName
-    <!----><span class="yellow svelte-bzf5hi">unused</span>
+    <!----><span class="yellow svelte-rxuasg">unused</span>
     <label><input type="checkbox" />drop</label>
     <!---->
     <label
-      ><select>
+      ><select class="renameTo svelte-rxuasg">
         <option value="<NONE>">rename to ...</option>
         <option value="myMissingTableName">myMissingTableName</option>
         <option value="myMissingTableName2">myMissingTableName2</option>
@@ -2220,14 +2220,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!---->
     <!---->
   </li>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myMissingTableName
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <label
-      ><select>
+      ><select class="renameFrom svelte-rxuasg">
         <option value="<NONE>">rename from ...</option>
         <option value="myUnusedTableName">myUnusedTableName</option>
         <!---->
@@ -2237,14 +2237,14 @@ Schema <button class="reload svelte-dizlwz">🗘</button
     <!---->
     <!---->
   </li>
-  <li class="table svelte-bzf5hi">
-    <button class="bullet red svelte-bzf5hi">+</button
+  <li class="table svelte-rxuasg">
+    <button class="bullet red svelte-rxuasg">+</button
     ><!---->
     myMissingTableName2
-    <!----><span class="red svelte-bzf5hi">missing</span>
+    <!----><span class="red svelte-rxuasg">missing</span>
     <label><input type="checkbox" />create</label>
     <label
-      ><select>
+      ><select class="renameFrom svelte-rxuasg">
         <option value="<NONE>">rename from ...</option>
         <option value="myUnusedTableName">myUnusedTableName</option>
         <!---->
@@ -2262,7 +2262,7 @@ Schema <button class="reload svelte-dizlwz">🗘</button
 `;
 
 exports[`Schema > should render a unused table to be renamed to a missing 3`] = `
-"<li class="svelte-bzf5hi">
+"<li class="svelte-rxuasg">
   <small
     >"ALTER TABLE \\"myUnusedTableName\\" RENAME TO
     \\"myMissingTableName\\"",</small
@@ -2272,7 +2272,7 @@ exports[`Schema > should render a unused table to be renamed to a missing 3`] = 
 `;
 
 exports[`Schema > should render an empty schema 1`] = `
-"<!----><button disabled="" class="bullet svelte-bzf5hi">.</button
+"<!----><button disabled="" class="bullet svelte-rxuasg">.</button
 ><!---->
 Schema <button class="reload svelte-dizlwz">🗘</button
 ><!---->
