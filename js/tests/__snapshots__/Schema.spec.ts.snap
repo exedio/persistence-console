@@ -3,7 +3,7 @@
 exports[`Schema > should render a column with a wrong type 1`] = `
 "<div class="checkboxCollector svelte-5u3w2m">
   <label
-    ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+    ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
     columns with type mismatch (0/1)</label
   ><br />
 </div>
@@ -20,7 +20,7 @@ exports[`Schema > should render a column with a wrong type 1`] = `
 exports[`Schema > should render a column with a wrong type 2`] = `
 "<div class="checkboxCollector svelte-5u3w2m">
   <label
-    ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+    ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
     columns with type mismatch (0/1)</label
   ><br />
 </div>
@@ -44,7 +44,7 @@ exports[`Schema > should render a column with a wrong type 2`] = `
 exports[`Schema > should render a column with a wrong type 3`] = `
 "<div class="checkboxCollector svelte-5u3w2m">
   <label
-    ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+    ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
     columns with type mismatch (0/1)</label
   ><br />
 </div>
@@ -161,8 +161,8 @@ exports[`Schema > should render a constraint with a wrong clause 1`] = `
 "<div class="checkboxCollector svelte-5u3w2m">
   <label
     ><input
-      id="constraintsWithClauseMismatchCheckboxId"
       type="checkbox"
+      id="constraintsWithClauseMismatchCheckboxId"
     />recreate constraints with clause mismatch (0/1)</label
   ><br />
 </div>
@@ -180,8 +180,8 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
 "<div class="checkboxCollector svelte-5u3w2m">
   <label
     ><input
-      id="constraintsWithClauseMismatchCheckboxId"
       type="checkbox"
+      id="constraintsWithClauseMismatchCheckboxId"
     />recreate constraints with clause mismatch (0/1)</label
   ><br />
 </div>
@@ -266,8 +266,8 @@ exports[`Schema > should render a constraint with shortener 1`] = `
 "<div class="checkboxCollector svelte-5u3w2m">
   <label
     ><input
-      id="constraintsWithClauseMismatchCheckboxId"
       type="checkbox"
+      id="constraintsWithClauseMismatchCheckboxId"
     />recreate constraints with clause mismatch (0/1)</label
   ><br />
 </div>
@@ -285,8 +285,8 @@ exports[`Schema > should render a constraint with shortener 2`] = `
 "<div class="checkboxCollector svelte-5u3w2m">
   <label
     ><input
-      id="constraintsWithClauseMismatchCheckboxId"
       type="checkbox"
+      id="constraintsWithClauseMismatchCheckboxId"
     />recreate constraints with clause mismatch (0/1)</label
   ><br />
 </div>
@@ -309,8 +309,8 @@ exports[`Schema > should render a constraint with shortener 3`] = `
 "<div class="checkboxCollector svelte-5u3w2m">
   <label
     ><input
-      id="constraintsWithClauseMismatchCheckboxId"
       type="checkbox"
+      id="constraintsWithClauseMismatchCheckboxId"
     />recreate constraints with clause mismatch (0/1)</label
   ><br />
 </div>
@@ -761,7 +761,7 @@ exports[`Schema > should render a missing table to be renamed to an unused 3`] =
 
 exports[`Schema > should render a multiple columns with a wrong type 1`] = `
 "<label
-  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (0/2)</label
 ><br />
 "
@@ -769,7 +769,7 @@ exports[`Schema > should render a multiple columns with a wrong type 1`] = `
 
 exports[`Schema > should render a multiple columns with a wrong type 2`] = `
 "<label
-  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (1/2)</label
 ><br />
 "
@@ -777,7 +777,7 @@ exports[`Schema > should render a multiple columns with a wrong type 2`] = `
 
 exports[`Schema > should render a multiple columns with a wrong type 3`] = `
 "<label
-  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (2/2)</label
 ><br />
 "
@@ -785,7 +785,7 @@ exports[`Schema > should render a multiple columns with a wrong type 3`] = `
 
 exports[`Schema > should render a multiple columns with a wrong type 4`] = `
 "<label
-  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (0/2)</label
 ><br />
 "
@@ -793,7 +793,7 @@ exports[`Schema > should render a multiple columns with a wrong type 4`] = `
 
 exports[`Schema > should render a multiple columns with a wrong type 5`] = `
 "<label
-  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (2/2)</label
 ><br />
 "
@@ -801,7 +801,7 @@ exports[`Schema > should render a multiple columns with a wrong type 5`] = `
 
 exports[`Schema > should render a multiple columns with a wrong type 6`] = `
 "<label
-  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (1/2)</label
 ><br />
 "
@@ -809,7 +809,7 @@ exports[`Schema > should render a multiple columns with a wrong type 6`] = `
 
 exports[`Schema > should render a multiple columns with a wrong type 7`] = `
 "<label
-  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (0/2)</label
 ><br />
 "
@@ -818,8 +818,8 @@ exports[`Schema > should render a multiple columns with a wrong type 7`] = `
 exports[`Schema > should render a multiple constraints with a wrong clause 1`] = `
 "<label
   ><input
-    id="constraintsWithClauseMismatchCheckboxId"
     type="checkbox"
+    id="constraintsWithClauseMismatchCheckboxId"
   />recreate constraints with clause mismatch (0/2)</label
 ><br />
 "
@@ -828,8 +828,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 1`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 2`] = `
 "<label
   ><input
-    id="constraintsWithClauseMismatchCheckboxId"
     type="checkbox"
+    id="constraintsWithClauseMismatchCheckboxId"
   />recreate constraints with clause mismatch (1/2)</label
 ><br />
 "
@@ -838,8 +838,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 2`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 3`] = `
 "<label
   ><input
-    id="constraintsWithClauseMismatchCheckboxId"
     type="checkbox"
+    id="constraintsWithClauseMismatchCheckboxId"
   />recreate constraints with clause mismatch (2/2)</label
 ><br />
 "
@@ -848,8 +848,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 3`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 4`] = `
 "<label
   ><input
-    id="constraintsWithClauseMismatchCheckboxId"
     type="checkbox"
+    id="constraintsWithClauseMismatchCheckboxId"
   />recreate constraints with clause mismatch (0/2)</label
 ><br />
 "
@@ -858,8 +858,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 4`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 5`] = `
 "<label
   ><input
-    id="constraintsWithClauseMismatchCheckboxId"
     type="checkbox"
+    id="constraintsWithClauseMismatchCheckboxId"
   />recreate constraints with clause mismatch (2/2)</label
 ><br />
 "
@@ -868,8 +868,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 5`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 6`] = `
 "<label
   ><input
-    id="constraintsWithClauseMismatchCheckboxId"
     type="checkbox"
+    id="constraintsWithClauseMismatchCheckboxId"
   />recreate constraints with clause mismatch (1/2)</label
 ><br />
 "
@@ -878,8 +878,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 6`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 7`] = `
 "<label
   ><input
-    id="constraintsWithClauseMismatchCheckboxId"
     type="checkbox"
+    id="constraintsWithClauseMismatchCheckboxId"
   />recreate constraints with clause mismatch (0/2)</label
 ><br />
 "
