@@ -1423,6 +1423,70 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
+  it("should hide table / sequences without problems", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            {
+              name: "tab1ok",
+            },
+            {
+              name: "tab2ok",
+            },
+            {
+              name: "tab3missing",
+              existence: "missing",
+            },
+            {
+              name: "tab4ok",
+            },
+            {
+              name: "tab5ok",
+            },
+          ],
+          sequences: [
+            {
+              name: "seq1ok",
+              type: "someType",
+              start: 55,
+            },
+            {
+              name: "seq2ok",
+              type: "someType",
+              start: 55,
+            },
+            {
+              name: "seq3missing",
+              type: "someType",
+              start: 55,
+              existence: "unused",
+            },
+            {
+              name: "seq4ok",
+              type: "someType",
+              start: 55,
+            },
+            {
+              name: "seq5ok",
+              type: "someType",
+              start: 55,
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    }
+    expect(await formatHtml(tree())).toMatchSnapshot();
+
+    const show = () => checkbox("show all tables / sequences", 0);
+    show().click();
+    await flushPromises();
+    expect(await formatHtml(tree())).toMatchSnapshot();
+  });
+
   it("should keep the state after reload", async () => {
     const response: ApiSchema = {
       tables: [

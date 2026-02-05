@@ -1,9 +1,82 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Schema > should hide table / sequences without problems 1`] = `
+"<div class="checkboxCollector svelte-12plxus">
+  <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+  <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+</div>
+<ul>
+  <li class="svelte-12plxus">
+    <button class="bullet svelte-12plxus">+</button> tab1ok
+  </li>
+  <li class="svelte-12plxus">
+    <button class="bullet svelte-12plxus">+</button> tab2ok
+  </li>
+  <li class="svelte-12plxus">
+    <button class="bullet red svelte-12plxus">+</button> tab3missing
+    <span class="red svelte-12plxus">missing</span>
+    <label><input type="checkbox" />create</label>
+  </li>
+  <li class="svelte-12plxus">
+    <button class="bullet svelte-12plxus">+</button> tab4ok
+  </li>
+  <li class="svelte-12plxus">
+    <button class="bullet svelte-12plxus">+</button> tab5ok
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> seq1ok someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> seq2ok someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet yellow svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> seq3missing
+    <span class="yellow svelte-12plxus">unused</span>
+    <label><input type="checkbox" />drop</label> someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> seq4ok someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> seq5ok someType 55
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should hide table / sequences without problems 2`] = `
+"<div class="checkboxCollector svelte-12plxus">
+  <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+  <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+</div>
+<ul>
+  <li class="svelte-12plxus">
+    <button class="bullet red svelte-12plxus">+</button> tab3missing
+    <span class="red svelte-12plxus">missing</span>
+    <label><input type="checkbox" />create</label>
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet yellow svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> seq3missing
+    <span class="yellow svelte-12plxus">unused</span>
+    <label><input type="checkbox" />drop</label> someType 55
+  </li>
+</ul>
+"
+`;
+
 exports[`Schema > should render a column with a wrong type 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
     columns with type mismatch (0/1)</label
@@ -21,6 +94,7 @@ exports[`Schema > should render a column with a wrong type 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
     columns with type mismatch (0/1)</label
@@ -45,6 +119,7 @@ exports[`Schema > should render a column with a wrong type 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
     columns with type mismatch (0/1)</label
@@ -90,6 +165,7 @@ exports[`Schema > should render a column with an additional error 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -103,6 +179,7 @@ exports[`Schema > should render a column with an additional error 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -121,6 +198,7 @@ exports[`Schema > should render a column with an additional error 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -149,6 +227,7 @@ exports[`Schema > should render a connect button 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -169,6 +248,7 @@ exports[`Schema > should render a constraint with a wrong clause 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input
       type="checkbox"
@@ -188,6 +268,7 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input
       type="checkbox"
@@ -241,6 +322,7 @@ exports[`Schema > should render a constraint with an additional error 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -254,6 +336,7 @@ exports[`Schema > should render a constraint with an additional error 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -278,6 +361,7 @@ exports[`Schema > should render a constraint with shortener 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input
       type="checkbox"
@@ -297,6 +381,7 @@ exports[`Schema > should render a constraint with shortener 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input
       type="checkbox"
@@ -321,6 +406,7 @@ exports[`Schema > should render a constraint with shortener 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input
       type="checkbox"
@@ -370,6 +456,7 @@ exports[`Schema > should render a minimal sequence 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -384,6 +471,7 @@ exports[`Schema > should render a minimal table 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -397,6 +485,7 @@ exports[`Schema > should render a minimal table 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -410,6 +499,7 @@ exports[`Schema > should render a minimal table 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -423,6 +513,7 @@ exports[`Schema > should render a minimal table 4`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -436,6 +527,7 @@ exports[`Schema > should render a missing column 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -449,6 +541,7 @@ exports[`Schema > should render a missing column 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -469,6 +562,7 @@ exports[`Schema > should render a missing column 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -496,6 +590,7 @@ exports[`Schema > should render a missing column to be renamed to a unused 1`] =
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -545,6 +640,7 @@ exports[`Schema > should render a missing column to be renamed to a unused 2`] =
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -604,6 +700,7 @@ exports[`Schema > should render a missing constraint 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -617,6 +714,7 @@ exports[`Schema > should render a missing constraint 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -645,6 +743,7 @@ exports[`Schema > should render a missing sequence 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -666,6 +765,7 @@ exports[`Schema > should render a missing table 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -681,6 +781,7 @@ exports[`Schema > should render a missing table 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -711,6 +812,7 @@ exports[`Schema > should render a missing table to be renamed to an unused 1`] =
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -755,6 +857,7 @@ exports[`Schema > should render a missing table to be renamed to an unused 2`] =
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -808,6 +911,7 @@ exports[`Schema > should render a missing table to be renamed to an unused 3`] =
 exports[`Schema > should render a multiple columns with a wrong type 1`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (0/2)</label
@@ -818,6 +922,7 @@ exports[`Schema > should render a multiple columns with a wrong type 1`] = `
 exports[`Schema > should render a multiple columns with a wrong type 2`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (1/2)</label
@@ -828,6 +933,7 @@ exports[`Schema > should render a multiple columns with a wrong type 2`] = `
 exports[`Schema > should render a multiple columns with a wrong type 3`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (2/2)</label
@@ -838,6 +944,7 @@ exports[`Schema > should render a multiple columns with a wrong type 3`] = `
 exports[`Schema > should render a multiple columns with a wrong type 4`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (0/2)</label
@@ -848,6 +955,7 @@ exports[`Schema > should render a multiple columns with a wrong type 4`] = `
 exports[`Schema > should render a multiple columns with a wrong type 5`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (2/2)</label
@@ -858,6 +966,7 @@ exports[`Schema > should render a multiple columns with a wrong type 5`] = `
 exports[`Schema > should render a multiple columns with a wrong type 6`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (1/2)</label
@@ -868,6 +977,7 @@ exports[`Schema > should render a multiple columns with a wrong type 6`] = `
 exports[`Schema > should render a multiple columns with a wrong type 7`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
   columns with type mismatch (0/2)</label
@@ -878,6 +988,7 @@ exports[`Schema > should render a multiple columns with a wrong type 7`] = `
 exports[`Schema > should render a multiple constraints with a wrong clause 1`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input
     type="checkbox"
@@ -890,6 +1001,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 1`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 2`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input
     type="checkbox"
@@ -902,6 +1014,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 2`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 3`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input
     type="checkbox"
@@ -914,6 +1027,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 3`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 4`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input
     type="checkbox"
@@ -926,6 +1040,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 4`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 5`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input
     type="checkbox"
@@ -938,6 +1053,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 5`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 6`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input
     type="checkbox"
@@ -950,6 +1066,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 6`] =
 exports[`Schema > should render a multiple constraints with a wrong clause 7`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input
     type="checkbox"
@@ -963,6 +1080,7 @@ exports[`Schema > should render a normal table with constraints 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -976,6 +1094,7 @@ exports[`Schema > should render a normal table with constraints 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1003,6 +1122,7 @@ exports[`Schema > should render a normal table with constraints 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1054,6 +1174,7 @@ exports[`Schema > should render a normal table without constraints 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1067,6 +1188,7 @@ exports[`Schema > should render a normal table without constraints 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1085,6 +1207,7 @@ exports[`Schema > should render a normal table without constraints 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1104,6 +1227,7 @@ exports[`Schema > should render a sequence with an additional error 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1122,6 +1246,7 @@ exports[`Schema > should render a sequence with wrong start 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1149,6 +1274,7 @@ exports[`Schema > should render a sequence with wrong type 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1177,6 +1303,7 @@ exports[`Schema > should render a table with an additional error 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1190,6 +1317,7 @@ exports[`Schema > should render a table with an additional error 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1207,6 +1335,7 @@ exports[`Schema > should render a unused NOT NULL column 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1220,6 +1349,7 @@ exports[`Schema > should render a unused NOT NULL column 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1240,6 +1370,7 @@ exports[`Schema > should render a unused NOT NULL column 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1260,6 +1391,7 @@ exports[`Schema > should render a unused column 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1273,6 +1405,7 @@ exports[`Schema > should render a unused column 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1293,6 +1426,7 @@ exports[`Schema > should render a unused column 3`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1320,6 +1454,7 @@ exports[`Schema > should render a unused column to be renamed to a missing 1`] =
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1369,6 +1504,7 @@ exports[`Schema > should render a unused column to be renamed to a missing 2`] =
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1428,6 +1564,7 @@ exports[`Schema > should render a unused constraint 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1441,6 +1578,7 @@ exports[`Schema > should render a unused constraint 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1469,6 +1607,7 @@ exports[`Schema > should render a unused sequence 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1490,6 +1629,7 @@ exports[`Schema > should render a unused table 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1505,6 +1645,7 @@ exports[`Schema > should render a unused table 2`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1525,6 +1666,7 @@ exports[`Schema > should render a unused table to be renamed to a missing 1`] = 
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1569,6 +1711,7 @@ exports[`Schema > should render a unused table to be renamed to a missing 2`] = 
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1623,6 +1766,7 @@ exports[`Schema > should render an empty schema 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul></ul>
 "
