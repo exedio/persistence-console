@@ -167,26 +167,24 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
-      {#if true}
-        <div class="checkboxCollector">
-          {@render bullet(schema)}
-          Schema
-          <PromiseTrackerReload tracker={schemaT} />
-          <br />
-          {@render mismatches(
-            schema.columnsWithTypeMismatch,
-            schema.columnsWithTypeMismatchCheckedFix,
-            "columnsWithTypeMismatchCheckboxId",
-            "adjust columns with type mismatch",
-          )}
-          {@render mismatches(
-            schema.constraintsWithClauseMismatch,
-            schema.constraintsWithClauseMismatchCheckedFix,
-            "constraintsWithClauseMismatchCheckboxId",
-            "recreate constraints with clause mismatch",
-          )}
-        </div>
-      {/if}
+      <div class="checkboxCollector">
+        {@render bullet(schema)}
+        Schema
+        <PromiseTrackerReload tracker={schemaT} />
+        <br />
+        {@render mismatches(
+          schema.columnsWithTypeMismatch,
+          schema.columnsWithTypeMismatchCheckedFix,
+          "columnsWithTypeMismatchCheckboxId",
+          "adjust columns with type mismatch",
+        )}
+        {@render mismatches(
+          schema.constraintsWithClauseMismatch,
+          schema.constraintsWithClauseMismatchCheckedFix,
+          "constraintsWithClauseMismatchCheckboxId",
+          "recreate constraints with clause mismatch",
+        )}
+      </div>
       <ul>
         {#each schema.tables() as table (table.name)}
           {@const tableExpanded = table.expanded}
