@@ -187,7 +187,6 @@
       </div>
       <ul>
         {#each schema.tables() as table (table.name)}
-          {@const tableExpanded = table.expanded}
           <li class="table">
             {@render bulletExpandable(table)}
             {table.name}
@@ -197,40 +196,40 @@
               table.renameFrom(schema),
               table.renameTo(schema),
             )}
-            {#if tableExpanded}
+            {#if table.expanded}
               {@render additionalErrors(table.additionalErrors)}
-            {/if}
-            {#if tableExpanded && (table.columns().length || table.constraints().length)}
-              <ul in:fly={{ y: -10, duration: 200 }}>
-                {#each table.columns() as column (column.name)}
-                  {@const columnExpanded = column.expanded}
-                  <li class="column">
-                    {@render bulletExpandable(column)}
-                    {column.name}
-                    {@render existence(
-                      column.existence,
-                      column,
-                      column.renameFrom(table),
-                      column.renameTo(table),
-                    )}
-                    {@render comparison(
-                      column,
-                      column.type,
-                      "adjust",
-                      columnExpanded,
-                    )}
-                    {#if columnExpanded}
-                      {@render additionalErrors(column.additionalErrors)}
-                    {/if}
-                    {#if columnExpanded && column.constraints().length > 0}
-                      <ul in:fly={{ y: -10, duration: 200 }}>
-                        {@render constraints(column.constraints())}
-                      </ul>
-                    {/if}
-                  </li>
-                {/each}
-                {@render constraints(table.constraints())}
-              </ul>
+              {#if table.columns().length || table.constraints().length}
+                <ul in:fly={{ y: -10, duration: 200 }}>
+                  {#each table.columns() as column (column.name)}
+                    {@const columnExpanded = column.expanded}
+                    <li class="column">
+                      {@render bulletExpandable(column)}
+                      {column.name}
+                      {@render existence(
+                        column.existence,
+                        column,
+                        column.renameFrom(table),
+                        column.renameTo(table),
+                      )}
+                      {@render comparison(
+                        column,
+                        column.type,
+                        "adjust",
+                        columnExpanded,
+                      )}
+                      {#if columnExpanded}
+                        {@render additionalErrors(column.additionalErrors)}
+                      {/if}
+                      {#if columnExpanded && column.constraints().length > 0}
+                        <ul in:fly={{ y: -10, duration: 200 }}>
+                          {@render constraints(column.constraints())}
+                        </ul>
+                      {/if}
+                    </li>
+                  {/each}
+                  {@render constraints(table.constraints())}
+                </ul>
+              {/if}
             {/if}
           </li>
         {/each}
