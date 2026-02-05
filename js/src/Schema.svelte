@@ -503,4 +503,11 @@
   select.renameFrom {
     width: 8em;
   }
+
+  div.checkboxCollector {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: lightgrey;
+  }
 </style>
