@@ -497,11 +497,11 @@
   }
 
   select.renameTo {
-    width: 6.5em;
+    width: 5.3em; /* just show 'rename' when collapsed */
   }
 
   select.renameFrom {
-    width: 8em;
+    width: 5.3em; /* just show 'rename' when collapsed */
   }
 
   div.checkboxCollector {
