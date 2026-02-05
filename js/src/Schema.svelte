@@ -187,7 +187,7 @@
       </div>
       <ul>
         {#each schema.tables() as table (table.name)}
-          <li class="table">
+          <li>
             {@render bulletExpandable(table)}
             {table.name}
             {@render existence(
@@ -201,7 +201,7 @@
               {#if table.columns().length || table.constraints().length}
                 <ul in:fly={{ y: -10, duration: 200 }}>
                   {#each table.columns() as column (column.name)}
-                    <li class="column">
+                    <li>
                       {@render bulletExpandable(column)}
                       {column.name}
                       {@render existence(
@@ -233,7 +233,7 @@
           </li>
         {/each}
         {#each schema.sequences() as sequence (sequence.name)}
-          <li class="sequence">
+          <li>
             {@render bullet(sequence)}
             <span class="nodeType">sequence</span>
             {sequence.name}
