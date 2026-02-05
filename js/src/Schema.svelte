@@ -116,6 +116,19 @@
     const schema: Schema | undefined = schemaT.last();
     if (!schema) return;
 
+    const all = schema.columnsWithTypeMismatch;
+    const checked = schema.columnsWithTypeMismatchCheckedFix;
+    const checkbox = document.getElementById(
+      "columnsWithTypeMismatchCheckboxId",
+    );
+    if (!checkbox) return;
+    asInputElement(checkbox).indeterminate =
+      0 < checked.length && checked.length < all.length;
+  });
+  $effect(() => {
+    const schema: Schema | undefined = schemaT.last();
+    if (!schema) return;
+
     const all = schema.constraintsWithClauseMismatch;
     const checked = schema.constraintsWithClauseMismatchCheckedFix;
     const checkbox = document.getElementById(
@@ -147,8 +160,29 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
-      {#if schema.constraintsWithClauseMismatch.length > 0}
+      {#if schema.columnsWithTypeMismatch.length > 0 || schema.constraintsWithClauseMismatch.length > 0}
         <div class="checkboxCollector">
+          {#if schema.columnsWithTypeMismatch.length > 0}
+            <label
+              ><input
+                id="columnsWithTypeMismatchCheckboxId"
+                type="checkbox"
+                checked={schema.columnsWithTypeMismatchCheckedFix.length > 0}
+                oninput={(e) => {
+                  schema.columnsWithTypeMismatch.forEach((column) =>
+                    setFix(
+                      asInputElement(e.target).checked,
+                      column,
+                      "modify",
+                      undefined,
+                    ),
+                  );
+                }}
+              />adjust columns with type mismatch ({schema
+                .columnsWithTypeMismatchCheckedFix.length}/{schema
+                .columnsWithTypeMismatch.length})
+            </label><br />
+          {/if}
           {#if schema.constraintsWithClauseMismatch.length > 0}
             <label
               ><input
