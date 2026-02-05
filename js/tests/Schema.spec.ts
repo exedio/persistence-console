@@ -769,6 +769,109 @@ describe("Schema", () => {
     expect(sql()).toBeNull();
   });
 
+  it("should render a multiple columns with a wrong type", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            {
+              name: "myTable1Name",
+              columns: [
+                {
+                  name: "myColumn1Name",
+                  type: "myColumn1Type",
+                  mismatchingType: "myColumn1TypeX",
+                },
+                {
+                  name: "myColumn2Name",
+                  type: "myColumn2Type",
+                  mismatchingType: "myColumn2TypeX",
+                },
+              ],
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    }
+
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(false);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(false);
+    expect(checkbox(2).checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      checkbox(1).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(true);
+    expect(checkbox().indeterminate).toBe(true);
+    expect(checkbox(1).checked).toBe(true);
+    expect(checkbox(2).checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      checkbox(2).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(true);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(true);
+    expect(checkbox(2).checked).toBe(true);
+
+    {
+      checkbox(0).click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(false);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(false);
+    expect(checkbox(2).checked).toBe(false);
+
+    {
+      checkbox(0).click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(true);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(true);
+    expect(checkbox(2).checked).toBe(true);
+
+    {
+      checkbox(1).click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(true);
+    expect(checkbox().indeterminate).toBe(true);
+    expect(checkbox(1).checked).toBe(false);
+    expect(checkbox(2).checked).toBe(true);
+
+    {
+      checkbox().click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(false);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(false);
+    expect(checkbox(2).checked).toBe(false);
+  });
+
   it("should render a column with an additional error", async () => {
     {
       const mock = mockFetch();

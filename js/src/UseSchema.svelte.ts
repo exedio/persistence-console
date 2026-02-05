@@ -14,6 +14,8 @@ export class Schema implements Bullet {
   private _tables: readonly Table[];
   private _sequences: readonly Sequence[];
   readonly bulletColor: Color;
+  readonly columnsWithTypeMismatch: Column[];
+  readonly columnsWithTypeMismatchCheckedFix: Column[];
   readonly constraintsWithClauseMismatch: Constraint[];
   readonly constraintsWithClauseMismatchCheckedFix: Constraint[];
 
@@ -31,6 +33,20 @@ export class Schema implements Bullet {
       ),
     );
 
+    this.columnsWithTypeMismatch = $derived.by(() => {
+      let result: Column[] = [];
+      this._tables.forEach((table) => {
+        table.columns().forEach((column) => {
+          if (column.type?.actual) result.push(column);
+        });
+      });
+      return result;
+    });
+    this.columnsWithTypeMismatchCheckedFix = $derived(
+      this.columnsWithTypeMismatch.filter(
+        (column) => column.fix?.method === "modify",
+      ),
+    );
     this.constraintsWithClauseMismatch = $derived.by(() => {
       let result: Constraint[] = [];
       this._tables.forEach((table) => {

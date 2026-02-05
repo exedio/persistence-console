@@ -1,7 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Schema > should render a column with a wrong type 1`] = `
-"<button disabled="" class="bullet red svelte-5u3w2m">.</button> Schema
+"<div class="checkboxCollector svelte-5u3w2m">
+  <label
+    ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+    columns with type mismatch (0/1)</label
+  ><br />
+</div>
+<button disabled="" class="bullet red svelte-5u3w2m">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button>
 <ul>
   <li class="table svelte-5u3w2m">
@@ -12,7 +18,13 @@ exports[`Schema > should render a column with a wrong type 1`] = `
 `;
 
 exports[`Schema > should render a column with a wrong type 2`] = `
-"<button disabled="" class="bullet red svelte-5u3w2m">.</button> Schema
+"<div class="checkboxCollector svelte-5u3w2m">
+  <label
+    ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+    columns with type mismatch (0/1)</label
+  ><br />
+</div>
+<button disabled="" class="bullet red svelte-5u3w2m">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button>
 <ul>
   <li class="table svelte-5u3w2m">
@@ -30,7 +42,13 @@ exports[`Schema > should render a column with a wrong type 2`] = `
 `;
 
 exports[`Schema > should render a column with a wrong type 3`] = `
-"<button disabled="" class="bullet red svelte-5u3w2m">.</button> Schema
+"<div class="checkboxCollector svelte-5u3w2m">
+  <label
+    ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+    columns with type mismatch (0/1)</label
+  ><br />
+</div>
+<button disabled="" class="bullet red svelte-5u3w2m">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button>
 <ul>
   <li class="table svelte-5u3w2m">
@@ -738,6 +756,62 @@ exports[`Schema > should render a missing table to be renamed to an unused 3`] =
     \\"myMissingTableName\\"",</small
   >
 </li>
+"
+`;
+
+exports[`Schema > should render a multiple columns with a wrong type 1`] = `
+"<label
+  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  columns with type mismatch (0/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple columns with a wrong type 2`] = `
+"<label
+  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  columns with type mismatch (1/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple columns with a wrong type 3`] = `
+"<label
+  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  columns with type mismatch (2/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple columns with a wrong type 4`] = `
+"<label
+  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  columns with type mismatch (0/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple columns with a wrong type 5`] = `
+"<label
+  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  columns with type mismatch (2/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple columns with a wrong type 6`] = `
+"<label
+  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  columns with type mismatch (1/2)</label
+><br />
+"
+`;
+
+exports[`Schema > should render a multiple columns with a wrong type 7`] = `
+"<label
+  ><input id="columnsWithTypeMismatchCheckboxId" type="checkbox" />adjust
+  columns with type mismatch (0/2)</label
+><br />
 "
 `;
 
