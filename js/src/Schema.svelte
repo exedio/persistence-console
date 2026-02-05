@@ -144,6 +144,9 @@
   }
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
+  type MyString = string;
+
+  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
@@ -166,49 +169,18 @@
     {:then schema}
       {#if schema.columnsWithTypeMismatch.length > 0 || schema.constraintsWithClauseMismatch.length > 0}
         <div class="checkboxCollector">
-          {#if schema.columnsWithTypeMismatch.length > 0}
-            <label
-              ><input
-                type="checkbox"
-                id="columnsWithTypeMismatchCheckboxId"
-                checked={schema.columnsWithTypeMismatchCheckedFix.length > 0}
-                oninput={(e) => {
-                  schema.columnsWithTypeMismatch.forEach((column) =>
-                    setFix(
-                      asInputElement(e.target).checked,
-                      column,
-                      "modify",
-                      undefined,
-                    ),
-                  );
-                }}
-              />adjust columns with type mismatch ({schema
-                .columnsWithTypeMismatchCheckedFix.length}/{schema
-                .columnsWithTypeMismatch.length})
-            </label><br />
-          {/if}
-          {#if schema.constraintsWithClauseMismatch.length > 0}
-            <label
-              ><input
-                type="checkbox"
-                id="constraintsWithClauseMismatchCheckboxId"
-                checked={schema.constraintsWithClauseMismatchCheckedFix.length >
-                  0}
-                oninput={(e) => {
-                  schema.constraintsWithClauseMismatch.forEach((constraint) =>
-                    setFix(
-                      asInputElement(e.target).checked,
-                      constraint,
-                      "modify",
-                      undefined,
-                    ),
-                  );
-                }}
-              />recreate constraints with clause mismatch ({schema
-                .constraintsWithClauseMismatchCheckedFix.length}/{schema
-                .constraintsWithClauseMismatch.length})
-            </label><br />
-          {/if}
+          {@render mismatches(
+            schema.columnsWithTypeMismatch,
+            schema.columnsWithTypeMismatchCheckedFix,
+            "columnsWithTypeMismatchCheckboxId",
+            "adjust columns with type mismatch",
+          )}
+          {@render mismatches(
+            schema.constraintsWithClauseMismatch,
+            schema.constraintsWithClauseMismatchCheckedFix,
+            "constraintsWithClauseMismatchCheckboxId",
+            "recreate constraints with clause mismatch",
+          )}
         </div>
       {/if}
       {@render bullet(schema)}
@@ -306,6 +278,33 @@
     </ul>
   {/if}
 </div>
+
+{#snippet mismatches(
+  all: Fixable[],
+  checked: Fixable[],
+  elementId: MyString,
+  text: MyString,
+)}
+  {#if all.length > 0}
+    <label
+      ><input
+        id={elementId}
+        type="checkbox"
+        checked={checked.length > 0}
+        oninput={(e) => {
+          all.forEach((fixable) =>
+            setFix(
+              asInputElement(e.target).checked,
+              fixable,
+              "modify",
+              undefined,
+            ),
+          );
+        }}
+      />{text} ({checked.length}/{all.length})
+    </label><br />
+  {/if}
+{/snippet}
 
 {#snippet constraints(constraints: ReadonlyConstraintArray)}
   {#each constraints as constraint (constraint.name)}
