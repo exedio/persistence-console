@@ -201,7 +201,6 @@
               {#if table.columns().length || table.constraints().length}
                 <ul in:fly={{ y: -10, duration: 200 }}>
                   {#each table.columns() as column (column.name)}
-                    {@const columnExpanded = column.expanded}
                     <li class="column">
                       {@render bulletExpandable(column)}
                       {column.name}
@@ -215,15 +214,15 @@
                         column,
                         column.type,
                         "adjust",
-                        columnExpanded,
+                        column.expanded,
                       )}
-                      {#if columnExpanded}
+                      {#if column.expanded}
                         {@render additionalErrors(column.additionalErrors)}
-                      {/if}
-                      {#if columnExpanded && column.constraints().length > 0}
-                        <ul in:fly={{ y: -10, duration: 200 }}>
-                          {@render constraints(column.constraints())}
-                        </ul>
+                        {#if column.constraints().length > 0}
+                          <ul in:fly={{ y: -10, duration: 200 }}>
+                            {@render constraints(column.constraints())}
+                          </ul>
+                        {/if}
                       {/if}
                     </li>
                   {/each}
