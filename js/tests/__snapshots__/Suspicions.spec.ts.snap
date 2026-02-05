@@ -4,8 +4,7 @@ exports[`Suspicions > should render a non-empty table 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
-    <button class="reload svelte-dizlwz">🗘</button
-    ><!---->
+    <button class="reload svelte-dizlwz">🗘</button>
   </caption>
   <thead>
     <tr>
@@ -14,23 +13,17 @@ exports[`Suspicions > should render a non-empty table 1`] = `
     </tr>
   </thead>
   <tbody>
-    <!----><!---->
     <tr>
       <td rowspan="1">myOnlyType.myOnlyName</td>
-      <!---->
       <td>myOnlySuspicion</td>
     </tr>
-    <!---->
     <tr>
       <td rowspan="2">myMultiType.myMultiName</td>
-      <!---->
       <td>myFirstSuspicion</td>
     </tr>
     <tr>
-      <!---->
       <td>mySecondSuspicion</td>
     </tr>
-    <!---->
   </tbody>
 </table>
 "
@@ -40,8 +33,7 @@ exports[`Suspicions > should render a non-empty table 2`] = `
 "<table class="grey">
   <caption>
     Suspicions
-    <button class="reload svelte-dizlwz">🗘</button
-    ><!---->
+    <button class="reload svelte-dizlwz">🗘</button>
   </caption>
   <thead>
     <tr>
@@ -50,23 +42,17 @@ exports[`Suspicions > should render a non-empty table 2`] = `
     </tr>
   </thead>
   <tbody>
-    <!----><!---->
     <tr>
       <td rowspan="2">myOnlyType.myOnlyName</td>
-      <!---->
       <td>myOnlySuspicionChanged</td>
     </tr>
     <tr>
-      <!---->
       <td>myOnlySuspicionChangedOther</td>
     </tr>
-    <!---->
     <tr>
       <td rowspan="1">myOnlyTypeReloaded.myOnlyNameReloaded</td>
-      <!---->
       <td>myOnlySuspicionReloaded</td>
     </tr>
-    <!---->
   </tbody>
 </table>
 "
@@ -76,8 +62,7 @@ exports[`Suspicions > should render an empty table 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
-    <button class="reload svelte-dizlwz">🗘</button
-    ><!---->
+    <button class="reload svelte-dizlwz">🗘</button>
   </caption>
   <thead>
     <tr>
@@ -86,11 +71,9 @@ exports[`Suspicions > should render an empty table 1`] = `
     </tr>
   </thead>
   <tbody>
-    <!---->
     <tr>
       <td colspan="2" class="empty">There are no suspicions for the model.</td>
     </tr>
-    <!---->
   </tbody>
 </table>
 "
@@ -100,8 +83,7 @@ exports[`Suspicions > should render an error message 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
-    <button class="reload svelte-dizlwz">🗘</button
-    ><!---->
+    <button class="reload svelte-dizlwz">🗘</button>
   </caption>
   <thead>
     <tr>
@@ -113,7 +95,6 @@ exports[`Suspicions > should render an error message 1`] = `
     <tr>
       <td colspan="2" class="error">suspicions: response code 400 myError</td>
     </tr>
-    <!---->
   </tbody>
 </table>
 "

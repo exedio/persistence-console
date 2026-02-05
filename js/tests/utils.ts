@@ -6,7 +6,7 @@ export function flushPromises(): Promise<void> {
 }
 
 export function formatHtml(element: HTMLElement): Promise<string> {
-  return format(element.innerHTML, {
+  return format(element.innerHTML.replace(/<!---->/g, ""), {
     parser: "html",
     plugins: [parsers],
   });
