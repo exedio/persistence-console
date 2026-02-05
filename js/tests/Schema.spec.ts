@@ -963,6 +963,111 @@ describe("Schema", () => {
     expect(sql()).toBeNull();
   });
 
+  it("should render a multiple constraints with a wrong clause", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            {
+              name: "myTable1Name",
+              constraints: [
+                {
+                  name: "myConstraint1Name",
+                  type: "Check",
+                  clause: "myConstraint1Clause",
+                  mismatchingClause: "myConstraint1ClauseX",
+                },
+                {
+                  name: "myConstraint2Name",
+                  type: "Check",
+                  clause: "myConstraint2Clause",
+                  mismatchingClause: "myConstraint2ClauseX",
+                },
+              ],
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    }
+
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(false);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(false);
+    expect(checkbox(2).checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      checkbox(1).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(2);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(true);
+    expect(checkbox().indeterminate).toBe(true);
+    expect(checkbox(1).checked).toBe(true);
+    expect(checkbox(2).checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      checkbox(2).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(2);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(true);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(true);
+    expect(checkbox(2).checked).toBe(true);
+
+    {
+      checkbox(0).click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(false);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(false);
+    expect(checkbox(2).checked).toBe(false);
+
+    {
+      checkbox(0).click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(true);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(true);
+    expect(checkbox(2).checked).toBe(true);
+
+    {
+      checkbox(1).click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(true);
+    expect(checkbox().indeterminate).toBe(true);
+    expect(checkbox(1).checked).toBe(false);
+    expect(checkbox(2).checked).toBe(true);
+
+    {
+      checkbox().click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(checkbox().checked).toBe(false);
+    expect(checkbox().indeterminate).toBe(false);
+    expect(checkbox(1).checked).toBe(false);
+    expect(checkbox(2).checked).toBe(false);
+  });
+
   it("should render a constraint with shortener", async () => {
     {
       const mock = mockFetch();
@@ -1420,6 +1525,10 @@ async function mountComponent() {
 
 function tree(): HTMLElement {
   return document.querySelectorAll(".tree").item(0) as HTMLElement;
+}
+
+function checkboxCollector(): HTMLElement {
+  return document.querySelectorAll(".checkboxCollector").item(0) as HTMLElement;
 }
 
 function responseSuccessAlter(sql: string) {

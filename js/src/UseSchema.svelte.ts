@@ -14,6 +14,8 @@ export class Schema implements Bullet {
   private _tables: readonly Table[];
   private _sequences: readonly Sequence[];
   readonly bulletColor: Color;
+  readonly constraintsWithClauseMismatch: Constraint[];
+  readonly constraintsWithClauseMismatchCheckedFix: Constraint[];
 
   private readonly tablesStore = new Map<string, Table>();
   private readonly sequencesStore = new Map<string, Sequence>();
@@ -26,6 +28,26 @@ export class Schema implements Bullet {
       worse(
         worst(this._tables.map((i) => i.bulletColor)),
         worst(this._sequences.map((i) => i.bulletColor)),
+      ),
+    );
+
+    this.constraintsWithClauseMismatch = $derived.by(() => {
+      let result: Constraint[] = [];
+      this._tables.forEach((table) => {
+        table.columns().forEach((column) => {
+          column.constraints().forEach((constraint) => {
+            if (constraint.clause?.actual) result.push(constraint);
+          });
+        });
+        table.constraints().forEach((constraint) => {
+          if (constraint.clause?.actual) result.push(constraint);
+        });
+      });
+      return result;
+    });
+    this.constraintsWithClauseMismatchCheckedFix = $derived(
+      this.constraintsWithClauseMismatch.filter(
+        (constraint) => constraint.fix?.method === "modify",
       ),
     );
   }
