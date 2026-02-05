@@ -167,8 +167,12 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
-      {#if schema.columnsWithTypeMismatch.length > 0 || schema.constraintsWithClauseMismatch.length > 0}
+      {#if true}
         <div class="checkboxCollector">
+          {@render bullet(schema)}
+          Schema
+          <PromiseTrackerReload tracker={schemaT} />
+          <br />
           {@render mismatches(
             schema.columnsWithTypeMismatch,
             schema.columnsWithTypeMismatchCheckedFix,
@@ -183,9 +187,6 @@
           )}
         </div>
       {/if}
-      {@render bullet(schema)}
-      Schema
-      <PromiseTrackerReload tracker={schemaT} />
       <ul>
         {#each schema.tables() as table (table.name)}
           {@const tableExpanded = table.expanded}
