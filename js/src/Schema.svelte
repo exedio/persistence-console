@@ -169,8 +169,8 @@
           {#if schema.columnsWithTypeMismatch.length > 0}
             <label
               ><input
-                id="columnsWithTypeMismatchCheckboxId"
                 type="checkbox"
+                id="columnsWithTypeMismatchCheckboxId"
                 checked={schema.columnsWithTypeMismatchCheckedFix.length > 0}
                 oninput={(e) => {
                   schema.columnsWithTypeMismatch.forEach((column) =>
@@ -190,8 +190,8 @@
           {#if schema.constraintsWithClauseMismatch.length > 0}
             <label
               ><input
-                id="constraintsWithClauseMismatchCheckboxId"
                 type="checkbox"
+                id="constraintsWithClauseMismatchCheckboxId"
                 checked={schema.constraintsWithClauseMismatchCheckedFix.length >
                   0}
                 oninput={(e) => {
