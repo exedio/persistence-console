@@ -767,6 +767,118 @@ exports[`Schema > should render a missing sequence 2`] = `
 "
 `;
 
+exports[`Schema > should render a missing sequence to be renamed to an unused 1`] = `
+"<div class="checkboxCollector svelte-12plxus">
+  <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+  <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+</div>
+<ul>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet red svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myMissingSequenceName
+    <span class="red svelte-12plxus">missing</span>
+    <label><input type="checkbox" />create</label>
+    <label
+      ><select class="renameFrom svelte-12plxus">
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedSequenceName">myUnusedSequenceName</option>
+        <option value="myUnusedSequenceName2">myUnusedSequenceName2</option>
+      </select></label
+    >
+    someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet yellow svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myUnusedSequenceName
+    <span class="yellow svelte-12plxus">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <label
+      ><select class="renameTo svelte-12plxus">
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingSequenceName">myMissingSequenceName</option>
+      </select></label
+    >
+    someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet yellow svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myUnusedSequenceName2
+    <span class="yellow svelte-12plxus">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <label
+      ><select class="renameTo svelte-12plxus">
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingSequenceName">myMissingSequenceName</option>
+      </select></label
+    >
+    someType 55
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should render a missing sequence to be renamed to an unused 2`] = `
+"<div class="checkboxCollector svelte-12plxus">
+  <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+  <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+</div>
+<ul>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet red svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myMissingSequenceName
+    <span class="red svelte-12plxus">missing</span>
+    <label><input type="checkbox" />create</label>
+    <label
+      ><select class="renameFrom svelte-12plxus">
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedSequenceName">myUnusedSequenceName</option>
+        <option value="myUnusedSequenceName2">myUnusedSequenceName2</option>
+      </select></label
+    >
+    someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet yellow svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myUnusedSequenceName
+    <span class="yellow svelte-12plxus">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <label
+      ><select class="renameTo svelte-12plxus">
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingSequenceName">myMissingSequenceName</option>
+      </select></label
+    >
+    someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet yellow svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myUnusedSequenceName2
+    <span class="yellow svelte-12plxus">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <label
+      ><select class="renameTo svelte-12plxus">
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingSequenceName">myMissingSequenceName</option>
+      </select></label
+    >
+    someType 55
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should render a missing sequence to be renamed to an unused 3`] = `
+"<li class="svelte-12plxus">
+  <small
+    >"ALTER TABLE \\"myUnusedSequenceName\\" RENAME TO
+    \\"myMissingSequenceName\\"",</small
+  >
+</li>
+"
+`;
+
 exports[`Schema > should render a missing table 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
@@ -1628,6 +1740,118 @@ exports[`Schema > should render a unused sequence 1`] = `
 
 exports[`Schema > should render a unused sequence 2`] = `
 "<li class="svelte-12plxus"><small>"DROP SEQUENCE myOnlyName",</small></li>
+"
+`;
+
+exports[`Schema > should render a unused sequence to be renamed to a missing 1`] = `
+"<div class="checkboxCollector svelte-12plxus">
+  <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+  <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+</div>
+<ul>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet yellow svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myUnusedSequenceName
+    <span class="yellow svelte-12plxus">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <label
+      ><select class="renameTo svelte-12plxus">
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingSequenceName">myMissingSequenceName</option>
+        <option value="myMissingSequenceName2">myMissingSequenceName2</option>
+      </select></label
+    >
+    someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet red svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myMissingSequenceName
+    <span class="red svelte-12plxus">missing</span>
+    <label><input type="checkbox" />create</label>
+    <label
+      ><select class="renameFrom svelte-12plxus">
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedSequenceName">myUnusedSequenceName</option>
+      </select></label
+    >
+    someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet red svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myMissingSequenceName2
+    <span class="red svelte-12plxus">missing</span>
+    <label><input type="checkbox" />create</label>
+    <label
+      ><select class="renameFrom svelte-12plxus">
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedSequenceName">myUnusedSequenceName</option>
+      </select></label
+    >
+    someType 55
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should render a unused sequence to be renamed to a missing 2`] = `
+"<div class="checkboxCollector svelte-12plxus">
+  <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+  <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+</div>
+<ul>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet yellow svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myUnusedSequenceName
+    <span class="yellow svelte-12plxus">unused</span>
+    <label><input type="checkbox" />drop</label>
+    <label
+      ><select class="renameTo svelte-12plxus">
+        <option value="<NONE>">rename to ...</option>
+        <option value="myMissingSequenceName">myMissingSequenceName</option>
+        <option value="myMissingSequenceName2">myMissingSequenceName2</option>
+      </select></label
+    >
+    someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet red svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myMissingSequenceName
+    <span class="red svelte-12plxus">missing</span>
+    <label><input type="checkbox" />create</label>
+    <label
+      ><select class="renameFrom svelte-12plxus">
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedSequenceName">myUnusedSequenceName</option>
+      </select></label
+    >
+    someType 55
+  </li>
+  <li class="svelte-12plxus">
+    <button disabled="" class="bullet red svelte-12plxus">.</button>
+    <span class="nodeType svelte-12plxus">sequence</span> myMissingSequenceName2
+    <span class="red svelte-12plxus">missing</span>
+    <label><input type="checkbox" />create</label>
+    <label
+      ><select class="renameFrom svelte-12plxus">
+        <option value="<NONE>">rename from ...</option>
+        <option value="myUnusedSequenceName">myUnusedSequenceName</option>
+      </select></label
+    >
+    someType 55
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should render a unused sequence to be renamed to a missing 3`] = `
+"<li class="svelte-12plxus">
+  <small
+    >"ALTER TABLE \\"myUnusedSequenceName\\" RENAME TO
+    \\"myMissingSequenceName\\"",</small
+  >
+</li>
 "
 `;
 

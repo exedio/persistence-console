@@ -1372,6 +1372,142 @@ describe("Schema", () => {
     expect(sql()).toBeNull();
   });
 
+  it("should render a unused sequence to be renamed to a missing", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          sequences: [
+            {
+              name: "myUnusedSequenceName",
+              type: "someType",
+              start: 55,
+              existence: "unused",
+            },
+            {
+              name: "myMissingSequenceName",
+              type: "someType",
+              start: 55,
+              existence: "missing",
+            },
+            {
+              name: "myMissingSequenceName2",
+              type: "someType",
+              start: 55,
+              existence: "missing",
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    }
+    const unused = () => select("rename to ...", 0);
+    const missing1 = () => select("rename from ...", 0);
+    const missing2 = () => select("rename from ...", 1);
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(sql()).toBeNull();
+    expect(unused().value).toBe("<NONE>");
+    expect(missing1().value).toBe("<NONE>");
+    expect(missing2().value).toBe("<NONE>");
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          'ALTER TABLE "myUnusedSequenceName" RENAME TO "myMissingSequenceName"',
+        ),
+      );
+      unused().value = "myMissingSequenceName";
+      unused().dispatchEvent(new Event("input", { bubbles: true }));
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        "/myApiPath/schema/alter?subject=sequence&name=myUnusedSequenceName&method=rename&value=myMissingSequenceName",
+      );
+    }
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(await formatHtml(sql())).toMatchSnapshot();
+    expect(unused().value).toBe("myMissingSequenceName");
+    expect(missing1().value).toBe("myUnusedSequenceName");
+    expect(missing2().value).toBe("<NONE>");
+
+    unused().value = "<NONE>";
+    unused().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(sql()).toBeNull();
+    expect(unused().value).toBe("<NONE>");
+    expect(missing1().value).toBe("<NONE>");
+    expect(missing2().value).toBe("<NONE>");
+  });
+
+  it("should render a missing sequence to be renamed to an unused", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          sequences: [
+            {
+              name: "myMissingSequenceName",
+              type: "someType",
+              start: 55,
+              existence: "missing",
+            },
+            {
+              name: "myUnusedSequenceName",
+              type: "someType",
+              start: 55,
+              existence: "unused",
+            },
+            {
+              name: "myUnusedSequenceName2",
+              type: "someType",
+              start: 55,
+              existence: "unused",
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    }
+    const missing = () => select("rename from ...", 0);
+    const unused1 = () => select("rename to ...", 0);
+    const unused2 = () => select("rename to ...", 1);
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(sql()).toBeNull();
+    expect(missing().value).toBe("<NONE>");
+    expect(unused1().value).toBe("<NONE>");
+    expect(unused2().value).toBe("<NONE>");
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          'ALTER TABLE "myUnusedSequenceName" RENAME TO "myMissingSequenceName"',
+        ),
+      );
+      missing().value = "myUnusedSequenceName";
+      missing().dispatchEvent(new Event("input", { bubbles: true }));
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        "/myApiPath/schema/alter?subject=sequence&name=myUnusedSequenceName&method=rename&value=myMissingSequenceName",
+      );
+    }
+    expect(await formatHtml(tree())).toMatchSnapshot();
+    expect(await formatHtml(sql())).toMatchSnapshot();
+    expect(missing().value).toBe("myUnusedSequenceName");
+    expect(unused1().value).toBe("myMissingSequenceName");
+    expect(unused2().value).toBe("<NONE>");
+
+    missing().value = "<NONE>";
+    missing().dispatchEvent(new Event("input", { bubbles: true }));
+    await flushPromises();
+    expect(sql()).toBeNull();
+    expect(missing().value).toBe("<NONE>");
+    expect(unused1().value).toBe("<NONE>");
+    expect(unused2().value).toBe("<NONE>");
+  });
+
   it("should render a sequence with wrong type", async () => {
     {
       const mock = mockFetch();

@@ -562,6 +562,26 @@ export class Sequence implements Bullet, Fixable {
 
     this.api = api;
   }
+
+  renameFrom(schema: Schema): string[] {
+    return this.rename(schema, "missing", "unused");
+  }
+
+  renameTo(schema: Schema): string[] {
+    return this.rename(schema, "unused", "missing");
+  }
+
+  private rename(
+    schema: Schema,
+    myExistence: ApiExistence,
+    otherExistence: ApiExistence,
+  ): string[] {
+    if (!this.existence || this.existence.text !== myExistence) return [];
+    return schema
+      .sequences()
+      .filter((t) => t.existence && t.existence.text === otherExistence)
+      .map((t) => t.name);
+  }
 }
 
 export function useAdditionalErrors(

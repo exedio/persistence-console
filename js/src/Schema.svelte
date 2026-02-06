@@ -257,8 +257,8 @@
               {@render existence(
                 sequence.existence,
                 sequence,
-                [], // TODO unused sequences
-                [], // TODO missing sequences
+                sequence.renameFrom(schema),
+                sequence.renameTo(schema),
               )}
               {@render comparison(sequence, sequence.type, undefined, true)}
               {@render comparison(sequence, sequence.start, undefined, true)}
