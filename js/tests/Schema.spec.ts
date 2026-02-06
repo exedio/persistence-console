@@ -1630,6 +1630,184 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
+  it("should render multiple missing nodes", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            {
+              name: "tableExisting",
+              columns: [
+                {
+                  name: "columnMissing",
+                  type: "myType",
+                  existence: "missing",
+                  constraints: [
+                    {
+                      name: "columnConstraintMissing",
+                      type: "Check",
+                      clause: "myClause",
+                      existence: "missing",
+                    },
+                  ],
+                },
+              ],
+              constraints: [
+                {
+                  name: "tableConstraintMissing",
+                  type: "Check",
+                  clause: "myClause",
+                  existence: "missing",
+                },
+              ],
+            },
+            {
+              name: "tableMissing1",
+              existence: "missing",
+            },
+          ],
+          sequences: [
+            {
+              name: "sequenceMissing",
+              type: "someType",
+              start: 55,
+              existence: "missing",
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    }
+
+    const all = () =>
+      checkboxStart("add missing nodes without rename-from option", 0);
+    const column = () => checkbox("add", 0);
+    const columnConstraint = () => checkbox("add", 1);
+    const tableConstraint = () => checkbox("add", 2);
+    const table = () => checkbox("create", 0);
+    const sequence = () => checkbox("create", 1);
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    await flushPromises();
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(all().checked).toBe(false);
+    expect(all().indeterminate).toBe(false);
+    expect(column().checked).toBe(false);
+    expect(columnConstraint().checked).toBe(false);
+    expect(tableConstraint().checked).toBe(false);
+    expect(table().checked).toBe(false);
+    expect(sequence().checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      column().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(all().checked).toBe(true);
+    expect(all().indeterminate).toBe(true);
+    expect(column().checked).toBe(true);
+    expect(columnConstraint().checked).toBe(false);
+    expect(tableConstraint().checked).toBe(false);
+    expect(table().checked).toBe(false);
+    expect(sequence().checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      columnConstraint().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(all().checked).toBe(true);
+    expect(all().indeterminate).toBe(true);
+    expect(column().checked).toBe(true);
+    expect(columnConstraint().checked).toBe(true);
+    expect(tableConstraint().checked).toBe(false);
+    expect(table().checked).toBe(false);
+    expect(sequence().checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      tableConstraint().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(all().checked).toBe(true);
+    expect(all().indeterminate).toBe(true);
+    expect(column().checked).toBe(true);
+    expect(columnConstraint().checked).toBe(true);
+    expect(tableConstraint().checked).toBe(true);
+    expect(table().checked).toBe(false);
+    expect(sequence().checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      table().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(all().checked).toBe(true);
+    expect(all().indeterminate).toBe(true);
+    expect(column().checked).toBe(true);
+    expect(columnConstraint().checked).toBe(true);
+    expect(tableConstraint().checked).toBe(true);
+    expect(table().checked).toBe(true);
+    expect(sequence().checked).toBe(false);
+
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
+      sequence().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(all().checked).toBe(true);
+    expect(all().indeterminate).toBe(false);
+    expect(column().checked).toBe(true);
+    expect(columnConstraint().checked).toBe(true);
+    expect(tableConstraint().checked).toBe(true);
+    expect(table().checked).toBe(true);
+    expect(sequence().checked).toBe(true);
+
+    {
+      all().click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(all().checked).toBe(false);
+    expect(all().indeterminate).toBe(false);
+    expect(column().checked).toBe(false);
+    expect(columnConstraint().checked).toBe(false);
+    expect(tableConstraint().checked).toBe(false);
+    expect(table().checked).toBe(false);
+    expect(sequence().checked).toBe(false);
+
+    {
+      all().click();
+      await flushPromises();
+    }
+    expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
+    expect(all().checked).toBe(true);
+    expect(all().indeterminate).toBe(false);
+    expect(column().checked).toBe(true);
+    expect(columnConstraint().checked).toBe(true);
+    expect(tableConstraint().checked).toBe(true);
+    expect(table().checked).toBe(true);
+    expect(sequence().checked).toBe(true);
+  });
+
   it("should keep the state after reload", async () => {
     const response: ApiSchema = {
       tables: [

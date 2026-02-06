@@ -142,6 +142,7 @@
             bind:checked={schema.showAllTablesSequences}
           />show all tables / sequences
         </label><br />
+        {@render mismatches(schema.nodesMissingWithoutRename)}
         {@render mismatches(schema.columnsWithTypeMismatch)}
         {@render mismatches(schema.constraintsWithClauseMismatch)}
       </div>

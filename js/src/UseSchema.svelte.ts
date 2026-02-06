@@ -15,6 +15,7 @@ export class Schema implements Bullet {
   private _tables: readonly Table[];
   private _sequences: readonly Sequence[];
   readonly bulletColor: Color;
+  readonly nodesMissingWithoutRename: FixAggregator<Fixable>;
   readonly columnsWithTypeMismatch: FixAggregator<Column>;
   readonly constraintsWithClauseMismatch: FixAggregator<Constraint>;
 
@@ -34,7 +35,45 @@ export class Schema implements Bullet {
       ),
     );
 
+    this.nodesMissingWithoutRename = new FixAggregator(
+      "add",
+      "add missing nodes without rename-from option",
+      () => {
+        let result: Fixable[] = [];
+        this._tables.forEach((table) => {
+          if (
+            table.existence?.text === "missing" &&
+            table.renameFrom(this).length === 0
+          )
+            result.push(table);
+          table.columns().forEach((column) => {
+            if (
+              column.existence?.text === "missing" &&
+              column.renameFrom(table).length === 0
+            )
+              result.push(column);
+            column.constraints().forEach((constraint) => {
+              if (constraint.existence?.text === "missing")
+                result.push(constraint);
+            });
+          });
+          table.constraints().forEach((constraint) => {
+            if (constraint.existence?.text === "missing")
+              result.push(constraint);
+          });
+        });
+        this._sequences.forEach((sequence) => {
+          if (
+            sequence.existence?.text === "missing" &&
+            sequence.renameFrom(this).length === 0
+          )
+            result.push(sequence);
+        });
+        return result;
+      },
+    );
     this.columnsWithTypeMismatch = new FixAggregator(
+      "modify",
       "adjust columns with type mismatch",
       () => {
         let result: Column[] = [];
@@ -47,6 +86,7 @@ export class Schema implements Bullet {
       },
     );
     this.constraintsWithClauseMismatch = new FixAggregator(
+      "modify",
       "recreate constraints with clause mismatch",
       () => {
         let result: Constraint[] = [];
@@ -152,17 +192,19 @@ export class Schema implements Bullet {
 }
 
 export class FixAggregator<E extends Fixable> {
+  readonly method: "add" | "modify";
   readonly label: string;
   readonly all: E[];
   readonly checkedLength: number;
   readonly checked: boolean;
   readonly indeterminate: boolean;
 
-  constructor(label: string, all: () => E[]) {
+  constructor(method: "add" | "modify", label: string, all: () => E[]) {
+    this.method = method;
     this.label = label;
     this.all = $derived.by(() => all());
     this.checkedLength = $derived(
-      this.all.filter((fixable) => fixable.fix?.method === "modify").length,
+      this.all.filter((fixable) => fixable.fix?.method === method).length,
     );
     this.checked = $derived(this.checkedLength > 0);
     this.indeterminate = $derived(
@@ -171,7 +213,7 @@ export class FixAggregator<E extends Fixable> {
   }
 
   setFixes(set: boolean): void {
-    this.all.forEach((fixable) => setFix(set, fixable, "modify", undefined));
+    this.all.forEach((fixable) => setFix(set, fixable, this.method, undefined));
   }
 }
 
