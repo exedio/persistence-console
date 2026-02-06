@@ -1108,7 +1108,8 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
-    const modifyA = () => checkboxStart("recreate constraints with clause mismatch", 0);
+    const modifyA = () =>
+      checkboxStart("recreate constraints with clause mismatch", 0);
     const modify1 = () => checkbox("recreate", 0);
     const modify2 = () => checkbox("recreate", 1);
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
@@ -1665,10 +1666,7 @@ function checkbox(labelText: string, index: number): HTMLInputElement {
   return checkboxSelector((t) => t === labelText, index);
 }
 
-function checkboxStart(
-  labelText: string,
-  index: number = 0,
-): HTMLInputElement {
+function checkboxStart(labelText: string, index: number = 0): HTMLInputElement {
   return checkboxSelector((t) => t.startsWith(labelText), index);
 }
 
