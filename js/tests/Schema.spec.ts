@@ -202,7 +202,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const create = () => checkbox();
+    const create = () => checkbox("create", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -241,7 +241,7 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
 
-    const create = () => checkbox();
+    const create = () => checkbox("create", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseFailure("myError"));
@@ -281,7 +281,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const drop = () => checkbox();
+    const drop = () => checkbox("drop", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -474,7 +474,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const create = () => checkbox();
+    const create = () => checkbox("add", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -529,7 +529,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const drop = () => checkbox();
+    const drop = () => checkbox("drop", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -754,7 +754,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const modify = () => checkbox();
+    const modify = () => checkbox("adjust", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -803,9 +803,9 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
-    const modifyA = () => checkbox();
-    const modify1 = () => checkbox(1);
-    const modify2 = () => checkbox(2);
+    const modifyA = () => checkboxStart("adjust columns with type mismatch");
+    const modify1 = () => checkbox("adjust", 0);
+    const modify2 = () => checkbox("adjust", 1);
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
@@ -944,7 +944,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const create = () => checkbox();
+    const create = () => checkbox("add", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -995,7 +995,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const drop = () => checkbox();
+    const drop = () => checkbox("drop", 0);
     {
       const mockFix = mockFetch();
       mockFix.mockResolvedValueOnce(
@@ -1047,7 +1047,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const modify = () => checkbox();
+    const modify = () => checkbox("recreate", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -1108,9 +1108,9 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
-    const modifyA = () => checkbox();
-    const modify1 = () => checkbox(1);
-    const modify2 = () => checkbox(2);
+    const modifyA = () => checkboxStart("recreate constraints with clause mismatch", 0);
+    const modify1 = () => checkbox("recreate", 0);
+    const modify2 = () => checkbox("recreate", 1);
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
@@ -1300,7 +1300,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const create = () => checkbox();
+    const create = () => checkbox("create", 0);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -1340,7 +1340,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    const drop = () => checkbox();
+    const drop = () => checkbox("drop", 0);
     {
       const mockFix = mockFetch();
       mockFix.mockResolvedValueOnce(
@@ -1496,8 +1496,8 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
-    const addConstraint = () => checkbox(0);
-    const createSequenc = () => checkbox(1);
+    const addConstraint = () => checkbox("add", 0);
+    const createSequenc = () => checkbox("create", 0);
 
     // expand table
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
@@ -1625,7 +1625,7 @@ describe("Schema", () => {
     await flushPromises();
     expect(sql()).toBeNull();
 
-    const create = () => checkbox();
+    const create = () => checkbox("create", 0);
     // test reactivity after connect
     {
       const mock = mockFetch();
@@ -1661,10 +1661,27 @@ function responseSuccessAlter(sql: string) {
   } satisfies SchemaAlterResponse);
 }
 
-function checkbox(index: number = 0): HTMLInputElement {
-  return document
-    .querySelectorAll("input[type='checkbox']")
-    .item(index) as HTMLInputElement;
+function checkbox(labelText: string, index: number): HTMLInputElement {
+  return checkboxSelector((t) => t === labelText, index);
+}
+
+function checkboxStart(
+  labelText: string,
+  index: number = 0,
+): HTMLInputElement {
+  return checkboxSelector((t) => t.startsWith(labelText), index);
+}
+
+function checkboxSelector(
+  labelText: (t: string) => boolean,
+  index: number = 0,
+): HTMLInputElement {
+  return Array.from(document.querySelectorAll("label"))
+    .filter((label) => label.textContent && labelText(label.textContent))
+    .map(
+      (label) =>
+        label.querySelector('input[type="checkbox"]') as HTMLInputElement,
+    )[index];
 }
 
 function select(index: number = 0): HTMLSelectElement {
