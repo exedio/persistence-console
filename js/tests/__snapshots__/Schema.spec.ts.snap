@@ -42,10 +42,6 @@ exports[`Schema > should hide table / sequences without problems 1`] = `
     <button disabled="" class="bullet svelte-12plxus">.</button>
     <span class="nodeType svelte-12plxus">sequence</span> seq4ok someType 55
   </li>
-  <li class="svelte-12plxus">
-    <button disabled="" class="bullet svelte-12plxus">.</button>
-    <span class="nodeType svelte-12plxus">sequence</span> seq5ok someType 55
-  </li>
 </ul>
 "
 `;
@@ -57,17 +53,27 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
 </div>
 <ul>
+  <button disabled="" class="bullet svelte-12plxus">.</button>
+  tab1ok ... tab2ok (2)
   <li class="svelte-12plxus">
     <button class="bullet red svelte-12plxus">+</button> tab3missing
     <span class="red svelte-12plxus">missing</span>
     <label><input type="checkbox" />create</label>
   </li>
+  <button disabled="" class="bullet svelte-12plxus">.</button>
+  tab4ok ... tab5ok (2)
+  <button disabled="" class="bullet svelte-12plxus">.</button>
+  <span class="nodeType svelte-12plxus">sequence</span>
+  seq1ok ... seq2ok (2)
   <li class="svelte-12plxus">
     <button disabled="" class="bullet yellow svelte-12plxus">.</button>
     <span class="nodeType svelte-12plxus">sequence</span> seq3missing
     <span class="yellow svelte-12plxus">unused</span>
     <label><input type="checkbox" />drop</label> someType 55
   </li>
+  <button disabled="" class="bullet svelte-12plxus">.</button>
+  <span class="nodeType svelte-12plxus">sequence</span>
+  seq4ok
 </ul>
 "
 `;

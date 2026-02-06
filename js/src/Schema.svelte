@@ -13,6 +13,9 @@
     type Constraint,
     type Bullet,
     type ExpandableBullet,
+    Collapser,
+    Table,
+    Sequence,
   } from "@/UseSchema.svelte.js";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
@@ -167,6 +170,8 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
+      {@const tableCollapser = schema.collapser(undefined)}
+      {@const sequenceCollapser = schema.collapser("sequence")}
       <div class="checkboxCollector">
         {@render bullet(schema)}
         Schema
@@ -193,7 +198,8 @@
       </div>
       <ul>
         {#each schema.tables() as table (table.name)}
-          {#if schema.showAllTablesSequences || table.bulletColor}
+          {@render collapsed(table, tableCollapser)}
+          {#if !tableCollapser || table.bulletColor}
             <li>
               {@render bulletExpandable(table)}
               {table.name}
@@ -240,8 +246,10 @@
             </li>
           {/if}
         {/each}
+        {@render collapsed(undefined, tableCollapser)}
         {#each schema.sequences() as sequence (sequence.name)}
-          {#if schema.showAllTablesSequences || sequence.bulletColor}
+          {@render collapsed(sequence, sequenceCollapser)}
+          {#if !sequenceCollapser || sequence.bulletColor}
             <li>
               {@render bullet(sequence)}
               <span class="nodeType">sequence</span>
@@ -258,6 +266,7 @@
             </li>
           {/if}
         {/each}
+        {@render collapsed(undefined, sequenceCollapser)}
       </ul>
     {:catch error}
       {#if isNotConnected(error)}
@@ -310,6 +319,24 @@
         }}
       />{text} ({checked.length}/{all.length})
     </label><br />
+  {/if}
+{/snippet}
+
+{#snippet collapsed(
+  tableOrSequence: Table | Sequence | undefined,
+  collapser: Collapser | undefined,
+)}
+  {@const segment = collapser?.isShown(tableOrSequence)}
+  {#if segment}
+    {@render bullet(segment.first)}
+    {#if collapser?.nodeType}
+      <span class="nodeType">{collapser.nodeType}</span>
+    {/if}
+    {#if segment.count > 1}
+      {segment.first.name} ... {segment.last.name} ({segment.count})
+    {:else}
+      {segment.first.name}
+    {/if}
   {/if}
 {/snippet}
 

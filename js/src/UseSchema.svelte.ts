@@ -150,6 +150,10 @@ export class Schema implements Bullet {
     for (const tab of this._tables) tab.dropRenames(key);
     for (const seq of this._sequences) dropRename(seq, key);
   }
+
+  collapser(nodeType?: string): Collapser | undefined {
+    return this.showAllTablesSequences ? undefined : new Collapser(nodeType);
+  }
 }
 
 export class Table implements ExpandableBullet, Fixable {
@@ -639,4 +643,43 @@ function dropRename(
     fixable.fix?.value === key.name
   )
     fixable.fix = undefined;
+}
+
+export type CollapserSegment = {
+  first: Table | Sequence;
+  last: Table | Sequence;
+  count: number;
+};
+
+export class Collapser {
+  readonly nodeType?: string;
+  private _first?: Table | Sequence = undefined;
+  private _last?: Table | Sequence = undefined;
+  private _count = 0;
+
+  constructor(nodeType?: string) {
+    this.nodeType = nodeType;
+  }
+
+  isShown(table?: Table | Sequence): CollapserSegment | undefined {
+    if (!table || table.bulletColor) {
+      if (!this._first || !this._last) {
+        return undefined;
+      }
+      const result: CollapserSegment = {
+        first: this._first,
+        last: this._last,
+        count: this._count,
+      } satisfies CollapserSegment;
+      this._first = undefined;
+      this._last = undefined;
+      this._count = 0;
+      return result;
+    } else {
+      if (!this._first) this._first = table;
+      this._last = table;
+      this._count++;
+      return undefined;
+    }
+  }
 }

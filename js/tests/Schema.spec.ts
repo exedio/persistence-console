@@ -1468,11 +1468,6 @@ describe("Schema", () => {
               type: "someType",
               start: 55,
             },
-            {
-              name: "seq5ok",
-              type: "someType",
-              start: 55,
-            },
           ],
         } satisfies ApiSchema),
       );
