@@ -202,12 +202,13 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const create = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccessAlter("CREATE TABLE myTable1Name"),
       );
-      checkbox().click();
+      create().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=table&name=myTable1Name&method=add",
@@ -215,7 +216,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    create().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -240,10 +241,11 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
 
+    const create = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseFailure("myError"));
-      checkbox().click();
+      create().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=table&name=myTable1Name&method=add",
@@ -251,7 +253,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    create().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -279,12 +281,13 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const drop = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccessAlter("DROP TABLE myTable1Name"),
       );
-      checkbox().click();
+      drop().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=table&name=myTable1Name&method=drop",
@@ -292,7 +295,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    drop().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -471,6 +474,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const create = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -478,7 +482,7 @@ describe("Schema", () => {
           "ALTER TABLE myTable1Name ADD COLUMN myColumn1Name",
         ),
       );
-      checkbox().click();
+      create().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=column&table=myTable1Name&name=myColumn1Name&method=add",
@@ -486,7 +490,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    create().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -525,6 +529,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const drop = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -532,7 +537,7 @@ describe("Schema", () => {
           "ALTER TABLE myTable1Name DROP COLUMN myColumn1Name",
         ),
       );
-      checkbox().click();
+      drop().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=column&table=myTable1Name&name=myColumn1Name&method=drop",
@@ -540,7 +545,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    drop().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -749,6 +754,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const modify = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -756,7 +762,7 @@ describe("Schema", () => {
           "ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type",
         ),
       );
-      checkbox().click();
+      modify().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=column&table=myTable1Name&name=myColumn1Name&method=modify",
@@ -764,7 +770,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    modify().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -797,79 +803,82 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
+    const modifyA = () => checkbox();
+    const modify1 = () => checkbox(1);
+    const modify2 = () => checkbox(2);
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(false);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(false);
-    expect(checkbox(2).checked).toBe(false);
+    expect(modifyA().checked).toBe(false);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(false);
+    expect(modify2().checked).toBe(false);
 
     {
       const mock = mockFetch();
       mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
-      checkbox(1).click();
+      modify1().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledTimes(1);
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(true);
-    expect(checkbox().indeterminate).toBe(true);
-    expect(checkbox(1).checked).toBe(true);
-    expect(checkbox(2).checked).toBe(false);
+    expect(modifyA().checked).toBe(true);
+    expect(modifyA().indeterminate).toBe(true);
+    expect(modify1().checked).toBe(true);
+    expect(modify2().checked).toBe(false);
 
     {
       const mock = mockFetch();
       mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
-      checkbox(2).click();
+      modify2().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledTimes(1);
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(true);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(true);
-    expect(checkbox(2).checked).toBe(true);
+    expect(modifyA().checked).toBe(true);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(true);
+    expect(modify2().checked).toBe(true);
 
     {
-      checkbox(0).click();
+      modifyA().click();
       await flushPromises();
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(false);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(false);
-    expect(checkbox(2).checked).toBe(false);
+    expect(modifyA().checked).toBe(false);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(false);
+    expect(modify2().checked).toBe(false);
 
     {
-      checkbox(0).click();
+      modifyA().click();
       await flushPromises();
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(true);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(true);
-    expect(checkbox(2).checked).toBe(true);
+    expect(modifyA().checked).toBe(true);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(true);
+    expect(modify2().checked).toBe(true);
 
     {
-      checkbox(1).click();
+      modify1().click();
       await flushPromises();
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(true);
-    expect(checkbox().indeterminate).toBe(true);
-    expect(checkbox(1).checked).toBe(false);
-    expect(checkbox(2).checked).toBe(true);
+    expect(modifyA().checked).toBe(true);
+    expect(modifyA().indeterminate).toBe(true);
+    expect(modify1().checked).toBe(false);
+    expect(modify2().checked).toBe(true);
 
     {
-      checkbox().click();
+      modifyA().click();
       await flushPromises();
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(false);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(false);
-    expect(checkbox(2).checked).toBe(false);
+    expect(modifyA().checked).toBe(false);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(false);
+    expect(modify2().checked).toBe(false);
   });
 
   it("should render a column with an additional error", async () => {
@@ -935,6 +944,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const create = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -942,7 +952,7 @@ describe("Schema", () => {
           "ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",
         ),
       );
-      checkbox().click();
+      create().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=constraint&table=myTable1Name&name=myConstraint1Name&method=add",
@@ -950,7 +960,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    create().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -985,6 +995,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const drop = () => checkbox();
     {
       const mockFix = mockFetch();
       mockFix.mockResolvedValueOnce(
@@ -992,7 +1003,7 @@ describe("Schema", () => {
           "ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",
         ),
       );
-      checkbox().click();
+      drop().click();
       await flushPromises();
       expect(mockFix).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=constraint&table=myTable1Name&name=myConstraint1Name&method=drop",
@@ -1000,7 +1011,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    drop().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -1036,6 +1047,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const modify = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -1048,7 +1060,7 @@ describe("Schema", () => {
           "ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",
         ),
       );
-      checkbox().click();
+      modify().click();
       await flushPromises();
       expect(mock).toHaveBeenNthCalledWith(
         1,
@@ -1061,7 +1073,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    modify().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -1096,79 +1108,82 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
+    const modifyA = () => checkbox();
+    const modify1 = () => checkbox(1);
+    const modify2 = () => checkbox(2);
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(false);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(false);
-    expect(checkbox(2).checked).toBe(false);
+    expect(modifyA().checked).toBe(false);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(false);
+    expect(modify2().checked).toBe(false);
 
     {
       const mock = mockFetch();
       mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
-      checkbox(1).click();
+      modify1().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(true);
-    expect(checkbox().indeterminate).toBe(true);
-    expect(checkbox(1).checked).toBe(true);
-    expect(checkbox(2).checked).toBe(false);
+    expect(modifyA().checked).toBe(true);
+    expect(modifyA().indeterminate).toBe(true);
+    expect(modify1().checked).toBe(true);
+    expect(modify2().checked).toBe(false);
 
     {
       const mock = mockFetch();
       mock.mockResolvedValue(responseSuccessAlter("WHATEVER"));
-      checkbox(2).click();
+      modify2().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(true);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(true);
-    expect(checkbox(2).checked).toBe(true);
+    expect(modifyA().checked).toBe(true);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(true);
+    expect(modify2().checked).toBe(true);
 
     {
-      checkbox(0).click();
+      modifyA().click();
       await flushPromises();
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(false);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(false);
-    expect(checkbox(2).checked).toBe(false);
+    expect(modifyA().checked).toBe(false);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(false);
+    expect(modify2().checked).toBe(false);
 
     {
-      checkbox(0).click();
+      modifyA().click();
       await flushPromises();
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(true);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(true);
-    expect(checkbox(2).checked).toBe(true);
+    expect(modifyA().checked).toBe(true);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(true);
+    expect(modify2().checked).toBe(true);
 
     {
-      checkbox(1).click();
+      modify1().click();
       await flushPromises();
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(true);
-    expect(checkbox().indeterminate).toBe(true);
-    expect(checkbox(1).checked).toBe(false);
-    expect(checkbox(2).checked).toBe(true);
+    expect(modifyA().checked).toBe(true);
+    expect(modifyA().indeterminate).toBe(true);
+    expect(modify1().checked).toBe(false);
+    expect(modify2().checked).toBe(true);
 
     {
-      checkbox().click();
+      modifyA().click();
       await flushPromises();
     }
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
-    expect(checkbox().checked).toBe(false);
-    expect(checkbox().indeterminate).toBe(false);
-    expect(checkbox(1).checked).toBe(false);
-    expect(checkbox(2).checked).toBe(false);
+    expect(modifyA().checked).toBe(false);
+    expect(modifyA().indeterminate).toBe(false);
+    expect(modify1().checked).toBe(false);
+    expect(modify2().checked).toBe(false);
   });
 
   it("should render a constraint with shortener", async () => {
@@ -1285,12 +1300,13 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const create = () => checkbox();
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccessAlter("CREATE SEQUENCE myOnlyName"),
       );
-      checkbox().click();
+      create().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=sequence&name=myOnlyName&method=add",
@@ -1298,7 +1314,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    create().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -1324,12 +1340,13 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
+    const drop = () => checkbox();
     {
       const mockFix = mockFetch();
       mockFix.mockResolvedValueOnce(
         responseSuccessAlter("DROP SEQUENCE myOnlyName"),
       );
-      checkbox().click();
+      drop().click();
       await flushPromises();
       expect(mockFix).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=sequence&name=myOnlyName&method=drop",
@@ -1337,7 +1354,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
-    checkbox().click();
+    drop().click();
     await flushPromises();
     expect(sql()).toBeNull();
   });
@@ -1479,6 +1496,9 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
+    const addConstraint = () => checkbox(0);
+    const createSequenc = () => checkbox(1);
+
     // expand table
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
@@ -1487,14 +1507,14 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
     await flushPromises();
 
-    expect(checkbox().checked).toBe(false); // add constraint
-    expect(checkbox(1).checked).toBe(false); // create sequence
+    expect(addConstraint().checked).toBe(false);
+    expect(createSequenc().checked).toBe(false);
 
     // check "add constraint"
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessAlter("SOME SQL"));
-      checkbox().click();
+      addConstraint().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=constraint&table=ExpandedTable&name=expandedColumnConstraint&method=add",
@@ -1505,7 +1525,7 @@ describe("Schema", () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessAlter("SOME SQL"));
-      checkbox(1).click();
+      createSequenc().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=sequence&name=SomeSequence&method=add",
@@ -1515,8 +1535,8 @@ describe("Schema", () => {
     await expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
     );
-    expect(checkbox().checked).toBe(true); // add constraint
-    expect(checkbox(1).checked).toBe(true); // create sequence
+    expect(addConstraint().checked).toBe(true);
+    expect(createSequenc().checked).toBe(true);
 
     {
       const mock = mockFetch();
@@ -1528,8 +1548,8 @@ describe("Schema", () => {
     await expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
     );
-    expect(checkbox().checked).toBe(true); // add constraint
-    expect(checkbox(1).checked).toBe(true); // create sequence
+    expect(addConstraint().checked).toBe(true);
+    expect(createSequenc().checked).toBe(true);
 
     (response.tables![0].columns![0].type as string) =
       "expandedColumnTypeChange";
@@ -1549,8 +1569,8 @@ describe("Schema", () => {
     await expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload-changed.output.html",
     );
-    expect(checkbox().checked).toBe(true); // add constraint
-    expect(checkbox(1).checked).toBe(true); // create sequence
+    expect(addConstraint().checked).toBe(true);
+    expect(createSequenc().checked).toBe(true);
   });
 
   it("should render an error message", async () => {
@@ -1605,13 +1625,14 @@ describe("Schema", () => {
     await flushPromises();
     expect(sql()).toBeNull();
 
+    const create = () => checkbox();
     // test reactivity after connect
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccessAlter("CREATE TABLE myTable1Name"),
       );
-      checkbox().click();
+      create().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=table&name=myTable1Name&method=add",
