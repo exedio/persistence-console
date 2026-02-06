@@ -5,6 +5,7 @@ import type {
   Schema as ApiSchema,
   SchemaSequence as ApiSequence,
   SchemaTable as ApiTable,
+  SchemaExistence as ApiExistence,
 } from "@/api/types";
 import type { Fix, Fixable, FixedFixable } from "@/SchemaFix";
 import { useWithStore } from "@/utils";
@@ -242,18 +243,22 @@ export class Table implements ExpandableBullet, Fixable {
   }
 
   renameFrom(schema: Schema): string[] {
-    if (!this.existence || this.existence.text !== "missing") return [];
-    return schema
-      .tables()
-      .filter((t) => t.existence && t.existence.text === "unused")
-      .map((t) => t.name);
+    return this.rename(schema, "missing", "unused");
   }
 
   renameTo(schema: Schema): string[] {
-    if (!this.existence || this.existence.text !== "unused") return [];
+    return this.rename(schema, "unused", "missing");
+  }
+
+  private rename(
+    schema: Schema,
+    myExistence: ApiExistence,
+    otherExistence: ApiExistence,
+  ): string[] {
+    if (!this.existence || this.existence.text !== myExistence) return [];
     return schema
       .tables()
-      .filter((t) => t.existence && t.existence.text === "missing")
+      .filter((t) => t.existence && t.existence.text === otherExistence)
       .map((t) => t.name);
   }
 
@@ -363,18 +368,22 @@ export class Column implements ExpandableBullet, Fixable {
   }
 
   renameFrom(table: Table): string[] {
-    if (!this.existence || this.existence.text !== "missing") return [];
-    return table
-      .columns()
-      .filter((c) => c.existence && c.existence.text === "unused")
-      .map((c) => c.name);
+    return this.rename(table, "missing", "unused");
   }
 
   renameTo(table: Table): string[] {
-    if (!this.existence || this.existence.text !== "unused") return [];
+    return this.rename(table, "unused", "missing");
+  }
+
+  private rename(
+    table: Table,
+    myExistence: ApiExistence,
+    otherExistence: ApiExistence,
+  ): string[] {
+    if (!this.existence || this.existence.text !== myExistence) return [];
     return table
       .columns()
-      .filter((c) => c.existence && c.existence.text === "missing")
+      .filter((c) => c.existence && c.existence.text === otherExistence)
       .map((c) => c.name);
   }
 
