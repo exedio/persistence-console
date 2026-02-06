@@ -172,6 +172,12 @@
         Schema
         <PromiseTrackerReload tracker={schemaT} />
         <br />
+        <label
+          ><input
+            type="checkbox"
+            bind:checked={schema.showAllTablesSequences}
+          />show all tables / sequences
+        </label><br />
         {@render mismatches(
           schema.columnsWithTypeMismatch,
           schema.columnsWithTypeMismatchCheckedFix,
@@ -187,66 +193,70 @@
       </div>
       <ul>
         {#each schema.tables() as table (table.name)}
-          <li>
-            {@render bulletExpandable(table)}
-            {table.name}
-            {@render existence(
-              table.existence,
-              table,
-              table.renameFrom(schema),
-              table.renameTo(schema),
-            )}
-            {#if table.expanded}
-              {@render additionalErrors(table.additionalErrors)}
-              {#if table.columns().length || table.constraints().length}
-                <ul in:fly={{ y: -10, duration: 200 }}>
-                  {#each table.columns() as column (column.name)}
-                    <li>
-                      {@render bulletExpandable(column)}
-                      {column.name}
-                      {@render existence(
-                        column.existence,
-                        column,
-                        column.renameFrom(table),
-                        column.renameTo(table),
-                      )}
-                      {@render comparison(
-                        column,
-                        column.type,
-                        "adjust",
-                        column.expanded,
-                      )}
-                      {#if column.expanded}
-                        {@render additionalErrors(column.additionalErrors)}
-                        {#if column.constraints().length > 0}
-                          <ul in:fly={{ y: -10, duration: 200 }}>
-                            {@render constraints(column.constraints())}
-                          </ul>
+          {#if schema.showAllTablesSequences || table.bulletColor}
+            <li>
+              {@render bulletExpandable(table)}
+              {table.name}
+              {@render existence(
+                table.existence,
+                table,
+                table.renameFrom(schema),
+                table.renameTo(schema),
+              )}
+              {#if table.expanded}
+                {@render additionalErrors(table.additionalErrors)}
+                {#if table.columns().length || table.constraints().length}
+                  <ul in:fly={{ y: -10, duration: 200 }}>
+                    {#each table.columns() as column (column.name)}
+                      <li>
+                        {@render bulletExpandable(column)}
+                        {column.name}
+                        {@render existence(
+                          column.existence,
+                          column,
+                          column.renameFrom(table),
+                          column.renameTo(table),
+                        )}
+                        {@render comparison(
+                          column,
+                          column.type,
+                          "adjust",
+                          column.expanded,
+                        )}
+                        {#if column.expanded}
+                          {@render additionalErrors(column.additionalErrors)}
+                          {#if column.constraints().length > 0}
+                            <ul in:fly={{ y: -10, duration: 200 }}>
+                              {@render constraints(column.constraints())}
+                            </ul>
+                          {/if}
                         {/if}
-                      {/if}
-                    </li>
-                  {/each}
-                  {@render constraints(table.constraints())}
-                </ul>
+                      </li>
+                    {/each}
+                    {@render constraints(table.constraints())}
+                  </ul>
+                {/if}
               {/if}
-            {/if}
-          </li>
+            </li>
+          {/if}
         {/each}
         {#each schema.sequences() as sequence (sequence.name)}
-          <li>
-            {@render bullet(sequence)}
-            <span class="nodeType">sequence</span>
-            {sequence.name}
-            {@render existence(
-              sequence.existence,
-              sequence,
-              [], // TODO unused sequences
-              [], // TODO missing sequences
-            )}
-            {@render comparison(sequence, sequence.type, undefined, true)}
-            {@render comparison(sequence, sequence.start, undefined, true)}
-            {@render additionalErrors(sequence.additionalErrors)}
-          </li>
+          {#if schema.showAllTablesSequences || sequence.bulletColor}
+            <li>
+              {@render bullet(sequence)}
+              <span class="nodeType">sequence</span>
+              {sequence.name}
+              {@render existence(
+                sequence.existence,
+                sequence,
+                [], // TODO unused sequences
+                [], // TODO missing sequences
+              )}
+              {@render comparison(sequence, sequence.type, undefined, true)}
+              {@render comparison(sequence, sequence.start, undefined, true)}
+              {@render additionalErrors(sequence.additionalErrors)}
+            </li>
+          {/if}
         {/each}
       </ul>
     {:catch error}

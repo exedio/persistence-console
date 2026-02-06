@@ -22,6 +22,8 @@ export class Schema implements Bullet {
   private readonly tablesStore = new Map<string, Table>();
   private readonly sequencesStore = new Map<string, Sequence>();
 
+  showAllTablesSequences: boolean = $state(true);
+
   constructor(apiParameterNotToBeUsedExceptForAssigment: ApiSchema) {
     this.api = $state(apiParameterNotToBeUsedExceptForAssigment);
     this._tables = $state(this.useTables(this.api.tables));
