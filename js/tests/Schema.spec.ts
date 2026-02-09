@@ -324,11 +324,14 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
+    const unused = () => select();
+    const missing1 = () => select(1);
+    const missing2 = () => select(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
-    expect(select().value).toBe("<NONE>");
-    expect(select(1).value).toBe("<NONE>");
-    expect(select(2).value).toBe("<NONE>");
+    expect(unused().value).toBe("<NONE>");
+    expect(missing1().value).toBe("<NONE>");
+    expect(missing2().value).toBe("<NONE>");
 
     {
       const mock = mockFetch();
@@ -337,8 +340,8 @@ describe("Schema", () => {
           'ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"',
         ),
       );
-      select().value = "myMissingTableName";
-      select().dispatchEvent(new Event("input", { bubbles: true }));
+      unused().value = "myMissingTableName";
+      unused().dispatchEvent(new Event("input", { bubbles: true }));
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=table&name=myUnusedTableName&method=rename&value=myMissingTableName",
@@ -346,17 +349,17 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
-    expect(select().value).toBe("myMissingTableName");
-    expect(select(1).value).toBe("myUnusedTableName");
-    expect(select(2).value).toBe("<NONE>");
+    expect(unused().value).toBe("myMissingTableName");
+    expect(missing1().value).toBe("myUnusedTableName");
+    expect(missing2().value).toBe("<NONE>");
 
-    select().value = "<NONE>";
-    select().dispatchEvent(new Event("input", { bubbles: true }));
+    unused().value = "<NONE>";
+    unused().dispatchEvent(new Event("input", { bubbles: true }));
     await flushPromises();
     expect(sql()).toBeNull();
-    expect(select().value).toBe("<NONE>");
-    expect(select(1).value).toBe("<NONE>");
-    expect(select(2).value).toBe("<NONE>");
+    expect(unused().value).toBe("<NONE>");
+    expect(missing1().value).toBe("<NONE>");
+    expect(missing2().value).toBe("<NONE>");
   });
 
   it("should render a missing table to be renamed to an unused", async () => {
@@ -383,11 +386,14 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
+    const missing = () => select();
+    const unused1 = () => select(1);
+    const unused2 = () => select(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
-    expect(select().value).toBe("<NONE>");
-    expect(select(1).value).toBe("<NONE>");
-    expect(select(2).value).toBe("<NONE>");
+    expect(missing().value).toBe("<NONE>");
+    expect(unused1().value).toBe("<NONE>");
+    expect(unused2().value).toBe("<NONE>");
 
     {
       const mock = mockFetch();
@@ -396,8 +402,8 @@ describe("Schema", () => {
           'ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"',
         ),
       );
-      select().value = "myUnusedTableName";
-      select().dispatchEvent(new Event("input", { bubbles: true }));
+      missing().value = "myUnusedTableName";
+      missing().dispatchEvent(new Event("input", { bubbles: true }));
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=table&name=myUnusedTableName&method=rename&value=myMissingTableName",
@@ -405,17 +411,17 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
-    expect(select().value).toBe("myUnusedTableName");
-    expect(select(1).value).toBe("myMissingTableName");
-    expect(select(2).value).toBe("<NONE>");
+    expect(missing().value).toBe("myUnusedTableName");
+    expect(unused1().value).toBe("myMissingTableName");
+    expect(unused2().value).toBe("<NONE>");
 
-    select().value = "<NONE>";
-    select().dispatchEvent(new Event("input", { bubbles: true }));
+    missing().value = "<NONE>";
+    missing().dispatchEvent(new Event("input", { bubbles: true }));
     await flushPromises();
     expect(sql()).toBeNull();
-    expect(select().value).toBe("<NONE>");
-    expect(select(1).value).toBe("<NONE>");
-    expect(select(2).value).toBe("<NONE>");
+    expect(missing().value).toBe("<NONE>");
+    expect(unused1().value).toBe("<NONE>");
+    expect(unused2().value).toBe("<NONE>");
   });
 
   it("should render a table with an additional error", async () => {
@@ -617,11 +623,14 @@ describe("Schema", () => {
     }
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
+    const unused = () => select();
+    const missing1 = () => select(1);
+    const missing2 = () => select(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
-    expect(select().value).toBe("<NONE>");
-    expect(select(1).value).toBe("<NONE>");
-    expect(select(2).value).toBe("<NONE>");
+    expect(unused().value).toBe("<NONE>");
+    expect(missing1().value).toBe("<NONE>");
+    expect(missing2().value).toBe("<NONE>");
 
     {
       const mock = mockFetch();
@@ -630,8 +639,8 @@ describe("Schema", () => {
           'ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO "myMissingColumnName"',
         ),
       );
-      select().value = "myMissingColumnName";
-      select().dispatchEvent(new Event("input", { bubbles: true }));
+      unused().value = "myMissingColumnName";
+      unused().dispatchEvent(new Event("input", { bubbles: true }));
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=column&table=myTableName&name=myUnusedColumnName&method=rename&value=myMissingColumnName",
@@ -639,17 +648,17 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
-    expect(select().value).toBe("myMissingColumnName");
-    expect(select(1).value).toBe("myUnusedColumnName");
-    expect(select(2).value).toBe("<NONE>");
+    expect(unused().value).toBe("myMissingColumnName");
+    expect(missing1().value).toBe("myUnusedColumnName");
+    expect(missing2().value).toBe("<NONE>");
 
-    select().value = "<NONE>";
-    select().dispatchEvent(new Event("input", { bubbles: true }));
+    unused().value = "<NONE>";
+    unused().dispatchEvent(new Event("input", { bubbles: true }));
     await flushPromises();
     expect(sql()).toBeNull();
-    expect(select().value).toBe("<NONE>");
-    expect(select(1).value).toBe("<NONE>");
-    expect(select(2).value).toBe("<NONE>");
+    expect(unused().value).toBe("<NONE>");
+    expect(missing1().value).toBe("<NONE>");
+    expect(missing2().value).toBe("<NONE>");
   });
 
   it("should render a missing column to be renamed to a unused", async () => {
@@ -686,11 +695,14 @@ describe("Schema", () => {
     }
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
+    const missing = () => select();
+    const unused1 = () => select(1);
+    const unused2 = () => select(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
-    expect(select().value).toBe("<NONE>");
-    expect(select(1).value).toBe("<NONE>");
-    expect(select(2).value).toBe("<NONE>");
+    expect(missing().value).toBe("<NONE>");
+    expect(unused1().value).toBe("<NONE>");
+    expect(unused2().value).toBe("<NONE>");
 
     {
       const mock = mockFetch();
@@ -699,8 +711,8 @@ describe("Schema", () => {
           'ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO "myMissingColumnName"',
         ),
       );
-      select().value = "myUnusedColumnName";
-      select().dispatchEvent(new Event("input", { bubbles: true }));
+      missing().value = "myUnusedColumnName";
+      missing().dispatchEvent(new Event("input", { bubbles: true }));
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/alter?subject=column&table=myTableName&name=myUnusedColumnName&method=rename&value=myMissingColumnName",
@@ -708,17 +720,17 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
-    expect(select().value).toBe("myUnusedColumnName");
-    expect(select(1).value).toBe("myMissingColumnName");
-    expect(select(2).value).toBe("<NONE>");
+    expect(missing().value).toBe("myUnusedColumnName");
+    expect(unused1().value).toBe("myMissingColumnName");
+    expect(unused2().value).toBe("<NONE>");
 
-    select().value = "<NONE>";
-    select().dispatchEvent(new Event("input", { bubbles: true }));
+    missing().value = "<NONE>";
+    missing().dispatchEvent(new Event("input", { bubbles: true }));
     await flushPromises();
     expect(sql()).toBeNull();
-    expect(select().value).toBe("<NONE>");
-    expect(select(1).value).toBe("<NONE>");
-    expect(select(2).value).toBe("<NONE>");
+    expect(missing().value).toBe("<NONE>");
+    expect(unused1().value).toBe("<NONE>");
+    expect(unused2().value).toBe("<NONE>");
   });
 
   it("should render a column with a wrong type", async () => {
