@@ -56,6 +56,7 @@ describe("UseSchema", () => {
       "tableUnused2",
     ]);
   });
+
   it("column renameTo/From", async () => {
     const schema = new Schema({
       tables: [
@@ -115,6 +116,81 @@ describe("UseSchema", () => {
     expect(missing2!.renameFrom(table!)).toStrictEqual([
       "columnUnused1",
       "columnUnused2",
+    ]);
+  });
+
+  it("sequence renameTo/From", async () => {
+    const schema = new Schema({
+      sequences: [
+        {
+          name: "sequenceOk",
+          type: "someType",
+          start: 55,
+        },
+        {
+          name: "sequenceExisting",
+          type: "someType",
+          start: 55,
+          additionalErrors: ["someAdditionalErrors"],
+        },
+        {
+          name: "sequenceMissing1",
+          type: "someType",
+          start: 55,
+          existence: "missing",
+        },
+        {
+          name: "sequenceMissing2",
+          type: "someType",
+          start: 55,
+          existence: "missing",
+        },
+        {
+          name: "sequenceUnused1",
+          type: "someType",
+          start: 55,
+          existence: "unused",
+        },
+        {
+          name: "sequenceUnused2",
+          type: "someType",
+          start: 55,
+          existence: "unused",
+        },
+      ],
+    });
+
+    const missing1 = schema
+      .sequences()
+      .find((t) => t.name === "sequenceMissing1");
+    const missing2 = schema
+      .sequences()
+      .find((t) => t.name === "sequenceMissing2");
+    const unused1 = schema
+      .sequences()
+      .find((t) => t.name === "sequenceUnused1");
+    const unused2 = schema
+      .sequences()
+      .find((t) => t.name === "sequenceUnused2");
+    expect(missing1!.renameTo(schema)).toStrictEqual([]);
+    expect(missing2!.renameTo(schema)).toStrictEqual([]);
+    expect(unused1!.renameFrom(schema)).toStrictEqual([]);
+    expect(unused2!.renameFrom(schema)).toStrictEqual([]);
+    expect(unused1!.renameTo(schema)).toStrictEqual([
+      "sequenceMissing1",
+      "sequenceMissing2",
+    ]);
+    expect(unused2!.renameTo(schema)).toStrictEqual([
+      "sequenceMissing1",
+      "sequenceMissing2",
+    ]);
+    expect(missing1!.renameFrom(schema)).toStrictEqual([
+      "sequenceUnused1",
+      "sequenceUnused2",
+    ]);
+    expect(missing2!.renameFrom(schema)).toStrictEqual([
+      "sequenceUnused1",
+      "sequenceUnused2",
     ]);
   });
 });

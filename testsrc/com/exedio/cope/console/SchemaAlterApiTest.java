@@ -225,6 +225,28 @@ public class SchemaAlterApiTest {
   }
 
   @Test
+  void testSequenceRename() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER SEQUENCE \\"MyType_myInt_Seq\\" RENAME TO \\"MyTypeX_myInt_Seq\\""
+      }""",
+      writeJson(
+        alter(
+          MODEL,
+          request(
+            "sequence",
+            "",
+            "MyType_myInt_Seq",
+            "rename",
+            "MyTypeX_myInt_Seq"
+          )
+        )
+      )
+    );
+  }
+
+  @Test
   void testSequenceAddNotExists() {
     assertFails(
       () -> alter(MODEL, request("sequence", "", "MyType_myInt_Seqx", "add")),
