@@ -324,9 +324,9 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
-    const unused = () => select();
-    const missing1 = () => select(1);
-    const missing2 = () => select(2);
+    const unused = () => select("rename to ...", 0);
+    const missing1 = () => select("rename from ...", 0);
+    const missing2 = () => select("rename from ...", 1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
     expect(unused().value).toBe("<NONE>");
@@ -386,9 +386,9 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
-    const missing = () => select();
-    const unused1 = () => select(1);
-    const unused2 = () => select(2);
+    const missing = () => select("rename from ...", 0);
+    const unused1 = () => select("rename to ...", 0);
+    const unused2 = () => select("rename to ...", 1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
     expect(missing().value).toBe("<NONE>");
@@ -623,9 +623,9 @@ describe("Schema", () => {
     }
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    const unused = () => select();
-    const missing1 = () => select(1);
-    const missing2 = () => select(2);
+    const unused = () => select("rename to ...", 0);
+    const missing1 = () => select("rename from ...", 0);
+    const missing2 = () => select("rename from ...", 1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
     expect(unused().value).toBe("<NONE>");
@@ -695,9 +695,9 @@ describe("Schema", () => {
     }
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
-    const missing = () => select();
-    const unused1 = () => select(1);
-    const unused2 = () => select(2);
+    const missing = () => select("rename from ...", 0);
+    const unused1 = () => select("rename to ...", 0);
+    const unused2 = () => select("rename to ...", 1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
     expect(missing().value).toBe("<NONE>");
@@ -1753,8 +1753,10 @@ function checkboxSelector(
     )[index];
 }
 
-function select(index: number = 0): HTMLSelectElement {
-  return document.querySelectorAll("select").item(index) as HTMLSelectElement;
+function select(firstOptionText: string, index: number = 0): HTMLSelectElement {
+  return Array.from(document.querySelectorAll("select")).filter(
+    (select) => select.options[0]?.textContent === firstOptionText,
+  )[index] as HTMLSelectElement;
 }
 
 function sql(): HTMLElement {
