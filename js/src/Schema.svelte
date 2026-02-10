@@ -26,6 +26,7 @@
     type Fixable,
     workOnFixes,
     type FixedFixable,
+    setFix,
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
   import SchemaMaintain from "@/SchemaMaintain.svelte";
@@ -46,15 +47,6 @@
   type Modify = "adjust" | "recreate";
 
   const fixes: FixedFixable[] = $derived(schemaT.last()?.fixables() ?? []);
-
-  function setFix(
-    set: boolean,
-    fixable: Fixable,
-    method: "add" | "drop" | "modify" | "rename",
-    value: string | undefined,
-  ) {
-    fixable.fix = set ? { method, value } : undefined;
-  }
 
   function renameFromValue(fixable: Fixable): string {
     for (const i of fixes) {

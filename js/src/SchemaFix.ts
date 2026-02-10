@@ -5,6 +5,15 @@ export type Fixable = {
   fix: Fix | undefined;
 };
 
+export function setFix(
+  set: boolean,
+  fixable: Fixable,
+  method: "add" | "drop" | "modify" | "rename",
+  value: string | undefined,
+) {
+  fixable.fix = set ? { method, value } : undefined;
+}
+
 export type Fix = {
   readonly method: "add" | "drop" | "modify" | "rename";
   readonly value: string | undefined; // new name for method "rename"
