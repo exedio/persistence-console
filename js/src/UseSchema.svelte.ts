@@ -34,29 +34,35 @@ export class Schema implements Bullet {
       ),
     );
 
-    this.columnsWithTypeMismatch = new FixAggregator(() => {
-      let result: Column[] = [];
-      this._tables.forEach((table) => {
-        table.columns().forEach((column) => {
-          if (column.type?.actual) result.push(column);
+    this.columnsWithTypeMismatch = new FixAggregator(
+      "adjust columns with type mismatch",
+      () => {
+        let result: Column[] = [];
+        this._tables.forEach((table) => {
+          table.columns().forEach((column) => {
+            if (column.type?.actual) result.push(column);
+          });
         });
-      });
-      return result;
-    });
-    this.constraintsWithClauseMismatch = new FixAggregator(() => {
-      let result: Constraint[] = [];
-      this._tables.forEach((table) => {
-        table.columns().forEach((column) => {
-          column.constraints().forEach((constraint) => {
+        return result;
+      },
+    );
+    this.constraintsWithClauseMismatch = new FixAggregator(
+      "recreate constraints with clause mismatch",
+      () => {
+        let result: Constraint[] = [];
+        this._tables.forEach((table) => {
+          table.columns().forEach((column) => {
+            column.constraints().forEach((constraint) => {
+              if (constraint.clause?.actual) result.push(constraint);
+            });
+          });
+          table.constraints().forEach((constraint) => {
             if (constraint.clause?.actual) result.push(constraint);
           });
         });
-        table.constraints().forEach((constraint) => {
-          if (constraint.clause?.actual) result.push(constraint);
-        });
-      });
-      return result;
-    });
+        return result;
+      },
+    );
   }
 
   tables(): readonly Table[] {
@@ -146,12 +152,14 @@ export class Schema implements Bullet {
 }
 
 export class FixAggregator<E extends Fixable> {
+  readonly label: string;
   readonly all: E[];
   readonly checkedFix: E[];
   readonly checked: boolean;
   readonly indeterminate: boolean;
 
-  constructor(all: () => E[]) {
+  constructor(label: string, all: () => E[]) {
+    this.label = label;
     this.all = $derived.by(() => all());
     this.checkedFix = $derived(
       this.all.filter((fixable) => fixable.fix?.method === "modify"),
