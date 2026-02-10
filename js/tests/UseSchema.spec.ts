@@ -193,4 +193,184 @@ describe("UseSchema", () => {
       "sequenceUnused2",
     ]);
   });
+
+  it("nodesMissingWithoutRename table", async () => {
+    const schema = new Schema({
+      tables: [
+        {
+          name: "tableExisting1",
+          columns: [
+            {
+              name: "columnExisting",
+              type: "myType",
+              constraints: [
+                {
+                  name: "columnConstraintExisting",
+                  type: "Check",
+                  clause: "myClause",
+                },
+                {
+                  name: "columnConstraintMissing",
+                  type: "Check",
+                  clause: "myClause",
+                  existence: "missing",
+                },
+                {
+                  name: "columnConstraintUnused",
+                  type: "Check",
+                  clause: "myClause",
+                  existence: "unused",
+                },
+              ],
+            },
+            {
+              name: "columnMissing1",
+              type: "myType",
+              existence: "missing",
+            },
+            {
+              name: "columnMissing2",
+              type: "myType",
+              existence: "missing",
+            },
+          ],
+          constraints: [
+            {
+              name: "tableConstraintExisting",
+              type: "Check",
+              clause: "myClause",
+            },
+            {
+              name: "tableConstraintMissing",
+              type: "Check",
+              clause: "myClause",
+              existence: "missing",
+            },
+            {
+              name: "tableConstraintUnused",
+              type: "Check",
+              clause: "myClause",
+              existence: "unused",
+            },
+          ],
+        },
+        {
+          name: "tableExisting2",
+          columns: [
+            {
+              name: "columnExisting",
+              type: "myType",
+            },
+            {
+              name: "columnMissing1",
+              type: "myType",
+              existence: "missing",
+            },
+            {
+              name: "columnMissing2",
+              type: "myType",
+              existence: "missing",
+            },
+            {
+              name: "columnUnused",
+              type: "myType",
+              existence: "unused",
+            },
+          ],
+        },
+        {
+          name: "tableMissing1",
+          existence: "missing",
+        },
+        {
+          name: "tableMissing2",
+          existence: "missing",
+        },
+      ],
+      sequences: [
+        {
+          name: "sequenceExisting",
+          type: "someType",
+          start: 55,
+        },
+        {
+          name: "sequenceMissing1",
+          type: "someType",
+          start: 55,
+          existence: "missing",
+        },
+        {
+          name: "sequenceMissing2",
+          type: "someType",
+          start: 55,
+          existence: "missing",
+        },
+      ],
+    });
+
+    const table = schema.tables().find((t) => t.name === "tableExisting1");
+    expect(schema.nodesMissingWithoutRename.all).toStrictEqual([
+      table
+        ?.columns()
+        .find((c) => c.name === "columnExisting")
+        ?.constraints()
+        .find((c) => c.name === "columnConstraintMissing"),
+      table?.columns().find((c) => c.name === "columnMissing1"),
+      table?.columns().find((c) => c.name === "columnMissing2"),
+      table?.constraints().find((c) => c.name === "tableConstraintMissing"),
+      schema.tables().find((t) => t.name === "tableMissing1"),
+      schema.tables().find((t) => t.name === "tableMissing2"),
+      schema.sequences().find((t) => t.name === "sequenceMissing1"),
+      schema.sequences().find((t) => t.name === "sequenceMissing2"),
+    ]);
+  });
+
+  it("nodesMissingWithoutRename table has rename", async () => {
+    const schema = new Schema({
+      tables: [
+        {
+          name: "tableExisting",
+        },
+        {
+          name: "tableMissing1",
+          existence: "missing",
+        },
+        {
+          name: "tableMissing2",
+          existence: "missing",
+        },
+        {
+          name: "tableUnused1",
+          existence: "unused",
+        },
+      ],
+      sequences: [
+        {
+          name: "sequenceExisting",
+          type: "someType",
+          start: 55,
+        },
+        {
+          name: "sequenceMissing1",
+          type: "someType",
+          start: 55,
+          existence: "missing",
+        },
+        {
+          name: "sequenceMissing2",
+          type: "someType",
+          start: 55,
+          existence: "missing",
+        },
+        {
+          name: "sequenceUnused1",
+          type: "someType",
+          start: 55,
+          existence: "unused",
+        },
+      ],
+    });
+
+    expect(schema.nodesMissingWithoutRename.all).toStrictEqual([]);
+  });
 });

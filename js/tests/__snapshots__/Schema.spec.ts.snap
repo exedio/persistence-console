@@ -5,6 +5,10 @@ exports[`Schema > should hide table / sequences without problems 1`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -51,6 +55,10 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <button disabled="" class="bullet svelte-12plxus">.</button>
@@ -228,6 +236,10 @@ exports[`Schema > should render a connect button 2`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -518,6 +530,10 @@ exports[`Schema > should render a missing column 1`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -532,6 +548,10 @@ exports[`Schema > should render a missing column 2`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -553,6 +573,10 @@ exports[`Schema > should render a missing column 3`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -691,6 +715,10 @@ exports[`Schema > should render a missing constraint 1`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -705,6 +733,10 @@ exports[`Schema > should render a missing constraint 2`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -734,6 +766,10 @@ exports[`Schema > should render a missing sequence 1`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -868,6 +904,10 @@ exports[`Schema > should render a missing table 1`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -884,6 +924,10 @@ exports[`Schema > should render a missing table 2`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1960,5 +2004,93 @@ exports[`Schema > should render an empty schema 1`] = `
 
 exports[`Schema > should render an error message 1`] = `
 "schema: response code 400 myError
+"
+`;
+
+exports[`Schema > should render multiple missing nodes 1`] = `
+"<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />add missing nodes without rename-from option
+  (0/5)</label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple missing nodes 2`] = `
+"<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />add missing nodes without rename-from option
+  (1/5)</label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple missing nodes 3`] = `
+"<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />add missing nodes without rename-from option
+  (2/5)</label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple missing nodes 4`] = `
+"<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />add missing nodes without rename-from option
+  (3/5)</label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple missing nodes 5`] = `
+"<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />add missing nodes without rename-from option
+  (4/5)</label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple missing nodes 6`] = `
+"<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />add missing nodes without rename-from option
+  (5/5)</label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple missing nodes 7`] = `
+"<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />add missing nodes without rename-from option
+  (0/5)</label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple missing nodes 8`] = `
+"<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
+<button class="reload svelte-dizlwz">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />add missing nodes without rename-from option
+  (5/5)</label
+><br />
 "
 `;
