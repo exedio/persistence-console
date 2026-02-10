@@ -7,7 +7,7 @@ import type {
   SchemaTable as ApiTable,
   SchemaExistence as ApiExistence,
 } from "@/api/types";
-import type { Fix, Fixable, FixedFixable } from "@/SchemaFix";
+import { type Fix, type Fixable, type FixedFixable, setFix } from "@/SchemaFix";
 import { useWithStore } from "@/utils";
 
 export class Schema implements Bullet {
@@ -168,6 +168,10 @@ export class FixAggregator<E extends Fixable> {
     this.indeterminate = $derived(
       0 < this.checkedLength && this.checkedLength < this.all.length,
     );
+  }
+
+  setFixes(set: boolean): void {
+    this.all.forEach((fixable) => setFix(set, fixable, "modify", undefined));
   }
 }
 
