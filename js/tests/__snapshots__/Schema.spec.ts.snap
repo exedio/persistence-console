@@ -83,9 +83,7 @@ exports[`Schema > should render a column with a wrong type 1`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
-  <label
-    ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-    columns with type mismatch (0/1)</label
+  <label><input type="checkbox" />adjust columns with type mismatch (0/1)</label
   ><br />
 </div>
 <ul>
@@ -101,9 +99,7 @@ exports[`Schema > should render a column with a wrong type 2`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
-  <label
-    ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-    columns with type mismatch (0/1)</label
+  <label><input type="checkbox" />adjust columns with type mismatch (0/1)</label
   ><br />
 </div>
 <ul>
@@ -126,9 +122,7 @@ exports[`Schema > should render a column with a wrong type 3`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
-  <label
-    ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-    columns with type mismatch (0/1)</label
+  <label><input type="checkbox" />adjust columns with type mismatch (0/1)</label
   ><br />
 </div>
 <ul>
@@ -256,10 +250,8 @@ exports[`Schema > should render a constraint with a wrong clause 1`] = `
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
-    ><input
-      type="checkbox"
-      id="constraintsWithClauseMismatchCheckboxId"
-    />recreate constraints with clause mismatch (0/1)</label
+    ><input type="checkbox" />recreate constraints with clause mismatch
+    (0/1)</label
   ><br />
 </div>
 <ul>
@@ -276,10 +268,8 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
-    ><input
-      type="checkbox"
-      id="constraintsWithClauseMismatchCheckboxId"
-    />recreate constraints with clause mismatch (0/1)</label
+    ><input type="checkbox" />recreate constraints with clause mismatch
+    (0/1)</label
   ><br />
 </div>
 <ul>
@@ -369,10 +359,8 @@ exports[`Schema > should render a constraint with shortener 1`] = `
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
-    ><input
-      type="checkbox"
-      id="constraintsWithClauseMismatchCheckboxId"
-    />recreate constraints with clause mismatch (0/1)</label
+    ><input type="checkbox" />recreate constraints with clause mismatch
+    (0/1)</label
   ><br />
 </div>
 <ul>
@@ -389,10 +377,8 @@ exports[`Schema > should render a constraint with shortener 2`] = `
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
-    ><input
-      type="checkbox"
-      id="constraintsWithClauseMismatchCheckboxId"
-    />recreate constraints with clause mismatch (0/1)</label
+    ><input type="checkbox" />recreate constraints with clause mismatch
+    (0/1)</label
   ><br />
 </div>
 <ul>
@@ -414,10 +400,8 @@ exports[`Schema > should render a constraint with shortener 3`] = `
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
-    ><input
-      type="checkbox"
-      id="constraintsWithClauseMismatchCheckboxId"
-    />recreate constraints with clause mismatch (0/1)</label
+    ><input type="checkbox" />recreate constraints with clause mismatch
+    (0/1)</label
   ><br />
 </div>
 <ul>
@@ -1030,9 +1014,7 @@ exports[`Schema > should render a multiple columns with a wrong type 1`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label
-  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-  columns with type mismatch (0/2)</label
+<label><input type="checkbox" />adjust columns with type mismatch (0/2)</label
 ><br />
 "
 `;
@@ -1041,9 +1023,7 @@ exports[`Schema > should render a multiple columns with a wrong type 2`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label
-  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-  columns with type mismatch (1/2)</label
+<label><input type="checkbox" />adjust columns with type mismatch (1/2)</label
 ><br />
 "
 `;
@@ -1052,9 +1032,7 @@ exports[`Schema > should render a multiple columns with a wrong type 3`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label
-  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-  columns with type mismatch (2/2)</label
+<label><input type="checkbox" />adjust columns with type mismatch (2/2)</label
 ><br />
 "
 `;
@@ -1063,9 +1041,7 @@ exports[`Schema > should render a multiple columns with a wrong type 4`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label
-  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-  columns with type mismatch (0/2)</label
+<label><input type="checkbox" />adjust columns with type mismatch (0/2)</label
 ><br />
 "
 `;
@@ -1074,9 +1050,7 @@ exports[`Schema > should render a multiple columns with a wrong type 5`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label
-  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-  columns with type mismatch (2/2)</label
+<label><input type="checkbox" />adjust columns with type mismatch (2/2)</label
 ><br />
 "
 `;
@@ -1085,9 +1059,7 @@ exports[`Schema > should render a multiple columns with a wrong type 6`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label
-  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-  columns with type mismatch (1/2)</label
+<label><input type="checkbox" />adjust columns with type mismatch (1/2)</label
 ><br />
 "
 `;
@@ -1096,9 +1068,7 @@ exports[`Schema > should render a multiple columns with a wrong type 7`] = `
 "<button disabled="" class="bullet red svelte-12plxus">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label
-  ><input type="checkbox" id="columnsWithTypeMismatchCheckboxId" />adjust
-  columns with type mismatch (0/2)</label
+<label><input type="checkbox" />adjust columns with type mismatch (0/2)</label
 ><br />
 "
 `;
@@ -1108,10 +1078,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 1`] =
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
-  ><input
-    type="checkbox"
-    id="constraintsWithClauseMismatchCheckboxId"
-  />recreate constraints with clause mismatch (0/2)</label
+  ><input type="checkbox" />recreate constraints with clause mismatch
+  (0/2)</label
 ><br />
 "
 `;
@@ -1121,10 +1089,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 2`] =
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
-  ><input
-    type="checkbox"
-    id="constraintsWithClauseMismatchCheckboxId"
-  />recreate constraints with clause mismatch (1/2)</label
+  ><input type="checkbox" />recreate constraints with clause mismatch
+  (1/2)</label
 ><br />
 "
 `;
@@ -1134,10 +1100,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 3`] =
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
-  ><input
-    type="checkbox"
-    id="constraintsWithClauseMismatchCheckboxId"
-  />recreate constraints with clause mismatch (2/2)</label
+  ><input type="checkbox" />recreate constraints with clause mismatch
+  (2/2)</label
 ><br />
 "
 `;
@@ -1147,10 +1111,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 4`] =
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
-  ><input
-    type="checkbox"
-    id="constraintsWithClauseMismatchCheckboxId"
-  />recreate constraints with clause mismatch (0/2)</label
+  ><input type="checkbox" />recreate constraints with clause mismatch
+  (0/2)</label
 ><br />
 "
 `;
@@ -1160,10 +1122,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 5`] =
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
-  ><input
-    type="checkbox"
-    id="constraintsWithClauseMismatchCheckboxId"
-  />recreate constraints with clause mismatch (2/2)</label
+  ><input type="checkbox" />recreate constraints with clause mismatch
+  (2/2)</label
 ><br />
 "
 `;
@@ -1173,10 +1133,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 6`] =
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
-  ><input
-    type="checkbox"
-    id="constraintsWithClauseMismatchCheckboxId"
-  />recreate constraints with clause mismatch (1/2)</label
+  ><input type="checkbox" />recreate constraints with clause mismatch
+  (1/2)</label
 ><br />
 "
 `;
@@ -1186,10 +1144,8 @@ exports[`Schema > should render a multiple constraints with a wrong clause 7`] =
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
-  ><input
-    type="checkbox"
-    id="constraintsWithClauseMismatchCheckboxId"
-  />recreate constraints with clause mismatch (0/2)</label
+  ><input type="checkbox" />recreate constraints with clause mismatch
+  (0/2)</label
 ><br />
 "
 `;

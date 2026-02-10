@@ -115,10 +115,6 @@
 
   const RENAME_NONE = "<NONE>";
 
-  const columnsWithTypeMismatchCheckboxId = "columnsWithTypeMismatchCheckboxId";
-  const constraintsWithClauseMismatchCheckboxId =
-    "constraintsWithClauseMismatchCheckboxId";
-
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type MyString = string;
 
@@ -164,7 +160,6 @@
           schema.columnsWithTypeMismatchCheckedFix,
           schema.columnsWithTypeMismatchChecked,
           schema.columnsWithTypeMismatchIndeterminate,
-          columnsWithTypeMismatchCheckboxId,
           "adjust columns with type mismatch",
         )}
         {@render mismatches(
@@ -172,7 +167,6 @@
           schema.constraintsWithClauseMismatchCheckedFix,
           schema.constraintsWithClauseMismatchChecked,
           schema.constraintsWithClauseMismatchIndeterminate,
-          constraintsWithClauseMismatchCheckboxId,
           "recreate constraints with clause mismatch",
         )}
       </div>
@@ -280,13 +274,11 @@
   checked: Fixable[],
   isChecked: MyBoolean,
   isIndeterminate: MyBoolean,
-  elementId: MyString,
   text: MyString,
 )}
   {#if all.length > 0}
     <label
       ><input
-        id={elementId}
         type="checkbox"
         checked={isChecked}
         indeterminate={isIndeterminate}
