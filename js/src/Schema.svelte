@@ -150,12 +150,8 @@
             bind:checked={schema.showAllTablesSequences}
           />show all tables / sequences
         </label><br />
-        {@render mismatches(
-          schema.columnsWithTypeMismatch,
-        )}
-        {@render mismatches(
-          schema.constraintsWithClauseMismatch,
-        )}
+        {@render mismatches(schema.columnsWithTypeMismatch)}
+        {@render mismatches(schema.constraintsWithClauseMismatch)}
       </div>
       <ul>
         {#each schema.tables() as table (table.name)}
