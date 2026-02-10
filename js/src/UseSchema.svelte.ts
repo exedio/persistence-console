@@ -15,14 +15,8 @@ export class Schema implements Bullet {
   private _tables: readonly Table[];
   private _sequences: readonly Sequence[];
   readonly bulletColor: Color;
-  readonly columnsWithTypeMismatch: Column[];
-  readonly columnsWithTypeMismatchCheckedFix: Column[];
-  readonly columnsWithTypeMismatchChecked: boolean;
-  readonly columnsWithTypeMismatchIndeterminate: boolean;
-  readonly constraintsWithClauseMismatch: Constraint[];
-  readonly constraintsWithClauseMismatchCheckedFix: Constraint[];
-  readonly constraintsWithClauseMismatchChecked: boolean;
-  readonly constraintsWithClauseMismatchIndeterminate: boolean;
+  readonly columnsWithTypeMismatch: FixAggregator<Column>;
+  readonly constraintsWithClauseMismatch: FixAggregator<Constraint>;
 
   private readonly tablesStore = new Map<string, Table>();
   private readonly sequencesStore = new Map<string, Sequence>();
@@ -40,7 +34,7 @@ export class Schema implements Bullet {
       ),
     );
 
-    this.columnsWithTypeMismatch = $derived.by(() => {
+    this.columnsWithTypeMismatch = new FixAggregator(() => {
       let result: Column[] = [];
       this._tables.forEach((table) => {
         table.columns().forEach((column) => {
@@ -49,20 +43,7 @@ export class Schema implements Bullet {
       });
       return result;
     });
-    this.columnsWithTypeMismatchCheckedFix = $derived(
-      this.columnsWithTypeMismatch.filter(
-        (column) => column.fix?.method === "modify",
-      ),
-    );
-    this.columnsWithTypeMismatchChecked = $derived(
-      this.columnsWithTypeMismatchCheckedFix.length > 0,
-    );
-    this.columnsWithTypeMismatchIndeterminate = $derived(
-      0 < this.columnsWithTypeMismatchCheckedFix.length &&
-        this.columnsWithTypeMismatchCheckedFix.length <
-          this.columnsWithTypeMismatch.length,
-    );
-    this.constraintsWithClauseMismatch = $derived.by(() => {
+    this.constraintsWithClauseMismatch = new FixAggregator(() => {
       let result: Constraint[] = [];
       this._tables.forEach((table) => {
         table.columns().forEach((column) => {
@@ -76,19 +57,6 @@ export class Schema implements Bullet {
       });
       return result;
     });
-    this.constraintsWithClauseMismatchCheckedFix = $derived(
-      this.constraintsWithClauseMismatch.filter(
-        (constraint) => constraint.fix?.method === "modify",
-      ),
-    );
-    this.constraintsWithClauseMismatchChecked = $derived(
-      this.constraintsWithClauseMismatchCheckedFix.length > 0,
-    );
-    this.constraintsWithClauseMismatchIndeterminate = $derived(
-      0 < this.constraintsWithClauseMismatchCheckedFix.length &&
-        this.constraintsWithClauseMismatchCheckedFix.length <
-          this.constraintsWithClauseMismatch.length,
-    );
   }
 
   tables(): readonly Table[] {
@@ -174,6 +142,24 @@ export class Schema implements Bullet {
 
   collapser(nodeType?: string): Collapser | undefined {
     return this.showAllTablesSequences ? undefined : new Collapser(nodeType);
+  }
+}
+
+export class FixAggregator<E extends Fixable> {
+  readonly all: E[];
+  readonly checkedFix: E[];
+  readonly checked: boolean;
+  readonly indeterminate: boolean;
+
+  constructor(all: () => E[]) {
+    this.all = $derived.by(() => all());
+    this.checkedFix = $derived(
+      this.all.filter((fixable) => fixable.fix?.method === "modify"),
+    );
+    this.checked = $derived(this.checkedFix.length > 0);
+    this.indeterminate = $derived(
+      0 < this.checkedFix.length && this.checkedFix.length < this.all.length,
+    );
   }
 }
 

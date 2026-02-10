@@ -16,6 +16,7 @@
     Collapser,
     Table,
     Sequence,
+    FixAggregator,
   } from "@/UseSchema.svelte.js";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
@@ -119,9 +120,6 @@
   type MyString = string;
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
-  type MyBoolean = boolean;
-
-  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
@@ -157,16 +155,10 @@
         </label><br />
         {@render mismatches(
           schema.columnsWithTypeMismatch,
-          schema.columnsWithTypeMismatchCheckedFix,
-          schema.columnsWithTypeMismatchChecked,
-          schema.columnsWithTypeMismatchIndeterminate,
           "adjust columns with type mismatch",
         )}
         {@render mismatches(
           schema.constraintsWithClauseMismatch,
-          schema.constraintsWithClauseMismatchCheckedFix,
-          schema.constraintsWithClauseMismatchChecked,
-          schema.constraintsWithClauseMismatchIndeterminate,
           "recreate constraints with clause mismatch",
         )}
       </div>
@@ -269,21 +261,15 @@
   {/if}
 </div>
 
-{#snippet mismatches(
-  all: Fixable[],
-  checked: Fixable[],
-  isChecked: MyBoolean,
-  isIndeterminate: MyBoolean,
-  text: MyString,
-)}
-  {#if all.length > 0}
+{#snippet mismatches(fixes: FixAggregator<Fixable>, text: MyString)}
+  {#if fixes.all.length > 0}
     <label
       ><input
         type="checkbox"
-        checked={isChecked}
-        indeterminate={isIndeterminate}
+        checked={fixes.checked}
+        indeterminate={fixes.indeterminate}
         oninput={(e) => {
-          all.forEach((fixable) =>
+          fixes.all.forEach((fixable) =>
             setFix(
               asInputElement(e.target).checked,
               fixable,
@@ -292,7 +278,7 @@
             ),
           );
         }}
-      />{text} ({checked.length}/{all.length})
+      />{text} ({fixes.checkedFix.length}/{fixes.all.length})
     </label><br />
   {/if}
 {/snippet}
