@@ -119,16 +119,19 @@
     effectMismatch(
       (s) => s.columnsWithTypeMismatch,
       (s) => s.columnsWithTypeMismatchCheckedFix,
-      "columnsWithTypeMismatchCheckboxId",
+      columnsWithTypeMismatchCheckboxId,
     );
   });
   $effect(() => {
     effectMismatch(
       (s) => s.constraintsWithClauseMismatch,
       (s) => s.constraintsWithClauseMismatchCheckedFix,
-      "constraintsWithClauseMismatchCheckboxId",
+      constraintsWithClauseMismatchCheckboxId,
     );
   });
+  const columnsWithTypeMismatchCheckboxId = "columnsWithTypeMismatchCheckboxId";
+  const constraintsWithClauseMismatchCheckboxId =
+    "constraintsWithClauseMismatchCheckboxId";
 
   function effectMismatch<T>(
     allSupplier: (s: Schema) => T[],
@@ -186,13 +189,13 @@
         {@render mismatches(
           schema.columnsWithTypeMismatch,
           schema.columnsWithTypeMismatchCheckedFix,
-          "columnsWithTypeMismatchCheckboxId",
+          columnsWithTypeMismatchCheckboxId,
           "adjust columns with type mismatch",
         )}
         {@render mismatches(
           schema.constraintsWithClauseMismatch,
           schema.constraintsWithClauseMismatchCheckedFix,
-          "constraintsWithClauseMismatchCheckboxId",
+          constraintsWithClauseMismatchCheckboxId,
           "recreate constraints with clause mismatch",
         )}
       </div>
