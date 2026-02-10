@@ -9,6 +9,10 @@ exports[`Schema > should hide table / sequences without problems 1`] = `
     ><input type="checkbox" />add missing nodes without rename-from option
     (0/1)</label
   ><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -57,6 +61,10 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
+    (0/1)</label
+  ><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
     (0/1)</label
   ><br />
 </div>
@@ -1454,6 +1462,10 @@ exports[`Schema > should render a unused NOT NULL column 1`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1468,6 +1480,10 @@ exports[`Schema > should render a unused NOT NULL column 2`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1489,6 +1505,10 @@ exports[`Schema > should render a unused NOT NULL column 3`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1510,6 +1530,10 @@ exports[`Schema > should render a unused column 1`] = `
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1524,6 +1548,10 @@ exports[`Schema > should render a unused column 2`] = `
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1545,6 +1573,10 @@ exports[`Schema > should render a unused column 3`] = `
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1683,6 +1715,10 @@ exports[`Schema > should render a unused constraint 1`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1697,6 +1733,10 @@ exports[`Schema > should render a unused constraint 2`] = `
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1726,6 +1766,10 @@ exports[`Schema > should render a unused sequence 1`] = `
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1860,6 +1904,10 @@ exports[`Schema > should render a unused table 1`] = `
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
@@ -1876,6 +1924,10 @@ exports[`Schema > should render a unused table 2`] = `
   <button disabled="" class="bullet yellow svelte-12plxus">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />drop unused nodes without rename-from option
+    (0/1)</label
+  ><br />
 </div>
 <ul>
   <li class="svelte-12plxus">
