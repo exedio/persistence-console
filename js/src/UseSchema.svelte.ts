@@ -17,8 +17,12 @@ export class Schema implements Bullet {
   readonly bulletColor: Color;
   readonly columnsWithTypeMismatch: Column[];
   readonly columnsWithTypeMismatchCheckedFix: Column[];
+  readonly columnsWithTypeMismatchChecked: boolean;
+  readonly columnsWithTypeMismatchIndeterminate: boolean;
   readonly constraintsWithClauseMismatch: Constraint[];
   readonly constraintsWithClauseMismatchCheckedFix: Constraint[];
+  readonly constraintsWithClauseMismatchChecked: boolean;
+  readonly constraintsWithClauseMismatchIndeterminate: boolean;
 
   private readonly tablesStore = new Map<string, Table>();
   private readonly sequencesStore = new Map<string, Sequence>();
@@ -50,6 +54,14 @@ export class Schema implements Bullet {
         (column) => column.fix?.method === "modify",
       ),
     );
+    this.columnsWithTypeMismatchChecked = $derived(
+      this.columnsWithTypeMismatchCheckedFix.length > 0,
+    );
+    this.columnsWithTypeMismatchIndeterminate = $derived(
+      0 < this.columnsWithTypeMismatchCheckedFix.length &&
+        this.columnsWithTypeMismatchCheckedFix.length <
+          this.columnsWithTypeMismatch.length,
+    );
     this.constraintsWithClauseMismatch = $derived.by(() => {
       let result: Constraint[] = [];
       this._tables.forEach((table) => {
@@ -68,6 +80,14 @@ export class Schema implements Bullet {
       this.constraintsWithClauseMismatch.filter(
         (constraint) => constraint.fix?.method === "modify",
       ),
+    );
+    this.constraintsWithClauseMismatchChecked = $derived(
+      this.constraintsWithClauseMismatchCheckedFix.length > 0,
+    );
+    this.constraintsWithClauseMismatchIndeterminate = $derived(
+      0 < this.constraintsWithClauseMismatchCheckedFix.length &&
+        this.constraintsWithClauseMismatchCheckedFix.length <
+          this.constraintsWithClauseMismatch.length,
     );
   }
 

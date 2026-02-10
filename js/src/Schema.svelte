@@ -115,42 +115,15 @@
 
   const RENAME_NONE = "<NONE>";
 
-  $effect(() => {
-    effectMismatch(
-      (s) => s.columnsWithTypeMismatch,
-      (s) => s.columnsWithTypeMismatchCheckedFix,
-      columnsWithTypeMismatchCheckboxId,
-    );
-  });
-  $effect(() => {
-    effectMismatch(
-      (s) => s.constraintsWithClauseMismatch,
-      (s) => s.constraintsWithClauseMismatchCheckedFix,
-      constraintsWithClauseMismatchCheckboxId,
-    );
-  });
   const columnsWithTypeMismatchCheckboxId = "columnsWithTypeMismatchCheckboxId";
   const constraintsWithClauseMismatchCheckboxId =
     "constraintsWithClauseMismatchCheckboxId";
 
-  function effectMismatch<T>(
-    allSupplier: (s: Schema) => T[],
-    checkedSupplier: (s: Schema) => T[],
-    elementId: string,
-  ): void {
-    const schema: Schema | undefined = schemaT.last();
-    if (!schema) return;
-
-    const all = allSupplier(schema);
-    const checked = checkedSupplier(schema);
-    const checkbox = document.getElementById(elementId);
-    if (!checkbox) return;
-    asInputElement(checkbox).indeterminate =
-      0 < checked.length && checked.length < all.length;
-  }
-
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type MyString = string;
+
+  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
+  type MyBoolean = boolean;
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
@@ -189,12 +162,16 @@
         {@render mismatches(
           schema.columnsWithTypeMismatch,
           schema.columnsWithTypeMismatchCheckedFix,
+          schema.columnsWithTypeMismatchChecked,
+          schema.columnsWithTypeMismatchIndeterminate,
           columnsWithTypeMismatchCheckboxId,
           "adjust columns with type mismatch",
         )}
         {@render mismatches(
           schema.constraintsWithClauseMismatch,
           schema.constraintsWithClauseMismatchCheckedFix,
+          schema.constraintsWithClauseMismatchChecked,
+          schema.constraintsWithClauseMismatchIndeterminate,
           constraintsWithClauseMismatchCheckboxId,
           "recreate constraints with clause mismatch",
         )}
@@ -301,6 +278,8 @@
 {#snippet mismatches(
   all: Fixable[],
   checked: Fixable[],
+  isChecked: MyBoolean,
+  isIndeterminate: MyBoolean,
   elementId: MyString,
   text: MyString,
 )}
@@ -309,7 +288,8 @@
       ><input
         id={elementId}
         type="checkbox"
-        checked={checked.length > 0}
+        checked={isChecked}
+        indeterminate={isIndeterminate}
         oninput={(e) => {
           all.forEach((fixable) =>
             setFix(
