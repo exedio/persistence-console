@@ -269,7 +269,7 @@
             ),
           );
         }}
-      />{fixes.label} ({fixes.checkedFix.length}/{fixes.all.length})
+      />{fixes.label} ({fixes.checkedLength}/{fixes.all.length})
     </label><br />
   {/if}
 {/snippet}
