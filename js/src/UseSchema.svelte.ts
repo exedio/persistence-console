@@ -16,6 +16,7 @@ export class Schema implements Bullet {
   private _sequences: readonly Sequence[];
   readonly bulletColor: Color;
   readonly nodesMissingWithoutRename: FixAggregator<Fixable>;
+  readonly nodesUnusedWithoutRename: FixAggregator<Fixable>;
   readonly columnsWithTypeMismatch: FixAggregator<Column>;
   readonly constraintsWithClauseMismatch: FixAggregator<Constraint>;
 
@@ -66,6 +67,43 @@ export class Schema implements Bullet {
           if (
             sequence.existence?.text === "missing" &&
             sequence.renameFrom(this).length === 0
+          )
+            result.push(sequence);
+        });
+        return result;
+      },
+    );
+    this.nodesUnusedWithoutRename = new FixAggregator(
+      "drop",
+      "drop unused nodes without rename-from option",
+      () => {
+        let result: Fixable[] = [];
+        this._tables.forEach((table) => {
+          if (
+            table.existence?.text === "unused" &&
+            table.renameTo(this).length === 0
+          )
+            result.push(table);
+          table.columns().forEach((column) => {
+            if (
+              column.existence?.text === "unused" &&
+              column.renameTo(table).length === 0
+            )
+              result.push(column);
+            column.constraints().forEach((constraint) => {
+              if (constraint.existence?.text === "unused")
+                result.push(constraint);
+            });
+          });
+          table.constraints().forEach((constraint) => {
+            if (constraint.existence?.text === "unused")
+              result.push(constraint);
+          });
+        });
+        this._sequences.forEach((sequence) => {
+          if (
+            sequence.existence?.text === "unused" &&
+            sequence.renameTo(this).length === 0
           )
             result.push(sequence);
         });
@@ -192,14 +230,18 @@ export class Schema implements Bullet {
 }
 
 export class FixAggregator<E extends Fixable> {
-  readonly method: "add" | "modify";
+  readonly method: "add" | "drop" | "modify";
   readonly label: string;
   readonly all: E[];
   readonly checkedLength: number;
   readonly checked: boolean;
   readonly indeterminate: boolean;
 
-  constructor(method: "add" | "modify", label: string, all: () => E[]) {
+  constructor(
+    method: "add" | "drop" | "modify",
+    label: string,
+    all: () => E[],
+  ) {
     this.method = method;
     this.label = label;
     this.all = $derived.by(() => all());
