@@ -230,7 +230,8 @@ public class SchemaGetApiTest {
           }, {
             "name" : "MyType_myTarget_Fk",
             "type" : "ForeignKey",
-            "clause" : "myTarget->MyTarget.this"
+            "clause" : "myTarget->MyTarget.this",
+            "existence" : "missing"
           } ]
         } ],
         "constraints" : [ {

@@ -125,7 +125,13 @@ final class SchemaGetApi {
         c.getName(),
         c.getType().name(),
         c.getCondition(),
-        filterContainer(tableExistence, Existence.forNode(c)),
+        filterContainer(
+          c.getType() == com.exedio.dsmf.Constraint.Type.ForeignKey &&
+            tableExistence == Existence.missing
+            ? null // ForeignKey constraints are not created by CREATE TABLE
+            : tableExistence,
+          Existence.forNode(c)
+        ),
         clause,
         Objects.equals(clause, clauseRaw) ? null : clauseRaw,
         c.getAdditionalErrors()
