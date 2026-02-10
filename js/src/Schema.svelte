@@ -117,9 +117,6 @@
   const RENAME_NONE = "<NONE>";
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
-  type MyString = string;
-
-  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
@@ -155,11 +152,9 @@
         </label><br />
         {@render mismatches(
           schema.columnsWithTypeMismatch,
-          "adjust columns with type mismatch",
         )}
         {@render mismatches(
           schema.constraintsWithClauseMismatch,
-          "recreate constraints with clause mismatch",
         )}
       </div>
       <ul>
@@ -261,7 +256,7 @@
   {/if}
 </div>
 
-{#snippet mismatches(fixes: FixAggregator<Fixable>, text: MyString)}
+{#snippet mismatches(fixes: FixAggregator<Fixable>)}
   {#if fixes.all.length > 0}
     <label
       ><input
@@ -278,7 +273,7 @@
             ),
           );
         }}
-      />{text} ({fixes.checkedFix.length}/{fixes.all.length})
+      />{fixes.label} ({fixes.checkedFix.length}/{fixes.all.length})
     </label><br />
   {/if}
 {/snippet}

@@ -34,7 +34,7 @@ export class Schema implements Bullet {
       ),
     );
 
-    this.columnsWithTypeMismatch = new FixAggregator(() => {
+    this.columnsWithTypeMismatch = new FixAggregator("adjust columns with type mismatch", () => {
       let result: Column[] = [];
       this._tables.forEach((table) => {
         table.columns().forEach((column) => {
@@ -43,7 +43,7 @@ export class Schema implements Bullet {
       });
       return result;
     });
-    this.constraintsWithClauseMismatch = new FixAggregator(() => {
+    this.constraintsWithClauseMismatch = new FixAggregator("recreate constraints with clause mismatch", () => {
       let result: Constraint[] = [];
       this._tables.forEach((table) => {
         table.columns().forEach((column) => {
@@ -146,12 +146,14 @@ export class Schema implements Bullet {
 }
 
 export class FixAggregator<E extends Fixable> {
+  readonly label: string;
   readonly all: E[];
   readonly checkedFix: E[];
   readonly checked: boolean;
   readonly indeterminate: boolean;
 
-  constructor(all: () => E[]) {
+  constructor(label: string, all: () => E[]) {
+    this.label = label;
     this.all = $derived.by(() => all());
     this.checkedFix = $derived(
       this.all.filter((fixable) => fixable.fix?.method === "modify"),
