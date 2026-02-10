@@ -154,19 +154,19 @@ export class Schema implements Bullet {
 export class FixAggregator<E extends Fixable> {
   readonly label: string;
   readonly all: E[];
-  readonly checkedFix: E[];
+  readonly checkedLength: number;
   readonly checked: boolean;
   readonly indeterminate: boolean;
 
   constructor(label: string, all: () => E[]) {
     this.label = label;
     this.all = $derived.by(() => all());
-    this.checkedFix = $derived(
-      this.all.filter((fixable) => fixable.fix?.method === "modify"),
+    this.checkedLength = $derived(
+      this.all.filter((fixable) => fixable.fix?.method === "modify").length,
     );
-    this.checked = $derived(this.checkedFix.length > 0);
+    this.checked = $derived(this.checkedLength > 0);
     this.indeterminate = $derived(
-      0 < this.checkedFix.length && this.checkedFix.length < this.all.length,
+      0 < this.checkedLength && this.checkedLength < this.all.length,
     );
   }
 }
