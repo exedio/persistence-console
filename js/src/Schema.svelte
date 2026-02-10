@@ -252,14 +252,7 @@
         checked={fixes.checked}
         indeterminate={fixes.indeterminate}
         oninput={(e) => {
-          fixes.all.forEach((fixable) =>
-            setFix(
-              asInputElement(e.target).checked,
-              fixable,
-              "modify",
-              undefined,
-            ),
-          );
+          fixes.setFixes(asInputElement(e.target).checked);
         }}
       />{fixes.label} ({fixes.checkedLength}/{fixes.all.length})
     </label><br />
