@@ -232,9 +232,9 @@
   {#if patches.length > 0}
     <div>
       <label
-        ><input type="checkbox" bind:checked={patchesEncodedForJava} />
-        encoded for java
-      </label><br />
+        ><input type="checkbox" bind:checked={patchesEncodedForJava} />encoded
+        for java</label
+      ><br />
       <ul class="sql">
         {#each patches as { fix, url, promise } (url)}
           <li>
