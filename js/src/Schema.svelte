@@ -108,6 +108,8 @@
 
   const RENAME_NONE = "<NONE>";
 
+  let patchesEncodedForJava = $state(true);
+
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
@@ -228,21 +230,31 @@
     {/await}
   </div>
   {#if patches.length > 0}
-    <ul class="sql">
-      {#each patches as { fix, url, promise } (url)}
-        <li>
-          {#await promise}
-            <span class="nodeType">{fix.subject}</span>
-            {fix.name}
-            {fix.fix.method}
-          {:then response}
-            <small>{encodeJava(response.sql)}</small>
-          {:catch error}
-            <span class="red">{error.message}</span>
-          {/await}
-        </li>
-      {/each}
-    </ul>
+    <div>
+      <label
+        ><input type="checkbox" bind:checked={patchesEncodedForJava} />
+        encoded for java
+      </label><br />
+      <ul class="sql">
+        {#each patches as { fix, url, promise } (url)}
+          <li>
+            {#await promise}
+              <span class="nodeType">{fix.subject}</span>
+              {fix.name}
+              {fix.fix.method}
+            {:then response}
+              <small
+                >{patchesEncodedForJava
+                  ? encodeJava(response.sql)
+                  : response.sql}</small
+              >
+            {:catch error}
+              <span class="red">{error.message}</span>
+            {/await}
+          </li>
+        {/each}
+      </ul>
+    </div>
   {/if}
 </div>
 
