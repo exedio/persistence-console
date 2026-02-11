@@ -2060,7 +2060,7 @@ function checkboxSelector(
   index: number = 0,
 ): HTMLInputElement {
   return Array.from(document.querySelectorAll("label"))
-    .filter((label) => label.textContent && labelText(label.textContent))
+    .filter((label) => label.textContent && labelText(label.textContent.trim()))
     .map(
       (label) =>
         label.querySelector('input[type="checkbox"]') as HTMLInputElement,
