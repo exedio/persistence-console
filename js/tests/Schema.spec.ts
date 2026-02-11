@@ -2026,6 +2026,42 @@ describe("Schema", () => {
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
+
+  it("should patches encoded for java", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            {
+              name: "myTable1Name",
+              existence: "missing",
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(sql()).toBeNull();
+
+    const create = () => checkbox("create", 0);
+    const encode = () => checkbox("encoded for java", 0);
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter('CREATE TABLE "myTable1Name"'),
+      );
+      create().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(await formatHtml(sql())).toMatchSnapshot();
+
+    encode().click();
+    await flushPromises();
+    expect(await formatHtml(sql())).toMatchSnapshot();
+  });
 });
 
 async function mountComponent() {

@@ -94,6 +94,16 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
 "
 `;
 
+exports[`Schema > should patches encoded for java 1`] = `
+"<li class="svelte-12plxus"><small>"CREATE TABLE \\"myTable1Name\\"",</small></li>
+"
+`;
+
+exports[`Schema > should patches encoded for java 2`] = `
+"<li class="svelte-12plxus"><small>CREATE TABLE "myTable1Name"</small></li>
+"
+`;
+
 exports[`Schema > should render a column with a wrong type 1`] = `
 "<div class="checkboxCollector svelte-12plxus">
   <button disabled="" class="bullet red svelte-12plxus">.</button> Schema
