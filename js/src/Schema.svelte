@@ -142,10 +142,10 @@
             bind:checked={schema.showAllTablesSequences}
           />show all tables / sequences
         </label><br />
-        {@render mismatches(schema.nodesMissingWithoutRename)}
-        {@render mismatches(schema.nodesUnusedWithoutRename)}
-        {@render mismatches(schema.columnsWithTypeMismatch)}
-        {@render mismatches(schema.constraintsWithClauseMismatch)}
+        {@render fixAggregator(schema.nodesMissingWithoutRename)}
+        {@render fixAggregator(schema.nodesUnusedWithoutRename)}
+        {@render fixAggregator(schema.columnsWithTypeMismatch)}
+        {@render fixAggregator(schema.constraintsWithClauseMismatch)}
       </div>
       <ul>
         {#each schema.tables() as table (table.name)}
@@ -246,7 +246,7 @@
   {/if}
 </div>
 
-{#snippet mismatches(fixes: FixAggregator<Fixable>)}
+{#snippet fixAggregator(fixes: FixAggregator<Fixable>)}
   {#if fixes.all.length > 0}
     <label
       ><input
