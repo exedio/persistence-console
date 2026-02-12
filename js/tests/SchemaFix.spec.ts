@@ -121,7 +121,6 @@ describe("Fix", () => {
         },
         {
           subject: "table",
-          tableName: undefined,
           name: "myName",
           fix: {
             method: "add",
@@ -130,7 +129,6 @@ describe("Fix", () => {
         },
         {
           subject: "table",
-          tableName: undefined,
           name: "myName",
           fix: {
             method: "drop",
@@ -139,7 +137,6 @@ describe("Fix", () => {
         },
         {
           subject: "table",
-          tableName: undefined,
           name: "myName",
           fix: {
             method: "rename",
@@ -148,7 +145,6 @@ describe("Fix", () => {
         },
         {
           subject: "sequence",
-          tableName: undefined,
           name: "myName",
           fix: {
             method: "add",
@@ -157,7 +153,6 @@ describe("Fix", () => {
         },
         {
           subject: "sequence",
-          tableName: undefined,
           name: "myName",
           fix: {
             method: "drop",
@@ -166,7 +161,6 @@ describe("Fix", () => {
         },
         {
           subject: "sequence",
-          tableName: undefined,
           name: "myName2",
           fix: {
             method: "drop",
@@ -195,7 +189,6 @@ describe("Fix", () => {
       },
       {
         subject: "table",
-        tableName: undefined,
         name: "myName",
         fix: {
           method: "drop",
@@ -204,19 +197,16 @@ describe("Fix", () => {
       },
       {
         subject: "sequence",
-        tableName: undefined,
         name: "myName",
         fix: { method: "drop", value: "myValue" },
       },
       {
         subject: "sequence",
-        tableName: undefined,
         name: "myName2",
         fix: { method: "drop", value: "myValue" },
       },
       {
         subject: "table",
-        tableName: undefined,
         name: "myName",
         fix: { method: "rename", value: "myValue" },
       },
@@ -234,13 +224,11 @@ describe("Fix", () => {
       },
       {
         subject: "sequence",
-        tableName: undefined,
         name: "myName",
         fix: { method: "add", value: "myValue" },
       },
       {
         subject: "table",
-        tableName: undefined,
         name: "myName",
         fix: { method: "add", value: "myValue" },
       },
