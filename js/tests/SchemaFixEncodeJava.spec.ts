@@ -1,17 +1,20 @@
 import { expect } from "vitest";
-import { encodeJava, workOnFixes } from "@/SchemaFix";
+import { encodePatch, workOnFixes } from "@/SchemaFix";
 
-describe("EncodeJava", () => {
+describe("EncodePatch", () => {
   it("should handle empty", async () => {
-    expect(encodeJava("")).toBe('"",');
+    expect(encodePatch(true, "")).toBe('"",');
   });
   it("should handle something", async () => {
-    expect(encodeJava("something")).toBe('"something",');
+    expect(encodePatch(true, "something")).toBe('"something",');
   });
   it("should handle something with a double quote", async () => {
-    expect(encodeJava('some"thing')).toBe('"some\\"thing",');
+    expect(encodePatch(true, 'some"thing')).toBe('"some\\"thing",');
   });
   it("should handle something with a two double quotes", async () => {
-    expect(encodeJava('some"thing"else')).toBe('"some\\"thing\\"else",');
+    expect(encodePatch(true, 'some"thing"else')).toBe('"some\\"thing\\"else",');
+  });
+  it("should handle non-java", async () => {
+    expect(encodePatch(false, 'some"thing"else')).toBe('some"thing"else;');
   });
 });

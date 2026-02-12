@@ -100,7 +100,7 @@ exports[`Schema > should patches encoded for java 1`] = `
 `;
 
 exports[`Schema > should patches encoded for java 2`] = `
-"<li class="svelte-12plxus"><small>CREATE TABLE "myTable1Name"</small></li>
+"<li class="svelte-12plxus"><small>CREATE TABLE "myTable1Name";</small></li>
 "
 `;
 
