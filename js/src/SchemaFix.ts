@@ -16,7 +16,7 @@ export function setFix(
 
 export type Fix = {
   readonly method: "add" | "drop" | "modify" | "rename";
-  readonly value: string | undefined; // new name for method "rename"
+  readonly value?: string; // new name for method "rename"
 };
 
 export type FixedFixable = {
@@ -32,11 +32,11 @@ export function workOnFixes(source: FixedFixable[]): FixedFixable[] {
     if (i.subject === "constraint" && i.fix.method === "modify") {
       result.push({
         ...i,
-        fix: { method: "drop", value: undefined } satisfies Fix,
+        fix: { method: "drop" } satisfies Fix,
       } satisfies FixedFixable);
       result.push({
         ...i,
-        fix: { method: "add", value: undefined } satisfies Fix,
+        fix: { method: "add" } satisfies Fix,
       } satisfies FixedFixable);
     } else result.push(i);
   });
