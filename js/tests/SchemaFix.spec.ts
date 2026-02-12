@@ -50,7 +50,6 @@ describe("Fix", () => {
         name: "myName",
         fix: {
           method: "drop",
-          value: undefined,
         },
       },
       {
@@ -59,7 +58,6 @@ describe("Fix", () => {
         name: "myName",
         fix: {
           method: "add",
-          value: undefined,
         },
       },
     ]);
