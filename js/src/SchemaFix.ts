@@ -97,6 +97,6 @@ function orderIndex(cb: FixedFixable): number {
   throw new Error(JSON.stringify(cb));
 }
 
-export function encodeJava(s: string): string {
-  return '"' + s.replaceAll('"', '\\"') + '",';
+export function encodePatch(java: boolean, s: string): string {
+  return java ? '"' + s.replaceAll('"', '\\"') + '",' : s + ";";
 }

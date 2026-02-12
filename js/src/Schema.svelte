@@ -22,7 +22,7 @@
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import Connect from "@/Connect.svelte";
   import {
-    encodeJava,
+    encodePatch,
     type Fixable,
     workOnFixes,
     type FixedFixable,
@@ -243,11 +243,7 @@
               {fix.name}
               {fix.fix.method}
             {:then response}
-              <small
-                >{patchesEncodedForJava
-                  ? encodeJava(response.sql)
-                  : response.sql}</small
-              >
+              <small>{encodePatch(patchesEncodedForJava, response.sql)}</small>
             {:catch error}
               <span class="red">{error.message}</span>
             {/await}
