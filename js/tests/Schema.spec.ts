@@ -2062,6 +2062,65 @@ describe("Schema", () => {
     await flushPromises();
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
+
+  it("should join ALTER TABLE statements on the same table", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            {
+              name: "myTableName",
+              columns: [
+                {
+                  name: "myColumn1Name",
+                  type: "string",
+                  existence: "missing",
+                },
+                {
+                  name: "myColumn2Name",
+                  type: "string",
+                  existence: "missing",
+                },
+              ],
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(sql()).toBeNull();
+
+    const add1 = () => checkbox("add", 0);
+    const add2 = () => checkbox("add", 1);
+    const encode = () =>
+      checkbox("join ALTER TABLE statements on the same table", 0);
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          'ALTER TABLE "myTableName" ADD COLUMN "myColumn1Name" string',
+        ),
+      );
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          'ALTER TABLE "myTableName" ADD COLUMN "myColumn2Name" string',
+        ),
+      );
+      add1().click();
+      add2().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(2);
+    }
+    expect(await formatHtml(sql())).toMatchSnapshot();
+
+    encode().click();
+    await flushPromises();
+    expect(await formatHtml(sql())).toMatchSnapshot();
+  });
 });
 
 async function mountComponent() {

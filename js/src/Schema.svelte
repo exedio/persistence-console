@@ -66,8 +66,10 @@
     readonly promise: Promise<SchemaAlterResponse>;
   };
 
+  let patchesAlterTablesJoined = $state(false);
+
   const patches: Patch[] = $derived(
-    workOnFixes(fixes).map((fix) => {
+    workOnFixes(fixes, patchesAlterTablesJoined).map((fix) => {
       const url = checkboxToUrl(fix);
       return {
         fix,
@@ -235,6 +237,10 @@
         ><input type="checkbox" bind:checked={patchesEncodedForJava} />encoded
         for java</label
       ><br />
+      <label
+        ><input type="checkbox" bind:checked={patchesAlterTablesJoined} />join
+        ALTER TABLE statements on the same table</label
+      ><br />
       <ul class="sql">
         {#each patches as { fix, url, promise } (url)}
           <li>
@@ -243,7 +249,13 @@
               {fix.name}
               {fix.fix.method}
             {:then response}
-              <small>{encodePatch(patchesEncodedForJava, response.sql)}</small>
+              <small
+                >{encodePatch(
+                  fix.joinable,
+                  patchesEncodedForJava,
+                  response.sql,
+                )}</small
+              >
             {:catch error}
               <span class="red">{error.message}</span>
             {/await}
