@@ -1,7 +1,7 @@
 // noinspection SqlNoDataSourceInspection
 
 import { expect } from "vitest";
-import { encodePatch, workOnFixes } from "@/SchemaFix";
+import { encodePatch } from "@/SchemaFix";
 
 describe("EncodePatch", () => {
   it("should handle empty", async () => {

@@ -1,5 +1,5 @@
 import { expect } from "vitest";
-import { type Fix, type FixedFixable, workOnFixes } from "@/SchemaFix";
+import { type FixedFixable, workOnFixes } from "@/SchemaFix";
 
 describe("Fix", () => {
   it("should pass through empty array", async () => {
