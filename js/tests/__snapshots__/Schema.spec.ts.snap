@@ -71,7 +71,7 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
 <ul>
   <li class="svelte-1ns5wom">
     <button disabled="" class="bullet svelte-1ns5wom">.</button> tab1ok ...
-    tab2ok (2)
+    tab2ok <small>(2)</small>
   </li>
   <li class="svelte-1ns5wom">
     <button class="bullet red svelte-1ns5wom">+</button> tab3missing
@@ -80,11 +80,12 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
   </li>
   <li class="svelte-1ns5wom">
     <button disabled="" class="bullet svelte-1ns5wom">.</button> tab4ok ...
-    tab5ok (2)
+    tab5ok <small>(2)</small>
   </li>
   <li class="svelte-1ns5wom">
     <button disabled="" class="bullet svelte-1ns5wom">.</button>
-    <span class="nodeType svelte-1ns5wom">sequence</span> seq1ok ... seq2ok (2)
+    <span class="nodeType svelte-1ns5wom">sequence</span> seq1ok ... seq2ok
+    <small>(2)</small>
   </li>
   <li class="svelte-1ns5wom">
     <button disabled="" class="bullet yellow svelte-1ns5wom">.</button>

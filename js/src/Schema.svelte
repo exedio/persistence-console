@@ -291,7 +291,7 @@
         <span class="nodeType">{collapser.nodeType}</span>
       {/if}
       {#if segment.count > 1}
-        {segment.first.name} ... {segment.last.name} ({segment.count})
+        {segment.first.name} ... {segment.last.name} <small>({segment.count})</small>
       {:else}
         {segment.first.name}
       {/if}
