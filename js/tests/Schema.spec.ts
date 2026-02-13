@@ -2175,5 +2175,7 @@ function select(firstOptionText: string, index: number = 0): HTMLSelectElement {
 }
 
 function sql(): HTMLElement {
-  return document.querySelectorAll(".sql").item(0) as HTMLElement;
+  const div = document.querySelectorAll(".sql").item(0);
+  if (!div) return null as unknown as HTMLElement; // shall be null instead of undefined for historical reasons
+  return div.querySelectorAll("ul").item(0) as HTMLElement;
 }
