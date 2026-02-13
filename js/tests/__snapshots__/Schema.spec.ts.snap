@@ -69,27 +69,33 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
   ><br />
 </div>
 <ul>
-  <button disabled="" class="bullet svelte-1ns5wom">.</button>
-  tab1ok ... tab2ok (2)
+  <li class="svelte-1ns5wom">
+    <button disabled="" class="bullet svelte-1ns5wom">.</button> tab1ok ...
+    tab2ok (2)
+  </li>
   <li class="svelte-1ns5wom">
     <button class="bullet red svelte-1ns5wom">+</button> tab3missing
     <span class="red svelte-1ns5wom">missing</span>
     <label><input type="checkbox" />create</label>
   </li>
-  <button disabled="" class="bullet svelte-1ns5wom">.</button>
-  tab4ok ... tab5ok (2)
-  <button disabled="" class="bullet svelte-1ns5wom">.</button>
-  <span class="nodeType svelte-1ns5wom">sequence</span>
-  seq1ok ... seq2ok (2)
+  <li class="svelte-1ns5wom">
+    <button disabled="" class="bullet svelte-1ns5wom">.</button> tab4ok ...
+    tab5ok (2)
+  </li>
+  <li class="svelte-1ns5wom">
+    <button disabled="" class="bullet svelte-1ns5wom">.</button>
+    <span class="nodeType svelte-1ns5wom">sequence</span> seq1ok ... seq2ok (2)
+  </li>
   <li class="svelte-1ns5wom">
     <button disabled="" class="bullet yellow svelte-1ns5wom">.</button>
     <span class="nodeType svelte-1ns5wom">sequence</span> seq3missing
     <span class="yellow svelte-1ns5wom">unused</span>
     <label><input type="checkbox" />drop</label> someType 55
   </li>
-  <button disabled="" class="bullet svelte-1ns5wom">.</button>
-  <span class="nodeType svelte-1ns5wom">sequence</span>
-  seq4ok
+  <li class="svelte-1ns5wom">
+    <button disabled="" class="bullet svelte-1ns5wom">.</button>
+    <span class="nodeType svelte-1ns5wom">sequence</span> seq4ok
+  </li>
 </ul>
 "
 `;

@@ -285,6 +285,7 @@
 )}
   {@const segment = collapser?.isShown(tableOrSequence)}
   {#if segment}
+    <li>
     {@render bullet(segment.first)}
     {#if collapser?.nodeType}
       <span class="nodeType">{collapser.nodeType}</span>
@@ -294,6 +295,7 @@
     {:else}
       {segment.first.name}
     {/if}
+    </li>
   {/if}
 {/snippet}
 
