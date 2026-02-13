@@ -112,6 +112,10 @@
 
   let patchesEncodedForJava = $state(true);
 
+  function hasMore(fix: FixedFixable): boolean {
+    return fix.joinable === "middle" || fix.joinable === "tail";
+  }
+
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
@@ -243,11 +247,7 @@
       ><br />
       <ul>
         {#each patches as { fix, url, promise } (url)}
-          <li
-            class={{
-              more: fix.joinable === "middle" || fix.joinable === "tail",
-            }}
-          >
+          <li class={{ more: hasMore(fix) }}>
             {#await promise}
               <span class="nodeType">{fix.subject}</span>
               {fix.name}
