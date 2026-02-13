@@ -249,13 +249,7 @@
               {fix.name}
               {fix.fix.method}
             {:then response}
-              <small
-                >{encodePatch(
-                  fix.joinable,
-                  patchesEncodedForJava,
-                  response.sql,
-                )}</small
-              >
+              {encodePatch(fix.joinable, patchesEncodedForJava, response.sql)}
             {:catch error}
               <span class="red">{error.message}</span>
             {/await}
