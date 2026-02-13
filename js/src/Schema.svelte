@@ -286,15 +286,15 @@
   {@const segment = collapser?.isShown(tableOrSequence)}
   {#if segment}
     <li>
-    {@render bullet(segment.first)}
-    {#if collapser?.nodeType}
-      <span class="nodeType">{collapser.nodeType}</span>
-    {/if}
-    {#if segment.count > 1}
-      {segment.first.name} ... {segment.last.name} ({segment.count})
-    {:else}
-      {segment.first.name}
-    {/if}
+      {@render bullet(segment.first)}
+      {#if collapser?.nodeType}
+        <span class="nodeType">{collapser.nodeType}</span>
+      {/if}
+      {#if segment.count > 1}
+        {segment.first.name} ... {segment.last.name} ({segment.count})
+      {:else}
+        {segment.first.name}
+      {/if}
     </li>
   {/if}
 {/snippet}
