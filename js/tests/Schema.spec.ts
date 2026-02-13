@@ -1083,6 +1083,9 @@ describe("Schema", () => {
         "/myApiPath/schema/alter?subject=constraint&table=myTable1Name&name=myConstraint1Name&method=add",
       );
     }
+    checkbox("join ALTER TABLE statements on the same table", 0).click();
+    await flushPromises();
+
     expect(await formatHtml(sql())).toMatchSnapshot();
 
     modify().click();
