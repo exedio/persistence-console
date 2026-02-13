@@ -66,6 +66,7 @@
     readonly promise: Promise<SchemaAlterResponse>;
   };
 
+  let patchesEncodedForJava = $state(true);
   let patchesAlterTablesJoined = $state(false);
 
   const patches: Patch[] = $derived(
@@ -109,8 +110,6 @@
   }
 
   const RENAME_NONE = "<NONE>";
-
-  let patchesEncodedForJava = $state(true);
 
   function hasMore(fix: FixedFixable): boolean {
     return fix.joinable === "middle" || fix.joinable === "tail";
