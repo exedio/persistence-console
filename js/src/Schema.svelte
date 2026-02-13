@@ -458,6 +458,7 @@
   {/if}
 {/snippet}
 
+<!-- svelte-ignore css_unused_selector -->
 <style>
   div.maintain {
     margin-bottom: 20px;
@@ -479,8 +480,14 @@
     max-width: 50vw;
     overflow-y: scroll;
     ul {
+      font-size: 60%;
+      padding-left: 1.5em;
       li {
         list-style-type: disc;
+      }
+      li.more {
+        list-style-type: circle;
+        padding-left: 2em;
       }
     }
   }
