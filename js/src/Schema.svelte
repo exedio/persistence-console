@@ -273,7 +273,7 @@
         oninput={(e) => {
           fixes.setFixes(asInputElement(e.target).checked);
         }}
-      />{fixes.label} ({fixes.checkedLength}/{fixes.all.length})
+      />{fixes.label} <small>({fixes.checkedLength}/{fixes.all.length})</small>
     </label><br />
   {/if}
 {/snippet}
