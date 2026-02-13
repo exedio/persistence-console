@@ -67,7 +67,7 @@
   };
 
   let patchesEncodedForJava = $state(true);
-  let patchesAlterTablesJoined = $state(false);
+  let patchesAlterTablesJoined = $state(true);
 
   const patches: Patch[] = $derived(
     workOnFixes(fixes, patchesAlterTablesJoined).map((fix) => {
