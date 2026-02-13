@@ -2082,6 +2082,11 @@ describe("Schema", () => {
                   type: "string",
                   existence: "missing",
                 },
+                {
+                  name: "myColumn3Name",
+                  type: "string",
+                  existence: "missing",
+                },
               ],
             },
           ],
@@ -2094,6 +2099,7 @@ describe("Schema", () => {
 
     const add1 = () => checkbox("add", 0);
     const add2 = () => checkbox("add", 1);
+    const add3 = () => checkbox("add", 2);
     const encode = () =>
       checkbox("join ALTER TABLE statements on the same table", 0);
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
@@ -2110,10 +2116,16 @@ describe("Schema", () => {
           'ALTER TABLE "myTableName" ADD COLUMN "myColumn2Name" string',
         ),
       );
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          'ALTER TABLE "myTableName" ADD COLUMN "myColumn3Name" string',
+        ),
+      );
       add1().click();
       add2().click();
+      add3().click();
       await flushPromises();
-      expect(mock).toHaveBeenCalledTimes(2);
+      expect(mock).toHaveBeenCalledTimes(3);
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 

@@ -101,6 +101,9 @@ exports[`Schema > should join ALTER TABLE statements on the same table 1`] = `
 <li class="svelte-1ns5wom">
   "ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn2Name\\" string",
 </li>
+<li class="svelte-1ns5wom">
+  "ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn3Name\\" string",
+</li>
 "
 `;
 
@@ -108,7 +111,8 @@ exports[`Schema > should join ALTER TABLE statements on the same table 2`] = `
 "<li class="svelte-1ns5wom">
   "ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn1Name\\" string," +
 </li>
-<li class="more svelte-1ns5wom">"ADD COLUMN \\"myColumn2Name\\" string",</li>
+<li class="more svelte-1ns5wom">"ADD COLUMN \\"myColumn2Name\\" string," +</li>
+<li class="more svelte-1ns5wom">"ADD COLUMN \\"myColumn3Name\\" string",</li>
 "
 `;
 
