@@ -96,37 +96,29 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
 
 exports[`Schema > should join ALTER TABLE statements on the same table 1`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn1Name\\" string",</small
-  >
+  "ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn1Name\\" string",
 </li>
 <li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn2Name\\" string",</small
-  >
+  "ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn2Name\\" string",
 </li>
 "
 `;
 
 exports[`Schema > should join ALTER TABLE statements on the same table 2`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn1Name\\" string," +</small
-  >
+  "ALTER TABLE \\"myTableName\\" ADD COLUMN \\"myColumn1Name\\" string," +
 </li>
-<li class="svelte-12y0dt7">
-  <small>"ADD COLUMN \\"myColumn2Name\\" string",</small>
-</li>
+<li class="svelte-12y0dt7">"ADD COLUMN \\"myColumn2Name\\" string",</li>
 "
 `;
 
 exports[`Schema > should patches encoded for java 1`] = `
-"<li class="svelte-12y0dt7"><small>"CREATE TABLE \\"myTable1Name\\"",</small></li>
+"<li class="svelte-12y0dt7">"CREATE TABLE \\"myTable1Name\\"",</li>
 "
 `;
 
 exports[`Schema > should patches encoded for java 2`] = `
-"<li class="svelte-12y0dt7"><small>CREATE TABLE "myTable1Name";</small></li>
+"<li class="svelte-12y0dt7">CREATE TABLE "myTable1Name";</li>
 "
 `;
 
@@ -206,9 +198,7 @@ exports[`Schema > should render a column with a wrong type 3`] = `
 
 exports[`Schema > should render a column with a wrong type 4`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type",</small
-  >
+  "ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type",
 </li>
 "
 `;
@@ -296,7 +286,7 @@ exports[`Schema > should render a connect button 2`] = `
 `;
 
 exports[`Schema > should render a connect button 3`] = `
-"<li class="svelte-12y0dt7"><small>"CREATE TABLE myTable1Name",</small></li>
+"<li class="svelte-12y0dt7">"CREATE TABLE myTable1Name",</li>
 "
 `;
 
@@ -362,10 +352,10 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
 
 exports[`Schema > should render a constraint with a wrong clause 3`] = `
 "<li class="svelte-12y0dt7">
-  <small>"ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",</small>
+  "ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",
 </li>
 <li class="svelte-12y0dt7">
-  <small>"ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",</small>
+  "ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",
 </li>
 "
 `;
@@ -639,7 +629,7 @@ exports[`Schema > should render a missing column 3`] = `
 
 exports[`Schema > should render a missing column 4`] = `
 "<li class="svelte-12y0dt7">
-  <small>"ALTER TABLE myTable1Name ADD COLUMN myColumn1Name",</small>
+  "ALTER TABLE myTable1Name ADD COLUMN myColumn1Name",
 </li>
 "
 `;
@@ -746,10 +736,8 @@ exports[`Schema > should render a missing column to be renamed to a unused 2`] =
 
 exports[`Schema > should render a missing column to be renamed to a unused 3`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myTableName\\" ALTER COLUMN \\"myUnusedColumnName\\" RENAME TO
-    \\"myMissingColumnName\\"",</small
-  >
+  "ALTER TABLE \\"myTableName\\" ALTER COLUMN \\"myUnusedColumnName\\" RENAME TO
+  \\"myMissingColumnName\\"",
 </li>
 "
 `;
@@ -800,7 +788,7 @@ exports[`Schema > should render a missing constraint 2`] = `
 
 exports[`Schema > should render a missing constraint 3`] = `
 "<li class="svelte-12y0dt7">
-  <small>"ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",</small>
+  "ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name",
 </li>
 "
 `;
@@ -827,7 +815,7 @@ exports[`Schema > should render a missing sequence 1`] = `
 `;
 
 exports[`Schema > should render a missing sequence 2`] = `
-"<li class="svelte-12y0dt7"><small>"CREATE SEQUENCE myOnlyName",</small></li>
+"<li class="svelte-12y0dt7">"CREATE SEQUENCE myOnlyName",</li>
 "
 `;
 
@@ -935,10 +923,7 @@ exports[`Schema > should render a missing sequence to be renamed to an unused 2`
 
 exports[`Schema > should render a missing sequence to be renamed to an unused 3`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myUnusedSequenceName\\" RENAME TO
-    \\"myMissingSequenceName\\"",</small
-  >
+  "ALTER TABLE \\"myUnusedSequenceName\\" RENAME TO \\"myMissingSequenceName\\"",
 </li>
 "
 `;
@@ -984,7 +969,7 @@ exports[`Schema > should render a missing table 2`] = `
 `;
 
 exports[`Schema > should render a missing table 3`] = `
-"<li class="svelte-12y0dt7"><small>"CREATE TABLE myTable1Name",</small></li>
+"<li class="svelte-12y0dt7">"CREATE TABLE myTable1Name",</li>
 "
 `;
 
@@ -1090,10 +1075,7 @@ exports[`Schema > should render a missing table to be renamed to an unused 2`] =
 
 exports[`Schema > should render a missing table to be renamed to an unused 3`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myUnusedTableName\\" RENAME TO
-    \\"myMissingTableName\\"",</small
-  >
+  "ALTER TABLE \\"myUnusedTableName\\" RENAME TO \\"myMissingTableName\\"",
 </li>
 "
 `;
@@ -1631,7 +1613,7 @@ exports[`Schema > should render a unused column 3`] = `
 
 exports[`Schema > should render a unused column 4`] = `
 "<li class="svelte-12y0dt7">
-  <small>"ALTER TABLE myTable1Name DROP COLUMN myColumn1Name",</small>
+  "ALTER TABLE myTable1Name DROP COLUMN myColumn1Name",
 </li>
 "
 `;
@@ -1738,10 +1720,8 @@ exports[`Schema > should render a unused column to be renamed to a missing 2`] =
 
 exports[`Schema > should render a unused column to be renamed to a missing 3`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myTableName\\" ALTER COLUMN \\"myUnusedColumnName\\" RENAME TO
-    \\"myMissingColumnName\\"",</small
-  >
+  "ALTER TABLE \\"myTableName\\" ALTER COLUMN \\"myUnusedColumnName\\" RENAME TO
+  \\"myMissingColumnName\\"",
 </li>
 "
 `;
@@ -1792,7 +1772,7 @@ exports[`Schema > should render a unused constraint 2`] = `
 
 exports[`Schema > should render a unused constraint 3`] = `
 "<li class="svelte-12y0dt7">
-  <small>"ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",</small>
+  "ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",
 </li>
 "
 `;
@@ -1819,7 +1799,7 @@ exports[`Schema > should render a unused sequence 1`] = `
 `;
 
 exports[`Schema > should render a unused sequence 2`] = `
-"<li class="svelte-12y0dt7"><small>"DROP SEQUENCE myOnlyName",</small></li>
+"<li class="svelte-12y0dt7">"DROP SEQUENCE myOnlyName",</li>
 "
 `;
 
@@ -1927,10 +1907,7 @@ exports[`Schema > should render a unused sequence to be renamed to a missing 2`]
 
 exports[`Schema > should render a unused sequence to be renamed to a missing 3`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myUnusedSequenceName\\" RENAME TO
-    \\"myMissingSequenceName\\"",</small
-  >
+  "ALTER TABLE \\"myUnusedSequenceName\\" RENAME TO \\"myMissingSequenceName\\"",
 </li>
 "
 `;
@@ -1976,7 +1953,7 @@ exports[`Schema > should render a unused table 2`] = `
 `;
 
 exports[`Schema > should render a unused table 3`] = `
-"<li class="svelte-12y0dt7"><small>"DROP TABLE myTable1Name",</small></li>
+"<li class="svelte-12y0dt7">"DROP TABLE myTable1Name",</li>
 "
 `;
 
@@ -2072,10 +2049,7 @@ exports[`Schema > should render a unused table to be renamed to a missing 2`] = 
 
 exports[`Schema > should render a unused table to be renamed to a missing 3`] = `
 "<li class="svelte-12y0dt7">
-  <small
-    >"ALTER TABLE \\"myUnusedTableName\\" RENAME TO
-    \\"myMissingTableName\\"",</small
-  >
+  "ALTER TABLE \\"myUnusedTableName\\" RENAME TO \\"myMissingTableName\\"",
 </li>
 "
 `;
