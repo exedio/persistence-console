@@ -232,7 +232,7 @@
     {/await}
   </div>
   {#if patches.length > 0}
-    <div>
+    <div class="sql">
       <label
         ><input type="checkbox" bind:checked={patchesEncodedForJava} />encoded
         for java</label
@@ -241,7 +241,7 @@
         ><input type="checkbox" bind:checked={patchesAlterTablesJoined} />join
         ALTER TABLE statements on the same table</label
       ><br />
-      <ul class="sql">
+      <ul>
         {#each patches as { fix, url, promise } (url)}
           <li>
             {#await promise}
@@ -481,11 +481,13 @@
     overflow-y: scroll;
   }
 
-  ul.sql {
+  div.sql {
     max-width: 50vw;
     overflow-y: scroll;
-    li {
-      list-style-type: disc;
+    ul {
+      li {
+        list-style-type: disc;
+      }
     }
   }
 
