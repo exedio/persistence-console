@@ -243,7 +243,11 @@
       ><br />
       <ul>
         {#each patches as { fix, url, promise } (url)}
-          <li>
+          <li
+            class={{
+              more: fix.joinable === "middle" || fix.joinable === "tail",
+            }}
+          >
             {#await promise}
               <span class="nodeType">{fix.subject}</span>
               {fix.name}
@@ -458,7 +462,6 @@
   {/if}
 {/snippet}
 
-<!-- svelte-ignore css_unused_selector -->
 <style>
   div.maintain {
     margin-bottom: 20px;
