@@ -7,11 +7,11 @@ exports[`Schema > should hide table / sequences without problems 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -61,11 +61,11 @@ exports[`Schema > should hide table / sequences without problems 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -138,7 +138,9 @@ exports[`Schema > should render a column with a wrong type 1`] = `
   <button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
-  <label><input type="checkbox" />adjust columns with type mismatch (0/1)</label
+  <label
+    ><input type="checkbox" />adjust columns with type mismatch
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -154,7 +156,9 @@ exports[`Schema > should render a column with a wrong type 2`] = `
   <button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
-  <label><input type="checkbox" />adjust columns with type mismatch (0/1)</label
+  <label
+    ><input type="checkbox" />adjust columns with type mismatch
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -177,7 +181,9 @@ exports[`Schema > should render a column with a wrong type 3`] = `
   <button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
-  <label><input type="checkbox" />adjust columns with type mismatch (0/1)</label
+  <label
+    ><input type="checkbox" />adjust columns with type mismatch
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -283,7 +289,7 @@ exports[`Schema > should render a connect button 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -308,7 +314,7 @@ exports[`Schema > should render a constraint with a wrong clause 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />recreate constraints with clause mismatch
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -326,7 +332,7 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />recreate constraints with clause mismatch
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -417,7 +423,7 @@ exports[`Schema > should render a constraint with shortener 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />recreate constraints with clause mismatch
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -435,7 +441,7 @@ exports[`Schema > should render a constraint with shortener 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />recreate constraints with clause mismatch
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -458,7 +464,7 @@ exports[`Schema > should render a constraint with shortener 3`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />recreate constraints with clause mismatch
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -577,7 +583,7 @@ exports[`Schema > should render a missing column 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -595,7 +601,7 @@ exports[`Schema > should render a missing column 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -620,7 +626,7 @@ exports[`Schema > should render a missing column 3`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -760,7 +766,7 @@ exports[`Schema > should render a missing constraint 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -778,7 +784,7 @@ exports[`Schema > should render a missing constraint 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -811,7 +817,7 @@ exports[`Schema > should render a missing sequence 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -946,7 +952,7 @@ exports[`Schema > should render a missing table 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -966,7 +972,7 @@ exports[`Schema > should render a missing table 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />add missing nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1095,7 +1101,9 @@ exports[`Schema > should render a multiple columns with a wrong type 1`] = `
 "<button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label><input type="checkbox" />adjust columns with type mismatch (0/2)</label
+<label
+  ><input type="checkbox" />adjust columns with type mismatch
+  <small>(0/2)</small></label
 ><br />
 "
 `;
@@ -1104,7 +1112,9 @@ exports[`Schema > should render a multiple columns with a wrong type 2`] = `
 "<button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label><input type="checkbox" />adjust columns with type mismatch (1/2)</label
+<label
+  ><input type="checkbox" />adjust columns with type mismatch
+  <small>(1/2)</small></label
 ><br />
 "
 `;
@@ -1113,7 +1123,9 @@ exports[`Schema > should render a multiple columns with a wrong type 3`] = `
 "<button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label><input type="checkbox" />adjust columns with type mismatch (2/2)</label
+<label
+  ><input type="checkbox" />adjust columns with type mismatch
+  <small>(2/2)</small></label
 ><br />
 "
 `;
@@ -1122,7 +1134,9 @@ exports[`Schema > should render a multiple columns with a wrong type 4`] = `
 "<button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label><input type="checkbox" />adjust columns with type mismatch (0/2)</label
+<label
+  ><input type="checkbox" />adjust columns with type mismatch
+  <small>(0/2)</small></label
 ><br />
 "
 `;
@@ -1131,7 +1145,9 @@ exports[`Schema > should render a multiple columns with a wrong type 5`] = `
 "<button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label><input type="checkbox" />adjust columns with type mismatch (2/2)</label
+<label
+  ><input type="checkbox" />adjust columns with type mismatch
+  <small>(2/2)</small></label
 ><br />
 "
 `;
@@ -1140,7 +1156,9 @@ exports[`Schema > should render a multiple columns with a wrong type 6`] = `
 "<button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label><input type="checkbox" />adjust columns with type mismatch (1/2)</label
+<label
+  ><input type="checkbox" />adjust columns with type mismatch
+  <small>(1/2)</small></label
 ><br />
 "
 `;
@@ -1149,7 +1167,9 @@ exports[`Schema > should render a multiple columns with a wrong type 7`] = `
 "<button disabled="" class="bullet red svelte-1ns5wom">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
-<label><input type="checkbox" />adjust columns with type mismatch (0/2)</label
+<label
+  ><input type="checkbox" />adjust columns with type mismatch
+  <small>(0/2)</small></label
 ><br />
 "
 `;
@@ -1160,7 +1180,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 1`] =
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />recreate constraints with clause mismatch
-  (0/2)</label
+  <small>(0/2)</small></label
 ><br />
 "
 `;
@@ -1171,7 +1191,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 2`] =
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />recreate constraints with clause mismatch
-  (1/2)</label
+  <small>(1/2)</small></label
 ><br />
 "
 `;
@@ -1182,7 +1202,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 3`] =
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />recreate constraints with clause mismatch
-  (2/2)</label
+  <small>(2/2)</small></label
 ><br />
 "
 `;
@@ -1193,7 +1213,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 4`] =
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />recreate constraints with clause mismatch
-  (0/2)</label
+  <small>(0/2)</small></label
 ><br />
 "
 `;
@@ -1204,7 +1224,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 5`] =
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />recreate constraints with clause mismatch
-  (2/2)</label
+  <small>(2/2)</small></label
 ><br />
 "
 `;
@@ -1215,7 +1235,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 6`] =
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />recreate constraints with clause mismatch
-  (1/2)</label
+  <small>(1/2)</small></label
 ><br />
 "
 `;
@@ -1226,7 +1246,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 7`] =
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />recreate constraints with clause mismatch
-  (0/2)</label
+  <small>(0/2)</small></label
 ><br />
 "
 `;
@@ -1493,7 +1513,7 @@ exports[`Schema > should render a unused NOT NULL column 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1511,7 +1531,7 @@ exports[`Schema > should render a unused NOT NULL column 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1536,7 +1556,7 @@ exports[`Schema > should render a unused NOT NULL column 3`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1561,7 +1581,7 @@ exports[`Schema > should render a unused column 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1579,7 +1599,7 @@ exports[`Schema > should render a unused column 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1604,7 +1624,7 @@ exports[`Schema > should render a unused column 3`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1744,7 +1764,7 @@ exports[`Schema > should render a unused constraint 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1762,7 +1782,7 @@ exports[`Schema > should render a unused constraint 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1795,7 +1815,7 @@ exports[`Schema > should render a unused sequence 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1930,7 +1950,7 @@ exports[`Schema > should render a unused table 1`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -1950,7 +1970,7 @@ exports[`Schema > should render a unused table 2`] = `
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
     ><input type="checkbox" />drop unused nodes without rename-from option
-    (0/1)</label
+    <small>(0/1)</small></label
   ><br />
 </div>
 <ul>
@@ -2086,7 +2106,7 @@ exports[`Schema > should render multiple missing nodes 1`] = `
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />add missing nodes without rename-from option
-  (0/5)</label
+  <small>(0/5)</small></label
 ><br />
 "
 `;
@@ -2097,7 +2117,7 @@ exports[`Schema > should render multiple missing nodes 2`] = `
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />add missing nodes without rename-from option
-  (1/5)</label
+  <small>(1/5)</small></label
 ><br />
 "
 `;
@@ -2108,7 +2128,7 @@ exports[`Schema > should render multiple missing nodes 3`] = `
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />add missing nodes without rename-from option
-  (2/5)</label
+  <small>(2/5)</small></label
 ><br />
 "
 `;
@@ -2119,7 +2139,7 @@ exports[`Schema > should render multiple missing nodes 4`] = `
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />add missing nodes without rename-from option
-  (3/5)</label
+  <small>(3/5)</small></label
 ><br />
 "
 `;
@@ -2130,7 +2150,7 @@ exports[`Schema > should render multiple missing nodes 5`] = `
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />add missing nodes without rename-from option
-  (4/5)</label
+  <small>(4/5)</small></label
 ><br />
 "
 `;
@@ -2141,7 +2161,7 @@ exports[`Schema > should render multiple missing nodes 6`] = `
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />add missing nodes without rename-from option
-  (5/5)</label
+  <small>(5/5)</small></label
 ><br />
 "
 `;
@@ -2152,7 +2172,7 @@ exports[`Schema > should render multiple missing nodes 7`] = `
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />add missing nodes without rename-from option
-  (0/5)</label
+  <small>(0/5)</small></label
 ><br />
 "
 `;
@@ -2163,7 +2183,7 @@ exports[`Schema > should render multiple missing nodes 8`] = `
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
   ><input type="checkbox" />add missing nodes without rename-from option
-  (5/5)</label
+  <small>(5/5)</small></label
 ><br />
 "
 `;
