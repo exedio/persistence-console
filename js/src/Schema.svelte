@@ -526,8 +526,18 @@
     color: #880000;
   }
 
+  span.redFixed {
+    color: #884444;
+    text-decoration: line-through;
+  }
+
   span.yellow {
     color: #887800;
+  }
+
+  span.yellowFixed {
+    color: #87785b;
+    text-decoration: line-through;
   }
 
   table.comparison td {
