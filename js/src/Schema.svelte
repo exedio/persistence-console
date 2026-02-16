@@ -60,6 +60,13 @@
     return RENAME_NONE;
   }
 
+  function spanClassExistence(
+    existence: { color: "red" | "yellow" },
+    fixable: Fixable,
+  ): string {
+    return fixable.fix ? existence.color + "Fixed" : existence.color;
+  }
+
   type Patch = {
     readonly fix: FixedFixable;
     readonly url: string;
@@ -334,7 +341,7 @@
   {#if existence}
     {@const method = existence.text === "missing" ? "add" : "drop"}
     {@const fix = fixable.fix}
-    <span class={existence.color}>{existence.text}</span>
+    <span class={spanClassExistence(existence, fixable)}>{existence.text}</span>
     <label
       ><input
         type="checkbox"

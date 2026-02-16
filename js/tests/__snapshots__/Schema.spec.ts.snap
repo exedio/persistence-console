@@ -725,7 +725,7 @@ exports[`Schema > should render a missing column to be renamed to a unused 2`] =
       </li>
       <li class="svelte-1t6yl2g">
         <button class="bullet red svelte-1t6yl2g">+</button> myUnusedColumnName
-        <span class="red svelte-1t6yl2g">unused</span>
+        <span class="redFixed svelte-1t6yl2g">unused</span>
         <label><input type="checkbox" />drop</label>
         <label
           ><select class="renameTo svelte-1t6yl2g">
@@ -911,7 +911,7 @@ exports[`Schema > should render a missing sequence to be renamed to an unused 2`
   <li class="svelte-1t6yl2g">
     <button disabled="" class="bullet yellow svelte-1t6yl2g">.</button>
     <span class="nodeType svelte-1t6yl2g">sequence</span> myUnusedSequenceName
-    <span class="yellow svelte-1t6yl2g">unused</span>
+    <span class="yellowFixed svelte-1t6yl2g">unused</span>
     <label><input type="checkbox" />drop</label>
     <label
       ><select class="renameTo svelte-1t6yl2g">
@@ -1066,7 +1066,7 @@ exports[`Schema > should render a missing table to be renamed to an unused 2`] =
   </li>
   <li class="svelte-1t6yl2g">
     <button class="bullet yellow svelte-1t6yl2g">+</button> myUnusedTableName
-    <span class="yellow svelte-1t6yl2g">unused</span>
+    <span class="yellowFixed svelte-1t6yl2g">unused</span>
     <label><input type="checkbox" />drop</label>
     <label
       ><select class="renameTo svelte-1t6yl2g">
@@ -1711,7 +1711,7 @@ exports[`Schema > should render a unused column to be renamed to a missing 2`] =
     <ul>
       <li class="svelte-1t6yl2g">
         <button class="bullet red svelte-1t6yl2g">+</button> myUnusedColumnName
-        <span class="red svelte-1t6yl2g">unused</span>
+        <span class="redFixed svelte-1t6yl2g">unused</span>
         <label><input type="checkbox" />drop</label>
         <label
           ><select class="renameTo svelte-1t6yl2g">
@@ -1895,7 +1895,7 @@ exports[`Schema > should render a unused sequence to be renamed to a missing 2`]
   <li class="svelte-1t6yl2g">
     <button disabled="" class="bullet yellow svelte-1t6yl2g">.</button>
     <span class="nodeType svelte-1t6yl2g">sequence</span> myUnusedSequenceName
-    <span class="yellow svelte-1t6yl2g">unused</span>
+    <span class="yellowFixed svelte-1t6yl2g">unused</span>
     <label><input type="checkbox" />drop</label>
     <label
       ><select class="renameTo svelte-1t6yl2g">
@@ -2042,7 +2042,7 @@ exports[`Schema > should render a unused table to be renamed to a missing 2`] = 
 <ul>
   <li class="svelte-1t6yl2g">
     <button class="bullet yellow svelte-1t6yl2g">+</button> myUnusedTableName
-    <span class="yellow svelte-1t6yl2g">unused</span>
+    <span class="yellowFixed svelte-1t6yl2g">unused</span>
     <label><input type="checkbox" />drop</label>
     <label
       ><select class="renameTo svelte-1t6yl2g">
