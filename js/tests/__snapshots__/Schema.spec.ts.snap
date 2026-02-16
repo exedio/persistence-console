@@ -229,7 +229,7 @@ exports[`Schema > should render a column with a wrong type 4`] = `
     <ul>
       <li class="svelte-1t6yl2g">
         <button class="bullet red svelte-1t6yl2g">-</button> myColumn1Name
-        <span class="red svelte-1t6yl2g">type mismatch:</span>
+        <span class="redFixed svelte-1t6yl2g">type mismatch:</span>
         <label><input type="checkbox" />adjust</label>
         <table class="comparison svelte-1t6yl2g">
           <tbody>
@@ -421,7 +421,7 @@ exports[`Schema > should render a constraint with a wrong clause 3`] = `
       <li class="svelte-1t6yl2g">
         <button disabled="" class="bullet red svelte-1t6yl2g">.</button>
         <span class="nodeType svelte-1t6yl2g">check</span> myConstraint1Name
-        <span class="red svelte-1t6yl2g">clause mismatch:</span>
+        <span class="redFixed svelte-1t6yl2g">clause mismatch:</span>
         <label><input type="checkbox" />recreate</label>
         <table class="comparison svelte-1t6yl2g">
           <tbody>
