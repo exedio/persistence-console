@@ -214,6 +214,43 @@ exports[`Schema > should render a column with a wrong type 3`] = `
 `;
 
 exports[`Schema > should render a column with a wrong type 4`] = `
+"<div class="checkboxCollector svelte-1t6yl2g">
+  <button disabled="" class="bullet red svelte-1t6yl2g">.</button> Schema
+  <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />adjust columns with type mismatch
+    <small>(1/1)</small></label
+  ><br />
+</div>
+<ul>
+  <li class="svelte-1t6yl2g">
+    <button class="bullet red svelte-1t6yl2g">-</button> myTable1Name
+    <ul>
+      <li class="svelte-1t6yl2g">
+        <button class="bullet red svelte-1t6yl2g">-</button> myColumn1Name
+        <span class="red svelte-1t6yl2g">type mismatch:</span>
+        <label><input type="checkbox" />adjust</label>
+        <table class="comparison svelte-1t6yl2g">
+          <tbody>
+            <tr>
+              <td class="svelte-1t6yl2g">required:</td>
+              <td class="svelte-1t6yl2g">myColumn1Type</td>
+            </tr>
+            <tr>
+              <td class="svelte-1t6yl2g">actual:</td>
+              <td class="svelte-1t6yl2g">myColumn1TypeX</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should render a column with a wrong type 5`] = `
 "<li class="svelte-1t6yl2g">
   "ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type",
 </li>
@@ -368,6 +405,48 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
 `;
 
 exports[`Schema > should render a constraint with a wrong clause 3`] = `
+"<div class="checkboxCollector svelte-1t6yl2g">
+  <button disabled="" class="bullet red svelte-1t6yl2g">.</button> Schema
+  <button class="reload svelte-dizlwz">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />recreate constraints with clause mismatch
+    <small>(1/1)</small></label
+  ><br />
+</div>
+<ul>
+  <li class="svelte-1t6yl2g">
+    <button class="bullet red svelte-1t6yl2g">-</button> myTable1Name
+    <ul>
+      <li class="svelte-1t6yl2g">
+        <button disabled="" class="bullet red svelte-1t6yl2g">.</button>
+        <span class="nodeType svelte-1t6yl2g">check</span> myConstraint1Name
+        <span class="red svelte-1t6yl2g">clause mismatch:</span>
+        <label><input type="checkbox" />recreate</label>
+        <table class="comparison svelte-1t6yl2g">
+          <tbody>
+            <tr>
+              <td class="svelte-1t6yl2g">required:</td>
+              <td class="svelte-1t6yl2g">myConstraint1Clause</td>
+            </tr>
+            <tr>
+              <td class="svelte-1t6yl2g">actual:</td>
+              <td class="svelte-1t6yl2g">myConstraint1ClauseX</td>
+            </tr>
+            <tr>
+              <td class="svelte-1t6yl2g">raw:</td>
+              <td class="svelte-1t6yl2g">myConstraint1ClauseX Raw</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should render a constraint with a wrong clause 4`] = `
 "<li class="svelte-1t6yl2g">
   "ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name",
 </li>
