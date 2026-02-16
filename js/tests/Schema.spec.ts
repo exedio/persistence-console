@@ -780,6 +780,7 @@ describe("Schema", () => {
         "/myApiPath/schema/alter?subject=column&table=myTable1Name&name=myColumn1Name&method=modify",
       );
     }
+    expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
 
     modify().click();
@@ -1086,6 +1087,7 @@ describe("Schema", () => {
     checkbox("join ALTER TABLE statements on the same table", 0).click();
     await flushPromises();
 
+    expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
 
     modify().click();
