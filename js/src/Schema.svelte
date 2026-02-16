@@ -427,7 +427,9 @@
   {#if value}
     {#if expanded}
       {#if value.actual}
-        <span class={spanClassComparison(value, fixable)}>{value.name} mismatch:</span>
+        <span class={spanClassComparison(value, fixable)}
+          >{value.name} mismatch:</span
+        >
         {@render comparisonAdjust(fixable, modify)}
         <table class="comparison">
           <tbody>
@@ -443,7 +445,9 @@
         {value.shortener(value.expected)}
       {/if}
     {:else if value.actual}
-      <span class={spanClassComparison(value, fixable)}>{value.name} mismatch</span>
+      <span class={spanClassComparison(value, fixable)}
+        >{value.name} mismatch</span
+      >
       {@render comparisonAdjust(fixable, modify)}
     {/if}
   {/if}
