@@ -67,6 +67,13 @@
     return fixable.fix ? existence.color + "Fixed" : existence.color;
   }
 
+  function spanClassComparison(
+    comparison: Comparison,
+    fixable: Fixable,
+  ): string | undefined {
+    return fixable.fix ? comparison.color + "Fixed" : comparison.color;
+  }
+
   type Patch = {
     readonly fix: FixedFixable;
     readonly url: string;
@@ -420,7 +427,9 @@
   {#if value}
     {#if expanded}
       {#if value.actual}
-        <span class={value.color}>{value.name} mismatch:</span>
+        <span class={spanClassComparison(value, fixable)}
+          >{value.name} mismatch:</span
+        >
         {@render comparisonAdjust(fixable, modify)}
         <table class="comparison">
           <tbody>
@@ -436,7 +445,9 @@
         {value.shortener(value.expected)}
       {/if}
     {:else if value.actual}
-      <span class={value.color}>{value.name} mismatch</span>
+      <span class={spanClassComparison(value, fixable)}
+        >{value.name} mismatch</span
+      >
       {@render comparisonAdjust(fixable, modify)}
     {/if}
   {/if}
