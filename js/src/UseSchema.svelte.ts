@@ -14,7 +14,7 @@ export class Schema implements Bullet {
   private api: ApiSchema;
   private _tables: readonly Table[];
   private _sequences: readonly Sequence[];
-  readonly bulletColor: Color;
+  readonly bulletColor: FixedColor;
   readonly nodesMissingWithoutRename: FixAggregator<Fixable>;
   readonly nodesUnusedWithoutRename: FixAggregator<Fixable>;
   readonly columnsWithTypeMismatch: FixAggregator<Column>;
@@ -268,7 +268,7 @@ export class Table implements ExpandableBullet, Fixable {
   private _columns: readonly Column[];
   private _constraints: readonly Constraint[];
   readonly additionalErrors: readonly string[];
-  readonly bulletColor: Color;
+  readonly bulletColor: FixedColor;
 
   private readonly columnsStore = new Map<string, Column>();
   private readonly constraintsStore = new Map<string, Constraint>();
@@ -297,7 +297,7 @@ export class Table implements ExpandableBullet, Fixable {
     );
     this.bulletColor = $derived(
       worst([
-        this.existence?.color,
+        fixedColor(this, this.existence?.color),
         additionalErrorsColor(this),
         worst(this._columns.map((i) => i.bulletColor)),
         worst(this._constraints.map((i) => i.bulletColor)),
@@ -397,7 +397,7 @@ export class Column implements ExpandableBullet, Fixable {
   readonly type: Comparison;
   private _constraints: readonly Constraint[];
   readonly additionalErrors: readonly string[];
-  readonly bulletColor: Color;
+  readonly bulletColor: FixedColor;
 
   expanded: boolean = $state(false);
   fix: Fix | undefined = $state(undefined);
@@ -435,8 +435,8 @@ export class Column implements ExpandableBullet, Fixable {
     );
     this.bulletColor = $derived(
       worst([
-        this.existence?.color,
-        this.type?.color,
+        fixedColor(this, this.existence?.color),
+        fixedColor(this, this.type?.color),
         additionalErrorsColor(this),
         worst(this._constraints.map((i) => i.bulletColor)),
       ]),
@@ -525,7 +525,7 @@ export class Constraint implements Bullet, Fixable {
   readonly type: ConstraintType;
   readonly clause: Comparison | undefined;
   readonly additionalErrors: readonly string[];
-  readonly bulletColor: Color;
+  readonly bulletColor: FixedColor;
 
   fix: Fix | undefined = $state(undefined);
 
@@ -567,8 +567,8 @@ export class Constraint implements Bullet, Fixable {
     );
     this.bulletColor = $derived(
       worst([
-        this.existence?.color,
-        this.clause?.color,
+        fixedColor(this, this.existence?.color),
+        fixedColor(this, this.clause?.color),
         additionalErrorsColor(this),
       ]),
     );
@@ -616,7 +616,7 @@ export class Sequence implements Bullet, Fixable {
   readonly type: Comparison;
   readonly start: Comparison;
   readonly additionalErrors: readonly string[];
-  readonly bulletColor: Color;
+  readonly bulletColor: FixedColor;
 
   fix: Fix | undefined = $state(undefined);
 
@@ -651,7 +651,7 @@ export class Sequence implements Bullet, Fixable {
     );
     this.bulletColor = $derived(
       worst([
-        this.existence?.color,
+        fixedColor(this, this.existence?.color),
         this.type.color,
         this.start.color,
         additionalErrorsColor(this),
@@ -710,11 +710,11 @@ export type Comparison = {
 
 export type Color = "red" | "yellow" | undefined;
 
-function worst(colors: Color[]): Color {
+function worst(colors: FixedColor[]): FixedColor {
   return colors.reduce((accu, current) => worse(accu, current), undefined);
 }
 
-function worse(a: Color, b: Color): Color {
+function worse(a: FixedColor, b: FixedColor): FixedColor {
   return a === "red"
     ? "red"
     : b === "red"
@@ -723,7 +723,27 @@ function worse(a: Color, b: Color): Color {
         ? "yellow"
         : b === "yellow"
           ? "yellow"
-          : undefined;
+          : a === "redFixed"
+            ? "redFixed"
+            : b === "redFixed"
+              ? "redFixed"
+              : a === "yellowFixed"
+                ? "yellowFixed"
+                : b === "yellowFixed"
+                  ? "yellowFixed"
+                  : undefined;
+}
+
+export type FixedColor = Color | "redFixed" | "yellowFixed";
+
+function fixedColor(fixable: Fixable, color: Color): FixedColor {
+  return fixable.fix
+    ? color === "red"
+      ? "redFixed"
+      : color === "yellow"
+        ? "yellowFixed"
+        : undefined
+    : color;
 }
 
 function additionalErrorsColor(node: {
@@ -733,7 +753,7 @@ function additionalErrorsColor(node: {
 }
 
 export type Bullet = {
-  readonly bulletColor: Color;
+  readonly bulletColor: FixedColor;
 };
 
 export type ExpandableBullet = Bullet & {
