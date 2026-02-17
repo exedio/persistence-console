@@ -215,7 +215,7 @@ exports[`Schema > should render a column with a wrong type 3`] = `
 
 exports[`Schema > should render a column with a wrong type 4`] = `
 "<div class="checkboxCollector svelte-sj2mtv">
-  <button disabled="" class="bullet red svelte-sj2mtv">.</button> Schema
+  <button disabled="" class="bullet redFixed svelte-sj2mtv">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
@@ -225,10 +225,10 @@ exports[`Schema > should render a column with a wrong type 4`] = `
 </div>
 <ul>
   <li class="svelte-sj2mtv">
-    <button class="bullet red svelte-sj2mtv">-</button> myTable1Name
+    <button class="bullet redFixed svelte-sj2mtv">-</button> myTable1Name
     <ul>
       <li class="svelte-sj2mtv">
-        <button class="bullet red svelte-sj2mtv">-</button> myColumn1Name
+        <button class="bullet redFixed svelte-sj2mtv">-</button> myColumn1Name
         <span class="redFixed svelte-sj2mtv">type mismatch:</span>
         <label><input type="checkbox" />adjust</label>
         <table class="comparison svelte-sj2mtv">
@@ -406,7 +406,7 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
 
 exports[`Schema > should render a constraint with a wrong clause 3`] = `
 "<div class="checkboxCollector svelte-sj2mtv">
-  <button disabled="" class="bullet red svelte-sj2mtv">.</button> Schema
+  <button disabled="" class="bullet redFixed svelte-sj2mtv">.</button> Schema
   <button class="reload svelte-dizlwz">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
@@ -416,10 +416,10 @@ exports[`Schema > should render a constraint with a wrong clause 3`] = `
 </div>
 <ul>
   <li class="svelte-sj2mtv">
-    <button class="bullet red svelte-sj2mtv">-</button> myTable1Name
+    <button class="bullet redFixed svelte-sj2mtv">-</button> myTable1Name
     <ul>
       <li class="svelte-sj2mtv">
-        <button disabled="" class="bullet red svelte-sj2mtv">.</button>
+        <button disabled="" class="bullet redFixed svelte-sj2mtv">.</button>
         <span class="nodeType svelte-sj2mtv">check</span> myConstraint1Name
         <span class="redFixed svelte-sj2mtv">clause mismatch:</span>
         <label><input type="checkbox" />recreate</label>
@@ -803,8 +803,8 @@ exports[`Schema > should render a missing column to be renamed to a unused 2`] =
         >
       </li>
       <li class="svelte-sj2mtv">
-        <button class="bullet red svelte-sj2mtv">+</button> myUnusedColumnName
-        <span class="redFixed svelte-sj2mtv">unused</span>
+        <button class="bullet redFixed svelte-sj2mtv">+</button>
+        myUnusedColumnName <span class="redFixed svelte-sj2mtv">unused</span>
         <label><input type="checkbox" />drop</label>
         <label
           ><select class="renameTo svelte-sj2mtv">
@@ -988,7 +988,7 @@ exports[`Schema > should render a missing sequence to be renamed to an unused 2`
     someType 55
   </li>
   <li class="svelte-sj2mtv">
-    <button disabled="" class="bullet yellow svelte-sj2mtv">.</button>
+    <button disabled="" class="bullet yellowFixed svelte-sj2mtv">.</button>
     <span class="nodeType svelte-sj2mtv">sequence</span> myUnusedSequenceName
     <span class="yellowFixed svelte-sj2mtv">unused</span>
     <label><input type="checkbox" />drop</label>
@@ -1144,8 +1144,8 @@ exports[`Schema > should render a missing table to be renamed to an unused 2`] =
     >
   </li>
   <li class="svelte-sj2mtv">
-    <button class="bullet yellow svelte-sj2mtv">+</button> myUnusedTableName
-    <span class="yellowFixed svelte-sj2mtv">unused</span>
+    <button class="bullet yellowFixed svelte-sj2mtv">+</button>
+    myUnusedTableName <span class="yellowFixed svelte-sj2mtv">unused</span>
     <label><input type="checkbox" />drop</label>
     <label
       ><select class="renameTo svelte-sj2mtv">
@@ -1199,7 +1199,7 @@ exports[`Schema > should render a multiple columns with a wrong type 2`] = `
 `;
 
 exports[`Schema > should render a multiple columns with a wrong type 3`] = `
-"<button disabled="" class="bullet red svelte-sj2mtv">.</button> Schema
+"<button disabled="" class="bullet redFixed svelte-sj2mtv">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
@@ -1221,7 +1221,7 @@ exports[`Schema > should render a multiple columns with a wrong type 4`] = `
 `;
 
 exports[`Schema > should render a multiple columns with a wrong type 5`] = `
-"<button disabled="" class="bullet red svelte-sj2mtv">.</button> Schema
+"<button disabled="" class="bullet redFixed svelte-sj2mtv">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
@@ -1276,7 +1276,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 2`] =
 `;
 
 exports[`Schema > should render a multiple constraints with a wrong clause 3`] = `
-"<button disabled="" class="bullet red svelte-sj2mtv">.</button> Schema
+"<button disabled="" class="bullet redFixed svelte-sj2mtv">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
@@ -1298,7 +1298,7 @@ exports[`Schema > should render a multiple constraints with a wrong clause 4`] =
 `;
 
 exports[`Schema > should render a multiple constraints with a wrong clause 5`] = `
-"<button disabled="" class="bullet red svelte-sj2mtv">.</button> Schema
+"<button disabled="" class="bullet redFixed svelte-sj2mtv">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
@@ -1787,8 +1787,8 @@ exports[`Schema > should render a unused column to be renamed to a missing 2`] =
     <button class="bullet red svelte-sj2mtv">-</button> myTableName
     <ul>
       <li class="svelte-sj2mtv">
-        <button class="bullet red svelte-sj2mtv">+</button> myUnusedColumnName
-        <span class="redFixed svelte-sj2mtv">unused</span>
+        <button class="bullet redFixed svelte-sj2mtv">+</button>
+        myUnusedColumnName <span class="redFixed svelte-sj2mtv">unused</span>
         <label><input type="checkbox" />drop</label>
         <label
           ><select class="renameTo svelte-sj2mtv">
@@ -1970,7 +1970,7 @@ exports[`Schema > should render a unused sequence to be renamed to a missing 2`]
 </div>
 <ul>
   <li class="svelte-sj2mtv">
-    <button disabled="" class="bullet yellow svelte-sj2mtv">.</button>
+    <button disabled="" class="bullet yellowFixed svelte-sj2mtv">.</button>
     <span class="nodeType svelte-sj2mtv">sequence</span> myUnusedSequenceName
     <span class="yellowFixed svelte-sj2mtv">unused</span>
     <label><input type="checkbox" />drop</label>
@@ -2118,8 +2118,8 @@ exports[`Schema > should render a unused table to be renamed to a missing 2`] = 
 </div>
 <ul>
   <li class="svelte-sj2mtv">
-    <button class="bullet yellow svelte-sj2mtv">+</button> myUnusedTableName
-    <span class="yellowFixed svelte-sj2mtv">unused</span>
+    <button class="bullet yellowFixed svelte-sj2mtv">+</button>
+    myUnusedTableName <span class="yellowFixed svelte-sj2mtv">unused</span>
     <label><input type="checkbox" />drop</label>
     <label
       ><select class="renameTo svelte-sj2mtv">
@@ -2233,7 +2233,7 @@ exports[`Schema > should render multiple missing nodes 5`] = `
 `;
 
 exports[`Schema > should render multiple missing nodes 6`] = `
-"<button disabled="" class="bullet red svelte-sj2mtv">.</button> Schema
+"<button disabled="" class="bullet redFixed svelte-sj2mtv">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
@@ -2255,7 +2255,7 @@ exports[`Schema > should render multiple missing nodes 7`] = `
 `;
 
 exports[`Schema > should render multiple missing nodes 8`] = `
-"<button disabled="" class="bullet red svelte-sj2mtv">.</button> Schema
+"<button disabled="" class="bullet redFixed svelte-sj2mtv">.</button> Schema
 <button class="reload svelte-dizlwz">🗘</button> <br />
 <label><input type="checkbox" />show all tables / sequences</label><br />
 <label
