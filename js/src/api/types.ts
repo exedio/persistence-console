@@ -67,6 +67,15 @@ export type SchemaMaintainResponse = {
   readonly elapsedNanos: number;
 };
 
+export type SchemaPatchRequest = {
+  readonly sql: string;
+};
+
+export type SchemaPatchResponse = {
+  readonly rows: number;
+  readonly elapsedNanos: number;
+};
+
 export type HashID = {
   readonly type: string;
   readonly name: string;

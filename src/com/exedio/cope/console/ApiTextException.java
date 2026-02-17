@@ -88,6 +88,10 @@ final class ApiTextException extends Exception {
     );
   }
 
+  static ApiTextException onException(final SQLException e) {
+    return badRequest(e.getMessage(), e); // TODO should be SC_FORBIDDEN
+  }
+
   private final int status;
 
   @Nonnull

@@ -1,10 +1,12 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { get } from "@/api/api";
+  import { get, post } from "@/api/api";
   import {
     type SchemaAlterResponse,
     isNotConnected,
     type Schema as ApiSchema,
+    type SchemaPatchRequest,
+    type SchemaPatchResponse,
   } from "@/api/types";
   import {
     Schema,
@@ -130,6 +132,19 @@
     return fix.joinable === "middle" || fix.joinable === "tail";
   }
 
+  function runPatches(): void {
+    let promise = Promise.resolve();
+    patches.forEach((p) => (promise = promise.then(() => runPatch(p.promise))));
+  }
+
+  function runPatch(request: Promise<SchemaAlterResponse>): void {
+    request.then((response) =>
+      post<SchemaPatchRequest, SchemaPatchResponse>("schema/patch", {
+        sql: response.sql,
+      }),
+    );
+  }
+
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
@@ -251,6 +266,7 @@
   </div>
   {#if patches.length > 0}
     <div class="sql">
+      <button class="run" onclick={() => runPatches()}>RUN</button>
       <label
         ><input type="checkbox" bind:checked={patchesEncodedForJava} />encoded
         for java</label
@@ -584,5 +600,9 @@
     top: 0;
     z-index: 1;
     background: white;
+  }
+
+  button.run {
+    float: right;
   }
 </style>
