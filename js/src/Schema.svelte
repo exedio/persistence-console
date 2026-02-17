@@ -532,8 +532,16 @@
     background: #dd3a3a;
   }
 
+  button.redFixed {
+    background: #d88d8d;
+  }
+
   button.yellow {
     background: #ffff00;
+  }
+
+  button.yellowFixed {
+    background: #f8f8a7;
   }
 
   span.nodeType {
