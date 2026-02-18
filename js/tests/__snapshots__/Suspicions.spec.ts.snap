@@ -4,7 +4,7 @@ exports[`Suspicions > should render a non-empty table 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
-    <button class="reload svelte-dizlwz">🗘</button>
+    <button class="reload svelte">🗘</button>
   </caption>
   <thead>
     <tr>
@@ -33,7 +33,7 @@ exports[`Suspicions > should render a non-empty table 2`] = `
 "<table class="grey">
   <caption>
     Suspicions
-    <button class="reload svelte-dizlwz">🗘</button>
+    <button class="reload svelte">🗘</button>
   </caption>
   <thead>
     <tr>
@@ -62,7 +62,7 @@ exports[`Suspicions > should render an empty table 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
-    <button class="reload svelte-dizlwz">🗘</button>
+    <button class="reload svelte">🗘</button>
   </caption>
   <thead>
     <tr>
@@ -83,7 +83,7 @@ exports[`Suspicions > should render an error message 1`] = `
 "<table class="grey">
   <caption>
     Suspicions
-    <button class="reload svelte-dizlwz">🗘</button>
+    <button class="reload svelte">🗘</button>
   </caption>
   <thead>
     <tr>

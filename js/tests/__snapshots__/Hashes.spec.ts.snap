@@ -1,20 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Hashes > should render a non-empty table 1`] = `
-"<table class="grey svelte-bbnarq">
+"<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte-dizlwz">🗘</button>
+    <button class="reload svelte">🗘</button>
   </caption>
   <thead>
-    <tr class="relative svelte-bbnarq">
+    <tr class="relative svelte">
       <th rowspan="2">Type</th>
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte-bbnarq">
-        Time<small>/ns</small>
-        <button class="measure svelte-bbnarq">🕐︎</button>
+      <th rowspan="2" class="time svelte">
+        Time<small>/ns</small> <button class="measure svelte">🕐︎</button>
       </th>
     </tr>
     <tr>
@@ -25,23 +24,23 @@ exports[`Hashes > should render a non-empty table 1`] = `
     </tr>
   </thead>
   <tbody>
-    <tr class="relative svelte-bbnarq">
-      <td><button class="hash svelte-bbnarq">↓</button> myType</td>
+    <tr class="relative svelte">
+      <td><button class="hash svelte">↓</button> myType</td>
       <td>myName</td>
       <td class="number">150</td>
       <td>myValidator</td>
       <td>myAlgorithmID</td>
       <td>myAlgorithmDescription</td>
-      <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+      <td class="number"><button class="measure svelte">🕐︎</button></td>
     </tr>
-    <tr class="relative svelte-bbnarq">
-      <td><button class="hash svelte-bbnarq">↓</button> myTypeWithoutLimit</td>
+    <tr class="relative svelte">
+      <td><button class="hash svelte">↓</button> myTypeWithoutLimit</td>
       <td>myNameWithoutLimit</td>
       <td class="number">155</td>
       <td class="notAvailable"></td>
       <td>myAlgorithmIDWithoutLimit</td>
       <td>myAlgorithmDescriptionWithoutLimit</td>
-      <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+      <td class="number"><button class="measure svelte">🕐︎</button></td>
     </tr>
   </tbody>
 </table>
@@ -49,20 +48,19 @@ exports[`Hashes > should render a non-empty table 1`] = `
 `;
 
 exports[`Hashes > should render a non-empty table 2`] = `
-"<table class="grey svelte-bbnarq">
+"<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte-dizlwz">🗘</button>
+    <button class="reload svelte">🗘</button>
   </caption>
   <thead>
-    <tr class="relative svelte-bbnarq">
+    <tr class="relative svelte">
       <th rowspan="2">Type</th>
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte-bbnarq">
-        Time<small>/ns</small>
-        <button class="measure svelte-bbnarq">🕐︎</button>
+      <th rowspan="2" class="time svelte">
+        Time<small>/ns</small> <button class="measure svelte">🕐︎</button>
       </th>
     </tr>
     <tr>
@@ -73,23 +71,23 @@ exports[`Hashes > should render a non-empty table 2`] = `
     </tr>
   </thead>
   <tbody>
-    <tr class="relative svelte-bbnarq">
-      <td><button class="hash svelte-bbnarq">↓</button> myType</td>
+    <tr class="relative svelte">
+      <td><button class="hash svelte">↓</button> myType</td>
       <td>myName</td>
       <td class="number">155</td>
       <td>myValidatorChanged</td>
       <td>myAlgorithmIDChanged</td>
       <td>myAlgorithmDescriptionChanged</td>
-      <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+      <td class="number"><button class="measure svelte">🕐︎</button></td>
     </tr>
-    <tr class="relative svelte-bbnarq">
-      <td><button class="hash svelte-bbnarq">↓</button> myTypeReloaded</td>
+    <tr class="relative svelte">
+      <td><button class="hash svelte">↓</button> myTypeReloaded</td>
       <td>myNameReloaded</td>
       <td class="number">155</td>
       <td>myValidatorReloaded</td>
       <td>myAlgorithmIDReloaded</td>
       <td>myAlgorithmDescriptionReloaded</td>
-      <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+      <td class="number"><button class="measure svelte">🕐︎</button></td>
     </tr>
   </tbody>
 </table>
@@ -97,164 +95,156 @@ exports[`Hashes > should render a non-empty table 2`] = `
 `;
 
 exports[`Hashes > should render a table body with all hashes measured 1`] = `
-"<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType1</td>
+"<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType1</td>
   <td>myName1</td>
   <td class="number">151</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID1</td>
   <td>myAlgorithmDescription1</td>
-  <td class="number">
-    50,010 <button class="measure svelte-bbnarq">🕐︎</button>
-  </td>
+  <td class="number">50,010 <button class="measure svelte">🕐︎</button></td>
 </tr>
-<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType2</td>
+<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType2</td>
   <td>myName2</td>
   <td class="number">152</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID2</td>
   <td>myAlgorithmDescription2</td>
-  <td class="number">
-    50,020 <button class="measure svelte-bbnarq">🕐︎</button>
-  </td>
+  <td class="number">50,020 <button class="measure svelte">🕐︎</button></td>
 </tr>
-<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType3</td>
+<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType3</td>
   <td>myName3</td>
   <td class="number">153</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID3</td>
   <td>myAlgorithmDescription3</td>
-  <td class="number">
-    50,030 <button class="measure svelte-bbnarq">🕐︎</button>
-  </td>
+  <td class="number">50,030 <button class="measure svelte">🕐︎</button></td>
 </tr>
 "
 `;
 
 exports[`Hashes > should render a table body with one hash expanded 1`] = `
-"<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType1</td>
+"<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType1</td>
   <td>myName1</td>
   <td class="number">151</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID1</td>
   <td>myAlgorithmDescription1</td>
-  <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+  <td class="number"><button class="measure svelte">🕐︎</button></td>
 </tr>
-<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">→</button> myType2</td>
+<tr class="relative svelte">
+  <td><button class="hash svelte">→</button> myType2</td>
   <td>myName2</td>
   <td class="number">152</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID2</td>
   <td>myAlgorithmDescription2</td>
-  <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+  <td class="number"><button class="measure svelte">🕐︎</button></td>
 </tr>
 <tr>
-  <td colspan="7" class="expansion svelte-bbnarq">
-    <input placeholder="Plain Text" class="svelte-bbnarq" />
-    <button>Hash</button> <br />
+  <td colspan="7" class="expansion svelte">
+    <input placeholder="Plain Text" class="svelte" /> <button>Hash</button>
+    <br />
     <small></small>
   </td>
 </tr>
-<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType3</td>
+<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType3</td>
   <td>myName3</td>
   <td class="number">153</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID3</td>
   <td>myAlgorithmDescription3</td>
-  <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+  <td class="number"><button class="measure svelte">🕐︎</button></td>
 </tr>
 "
 `;
 
 exports[`Hashes > should render a table body with one hash expanded 2`] = `
-"<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType1</td>
+"<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType1</td>
   <td>myName1</td>
   <td class="number">151</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID1</td>
   <td>myAlgorithmDescription1</td>
-  <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+  <td class="number"><button class="measure svelte">🕐︎</button></td>
 </tr>
-<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">→</button> myType2</td>
+<tr class="relative svelte">
+  <td><button class="hash svelte">→</button> myType2</td>
   <td>myName2</td>
   <td class="number">152</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID2</td>
   <td>myAlgorithmDescription2</td>
-  <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+  <td class="number"><button class="measure svelte">🕐︎</button></td>
 </tr>
 <tr>
-  <td colspan="7" class="expansion svelte-bbnarq">
-    <input placeholder="Plain Text" class="svelte-bbnarq" />
-    <button>Hash</button> <br />
+  <td colspan="7" class="expansion svelte">
+    <input placeholder="Plain Text" class="svelte" /> <button>Hash</button>
+    <br />
     <small>myHash2</small>
   </td>
 </tr>
-<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType3</td>
+<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType3</td>
   <td>myName3</td>
   <td class="number">153</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID3</td>
   <td>myAlgorithmDescription3</td>
-  <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+  <td class="number"><button class="measure svelte">🕐︎</button></td>
 </tr>
 "
 `;
 
 exports[`Hashes > should render a table body with one hash measured 1`] = `
-"<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType1</td>
+"<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType1</td>
   <td>myName1</td>
   <td class="number">151</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID1</td>
   <td>myAlgorithmDescription1</td>
-  <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+  <td class="number"><button class="measure svelte">🕐︎</button></td>
 </tr>
-<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType2</td>
+<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType2</td>
   <td>myName2</td>
   <td class="number">152</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID2</td>
   <td>myAlgorithmDescription2</td>
-  <td class="number">
-    50,020 <button class="measure svelte-bbnarq">🕐︎</button>
-  </td>
+  <td class="number">50,020 <button class="measure svelte">🕐︎</button></td>
 </tr>
-<tr class="relative svelte-bbnarq">
-  <td><button class="hash svelte-bbnarq">↓</button> myType3</td>
+<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType3</td>
   <td>myName3</td>
   <td class="number">153</td>
   <td class="notAvailable"></td>
   <td>myAlgorithmID3</td>
   <td>myAlgorithmDescription3</td>
-  <td class="number"><button class="measure svelte-bbnarq">🕐︎</button></td>
+  <td class="number"><button class="measure svelte">🕐︎</button></td>
 </tr>
 "
 `;
 
 exports[`Hashes > should render an empty table 1`] = `
-"<table class="grey svelte-bbnarq">
+"<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte-dizlwz">🗘</button>
+    <button class="reload svelte">🗘</button>
   </caption>
   <thead>
-    <tr class="relative svelte-bbnarq">
+    <tr class="relative svelte">
       <th rowspan="2">Type</th>
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte-bbnarq">Time<small>/ns</small></th>
+      <th rowspan="2" class="time svelte">Time<small>/ns</small></th>
     </tr>
     <tr>
       <th>Limit</th>
@@ -273,20 +263,18 @@ exports[`Hashes > should render an empty table 1`] = `
 `;
 
 exports[`Hashes > should render an error message 1`] = `
-"<table class="grey svelte-bbnarq">
+"<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte-dizlwz">🗘</button>
+    <button class="reload svelte">🗘</button>
   </caption>
   <thead>
-    <tr class="relative svelte-bbnarq">
+    <tr class="relative svelte">
       <th rowspan="2">Type</th>
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte-bbnarq">
-        Time<small>/ns</small> &nbsp;
-      </th>
+      <th rowspan="2" class="time svelte">Time<small>/ns</small> &nbsp;</th>
     </tr>
     <tr>
       <th>Limit</th>

@@ -6,8 +6,13 @@ export function flushPromises(): Promise<void> {
 }
 
 export function formatHtml(element: HTMLElement): Promise<string> {
-  return format(element.innerHTML.replace(/<!---->/g, ""), {
-    parser: "html",
-    plugins: [parsers],
-  });
+  return format(
+    element.innerHTML
+      .replace(/<!---->/g, "")
+      .replaceAll(/\bsvelte-[0-9a-z]{6}\b/g, "svelte"),
+    {
+      parser: "html",
+      plugins: [parsers],
+    },
+  );
 }
