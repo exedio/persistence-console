@@ -25,7 +25,7 @@
 
   function measureAll(hashes: Hash[]) {
     let p = Promise.resolve();
-    hashes.forEach((h) => (p = p.then(async () => await h.measure(errors))));
+    hashes.forEach((h) => (p = p.then(() => h.measure(errors))));
   }
 
   function toId(response: ApiHash): string {
