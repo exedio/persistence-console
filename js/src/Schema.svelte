@@ -132,6 +132,13 @@
     return fix.joinable === "middle" || fix.joinable === "tail";
   }
 
+  type PatchLog = {
+    readonly sql: string;
+    readonly response: SchemaPatchResponse;
+  };
+
+  const patchesLog: PatchLog[] = $state([]);
+
   function runPatches(): void {
     let promise = Promise.resolve();
     patches.forEach((p) => (promise = promise.then(() => runPatch(p.promise))));
@@ -141,7 +148,12 @@
     request.then((response) =>
       post<SchemaPatchRequest, SchemaPatchResponse>("schema/patch", {
         sql: response.sql,
-      }),
+      }).then((patchResponse) =>
+        patchesLog.push({
+          sql: response.sql,
+          response: patchResponse,
+        }),
+      ),
     );
   }
 
@@ -261,7 +273,7 @@
       {/if}
     {/await}
   </div>
-  {#if patches.length > 0}
+  {#if patchesLog.length > 0 || patches.length > 0}
     <div class="sql">
       <button class="run" onclick={() => runPatches()}>RUN</button>
       <label
@@ -272,6 +284,25 @@
         ><input type="checkbox" bind:checked={patchesAlterTablesJoined} />join
         ALTER TABLE statements on the same table</label
       ><br />
+      {#if patchesLog.length > 0}
+        <ul>
+          {#each patchesLog as { sql, response } (sql)}
+            <li>
+              {encodePatch(undefined, patchesEncodedForJava, sql)}
+              {#if patchesEncodedForJava}<!-- the end-of-line comment -->
+                //
+              {:else}
+                --
+              {/if}
+              {#if response.rows > 0}
+                {response.rows}&nbsp;rows,
+              {/if}
+              {Math.round(response.elapsedNanos / 1000000)}ms
+            </li>
+          {/each}
+        </ul>
+        <hr />
+      {/if}
       <ul>
         {#each patches as { fix, url, promise } (url)}
           <li class={{ more: hasMore(fix) }}>

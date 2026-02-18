@@ -2155,7 +2155,8 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledTimes(1);
     }
-    expect(sql()).toBeNull();
+    expect(sql(0)).toBeNull();
+    expect(sql(1)).toBeNull();
 
     const create1 = () => checkbox("create", 0);
     const create2 = () => checkbox("create", 1);
@@ -2173,12 +2174,13 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
+    expect(sql(1)).toBeNull();
 
     const run = () => button("RUN", 0);
     {
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(responseSuccessPatch(11, 1111));
-      mock.mockResolvedValueOnce(responseSuccessPatch(22, 2222));
+      mock.mockResolvedValueOnce(responseSuccessPatch(11, 1111090909));
+      mock.mockResolvedValueOnce(responseSuccessPatch(22, 2222090909));
       run().click();
       await flushPromises();
       expect(mock).toHaveBeenNthCalledWith(
@@ -2193,6 +2195,13 @@ describe("Schema", () => {
       );
       expect(mock).toHaveBeenCalledTimes(2);
     }
+    expect(await formatHtml(sql(0))).toMatchSnapshot();
+    expect(await formatHtml(sql(1))).toMatchSnapshot();
+
+    const encode = () => checkbox("encoded for java", 0);
+    encode().click();
+    await flushPromises();
+    expect(await formatHtml(sql(0))).toMatchSnapshot();
   });
 });
 
@@ -2266,8 +2275,8 @@ function button(text: string, index: number): HTMLButtonElement {
   )[index] as HTMLButtonElement;
 }
 
-function sql(): HTMLElement {
+function sql(index: number = 0): HTMLElement {
   const div = document.querySelectorAll(".sql").item(0);
   if (!div) return null as unknown as HTMLElement; // shall be null instead of undefined for historical reasons
-  return div.querySelectorAll("ul").item(0) as HTMLElement;
+  return div.querySelectorAll("ul").item(index) as HTMLElement;
 }
