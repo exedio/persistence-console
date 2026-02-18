@@ -148,9 +148,6 @@
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
-  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
-  type ReadonlyStringArray = readonly string[];
-
   // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
   function asInputElement(target: EventTarget | null): HTMLInputElement {
     return target as HTMLInputElement;
