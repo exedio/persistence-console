@@ -157,7 +157,7 @@
     );
   }
 
-  function flushPatches(): void {
+  function flushPatchesLog(): void {
     patchesLog.length = 0; // make it empty
   }
 
@@ -289,7 +289,7 @@
         ALTER TABLE statements on the same table</label
       ><br />
       {#if patchesLog.length > 0}
-        <button class="run" onclick={() => flushPatches()}>flush</button>
+        <button class="run" onclick={() => flushPatchesLog()}>flush</button>
         <ul>
           {#each patchesLog as { sql, response } (sql)}
             <li>
