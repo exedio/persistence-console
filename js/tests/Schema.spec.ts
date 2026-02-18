@@ -2202,6 +2202,12 @@ describe("Schema", () => {
     encode().click();
     await flushPromises();
     expect(await formatHtml(sql(0))).toMatchSnapshot();
+    expect(sql(1)).toBeTruthy();
+
+    const flush = () => button("flush", 0);
+    flush().click();
+    await flushPromises();
+    expect(sql(1)).toBeNull(); // log disappeared, patches is at 0 again
   });
 });
 
