@@ -2236,3 +2236,9 @@ exports[`Schema > should render multiple missing nodes 8`] = `
 ><br />
 "
 `;
+
+exports[`Schema > should run patches 1`] = `
+"<li class="svelte">"CREATE TABLE \\"myTable1Name\\"",</li>
+<li class="svelte">"CREATE TABLE \\"myTable2Name\\"",</li>
+"
+`;

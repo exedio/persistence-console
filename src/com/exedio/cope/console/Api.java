@@ -98,6 +98,13 @@ final class Api {
         ),
         response
       );
+      case "schema/patch" -> writeJson(
+        SchemaPatchApi.patch(
+          model,
+          readJsonPost(SchemaPatchApi.Request.class, request)
+        ),
+        response
+      );
       case "suspicions" -> {
         requireGet(request);
         writeJson(SuspicionsApi.get(model), response);

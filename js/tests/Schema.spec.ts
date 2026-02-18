@@ -15,6 +15,8 @@ import type {
   ConnectRequest,
   ConnectResponse,
   Schema as ApiSchema,
+  SchemaPatchResponse,
+  SchemaPatchRequest,
 } from "@/api/types";
 
 describe("Schema", () => {
@@ -2138,6 +2140,60 @@ describe("Schema", () => {
     await flushPromises();
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
+
+  it("should run patches", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            { name: "myTable1Name", existence: "missing" },
+            { name: "myTable2Name", existence: "missing" },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(sql()).toBeNull();
+
+    const create1 = () => checkbox("create", 0);
+    const create2 = () => checkbox("create", 1);
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter('CREATE TABLE "myTable1Name"'),
+      );
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter('CREATE TABLE "myTable2Name"'),
+      );
+      create1().click();
+      create2().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(2);
+    }
+    expect(await formatHtml(sql())).toMatchSnapshot();
+
+    const run = () => button("RUN", 0);
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(responseSuccessPatch(11, 1111));
+      mock.mockResolvedValueOnce(responseSuccessPatch(22, 2222));
+      run().click();
+      await flushPromises();
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
+        "/myApiPath/schema/patch",
+        requestPatch('CREATE TABLE "myTable1Name"'),
+      );
+      expect(mock).toHaveBeenNthCalledWith(
+        2,
+        "/myApiPath/schema/patch",
+        requestPatch('CREATE TABLE "myTable2Name"'),
+      );
+      expect(mock).toHaveBeenCalledTimes(2);
+    }
+  });
 });
 
 async function mountComponent() {
@@ -2157,6 +2213,19 @@ function responseSuccessAlter(sql: string) {
   return responseSuccess({
     sql: sql,
   } satisfies SchemaAlterResponse);
+}
+
+function requestPatch(sql: string) {
+  return request({
+    sql,
+  } satisfies SchemaPatchRequest);
+}
+
+function responseSuccessPatch(rows: number, elapsedNanos: number) {
+  return responseSuccess({
+    rows,
+    elapsedNanos,
+  } satisfies SchemaPatchResponse);
 }
 
 function checkbox(labelText: string, index: number): HTMLInputElement {
@@ -2189,6 +2258,12 @@ function select(firstOptionText: string, index: number = 0): HTMLSelectElement {
   return Array.from(document.querySelectorAll("select")).filter(
     (select) => select.options[0]?.textContent === firstOptionText,
   )[index] as HTMLSelectElement;
+}
+
+function button(text: string, index: number): HTMLButtonElement {
+  return Array.from(document.querySelectorAll("button")).filter(
+    (button) => button.textContent === text,
+  )[index] as HTMLButtonElement;
 }
 
 function sql(): HTMLElement {
