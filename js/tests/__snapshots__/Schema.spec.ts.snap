@@ -2242,3 +2242,21 @@ exports[`Schema > should run patches 1`] = `
 <li class="svelte">"CREATE TABLE \\"myTable2Name\\"",</li>
 "
 `;
+
+exports[`Schema > should run patches 2`] = `
+"<li class="svelte">"CREATE TABLE \\"myTable1Name\\"", // 11&nbsp;rows, 1111ms</li>
+<li class="svelte">"CREATE TABLE \\"myTable2Name\\"", // 22&nbsp;rows, 2222ms</li>
+"
+`;
+
+exports[`Schema > should run patches 3`] = `
+"<li class="svelte">"CREATE TABLE \\"myTable1Name\\"",</li>
+<li class="svelte">"CREATE TABLE \\"myTable2Name\\"",</li>
+"
+`;
+
+exports[`Schema > should run patches 4`] = `
+"<li class="svelte">CREATE TABLE "myTable1Name"; -- 11&nbsp;rows, 1111ms</li>
+<li class="svelte">CREATE TABLE "myTable2Name"; -- 22&nbsp;rows, 2222ms</li>
+"
+`;
