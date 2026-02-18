@@ -2211,7 +2211,7 @@ function checkboxCollector(): HTMLElement {
 
 function responseSuccessAlter(sql: string) {
   return responseSuccess({
-    sql: sql,
+    sql,
   } satisfies SchemaAlterResponse);
 }
 

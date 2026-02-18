@@ -301,7 +301,7 @@ function maintain(): HTMLElement {
 
 function responseSuccessMaintain(elapsedNanos: number = 123456789) {
   return responseSuccess({
-    elapsedNanos: elapsedNanos,
+    elapsedNanos,
   } satisfies SchemaMaintainResponse);
 }
 
