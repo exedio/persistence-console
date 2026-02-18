@@ -760,6 +760,10 @@ export type ExpandableBullet = Bullet & {
   expanded: boolean;
 };
 
+export type AdditionalErrors = {
+  readonly additionalErrors: readonly string[];
+};
+
 function pushFixed(result: FixedFixable[], fixable: Fixable) {
   if (fixable.fix) result.push(fixable as FixedFixable);
 }
