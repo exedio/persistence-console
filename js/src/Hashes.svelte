@@ -24,8 +24,8 @@
   const errors: Error[] = $state([]);
 
   function measureAll(hashes: Hash[]) {
-    let p = Promise.resolve();
-    hashes.forEach((h) => (p = p.then(() => h.measure(errors))));
+    let promise = Promise.resolve();
+    hashes.forEach((h) => (promise = promise.then(() => h.measure(errors))));
   }
 
   function toId(response: ApiHash): string {
