@@ -35,11 +35,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: [
-            {
-              name: "myOnlyName",
-            },
-          ],
+          tables: [{ name: "myOnlyName" }],
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -55,11 +51,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: [
-            {
-              name: "myOnlyName",
-            },
-          ],
+          tables: [{ name: "myOnlyName" }],
         } satisfies ApiSchema),
       );
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
@@ -72,11 +64,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: [
-            {
-              name: "myOnlyNameReloaded",
-            },
-          ],
+          tables: [{ name: "myOnlyNameReloaded" }],
         } satisfies ApiSchema),
       );
       (document.querySelectorAll(".reload").item(0) as HTMLElement).click();
@@ -94,12 +82,7 @@ describe("Schema", () => {
           tables: [
             {
               name: "myTable1Name",
-              columns: [
-                {
-                  name: "myColumn1Name",
-                  type: "myColumn1Type",
-                },
-              ],
+              columns: [{ name: "myColumn1Name", type: "myColumn1Type" }],
             },
           ],
         } satisfies ApiSchema),
@@ -186,12 +169,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: [
-            {
-              name: "myTable1Name",
-              existence: "missing",
-            },
-          ],
+          tables: [{ name: "myTable1Name", existence: "missing" }],
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -228,12 +206,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: [
-            {
-              name: "myTable1Name",
-              existence: "missing",
-            },
-          ],
+          tables: [{ name: "myTable1Name", existence: "missing" }],
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -265,12 +238,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: [
-            {
-              name: "myTable1Name",
-              existence: "unused",
-            },
-          ],
+          tables: [{ name: "myTable1Name", existence: "unused" }],
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -308,18 +276,9 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce(
         responseSuccess({
           tables: [
-            {
-              name: "myUnusedTableName",
-              existence: "unused",
-            },
-            {
-              name: "myMissingTableName",
-              existence: "missing",
-            },
-            {
-              name: "myMissingTableName2",
-              existence: "missing",
-            },
+            { name: "myUnusedTableName", existence: "unused" },
+            { name: "myMissingTableName", existence: "missing" },
+            { name: "myMissingTableName2", existence: "missing" },
           ],
         } satisfies ApiSchema),
       );
@@ -370,18 +329,9 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce(
         responseSuccess({
           tables: [
-            {
-              name: "myMissingTableName",
-              existence: "missing",
-            },
-            {
-              name: "myUnusedTableName",
-              existence: "unused",
-            },
-            {
-              name: "myUnusedTableName2",
-              existence: "unused",
-            },
+            { name: "myMissingTableName", existence: "missing" },
+            { name: "myUnusedTableName", existence: "unused" },
+            { name: "myUnusedTableName2", existence: "unused" },
           ],
         } satisfies ApiSchema),
       );
@@ -1284,13 +1234,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          sequences: [
-            {
-              name: "myOnlyName",
-              type: "myType",
-              start: 55,
-            },
-          ],
+          sequences: [{ name: "myOnlyName", type: "myType", start: 55 }],
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -1584,45 +1528,22 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce(
         responseSuccess({
           tables: [
-            {
-              name: "tab1ok",
-            },
-            {
-              name: "tab2ok",
-            },
-            {
-              name: "tab3missing",
-              existence: "missing",
-            },
-            {
-              name: "tab4ok",
-            },
-            {
-              name: "tab5ok",
-            },
+            { name: "tab1ok" },
+            { name: "tab2ok" },
+            { name: "tab3missing", existence: "missing" },
+            { name: "tab4ok" },
+            { name: "tab5ok" },
           ],
           sequences: [
-            {
-              name: "seq1ok",
-              type: "someType",
-              start: 55,
-            },
-            {
-              name: "seq2ok",
-              type: "someType",
-              start: 55,
-            },
+            { name: "seq1ok", type: "someType", start: 55 },
+            { name: "seq2ok", type: "someType", start: 55 },
             {
               name: "seq3missing",
               type: "someType",
               start: 55,
               existence: "unused",
             },
-            {
-              name: "seq4ok",
-              type: "someType",
-              start: 55,
-            },
+            { name: "seq4ok", type: "someType", start: 55 },
           ],
         } satisfies ApiSchema),
       );
@@ -1669,10 +1590,7 @@ describe("Schema", () => {
                 },
               ],
             },
-            {
-              name: "tableMissing1",
-              existence: "missing",
-            },
+            { name: "tableMissing1", existence: "missing" },
           ],
           sequences: [
             {
@@ -1836,18 +1754,12 @@ describe("Schema", () => {
               name: "collapsedColumn",
               type: "collapsedColumnType",
               constraints: [
-                {
-                  name: "collapsedColumnConstraint",
-                  type: "PrimaryKey",
-                },
+                { name: "collapsedColumnConstraint", type: "PrimaryKey" },
               ],
             },
           ],
           constraints: [
-            {
-              name: "expandedTableConstraintName",
-              type: "PrimaryKey",
-            },
+            { name: "expandedTableConstraintName", type: "PrimaryKey" },
           ],
         },
         {
@@ -1865,10 +1777,7 @@ describe("Schema", () => {
             },
           ],
           constraints: [
-            {
-              name: "constraintInCollapsedTable",
-              type: "PrimaryKey",
-            },
+            { name: "constraintInCollapsedTable", type: "PrimaryKey" },
           ],
         },
       ],
@@ -1992,12 +1901,7 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce(responseSuccess({} satisfies ConnectResponse));
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: [
-            {
-              name: "myTable1Name",
-              existence: "missing",
-            },
-          ],
+          tables: [{ name: "myTable1Name", existence: "missing" }],
         } satisfies ApiSchema),
       );
       (
@@ -2039,12 +1943,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccess({
-          tables: [
-            {
-              name: "myTable1Name",
-              existence: "missing",
-            },
-          ],
+          tables: [{ name: "myTable1Name", existence: "missing" }],
         } satisfies ApiSchema),
       );
       await mountComponent();
@@ -2079,21 +1978,9 @@ describe("Schema", () => {
             {
               name: "myTableName",
               columns: [
-                {
-                  name: "myColumn1Name",
-                  type: "string",
-                  existence: "missing",
-                },
-                {
-                  name: "myColumn2Name",
-                  type: "string",
-                  existence: "missing",
-                },
-                {
-                  name: "myColumn3Name",
-                  type: "string",
-                  existence: "missing",
-                },
+                { name: "myColumn1Name", type: "string", existence: "missing" },
+                { name: "myColumn2Name", type: "string", existence: "missing" },
+                { name: "myColumn3Name", type: "string", existence: "missing" },
               ],
             },
           ],
