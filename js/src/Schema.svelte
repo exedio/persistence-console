@@ -9,6 +9,7 @@
   import {
     Schema,
     type Existence,
+    type AdditionalErrors,
     type Comparison,
     type Constraint,
     type Bullet,
@@ -182,7 +183,7 @@
                 table.renameTo(schema),
               )}
               {#if table.expanded}
-                {@render additionalErrors(table.additionalErrors)}
+                {@render additionalErrors(table)}
                 {#if table.columns().length || table.constraints().length}
                   <ul in:fly={{ y: -10, duration: 200 }}>
                     {#each table.columns() as column (column.name)}
@@ -202,7 +203,7 @@
                           column.expanded,
                         )}
                         {#if column.expanded}
-                          {@render additionalErrors(column.additionalErrors)}
+                          {@render additionalErrors(column)}
                           {#if column.constraints().length > 0}
                             <ul in:fly={{ y: -10, duration: 200 }}>
                               {@render constraints(column.constraints())}
@@ -234,7 +235,7 @@
               )}
               {@render comparison(sequence, sequence.type, undefined, true)}
               {@render comparison(sequence, sequence.start, undefined, true)}
-              {@render additionalErrors(sequence.additionalErrors)}
+              {@render additionalErrors(sequence)}
             </li>
           {/if}
         {/each}
@@ -321,7 +322,7 @@
       {constraint.nameShort()}
       {@render existence(constraint.existence, constraint, [], [])}
       {@render comparison(constraint, constraint.clause, "recreate", true)}
-      {@render additionalErrors(constraint.additionalErrors)}
+      {@render additionalErrors(constraint)}
     </li>
   {/each}
 {/snippet}
@@ -472,10 +473,10 @@
   {/if}
 {/snippet}
 
-{#snippet additionalErrors(rr: ReadonlyStringArray)}
-  {#if rr.length}
+{#snippet additionalErrors(rr: AdditionalErrors)}
+  {#if rr.additionalErrors.length}
     <ul>
-      {#each rr as r}
+      {#each rr.additionalErrors as r}
         <li>{r}</li>
       {/each}
     </ul>
