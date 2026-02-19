@@ -2045,16 +2045,14 @@ describe("Schema", () => {
     expect(sql(0)).toBeNull();
     expect(sql(1)).toBeNull();
 
+    const sql1 = 'CREATE TABLE "myTable1Name"';
+    const sql2 = 'CREATE TABLE "myTable2Name"';
     {
       const create1 = () => checkbox("create", 0);
       const create2 = () => checkbox("create", 1);
       const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccessAlter('CREATE TABLE "myTable1Name"'),
-      );
-      mock.mockResolvedValueOnce(
-        responseSuccessAlter('CREATE TABLE "myTable2Name"'),
-      );
+      mock.mockResolvedValueOnce(responseSuccessAlter(sql1));
+      mock.mockResolvedValueOnce(responseSuccessAlter(sql2));
       create1().click();
       create2().click();
       await flushPromises();
@@ -2073,12 +2071,12 @@ describe("Schema", () => {
       expect(mock).toHaveBeenNthCalledWith(
         1,
         "/myApiPath/schema/patch",
-        requestPatch('CREATE TABLE "myTable1Name"'),
+        requestPatch(sql1),
       );
       expect(mock).toHaveBeenNthCalledWith(
         2,
         "/myApiPath/schema/patch",
-        requestPatch('CREATE TABLE "myTable2Name"'),
+        requestPatch(sql2),
       );
       expect(mock).toHaveBeenCalledTimes(2);
     }
@@ -2094,6 +2092,7 @@ describe("Schema", () => {
     const flush = () => button("flush", 0);
     flush().click();
     await flushPromises();
+    expect(sql(0)).toBeTruthy();
     expect(sql(1)).toBeNull(); // log disappeared, patches is at 0 again
   });
 });
