@@ -2045,9 +2045,9 @@ describe("Schema", () => {
     expect(sql(0)).toBeNull();
     expect(sql(1)).toBeNull();
 
-    const create1 = () => checkbox("create", 0);
-    const create2 = () => checkbox("create", 1);
     {
+      const create1 = () => checkbox("create", 0);
+      const create2 = () => checkbox("create", 1);
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
         responseSuccessAlter('CREATE TABLE "myTable1Name"'),
