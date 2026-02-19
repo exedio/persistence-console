@@ -143,10 +143,11 @@
   function runPatches(): void {
     let promise = Promise.resolve();
     patches.forEach((p) => (promise = promise.then(() => runPatch(p.promise))));
+    promise.catch(() => {}); // error handled in runPatch already
   }
 
-  function runPatch(request: Promise<SchemaAlterResponse>): void {
-    request.then((response) =>
+  function runPatch(request: Promise<SchemaAlterResponse>): Promise<void> {
+    return request.then((response) =>
       post<SchemaPatchRequest, SchemaPatchResponse>("schema/patch", {
         sql: response.sql,
       }).then(
@@ -161,6 +162,7 @@
             sql: response.sql,
             failure: error.message,
           });
+          return Promise.reject(error); // rethrow the error to stop the chain in runPatches
         },
       ),
     );
