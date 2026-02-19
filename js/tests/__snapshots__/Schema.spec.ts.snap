@@ -2260,3 +2260,27 @@ exports[`Schema > should run patches 4`] = `
 <li class="svelte">CREATE TABLE "myTable2Name"; -- 22&nbsp;rows, 2222ms</li>
 "
 `;
+
+exports[`Schema > should run patches with error 1`] = `
+"<li class="failure svelte">
+  "CREATE TABLE \\"myTable1Name\\"", <br />
+  // table "myTable1Name" already exists
+</li>
+<li class="failure svelte">
+  "CREATE TABLE \\"myTable2Name\\"", <br />
+  // table "myTable2Name" already exists
+</li>
+"
+`;
+
+exports[`Schema > should run patches with error 2`] = `
+"<li class="failure svelte">
+  CREATE TABLE "myTable1Name"; <br />
+  -- table "myTable1Name" already exists
+</li>
+<li class="failure svelte">
+  CREATE TABLE "myTable2Name"; <br />
+  -- table "myTable2Name" already exists
+</li>
+"
+`;

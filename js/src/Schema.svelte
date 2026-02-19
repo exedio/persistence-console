@@ -134,7 +134,8 @@
 
   type PatchLog = {
     readonly sql: string;
-    readonly response: SchemaPatchResponse;
+    readonly response?: SchemaPatchResponse;
+    readonly failure?: string;
   };
 
   const patchesLog: PatchLog[] = $state([]);
@@ -148,13 +149,27 @@
     request.then((response) =>
       post<SchemaPatchRequest, SchemaPatchResponse>("schema/patch", {
         sql: response.sql,
-      }).then((patchResponse) =>
-        patchesLog.push({
-          sql: response.sql,
-          response: patchResponse,
-        }),
-      ),
+      })
+        .then((patchResponse) =>
+          patchesLog.push({
+            sql: response.sql,
+            response: patchResponse,
+          }),
+        )
+        .catch((error) =>
+          patchesLog.push({
+            sql: response.sql,
+            failure: error.message,
+          }),
+        ),
     );
+  }
+
+  function truncatePatchFailure(message: string) {
+    const prefix = "schema/patch: response code 400 ";
+    if (!message.startsWith(prefix)) return message;
+
+    return message.substring(prefix.length);
   }
 
   function flushPatchesLog(): void {
@@ -291,18 +306,26 @@
       {#if patchesLog.length > 0}
         <button class="run" onclick={() => flushPatchesLog()}>flush</button>
         <ul>
-          {#each patchesLog as { sql, response }}
-            <li>
+          {#each patchesLog as { sql, response, failure }}
+            <li class={{ failure }}>
               {encodePatch(undefined, patchesEncodedForJava, sql)}
+              {#if failure}
+                <br />
+              {/if}
               {#if patchesEncodedForJava}<!-- the end-of-line comment -->
                 //
               {:else}
                 --
               {/if}
-              {#if response.rows > 0}
-                {response.rows}&nbsp;rows,
+              {#if response}
+                {#if response.rows > 0}
+                  {response.rows}&nbsp;rows,
+                {/if}
+                {Math.round(response.elapsedNanos / 1000000)}ms
               {/if}
-              {Math.round(response.elapsedNanos / 1000000)}ms
+              {#if failure}
+                {truncatePatchFailure(failure)}
+              {/if}
             </li>
           {/each}
         </ul>
@@ -561,6 +584,9 @@
       li.more {
         list-style-type: circle;
         padding-left: 2em;
+      }
+      li.failure {
+        color: #880000;
       }
     }
   }
