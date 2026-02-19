@@ -2095,6 +2095,72 @@ describe("Schema", () => {
     expect(sql(0)).toBeTruthy();
     expect(sql(1)).toBeNull(); // log disappeared, patches is at 0 again
   });
+
+  it("should run patches with error", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            { name: "myTable1Name", existence: "missing" },
+            { name: "myTable2Name", existence: "missing" },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    expect(sql(0)).toBeNull();
+    expect(sql(1)).toBeNull();
+
+    const sql1 = 'CREATE TABLE "myTable1Name"';
+    const sql2 = 'CREATE TABLE "myTable2Name"';
+    {
+      const create1 = () => checkbox("create", 0);
+      const create2 = () => checkbox("create", 1);
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(responseSuccessAlter(sql1));
+      mock.mockResolvedValueOnce(responseSuccessAlter(sql2));
+      create1().click();
+      create2().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledTimes(2);
+    }
+    expect(sql(0)).toBeTruthy();
+    expect(sql(1)).toBeNull();
+
+    const run = () => button("RUN", 0);
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseFailure('table "myTable1Name" already exists'),
+      );
+      mock.mockResolvedValueOnce(
+        responseFailure('table "myTable2Name" already exists'),
+      );
+      run().click();
+      await flushPromises();
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
+        "/myApiPath/schema/patch",
+        requestPatch(sql1),
+      );
+      expect(mock).toHaveBeenNthCalledWith(
+        2,
+        "/myApiPath/schema/patch",
+        requestPatch(sql2),
+      );
+      expect(mock).toHaveBeenCalledTimes(2);
+    }
+    expect(await formatHtml(sql(0))).toMatchSnapshot();
+    expect(sql(1)).toBeTruthy();
+
+    const encode = () => checkbox("encoded for java", 0);
+    encode().click();
+    await flushPromises();
+    expect(await formatHtml(sql(0))).toMatchSnapshot();
+    expect(sql(1)).toBeTruthy();
+  });
 });
 
 async function mountComponent() {
