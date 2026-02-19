@@ -291,7 +291,7 @@
       {#if patchesLog.length > 0}
         <button class="run" onclick={() => flushPatchesLog()}>flush</button>
         <ul>
-          {#each patchesLog as { sql, response } (sql)}
+          {#each patchesLog as { sql, response }}
             <li>
               {encodePatch(undefined, patchesEncodedForJava, sql)}
               {#if patchesEncodedForJava}<!-- the end-of-line comment -->
