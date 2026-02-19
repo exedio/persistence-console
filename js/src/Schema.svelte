@@ -149,19 +149,18 @@
     request.then((response) =>
       post<SchemaPatchRequest, SchemaPatchResponse>("schema/patch", {
         sql: response.sql,
-      })
-        .then((patchResponse) =>
+      }).then(
+        (patchResponse) =>
           patchesLog.push({
             sql: response.sql,
             success: patchResponse,
           }),
-        )
-        .catch((error) =>
+        (error) =>
           patchesLog.push({
             sql: response.sql,
             failure: error.message,
           }),
-        ),
+      ),
     );
   }
 
