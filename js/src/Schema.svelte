@@ -134,7 +134,7 @@
 
   type PatchLog = {
     readonly sql: string;
-    readonly response?: SchemaPatchResponse;
+    readonly success?: SchemaPatchResponse;
     readonly failure?: string;
   };
 
@@ -153,7 +153,7 @@
         .then((patchResponse) =>
           patchesLog.push({
             sql: response.sql,
-            response: patchResponse,
+            success: patchResponse,
           }),
         )
         .catch((error) =>
@@ -306,7 +306,7 @@
       {#if patchesLog.length > 0}
         <button class="run" onclick={() => flushPatchesLog()}>flush</button>
         <ul>
-          {#each patchesLog as { sql, response, failure }}
+          {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
               {encodePatch(undefined, patchesEncodedForJava, sql)}
               {#if failure}
@@ -317,11 +317,11 @@
               {:else}
                 --
               {/if}
-              {#if response}
-                {#if response.rows > 0}
-                  {response.rows}&nbsp;rows,
+              {#if success}
+                {#if success.rows > 0}
+                  {success.rows}&nbsp;rows,
                 {/if}
-                {Math.round(response.elapsedNanos / 1000000)}ms
+                {Math.round(success.elapsedNanos / 1000000)}ms
               {/if}
               {#if failure}
                 {truncatePatchFailure(failure)}
