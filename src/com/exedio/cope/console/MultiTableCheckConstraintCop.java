@@ -18,8 +18,6 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
-
 import com.exedio.cope.CheckConstraint;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;

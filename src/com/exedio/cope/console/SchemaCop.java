@@ -81,12 +81,6 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		};
 	}
 
-	static final String HELP_IMPACT_FATAL =
-			"IMPACT: " +
-			"Any failures here invalidate all contracts of the cope framework. " +
-			"Your application may either fail with errors or silently destroy your data. " +
-			"DANGER ZONE.";
-
 	@Override
 	ChecklistIcon getChecklistIcon()
 	{
