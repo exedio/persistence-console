@@ -2137,12 +2137,10 @@ describe("Schema", () => {
       );
       run().click();
       await flushPromises();
-      expect(mock).toHaveBeenNthCalledWith(
-        1,
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
         "/myApiPath/schema/patch",
         requestPatch(sql1),
       );
-      expect(mock).toHaveBeenCalledTimes(1);
     }
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(sql(1)).toBeTruthy();
