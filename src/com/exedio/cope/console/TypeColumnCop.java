@@ -18,8 +18,6 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.SchemaCop.HELP_IMPACT_FATAL;
-
 import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.ItemField;

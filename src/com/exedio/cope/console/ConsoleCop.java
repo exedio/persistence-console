@@ -140,6 +140,12 @@ abstract class ConsoleCop<S> extends Cop
 		this.app = args.app;
 	}
 
+	static final String HELP_IMPACT_FATAL =
+			"IMPACT: " +
+			"Any failures here invalidate all contracts of the cope framework. " +
+			"Your application may either fail with errors or silently destroy your data. " +
+			"DANGER ZONE.";
+
 	long start = 0;
 
 	/**
