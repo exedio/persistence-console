@@ -150,16 +150,18 @@
       post<SchemaPatchRequest, SchemaPatchResponse>("schema/patch", {
         sql: response.sql,
       }).then(
-        (patchResponse) =>
+        (patchResponse) => {
           patchesLog.push({
             sql: response.sql,
             success: patchResponse,
-          }),
-        (error) =>
+          });
+        },
+        (error) => {
           patchesLog.push({
             sql: response.sql,
             failure: error.message,
-          }),
+          });
+        },
       ),
     );
   }
