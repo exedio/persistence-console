@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 {
-	static final String TAB = "schema";
+	static final String TAB = "schemaLegacy";
 	private static final String DETAILED = "dt";
 
 	final boolean detailed;

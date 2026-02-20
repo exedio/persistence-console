@@ -23,7 +23,7 @@ import java.util.List;
 
 final class SchemaNewCop {
 
-  static final String TAB = "schemaNew";
+  static final String TAB = "schema";
 
   static JsCop newCop(final Args args) {
     return new JsCop(TAB, "schema", "Schema", args, List.of(), null);
