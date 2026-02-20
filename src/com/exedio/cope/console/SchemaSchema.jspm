@@ -35,7 +35,7 @@ final class SchemaSchema_Jspm
 	private static final String DELETE = "schema.delete";
 
 	static void writeBody(
-			final SchemaCop cop,
+			final SchemaLegacyCop cop,
 			final Out out)
 	{
 		final HttpServletRequest request = out.request;

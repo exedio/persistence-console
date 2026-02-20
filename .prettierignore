@@ -57,7 +57,7 @@
 /src/com/exedio/cope/console/RevisionLine.java
 /src/com/exedio/cope/console/RevisionSheetCop.java
 /src/com/exedio/cope/console/SavepointCop.java
-/src/com/exedio/cope/console/SchemaCop.java
+/src/com/exedio/cope/console/SchemaLegacyCop.java
 /src/com/exedio/cope/console/schema.js
 /src/com/exedio/cope/console/SequenceCop.java
 /src/com/exedio/cope/console/SerializationCheckCop.java

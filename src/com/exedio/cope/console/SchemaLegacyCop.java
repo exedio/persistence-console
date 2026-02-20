@@ -31,19 +31,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 
-final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
+final class SchemaLegacyCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 {
 	static final String TAB = "schemaLegacy";
 	private static final String DETAILED = "dt";
 
 	final boolean detailed;
 
-	SchemaCop(final Args args)
+	SchemaLegacyCop(final Args args)
 	{
 		this(args, false);
 	}
 
-	private SchemaCop(final Args args, final boolean detailed)
+	private SchemaLegacyCop(final Args args, final boolean detailed)
 	{
 		super(TAB, "Schema (legacy)", args);
 		this.detailed = detailed;
@@ -51,20 +51,20 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 		addParameter(DETAILED, detailed);
 	}
 
-	static SchemaCop getSchemaCop(final Args args, final HttpServletRequest request)
+	static SchemaLegacyCop getSchemaCop(final Args args, final HttpServletRequest request)
 	{
-		return new SchemaCop(args, getBooleanParameter(request, DETAILED));
+		return new SchemaLegacyCop(args, getBooleanParameter(request, DETAILED));
 	}
 
 	@Override
-	protected SchemaCop newArgs(final Args args)
+	protected SchemaLegacyCop newArgs(final Args args)
 	{
-		return new SchemaCop(args, detailed);
+		return new SchemaLegacyCop(args, detailed);
 	}
 
-	SchemaCop toToggleDetailed()
+	SchemaLegacyCop toToggleDetailed()
 	{
-		return new SchemaCop(args, !detailed);
+		return new SchemaLegacyCop(args, !detailed);
 	}
 
 	@Override

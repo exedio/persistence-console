@@ -36,7 +36,7 @@ final class SchemaConstraints_Jspm
 	private static final String DROP = "constraint.drop";
 
 	static void writeBody(
-			final SchemaCop cop,
+			final SchemaLegacyCop cop,
 			final Out out)
 	{
 		final HttpServletRequest request = out.request;
