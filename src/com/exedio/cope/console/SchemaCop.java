@@ -21,7 +21,7 @@ package com.exedio.cope.console;
 import com.exedio.cope.console.ConsoleCop.Args;
 import java.util.List;
 
-final class SchemaNewCop {
+final class SchemaCop {
 
   static final String TAB = "schema";
 
@@ -29,7 +29,7 @@ final class SchemaNewCop {
     return new JsCop(TAB, "schema", "Schema", args, List.of(), null);
   }
 
-  private SchemaNewCop() {
+  private SchemaCop() {
     // prevent instantiation
   }
 }
