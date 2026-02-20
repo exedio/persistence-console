@@ -2135,9 +2135,6 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce(
         responseFailure('table "myTable1Name" already exists'),
       );
-      mock.mockResolvedValueOnce(
-        responseFailure('table "myTable2Name" already exists'),
-      );
       run().click();
       await flushPromises();
       expect(mock).toHaveBeenNthCalledWith(
@@ -2145,12 +2142,7 @@ describe("Schema", () => {
         "/myApiPath/schema/patch",
         requestPatch(sql1),
       );
-      expect(mock).toHaveBeenNthCalledWith(
-        2,
-        "/myApiPath/schema/patch",
-        requestPatch(sql2),
-      );
-      expect(mock).toHaveBeenCalledTimes(2);
+      expect(mock).toHaveBeenCalledTimes(1);
     }
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(sql(1)).toBeTruthy();

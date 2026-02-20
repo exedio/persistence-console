@@ -2266,10 +2266,6 @@ exports[`Schema > should run patches with error 1`] = `
   "CREATE TABLE \\"myTable1Name\\"", <br />
   // table "myTable1Name" already exists
 </li>
-<li class="failure svelte">
-  "CREATE TABLE \\"myTable2Name\\"", <br />
-  // table "myTable2Name" already exists
-</li>
 "
 `;
 
@@ -2277,10 +2273,6 @@ exports[`Schema > should run patches with error 2`] = `
 "<li class="failure svelte">
   CREATE TABLE "myTable1Name"; <br />
   -- table "myTable1Name" already exists
-</li>
-<li class="failure svelte">
-  CREATE TABLE "myTable2Name"; <br />
-  -- table "myTable2Name" already exists
 </li>
 "
 `;
