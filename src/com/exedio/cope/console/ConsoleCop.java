@@ -197,8 +197,8 @@ abstract class ConsoleCop<S> extends Cop
 					new EnvironmentCop(args),
 				},
 				new ConsoleCop<?>[]{
-					new SchemaCop(args),
 					SchemaNewCop.newCop(args),
+					new SchemaCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
 					new UnsupportedCheckConstraintByTableCop(args, testArgs),
 					new MultiTableCheckConstraintCop(args, testArgs),
