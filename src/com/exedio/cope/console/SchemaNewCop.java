@@ -29,7 +29,7 @@ final class SchemaNewCop {
     return new JsCop(
       TAB,
       "schema",
-      "Schema (experimental)",
+      "Schema",
       args,
       List.of(),
       null

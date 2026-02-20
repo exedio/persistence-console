@@ -45,7 +45,7 @@ final class SchemaCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 
 	private SchemaCop(final Args args, final boolean detailed)
 	{
-		super(TAB, "Schema", args);
+		super(TAB, "Schema (legacy)", args);
 		this.detailed = detailed;
 
 		addParameter(DETAILED, detailed);
