@@ -49,7 +49,7 @@ final class ChecklistsCop extends ConsoleCop<Void>
 		final TestCop.TestArgs testArgs = new TestCop.TestArgs();
 		Checklists_Jspm.writeBody(out,
 				new ConsoleCop<?>[]{ // schema
-						new SchemaCop(args),
+						new SchemaLegacyCop(args),
 						new UnsupportedCheckConstraintByTableCop(args, testArgs),
 						new MultiTableCheckConstraintCop(args, testArgs),
 						new SequenceCop(args, testArgs),

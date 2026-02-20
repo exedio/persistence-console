@@ -40,7 +40,7 @@ final class SchemaDetails_Jspm
 	private static final String APPLY_DRY = "details.dry";
 
 	static void writeBody(
-			final SchemaCop cop,
+			final SchemaLegacyCop cop,
 			final Out out)
 	{
 		final HttpServletRequest request = out.request;
@@ -112,7 +112,7 @@ final class SchemaDetails_Jspm
 					if(!table.exists() && table.required())
 					{
 					%>,
-					<input type="checkbox" name="<%=SchemaCop.CREATE_TABLE%>" value="<%=tableName%>"/>create<%
+					<input type="checkbox" name="<%=SchemaLegacyCop.CREATE_TABLE%>" value="<%=tableName%>"/>create<%
 					}
 
 					%>
@@ -156,7 +156,7 @@ final class SchemaDetails_Jspm
 									column.getTable().exists() )
 							{
 							%>,
-							<input type="checkbox" name="<%=SchemaCop.CREATE_COLUMN%>" value="<%=tableName%>#<%=columnName%>"/>create<%
+							<input type="checkbox" name="<%=SchemaLegacyCop.CREATE_COLUMN%>" value="<%=tableName%>#<%=columnName%>"/>create<%
 							}
 						%>
 						</li><%
@@ -205,7 +205,7 @@ final class SchemaDetails_Jspm
 									constraint.getTable().exists() )
 							{
 							%>
-							<input type="checkbox" name="<%=SchemaCop.CREATE_CONSTRAINT%>" value="<%=tableName%>#<%=constraintName%>"/>create<%
+							<input type="checkbox" name="<%=SchemaLegacyCop.CREATE_CONSTRAINT%>" value="<%=tableName%>#<%=constraintName%>"/>create<%
 							}
 						%>
 						</li><%
@@ -247,7 +247,7 @@ final class SchemaDetails_Jspm
 					if(!sequence.exists() && sequence.required())
 					{
 					%>,
-					<input type="checkbox" name="<%=SchemaCop.CREATE_SEQUENCE%>" value="<%=sequenceName%>"/>create<%
+					<input type="checkbox" name="<%=SchemaLegacyCop.CREATE_SEQUENCE%>" value="<%=sequenceName%>"/>create<%
 					}
 				%>
 				</li><%
@@ -255,9 +255,9 @@ final class SchemaDetails_Jspm
 				%>
 				<li>
 					Columns:
-					<input type="checkbox" name="<%= SchemaCop.COLUMNS_CREATE_MISSING %>" value="true"/>create missing
-					<input type="checkbox" name="<%= SchemaCop.COLUMNS_DROP_UNUSED    %>" value="true"/>drop unused
-					<input type="checkbox" name="<%= SchemaCop.COLUMNS_MODIFY_MISMATCHING_TYPE %>" value="true"/>modify mismatching type
+					<input type="checkbox" name="<%= SchemaLegacyCop.COLUMNS_CREATE_MISSING %>" value="true"/>create missing
+					<input type="checkbox" name="<%= SchemaLegacyCop.COLUMNS_DROP_UNUSED    %>" value="true"/>drop unused
+					<input type="checkbox" name="<%= SchemaLegacyCop.COLUMNS_MODIFY_MISMATCHING_TYPE %>" value="true"/>modify mismatching type
 				</li><%
 
 			if(!catchColumns.isEmpty())
@@ -265,9 +265,9 @@ final class SchemaDetails_Jspm
 				%>
 				<li>
 					Catch:
-					<input type="checkbox" name="<%= SchemaCop.CATCH_CREATE %>" value="true"/>create
-					<input type="checkbox" name="<%= SchemaCop.CATCH_DROP   %>" value="true"/>drop
-					<input type="checkbox" name="<%= SchemaCop.CATCH_RESET  %>" value="true"/>reset
+					<input type="checkbox" name="<%= SchemaLegacyCop.CATCH_CREATE %>" value="true"/>create
+					<input type="checkbox" name="<%= SchemaLegacyCop.CATCH_DROP   %>" value="true"/>drop
+					<input type="checkbox" name="<%= SchemaLegacyCop.CATCH_RESET  %>" value="true"/>reset
 				</li><%
 			}
 			%>

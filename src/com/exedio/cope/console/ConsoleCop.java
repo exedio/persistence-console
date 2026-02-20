@@ -204,7 +204,7 @@ abstract class ConsoleCop<S> extends Cop
 				},
 				new ConsoleCop<?>[]{
 					SchemaNewCop.newCop(args),
-					new SchemaCop(args),
+					new SchemaLegacyCop(args),
 					new UnsupportedConstraintCop(args, testArgs),
 					new UnsupportedCheckConstraintByTableCop(args, testArgs),
 					new MultiTableCheckConstraintCop(args, testArgs),
@@ -376,8 +376,8 @@ abstract class ConsoleCop<S> extends Cop
 		{
 			case PurgeCop.TAB:
 				return new PurgeCop(args);
-			case SchemaCop.TAB:
-				return SchemaCop.getSchemaCop(args, request);
+			case SchemaLegacyCop.TAB:
+				return SchemaLegacyCop.getSchemaCop(args, request);
 			case SchemaNewCop.TAB:
 				return SchemaNewCop.newCop(args);
 			case SavepointCop.TAB:
