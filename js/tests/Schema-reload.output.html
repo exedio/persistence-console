@@ -13,7 +13,12 @@
     <ul>
       <li class="svelte">
         <button class="bullet redFixed svelte">-</button> expandedColumn
-        expandedColumnType
+        expandedColumnType<button
+          class="clipboard svelte"
+          title="expandedColumnType"
+        >
+          ▢
+        </button>
         <ul>
           <li class="svelte">
             <button disabled="" class="bullet redFixed svelte">.</button>
@@ -39,6 +44,12 @@
     <button disabled="" class="bullet redFixed svelte">.</button>
     <span class="nodeType svelte">sequence</span> SomeSequence
     <span class="redFixed svelte">missing</span>
-    <label><input type="checkbox" />create</label> someSequenceType 55
+    <label><input type="checkbox" />create</label> someSequenceType<button
+      class="clipboard svelte"
+      title="someSequenceType"
+    >
+      ▢
+    </button>
+    55<button class="clipboard svelte" title="55">▢</button>
   </li>
 </ul>

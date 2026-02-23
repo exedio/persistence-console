@@ -182,6 +182,9 @@
   // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
   type ReadonlyConstraintArray = readonly Constraint[];
 
+  // workaround problem in svelte IDEA plugin, otherwise this type could be inlined
+  type String = string;
+
   // workaround problem in svelte IDEA plugin, otherwise this method could be inlined
   function asInputElement(target: EventTarget | null): HTMLInputElement {
     return target as HTMLInputElement;
@@ -511,22 +514,22 @@
           <tbody>
             <tr>
               <td>required:</td>
-              <td>{value.shortener(value.expected)}</td>
+              <td>{@render shortened(value.shortener, value.expected)}</td>
             </tr>
             <tr>
               <td>actual:</td>
-              <td>{value.shortener(value.actual)}</td>
+              <td>{@render shortened(value.shortener, value.actual)}</td>
             </tr>
             {#if value.actualRaw}
               <tr>
                 <td>raw:</td>
-                <td>{value.shortener(value.actualRaw)}</td>
+                <td>{@render shortened(value.shortener, value.actualRaw)}</td>
               </tr>
             {/if}
           </tbody>
         </table>
       {:else}
-        {value.shortener(value.expected)}
+        {@render shortened(value.shortener, value.expected)}
       {/if}
     {:else if value.actual}
       <span class={spanClassComparison(value, fixable)}
@@ -554,6 +557,14 @@
       />{modify}</label
     >
   {/if}
+{/snippet}
+
+{#snippet shortened(shortener: (s: String) => String, value: String)}
+  {shortener(value)}<button
+    class="clipboard"
+    title={value}
+    onclick={() => navigator.clipboard.writeText(value)}>&#x25A2;</button
+  >
 {/snippet}
 
 {#snippet additionalErrors(rr: AdditionalErrors)}
@@ -674,5 +685,11 @@
 
   button.run {
     float: right;
+  }
+
+  button.clipboard {
+    border-width: 0;
+    background: white;
+    padding: 0;
   }
 </style>
