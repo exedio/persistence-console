@@ -1381,7 +1381,7 @@ exports[`Schema > should render a normal table with constraints 3`] = `
             <button disabled="" class="bullet svelte">.</button>
             <span class="nodeType svelte">check</span>
             myColumn1ConstraintArrowName myColumn1ConstraintArrowClause hsqldb:⬁
-            mysql:⬁ second hsqldb:"myColumn1Name" mysql:\`myColumn1Name\`
+            mysql:⬁ second hsqldb:⬁ mysql:⬁
           </li>
         </ul>
       </li>
