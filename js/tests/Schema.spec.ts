@@ -131,7 +131,7 @@ describe("Schema", () => {
                       name: "myColumn1ConstraintArrowName",
                       type: "Check",
                       clause:
-                        'myColumn1ConstraintArrowClause hsqldb:"myColumn1Name" mysql:`myColumn1Name`',
+                        'myColumn1ConstraintArrowClause hsqldb:"myColumn1Name" mysql:`myColumn1Name` second hsqldb:"myColumn1Name" mysql:`myColumn1Name`',
                     },
                   ],
                 },
