@@ -509,11 +509,19 @@
         {@render comparisonAdjust(fixable, modify)}
         <table class="comparison">
           <tbody>
-            <tr><td>required:</td><td>{value.shortener(value.expected)}</td></tr
-            >
-            <tr><td>actual:</td><td>{value.shortener(value.actual)}</td></tr>
+            <tr>
+              <td>required:</td>
+              <td>{value.shortener(value.expected)}</td>
+            </tr>
+            <tr>
+              <td>actual:</td>
+              <td>{value.shortener(value.actual)}</td>
+            </tr>
             {#if value.actualRaw}
-              <tr><td>raw:</td><td>{value.shortener(value.actualRaw)}</td></tr>
+              <tr>
+                <td>raw:</td>
+                <td>{value.shortener(value.actualRaw)}</td>
+              </tr>
             {/if}
           </tbody>
         </table>
