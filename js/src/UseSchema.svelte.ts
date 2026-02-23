@@ -553,8 +553,8 @@ export class Constraint implements Bullet, Fixable {
             shortener: (s) => {
               if (!columnName) return s;
               return s
-                .replace('"' + columnName + '"', "⬁") // hsqldb, PostgreSQL
-                .replace("`" + columnName + "`", "⬁"); // MySQL
+                .replaceAll('"' + columnName + '"', "⬁") // hsqldb, PostgreSQL
+                .replaceAll("`" + columnName + "`", "⬁"); // MySQL
             },
             color: this.api.mismatchingClause ? "red" : undefined,
           }
