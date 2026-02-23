@@ -13,14 +13,24 @@
     <ul>
       <li class="svelte">
         <button class="bullet redFixed svelte">-</button> expandedColumn
-        expandedColumnTypeChange
+        expandedColumnTypeChange<button
+          class="clipboard svelte"
+          title="expandedColumnTypeChange"
+        >
+          ▢
+        </button>
         <ul>
           <li class="svelte">
             <button disabled="" class="bullet redFixed svelte">.</button>
             <span class="nodeType svelte">pk</span> expandedColumnConstraint
             <span class="redFixed svelte">missing</span>
             <label><input type="checkbox" />add</label>
-            expandedColumnConstraintConditionChange
+            expandedColumnConstraintConditionChange<button
+              class="clipboard svelte"
+              title="expandedColumnConstraintConditionChange"
+            >
+              ▢
+            </button>
           </li>
         </ul>
       </li>
@@ -30,7 +40,12 @@
       <li class="svelte">
         <button disabled="" class="bullet svelte">.</button>
         <span class="nodeType svelte">pk</span> expandedTableConstraintName
-        expandedTableConstraintConditionChange
+        expandedTableConstraintConditionChange<button
+          class="clipboard svelte"
+          title="expandedTableConstraintConditionChange"
+        >
+          ▢
+        </button>
       </li>
     </ul>
   </li>
@@ -41,6 +56,12 @@
     <button disabled="" class="bullet redFixed svelte">.</button>
     <span class="nodeType svelte">sequence</span> SomeSequence
     <span class="redFixed svelte">missing</span>
-    <label><input type="checkbox" />create</label> someSequenceTypeChange 55
+    <label><input type="checkbox" />create</label> someSequenceTypeChange<button
+      class="clipboard svelte"
+      title="someSequenceTypeChange"
+    >
+      ▢
+    </button>
+    55<button class="clipboard svelte" title="55">▢</button>
   </li>
 </ul>
