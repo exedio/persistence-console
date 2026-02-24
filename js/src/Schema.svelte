@@ -397,7 +397,12 @@
     <li>
       {@render bullet(constraint)}
       <span class="nodeType">{constraint.type}</span>
-      {constraint.nameShort()}
+      {constraint.nameShort()}<button
+        class="clipboard"
+        title={constraint.name}
+        onclick={() => navigator.clipboard.writeText(constraint.name)}
+        >&#x25A2;</button
+      >
       {@render existence(constraint.existence, constraint, [], [])}
       {@render comparison(constraint, constraint.clause, "recreate", true)}
       {@render additionalErrors(constraint)}

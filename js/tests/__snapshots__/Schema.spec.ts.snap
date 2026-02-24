@@ -430,7 +430,12 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet red svelte">.</button>
-        <span class="nodeType svelte">check</span> myConstraint1Name
+        <span class="nodeType svelte">check</span> myConstraint1Name<button
+          class="clipboard svelte"
+          title="myConstraint1Name"
+        >
+          ▢
+        </button>
         <span class="red svelte">clause mismatch:</span>
         <label><input type="checkbox" />recreate</label>
         <table class="comparison svelte">
@@ -493,7 +498,12 @@ exports[`Schema > should render a constraint with a wrong clause 3`] = `
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet redFixed svelte">.</button>
-        <span class="nodeType svelte">check</span> myConstraint1Name
+        <span class="nodeType svelte">check</span> myConstraint1Name<button
+          class="clipboard svelte"
+          title="myConstraint1Name"
+        >
+          ▢
+        </button>
         <span class="redFixed svelte">clause mismatch:</span>
         <label><input type="checkbox" />recreate</label>
         <table class="comparison svelte">
@@ -576,7 +586,12 @@ exports[`Schema > should render a constraint with an additional error 2`] = `
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet red svelte">.</button>
-        <span class="nodeType svelte">check</span> myConstraint1Name
+        <span class="nodeType svelte">check</span> myConstraint1Name<button
+          class="clipboard svelte"
+          title="myConstraint1Name"
+        >
+          ▢
+        </button>
         myConstraint1Clause<button
           class="clipboard svelte"
           title="myConstraint1Clause"
@@ -657,7 +672,12 @@ exports[`Schema > should render a constraint with shortener 3`] = `
         <ul>
           <li class="svelte">
             <button disabled="" class="bullet red svelte">.</button>
-            <span class="nodeType svelte">check</span> myConstraint1Name
+            <span class="nodeType svelte">check</span> myConstraint1Name<button
+              class="clipboard svelte"
+              title="myConstraint1Name"
+            >
+              ▢
+            </button>
             <span class="red svelte">clause mismatch:</span>
             <label><input type="checkbox" />recreate</label>
             <table class="comparison svelte">
@@ -997,7 +1017,12 @@ exports[`Schema > should render a missing constraint 2`] = `
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet red svelte">.</button>
-        <span class="nodeType svelte">check</span> myConstraint1Name
+        <span class="nodeType svelte">check</span> myConstraint1Name<button
+          class="clipboard svelte"
+          title="myConstraint1Name"
+        >
+          ▢
+        </button>
         <span class="red svelte">missing</span>
         <label><input type="checkbox" />add</label> myConstraint1Clause<button
           class="clipboard svelte"
@@ -1499,11 +1524,21 @@ exports[`Schema > should render a normal table with constraints 2`] = `
       </li>
       <li class="svelte">
         <button disabled="" class="bullet svelte">.</button>
-        <span class="nodeType svelte">pk</span> myTable1Constraint1Name
+        <span class="nodeType svelte">pk</span> myTable1Constraint1Name<button
+          class="clipboard svelte"
+          title="myTable1Constraint1Name"
+        >
+          ▢
+        </button>
       </li>
       <li class="svelte">
         <button disabled="" class="bullet svelte">.</button>
-        <span class="nodeType svelte">pk</span> ~constraintTildeNameTable
+        <span class="nodeType svelte">pk</span> ~constraintTildeNameTable<button
+          class="clipboard svelte"
+          title="myTable1Name_constraintTildeNameTable"
+        >
+          ▢
+        </button>
       </li>
     </ul>
   </li>
@@ -1529,11 +1564,23 @@ exports[`Schema > should render a normal table with constraints 3`] = `
         <ul>
           <li class="svelte">
             <button disabled="" class="bullet svelte">.</button>
-            <span class="nodeType svelte">pk</span> myColumn1Constraint1Name
+            <span class="nodeType svelte">pk</span>
+            myColumn1Constraint1Name<button
+              class="clipboard svelte"
+              title="myColumn1Constraint1Name"
+            >
+              ▢
+            </button>
           </li>
           <li class="svelte">
             <button disabled="" class="bullet svelte">.</button>
-            <span class="nodeType svelte">check</span> myColumn1Constraint2Name
+            <span class="nodeType svelte">check</span>
+            myColumn1Constraint2Name<button
+              class="clipboard svelte"
+              title="myColumn1Constraint2Name"
+            >
+              ▢
+            </button>
             myColumn1Constraint2Clause<button
               class="clipboard svelte"
               title="myColumn1Constraint2Clause"
@@ -1543,13 +1590,25 @@ exports[`Schema > should render a normal table with constraints 3`] = `
           </li>
           <li class="svelte">
             <button disabled="" class="bullet svelte">.</button>
-            <span class="nodeType svelte">pk</span> ~ConstraintTildeNameColumn
+            <span class="nodeType svelte">pk</span>
+            ~ConstraintTildeNameColumn<button
+              class="clipboard svelte"
+              title="myTable1Name_myColumn1Name_ConstraintTildeNameColumn"
+            >
+              ▢
+            </button>
           </li>
           <li class="svelte">
             <button disabled="" class="bullet svelte">.</button>
             <span class="nodeType svelte">check</span>
-            myColumn1ConstraintArrowName myColumn1ConstraintArrowClause hsqldb:⬁
-            mysql:⬁ second hsqldb:⬁ mysql:⬁<button
+            myColumn1ConstraintArrowName<button
+              class="clipboard svelte"
+              title="myColumn1ConstraintArrowName"
+            >
+              ▢
+            </button>
+            myColumn1ConstraintArrowClause hsqldb:⬁ mysql:⬁ second hsqldb:⬁
+            mysql:⬁<button
               class="clipboard svelte"
               title='myColumn1ConstraintArrowClause hsqldb:"myColumn1Name" mysql:\`myColumn1Name\` second hsqldb:"myColumn1Name" mysql:\`myColumn1Name\`'
             >
@@ -1560,11 +1619,21 @@ exports[`Schema > should render a normal table with constraints 3`] = `
       </li>
       <li class="svelte">
         <button disabled="" class="bullet svelte">.</button>
-        <span class="nodeType svelte">pk</span> myTable1Constraint1Name
+        <span class="nodeType svelte">pk</span> myTable1Constraint1Name<button
+          class="clipboard svelte"
+          title="myTable1Constraint1Name"
+        >
+          ▢
+        </button>
       </li>
       <li class="svelte">
         <button disabled="" class="bullet svelte">.</button>
-        <span class="nodeType svelte">pk</span> ~constraintTildeNameTable
+        <span class="nodeType svelte">pk</span> ~constraintTildeNameTable<button
+          class="clipboard svelte"
+          title="myTable1Name_constraintTildeNameTable"
+        >
+          ▢
+        </button>
       </li>
     </ul>
   </li>
@@ -2045,7 +2114,12 @@ exports[`Schema > should render a unused constraint 2`] = `
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet red svelte">.</button>
-        <span class="nodeType svelte">check</span> myConstraint1Name
+        <span class="nodeType svelte">check</span> myConstraint1Name<button
+          class="clipboard svelte"
+          title="myConstraint1Name"
+        >
+          ▢
+        </button>
         <span class="red svelte">unused</span>
         <label><input type="checkbox" />drop</label> myConstraint1Clause<button
           class="clipboard svelte"
