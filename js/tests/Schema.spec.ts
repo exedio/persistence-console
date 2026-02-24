@@ -2089,6 +2089,7 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessPatch(11, 1111090909));
       mock.mockResolvedValueOnce(responseSuccessPatch(22, 2222090909));
+      // TODO sqlAdd1-3 should be joined into one sql statement
       mock.mockResolvedValueOnce(responseSuccessPatch(33, 3333090909));
       mock.mockResolvedValueOnce(responseSuccessPatch(44, 4444090909));
       mock.mockResolvedValueOnce(responseSuccessPatch(55, 5555090909));
@@ -2104,6 +2105,7 @@ describe("Schema", () => {
         "/myApiPath/schema/patch",
         requestPatch(sql2),
       );
+      // TODO sqlAdd1-3 should be joined into one sql statement
       expect(mock).toHaveBeenNthCalledWith(
         3,
         "/myApiPath/schema/patch",
