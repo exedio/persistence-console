@@ -2534,8 +2534,8 @@ exports[`Schema > should render multiple missing nodes 8`] = `
 `;
 
 exports[`Schema > should run patches 1`] = `
-"<li class="svelte">"CREATE TABLE \\"myTable1Name\\"",</li>
-<li class="svelte">"CREATE TABLE \\"myTable2Name\\"",</li>
+"<li class="svelte">"CREATE TABLE \\"myTable1\\"",</li>
+<li class="svelte">"CREATE TABLE \\"myTable2\\"",</li>
 <li class="svelte">
   "ALTER TABLE \\"myTable3\\" ADD COLUMN \\"myColumn1\\" string," +
 </li>
@@ -2545,8 +2545,8 @@ exports[`Schema > should run patches 1`] = `
 `;
 
 exports[`Schema > should run patches 2`] = `
-"<li class="svelte">"CREATE TABLE \\"myTable1Name\\"", // 11&nbsp;rows, 1111ms</li>
-<li class="svelte">"CREATE TABLE \\"myTable2Name\\"", // 22&nbsp;rows, 2222ms</li>
+"<li class="svelte">"CREATE TABLE \\"myTable1\\"", // 11&nbsp;rows, 1111ms</li>
+<li class="svelte">"CREATE TABLE \\"myTable2\\"", // 22&nbsp;rows, 2222ms</li>
 <li class="svelte">
   "ALTER TABLE \\"myTable3\\" ADD COLUMN \\"myColumn1\\" string", // 33&nbsp;rows,
   3333ms
@@ -2563,8 +2563,8 @@ exports[`Schema > should run patches 2`] = `
 `;
 
 exports[`Schema > should run patches 3`] = `
-"<li class="svelte">"CREATE TABLE \\"myTable1Name\\"",</li>
-<li class="svelte">"CREATE TABLE \\"myTable2Name\\"",</li>
+"<li class="svelte">"CREATE TABLE \\"myTable1\\"",</li>
+<li class="svelte">"CREATE TABLE \\"myTable2\\"",</li>
 <li class="svelte">
   "ALTER TABLE \\"myTable3\\" ADD COLUMN \\"myColumn1\\" string," +
 </li>
@@ -2574,8 +2574,8 @@ exports[`Schema > should run patches 3`] = `
 `;
 
 exports[`Schema > should run patches 4`] = `
-"<li class="svelte">CREATE TABLE "myTable1Name"; -- 11&nbsp;rows, 1111ms</li>
-<li class="svelte">CREATE TABLE "myTable2Name"; -- 22&nbsp;rows, 2222ms</li>
+"<li class="svelte">CREATE TABLE "myTable1"; -- 11&nbsp;rows, 1111ms</li>
+<li class="svelte">CREATE TABLE "myTable2"; -- 22&nbsp;rows, 2222ms</li>
 <li class="svelte">
   ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string; -- 33&nbsp;rows, 3333ms
 </li>
@@ -2590,16 +2590,16 @@ exports[`Schema > should run patches 4`] = `
 
 exports[`Schema > should run patches with error 1`] = `
 "<li class="failure svelte">
-  "CREATE TABLE \\"myTable1Name\\"", <br />
-  // table "myTable1Name" already exists
+  "CREATE TABLE \\"myTable1\\"", <br />
+  // table "myTable1" already exists
 </li>
 "
 `;
 
 exports[`Schema > should run patches with error 2`] = `
 "<li class="failure svelte">
-  CREATE TABLE "myTable1Name"; <br />
-  -- table "myTable1Name" already exists
+  CREATE TABLE "myTable1"; <br />
+  -- table "myTable1" already exists
 </li>
 "
 `;

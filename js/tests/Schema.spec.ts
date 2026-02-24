@@ -2034,8 +2034,8 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce(
         responseSuccess({
           tables: [
-            { name: "myTable1Name", existence: "missing" },
-            { name: "myTable2Name", existence: "missing" },
+            { name: "myTable1", existence: "missing" },
+            { name: "myTable2", existence: "missing" },
             {
               name: "myTable3",
               columns: [
@@ -2056,8 +2056,8 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(3) as HTMLElement).click();
     await flushPromises();
 
-    const sql1 = 'CREATE TABLE "myTable1Name"';
-    const sql2 = 'CREATE TABLE "myTable2Name"';
+    const sql1 = 'CREATE TABLE "myTable1"';
+    const sql2 = 'CREATE TABLE "myTable2"';
     const sqlAdd1 = 'ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string';
     const sqlAdd2 = 'ALTER TABLE "myTable3" ADD COLUMN "myColumn2" string';
     const sqlAdd3 = 'ALTER TABLE "myTable3" ADD COLUMN "myColumn3" string';
@@ -2145,8 +2145,8 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce(
         responseSuccess({
           tables: [
-            { name: "myTable1Name", existence: "missing" },
-            { name: "myTable2Name", existence: "missing" },
+            { name: "myTable1", existence: "missing" },
+            { name: "myTable2", existence: "missing" },
           ],
         } satisfies ApiSchema),
       );
@@ -2156,8 +2156,8 @@ describe("Schema", () => {
     expect(sql(0)).toBeNull();
     expect(sql(1)).toBeNull();
 
-    const sql1 = 'CREATE TABLE "myTable1Name"';
-    const sql2 = 'CREATE TABLE "myTable2Name"';
+    const sql1 = 'CREATE TABLE "myTable1"';
+    const sql2 = 'CREATE TABLE "myTable2"';
     {
       const create1 = () => checkbox("create", 0);
       const create2 = () => checkbox("create", 1);
@@ -2176,7 +2176,7 @@ describe("Schema", () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
-        responseFailure('table "myTable1Name" already exists'),
+        responseFailure('table "myTable1" already exists'),
       );
       run().click();
       await flushPromises();
