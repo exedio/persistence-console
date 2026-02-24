@@ -308,7 +308,6 @@
   </div>
   {#if patchesLog.length > 0 || patches.length > 0}
     <div class="sql">
-      <button class="run" onclick={() => runPatches()}>RUN</button>
       <label
         ><input type="checkbox" bind:checked={patchesEncodedForJava} />encoded
         for java</label
@@ -345,7 +344,9 @@
         </ul>
         <hr />
       {/if}
+      {#if patches.length > 0}
       <button class="run" onclick={() => copyPatches()}>copy</button>
+      <button class="run" onclick={() => runPatches()}>RUN</button>
       <ul>
         {#each patches as { fix, url, promise } (url)}
           <li class={{ more: hasMore(fix) }}>
@@ -361,6 +362,7 @@
           </li>
         {/each}
       </ul>
+      {/if}
     </div>
   {/if}
 </div>
