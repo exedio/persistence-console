@@ -9,7 +9,7 @@ export function formatHtml(element: HTMLElement): Promise<string> {
   return format(
     element.innerHTML
       .replace(/<!---->/g, "")
-      .replaceAll(/\bsvelte-[0-9a-z]{6,7}\b/g, "svelte"),
+      .replaceAll(/\bsvelte-[0-9a-z]{5,7}\b/g, "svelte"),
     {
       parser: "html",
       plugins: [parsers],
