@@ -2036,6 +2036,14 @@ describe("Schema", () => {
           tables: [
             { name: "myTable1Name", existence: "missing" },
             { name: "myTable2Name", existence: "missing" },
+            {
+              name: "myTable3",
+              columns: [
+                { name: "myColumn1", type: "string", existence: "missing" },
+                { name: "myColumn2", type: "string", existence: "missing" },
+                { name: "myColumn3", type: "string", existence: "missing" },
+              ],
+            },
           ],
         } satisfies ApiSchema),
       );
@@ -2045,18 +2053,33 @@ describe("Schema", () => {
     expect(sql(0)).toBeNull();
     expect(sql(1)).toBeNull();
 
+    (document.querySelectorAll(".bullet").item(3) as HTMLElement).click();
+    await flushPromises();
+
     const sql1 = 'CREATE TABLE "myTable1Name"';
     const sql2 = 'CREATE TABLE "myTable2Name"';
+    const sqlAdd1 = 'ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string';
+    const sqlAdd2 = 'ALTER TABLE "myTable3" ADD COLUMN "myColumn2" string';
+    const sqlAdd3 = 'ALTER TABLE "myTable3" ADD COLUMN "myColumn3" string';
     {
       const create1 = () => checkbox("create", 0);
       const create2 = () => checkbox("create", 1);
+      const add1 = () => checkbox("add", 0);
+      const add2 = () => checkbox("add", 1);
+      const add3 = () => checkbox("add", 2);
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessAlter(sql1));
       mock.mockResolvedValueOnce(responseSuccessAlter(sql2));
+      mock.mockResolvedValueOnce(responseSuccessAlter(sqlAdd1));
+      mock.mockResolvedValueOnce(responseSuccessAlter(sqlAdd2));
+      mock.mockResolvedValueOnce(responseSuccessAlter(sqlAdd3));
       create1().click();
       create2().click();
+      add1().click();
+      add2().click();
+      add3().click();
       await flushPromises();
-      expect(mock).toHaveBeenCalledTimes(2);
+      expect(mock).toHaveBeenCalledTimes(5);
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
     expect(sql(1)).toBeNull();
@@ -2066,6 +2089,9 @@ describe("Schema", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccessPatch(11, 1111090909));
       mock.mockResolvedValueOnce(responseSuccessPatch(22, 2222090909));
+      mock.mockResolvedValueOnce(responseSuccessPatch(33, 3333090909));
+      mock.mockResolvedValueOnce(responseSuccessPatch(44, 4444090909));
+      mock.mockResolvedValueOnce(responseSuccessPatch(55, 5555090909));
       run().click();
       await flushPromises();
       expect(mock).toHaveBeenNthCalledWith(
@@ -2078,7 +2104,22 @@ describe("Schema", () => {
         "/myApiPath/schema/patch",
         requestPatch(sql2),
       );
-      expect(mock).toHaveBeenCalledTimes(2);
+      expect(mock).toHaveBeenNthCalledWith(
+        3,
+        "/myApiPath/schema/patch",
+        requestPatch(sqlAdd1),
+      );
+      expect(mock).toHaveBeenNthCalledWith(
+        4,
+        "/myApiPath/schema/patch",
+        requestPatch(sqlAdd2),
+      );
+      expect(mock).toHaveBeenNthCalledWith(
+        5,
+        "/myApiPath/schema/patch",
+        requestPatch(sqlAdd3),
+      );
+      expect(mock).toHaveBeenCalledTimes(5);
     }
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(await formatHtml(sql(1))).toMatchSnapshot();
