@@ -178,7 +178,7 @@
   function copyPatches(): void {
     Promise.all(patches.map((patch) => patch.promise)).then((responses) => {
       navigator.clipboard.writeText(
-        responses.map((response) => response.sql + "\n").join(""),
+        responses.map((response, index) => encodePatch(patches[index].fix.joinable, patchesEncodedForJava, response.sql) + "\n").join(""),
       );
     });
   }
