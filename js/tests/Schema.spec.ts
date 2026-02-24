@@ -2134,13 +2134,13 @@ describe("Schema", () => {
       copy().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
-        // TODO should consider "encoded for java"
-        'CREATE TABLE "myTable1"\n' +
-          'CREATE TABLE "myTable2"\n' +
-          // TODO sqlAdd1-3 should be joined into one sql statement
-          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn1\" string\n' +
-          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn2\" string\n' +
-          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn3\" string\n',
+        // considers enabled "encoded for java"
+        '"CREATE TABLE \\"myTable1\\"",\n' +
+          '"CREATE TABLE \\"myTable2\\"",\n' +
+          // sqlAdd1-3 joined into one sql statement
+          '"ALTER TABLE \\"myTable3\\" ADD COLUMN \\"myColumn1\\" string," +\n' +
+          '"ADD COLUMN \\"myColumn2\\" string," +\n' +
+          '"ADD COLUMN \\"myColumn3\\" string",\n',
       );
     }
 
@@ -2155,13 +2155,13 @@ describe("Schema", () => {
       copy().click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
-        // TODO should consider "encoded for java"
-        'CREATE TABLE "myTable1"\n' +
-          'CREATE TABLE "myTable2"\n' +
-          // TODO sqlAdd1-3 should be joined into one sql statement
-          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn1\" string\n' +
-          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn2\" string\n' +
-          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn3\" string\n',
+        // considers disabled "encoded for java"
+        'CREATE TABLE "myTable1";\n' +
+          'CREATE TABLE "myTable2";\n' +
+          // sqlAdd1-3 joined into one sql statement
+          'ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string,\n' +
+          'ADD COLUMN "myColumn2" string,\n' +
+          'ADD COLUMN "myColumn3" string;\n',
       );
     }
 
