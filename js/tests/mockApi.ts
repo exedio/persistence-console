@@ -81,3 +81,13 @@ export function request(body: unknown): RequestInit {
     method: "POST",
   };
 }
+
+export function mockClipboardWriteText(): Mock<
+  (data: string) => Promise<void>
+> {
+  const mock = vi.fn((data) => {
+    assert.fail("DO NOT CALL " + data);
+  });
+  navigator.clipboard.writeText = mock;
+  return mock;
+}
