@@ -688,8 +688,13 @@
   }
 
   button.clipboard {
+    color: lightgray;
     border-width: 0;
     background: white;
     padding: 0;
+  }
+
+  button.clipboard:active {
+    color: black;
   }
 </style>
