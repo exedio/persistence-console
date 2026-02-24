@@ -175,6 +175,14 @@
     return message.substring(prefix.length);
   }
 
+  function copyPatches(): void {
+    Promise.all(patches.map((patch) => patch.promise)).then((responses) => {
+      navigator.clipboard.writeText(
+        responses.map((response) => response.sql + "\n").join(""),
+      );
+    });
+  }
+
   function flushPatchesLog(): void {
     patchesLog.length = 0; // make it empty
   }
@@ -337,6 +345,7 @@
         </ul>
         <hr />
       {/if}
+      <button class="run" onclick={() => copyPatches()}>copy</button>
       <ul>
         {#each patches as { fix, url, promise } (url)}
           <li class={{ more: hasMore(fix) }}>

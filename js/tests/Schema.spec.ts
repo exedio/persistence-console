@@ -3,6 +3,7 @@
 import { mount } from "svelte";
 import { default as Schema } from "@/Schema.svelte";
 import {
+  mockClipboardWriteText,
   mockFetch,
   request,
   responseFailure,
@@ -2126,11 +2127,43 @@ describe("Schema", () => {
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(await formatHtml(sql(1))).toMatchSnapshot();
 
+    const copy = () => button("copy", 0);
+    {
+      const mock = mockClipboardWriteText();
+      mock.mockResolvedValueOnce();
+      copy().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        // TODO should consider "encoded for java"
+        'CREATE TABLE "myTable1"\n' +
+          'CREATE TABLE "myTable2"\n' +
+          // TODO sqlAdd1-3 should be joined into one sql statement
+          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn1\" string\n' +
+          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn2\" string\n' +
+          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn3\" string\n',
+      );
+    }
+
     const encode = () => checkbox("encoded for java", 0);
     encode().click();
     await flushPromises();
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(sql(1)).toBeTruthy();
+    {
+      const mock = mockClipboardWriteText();
+      mock.mockResolvedValueOnce();
+      copy().click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        // TODO should consider "encoded for java"
+        'CREATE TABLE "myTable1"\n' +
+          'CREATE TABLE "myTable2"\n' +
+          // TODO sqlAdd1-3 should be joined into one sql statement
+          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn1\" string\n' +
+          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn2\" string\n' +
+          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn3\" string\n',
+      );
+    }
 
     const flush = () => button("flush", 0);
     flush().click();

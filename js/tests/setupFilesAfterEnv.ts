@@ -47,3 +47,15 @@ function isRequest(object: unknown): object is Request {
 window.confirm = function (message?: string): boolean {
   assert.fail("window.confirm must be mocked in unit tests: " + message);
 };
+
+Object.defineProperty(navigator, "clipboard", {
+  value: {
+    writeText: (data: string) => {
+      assert.fail("navigator.clipboard.writeText must be mocked in unit tests");
+      return Promise.reject();
+    },
+    readText: () =>
+      assert.fail("navigator.clipboard.readText must be mocked in unit tests"),
+  },
+  configurable: true,
+});
