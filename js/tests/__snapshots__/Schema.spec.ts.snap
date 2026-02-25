@@ -871,6 +871,36 @@ exports[`Schema > should render a missing column 3`] = `
 `;
 
 exports[`Schema > should render a missing column 4`] = `
+"<div class="checkboxCollector svelte">
+  <button disabled="" class="bullet redFixed svelte">.</button> Schema
+  <button class="reload svelte">🗘</button> <br />
+  <label><input type="checkbox" />show all tables / sequences</label><br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    <small>(1/1)</small></label
+  ><br />
+</div>
+<ul>
+  <li class="svelte">
+    <button class="bullet redFixed svelte">-</button> myTable1Name
+    <ul>
+      <li class="svelte">
+        <button class="bullet redFixed svelte">-</button> myColumn1Name
+        <span class="redFixed svelte">missing</span>
+        <label><input type="checkbox" />add</label> myColumn1Type<button
+          class="clipboard svelte"
+          title="myColumn1Type"
+        >
+          ▢
+        </button>
+      </li>
+    </ul>
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should render a missing column 5`] = `
 "<li class="svelte">"ALTER TABLE myTable1Name ADD COLUMN myColumn1Name",</li>
 "
 `;
