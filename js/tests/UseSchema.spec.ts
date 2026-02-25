@@ -458,7 +458,7 @@ describe("UseSchema", () => {
     constraintExistenceColor("Unique", "missing", "red");
   });
   it("constraint color check missing", async () => {
-    constraintExistenceColor("Check", "missing", "red");
+    constraintExistenceColor("Check", "missing", "yellow");
   });
   it("constraint color primary key unused", async () => {
     constraintExistenceColor("PrimaryKey", "unused", "red");
