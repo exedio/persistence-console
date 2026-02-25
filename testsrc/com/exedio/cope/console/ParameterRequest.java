@@ -34,6 +34,9 @@ final class ParameterRequest extends AssertionFailedHttpServletRequest {
   @Override
   public String getParameter(final String name) {
     assertTrue(parameters.containsKey(name), name);
-    return parameters.get(name);
+    final String s = parameters.get(name);
+    return s.equals(NULL) ? null : s;
   }
+
+  static final String NULL = "[NULL]";
 }

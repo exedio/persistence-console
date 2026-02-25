@@ -447,6 +447,7 @@ describe("Schema", () => {
         "/myApiPath/schema/alter?subject=column&table=myTable1Name&name=myColumn1Name&method=add",
       );
     }
+    expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
 
     create().click();

@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
+import static com.exedio.cope.console.ParameterRequest.NULL;
 import static com.exedio.cope.console.SchemaAlterApi.alter;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -95,7 +96,29 @@ public class SchemaAlterApiTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null"
       }""",
-      writeJson(alter(MODEL, request("column", "MyType", "this", "add")))
+      writeJson(alter(MODEL, request("column", "MyType", "this", "add", NULL)))
+    );
+  }
+
+  @Test
+  void testColumnAddInitialEmpty() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null"
+      }""",
+      writeJson(alter(MODEL, request("column", "MyType", "this", "add", "")))
+    );
+  }
+
+  @Test
+  void testColumnAddInitial() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null"
+      }""",
+      writeJson(alter(MODEL, request("column", "MyType", "this", "add", "777")))
     );
   }
 
