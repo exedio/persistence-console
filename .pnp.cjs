@@ -1194,20 +1194,20 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["balanced-match", [\
-      ["npm:1.0.2", {\
-        "packageLocation": "./.yarn/cache/balanced-match-npm-1.0.2-a53c126459-9308baf0a7.zip/node_modules/balanced-match/",\
+      ["npm:4.0.4", {\
+        "packageLocation": "./.yarn/cache/balanced-match-npm-4.0.4-fd666b3c7f-07e86102a3.zip/node_modules/balanced-match/",\
         "packageDependencies": [\
-          ["balanced-match", "npm:1.0.2"]\
+          ["balanced-match", "npm:4.0.4"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["brace-expansion", [\
-      ["npm:2.0.2", {\
-        "packageLocation": "./.yarn/cache/brace-expansion-npm-2.0.2-bc7f134bbc-6d117a4c79.zip/node_modules/brace-expansion/",\
+      ["npm:5.0.3", {\
+        "packageLocation": "./.yarn/cache/brace-expansion-npm-5.0.3-134cbcf5ff-e474d300e5.zip/node_modules/brace-expansion/",\
         "packageDependencies": [\
-          ["balanced-match", "npm:1.0.2"],\
-          ["brace-expansion", "npm:2.0.2"]\
+          ["balanced-match", "npm:4.0.4"],\
+          ["brace-expansion", "npm:5.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1659,7 +1659,7 @@ const RAW_RUNTIME_STATE =
           ["foreground-child", "npm:3.3.1"],\
           ["glob", "npm:10.5.0"],\
           ["jackspeak", "npm:3.4.3"],\
-          ["minimatch", "npm:9.0.5"],\
+          ["minimatch", "npm:9.0.7"],\
           ["minipass", "npm:7.1.2"],\
           ["package-json-from-dist", "npm:1.0.1"],\
           ["path-scurry", "npm:1.11.1"]\
@@ -2058,11 +2058,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["minimatch", [\
-      ["npm:9.0.5", {\
-        "packageLocation": "./.yarn/cache/minimatch-npm-9.0.5-9aa93d97fa-de96cf5e35.zip/node_modules/minimatch/",\
+      ["npm:9.0.7", {\
+        "packageLocation": "./.yarn/cache/minimatch-npm-9.0.7-145dd43fbb-e90f8d8dd1.zip/node_modules/minimatch/",\
         "packageDependencies": [\
-          ["brace-expansion", "npm:2.0.2"],\
-          ["minimatch", "npm:9.0.5"]\
+          ["brace-expansion", "npm:5.0.3"],\
+          ["minimatch", "npm:9.0.7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2759,7 +2759,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@istanbuljs/schema", "npm:0.1.3"],\
           ["glob", "npm:10.5.0"],\
-          ["minimatch", "npm:9.0.5"],\
+          ["minimatch", "npm:9.0.7"],\
           ["test-exclude", "npm:7.0.1"]\
         ],\
         "linkType": "HARD"\
