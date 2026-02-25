@@ -887,7 +887,8 @@ exports[`Schema > should render a missing column 4`] = `
       <li class="svelte">
         <button class="bullet redFixed svelte">-</button> myColumn1Name
         <span class="redFixed svelte">missing</span>
-        <label><input type="checkbox" />add</label> myColumn1Type<button
+        <label><input type="checkbox" />add</label>
+        <input placeholder="initial" size="3" /> myColumn1Type<button
           class="clipboard svelte"
           title="myColumn1Type"
         >
@@ -902,6 +903,13 @@ exports[`Schema > should render a missing column 4`] = `
 
 exports[`Schema > should render a missing column 5`] = `
 "<li class="svelte">"ALTER TABLE myTable1Name ADD COLUMN myColumn1Name",</li>
+"
+`;
+
+exports[`Schema > should render a missing column 6`] = `
+"<li class="svelte">
+  "ALTER TABLE myTable1Name ADD COLUMN myColumn1Name DEFAULT 777",
+</li>
 "
 `;
 

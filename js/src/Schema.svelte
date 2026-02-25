@@ -262,6 +262,13 @@
                           column.renameFrom(table),
                           column.renameTo(table),
                         )}
+                        {#if column.fix?.method === "add"}
+                          <input
+                            bind:value={column.fix.value}
+                            placeholder="initial"
+                            size="3"
+                          />
+                        {/if}
                         {@render comparison(
                           column,
                           column.type,

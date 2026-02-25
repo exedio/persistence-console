@@ -61,7 +61,15 @@ final class SchemaAlterApi {
           model
         );
         yield switch (method) {
-          case ADD -> apply(node::create);
+          case ADD -> {
+            final Response response = apply(node::create);
+            final String value = request.getParameter("value");
+            if (value == null || value.isEmpty()) yield response;
+
+            // TODO do this in dsmf
+            // https://www.postgresql.org/docs/current/sql-altertable.html
+            yield new Response(response.sql + " DEFAULT " + value);
+          }
           case DROP -> apply(node::drop);
           case RENAME -> {
             final String value = requireParameter("value", request);

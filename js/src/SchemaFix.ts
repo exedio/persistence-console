@@ -16,7 +16,7 @@ export function setFix(
 
 export type Fix = {
   readonly method: "add" | "drop" | "modify" | "rename";
-  readonly value?: string; // new name for method "rename"
+  readonly value?: string; // initial value for method "add" and subject "column", new name for method "rename"
 };
 
 export type FixedFixable = {
