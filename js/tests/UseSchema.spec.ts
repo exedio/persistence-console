@@ -1,5 +1,5 @@
 import { expect } from "vitest";
-import { Schema } from "@/UseSchema.svelte";
+import { Constraint, type Existence, Schema } from "@/UseSchema.svelte";
 
 describe("UseSchema", () => {
   it("table renameTo/From", async () => {
@@ -447,4 +447,45 @@ describe("UseSchema", () => {
     expect(schema.nodesMissingWithoutRename.all).toStrictEqual([]);
     expect(schema.nodesUnusedWithoutRename.all).toStrictEqual([]);
   });
+
+  it("constraint color primary key missing", async () => {
+    constraintExistenceColor("PrimaryKey", "missing", "red");
+  });
+  it("constraint color foreign key missing", async () => {
+    constraintExistenceColor("ForeignKey", "missing", "red");
+  });
+  it("constraint color unique missing", async () => {
+    constraintExistenceColor("Unique", "missing", "red");
+  });
+  it("constraint color check missing", async () => {
+    constraintExistenceColor("Check", "missing", "red");
+  });
+  it("constraint color primary key unused", async () => {
+    constraintExistenceColor("PrimaryKey", "unused", "red");
+  });
+  it("constraint color foreign key unused", async () => {
+    constraintExistenceColor("ForeignKey", "unused", "red");
+  });
+  it("constraint color unique unused", async () => {
+    constraintExistenceColor("Unique", "unused", "red");
+  });
+  it("constraint color check unused", async () => {
+    constraintExistenceColor("Check", "unused", "red");
+  });
 });
+
+function constraintExistenceColor(
+  type: "PrimaryKey" | "ForeignKey" | "Unique" | "Check",
+  existence: "missing" | "unused",
+  color: "red" | "yellow",
+): void {
+  const c = new Constraint(
+    { name: "myName", type, existence },
+    "myTableName",
+    undefined,
+  );
+  expect(c.existence).toStrictEqual({
+    text: existence,
+    color,
+  } satisfies Existence);
+}
