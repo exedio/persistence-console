@@ -40,6 +40,7 @@ final class SchemaAlterApi {
     final String DROP = "drop";
     final String RENAME = "rename";
     final String MODIFY = "modify";
+    final String VALUE = "value";
     final String METHOD404 = "method not found";
     return switch (subject) {
       case "table" -> {
@@ -48,7 +49,7 @@ final class SchemaAlterApi {
           case ADD -> apply(node::create);
           case DROP -> apply(node::drop);
           case RENAME -> {
-            final String value = requireParameter("value", request);
+            final String value = requireParameter(VALUE, request);
             yield apply(l -> node.renameTo(value, l));
           }
           default -> throw ApiTextException.notFound(METHOD404);
@@ -63,7 +64,7 @@ final class SchemaAlterApi {
         yield switch (method) {
           case ADD -> {
             final Response response = apply(node::create);
-            final String value = request.getParameter("value");
+            final String value = request.getParameter(VALUE);
             if (value == null || value.isEmpty()) yield response;
 
             // TODO do this in dsmf
@@ -72,7 +73,7 @@ final class SchemaAlterApi {
           }
           case DROP -> apply(node::drop);
           case RENAME -> {
-            final String value = requireParameter("value", request);
+            final String value = requireParameter(VALUE, request);
             yield apply(l -> node.renameTo(value, l));
           }
           case MODIFY -> apply(sl -> node.modify(node.getRequiredType(), sl));
@@ -101,7 +102,7 @@ final class SchemaAlterApi {
           case ADD -> apply(node::create);
           case DROP -> apply(node::drop);
           case RENAME -> {
-            final String value = requireParameter("value", request);
+            final String value = requireParameter(VALUE, request);
             yield apply(l -> node.renameTo(value, l));
           }
           default -> throw ApiTextException.notFound(METHOD404);
