@@ -5,29 +5,12 @@ describe("UseSchema", () => {
   it("table renameTo/From", async () => {
     const schema = new Schema({
       tables: [
-        {
-          name: "tableOk",
-        },
-        {
-          name: "tableExisting",
-          additionalErrors: ["someAdditionalErrors"],
-        },
-        {
-          name: "tableMissing1",
-          existence: "missing",
-        },
-        {
-          name: "tableMissing2",
-          existence: "missing",
-        },
-        {
-          name: "tableUnused1",
-          existence: "unused",
-        },
-        {
-          name: "tableUnused2",
-          existence: "unused",
-        },
+        { name: "tableOk" },
+        { name: "tableExisting", additionalErrors: ["someAdditionalErrors"] },
+        { name: "tableMissing1", existence: "missing" },
+        { name: "tableMissing2", existence: "missing" },
+        { name: "tableUnused1", existence: "unused" },
+        { name: "tableUnused2", existence: "unused" },
       ],
     });
 
@@ -63,30 +46,11 @@ describe("UseSchema", () => {
         {
           name: "myTable",
           columns: [
-            {
-              name: "columnExisting",
-              type: "myType",
-            },
-            {
-              name: "columnMissing1",
-              type: "myType",
-              existence: "missing",
-            },
-            {
-              name: "columnMissing2",
-              type: "myType",
-              existence: "missing",
-            },
-            {
-              name: "columnUnused1",
-              type: "myType",
-              existence: "unused",
-            },
-            {
-              name: "columnUnused2",
-              type: "myType",
-              existence: "unused",
-            },
+            { name: "columnExisting", type: "myType" },
+            { name: "columnMissing1", type: "myType", existence: "missing" },
+            { name: "columnMissing2", type: "myType", existence: "missing" },
+            { name: "columnUnused1", type: "myType", existence: "unused" },
+            { name: "columnUnused2", type: "myType", existence: "unused" },
           ],
         },
       ],
@@ -278,14 +242,8 @@ describe("UseSchema", () => {
             },
           ],
         },
-        {
-          name: "tableMissing1",
-          existence: "missing",
-        },
-        {
-          name: "tableMissing2",
-          existence: "missing",
-        },
+        { name: "tableMissing1", existence: "missing" },
+        { name: "tableMissing2", existence: "missing" },
       ],
       sequences: [
         {
@@ -396,35 +354,14 @@ describe("UseSchema", () => {
         {
           name: "tableExisting2",
           columns: [
-            {
-              name: "columnExisting",
-              type: "myType",
-            },
-            {
-              name: "columnUnused1",
-              type: "myType",
-              existence: "unused",
-            },
-            {
-              name: "columnUnused2",
-              type: "myType",
-              existence: "unused",
-            },
-            {
-              name: "columnMissing",
-              type: "myType",
-              existence: "missing",
-            },
+            { name: "columnExisting", type: "myType" },
+            { name: "columnUnused1", type: "myType", existence: "unused" },
+            { name: "columnUnused2", type: "myType", existence: "unused" },
+            { name: "columnMissing", type: "myType", existence: "missing" },
           ],
         },
-        {
-          name: "tableUnused1",
-          existence: "unused",
-        },
-        {
-          name: "tableUnused2",
-          existence: "unused",
-        },
+        { name: "tableUnused1", existence: "unused" },
+        { name: "tableUnused2", existence: "unused" },
       ],
       sequences: [
         {
@@ -475,21 +412,10 @@ describe("UseSchema", () => {
   it("nodesMissingWithoutRename table has rename", async () => {
     const schema = new Schema({
       tables: [
-        {
-          name: "tableExisting",
-        },
-        {
-          name: "tableMissing1",
-          existence: "missing",
-        },
-        {
-          name: "tableMissing2",
-          existence: "missing",
-        },
-        {
-          name: "tableUnused1",
-          existence: "unused",
-        },
+        { name: "tableExisting" },
+        { name: "tableMissing1", existence: "missing" },
+        { name: "tableMissing2", existence: "missing" },
+        { name: "tableUnused1", existence: "unused" },
       ],
       sequences: [
         {
