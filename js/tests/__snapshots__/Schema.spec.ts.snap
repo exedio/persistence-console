@@ -985,7 +985,7 @@ exports[`Schema > should render a missing column to be renamed to a unused 3`] =
 
 exports[`Schema > should render a missing constraint 1`] = `
 "<div class="checkboxCollector svelte">
-  <button disabled="" class="bullet red svelte">.</button> Schema
+  <button disabled="" class="bullet yellow svelte">.</button> Schema
   <button class="reload svelte">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
@@ -995,7 +995,7 @@ exports[`Schema > should render a missing constraint 1`] = `
 </div>
 <ul>
   <li class="svelte">
-    <button class="bullet red svelte">+</button> myTable1Name
+    <button class="bullet yellow svelte">+</button> myTable1Name
   </li>
 </ul>
 "
@@ -1003,7 +1003,7 @@ exports[`Schema > should render a missing constraint 1`] = `
 
 exports[`Schema > should render a missing constraint 2`] = `
 "<div class="checkboxCollector svelte">
-  <button disabled="" class="bullet red svelte">.</button> Schema
+  <button disabled="" class="bullet yellow svelte">.</button> Schema
   <button class="reload svelte">🗘</button> <br />
   <label><input type="checkbox" />show all tables / sequences</label><br />
   <label
@@ -1013,17 +1013,17 @@ exports[`Schema > should render a missing constraint 2`] = `
 </div>
 <ul>
   <li class="svelte">
-    <button class="bullet red svelte">-</button> myTable1Name
+    <button class="bullet yellow svelte">-</button> myTable1Name
     <ul>
       <li class="svelte">
-        <button disabled="" class="bullet red svelte">.</button>
+        <button disabled="" class="bullet yellow svelte">.</button>
         <span class="nodeType svelte">check</span> myConstraint1Name<button
           class="clipboard svelte"
           title="myConstraint1Name"
         >
           ▢
         </button>
-        <span class="red svelte">missing</span>
+        <span class="yellow svelte">missing</span>
         <label><input type="checkbox" />add</label> myConstraint1Clause<button
           class="clipboard svelte"
           title="myConstraint1Clause"

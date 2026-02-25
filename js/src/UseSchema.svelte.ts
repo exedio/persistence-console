@@ -541,7 +541,13 @@ export class Constraint implements Bullet, Fixable {
     this.existence = $derived.by(() => {
       const api = this.api;
       if (!api.existence) return undefined;
-      return { text: api.existence, color: "red" };
+      return {
+        text: api.existence,
+        color:
+          api.existence === "missing" && api.type === "Check" // conforms to com.exedio.dsmf.Constraint#computeResult()
+            ? "yellow"
+            : "red",
+      };
     });
     this.clause = $derived(
       this.api.clause
