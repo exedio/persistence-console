@@ -450,6 +450,23 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(await formatHtml(sql())).toMatchSnapshot();
 
+    const initial = () => textField("initial", 0);
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          "ALTER TABLE myTable1Name ADD COLUMN myColumn1Name DEFAULT 777",
+        ),
+      );
+      initial().value = "777";
+      initial().dispatchEvent(new Event("input", { bubbles: true }));
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        "/myApiPath/schema/alter?subject=column&table=myTable1Name&name=myColumn1Name&method=add&value=777",
+      );
+    }
+    expect(await formatHtml(sql())).toMatchSnapshot();
+
     create().click();
     await flushPromises();
     expect(sql()).toBeNull();
@@ -2298,6 +2315,12 @@ function button(text: string, index: number): HTMLButtonElement {
   return Array.from(document.querySelectorAll("button")).filter(
     (button) => button.textContent === text,
   )[index] as HTMLButtonElement;
+}
+
+function textField(placeholder: string, index: number): HTMLInputElement {
+  return Array.from(
+    document.querySelectorAll("input[placeholder=" + placeholder + "]"),
+  )[index] as HTMLInputElement;
 }
 
 function sql(index: number = 0): HTMLElement {

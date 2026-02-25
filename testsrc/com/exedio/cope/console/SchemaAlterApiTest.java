@@ -116,7 +116,7 @@ public class SchemaAlterApiTest {
     assertEquals(
       """
       {
-        "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null"
+        "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null DEFAULT 777"
       }""",
       writeJson(alter(MODEL, request("column", "MyType", "this", "add", "777")))
     );
