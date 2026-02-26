@@ -124,6 +124,8 @@ function orderIndex(cb: FixedFixable): number {
           return -16;
         case "add":
           return 16;
+        case "rename":
+          return 3;
       }
       break;
     }
