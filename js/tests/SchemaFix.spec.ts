@@ -12,10 +12,7 @@ describe("Fix", () => {
           subject: "constraint",
           tableName: "myTableName",
           name: "myName",
-          fix: {
-            method: "drop",
-            value: "myValue",
-          },
+          fix: { method: "drop", value: "myValue" },
         },
       ]),
     ).toStrictEqual([
@@ -23,10 +20,7 @@ describe("Fix", () => {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        fix: {
-          method: "drop",
-          value: "myValue",
-        },
+        fix: { method: "drop", value: "myValue" },
       },
     ]);
   });
@@ -37,10 +31,7 @@ describe("Fix", () => {
           subject: "constraint",
           tableName: "myTableName",
           name: "myName",
-          fix: {
-            method: "modify",
-            value: "myValue",
-          },
+          fix: { method: "modify", value: "myValue" },
         },
       ]),
     ).toStrictEqual([
@@ -48,17 +39,13 @@ describe("Fix", () => {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        fix: {
-          method: "drop",
-        },
+        fix: { method: "drop" },
       },
       {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        fix: {
-          method: "add",
-        },
+        fix: { method: "add" },
       },
     ]);
   });
@@ -69,103 +56,67 @@ describe("Fix", () => {
           subject: "constraint",
           tableName: "myTableName",
           name: "myName",
-          fix: {
-            method: "add",
-            value: "myValue",
-          },
+          fix: { method: "add", value: "myValue" },
         },
         {
           subject: "constraint",
           tableName: "myTableName",
           name: "myName",
-          fix: {
-            method: "drop",
-            value: "myValue",
-          },
+          fix: { method: "drop", value: "myValue" },
         },
         {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
-          fix: {
-            method: "add",
-            value: "myValue",
-          },
+          fix: { method: "add", value: "myValue" },
         },
         {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
-          fix: {
-            method: "rename",
-            value: "myValue",
-          },
+          fix: { method: "rename", value: "myValue" },
         },
         {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
-          fix: {
-            method: "modify",
-            value: "myValue",
-          },
+          fix: { method: "modify", value: "myValue" },
         },
         {
           subject: "column",
           tableName: "myTableName",
           name: "myName",
-          fix: {
-            method: "drop",
-            value: "myValue",
-          },
+          fix: { method: "drop", value: "myValue" },
         },
         {
           subject: "table",
           name: "myName",
-          fix: {
-            method: "add",
-            value: "myValue",
-          },
+          fix: { method: "add", value: "myValue" },
         },
         {
           subject: "table",
           name: "myName",
-          fix: {
-            method: "drop",
-            value: "myValue",
-          },
+          fix: { method: "drop", value: "myValue" },
         },
         {
           subject: "table",
           name: "myName",
-          fix: {
-            method: "rename",
-            value: "myValue",
-          },
+          fix: { method: "rename", value: "myValue" },
         },
         {
           subject: "sequence",
           name: "myName",
-          fix: {
-            method: "add",
-            value: "myValue",
-          },
+          fix: { method: "add", value: "myValue" },
         },
         {
           subject: "sequence",
           name: "myName",
-          fix: {
-            method: "drop",
-            value: "myValue",
-          },
+          fix: { method: "drop", value: "myValue" },
         },
         {
           subject: "sequence",
           name: "myName2",
-          fix: {
-            method: "drop",
-            value: "myValue",
-          },
+          fix: { method: "drop", value: "myValue" },
         },
       ]),
     ).toStrictEqual([
@@ -173,27 +124,18 @@ describe("Fix", () => {
         subject: "constraint",
         tableName: "myTableName",
         name: "myName",
-        fix: {
-          method: "drop",
-          value: "myValue",
-        },
+        fix: { method: "drop", value: "myValue" },
       },
       {
         subject: "column",
         tableName: "myTableName",
         name: "myName",
-        fix: {
-          method: "drop",
-          value: "myValue",
-        },
+        fix: { method: "drop", value: "myValue" },
       },
       {
         subject: "table",
         name: "myName",
-        fix: {
-          method: "drop",
-          value: "myValue",
-        },
+        fix: { method: "drop", value: "myValue" },
       },
       {
         subject: "sequence",
