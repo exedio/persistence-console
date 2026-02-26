@@ -115,6 +115,11 @@ describe("Fix", () => {
         },
         {
           subject: "sequence",
+          name: "myName",
+          fix: { method: "rename", value: "myValue" },
+        },
+        {
+          subject: "sequence",
           name: "myName2",
           fix: { method: "drop", value: "myValue" },
         },
@@ -161,6 +166,11 @@ describe("Fix", () => {
       {
         subject: "column",
         tableName: "myTableName",
+        name: "myName",
+        fix: { method: "rename", value: "myValue" },
+      },
+      {
+        subject: "sequence",
         name: "myName",
         fix: { method: "rename", value: "myValue" },
       },
