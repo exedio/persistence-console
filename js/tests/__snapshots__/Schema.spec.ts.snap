@@ -913,7 +913,7 @@ exports[`Schema > should render a missing column 6`] = `
 "
 `;
 
-exports[`Schema > should render a missing column to be renamed to a unused 1`] = `
+exports[`Schema > should render a missing column to be renamed from an unused 1`] = `
 "<div class="checkboxCollector svelte">
   <button disabled="" class="bullet red svelte">.</button> Schema
   <button class="reload svelte">🗘</button> <br />
@@ -963,7 +963,7 @@ exports[`Schema > should render a missing column to be renamed to a unused 1`] =
 "
 `;
 
-exports[`Schema > should render a missing column to be renamed to a unused 2`] = `
+exports[`Schema > should render a missing column to be renamed from an unused 2`] = `
 "<div class="checkboxCollector svelte">
   <button disabled="" class="bullet red svelte">.</button> Schema
   <button class="reload svelte">🗘</button> <br />
@@ -1013,7 +1013,7 @@ exports[`Schema > should render a missing column to be renamed to a unused 2`] =
 "
 `;
 
-exports[`Schema > should render a missing column to be renamed to a unused 3`] = `
+exports[`Schema > should render a missing column to be renamed from an unused 3`] = `
 "<li class="svelte">
   "ALTER TABLE \\"myTableName\\" ALTER COLUMN \\"myUnusedColumnName\\" RENAME TO
   \\"myMissingColumnName\\"",
@@ -1114,7 +1114,7 @@ exports[`Schema > should render a missing sequence 2`] = `
 "
 `;
 
-exports[`Schema > should render a missing sequence to be renamed to an unused 1`] = `
+exports[`Schema > should render a missing sequence to be renamed from an unused 1`] = `
 "<div class="checkboxCollector svelte">
   <button disabled="" class="bullet red svelte">.</button> Schema
   <button class="reload svelte">🗘</button> <br />
@@ -1168,7 +1168,7 @@ exports[`Schema > should render a missing sequence to be renamed to an unused 1`
 "
 `;
 
-exports[`Schema > should render a missing sequence to be renamed to an unused 2`] = `
+exports[`Schema > should render a missing sequence to be renamed from an unused 2`] = `
 "<div class="checkboxCollector svelte">
   <button disabled="" class="bullet red svelte">.</button> Schema
   <button class="reload svelte">🗘</button> <br />
@@ -1222,7 +1222,7 @@ exports[`Schema > should render a missing sequence to be renamed to an unused 2`
 "
 `;
 
-exports[`Schema > should render a missing sequence to be renamed to an unused 3`] = `
+exports[`Schema > should render a missing sequence to be renamed from an unused 3`] = `
 "<li class="svelte">
   "ALTER TABLE \\"myUnusedSequenceName\\" RENAME TO \\"myMissingSequenceName\\"",
 </li>
@@ -1284,7 +1284,7 @@ exports[`Schema > should render a missing table and patch fails 1`] = `
 "
 `;
 
-exports[`Schema > should render a missing table to be renamed to an unused 1`] = `
+exports[`Schema > should render a missing table to be renamed from an unused 1`] = `
 "<div class="checkboxCollector svelte">
   <button disabled="" class="bullet red svelte">.</button> Schema
   <button class="reload svelte">🗘</button> <br />
@@ -1329,7 +1329,7 @@ exports[`Schema > should render a missing table to be renamed to an unused 1`] =
 "
 `;
 
-exports[`Schema > should render a missing table to be renamed to an unused 2`] = `
+exports[`Schema > should render a missing table to be renamed from an unused 2`] = `
 "<div class="checkboxCollector svelte">
   <button disabled="" class="bullet red svelte">.</button> Schema
   <button class="reload svelte">🗘</button> <br />
@@ -1374,7 +1374,7 @@ exports[`Schema > should render a missing table to be renamed to an unused 2`] =
 "
 `;
 
-exports[`Schema > should render a missing table to be renamed to an unused 3`] = `
+exports[`Schema > should render a missing table to be renamed from an unused 3`] = `
 "<li class="svelte">
   "ALTER TABLE \\"myUnusedTableName\\" RENAME TO \\"myMissingTableName\\"",
 </li>
