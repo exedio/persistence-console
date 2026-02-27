@@ -324,7 +324,7 @@ describe("Schema", () => {
     expect(missing2().value).toBe("<NONE>");
   });
 
-  it("should render a missing table to be renamed to an unused", async () => {
+  it("should render a missing table to be renamed from an unused", async () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -632,7 +632,7 @@ describe("Schema", () => {
     expect(missing2().value).toBe("<NONE>");
   });
 
-  it("should render a missing column to be renamed to a unused", async () => {
+  it("should render a missing column to be renamed from an unused", async () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -1410,7 +1410,7 @@ describe("Schema", () => {
     expect(missing2().value).toBe("<NONE>");
   });
 
-  it("should render a missing sequence to be renamed to an unused", async () => {
+  it("should render a missing sequence to be renamed from an unused", async () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
