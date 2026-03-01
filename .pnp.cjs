@@ -1659,7 +1659,7 @@ const RAW_RUNTIME_STATE =
           ["foreground-child", "npm:3.3.1"],\
           ["glob", "npm:10.5.0"],\
           ["jackspeak", "npm:3.4.3"],\
-          ["minimatch", "npm:9.0.5"],\
+          ["minimatch", "npm:9.0.9"],\
           ["minipass", "npm:7.1.2"],\
           ["package-json-from-dist", "npm:1.0.1"],\
           ["path-scurry", "npm:1.11.1"]\
@@ -2058,11 +2058,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["minimatch", [\
-      ["npm:9.0.5", {\
-        "packageLocation": "./.yarn/cache/minimatch-npm-9.0.5-9aa93d97fa-de96cf5e35.zip/node_modules/minimatch/",\
+      ["npm:9.0.9", {\
+        "packageLocation": "./.yarn/cache/minimatch-npm-9.0.9-3ee8f15008-0b6a58530d.zip/node_modules/minimatch/",\
         "packageDependencies": [\
           ["brace-expansion", "npm:2.0.2"],\
-          ["minimatch", "npm:9.0.5"]\
+          ["minimatch", "npm:9.0.9"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2759,7 +2759,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@istanbuljs/schema", "npm:0.1.3"],\
           ["glob", "npm:10.5.0"],\
-          ["minimatch", "npm:9.0.5"],\
+          ["minimatch", "npm:9.0.9"],\
           ["test-exclude", "npm:7.0.1"]\
         ],\
         "linkType": "HARD"\
