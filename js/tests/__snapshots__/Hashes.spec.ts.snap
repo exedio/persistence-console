@@ -274,7 +274,7 @@ exports[`Hashes > should render an error message 1`] = `
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte">Time<small>/ns</small> &nbsp;</th>
+      <th rowspan="2" class="time svelte">Time<small>/ns</small></th>
     </tr>
     <tr>
       <th>Limit</th>
