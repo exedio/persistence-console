@@ -49,8 +49,8 @@
         {#await hashes.promise() then hashes}
           {#if hashes.length > 0}
             <button class="measure" onclick={() => measureAll(hashes)}
-              >&#128336;&#xfe0e;
-            </button>
+              >&#128336;&#xfe0e;</button
+            >
           {/if}
         {:catch _error}
           &nbsp;
@@ -95,8 +95,8 @@
               {measurement.toLocaleString("en-US")}
             {/if}
             <button class="measure" onclick={() => hash.measure(errors)}
-              >&#128336;&#xfe0e;
-            </button>
+              >&#128336;&#xfe0e;</button
+            >
           </td>
         </tr>
         {#if hash.isToggled()}
