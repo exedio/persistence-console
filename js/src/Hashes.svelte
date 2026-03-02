@@ -53,7 +53,7 @@
             >
           {/if}
         {:catch _error}
-          &nbsp;
+          <!-- svelte-ignore block_empty -->
         {/await}
       </th>
     </tr>
