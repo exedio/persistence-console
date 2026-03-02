@@ -39,7 +39,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.Principal;
 import java.security.SecureRandom;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -77,7 +76,7 @@ public class ConsoleServlet extends CopsServlet
 	 */
 	public List<String> getMediaURLPrefixes(final HttpServletRequest request)
 	{
-		return Collections.emptyList();
+		return List.of();
 	}
 
 	/**
