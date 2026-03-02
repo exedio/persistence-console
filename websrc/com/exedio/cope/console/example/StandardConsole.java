@@ -33,6 +33,17 @@ public final class StandardConsole extends ConsoleServlet
 	private static final long serialVersionUID = 1l;
 
 	@Override
+	public List<String> getPeers()
+	{
+		return List.of(
+				// you may want to put these into your /etc/hosts:
+				// 127.0.0.1 peer1.localhost
+				// 127.0.0.1 peer2.localhost
+				"http://peer1.localhost:8080",
+				"http://peer2.localhost:8080");
+	}
+
+	@Override
 	public List<String> getMediaURLPrefixes(final HttpServletRequest request)
 	{
 		final String host = request.getHeader("Host");

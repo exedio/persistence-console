@@ -35,6 +35,7 @@ import java.io.OutputStream;
 import java.io.Serial;
 import java.sql.SQLException;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 final class ApiTextException extends Exception {
 
@@ -123,7 +124,7 @@ final class ApiTextException extends Exception {
   private ApiTextException(
     final int status,
     @Nonnull final String body,
-    @Nonnull final Throwable cause
+    @Nullable final Throwable cause
   ) {
     super(cause);
     this.status = status;

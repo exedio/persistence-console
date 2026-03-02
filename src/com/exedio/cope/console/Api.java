@@ -75,12 +75,17 @@ final class Api {
         servlet.connect();
         writeJson(null, response);
       }
+      case "peers" -> {
+        requireGet(request);
+        writeJson(servlet.getPeers(), response);
+      }
       case "hashes" -> {
         requireGet(request);
         writeJson(HashApi.get(model), response);
       }
       case "hashes/measure" -> {
         requireGet(request);
+        if (PeerApi.forwarded(servlet, request, response)) return;
         writeJson(HashApi.measure(model, request), response);
       }
       case "hashes/hash" -> writeJson(

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import "@/table-grey.css";
-  import { get } from "@/api/api";
+  import { get, SELF } from "@/api/api";
   import { type Hash as ApiHash } from "@/api/types";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
@@ -23,9 +23,17 @@
   );
   const errors: Error[] = $state([]);
 
+  const hosts = new PromiseTracker(() =>
+    get<string[]>("peers").then((x) => [SELF].concat(x)),
+  );
+
+  let hostsLast = $derived(hosts.last() || [SELF]);
+
   function measureAll(hashes: Hash[]) {
     let promise = Promise.resolve();
-    hashes.forEach((h) => (promise = promise.then(() => h.measure(errors))));
+    hashes.forEach(
+      (h) => (promise = promise.then(() => h.measureHost(errors, SELF))), // TODO measure peers as well
+    );
   }
 
   function toId(response: ApiHash): string {
@@ -55,7 +63,7 @@
       >
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time">
+      <th colspan={hostsLast.length} class="time">
         Time<small>/ns</small>
       </th>
     </tr>
@@ -64,6 +72,10 @@
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
+      <!-- eslint-disable-next-line svelte/require-each-key -- hosts are not necessarily unique -->
+      {#each hostsLast as host}
+        <th>{host}</th>
+      {/each}
     </tr>
   </thead>
   <tbody>
@@ -73,7 +85,6 @@
       </tr>
     {:then hashes}
       {#each hashes as hash (toId(hash))}
-        {@const measurement = hash.getMeasurement()}
         <tr class="relative">
           <td>
             <button class="hash" onclick={() => hash.toggle()}>
@@ -88,7 +99,8 @@
           <td
             >{hash.name}<button
               class="measure"
-              onclick={() => hash.measure(errors)}>&#128336;&#xfe0e;</button
+              onclick={() => hash.measure(errors, hostsLast)}
+              >&#128336;&#xfe0e;</button
             ></td
           >
           <td class="number">{hash.plainTextLimit}</td>
@@ -97,9 +109,12 @@
           >
           <td>{hash.algorithmID}</td>
           <td>{hash.algorithmDescription}</td>
-          <td class="number">
-            {format(measurement)}
-          </td>
+          <!-- eslint-disable-next-line svelte/require-each-key -- hosts are not necessarily unique -->
+          {#each hostsLast as host}
+            <td class="number">
+              {format(hash.getMeasurement(host))}
+            </td>
+          {/each}
         </tr>
         {#if hash.isToggled()}
           <tr in:fly={{ y: -10, duration: 200 }}>

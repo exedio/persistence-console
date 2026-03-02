@@ -12,13 +12,14 @@ exports[`Hashes > should render a non-empty table 1`] = `
       <th rowspan="2">Name<button class="measure svelte">🕐︎</button></th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte">Time<small>/ns</small></th>
+      <th class="time svelte" colspan="1">Time<small>/ns</small></th>
     </tr>
     <tr>
       <th>Limit</th>
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
+      <th>self</th>
     </tr>
   </thead>
   <tbody>
@@ -57,13 +58,14 @@ exports[`Hashes > should render a non-empty table 2`] = `
       <th rowspan="2">Name<button class="measure svelte">🕐︎</button></th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte">Time<small>/ns</small></th>
+      <th class="time svelte" colspan="1">Time<small>/ns</small></th>
     </tr>
     <tr>
       <th>Limit</th>
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
+      <th>self</th>
     </tr>
   </thead>
   <tbody>
@@ -83,6 +85,58 @@ exports[`Hashes > should render a non-empty table 2`] = `
       <td>myValidatorReloaded</td>
       <td>myAlgorithmIDReloaded</td>
       <td>myAlgorithmDescriptionReloaded</td>
+      <td class="number"></td>
+    </tr>
+  </tbody>
+</table>
+"
+`;
+
+exports[`Hashes > should render a non-empty table with peers 1`] = `
+"<table class="grey svelte">
+  <caption>
+    Hashes
+    <button class="reload svelte" title="Reload">🗘</button>
+  </caption>
+  <thead>
+    <tr class="relative svelte">
+      <th rowspan="2">Type</th>
+      <th rowspan="2">Name<button class="measure svelte">🕐︎</button></th>
+      <th colspan="2">Plain Text</th>
+      <th colspan="2">Algorithm</th>
+      <th class="time svelte" colspan="3">Time<small>/ns</small></th>
+    </tr>
+    <tr>
+      <th>Limit</th>
+      <th>Validator</th>
+      <th>ID</th>
+      <th>Description</th>
+      <th>self</th>
+      <th>peer1</th>
+      <th>peer2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="relative svelte">
+      <td><button class="hash svelte">↓</button> myType</td>
+      <td>myName<button class="measure svelte">🕐︎</button></td>
+      <td class="number">150</td>
+      <td>myValidator</td>
+      <td>myAlgorithmID</td>
+      <td>myAlgorithmDescription</td>
+      <td class="number"></td>
+      <td class="number"></td>
+      <td class="number"></td>
+    </tr>
+    <tr class="relative svelte">
+      <td><button class="hash svelte">↓</button> myTypeWithoutLimit</td>
+      <td>myNameWithoutLimit<button class="measure svelte">🕐︎</button></td>
+      <td class="number">155</td>
+      <td class="notAvailable"></td>
+      <td>myAlgorithmIDWithoutLimit</td>
+      <td>myAlgorithmDescriptionWithoutLimit</td>
+      <td class="number"></td>
+      <td class="number"></td>
       <td class="number"></td>
     </tr>
   </tbody>
@@ -228,6 +282,43 @@ exports[`Hashes > should render a table body with one hash measured 1`] = `
 "
 `;
 
+exports[`Hashes > should render a table body with one hash measured with peers 1`] = `
+"<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType1</td>
+  <td>myName1<button class="measure svelte">🕐︎</button></td>
+  <td class="number">151</td>
+  <td class="notAvailable"></td>
+  <td>myAlgorithmID1</td>
+  <td>myAlgorithmDescription1</td>
+  <td class="number"></td>
+  <td class="number"></td>
+  <td class="number"></td>
+</tr>
+<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType2</td>
+  <td>myName2<button class="measure svelte">🕐︎</button></td>
+  <td class="number">152</td>
+  <td class="notAvailable"></td>
+  <td>myAlgorithmID2</td>
+  <td>myAlgorithmDescription2</td>
+  <td class="number">50'020</td>
+  <td class="number">51'020</td>
+  <td class="number">52'020</td>
+</tr>
+<tr class="relative svelte">
+  <td><button class="hash svelte">↓</button> myType3</td>
+  <td>myName3<button class="measure svelte">🕐︎</button></td>
+  <td class="number">153</td>
+  <td class="notAvailable"></td>
+  <td>myAlgorithmID3</td>
+  <td>myAlgorithmDescription3</td>
+  <td class="number"></td>
+  <td class="number"></td>
+  <td class="number"></td>
+</tr>
+"
+`;
+
 exports[`Hashes > should render an empty table 1`] = `
 "<table class="grey svelte">
   <caption>
@@ -240,13 +331,47 @@ exports[`Hashes > should render an empty table 1`] = `
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte">Time<small>/ns</small></th>
+      <th class="time svelte" colspan="1">Time<small>/ns</small></th>
     </tr>
     <tr>
       <th>Limit</th>
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
+      <th>self</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="7" class="empty">There are no hashes in the model.</td>
+    </tr>
+  </tbody>
+</table>
+"
+`;
+
+exports[`Hashes > should render an empty table with peers 1`] = `
+"<table class="grey svelte">
+  <caption>
+    Hashes
+    <button class="reload svelte" title="Reload">🗘</button>
+  </caption>
+  <thead>
+    <tr class="relative svelte">
+      <th rowspan="2">Type</th>
+      <th rowspan="2">Name</th>
+      <th colspan="2">Plain Text</th>
+      <th colspan="2">Algorithm</th>
+      <th class="time svelte" colspan="3">Time<small>/ns</small></th>
+    </tr>
+    <tr>
+      <th>Limit</th>
+      <th>Validator</th>
+      <th>ID</th>
+      <th>Description</th>
+      <th>self</th>
+      <th>peer1</th>
+      <th>peer2</th>
     </tr>
   </thead>
   <tbody>
@@ -270,13 +395,14 @@ exports[`Hashes > should render an error message 1`] = `
       <th rowspan="2">Name</th>
       <th colspan="2">Plain Text</th>
       <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time svelte">Time<small>/ns</small></th>
+      <th class="time svelte" colspan="1">Time<small>/ns</small></th>
     </tr>
     <tr>
       <th>Limit</th>
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
+      <th>self</th>
     </tr>
   </thead>
   <tbody>
