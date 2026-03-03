@@ -41,12 +41,8 @@
   <thead>
     <tr class="relative">
       <th rowspan="2">Type</th>
-      <th rowspan="2">Name</th>
-      <th colspan="2">Plain Text</th>
-      <th colspan="2">Algorithm</th>
-      <th rowspan="2" class="time">
-        Time<small>/ns</small>
-        {#await hashes.promise() then hashes}
+      <th rowspan="2"
+        >Name{#await hashes.promise() then hashes}
           {#if hashes.length > 0}
             <button class="measure" onclick={() => measureAll(hashes)}
               >&#128336;&#xfe0e;</button
@@ -54,7 +50,12 @@
           {/if}
         {:catch _error}
           <!-- svelte-ignore block_empty -->
-        {/await}
+        {/await}</th
+      >
+      <th colspan="2">Plain Text</th>
+      <th colspan="2">Algorithm</th>
+      <th rowspan="2" class="time">
+        Time<small>/ns</small>
       </th>
     </tr>
     <tr>
@@ -83,7 +84,12 @@
             </button>
             {hash.type}
           </td>
-          <td>{hash.name}</td>
+          <td
+            >{hash.name}<button
+              class="measure"
+              onclick={() => hash.measure(errors)}>&#128336;&#xfe0e;</button
+            ></td
+          >
           <td class="number">{hash.plainTextLimit}</td>
           <td class:notAvailable={!hash.plainTextValidator}
             >{hash.plainTextValidator}</td
@@ -94,9 +100,6 @@
             {#if measurement !== undefined}
               {measurement.toLocaleString("en-US")}
             {/if}
-            <button class="measure" onclick={() => hash.measure(errors)}
-              >&#128336;&#xfe0e;</button
-            >
           </td>
         </tr>
         {#if hash.isToggled()}
