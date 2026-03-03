@@ -1801,7 +1801,7 @@ describe("Schema", () => {
     }
 
     const all = () =>
-      checkboxStart("drop unused nodes without rename-from option", 0);
+      checkboxStart("drop unused nodes without rename-to option", 0);
     const column = () => checkbox("drop", 0);
     const columnConstraint = () => checkbox("drop", 1);
     const tableConstraint = () => checkbox("drop", 2);
