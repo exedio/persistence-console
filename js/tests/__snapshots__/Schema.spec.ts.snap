@@ -2571,6 +2571,94 @@ exports[`Schema > should render multiple missing nodes 8`] = `
 "
 `;
 
+exports[`Schema > should render multiple unused nodes 1`] = `
+"<button disabled="" class="bullet red svelte">.</button> Schema
+<button class="reload svelte">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />drop unused nodes without rename-from option
+  <small>(0/5)</small></label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple unused nodes 2`] = `
+"<button disabled="" class="bullet red svelte">.</button> Schema
+<button class="reload svelte">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />drop unused nodes without rename-from option
+  <small>(1/5)</small></label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple unused nodes 3`] = `
+"<button disabled="" class="bullet red svelte">.</button> Schema
+<button class="reload svelte">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />drop unused nodes without rename-from option
+  <small>(2/5)</small></label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple unused nodes 4`] = `
+"<button disabled="" class="bullet yellow svelte">.</button> Schema
+<button class="reload svelte">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />drop unused nodes without rename-from option
+  <small>(3/5)</small></label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple unused nodes 5`] = `
+"<button disabled="" class="bullet yellow svelte">.</button> Schema
+<button class="reload svelte">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />drop unused nodes without rename-from option
+  <small>(4/5)</small></label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple unused nodes 6`] = `
+"<button disabled="" class="bullet redFixed svelte">.</button> Schema
+<button class="reload svelte">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />drop unused nodes without rename-from option
+  <small>(5/5)</small></label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple unused nodes 7`] = `
+"<button disabled="" class="bullet red svelte">.</button> Schema
+<button class="reload svelte">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />drop unused nodes without rename-from option
+  <small>(0/5)</small></label
+><br />
+"
+`;
+
+exports[`Schema > should render multiple unused nodes 8`] = `
+"<button disabled="" class="bullet redFixed svelte">.</button> Schema
+<button class="reload svelte">🗘</button> <br />
+<label><input type="checkbox" />show all tables / sequences</label><br />
+<label
+  ><input type="checkbox" />drop unused nodes without rename-from option
+  <small>(5/5)</small></label
+><br />
+"
+`;
+
 exports[`Schema > should run patches 1`] = `
 "<li class="svelte">"CREATE TABLE \\"myTable1\\"",</li>
 <li class="svelte">"CREATE TABLE \\"myTable2\\"",</li>
