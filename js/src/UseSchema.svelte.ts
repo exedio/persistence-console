@@ -75,7 +75,7 @@ export class Schema implements Bullet {
     );
     this.nodesUnusedWithoutRename = new FixAggregator(
       "drop",
-      "drop unused nodes without rename-from option",
+      "drop unused nodes without rename-to option",
       () => {
         let result: Fixable[] = [];
         this._tables.forEach((table) => {
