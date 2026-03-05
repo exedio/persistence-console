@@ -428,7 +428,7 @@
         class="clipboard"
         title={constraint.name}
         onclick={() => navigator.clipboard.writeText(constraint.name)}
-        >&#x25A2;</button
+        >&#x29C9;</button
       >
       {@render existence(constraint.existence, constraint, [], [])}
       {@render comparison(constraint, constraint.clause, "recreate", true)}
@@ -595,7 +595,7 @@
   {shortener(value)}<button
     class="clipboard"
     title={value}
-    onclick={() => navigator.clipboard.writeText(value)}>&#x25A2;</button
+    onclick={() => navigator.clipboard.writeText(value)}>&#x29C9;</button
   >
 {/snippet}
 
@@ -720,7 +720,7 @@
   }
 
   button.clipboard {
-    color: lightgray;
+    color: gray;
     border-width: 0;
     background: white;
     padding: 0;
