@@ -654,7 +654,7 @@
     border-radius: 2px;
     padding: 0;
     width: 1.2em;
-    font-size: 40%;
+    font-size: 60%;
     background: #ffffff;
   }
 
