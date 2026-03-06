@@ -722,8 +722,15 @@
   button.clipboard {
     color: gray;
     border-width: 0;
+    border-radius: 4px;
     background: white;
     padding: 0;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+  }
+
+  button.clipboard:hover {
+    background: lightgray;
   }
 
   button.clipboard:active {
