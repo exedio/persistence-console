@@ -654,6 +654,7 @@
     border-radius: 2px;
     padding: 0;
     width: 1.2em;
+    vertical-align: 20%;
     font-size: 60%;
     background: #ffffff;
   }
