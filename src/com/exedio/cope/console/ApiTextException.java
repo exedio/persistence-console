@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static jakarta.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
 import static jakarta.servlet.http.HttpServletResponse.SC_NOT_FOUND;
+import static jakarta.servlet.http.HttpServletResponse.SC_SERVICE_UNAVAILABLE;
 import static jakarta.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
@@ -79,6 +80,13 @@ final class ApiTextException extends Exception {
     return badRequest(e.getMessage(), e); // TODO should be SC_FORBIDDEN
   }
 
+  static ApiTextException concurrentCallsForbidden() {
+    return new ApiTextException(
+      SC_SERVICE_UNAVAILABLE,
+      "concurrent calls forbidden"
+    );
+  }
+
   static ApiTextException onException(final SQLRuntimeException e) {
     final Throwable cause = e.getCause();
     // TODO should be SC_FORBIDDEN
@@ -101,7 +109,11 @@ final class ApiTextException extends Exception {
     this.status = status;
     this.body = requireNonNull(body);
     switch (status) {
-      case SC_METHOD_NOT_ALLOWED, SC_NOT_FOUND, SC_UNSUPPORTED_MEDIA_TYPE:
+      case
+        SC_METHOD_NOT_ALLOWED,
+        SC_NOT_FOUND,
+        SC_UNSUPPORTED_MEDIA_TYPE,
+        SC_SERVICE_UNAVAILABLE:
         break;
       default:
         throw new RuntimeException("status not allowed: " + status);
