@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.locks.ReentrantLock;
 import javax.annotation.Nonnull;
 
 final class HashApi {
@@ -69,12 +70,25 @@ final class HashApi {
     final HashAlgorithm algorithm = request.get(model).getAlgorithm2();
     final String plainText = request.plainText;
 
-    final long start = System.nanoTime();
-    final String hashResult = algorithm.hash(plainText);
-    final long end = System.nanoTime();
-
+    final long start;
+    final String hashResult;
+    final long end;
+    if (!l.tryLock()) throw ApiTextException.concurrentCallsForbidden();
+    try {
+      start = System.nanoTime();
+      hashResult = algorithm.hash(plainText);
+      end = System.nanoTime();
+    } finally {
+      l.unlock();
+    }
     return new HashResponse(hashResult, end - start);
   }
+
+  /**
+   * Mitigates Denial-of-Service attacks.
+   * TODO one lock per Model
+   */
+  private static final ReentrantLock l = new ReentrantLock();
 
   record HashRequest(
     @JsonProperty(required = true) String type,
