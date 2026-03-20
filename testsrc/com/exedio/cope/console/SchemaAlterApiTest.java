@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.ApiTest.writeJson;
 import static com.exedio.cope.console.ParameterRequest.NULL;
 import static com.exedio.cope.console.SchemaAlterApi.alter;
+import static com.exedio.cope.console.SchemaGetApiTest.assertOrphaned;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -378,7 +379,7 @@ public class SchemaAlterApiTest {
     props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
     props.setProperty("connection.username", "sa");
     props.setProperty("connection.password", "");
-    MODEL.connect(ConnectProperties.create(Sources.view(props, "DESC")));
+    MODEL.connect(assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC"))));
   }
 
   @AfterAll
