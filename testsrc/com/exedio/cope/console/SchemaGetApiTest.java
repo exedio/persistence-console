@@ -779,7 +779,9 @@ public class SchemaGetApiTest {
     props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
     props.setProperty("connection.username", "sa");
     props.setProperty("connection.password", "");
-    MODEL.connect(assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC"))));
+    MODEL.connect(
+      assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
+    );
   }
 
   static ConnectProperties assertOrphaned(final ConnectProperties properties) {
