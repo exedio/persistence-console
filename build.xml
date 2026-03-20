@@ -183,6 +183,7 @@
 		<instrument
 				dir="websrc"
 				nullabilityAnnotations="true"
+				serialVersionUIDSuffix="capital"
 				verify="${instrument.verify}">
 			<classpath>
 				<fileset dir="lib/test" />
