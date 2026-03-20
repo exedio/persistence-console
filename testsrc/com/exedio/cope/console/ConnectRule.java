@@ -49,7 +49,6 @@ public final class ConnectRule implements AfterEachCallback, ParameterResolver {
     props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
     props.setProperty("connection.username", "sa");
     props.setProperty("connection.password", "");
-    props.setProperty("schema.primaryKeyGenerator", "sequence");
     model.connect(
       assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
     );
