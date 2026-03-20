@@ -1,0 +1,98 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UniqueCache > should render a non-empty table 1`] = `
+"<table class="grey">
+  <caption>
+    Unique Constraint Caches
+    <button class="reload svelte">🗘</button>
+  </caption>
+  <thead>
+    <tr>
+      <th rowspan="2">Constraint</th>
+      <th colspan="2">Result</th>
+    </tr>
+    <tr>
+      <th>Hit</th>
+      <th>Miss</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>myFeature1</td>
+      <td class="number" title="myDescription1Hit">155</td>
+      <td class="number" title="myDescription1Hit">166</td>
+    </tr>
+    <tr>
+      <td>myFeature2</td>
+      <td class="number" title="myDescription2Miss">255</td>
+      <td class="number" title="myDescription2Miss">266</td>
+    </tr>
+    <tr>
+      <td>myFeatureHitOnly</td>
+      <td class="number" title="myDescriptionHitOnly">3077</td>
+      <td class="number" title="myDescriptionHitOnly"></td>
+    </tr>
+    <tr>
+      <td>myFeatureMissOnly</td>
+      <td class="number" title="myDescriptionMissOnly"></td>
+      <td class="number" title="myDescriptionMissOnly">4077</td>
+    </tr>
+  </tbody>
+</table>
+"
+`;
+
+exports[`UniqueCache > should render an empty table 1`] = `
+"<table class="grey">
+  <caption>
+    Unique Constraint Caches
+    <button class="reload svelte">🗘</button>
+  </caption>
+  <thead>
+    <tr>
+      <th rowspan="2">Constraint</th>
+      <th colspan="2">Result</th>
+    </tr>
+    <tr>
+      <th>Hit</th>
+      <th>Miss</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="3" class="empty">
+        There are no metrics of unique constraints for the model.
+      </td>
+    </tr>
+  </tbody>
+</table>
+"
+`;
+
+exports[`UniqueCache > should render an error message 1`] = `
+"<table class="grey">
+  <caption>
+    Unique Constraint Caches
+    <button class="reload svelte">🗘</button>
+  </caption>
+  <thead>
+    <tr>
+      <th rowspan="2">Constraint</th>
+      <th colspan="2">Result</th>
+    </tr>
+    <tr>
+      <th>Hit</th>
+      <th>Miss</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="3" class="error">
+        metrics?prefix=com.exedio.cope.UniqueConstraint: response code 400
+        myError
+      </td>
+    </tr>
+  </tbody>
+</table>
+"
+`;

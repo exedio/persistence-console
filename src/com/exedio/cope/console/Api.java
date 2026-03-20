@@ -109,6 +109,10 @@ final class Api {
         requireGet(request);
         writeJson(SuspicionsApi.get(model), response);
       }
+      case "metrics" -> {
+        requireGet(request);
+        writeJson(MetricsApi.get(model, request), response);
+      }
       default -> throw ApiTextException.notFound("endpoint not found");
     }
   }
