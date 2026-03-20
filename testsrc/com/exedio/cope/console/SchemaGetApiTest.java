@@ -149,9 +149,17 @@ public class SchemaGetApiTest {
           } ]
         } ],
         "sequences" : [ {
+          "name" : "MyType_this_Seq",
+          "type" : "bit31",
+          "start" : 0
+        }, {
           "name" : "MyType_myInt_Seq",
           "type" : "bit31",
           "start" : 77
+        }, {
+          "name" : "MyTarget_this_Seq",
+          "type" : "bit31",
+          "start" : 0
         } ]
       }""",
       writeJson(get(MODEL))
@@ -702,7 +710,7 @@ public class SchemaGetApiTest {
   }
 
   private static Object myIntSequence() throws ApiTextException {
-    return get(MODEL).sequences().get(0);
+    return get(MODEL).sequences().get(1);
   }
 
   @Test
@@ -718,7 +726,7 @@ public class SchemaGetApiTest {
         "start" : 77,
         "existence" : "unused"
       }""",
-      writeJson(get(MODEL).sequences().get(1))
+      writeJson(get(MODEL).sequences().get(3))
     );
   }
 
@@ -779,6 +787,7 @@ public class SchemaGetApiTest {
     props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
     props.setProperty("connection.username", "sa");
     props.setProperty("connection.password", "");
+    props.setProperty("schema.primaryKeyGenerator", "sequence");
     MODEL.connect(
       assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
     );
