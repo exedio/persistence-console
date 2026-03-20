@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Set;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -778,7 +779,14 @@ public class SchemaGetApiTest {
     props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
     props.setProperty("connection.username", "sa");
     props.setProperty("connection.password", "");
-    MODEL.connect(ConnectProperties.create(Sources.view(props, "DESC")));
+    MODEL.connect(
+      assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
+    );
+  }
+
+  static ConnectProperties assertOrphaned(final ConnectProperties properties) {
+    assertEquals(Set.of(), properties.getOrphanedKeys());
+    return properties;
   }
 
   @AfterAll
