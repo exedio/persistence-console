@@ -20,14 +20,14 @@ export function condense(source: Metric[]): UniqueConstraintFeature[] {
       };
       map.set(feature, value);
     }
-      switch (s.tags.result) {
-        case "hit":
-          value.hit = s.count;
-          break;
-        case "miss":
-          value.miss = s.count;
-          break;
-      }
+    switch (s.tags.result) {
+      case "hit":
+        value.hit = s.count;
+        break;
+      case "miss":
+        value.miss = s.count;
+        break;
+    }
   });
   map.values().forEach((value) => {
     result.push(value);
