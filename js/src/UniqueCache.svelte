@@ -5,7 +5,7 @@
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import { condense } from "@/UniqueCacheCondense";
-  import { format } from "@/utils";
+  import { format, ratioLog10 } from "@/utils";
 
   const metricsTracker = new PromiseTracker(() =>
     get<Metric[]>("metrics?prefix=com.exedio.cope.UniqueConstraint").then(
@@ -22,17 +22,18 @@
   <thead>
     <tr>
       <th rowspan="2">Constraint</th>
-      <th colspan="2">Cache</th>
+      <th colspan="3">Cache</th>
     </tr>
     <tr>
       <th>Hit</th>
       <th>Miss</th>
+      <th>log<sub>10</sub>(Hit/Miss)</th>
     </tr>
   </thead>
   <tbody>
     {#await metricsTracker.promise()}
       <tr>
-        <td colspan="3" class="empty">fetching data</td>
+        <td colspan="4" class="empty">fetching data</td>
       </tr>
     {:then metrics}
       {#each metrics as metric}
@@ -44,17 +45,18 @@
           <td class="number" title={metric.missDescription}
             >{format(metric.miss)}</td
           >
+          <td class="number">{format(ratioLog10(metric.hit, metric.miss))}</td>
         </tr>
       {:else}
         <tr>
-          <td colspan="3" class="empty"
+          <td colspan="4" class="empty"
             >There are no metrics of unique constraints for the model.</td
           >
         </tr>
       {/each}
     {:catch error}
       <tr>
-        <td colspan="3" class="error">{error.message}</td>
+        <td colspan="4" class="error">{error.message}</td>
       </tr>
     {/await}
   </tbody>

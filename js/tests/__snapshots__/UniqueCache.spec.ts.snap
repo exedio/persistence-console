@@ -9,11 +9,12 @@ exports[`UniqueCache > should render a non-empty table 1`] = `
   <thead>
     <tr>
       <th rowspan="2">Constraint</th>
-      <th colspan="2">Cache</th>
+      <th colspan="3">Cache</th>
     </tr>
     <tr>
       <th>Hit</th>
       <th>Miss</th>
+      <th>log<sub>10</sub>(Hit/Miss)</th>
     </tr>
   </thead>
   <tbody>
@@ -21,21 +22,25 @@ exports[`UniqueCache > should render a non-empty table 1`] = `
       <td>myFeature1</td>
       <td class="number" title="myDescription1Hit">155</td>
       <td class="number" title="myDescription1Miss">166</td>
+      <td class="number">-0.03</td>
     </tr>
     <tr>
       <td>myFeature2</td>
       <td class="number" title="myDescription2Hit">255</td>
       <td class="number" title="myDescription2Miss">266</td>
+      <td class="number">-0.018</td>
     </tr>
     <tr>
       <td>myFeatureHitOnly</td>
       <td class="number" title="myDescriptionHitOnly">3'077</td>
+      <td class="number"></td>
       <td class="number"></td>
     </tr>
     <tr>
       <td>myFeatureMissOnly</td>
       <td class="number"></td>
       <td class="number" title="myDescriptionMissOnly">4'077</td>
+      <td class="number"></td>
     </tr>
   </tbody>
 </table>
@@ -51,16 +56,17 @@ exports[`UniqueCache > should render an empty table 1`] = `
   <thead>
     <tr>
       <th rowspan="2">Constraint</th>
-      <th colspan="2">Cache</th>
+      <th colspan="3">Cache</th>
     </tr>
     <tr>
       <th>Hit</th>
       <th>Miss</th>
+      <th>log<sub>10</sub>(Hit/Miss)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td colspan="3" class="empty">
+      <td colspan="4" class="empty">
         There are no metrics of unique constraints for the model.
       </td>
     </tr>
@@ -78,16 +84,17 @@ exports[`UniqueCache > should render an error message 1`] = `
   <thead>
     <tr>
       <th rowspan="2">Constraint</th>
-      <th colspan="2">Cache</th>
+      <th colspan="3">Cache</th>
     </tr>
     <tr>
       <th>Hit</th>
       <th>Miss</th>
+      <th>log<sub>10</sub>(Hit/Miss)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td colspan="3" class="error">
+      <td colspan="4" class="error">
         metrics?prefix=com.exedio.cope.UniqueConstraint: response code 400
         myError
       </td>
