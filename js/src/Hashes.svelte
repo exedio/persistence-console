@@ -6,7 +6,7 @@
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import { Hash } from "@/UseHashes.svelte";
-  import { useWithStore } from "@/utils";
+  import { format, useWithStore } from "@/utils";
 
   const hashesStore = new Map<string, Hash>();
 
@@ -97,7 +97,7 @@
           <td>{hash.algorithmID}</td>
           <td>{hash.algorithmDescription}</td>
           <td class="number">
-            {measurement?.toLocaleString("de-CH")}
+            {format(measurement)}
           </td>
         </tr>
         {#if hash.isToggled()}

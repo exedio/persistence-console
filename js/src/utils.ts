@@ -50,3 +50,8 @@ export function useWithStore<S, T>(
     return target;
   });
 }
+
+export function format(n?: number): string | undefined {
+  if (!n) return "";
+  return n.toLocaleString("de-CH");
+}
