@@ -4,7 +4,10 @@
   import type { UniqueConstraintMetric as Metric } from "@/api/types";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
-  import { condense } from "@/UniqueCacheCondense";
+  import {
+    condense,
+    type UniqueConstraintFeature,
+  } from "@/UniqueCacheCondense";
   import { format, ratioLog10 } from "@/utils";
 
   const metricsTracker = new PromiseTracker(() =>
@@ -12,6 +15,12 @@
       (response) => condense(response),
     ),
   );
+
+  function formatFeature(constraint: UniqueConstraintFeature): string {
+    const s = constraint.feature;
+    const suffix = "ImplicitUnique";
+    return s.endsWith(suffix) ? s.substring(0, s.length - suffix.length) : s;
+  }
 
   let filterConstraint = $state("");
 </script>
@@ -49,7 +58,7 @@
       {#each metrics as metric}
         {#if metric.feature.includes(filterConstraint)}
           <tr>
-            <td>{metric.feature}</td>
+            <td>{formatFeature(metric)}</td>
             <td class="number" title={metric.hitDescription}
               >{format(metric.hit)}</td
             >
