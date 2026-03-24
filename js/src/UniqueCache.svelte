@@ -38,8 +38,12 @@
       {#each metrics as metric}
         <tr>
           <td>{metric.feature}</td>
-          <td class="number" title={metric.hitDescription}>{format(metric.hit)}</td>
-          <td class="number" title={metric.missDescription}>{format(metric.miss)}</td>
+          <td class="number" title={metric.hitDescription}
+            >{format(metric.hit)}</td
+          >
+          <td class="number" title={metric.missDescription}
+            >{format(metric.miss)}</td
+          >
         </tr>
       {:else}
         <tr>
