@@ -97,7 +97,7 @@
           <td>{hash.algorithmID}</td>
           <td>{hash.algorithmDescription}</td>
           <td class="number">
-            {measurement?.toLocaleString("en-US")}
+            {measurement?.toLocaleString("de-CH")}
           </td>
         </tr>
         {#if hash.isToggled()}

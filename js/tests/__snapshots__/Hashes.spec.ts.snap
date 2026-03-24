@@ -98,7 +98,7 @@ exports[`Hashes > should render a table body with all hashes measured 1`] = `
   <td class="notAvailable"></td>
   <td>myAlgorithmID1</td>
   <td>myAlgorithmDescription1</td>
-  <td class="number">50,010</td>
+  <td class="number">50'010</td>
 </tr>
 <tr class="relative svelte">
   <td><button class="hash svelte">↓</button> myType2</td>
@@ -107,7 +107,7 @@ exports[`Hashes > should render a table body with all hashes measured 1`] = `
   <td class="notAvailable"></td>
   <td>myAlgorithmID2</td>
   <td>myAlgorithmDescription2</td>
-  <td class="number">50,020</td>
+  <td class="number">50'020</td>
 </tr>
 <tr class="relative svelte">
   <td><button class="hash svelte">↓</button> myType3</td>
@@ -116,7 +116,7 @@ exports[`Hashes > should render a table body with all hashes measured 1`] = `
   <td class="notAvailable"></td>
   <td>myAlgorithmID3</td>
   <td>myAlgorithmDescription3</td>
-  <td class="number">50,030</td>
+  <td class="number">50'030</td>
 </tr>
 "
 `;
@@ -214,7 +214,7 @@ exports[`Hashes > should render a table body with one hash measured 1`] = `
   <td class="notAvailable"></td>
   <td>myAlgorithmID2</td>
   <td>myAlgorithmDescription2</td>
-  <td class="number">50,020</td>
+  <td class="number">50'020</td>
 </tr>
 <tr class="relative svelte">
   <td><button class="hash svelte">↓</button> myType3</td>
