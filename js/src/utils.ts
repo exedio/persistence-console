@@ -55,3 +55,11 @@ export function format(n?: number): string | undefined {
   if (!n) return "";
   return n.toLocaleString("de-CH");
 }
+
+export function ratioLog10(
+  dividend?: number,
+  divisor?: number,
+): number | undefined {
+  if (!dividend || !divisor) return undefined;
+  return Math.log10(dividend / divisor);
+}
