@@ -17,11 +17,9 @@ export function condense(source: Metric[]): UniqueConstraintFeature[] {
       value = {
         feature,
         description: s.description,
-        hit: s.tags.result == "hit" ? s.count : undefined,
-        miss: s.tags.result == "miss" ? s.count : undefined,
       };
       map.set(feature, value);
-    } else {
+    }
       switch (s.tags.result) {
         case "hit":
           value.hit = s.count;
@@ -30,7 +28,6 @@ export function condense(source: Metric[]): UniqueConstraintFeature[] {
           value.miss = s.count;
           break;
       }
-    }
   });
   map.values().forEach((value) => {
     result.push(value);
