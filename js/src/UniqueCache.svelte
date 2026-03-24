@@ -55,7 +55,7 @@
         <td colspan="4" class="empty">fetching data</td>
       </tr>
     {:then metrics}
-      {#each metrics as metric}
+      {#each metrics as metric (metric.feature)}
         {#if metric.feature.includes(filterConstraint)}
           <tr>
             <td>{formatFeature(metric)}</td>
