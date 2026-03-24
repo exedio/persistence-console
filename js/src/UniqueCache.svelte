@@ -22,7 +22,7 @@
   <thead>
     <tr>
       <th rowspan="2">Constraint</th>
-      <th colspan="2">Result</th>
+      <th colspan="2">Cache</th>
     </tr>
     <tr>
       <th>Hit</th>
