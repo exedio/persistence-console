@@ -12,6 +12,8 @@
       (response) => condense(response),
     ),
   );
+
+  let filterConstraint = $state("");
 </script>
 
 <table class="grey">
@@ -21,7 +23,15 @@
   </caption>
   <thead>
     <tr>
-      <th rowspan="2">Constraint</th>
+      <th rowspan="2">
+        Constraint
+        <br />
+        <input
+          class="filter"
+          bind:value={filterConstraint}
+          placeholder="Filter"
+        />
+      </th>
       <th colspan="3">Cache</th>
     </tr>
     <tr>
@@ -37,16 +47,19 @@
       </tr>
     {:then metrics}
       {#each metrics as metric}
-        <tr>
-          <td>{metric.feature}</td>
-          <td class="number" title={metric.hitDescription}
-            >{format(metric.hit)}</td
-          >
-          <td class="number" title={metric.missDescription}
-            >{format(metric.miss)}</td
-          >
-          <td class="number">{format(ratioLog10(metric.hit, metric.miss))}</td>
-        </tr>
+        {#if metric.feature.includes(filterConstraint)}
+          <tr>
+            <td>{metric.feature}</td>
+            <td class="number" title={metric.hitDescription}
+              >{format(metric.hit)}</td
+            >
+            <td class="number" title={metric.missDescription}
+              >{format(metric.miss)}</td
+            >
+            <td class="number">{format(ratioLog10(metric.hit, metric.miss))}</td
+            >
+          </tr>
+        {/if}
       {:else}
         <tr>
           <td colspan="4" class="empty"
@@ -61,3 +74,11 @@
     {/await}
   </tbody>
 </table>
+
+<style>
+  input.filter {
+    width: 6em;
+    border: none;
+    background-color: #eee;
+  }
+</style>

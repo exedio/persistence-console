@@ -8,7 +8,10 @@ exports[`UniqueCache > should render a non-empty table 1`] = `
   </caption>
   <thead>
     <tr>
-      <th rowspan="2">Constraint</th>
+      <th rowspan="2">
+        Constraint <br />
+        <input class="filter svelte" placeholder="Filter" />
+      </th>
       <th colspan="3">Cache</th>
     </tr>
     <tr>
@@ -55,7 +58,10 @@ exports[`UniqueCache > should render an empty table 1`] = `
   </caption>
   <thead>
     <tr>
-      <th rowspan="2">Constraint</th>
+      <th rowspan="2">
+        Constraint <br />
+        <input class="filter svelte" placeholder="Filter" />
+      </th>
       <th colspan="3">Cache</th>
     </tr>
     <tr>
@@ -83,7 +89,10 @@ exports[`UniqueCache > should render an error message 1`] = `
   </caption>
   <thead>
     <tr>
-      <th rowspan="2">Constraint</th>
+      <th rowspan="2">
+        Constraint <br />
+        <input class="filter svelte" placeholder="Filter" />
+      </th>
       <th colspan="3">Cache</th>
     </tr>
     <tr>
