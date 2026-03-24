@@ -56,7 +56,7 @@ public final class DummyStrictRefererValidationFilter implements Filter
 		final String referer = request.getHeader("Referer");
 
 		// for yarn Development server (yarn dev)
-		if("http://localhost:5193/js/index.html".equals(referer)) // must be equal to server.port / server.open in vite.config.ts
+		if(referer!=null && referer.startsWith("http://localhost:5193/js/")) // must be equal to server.port / server.open in vite.config.ts
 		{
 			chain.doFilter(request, response);
 			return;
