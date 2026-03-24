@@ -142,9 +142,11 @@ public final class ExampleServlet extends CopsServlet
 			{
 				try(TransactionTry tx = Main.model.startTransactionTry("uniqueCache"))
 				{
-					EnumSingletonIncomplete.feature.getOnce().searchUnique(
+					final var item = EnumSingletonIncomplete.feature.getOnce().searchUnique(
 							EnumSingletonIncomplete.class,
 							EnumSingletonIncomplete.MyEnum.one);
+					if(item!=null)
+						item.getFeature(); // trigger a hit
 					tx.commit();
 				}
 			}
