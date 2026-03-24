@@ -45,6 +45,12 @@ exports[`UniqueCache > should render a non-empty table 1`] = `
       <td class="number" title="myDescriptionMissOnly">4'077</td>
       <td class="number"></td>
     </tr>
+    <tr>
+      <td>CopeRevstat.numberImplicitUnique</td>
+      <td class="number" title="myDescriptionImplicitUnique">5'077</td>
+      <td class="number"></td>
+      <td class="number"></td>
+    </tr>
   </tbody>
 </table>
 "
