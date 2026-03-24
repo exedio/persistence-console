@@ -79,6 +79,7 @@ public final class ExampleServlet extends CopsServlet
 	static final String TRANSACTION_SUBMIT = "transaction.submit";
 
 	static final String ITEM_CACHE_REPLACE = "itemCache.replace";
+	static final String UNIQUE_CACHE = "uniqueCache";
 	static final String QUERY_CACHE_PARAMETER = "queryCache.parameter";
 	static final String QUERY_CACHE_SEARCH = "queryCache.search";
 
@@ -136,6 +137,16 @@ public final class ExampleServlet extends CopsServlet
 			else if(request.getParameter(ITEM_CACHE_REPLACE)!=null)
 			{
 				replaceItemCache();
+			}
+			else if(request.getParameter(UNIQUE_CACHE)!=null)
+			{
+				try(TransactionTry tx = Main.model.startTransactionTry("uniqueCache"))
+				{
+					EnumSingletonIncomplete.feature.getOnce().searchUnique(
+							EnumSingletonIncomplete.class,
+							EnumSingletonIncomplete.MyEnum.one);
+					tx.commit();
+				}
 			}
 			else if(request.getParameter(QUERY_CACHE_SEARCH)!=null)
 			{
@@ -411,6 +422,7 @@ public final class ExampleServlet extends CopsServlet
 			Transaction.class.getName() + '.',
 			"com.exedio.cope.QueryCache.",
 			"com.exedio.cope.ItemCache.",
+			"com.exedio.cope.UniqueConstraint.",
 			"com.exedio.cope.Cluster.",
 			ChangeListener.class.getName() + '.',
 			DataField.class.getName() + '.',

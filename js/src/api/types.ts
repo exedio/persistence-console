@@ -102,3 +102,13 @@ export type Suspicion = {
   readonly name: string;
   readonly suspicions: readonly string[];
 };
+
+export type UniqueConstraintMetric = {
+  readonly name: "com.exedio.cope.UniqueConstraint.cache";
+  readonly description: string;
+  readonly tags: {
+    readonly feature: string;
+    readonly result: "hit" | "miss";
+  };
+  readonly count: number;
+};

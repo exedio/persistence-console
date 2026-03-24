@@ -237,6 +237,7 @@ abstract class ConsoleCop<S> extends Cop
 					new TransactionCop(args),
 					new ConnectionPoolCop(args),
 					new ItemCacheCop(args),
+					UniqueCacheCop.newCop(args),
 					new QueryCacheCop(args),
 					new ThreadCop(args),
 					new DataVaultCop(args),
@@ -428,6 +429,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new DatabaseMetricsCop(args);
 			case ItemCacheCop.TAB:
 				return ItemCacheCop.getItemCacheCop(args, request);
+			case UniqueCacheCop.TAB:
+				return UniqueCacheCop.newCop(args);
 			case QueryCacheCop.TAB:
 				return QueryCacheCop.getQueryCacheCop(args, request);
 			case DataVaultCop.TAB:
