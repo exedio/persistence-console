@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COPE Console schema in yarn dev</title>
+
+    <!-- style duplicates part of console.css -->
+    <style>
+      small {
+        font-size: 60%;
+      }
+    </style>
+
+    <!-- script duplicates part of Console.jspm -->
+    <script>
+      let apiPath = "/cope-console/standard/api/";
+      //let apiPath = "/cope-console/reduced/api/";
+    </script>
+  </head>
+  <body>
+    <h2>Schema</h2>
+    <div id="schema"></div>
+    <a
+      href="http://localhost:8080/cope-console/standard/schema.html"
+      target="_blank"
+      >standard</a
+    >
+    <a
+      href="http://localhost:8080/cope-console/reduced/schema.html"
+      target="_blank"
+      >reduced</a
+    >
+    <a href="index.html">index</a>
+    <!--suppress HtmlUnknownTarget -->
+    <script type="module" src="/js/src/main.ts"></script>
+  </body>
+</html>
