@@ -15,9 +15,7 @@ export function condense(source: Metric[]): UniqueConstraintFeature[] {
     const feature = s.tags.feature;
     let value = map.get(feature);
     if (!value) {
-      value = {
-        feature,
-      };
+      value = { feature };
       map.set(feature, value);
     }
     switch (s.tags.result) {
