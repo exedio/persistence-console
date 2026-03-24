@@ -2,8 +2,9 @@ import type { UniqueConstraintMetric as Metric } from "@/api/types";
 
 export type UniqueConstraintFeature = {
   readonly feature: string;
-  readonly description: string;
+  hitDescription?: string;
   hit?: number;
+  missDescription?: string;
   miss?: number;
 };
 
@@ -16,15 +17,16 @@ export function condense(source: Metric[]): UniqueConstraintFeature[] {
     if (!value) {
       value = {
         feature,
-        description: s.description,
       };
       map.set(feature, value);
     }
     switch (s.tags.result) {
       case "hit":
+        value.hitDescription = s.description;
         value.hit = s.count;
         break;
       case "miss":
+        value.missDescription = s.description;
         value.miss = s.count;
         break;
     }
