@@ -75,6 +75,15 @@ describe("UniqueCache", () => {
             },
             count: 4077,
           },
+          {
+            name: "com.exedio.cope.UniqueConstraint.cache",
+            description: "myDescriptionImplicitUnique",
+            tags: {
+              feature: "CopeRevstat.numberImplicitUnique",
+              result: "hit",
+            },
+            count: 5077,
+          },
         ] satisfies Metric[]),
       );
       await mountComponent();
