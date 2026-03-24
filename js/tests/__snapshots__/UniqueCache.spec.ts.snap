@@ -20,21 +20,21 @@ exports[`UniqueCache > should render a non-empty table 1`] = `
     <tr>
       <td>myFeature1</td>
       <td class="number" title="myDescription1Hit">155</td>
-      <td class="number" title="myDescription1Hit">166</td>
+      <td class="number" title="myDescription1Miss">166</td>
     </tr>
     <tr>
       <td>myFeature2</td>
-      <td class="number" title="myDescription2Miss">255</td>
+      <td class="number" title="myDescription2Hit">255</td>
       <td class="number" title="myDescription2Miss">266</td>
     </tr>
     <tr>
       <td>myFeatureHitOnly</td>
       <td class="number" title="myDescriptionHitOnly">3077</td>
-      <td class="number" title="myDescriptionHitOnly"></td>
+      <td class="number"></td>
     </tr>
     <tr>
       <td>myFeatureMissOnly</td>
-      <td class="number" title="myDescriptionMissOnly"></td>
+      <td class="number"></td>
       <td class="number" title="myDescriptionMissOnly">4077</td>
     </tr>
   </tbody>
