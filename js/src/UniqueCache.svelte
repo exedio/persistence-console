@@ -5,6 +5,7 @@
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import { condense } from "@/UniqueCacheCondense";
+  import { format } from "@/utils";
 
   const metricsTracker = new PromiseTracker(() =>
     get<Metric[]>("metrics?prefix=com.exedio.cope.UniqueConstraint").then(
@@ -37,8 +38,8 @@
       {#each metrics as metric}
         <tr>
           <td>{metric.feature}</td>
-          <td class="number" title={metric.hitDescription}>{metric.hit}</td>
-          <td class="number" title={metric.missDescription}>{metric.miss}</td>
+          <td class="number" title={metric.hitDescription}>{format(metric.hit)}</td>
+          <td class="number" title={metric.missDescription}>{format(metric.miss)}</td>
         </tr>
       {:else}
         <tr>
