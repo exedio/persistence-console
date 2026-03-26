@@ -38,7 +38,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.5.3"],\
           ["prettier-plugin-java", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:2.7.1"],\
           ["prettier-plugin-svelte", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.4.0"],\
-          ["svelte", "npm:5.38.5"],\
+          ["svelte", "npm:5.53.5"],\
           ["svelte-check", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:4.2.1"],\
           ["tslib", "npm:2.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
@@ -860,10 +860,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:23b17d41e2518ab264f0b40e5739c30b485e6f913b593dba2600a5c8e5038c3368c801efdf489d7dad03061f45475f53ee1dc3a3735b6e32f95012844d4757fe#npm:1.0.5", {\
-        "packageLocation": "./.yarn/__virtual__/@sveltejs-acorn-typescript-virtual-c18aece89e/0/cache/@sveltejs-acorn-typescript-npm-1.0.5-54c23cf901-5f5393ca3a.zip/node_modules/@sveltejs/acorn-typescript/",\
+      ["virtual:48434e3f86e64da0eaa666174d490998c8fd917aea67ed0647d6d86b5aabb08fa68e536f120f70268e56c4808d96e927573e703da5df9f7da3eb3166f3ed6dd8#npm:1.0.5", {\
+        "packageLocation": "./.yarn/__virtual__/@sveltejs-acorn-typescript-virtual-a41877d4dd/0/cache/@sveltejs-acorn-typescript-npm-1.0.5-54c23cf901-5f5393ca3a.zip/node_modules/@sveltejs/acorn-typescript/",\
         "packageDependencies": [\
-          ["@sveltejs/acorn-typescript", "virtual:23b17d41e2518ab264f0b40e5739c30b485e6f913b593dba2600a5c8e5038c3368c801efdf489d7dad03061f45475f53ee1dc3a3735b6e32f95012844d4757fe#npm:1.0.5"],\
+          ["@sveltejs/acorn-typescript", "virtual:48434e3f86e64da0eaa666174d490998c8fd917aea67ed0647d6d86b5aabb08fa68e536f120f70268e56c4808d96e927573e703da5df9f7da3eb3166f3ed6dd8#npm:1.0.5"],\
           ["@types/acorn", null],\
           ["acorn", "npm:8.14.1"]\
         ],\
@@ -892,7 +892,7 @@ const RAW_RUNTIME_STATE =
           ["debug", "virtual:2044be20b9d80cd18bc7f326184cd5cb8bc6c8442ef65551f8897b069383c55db1fe3abf09fc94929b1e42ccbaccd2ad8f0994ad2f19b03f3bb2efe474259cb0#npm:4.4.1"],\
           ["deepmerge", "npm:4.3.1"],\
           ["magic-string", "npm:0.30.17"],\
-          ["svelte", "npm:5.38.5"],\
+          ["svelte", "npm:5.53.5"],\
           ["vite", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:7.1.11"],\
           ["vitefu", "virtual:2044be20b9d80cd18bc7f326184cd5cb8bc6c8442ef65551f8897b069383c55db1fe3abf09fc94929b1e42ccbaccd2ad8f0994ad2f19b03f3bb2efe474259cb0#npm:1.1.1"]\
         ],\
@@ -922,7 +922,7 @@ const RAW_RUNTIME_STATE =
           ["@types/sveltejs__vite-plugin-svelte", null],\
           ["@types/vite", null],\
           ["debug", "virtual:2044be20b9d80cd18bc7f326184cd5cb8bc6c8442ef65551f8897b069383c55db1fe3abf09fc94929b1e42ccbaccd2ad8f0994ad2f19b03f3bb2efe474259cb0#npm:4.4.1"],\
-          ["svelte", "npm:5.38.5"],\
+          ["svelte", "npm:5.53.5"],\
           ["vite", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:7.1.11"]\
         ],\
         "packagePeers": [\
@@ -979,6 +979,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/node", "npm:22.15.18"],\
           ["undici-types", "npm:6.21.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/trusted-types", [\
+      ["npm:2.0.7", {\
+        "packageLocation": "./.yarn/cache/@types-trusted-types-npm-2.0.7-a07fc44f59-4c4855f10d.zip/node_modules/@types/trusted-types/",\
+        "packageDependencies": [\
+          ["@types/trusted-types", "npm:2.0.7"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1191,10 +1200,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["aria-query", [\
-      ["npm:5.3.2", {\
-        "packageLocation": "./.yarn/cache/aria-query-npm-5.3.2-78632ac5c5-003c7e3e2c.zip/node_modules/aria-query/",\
+      ["npm:5.3.1", {\
+        "packageLocation": "./.yarn/cache/aria-query-npm-5.3.1-fa607704a3-2e9aca7d92.zip/node_modules/aria-query/",\
         "packageDependencies": [\
-          ["aria-query", "npm:5.3.2"]\
+          ["aria-query", "npm:5.3.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1470,6 +1479,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["devalue", [\
+      ["npm:5.6.3", {\
+        "packageLocation": "./.yarn/cache/devalue-npm-5.6.3-d2cbe29707-701fbe57b9.zip/node_modules/devalue/",\
+        "packageDependencies": [\
+          ["devalue", "npm:5.6.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["eastasianwidth", [\
       ["npm:0.2.0", {\
         "packageLocation": "./.yarn/cache/eastasianwidth-npm-0.2.0-c37eb16bd1-26f364ebcd.zip/node_modules/eastasianwidth/",\
@@ -1585,11 +1603,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["esrap", [\
-      ["npm:2.1.0", {\
-        "packageLocation": "./.yarn/cache/esrap-npm-2.1.0-65b4535ba1-42f9f8b499.zip/node_modules/esrap/",\
+      ["npm:2.2.3", {\
+        "packageLocation": "./.yarn/cache/esrap-npm-2.2.3-db78eb20a0-6eda59f996.zip/node_modules/esrap/",\
         "packageDependencies": [\
           ["@jridgewell/sourcemap-codec", "npm:1.5.0"],\
-          ["esrap", "npm:2.1.0"]\
+          ["esrap", "npm:2.2.3"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -1926,7 +1944,7 @@ const RAW_RUNTIME_STATE =
           ["prettier", "npm:3.5.3"],\
           ["prettier-plugin-java", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:2.7.1"],\
           ["prettier-plugin-svelte", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.4.0"],\
-          ["svelte", "npm:5.38.5"],\
+          ["svelte", "npm:5.53.5"],\
           ["svelte-check", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:4.2.1"],\
           ["tslib", "npm:2.8.1"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
@@ -2400,7 +2418,7 @@ const RAW_RUNTIME_STATE =
           ["@types/svelte", null],\
           ["prettier", "npm:3.5.3"],\
           ["prettier-plugin-svelte", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:3.4.0"],\
-          ["svelte", "npm:5.38.5"]\
+          ["svelte", "npm:5.53.5"]\
         ],\
         "packagePeers": [\
           "@types/prettier",\
@@ -2717,23 +2735,25 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["svelte", [\
-      ["npm:5.38.5", {\
-        "packageLocation": "./.yarn/cache/svelte-npm-5.38.5-23b17d41e2-b09df2754b.zip/node_modules/svelte/",\
+      ["npm:5.53.5", {\
+        "packageLocation": "./.yarn/cache/svelte-npm-5.53.5-48434e3f86-9931e49b45.zip/node_modules/svelte/",\
         "packageDependencies": [\
           ["@jridgewell/remapping", "npm:2.3.5"],\
           ["@jridgewell/sourcemap-codec", "npm:1.5.0"],\
-          ["@sveltejs/acorn-typescript", "virtual:23b17d41e2518ab264f0b40e5739c30b485e6f913b593dba2600a5c8e5038c3368c801efdf489d7dad03061f45475f53ee1dc3a3735b6e32f95012844d4757fe#npm:1.0.5"],\
+          ["@sveltejs/acorn-typescript", "virtual:48434e3f86e64da0eaa666174d490998c8fd917aea67ed0647d6d86b5aabb08fa68e536f120f70268e56c4808d96e927573e703da5df9f7da3eb3166f3ed6dd8#npm:1.0.5"],\
           ["@types/estree", "npm:1.0.8"],\
+          ["@types/trusted-types", "npm:2.0.7"],\
           ["acorn", "npm:8.14.1"],\
-          ["aria-query", "npm:5.3.2"],\
+          ["aria-query", "npm:5.3.1"],\
           ["axobject-query", "npm:4.1.0"],\
           ["clsx", "npm:2.1.1"],\
+          ["devalue", "npm:5.6.3"],\
           ["esm-env", "npm:1.2.2"],\
-          ["esrap", "npm:2.1.0"],\
+          ["esrap", "npm:2.2.3"],\
           ["is-reference", "npm:3.0.3"],\
           ["locate-character", "npm:3.0.0"],\
           ["magic-string", "npm:0.30.17"],\
-          ["svelte", "npm:5.38.5"],\
+          ["svelte", "npm:5.53.5"],\
           ["zimmerframe", "npm:1.1.2"]\
         ],\
         "linkType": "HARD"\
@@ -2757,7 +2777,7 @@ const RAW_RUNTIME_STATE =
           ["fdir", "virtual:d25617fa20eab60c8d6348525ebb6559a9c0bdd1bffe257d5940aec32d8cb761dd4468ad3d18a09fd4a31582cc6b5fcc1d3afbc1f631769ab84ac5db7f9eaa5a#npm:6.5.0"],\
           ["picocolors", "npm:1.1.1"],\
           ["sade", "npm:1.8.1"],\
-          ["svelte", "npm:5.38.5"],\
+          ["svelte", "npm:5.53.5"],\
           ["svelte-check", "virtual:5ace85cee2ed261a2aabb80a773b5d54a942612c2f3395fa0c73d93cc5beca7bc142af941361fd3dae23c9443f24a0d1f822eda8a4099dcbe48c75057c301cd7#npm:4.2.1"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"]\
         ],\
