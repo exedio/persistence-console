@@ -89,10 +89,8 @@ public final class Revisions
 				body[j] = "sql " + revision + "/" + j;
 			result.add(new Revision(revision, "comment " + revision, body));
 		}
-		return DirectRevisionsFactory.make(new com.exedio.cope.Revisions(result.toArray(EMPTY_REVISION)));
+		return DirectRevisionsFactory.make(new com.exedio.cope.Revisions(result.toArray(Revision[]::new)));
 	}
-
-	private static final Revision[] EMPTY_REVISION = {};
 
 	@SuppressWarnings("RedundantSuppression") // bug in idea, complains about ConstantConditions
 	static void revisions(final Model model)
@@ -134,7 +132,7 @@ public final class Revisions
 						new Date(),
 						environment,
 						revision.getComment(),
-						body.toArray(EMPTY_REVISION_BODY)));
+						body.toArray(RevisionInfoRevise.Body[]::new)));
 
 				if("before change of environment".equals(revision.getComment()))
 				{
@@ -175,8 +173,6 @@ public final class Revisions
 			throw new SQLRuntimeException(e, "create");
 		}
 	}
-
-	private static final RevisionInfoRevise.Body[] EMPTY_REVISION_BODY = {};
 
 	static void removeMutex(final Model model)
 	{

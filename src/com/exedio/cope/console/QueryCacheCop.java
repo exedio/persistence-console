@@ -192,7 +192,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 
 				if(histogramCondensed!=null)
 				{
-					this.histogramCondensed = histogramCondensed.values().toArray(EMPTY_CONDENSE);
+					this.histogramCondensed = histogramCondensed.values().toArray(Condense[]::new);
 					Arrays.sort(this.histogramCondensed,
 						Comparator.<Condense,Long>comparing(c->c.getRecentUsage().getMin()).
 							thenComparing(c->c.getRecentUsage().getAverage()).
@@ -319,8 +319,6 @@ final class QueryCacheCop extends ConsoleCop<Void>
 			return hits;
 		}
 	}
-
-	private static final Condense[] EMPTY_CONDENSE = {};
 
 	@Override boolean requiresUnsafeInlineStyle() { return true; }
 

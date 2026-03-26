@@ -133,7 +133,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 			final Model model)
 	{
 		final Collection<Transaction> openTransactionsList = model.getOpenTransactions();
-		final Transaction[] openTransactions = openTransactionsList.toArray(EMPTY_TRANSACTION);
+		final Transaction[] openTransactions = openTransactionsList.toArray(Transaction[]::new);
 		Arrays.sort(openTransactions, Comparator.comparingLong(Transaction::getID));
 
 		final Thread[] threads = new Thread[openTransactions.length];
@@ -162,8 +162,6 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 				threads, threadIds, threadNames, threadPriorities, threadStates, stacktraces);
 	}
 
-	private static final Transaction[] EMPTY_TRANSACTION = {};
-
 	private void writeRecorded(
 			final Out out,
 			final Model model)
@@ -171,7 +169,7 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 		final ChangeEvent[] events;
 		synchronized(TransactionCop.events)
 		{
-			events = TransactionCop.events.toArray(EMPTY_EVENTS);
+			events = TransactionCop.events.toArray(ChangeEvent[]::new);
 		}
 		Transaction_Jspm.writeRecorded(
 				out, this,
@@ -214,6 +212,4 @@ final class TransactionCop extends ConsoleCop<Void> implements Pageable
 			return "Console ChangeListener for Committed Transactions";
 		}
 	};
-
-	private static final ChangeEvent[] EMPTY_EVENTS = {};
 }

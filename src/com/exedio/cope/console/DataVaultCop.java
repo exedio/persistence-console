@@ -86,10 +86,8 @@ final class DataVaultCop extends ConsoleCop<Void>
 				}
 
 		DataVault_Jspm.writeBody(out, this, buckets, infos,
-				new DataFieldVaultSummary(infos.toArray(EMPTY_INFO)));
+				new DataFieldVaultSummary(infos.toArray(DataFieldVaultInfo[]::new)));
 	}
-
-	private static final DataFieldVaultInfo[] EMPTY_INFO = {};
 
 	static final class Bucket
 	{

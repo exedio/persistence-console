@@ -118,7 +118,7 @@ final class EnvironmentCop extends ConsoleCop<Void>
 		}
 
 		@SuppressWarnings({"rawtypes", "unchecked", "ZeroLengthArrayAllocation", "RedundantSuppression"})
-		final HashMap<String, Object>[] result = testedDatabases.values().toArray(new HashMap[0]);
+		final HashMap<String, Object>[] result = testedDatabases.values().toArray(HashMap[]::new);
 		return result;
 	}
 

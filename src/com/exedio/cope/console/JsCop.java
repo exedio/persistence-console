@@ -54,7 +54,7 @@ final class JsCop extends ConsoleCop<Void> {
 
   @Override
   String[] getHeadingHelp() {
-    return help.toArray(EMPTY_STRING_ARRAY);
+    return help.toArray(String[]::new);
   }
 
   @Override
