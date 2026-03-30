@@ -123,7 +123,7 @@ abstract class ConsoleCop<S> extends Cop
 	}
 
 	private static final String NAME_POSTFIX = ".html";
-	static final String[] EMPTY_STRING_ARRAY = new String[0];
+	private static final String[] EMPTY_STRING_ARRAY = new String[0];
 	final String name;
 	final Args args;
 	final App app;
