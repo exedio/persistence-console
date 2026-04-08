@@ -627,6 +627,7 @@
   }
 
   div.sql {
+    min-width: 40vw;
     max-width: 50vw;
     overflow-y: scroll;
     ul {
