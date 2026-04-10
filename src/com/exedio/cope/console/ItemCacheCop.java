@@ -86,6 +86,7 @@ final class ItemCacheCop extends ConsoleCop<Void>
 		list.add(new MeterTable.ListItem("stamp.transactions"));
 		//list.add(new MeterTable.ListItem("nonexisting")); just for debugging
 		final MeterTable table = new MeterTable();
+		table.addColumnBlue ("sizePerType");
 		table.addColumnWhite("gets", Tags.of("result", "hit"));
 		table.addColumnWhite("gets", Tags.of("result", "miss"));
 		table.addColumnBlue ("evictions");
