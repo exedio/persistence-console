@@ -119,13 +119,14 @@ final class ItemCache_Jspm
 		<hr>
 		<table class="matrixTable">
 			<tr>
+				<th rowspan="2">Size</th>
 				<th colspan="2">Efficiency</th>
 				<th rowspan="2">Evictions</th>
 				<th colspan="2">Invalidations</th>
 				<th colspan="2">Stamps</th>
 				<th rowspan="2">CL</th><%
 
-			for(final MeterTable.Column column : table.getColumns(8)) // 8 columns have their heading rendered already
+			for(final MeterTable.Column column : table.getColumns(9)) // 9 columns have their heading rendered already
 			{
 				%>
 				<th rowspan="2"><% Meter_Jspm.write(column.initialId, out); %></th><%
