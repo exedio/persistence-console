@@ -17,7 +17,7 @@
     "@sveltejs/vite-plugin-svelte": "6.2.0",
     "@tsconfig/svelte": "5.0.4",
     "@types/node": "22.15.18",
-    "@vitest/coverage-v8": "3.2.4",
+    "@vitest/coverage-v8": "4.1.4",
     "adm-zip": "0.5.16",
     "jsdom": "26.1.0",
     "prettier": "3.5.3",
@@ -28,7 +28,7 @@
     "tslib": "2.8.1",
     "typescript": "5.8.3",
     "vite": "7.3.2",
-    "vitest": "3.2.4"
+    "vitest": "4.1.4"
   },
   "dependenciesMeta": {
     "esbuild": {
