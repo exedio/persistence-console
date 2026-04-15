@@ -15,7 +15,7 @@
       "@/*": ["js/src/*"],
       "@t/*": ["js/tests/*"]
     },
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "node"]
   },
   "include": [
     "js/src/**/*.ts",
