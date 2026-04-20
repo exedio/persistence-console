@@ -16,10 +16,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package com.exedio.cope.misc;
+package com.exedio.cope.console;
 
-import static com.exedio.cope.misc.DatabaseLogListener.Builder.LOGS_LIMIT_DEFAULT;
-import static com.exedio.cope.tojunit.Assert.assertFails;
+import static com.exedio.cope.console.DatabaseLogListener.Builder.LOGS_LIMIT_DEFAULT;
+import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static java.lang.System.lineSeparator;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.exedio.cope.misc.DatabaseLogListener.Builder;
+import com.exedio.cope.console.DatabaseLogListener.Builder;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeEach;
@@ -178,7 +178,7 @@ public class DatabaseLogListenerTest
 		assertItStart(
 				"0|0|0|0|sql" + lineSeparator() +
 				"java.lang.Exception: DatabaseLogListener" + lineSeparator() +
-				"\tat " + DatabaseLogListener.class.getName() + ".onStatement(DatabaseLogListener.java:186)" + lineSeparator() +
+				"\tat " + DatabaseLogListener.class.getName() + ".onStatement(DatabaseLogListener.java:176)" + lineSeparator() +
 				"\tat " + DatabaseLogListenerTest.class.getName() + ".testPrintStackTrace(");
 	}
 
@@ -216,41 +216,6 @@ public class DatabaseLogListenerTest
 		assertEquals("", out.toString(UTF_8));
 	}
 
-
-	@Deprecated // OK: testing deprecated api
-	@Test void testDeprecated()
-	{
-		final DatabaseLogListener l =
-				new DatabaseLogListener(567, "sqlFilter", print);
-		assertNotNull(l.getDate());
-		assertEquals(LOGS_LIMIT_DEFAULT, l.getLogsLimit());
-		assertEquals(LOGS_LIMIT_DEFAULT, l.getLogsLeft());
-		assertEquals(567, l.getThreshold());
-		assertEquals("sqlFilter", l.getSQL());
-		assertEquals(false, l.isPrintStackTraceEnabled());
-		assertEquals("", out.toString(UTF_8));
-
-		l.onStatement("sqlFilter", asList(), 1, 2, 3, 567);
-		assertIt("1|2|3|567|sqlFilter|[]");
-	}
-
-	@SuppressWarnings("deprecation") // OK testing deprecated api
-	@Test void testThresholdNegative()
-	{
-		assertFails(
-				() -> new DatabaseLogListener(-1, null, null),
-				IllegalArgumentException.class,
-				"threshold must not be negative, but was -1");
-	}
-
-	@SuppressWarnings("deprecation") // OK testing deprecated api
-	@Test void testOutNull()
-	{
-		assertFails(
-				() -> new DatabaseLogListener(0, null, null),
-				NullPointerException.class,
-				"out");
-	}
 
 	@Test void testBuilderDefault()
 	{

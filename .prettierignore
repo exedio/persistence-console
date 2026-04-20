@@ -76,6 +76,7 @@
 /src/com/exedio/cope/console/VmCop.java
 /testprotocol.css
 /testprotocol-template.html
+/testsrc/com/exedio/cope/console/DatabaseLogListenerTest.java
 /testsrc/com/exedio/cope/console/MimeTypesTest.java
 /testsrc/com/exedio/cope/console/QueryCacheTest.java
 /testsrc/com/exedio/cope/console/RevisionLineTest.java
