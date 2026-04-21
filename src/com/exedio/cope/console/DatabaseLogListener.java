@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * This class was copied from cope. It is also junit-tested there.
+ * This class was moved here from cope.
  */
 final class DatabaseLogListener implements DatabaseListener
 {
