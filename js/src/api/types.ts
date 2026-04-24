@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */ /* TODO */
 export type ConnectRequest = {};
 
+/* eslint-disable @typescript-eslint/no-empty-object-type */ /* TODO */
 export type ConnectResponse = {};
 
+/* eslint-disable @typescript-eslint/no-explicit-any */ /* TODO */
 export function isNotConnected(error: any) {
   return error.message.toString().includes("model not connected");
 }

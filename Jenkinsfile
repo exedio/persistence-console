@@ -176,6 +176,7 @@ try
 					"yarnpkg check && " +
 					"yarnpkg check-ts && " +
 					"yarnpkg test && " +
+					"yarnpkg lint -f json -o build/eslint.json &&" +
 					"yarnpkg check-format"
 				)
 				yarnResult = shStatus "yarnpkg audit:lifecycle > yarnpkg-audit-lifecycle.txt"
@@ -194,6 +195,10 @@ try
 					failOnError: true,
 					skipPublishingChecks: true,
 					sourceDirectories: [[path: 'js/src']]
+			)
+			recordIssues(
+					*: recordIssuesDefaults,
+					tools: [esLint(pattern: 'build/eslint.json')],
 			)
 
 			if (yarnResult == 0) return

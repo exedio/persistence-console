@@ -6,6 +6,7 @@
 /local.properties
 /.idea-output/
 /dist/
+/.eslintcache
 
 # https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 .yarn/*
