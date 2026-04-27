@@ -40,7 +40,7 @@ export class Schema implements Bullet {
       "add",
       "add missing nodes without rename-from option",
       () => {
-        let result: Fixable[] = [];
+        const result: Fixable[] = [];
         this._tables.forEach((table) => {
           if (
             table.existence?.text === "missing" &&
@@ -77,7 +77,7 @@ export class Schema implements Bullet {
       "drop",
       "drop unused nodes without rename-to option",
       () => {
-        let result: Fixable[] = [];
+        const result: Fixable[] = [];
         this._tables.forEach((table) => {
           if (
             table.existence?.text === "unused" &&
@@ -114,7 +114,7 @@ export class Schema implements Bullet {
       "modify",
       "adjust columns with type mismatch",
       () => {
-        let result: Column[] = [];
+        const result: Column[] = [];
         this._tables.forEach((table) => {
           table.columns().forEach((column) => {
             if (column.type?.actual) result.push(column);
@@ -127,7 +127,7 @@ export class Schema implements Bullet {
       "modify",
       "recreate constraints with clause mismatch",
       () => {
-        let result: Constraint[] = [];
+        const result: Constraint[] = [];
         this._tables.forEach((table) => {
           table.columns().forEach((column) => {
             column.constraints().forEach((constraint) => {
@@ -180,7 +180,7 @@ export class Schema implements Bullet {
   }
 
   fixables(): FixedFixable[] {
-    let result: FixedFixable[] = [];
+    const result: FixedFixable[] = [];
     this._tables.forEach((i) => {
       i.addFixables(result);
     });

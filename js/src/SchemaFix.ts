@@ -33,7 +33,7 @@ export function workOnFixes(
   source: FixedFixable[],
   alterTablesJoined: boolean = false,
 ): FixedFixable[] {
-  let result: FixedFixable[] = [];
+  const result: FixedFixable[] = [];
   source.forEach((i) => {
     if (i.subject === "constraint" && i.fix.method === "modify") {
       result.push({
