@@ -12,7 +12,7 @@ beforeEach(() => {
   };
 
   vi.mock("svelte/transition", async (importOriginal) => {
-    const actual = await importOriginal();
+    await importOriginal();
     return {
       fade: () => ({
         delay: 0,
@@ -50,7 +50,7 @@ window.confirm = function (message?: string): boolean {
 
 Object.defineProperty(navigator, "clipboard", {
   value: {
-    writeText: (data: string) => {
+    writeText: () => {
       assert.fail("navigator.clipboard.writeText must be mocked in unit tests");
       return Promise.reject();
     },
