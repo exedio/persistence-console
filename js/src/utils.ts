@@ -22,7 +22,7 @@ export function useWithStoreSingle<S, T>(
 ): T {
   const result = useWithStore(
     store,
-    (_source) => "theOneAndOnly",
+    () => "theOneAndOnly",
     createFunction,
     updateFunction,
     [source],
