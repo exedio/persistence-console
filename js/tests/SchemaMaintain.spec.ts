@@ -216,7 +216,7 @@ describe("Schema Maintain", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseFailure("myError"));
       mock.mockResolvedValueOnce(responseSuccessEmptySchema);
-      window.confirm = function (message?: string): boolean {
+      window.confirm = function (): boolean {
         return true;
       };
       (document.querySelectorAll("button").item(4) as HTMLInputElement).click();
@@ -241,7 +241,7 @@ describe("Schema Maintain", () => {
       mock.mockResolvedValueOnce(responseSuccessMaintain());
       mock.mockResolvedValueOnce(responseFailure("myError"));
       mock.mockResolvedValueOnce(responseSuccessEmptySchema);
-      window.confirm = function (message?: string): boolean {
+      window.confirm = function (): boolean {
         return true;
       };
       (document.querySelectorAll("button").item(4) as HTMLInputElement).click();
