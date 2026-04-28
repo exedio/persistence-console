@@ -26,6 +26,7 @@
       </tr>
     {:then features}
       {#each features as feature (feature.type + "." + feature.name)}
+        <!-- eslint-disable-next-line svelte/require-each-key -- suspicions are not unique -->
         {#each feature.suspicions as suspicion, index}
           <tr>
             {#if index === 0}

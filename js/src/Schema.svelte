@@ -97,6 +97,7 @@
     }),
   );
 
+  // eslint-disable-next-line svelte/prefer-svelte-reactivity -- is a cache
   const patchesCacheByUrl = new Map<string, Promise<SchemaAlterResponse>>(); // must not be SvelteMap!
 
   function urlToPromise(url: string): Promise<SchemaAlterResponse> {
@@ -335,6 +336,7 @@
       {#if patchesLog.length > 0}
         <button class="run" onclick={() => flushPatchesLog()}>flush</button>
         <ul>
+          <!-- eslint-disable-next-line svelte/require-each-key -- patches are not unique -->
           {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
               {encodePatch(undefined, patchesEncodedForJava, sql)}
@@ -602,6 +604,7 @@
 {#snippet additionalErrors(rr: AdditionalErrors)}
   {#if rr.additionalErrors.length}
     <ul>
+      <!-- eslint-disable-next-line svelte/require-each-key -- additionalErrors are not unique -->
       {#each rr.additionalErrors as r}
         <li>{r}</li>
       {/each}
