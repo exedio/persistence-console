@@ -2459,9 +2459,18 @@ function responseSuccessPatch(rows: number, elapsedNanos: number) {
 }
 
 async function clickShowAllTables() {
-  const show = () => checkbox("show all tables / sequences", 0);
+  const show = () => checkboxAsButton("show all tables / sequences", 0);
   show().click();
   await flushPromises();
+}
+
+function checkboxAsButton(title: string, index: number = 0): HTMLInputElement {
+  return Array.from(document.querySelectorAll("label"))
+    .filter((label) => label.title === title)
+    .map(
+      (label) =>
+        label.querySelector('input[type="checkbox"]') as HTMLInputElement,
+    )[index];
 }
 
 function checkbox(labelText: string, index: number): HTMLInputElement {

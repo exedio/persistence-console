@@ -223,14 +223,14 @@
       <div class="checkboxCollector">
         {@render bullet(schema)}
         Schema
-        <PromiseTrackerReload tracker={schemaT} />
-        <br />
-        <label
+        <label class="checkbox-as-button" title="show all tables / sequences"
           ><input
             type="checkbox"
             bind:checked={schema.showAllTablesSequences}
-          />show all tables / sequences
-        </label><br />
+          /><span>&#x2200;</span>
+        </label>
+        <PromiseTrackerReload tracker={schemaT} />
+        <br />
         {@render fixAggregator(schema.nodesMissingWithoutRename)}
         {@render fixAggregator(schema.nodesUnusedWithoutRename)}
         {@render fixAggregator(schema.columnsWithTypeMismatch)}
@@ -740,5 +740,26 @@
 
   button.clipboard:active {
     color: black;
+  }
+
+  label.checkbox-as-button {
+    display: inline-block;
+    position: relative;
+    span {
+      font-size: 80%;
+      display: inline-block;
+      padding: 0.05em 0.2em;
+      border: 1px solid grey;
+      background-color: white;
+      border-radius: 2px;
+      cursor: pointer;
+      user-select: none;
+    }
+    input[type="checkbox"] {
+      display: none; /* hides the actual checkbox */
+    }
+    input[type="checkbox"]:checked + span {
+      background-color: grey;
+    }
   }
 </style>
