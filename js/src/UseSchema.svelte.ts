@@ -226,8 +226,8 @@ export class Schema implements Bullet {
     for (const seq of this._sequences) dropRename(seq, key);
   }
 
-  collapser(nodeType?: string): Collapser | undefined {
-    return this.showAllSubNodes ? undefined : new Collapser(nodeType);
+  collapser<E extends Table | Sequence>(nodeType?: string): Collapser<E> | undefined {
+    return this.showAllSubNodes ? undefined : new Collapser<E>(nodeType);
   }
 }
 
@@ -816,17 +816,17 @@ export type CollapserSegment = {
   count: number;
 };
 
-export class Collapser {
+export class Collapser<E extends Table | Sequence> {
   readonly nodeType?: string;
-  private _first?: Table | Sequence = undefined;
-  private _last?: Table | Sequence = undefined;
+  private _first?: E = undefined;
+  private _last?: E = undefined;
   private _count = 0;
 
   constructor(nodeType?: string) {
     this.nodeType = nodeType;
   }
 
-  isShown(table?: Table | Sequence): CollapserSegment | undefined {
+  isShown(table?: E): CollapserSegment | undefined {
     if (!table || table.bulletColor) {
       if (!this._first || !this._last) {
         return undefined;

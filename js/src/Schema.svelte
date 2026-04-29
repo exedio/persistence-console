@@ -218,8 +218,8 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
-      {@const tableCollapser = schema.collapser(undefined)}
-      {@const sequenceCollapser = schema.collapser("sequence")}
+      {@const tableCollapser = schema.collapser<Table>(undefined)}
+      {@const sequenceCollapser = schema.collapser<Sequence>("sequence")}
       <div class="checkboxCollector">
         {@render bullet(schema)}
         Schema
@@ -399,9 +399,9 @@
   {/if}
 {/snippet}
 
-{#snippet collapsed(
-  tableOrSequence: Table | Sequence | undefined,
-  collapser: Collapser | undefined,
+{#snippet collapsed<E extends Table | Sequence>(
+  tableOrSequence: E | undefined,
+  collapser: Collapser<E> | undefined,
 )}
   {@const segment = collapser?.isShown(tableOrSequence)}
   {#if segment}
