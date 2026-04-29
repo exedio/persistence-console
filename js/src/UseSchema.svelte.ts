@@ -226,7 +226,9 @@ export class Schema implements Bullet {
     for (const seq of this._sequences) dropRename(seq, key);
   }
 
-  collapser<E extends Table | Sequence>(nodeType?: string): Collapser<E> | undefined {
+  collapser<E extends Table | Sequence>(
+    nodeType?: string,
+  ): Collapser<E> | undefined {
     return this.showAllSubNodes ? undefined : new Collapser<E>(nodeType);
   }
 }
