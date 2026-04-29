@@ -4,6 +4,9 @@
  */
 import eslint from "@eslint/js";
 import { configs } from "typescript-eslint";
+import svelte from "eslint-plugin-svelte";
+import svelteConfig from "./svelte.config.js";
+import ts from "typescript-eslint";
 
 function globalIgnore(ignores) {
   return {
@@ -24,6 +27,18 @@ export default [
     ...eslint.configs.recommended,
     name: "JS files",
     files: ["**/*.mjs", "**/*.cjs", "**/*.js"],
+  },
+  ...svelte.configs.recommended,
+  {
+    files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        extraFileExtensions: [".svelte"],
+        parser: ts.parser,
+        svelteConfig,
+      },
+    },
   },
   ...configs.recommended.map((conf) => ({
     ...conf,

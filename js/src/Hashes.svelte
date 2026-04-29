@@ -49,6 +49,7 @@
             >
           {/if}
         {:catch _error}
+          <!-- eslint-disable-next-line svelte/no-unused-svelte-ignore -->
           <!-- svelte-ignore block_empty -->
         {/await}</th
       >
@@ -126,6 +127,7 @@
 {#if errors.length > 0}
   <h2>Errors</h2>
   <ul>
+    <!-- eslint-disable-next-line svelte/require-each-key -- errors are not unique -->
     {#each errors as error}
       <li>{error}</li>
     {/each}

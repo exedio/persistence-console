@@ -20,7 +20,9 @@ export class Schema implements Bullet {
   readonly columnsWithTypeMismatch: FixAggregator<Column>;
   readonly constraintsWithClauseMismatch: FixAggregator<Constraint>;
 
+  // eslint-disable-next-line svelte/prefer-svelte-reactivity -- needed for useWithStore
   private readonly tablesStore = new Map<string, Table>();
+  // eslint-disable-next-line svelte/prefer-svelte-reactivity -- needed for useWithStore
   private readonly sequencesStore = new Map<string, Sequence>();
 
   showAllTablesSequences: boolean = $state(true);
@@ -270,7 +272,9 @@ export class Table implements ExpandableBullet, Fixable {
   readonly additionalErrors: readonly string[];
   readonly bulletColor: FixedColor;
 
+  // eslint-disable-next-line svelte/prefer-svelte-reactivity -- needed for useWithStore
   private readonly columnsStore = new Map<string, Column>();
+  // eslint-disable-next-line svelte/prefer-svelte-reactivity -- needed for useWithStore
   private readonly constraintsStore = new Map<string, Constraint>();
 
   expanded: boolean = $state(false);
