@@ -8,6 +8,7 @@
 
 <button
   class="reload"
+  title="Reload"
   disabled={tracker.pending()}
   onclick={() => tracker.reload()}
   >🗘
