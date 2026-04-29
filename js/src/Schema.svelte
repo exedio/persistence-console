@@ -499,7 +499,7 @@
           }}
         >
           <option value={RENAME_NONE}>rename from ...</option>
-          {#each renameFrom as option}
+          {#each renameFrom as option (option)}
             <option value={option}>
               {option}
             </option>
@@ -518,7 +518,7 @@
           }}
         >
           <option value={RENAME_NONE}>rename to ...</option>
-          {#each renameTo as option}
+          {#each renameTo as option (option)}
             <option value={option}>
               {option}
             </option>
