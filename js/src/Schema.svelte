@@ -20,6 +20,7 @@
     Table,
     Sequence,
     FixAggregator,
+    Column,
   } from "@/UseSchema.svelte.js";
   import { PromiseTracker } from "@/api/PromiseTracker.svelte";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
@@ -250,41 +251,52 @@
               )}
               {#if table.expanded}
                 {@render additionalErrors(table)}
+                <label class="checkbox-as-button" title="show all columns"
+                  ><input
+                    type="checkbox"
+                    bind:checked={table.showAllSubNodes}
+                  /><span>&#x2200;</span>
+                </label>
                 {#if table.columns().length || table.constraints().length}
+                  {@const columnCollapser = table.collapser()}
                   <ul in:fly={{ y: -10, duration: 200 }}>
                     {#each table.columns() as column (column.name)}
-                      <li>
-                        {@render bulletExpandable(column)}
-                        {column.name}
-                        {@render existence(
-                          column.existence,
-                          column,
-                          column.renameFrom(table),
-                          column.renameTo(table),
-                        )}
-                        {#if column.fix?.method === "add"}
-                          <input
-                            bind:value={column.fix.value}
-                            placeholder="initial"
-                            size="3"
-                          />
-                        {/if}
-                        {@render comparison(
-                          column,
-                          column.type,
-                          "adjust",
-                          column.expanded,
-                        )}
-                        {#if column.expanded}
-                          {@render additionalErrors(column)}
-                          {#if column.constraints().length > 0}
-                            <ul in:fly={{ y: -10, duration: 200 }}>
-                              {@render constraints(column.constraints())}
-                            </ul>
+                      {@render collapsed(column, columnCollapser)}
+                      {#if !columnCollapser || column.bulletColor}
+                        <li>
+                          {@render bulletExpandable(column)}
+                          {column.name}
+                          {@render existence(
+                            column.existence,
+                            column,
+                            column.renameFrom(table),
+                            column.renameTo(table),
+                          )}
+                          {#if column.fix?.method === "add"}
+                            <input
+                              bind:value={column.fix.value}
+                              placeholder="initial"
+                              size="3"
+                            />
                           {/if}
-                        {/if}
-                      </li>
+                          {@render comparison(
+                            column,
+                            column.type,
+                            "adjust",
+                            column.expanded,
+                          )}
+                          {#if column.expanded}
+                            {@render additionalErrors(column)}
+                            {#if column.constraints().length > 0}
+                              <ul in:fly={{ y: -10, duration: 200 }}>
+                                {@render constraints(column.constraints())}
+                              </ul>
+                            {/if}
+                          {/if}
+                        </li>
+                      {/if}
                     {/each}
+                    {@render collapsed(undefined, columnCollapser)}
                     {@render constraints(table.constraints())}
                   </ul>
                 {/if}
@@ -399,7 +411,7 @@
   {/if}
 {/snippet}
 
-{#snippet collapsed<E extends Table | Sequence>(
+{#snippet collapsed<E extends Table | Sequence | Column>(
   tableOrSequence: E | undefined,
   collapser: Collapser<E> | undefined,
 )}

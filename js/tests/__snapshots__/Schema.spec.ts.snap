@@ -17,6 +17,11 @@ exports[`Schema > should hide columns without problems 1`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> tab
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte"><button class="bullet svelte">+</button> col1ok</li>
       <li class="svelte"><button class="bullet svelte">+</button> col2ok</li>
@@ -27,6 +32,48 @@ exports[`Schema > should hide columns without problems 1`] = `
       </li>
       <li class="svelte"><button class="bullet svelte">+</button> col4ok</li>
       <li class="svelte"><button class="bullet svelte">+</button> col5ok</li>
+    </ul>
+  </li>
+</ul>
+"
+`;
+
+exports[`Schema > should hide columns without problems 2`] = `
+"<div class="checkboxCollector svelte">
+  <button disabled="" class="bullet red svelte">.</button> Schema
+  <label class="checkbox-as-button svelte" title="show all tables / sequences"
+    ><input type="checkbox" class="svelte" /><span class="svelte"
+      >∀</span
+    ></label
+  >
+  <button class="reload svelte" title="Reload">🗘</button> <br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    <small>(0/1)</small></label
+  ><br />
+</div>
+<ul>
+  <li class="svelte">
+    <button class="bullet red svelte">-</button> tab
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
+    <ul>
+      <li class="svelte">
+        <button disabled="" class="bullet svelte">.</button> col1ok ... col2ok
+        <small>(2)</small>
+      </li>
+      <li class="svelte">
+        <button class="bullet red svelte">+</button> col3missing
+        <span class="red svelte">missing</span>
+        <label><input type="checkbox" />add</label>
+      </li>
+      <li class="svelte">
+        <button disabled="" class="bullet svelte">.</button> col4ok ... col5ok
+        <small>(2)</small>
+      </li>
     </ul>
   </li>
 </ul>
@@ -235,6 +282,11 @@ exports[`Schema > should render a column with a wrong type 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">+</button> myColumn1Name
@@ -264,6 +316,11 @@ exports[`Schema > should render a column with a wrong type 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">-</button> myColumn1Name
@@ -319,6 +376,11 @@ exports[`Schema > should render a column with a wrong type 4`] = `
 <ul>
   <li class="svelte">
     <button class="bullet redFixed svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet redFixed svelte">-</button> myColumn1Name
@@ -395,6 +457,11 @@ exports[`Schema > should render a column with an additional error 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">+</button> myColumn1Name
@@ -418,6 +485,11 @@ exports[`Schema > should render a column with an additional error 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">-</button> myColumn1Name
@@ -508,6 +580,11 @@ exports[`Schema > should render a constraint with a wrong clause 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet red svelte">.</button>
@@ -580,6 +657,11 @@ exports[`Schema > should render a constraint with a wrong clause 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet redFixed svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet redFixed svelte">.</button>
@@ -676,6 +758,11 @@ exports[`Schema > should render a constraint with an additional error 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet red svelte">.</button>
@@ -741,6 +828,11 @@ exports[`Schema > should render a constraint with shortener 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">+</button> myColumn1Name
@@ -768,6 +860,11 @@ exports[`Schema > should render a constraint with shortener 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">-</button> myColumn1Name
@@ -883,7 +980,14 @@ exports[`Schema > should render a minimal table 2`] = `
   <button class="reload svelte" title="Reload">🗘</button> <br />
 </div>
 <ul>
-  <li class="svelte"><button class="bullet svelte">-</button> myOnlyName</li>
+  <li class="svelte">
+    <button class="bullet svelte">-</button> myOnlyName
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
+  </li>
 </ul>
 "
 `;
@@ -899,7 +1003,14 @@ exports[`Schema > should render a minimal table 3`] = `
   <button class="reload svelte" title="Reload">🗘</button> <br />
 </div>
 <ul>
-  <li class="svelte"><button class="bullet svelte">-</button> myOnlyName</li>
+  <li class="svelte">
+    <button class="bullet svelte">-</button> myOnlyName
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
+  </li>
 </ul>
 "
 `;
@@ -961,6 +1072,11 @@ exports[`Schema > should render a missing column 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">+</button> myColumn1Name
@@ -990,6 +1106,11 @@ exports[`Schema > should render a missing column 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">-</button> myColumn1Name
@@ -1024,6 +1145,11 @@ exports[`Schema > should render a missing column 4`] = `
 <ul>
   <li class="svelte">
     <button class="bullet redFixed svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet redFixed svelte">-</button> myColumn1Name
@@ -1067,6 +1193,11 @@ exports[`Schema > should render a missing column to be renamed from an unused 1`
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTableName
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">+</button> myMissingColumnName
@@ -1121,6 +1252,11 @@ exports[`Schema > should render a missing column to be renamed from an unused 2`
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTableName
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">+</button> myMissingColumnName
@@ -1209,6 +1345,11 @@ exports[`Schema > should render a missing constraint 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet yellow svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet yellow svelte">.</button>
@@ -1441,6 +1582,11 @@ exports[`Schema > should render a missing table 2`] = `
     <button class="bullet red svelte">-</button> myTable1Name
     <span class="red svelte">missing</span>
     <label><input type="checkbox" />create</label>
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
   </li>
 </ul>
 "
@@ -1777,6 +1923,11 @@ exports[`Schema > should render a normal table with constraints 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet svelte">+</button> myColumn1Name
@@ -1818,6 +1969,11 @@ exports[`Schema > should render a normal table with constraints 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet svelte">-</button> myColumn1Name
@@ -1933,6 +2089,11 @@ exports[`Schema > should render a normal table without constraints 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet svelte">+</button> myColumn1Name
@@ -1956,6 +2117,11 @@ exports[`Schema > should render a normal table without constraints 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet svelte">-</button> myColumn1Name
@@ -2111,6 +2277,11 @@ exports[`Schema > should render a table with an additional error 2`] = `
       <li class="svelte">additionalErrors1</li>
       <li class="svelte">additionalErrors2</li>
     </ul>
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
   </li>
 </ul>
 "
@@ -2155,6 +2326,11 @@ exports[`Schema > should render a unused NOT NULL column 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">+</button> myColumn1Name
@@ -2184,6 +2360,11 @@ exports[`Schema > should render a unused NOT NULL column 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">-</button> myColumn1Name
@@ -2240,6 +2421,11 @@ exports[`Schema > should render a unused column 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet yellow svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet yellow svelte">+</button> myColumn1Name
@@ -2269,6 +2455,11 @@ exports[`Schema > should render a unused column 3`] = `
 <ul>
   <li class="svelte">
     <button class="bullet yellow svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet yellow svelte">-</button> myColumn1Name
@@ -2304,6 +2495,11 @@ exports[`Schema > should render a unused column to be renamed to a missing 1`] =
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTableName
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet red svelte">+</button> myUnusedColumnName
@@ -2358,6 +2554,11 @@ exports[`Schema > should render a unused column to be renamed to a missing 2`] =
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTableName
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button class="bullet redFixed svelte">+</button> myUnusedColumnName
@@ -2446,6 +2647,11 @@ exports[`Schema > should render a unused constraint 2`] = `
 <ul>
   <li class="svelte">
     <button class="bullet red svelte">-</button> myTable1Name
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
     <ul>
       <li class="svelte">
         <button disabled="" class="bullet red svelte">.</button>
@@ -2678,6 +2884,11 @@ exports[`Schema > should render a unused table 2`] = `
     <button class="bullet yellow svelte">-</button> myTable1Name
     <span class="yellow svelte">unused</span>
     <label><input type="checkbox" />drop</label>
+    <label class="checkbox-as-button svelte" title="show all columns"
+      ><input type="checkbox" class="svelte" /><span class="svelte"
+        >∀</span
+      ></label
+    >
   </li>
 </ul>
 "
