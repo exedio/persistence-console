@@ -226,7 +226,7 @@
         <label class="checkbox-as-button" title="show all tables / sequences"
           ><input
             type="checkbox"
-            bind:checked={schema.showAllTablesSequences}
+            bind:checked={schema.showAllSubNodes}
           /><span>&#x2200;</span>
         </label>
         <PromiseTrackerReload tracker={schemaT} />
