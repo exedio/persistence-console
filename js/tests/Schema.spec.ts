@@ -1576,9 +1576,7 @@ describe("Schema", () => {
     await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    const show = () => checkbox("show all tables / sequences", 0);
-    show().click();
-    await flushPromises();
+    await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
