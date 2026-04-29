@@ -25,7 +25,7 @@ export class Schema implements Bullet {
   // eslint-disable-next-line svelte/prefer-svelte-reactivity -- needed for useWithStore
   private readonly sequencesStore = new Map<string, Sequence>();
 
-  showAllTablesSequences: boolean = $state(true);
+  showAllTablesSequences: boolean = $state(false);
 
   constructor(apiParameterNotToBeUsedExceptForAssigment: ApiSchema) {
     this.api = $state(apiParameterNotToBeUsedExceptForAssigment);

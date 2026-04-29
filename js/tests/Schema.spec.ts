@@ -42,6 +42,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
+    await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
@@ -91,6 +92,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
+    await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
@@ -154,6 +156,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
+    await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
@@ -1259,6 +1262,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
+    await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
@@ -1569,6 +1573,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
+    await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
     const show = () => checkbox("show all tables / sequences", 0);
@@ -1991,6 +1996,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
+    await clickShowAllTables();
 
     const addConstraint = () => checkbox("add", 0);
     const createSequenc = () => checkbox("create", 0);
@@ -2452,6 +2458,12 @@ function responseSuccessPatch(rows: number, elapsedNanos: number) {
     rows,
     elapsedNanos,
   } satisfies SchemaPatchResponse);
+}
+
+async function clickShowAllTables() {
+  const show = () => checkbox("show all tables / sequences", 0);
+  show().click();
+  await flushPromises();
 }
 
 function checkbox(labelText: string, index: number): HTMLInputElement {
