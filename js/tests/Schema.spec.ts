@@ -45,8 +45,7 @@ describe("Schema", () => {
     await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
 
     {
@@ -95,13 +94,11 @@ describe("Schema", () => {
     await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
@@ -160,13 +157,11 @@ describe("Schema", () => {
     await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
@@ -183,8 +178,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
@@ -219,8 +213,7 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
 
     const create = () => checkbox("create", 0);
     {
@@ -252,8 +245,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
@@ -400,8 +392,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
@@ -429,12 +420,10 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
@@ -502,12 +491,10 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
@@ -556,12 +543,10 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
@@ -597,8 +582,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     const unused = () => select("rename to ...", 0);
     const missing1 = () => select("rename from ...", 0);
     const missing2 = () => select("rename from ...", 1);
@@ -669,8 +653,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     const missing = () => select("rename from ...", 0);
     const unused1 = () => select("rename to ...", 0);
     const unused2 = () => select("rename to ...", 1);
@@ -733,12 +716,10 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
@@ -795,8 +776,7 @@ describe("Schema", () => {
     const modifyA = () => checkboxStart("adjust columns with type mismatch");
     const modify1 = () => checkbox("adjust", 0);
     const modify2 = () => checkbox("adjust", 1);
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
     expect(modifyA().checked).toBe(false);
     expect(modifyA().indeterminate).toBe(false);
@@ -894,12 +874,10 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
@@ -928,8 +906,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
@@ -979,8 +956,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
@@ -1031,8 +1007,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
@@ -1105,8 +1080,7 @@ describe("Schema", () => {
       checkboxStart("recreate constraints with clause mismatch", 0);
     const modify1 = () => checkbox("recreate", 0);
     const modify2 = () => checkbox("recreate", 1);
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
     expect(modifyA().checked).toBe(false);
     expect(modifyA().indeterminate).toBe(false);
@@ -1214,12 +1188,10 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(2);
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
@@ -1248,8 +1220,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
@@ -1604,8 +1575,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
@@ -1668,10 +1638,8 @@ describe("Schema", () => {
     const tableConstraint = () => checkbox("add", 2);
     const table = () => checkbox("create", 0);
     const sequence = () => checkbox("create", 1);
-    clickBullet(1);
-    await flushPromises();
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(1);
+    await clickBullet(2);
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
     expect(all().checked).toBe(false);
     expect(all().indeterminate).toBe(false);
@@ -1843,10 +1811,8 @@ describe("Schema", () => {
     const tableConstraint = () => checkbox("drop", 2);
     const table = () => checkbox("drop", 3);
     const sequence = () => checkbox("drop", 4);
-    clickBullet(1);
-    await flushPromises();
-    clickBullet(2);
-    await flushPromises();
+    await clickBullet(1);
+    await clickBullet(2);
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
     expect(all().checked).toBe(false);
     expect(all().indeterminate).toBe(false);
@@ -2032,14 +1998,8 @@ describe("Schema", () => {
     const addConstraint = () => checkbox("add", 0);
     const createSequenc = () => checkbox("create", 0);
 
-    // expand table
-    clickBullet(1);
-    await flushPromises();
-
-    // expand column
-    clickBullet(2);
-    await flushPromises();
-
+    await clickBullet(1); // expand table
+    await clickBullet(2); // expand column
     expect(addConstraint().checked).toBe(false);
     expect(createSequenc().checked).toBe(false);
 
@@ -2150,8 +2110,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     expect(sql()).toBeNull();
 
     const create = () => checkbox("create", 0);
@@ -2228,8 +2187,7 @@ describe("Schema", () => {
     const add3 = () => checkbox("add", 2);
     const encode = () =>
       checkbox("join ALTER TABLE statements on the same table", 0);
-    clickBullet(1);
-    await flushPromises();
+    await clickBullet(1);
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
@@ -2285,8 +2243,7 @@ describe("Schema", () => {
     expect(sql(0)).toBeNull();
     expect(sql(1)).toBeNull();
 
-    clickBullet(3);
-    await flushPromises();
+    await clickBullet(3);
 
     const sql1 = 'CREATE TABLE "myTable1"';
     const sql2 = 'CREATE TABLE "myTable2"';
@@ -2492,8 +2449,9 @@ function responseSuccessPatch(rows: number, elapsedNanos: number) {
   } satisfies SchemaPatchResponse);
 }
 
-function clickBullet(index: number) {
+async function clickBullet(index: number) {
   (document.querySelectorAll(".bullet").item(index) as HTMLElement).click();
+  await flushPromises();
 }
 
 async function clickShowAllTables() {
