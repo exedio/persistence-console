@@ -662,13 +662,19 @@
 
   li.node {
     list-style-type: none;
+    padding-left: 0.3em;
+    text-indent: -1.2em; /* corresponds to button.bullet width */
+  }
+
+  li.node > * {
+    text-indent: 0;
   }
 
   button.bullet {
     border: 1px black solid;
     border-radius: 2px;
     padding: 0;
-    width: 1.2em;
+    width: 1.2em; /* corresponds to li.node text-indent */
     vertical-align: 20%;
     font-size: 60%;
     background: #ffffff;

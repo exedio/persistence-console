@@ -19,7 +19,7 @@
         >∀</span
       ></label
     >
-    <ul>
+    <ul class="svelte">
       <li class="node svelte">
         <button class="bullet redFixed svelte">-</button> expandedColumn
         expandedColumnType<button
@@ -28,7 +28,7 @@
         >
           ⧉
         </button>
-        <ul>
+        <ul class="svelte">
           <li class="node svelte">
             <button disabled="" class="bullet redFixed svelte">.</button>
             <span class="nodeType svelte">pk</span>
@@ -39,7 +39,7 @@
               ⧉
             </button>
             <span class="redFixed svelte">missing</span>
-            <label><input type="checkbox" />add</label>
+            <label class="svelte"><input type="checkbox" />add</label>
           </li>
         </ul>
       </li>
@@ -65,10 +65,8 @@
     <button disabled="" class="bullet redFixed svelte">.</button>
     <span class="nodeType svelte">sequence</span> SomeSequence
     <span class="redFixed svelte">missing</span>
-    <label><input type="checkbox" />create</label> someSequenceType<button
-      class="clipboard svelte"
-      title="someSequenceType"
-    >
+    <label class="svelte"><input type="checkbox" />create</label>
+    someSequenceType<button class="clipboard svelte" title="someSequenceType">
       ⧉
     </button>
     55<button class="clipboard svelte" title="55">⧉</button>
