@@ -16,6 +16,7 @@
     type Constraint,
     type Bullet,
     type ExpandableBullet,
+    collapsedSegments,
     Collapser,
     Table,
     Sequence,
@@ -219,8 +220,14 @@
     {#await schemaT.promise()}
       fetching data
     {:then schema}
-      {@const tableCollapser = schema.collapser<Table>(undefined)}
-      {@const sequenceCollapser = schema.collapser<Sequence>("sequence")}
+      {@const tableCollapser = schema.collapser(
+        () => schema.tables(),
+        undefined,
+      )}
+      {@const sequenceCollapser = schema.collapser(
+        () => schema.sequences(),
+        "sequence",
+      )}
       <div class="checkboxCollector">
         {@render bullet(schema)}
         Schema
@@ -415,7 +422,9 @@
   node: E | undefined,
   collapser: Collapser<E> | undefined,
 )}
-  {@const segment = collapser?.isShown(node)}
+  {@const segment = collapser
+    ? collapsedSegments(node, collapser.nodes())
+    : undefined}
   {#if segment}
     <li class="node">
       {@render bullet(segment.first)}
