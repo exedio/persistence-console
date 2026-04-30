@@ -1,5 +1,38 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Schema > should hide columns without problems 1`] = `
+"<div class="checkboxCollector svelte">
+  <button disabled="" class="bullet red svelte">.</button> Schema
+  <label class="checkbox-as-button svelte" title="show all tables / sequences"
+    ><input type="checkbox" class="svelte" /><span class="svelte"
+      >∀</span
+    ></label
+  >
+  <button class="reload svelte" title="Reload">🗘</button> <br />
+  <label
+    ><input type="checkbox" />add missing nodes without rename-from option
+    <small>(0/1)</small></label
+  ><br />
+</div>
+<ul>
+  <li class="svelte">
+    <button class="bullet red svelte">-</button> tab
+    <ul>
+      <li class="svelte"><button class="bullet svelte">+</button> col1ok</li>
+      <li class="svelte"><button class="bullet svelte">+</button> col2ok</li>
+      <li class="svelte">
+        <button class="bullet red svelte">+</button> col3missing
+        <span class="red svelte">missing</span>
+        <label><input type="checkbox" />add</label>
+      </li>
+      <li class="svelte"><button class="bullet svelte">+</button> col4ok</li>
+      <li class="svelte"><button class="bullet svelte">+</button> col5ok</li>
+    </ul>
+  </li>
+</ul>
+"
+`;
+
 exports[`Schema > should hide table / sequences without problems 1`] = `
 "<div class="checkboxCollector svelte">
   <button disabled="" class="bullet red svelte">.</button> Schema
