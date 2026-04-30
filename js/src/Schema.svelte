@@ -460,7 +460,7 @@
 {/snippet}
 
 {#snippet bullet(bullet: Bullet)}
-  <button class={["bullet", bullet.bulletColor]} disabled={true}>.</button>
+  <button class={["bullet", bullet.bulletColor]} disabled={true}>&nbsp;</button>
 {/snippet}
 
 {#snippet existence(
