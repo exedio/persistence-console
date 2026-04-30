@@ -818,9 +818,9 @@ function dropRename(
 }
 
 export type CollapserSegment = {
-  first: Table | Sequence | Column;
-  last: Table | Sequence | Column;
-  count: number;
+  readonly first: Table | Sequence | Column;
+  readonly last: Table | Sequence | Column;
+  readonly count: number;
 };
 
 export class Collapser<E extends Table | Sequence | Column> {
