@@ -460,7 +460,8 @@
 {/snippet}
 
 {#snippet bullet(bullet: Bullet)}
-  <button class={["bullet", bullet.bulletColor]} disabled={true}>.</button>
+  <!-- svelte-ignore a11y_consider_explicit_label -->
+  <button class={["bullet", bullet.bulletColor]} disabled={true}>&nbsp;</button>
 {/snippet}
 
 {#snippet existence(
