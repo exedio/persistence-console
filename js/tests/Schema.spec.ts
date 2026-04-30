@@ -45,7 +45,7 @@ describe("Schema", () => {
     await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
@@ -95,12 +95,12 @@ describe("Schema", () => {
     await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
@@ -160,12 +160,12 @@ describe("Schema", () => {
     await clickShowAllTables();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
@@ -183,7 +183,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
@@ -219,7 +219,7 @@ describe("Schema", () => {
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
 
     const create = () => checkbox("create", 0);
@@ -252,7 +252,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
@@ -400,7 +400,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
@@ -429,11 +429,11 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
@@ -502,11 +502,11 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
@@ -556,11 +556,11 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
@@ -597,7 +597,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     const unused = () => select("rename to ...", 0);
     const missing1 = () => select("rename from ...", 0);
@@ -669,7 +669,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     const missing = () => select("rename from ...", 0);
     const unused1 = () => select("rename to ...", 0);
@@ -733,11 +733,11 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
@@ -795,7 +795,7 @@ describe("Schema", () => {
     const modifyA = () => checkboxStart("adjust columns with type mismatch");
     const modify1 = () => checkbox("adjust", 0);
     const modify2 = () => checkbox("adjust", 1);
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
     expect(modifyA().checked).toBe(false);
@@ -894,11 +894,11 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
@@ -928,7 +928,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
@@ -979,7 +979,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
@@ -1031,7 +1031,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
@@ -1105,7 +1105,7 @@ describe("Schema", () => {
       checkboxStart("recreate constraints with clause mismatch", 0);
     const modify1 = () => checkbox("recreate", 0);
     const modify2 = () => checkbox("recreate", 1);
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
     expect(modifyA().checked).toBe(false);
@@ -1214,11 +1214,11 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
@@ -1248,7 +1248,7 @@ describe("Schema", () => {
     }
     expect(await formatHtml(tree())).toMatchSnapshot();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
@@ -1604,7 +1604,7 @@ describe("Schema", () => {
       await mountComponent();
       expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
     }
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
@@ -1668,9 +1668,9 @@ describe("Schema", () => {
     const tableConstraint = () => checkbox("add", 2);
     const table = () => checkbox("create", 0);
     const sequence = () => checkbox("create", 1);
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
     expect(all().checked).toBe(false);
@@ -1843,9 +1843,9 @@ describe("Schema", () => {
     const tableConstraint = () => checkbox("drop", 2);
     const table = () => checkbox("drop", 3);
     const sequence = () => checkbox("drop", 4);
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
     expect(await formatHtml(checkboxCollector())).toMatchSnapshot();
     expect(all().checked).toBe(false);
@@ -2033,11 +2033,11 @@ describe("Schema", () => {
     const createSequenc = () => checkbox("create", 0);
 
     // expand table
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
 
     // expand column
-    (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
+    clickBullet(2);
     await flushPromises();
 
     expect(addConstraint().checked).toBe(false);
@@ -2150,7 +2150,7 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
     expect(sql()).toBeNull();
 
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     expect(sql()).toBeNull();
 
@@ -2228,7 +2228,7 @@ describe("Schema", () => {
     const add3 = () => checkbox("add", 2);
     const encode = () =>
       checkbox("join ALTER TABLE statements on the same table", 0);
-    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    clickBullet(1);
     await flushPromises();
     {
       const mock = mockFetch();
@@ -2285,7 +2285,7 @@ describe("Schema", () => {
     expect(sql(0)).toBeNull();
     expect(sql(1)).toBeNull();
 
-    (document.querySelectorAll(".bullet").item(3) as HTMLElement).click();
+    clickBullet(3);
     await flushPromises();
 
     const sql1 = 'CREATE TABLE "myTable1"';
@@ -2490,6 +2490,10 @@ function responseSuccessPatch(rows: number, elapsedNanos: number) {
     rows,
     elapsedNanos,
   } satisfies SchemaPatchResponse);
+}
+
+function clickBullet(index: number) {
+  (document.querySelectorAll(".bullet").item(index) as HTMLElement).click();
 }
 
 async function clickShowAllTables() {
