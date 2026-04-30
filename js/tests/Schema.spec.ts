@@ -1580,6 +1580,33 @@ describe("Schema", () => {
     expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
+  it("should hide columns without problems", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            {
+              name: "tab",
+              columns: [
+                { name: "col1ok", type: "col1Type" },
+                { name: "col2ok", type: "col2Type" },
+                { name: "col3missing", type: "col3Type", existence: "missing" },
+                { name: "col4ok", type: "col4Type" },
+                { name: "col5ok", type: "col5Type" },
+              ],
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledExactlyOnceWith("/myApiPath/schema");
+    }
+    (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
+    await flushPromises();
+    expect(await formatHtml(tree())).toMatchSnapshot();
+  });
+
   it("should render multiple missing nodes", async () => {
     {
       const mock = mockFetch();
