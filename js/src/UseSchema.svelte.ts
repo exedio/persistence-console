@@ -817,9 +817,9 @@ function dropRename(
     fixable.fix = undefined;
 }
 
-export type CollapserSegment = {
-  readonly first: Table | Sequence | Column;
-  readonly last: Table | Sequence | Column;
+export type CollapserSegment<E extends Table | Sequence | Column> = {
+  readonly first: E;
+  readonly last: E;
   readonly count: number;
 };
 
@@ -833,16 +833,16 @@ export class Collapser<E extends Table | Sequence | Column> {
     this.nodeType = nodeType;
   }
 
-  isShown(table?: E): CollapserSegment | undefined {
+  isShown(table?: E): CollapserSegment<E> | undefined {
     if (!table || table.bulletColor) {
       if (!this._first || !this._last) {
         return undefined;
       }
-      const result: CollapserSegment = {
+      const result: CollapserSegment<E> = {
         first: this._first,
         last: this._last,
         count: this._count,
-      } satisfies CollapserSegment;
+      } satisfies CollapserSegment<E>;
       this._first = undefined;
       this._last = undefined;
       this._count = 0;
