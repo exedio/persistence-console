@@ -97,6 +97,7 @@ describe("Schema", () => {
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
+    await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
@@ -161,6 +162,7 @@ describe("Schema", () => {
 
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
+    await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
     (document.querySelectorAll(".bullet").item(2) as HTMLElement).click();
@@ -1604,6 +1606,7 @@ describe("Schema", () => {
     }
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
+    await clickShowAllColumns();
     expect(await formatHtml(tree())).toMatchSnapshot();
 
     await clickShowAllColumns();
@@ -2062,6 +2065,7 @@ describe("Schema", () => {
       );
     }
 
+    await clickShowAllColumns();
     await expect(await formatHtml(tree())).toMatchFileSnapshot(
       "Schema-reload.output.html",
     );
