@@ -240,7 +240,7 @@
         {#each schema.tables() as table (table.name)}
           {@render collapsed(table, tableCollapser)}
           {#if !tableCollapser || table.bulletColor}
-            <li>
+            <li class="node">
               {@render bulletExpandable(table)}
               {table.name}
               {@render existence(
@@ -263,7 +263,7 @@
                     {#each table.columns() as column (column.name)}
                       {@render collapsed(column, columnCollapser)}
                       {#if !columnCollapser || column.bulletColor}
-                        <li>
+                        <li class="node">
                           {@render bulletExpandable(column)}
                           {column.name}
                           {@render existence(
@@ -308,7 +308,7 @@
         {#each schema.sequences() as sequence (sequence.name)}
           {@render collapsed(sequence, sequenceCollapser)}
           {#if !sequenceCollapser || sequence.bulletColor}
-            <li>
+            <li class="node">
               {@render bullet(sequence)}
               <span class="nodeType">sequence</span>
               {sequence.name}
@@ -417,7 +417,7 @@
 )}
   {@const segment = collapser?.isShown(tableOrSequence)}
   {#if segment}
-    <li>
+    <li class="node">
       {@render bullet(segment.first)}
       {#if collapser?.nodeType}
         <span class="nodeType">{collapser.nodeType}</span>
@@ -434,7 +434,7 @@
 
 {#snippet constraints(constraints: ReadonlyConstraintArray)}
   {#each constraints as constraint (constraint.name)}
-    <li>
+    <li class="node">
       {@render bullet(constraint)}
       <span class="nodeType">{constraint.type}</span>
       {constraint.nameShort()}<button
@@ -660,7 +660,7 @@
     }
   }
 
-  li {
+  li.node {
     list-style-type: none;
   }
 
