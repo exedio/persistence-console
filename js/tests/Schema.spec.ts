@@ -1605,6 +1605,9 @@ describe("Schema", () => {
     (document.querySelectorAll(".bullet").item(1) as HTMLElement).click();
     await flushPromises();
     expect(await formatHtml(tree())).toMatchSnapshot();
+
+    await clickShowAllColumns();
+    expect(await formatHtml(tree())).toMatchSnapshot();
   });
 
   it("should render multiple missing nodes", async () => {
@@ -2487,6 +2490,12 @@ function responseSuccessPatch(rows: number, elapsedNanos: number) {
 
 async function clickShowAllTables() {
   const show = () => checkboxAsButton("show all tables / sequences", 0);
+  show().click();
+  await flushPromises();
+}
+
+async function clickShowAllColumns() {
+  const show = () => checkboxAsButton("show all columns", 0);
   show().click();
   await flushPromises();
 }

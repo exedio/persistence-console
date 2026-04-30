@@ -280,6 +280,7 @@ export class Table implements ExpandableBullet, Fixable {
   private readonly constraintsStore = new Map<string, Constraint>();
 
   expanded: boolean = $state(false);
+  showAllSubNodes: boolean = $state(true); // TODO initially false COPE-271
   fix: Fix | undefined = $state(undefined);
 
   constructor(apiParameterForAssigmentOnly: ApiTable) {
@@ -348,6 +349,10 @@ export class Table implements ExpandableBullet, Fixable {
     constraintsStore: Map<string, Constraint>,
   ) {
     return useConstraints(constraintsStore, constraints, this.name, undefined);
+  }
+
+  collapser(): Collapser<Column> | undefined {
+    return this.showAllSubNodes ? undefined : new Collapser(undefined);
   }
 
   renameFrom(schema: Schema): string[] {
@@ -813,12 +818,12 @@ function dropRename(
 }
 
 export type CollapserSegment = {
-  first: Table | Sequence;
-  last: Table | Sequence;
+  first: Table | Sequence | Column;
+  last: Table | Sequence | Column;
   count: number;
 };
 
-export class Collapser<E extends Table | Sequence> {
+export class Collapser<E extends Table | Sequence | Column> {
   readonly nodeType?: string;
   private _first?: E = undefined;
   private _last?: E = undefined;
