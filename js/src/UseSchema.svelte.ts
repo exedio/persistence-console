@@ -280,7 +280,7 @@ export class Table implements ExpandableBullet, Fixable {
   private readonly constraintsStore = new Map<string, Constraint>();
 
   expanded: boolean = $state(false);
-  showAllSubNodes: boolean = $state(true); // TODO initially false COPE-271
+  showAllSubNodes: boolean = $state(false);
   fix: Fix | undefined = $state(undefined);
 
   constructor(apiParameterForAssigmentOnly: ApiTable) {
