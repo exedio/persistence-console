@@ -135,6 +135,19 @@ public class SchemaAlterApiTest {
   }
 
   @Test
+  void testColumnDropDefault() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "sql" : "ALTER TABLE \\"MyType\\" ALTER COLUMN \\"this\\" DROP DEFAULT"
+      }""",
+      writeJson(
+        alter(MODEL, request("column", "MyType", "this", "dropDefault"))
+      )
+    );
+  }
+
+  @Test
   void testColumnRename() throws IOException, ApiTextException {
     assertEquals(
       """

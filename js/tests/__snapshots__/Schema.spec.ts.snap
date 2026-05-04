@@ -1447,6 +1447,9 @@ exports[`Schema > should render a missing column 6`] = `
 "<li class="svelte">
   "ALTER TABLE myTable1Name ADD COLUMN myColumn1Name DEFAULT 777",
 </li>
+<li class="svelte">
+  "ALTER TABLE myTable1Name ALTER COLUMN myColumn1Name DROP DEFAULT",
+</li>
 "
 `;
 

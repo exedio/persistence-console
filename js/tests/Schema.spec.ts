@@ -452,12 +452,23 @@ describe("Schema", () => {
           "ALTER TABLE myTable1Name ADD COLUMN myColumn1Name DEFAULT 777",
         ),
       );
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          "ALTER TABLE myTable1Name ALTER COLUMN myColumn1Name DROP DEFAULT",
+        ),
+      );
       initial().value = "777";
       initial().dispatchEvent(new Event("input", { bubbles: true }));
       await flushPromises();
-      expect(mock).toHaveBeenCalledExactlyOnceWith(
+      expect(mock).toHaveBeenNthCalledWith(
+        1,
         "/myApiPath/schema/alter?subject=column&table=myTable1Name&name=myColumn1Name&method=add&value=777",
       );
+      expect(mock).toHaveBeenNthCalledWith(
+        2,
+        "/myApiPath/schema/alter?subject=column&table=myTable1Name&name=myColumn1Name&method=dropDefault",
+      );
+      expect(mock).toHaveBeenCalledTimes(2);
     }
     expect(await formatHtml(sql())).toMatchSnapshot();
 
