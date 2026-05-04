@@ -227,9 +227,10 @@ export class Schema implements Bullet {
   }
 
   collapser<E extends Table | Sequence>(
+    nodes: () => readonly E[],
     nodeType?: string,
   ): Collapser<E> | undefined {
-    return this.showAllSubNodes ? undefined : new Collapser<E>(nodeType);
+    return this.showAllSubNodes ? undefined : new Collapser<E>(nodes, nodeType);
   }
 }
 
@@ -352,7 +353,9 @@ export class Table implements ExpandableBullet, Fixable {
   }
 
   collapser(): Collapser<Column> | undefined {
-    return this.showAllSubNodes ? undefined : new Collapser(undefined);
+    return this.showAllSubNodes
+      ? undefined
+      : new Collapser(() => this.columns(), undefined);
   }
 
   renameFrom(schema: Schema): string[] {
@@ -823,35 +826,41 @@ export type CollapserSegment<E extends Table | Sequence | Column> = {
   readonly count: number;
 };
 
-export class Collapser<E extends Table | Sequence | Column> {
-  readonly nodeType?: string;
-  private _first?: E = undefined;
-  private _last?: E = undefined;
-  private _count = 0;
+export function collapsedSegments<E extends Table | Sequence | Column>(
+  node: E | undefined,
+  nodes: readonly E[],
+): CollapserSegment<E> | undefined {
+  let first: E | undefined = undefined;
+  let last: E | undefined = undefined;
+  let count: number = 0;
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i];
 
-  constructor(nodeType?: string) {
-    this.nodeType = nodeType;
-  }
-
-  isShown(table?: E): CollapserSegment<E> | undefined {
-    if (!table || table.bulletColor) {
-      if (!this._first || !this._last) {
-        return undefined;
-      }
-      const result: CollapserSegment<E> = {
-        first: this._first,
-        last: this._last,
-        count: this._count,
-      } satisfies CollapserSegment<E>;
-      this._first = undefined;
-      this._last = undefined;
-      this._count = 0;
-      return result;
-    } else {
-      if (!this._first) this._first = table;
-      this._last = table;
-      this._count++;
-      return undefined;
+    if (n === node) {
+      return first && last && node.bulletColor
+        ? { first, last, count }
+        : undefined;
     }
+
+    if (n.bulletColor) {
+      first = undefined;
+      last = undefined;
+      count = 0;
+    } else {
+      if (!first) first = n;
+      last = n;
+      count++;
+    }
+  }
+  return first && last ? { first, last, count } : undefined;
+}
+
+export class Collapser<E extends Table | Sequence | Column> {
+  readonly nodes: () => readonly E[];
+  readonly nodeType?: string;
+
+  constructor(nodes: () => readonly E[], nodeType?: string) {
+    this.nodes = nodes;
+    this.nodeType = nodeType;
   }
 }
