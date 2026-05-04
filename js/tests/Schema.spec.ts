@@ -2450,7 +2450,13 @@ function responseSuccessPatch(rows: number, elapsedNanos: number) {
 }
 
 async function clickBullet(index: number) {
-  (document.querySelectorAll(".bullet").item(index) as HTMLElement).click();
+  (
+    document
+      .querySelectorAll(".bullet")
+      .item(index)
+      .querySelectorAll("input")
+      .item(0) as HTMLElement
+  ).click();
   await flushPromises();
 }
 

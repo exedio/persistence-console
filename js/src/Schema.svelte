@@ -460,17 +460,17 @@
 {/snippet}
 
 {#snippet bulletExpandable(bullet: ExpandableBullet)}
-  <button
-    class={["bullet", bullet.bulletColor]}
-    onclick={() => (bullet.expanded = !bullet.expanded)}
+  <label class={["bullet", bullet.bulletColor]}>
+    <input type="checkbox" bind:checked={bullet.expanded} />{bullet.expanded
+      ? "-"
+      : "+"}</label
   >
-    {bullet.expanded ? "-" : "+"}
-  </button>
 {/snippet}
 
 {#snippet bullet(bullet: Bullet)}
-  <!-- svelte-ignore a11y_consider_explicit_label -->
-  <button class={["bullet", bullet.bulletColor]} disabled={true}>&nbsp;</button>
+  <label class={["bullet", bullet.bulletColor]}
+    ><input type="checkbox" disabled={true} />&nbsp;</label
+  >
 {/snippet}
 
 {#snippet existence(
@@ -680,29 +680,34 @@
     text-indent: 0;
   }
 
-  button.bullet {
+  label.bullet {
     border: 1px black solid;
     border-radius: 2px;
     padding: 0;
-    width: 1.2em; /* corresponds to li.node text-indent */
+    display: inline-block;
+    width: 1.1em; /* corresponds to li.node text-indent */
     vertical-align: 20%;
+    text-align: center;
     font-size: 60%;
     background: #ffffff;
+    input {
+      display: none;
+    }
   }
 
-  button.red {
+  label.bullet.red {
     background: #dd3a3a;
   }
 
-  button.redFixed {
+  label.bullet.redFixed {
     background: #d88d8d;
   }
 
-  button.yellow {
+  label.bullet.yellow {
     background: #ffff00;
   }
 
-  button.yellowFixed {
+  label.bullet.yellowFixed {
     background: #f8f8a7;
   }
 
