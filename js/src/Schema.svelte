@@ -412,10 +412,10 @@
 {/snippet}
 
 {#snippet collapsed<E extends Table | Sequence | Column>(
-  tableOrSequence: E | undefined,
+  node: E | undefined,
   collapser: Collapser<E> | undefined,
 )}
-  {@const segment = collapser?.isShown(tableOrSequence)}
+  {@const segment = collapser?.isShown(node)}
   {#if segment}
     <li class="node">
       {@render bullet(segment.first)}
