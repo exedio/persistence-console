@@ -23,10 +23,34 @@ import com.exedio.cope.Type;
 import com.exedio.cope.pattern.MediaTestable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
-final class MediaTestableCop extends TestCop<MediaTestable>
+final class MediaTestableCop extends TestCop<MediaTestableCop.Test>
 {
 	static final String TAB = "mediatestable";
+
+	record Test(MediaTestable testable, int index)
+	{
+		Type<?> getType()
+		{
+			return testable.getType();
+		}
+
+		String getName()
+		{
+			return testable.getName();
+		}
+
+		String getID()
+		{
+			return testable.getID() + SEPARATOR + index;
+		}
+
+		Callable<?> getTest()
+		{
+			return testable.getTests().get(index);
+		}
+	}
 
 	MediaTestableCop(final Args args, final TestArgs testArgs)
 	{
@@ -59,50 +83,57 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
-	List<MediaTestable> getItems()
+	List<Test> getItems()
 	{
-		final ArrayList<MediaTestable> result = new ArrayList<>();
+		final ArrayList<Test> result = new ArrayList<>();
 
 		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
 				if(feature instanceof final MediaTestable testable)
-					result.add(testable);
+				{
+					int index = 0;
+					for(final var ignored : testable.getTests())
+						result.add(new Test(testable, index++));
+				}
 
 		return result;
 	}
 
 	@Override
-	List<Column<MediaTestable>> columns()
+	List<Column<Test>> columns()
 	{
 		return COLUMNS;
 	}
 
 	@SuppressWarnings("Convert2MethodRef") // OK: better readable together with the other lines
-	private static final List<Column<MediaTestable>> COLUMNS = List.of(
+	private static final List<Column<Test>> COLUMNS = List.of(
 			column("Type",  testable -> testable.getType().getID()),
 			column("Name",  testable -> testable.getName()),
-			column("Class", (out, testable) -> out.write(testable.getClass()))
+			column("Class", (out, testable) -> out.write(testable.testable.getClass())),
+			column("Test",  testable -> testable.getTest().toString())
 	);
 
 	@Override
-	String getID(final MediaTestable testable)
+	String getID(final Test test)
 	{
-		return testable.getID();
+		return test.getID();
 	}
 
 	@Override
-	MediaTestable forID(final String id)
+	Test forID(final String id)
 	{
-		return (MediaTestable)app.model.getFeature(id);
+		final var split = id.split(SEPARATOR);
+		return new Test((MediaTestable)app.model.getFeature(split[0]), Integer.parseInt(split[1]));
 	}
 
+	private static final String SEPARATOR = "#";
+
 	@Override
-	@SuppressWarnings("deprecation") // TODO
-	long check(final MediaTestable testable)
+	long check(final Test test)
 	{
 		try
 		{
-			testable.test();
+			test.getTest().call();
 		}
 		catch(final Exception e)
 		{

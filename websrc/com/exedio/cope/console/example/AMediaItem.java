@@ -28,6 +28,8 @@ import com.exedio.cope.pattern.MediaThumbnail;
 import com.exedio.cope.pattern.PreventUrlGuessing;
 import com.exedio.cope.pattern.RedirectFrom;
 import com.exedio.cope.pattern.UrlFingerPrinting;
+import java.io.IOException;
+import java.util.concurrent.Callable;
 
 @SuppressWarnings({"unused","StaticMethodOnlyUsedInOneClass"}) // OK: for example TYPE
 final class AMediaItem extends Item
@@ -64,12 +66,34 @@ final class AMediaItem extends Item
 
 	static final MediaThumbnail noUrlThumbnailOfNoUrl = new MediaThumbnail(noUrl, 150, 150).withLocator(false);
 
-	@WrapperIgnore static final AMediaTestable testableOk1  = new AMediaTestable(content, false);
-	@WrapperIgnore static final AMediaTestable testableOk2  = new AMediaTestable(content, false);
-	@WrapperIgnore static final AMediaTestable testableFail = new AMediaTestable(content, true );
+	@WrapperIgnore static final AMediaTestable testableOk1  = new AMediaTestable(content, test("ok1a", false));
+	@WrapperIgnore static final AMediaTestable testableOk2  = new AMediaTestable(content, test("ok2b", false), test("ok2b", false));
+	@WrapperIgnore static final AMediaTestable testableFail3 = new AMediaTestable(content, test("ok3a", false), test("fail3b", true), test("ok3c", false));
 
 	@WrapperIgnore
 	static final ANameServer nameServer = new ANameServer(name);
+
+	@WrapperIgnore static final AMediaTestable testableEmpty  = new AMediaTestable(content);
+
+	private static Callable<?> test(final String name, final boolean fail)
+	{
+		return new Callable<>()
+		{
+			@Override
+			public Object call() throws Exception
+			{
+				if(fail)
+					throw new IOException("test exception from " + AMediaTestable.class.getSimpleName() + " " + name);
+				return null;
+			}
+
+			@Override
+			public String toString()
+			{
+				return name;
+			}
+		};
+	}
 
 	@WrapperIgnore
 	static final ConditionUnsupported conditionUnsupported = new ConditionUnsupported();

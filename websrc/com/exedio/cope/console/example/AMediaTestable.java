@@ -29,19 +29,21 @@ import java.io.IOException;
 import java.io.Serial;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Callable;
 
 public final class AMediaTestable extends MediaFilter implements MediaTestable
 {
 	@Serial
 	private static final long serialVersionUID = 1l;
 
-	private final boolean fail;
+	private final List<Callable<?>> tests;
 
-	public AMediaTestable(final Media source, final boolean fail)
+	public AMediaTestable(final Media source, final Callable<?>... tests)
 	{
 		super(source);
-		this.fail = fail;
+		this.tests = List.of(tests);
 	}
 
 	@Override
@@ -68,9 +70,14 @@ public final class AMediaTestable extends MediaFilter implements MediaTestable
 
 	@Override
 	@Deprecated
-	public void test() throws Exception
+	public void test()
 	{
-		if(fail)
-			throw new IOException("test exception from " + getClass().getSimpleName());
+		throw new RuntimeException("MUST NOT HAPPEN");
+	}
+
+	@Override
+	public List<Callable<?>> getTests()
+	{
+		return tests;
 	}
 }
