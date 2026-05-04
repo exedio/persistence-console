@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.SchemaInfo.quoteName;
 import static com.exedio.cope.console.Api.requireParameter;
 import static com.exedio.cope.console.ApiTextException.requireFound;
 
@@ -38,6 +39,7 @@ final class SchemaAlterApi {
     final String method = requireParameter("method", request);
     final String ADD = "add";
     final String DROP = "drop";
+    final String DROP_DEFAULT = "dropDefault";
     final String RENAME = "rename";
     final String MODIFY = "modify";
     final String VALUE = "value";
@@ -72,6 +74,13 @@ final class SchemaAlterApi {
             yield new Response(response.sql + " DEFAULT " + value);
           }
           case DROP -> apply(node::drop);
+          case DROP_DEFAULT -> new Response( // TODO do this in dsmf
+            "ALTER TABLE " +
+            quoteName(model, node.getTable().getName()) +
+            " ALTER COLUMN " +
+            quoteName(model, node.getName()) +
+            " DROP DEFAULT"
+          );
           case RENAME -> {
             final String value = requireParameter(VALUE, request);
             yield apply(l -> node.renameTo(value, l));

@@ -196,6 +196,12 @@ describe("Fix", () => {
         name: "myName",
         fix: { method: "add", value: "myValue" },
       },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName",
+        fix: { method: "dropDefault" },
+      },
     ]);
   });
   it("should join columns", async () => {
@@ -355,6 +361,100 @@ describe("Fix", () => {
       },
       columnAdd("myTableName", "myName2", "head"),
       columnAdd("myTableName", "myName4", "tail"),
+    ]);
+  });
+  it("should add DROP DEFAULT with initial value", async () => {
+    expect(
+      workOnFixes([
+        {
+          subject: "column",
+          tableName: "myTableName",
+          name: "myName",
+          fix: { method: "add", value: "myValue" },
+        },
+      ]),
+    ).toStrictEqual([
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName",
+        fix: { method: "add", value: "myValue" },
+      },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName",
+        fix: { method: "dropDefault" },
+      },
+    ]);
+  });
+  it("should not add DROP DEFAULT without initial value", async () => {
+    expect(
+      workOnFixes([
+        {
+          subject: "column",
+          tableName: "myTableName",
+          name: "myName",
+          fix: { method: "add" },
+        },
+      ]),
+    ).toStrictEqual([
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName",
+        fix: { method: "add" },
+      },
+    ]);
+  });
+  it("should add DROP DEFAULT with initial value but not join it to others", async () => {
+    expect(
+      workOnFixes(
+        [
+          {
+            subject: "column",
+            tableName: "myTableName",
+            name: "myName1",
+            fix: { method: "add", value: "myValue" },
+          },
+          {
+            subject: "column",
+            tableName: "myTableName",
+            name: "myName2",
+            fix: { method: "add", value: "myValue" },
+          },
+        ],
+        true,
+      ),
+    ).toStrictEqual([
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName1",
+        fix: { method: "add", value: "myValue" },
+        joinable: "head",
+      },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName2",
+        fix: { method: "add", value: "myValue" },
+        joinable: "tail",
+      },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName1",
+        fix: { method: "dropDefault" },
+        joinable: "head",
+      },
+      {
+        subject: "column",
+        tableName: "myTableName",
+        name: "myName2",
+        fix: { method: "dropDefault" },
+        joinable: "tail",
+      },
     ]);
   });
 });

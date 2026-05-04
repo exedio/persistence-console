@@ -15,7 +15,7 @@ export function setFix(
 }
 
 export type Fix = {
-  readonly method: "add" | "drop" | "modify" | "rename";
+  readonly method: "add" | "drop" | "dropDefault" | "modify" | "rename";
   readonly value?: string; // initial value for method "add" and subject "column", new name for method "rename"
 };
 
@@ -45,6 +45,12 @@ export function workOnFixes(
         fix: { method: "add" } satisfies Fix,
       } satisfies FixedFixable);
     } else result.push(i);
+    if (i.subject === "column" && i.fix.method === "add" && i.fix.value) {
+      result.push({
+        ...i,
+        fix: { method: "dropDefault" } satisfies Fix,
+      });
+    }
   });
   result.sort((a, b) => {
     return orderIndex(a) - orderIndex(b);
@@ -55,7 +61,10 @@ export function workOnFixes(
     result.forEach((i) => {
       // condition below matches ALTER TABLE statements
       if (i.subject === "column" || i.subject === "constraint") {
-        if (i.tableName === beforeWithSameTable?.tableName) {
+        if (
+          i.tableName === beforeWithSameTable?.tableName &&
+          isDropDefault(i) === isDropDefault(beforeWithSameTable)
+        ) {
           (beforeWithSameTable as FixedFixable).joinable =
             beforeWithSameTableHead ? "head" : "middle";
           i.joinable = "tail";
@@ -80,6 +89,10 @@ export function workOnFixes(
   return result;
 }
 
+function isDropDefault(fixable: FixedFixable | undefined): boolean {
+  return fixable?.fix.method === "dropDefault";
+}
+
 /**
  * Order taken from SchemaCop#writeApply
  */
@@ -98,6 +111,8 @@ function orderIndex(cb: FixedFixable): number {
       switch (cb.fix.method) {
         case "drop":
           return -18;
+        case "dropDefault":
+          return 20;
         case "add":
           return 18;
         case "rename":
