@@ -95,6 +95,10 @@ export type HashRequest = HashID & {
   readonly plainText: string;
 };
 
+export type HashMeasureResponse = {
+  readonly elapsedNanos: number;
+};
+
 export type HashResponse = {
   readonly hash: string;
   readonly elapsedNanos: number;
