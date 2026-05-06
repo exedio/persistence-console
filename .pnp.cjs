@@ -2586,12 +2586,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["ip-address", [\
-      ["npm:9.0.5", {\
-        "packageLocation": "./.yarn/cache/ip-address-npm-9.0.5-9fa024d42a-331cd07faf.zip/node_modules/ip-address/",\
+      ["npm:10.2.0", {\
+        "packageLocation": "./.yarn/cache/ip-address-npm-10.2.0-6fea410c3e-5a00aada6e.zip/node_modules/ip-address/",\
         "packageDependencies": [\
-          ["ip-address", "npm:9.0.5"],\
-          ["jsbn", "npm:1.1.0"],\
-          ["sprintf-js", "npm:1.1.3"]\
+          ["ip-address", "npm:10.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2719,15 +2717,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/js-tokens-npm-10.0.0-2f75d73bcb-a934987478.zip/node_modules/js-tokens/",\
         "packageDependencies": [\
           ["js-tokens", "npm:10.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["jsbn", [\
-      ["npm:1.1.0", {\
-        "packageLocation": "./.yarn/cache/jsbn-npm-1.1.0-1da0181838-4f907fb78d.zip/node_modules/jsbn/",\
-        "packageDependencies": [\
-          ["jsbn", "npm:1.1.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3615,12 +3604,12 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["socks", [\
-      ["npm:2.8.4", {\
-        "packageLocation": "./.yarn/cache/socks-npm-2.8.4-8194b86bd0-00c3271e23.zip/node_modules/socks/",\
+      ["npm:2.8.8", {\
+        "packageLocation": "./.yarn/cache/socks-npm-2.8.8-4704080291-4777edf8b5.zip/node_modules/socks/",\
         "packageDependencies": [\
-          ["ip-address", "npm:9.0.5"],\
+          ["ip-address", "npm:10.2.0"],\
           ["smart-buffer", "npm:4.2.0"],\
-          ["socks", "npm:2.8.4"]\
+          ["socks", "npm:2.8.8"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3631,7 +3620,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["agent-base", "npm:7.1.3"],\
           ["debug", "virtual:5b9c5de1a9b11860bc4b96b9ef920128cba6825c4332787782d9a9b11baf71d742012b4b5b4f68252d6ffef66ac8082da79ed754c3ab2e017cde2209686b0b1f#npm:4.4.3"],\
-          ["socks", "npm:2.8.4"],\
+          ["socks", "npm:2.8.8"],\
           ["socks-proxy-agent", "npm:8.0.5"]\
         ],\
         "linkType": "HARD"\
@@ -3642,15 +3631,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/source-map-js-npm-1.2.1-b9a47d7e1a-7bda1fc4c1.zip/node_modules/source-map-js/",\
         "packageDependencies": [\
           ["source-map-js", "npm:1.2.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["sprintf-js", [\
-      ["npm:1.1.3", {\
-        "packageLocation": "./.yarn/cache/sprintf-js-npm-1.1.3-b99efd75b2-09270dc4f3.zip/node_modules/sprintf-js/",\
-        "packageDependencies": [\
-          ["sprintf-js", "npm:1.1.3"]\
         ],\
         "linkType": "HARD"\
       }]\
