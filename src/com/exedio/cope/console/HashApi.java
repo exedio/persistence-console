@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.Api.requireParameter;
+
 import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Type;
@@ -25,6 +27,7 @@ import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.HashAlgorithm;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -62,6 +65,31 @@ final class HashApi {
         hash.getAlgorithm2().getDescription()
       );
     }
+  }
+
+  @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
+  static MeasureResponse measure(
+    final Model model,
+    final HttpServletRequest request
+  ) throws ApiTextException {
+    final HashAlgorithm algorithm = Api.resolveFeature(
+      model,
+      requireParameter("type", request),
+      requireParameter("name", request),
+      Hash.class
+    ).getAlgorithm2();
+
+    final long start;
+    final long end;
+    if (!l.tryLock()) throw ApiTextException.concurrentCallsForbidden();
+    try {
+      start = System.nanoTime();
+      algorithm.hash("example password");
+      end = System.nanoTime();
+    } finally {
+      l.unlock();
+    }
+    return new MeasureResponse(end - start);
   }
 
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
@@ -103,6 +131,8 @@ final class HashApi {
       return Api.resolveFeature(model, type, name, Hash.class);
     }
   }
+
+  private record MeasureResponse(long elapsedNanos) {}
 
   private record HashResponse(String hash, long elapsedNanos) {}
 

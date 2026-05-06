@@ -79,6 +79,10 @@ final class Api {
         requireGet(request);
         writeJson(HashApi.get(model), response);
       }
+      case "hashes/measure" -> {
+        requireGet(request);
+        writeJson(HashApi.measure(model, request), response);
+      }
       case "hashes/hash" -> writeJson(
         HashApi.hash(model, readJsonPost(HashApi.HashRequest.class, request)),
         response

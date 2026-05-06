@@ -1,5 +1,10 @@
-import type { HashRequest, HashResponse, Hash as ApiHash } from "@/api/types";
-import { post } from "@/api/api";
+import type {
+  HashRequest,
+  HashResponse,
+  Hash as ApiHash,
+  HashMeasureResponse as MeasureResponse,
+} from "@/api/types";
+import { get, post } from "@/api/api";
 
 export class Hash {
   private api: ApiHash;
@@ -54,7 +59,7 @@ export class Hash {
   }
 
   measure(errors: Error[]): Promise<void> {
-    return this.doHash("example password")
+    return this.doMeasure()
       .then((r) => {
         this.measurement = r.elapsedNanos;
       })
@@ -65,6 +70,12 @@ export class Hash {
 
   getMeasurement(): number | undefined {
     return this.measurement;
+  }
+
+  private doMeasure(): Promise<MeasureResponse> {
+    return get<MeasureResponse>(
+      "hashes/measure?type=" + this.type + "&name=" + this.name,
+    );
   }
 
   private doHash(plainText: string): Promise<HashResponse> {

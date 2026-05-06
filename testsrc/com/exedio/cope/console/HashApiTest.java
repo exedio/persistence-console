@@ -22,6 +22,7 @@ import static com.exedio.cope.console.ApiTest.readJson;
 import static com.exedio.cope.console.ApiTest.writeJson;
 import static com.exedio.cope.console.HashApi.get;
 import static com.exedio.cope.console.HashApi.hash;
+import static com.exedio.cope.console.HashApi.measure;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,6 +36,7 @@ import com.exedio.cope.console.HashApi.HashRequest;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.HashAlgorithm;
 import java.io.IOException;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
@@ -60,6 +62,45 @@ public class HashApiTest {
       } ]""",
       writeJson(get(MODEL))
     );
+  }
+
+  @Test
+  void testMeasure() throws IOException, ApiTextException {
+    assertEquals(
+      """
+      {
+        "elapsedNanos" : NNN
+      }""",
+      writeJson(measure(MODEL, request("MyType", "myName"))).replaceAll(
+        "[0-9]+",
+        "NNN"
+      )
+    );
+  }
+
+  @Test
+  void testMeasure404Type() {
+    assertFails(
+      () -> measure(MODEL, request("MyTypeX", "myNameX")),
+      ApiTextException.class,
+      "404 type not found within " + MODEL
+    );
+  }
+
+  @Test
+  void testMeasure404Name() {
+    assertFails(
+      () -> measure(MODEL, request("MyType", "myNameX")),
+      ApiTextException.class,
+      "404 name not found within " + MODEL
+    );
+  }
+
+  private static ParameterRequest request(
+    final String type,
+    final String name
+  ) {
+    return new ParameterRequest(Map.of("type", type, "name", name));
   }
 
   @Test
