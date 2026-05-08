@@ -76,10 +76,10 @@ final class SchemaAlterApi {
           case DROP -> apply(node::drop);
           case DROP_DEFAULT -> new Response( // TODO do this in dsmf
             "ALTER TABLE " +
-            quoteName(model, node.getTable().getName()) +
-            " ALTER COLUMN " +
-            quoteName(model, node.getName()) +
-            " DROP DEFAULT"
+              quoteName(model, node.getTable().getName()) +
+              " ALTER COLUMN " +
+              quoteName(model, node.getName()) +
+              " DROP DEFAULT"
           );
           case RENAME -> {
             final String value = requireParameter(VALUE, request);

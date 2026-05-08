@@ -192,8 +192,8 @@ public class HashApiTest {
         ),
       ApiTextException.class,
       "400 Missing required creator property 'type' (index 0) / " +
-      "line: 4, column: 1 / " +
-      "com.exedio.cope.console.HashApi$HashRequest[\"type\"]"
+        "line: 4, column: 1 / " +
+        "com.exedio.cope.console.HashApi$HashRequest[\"type\"]"
     );
   }
 

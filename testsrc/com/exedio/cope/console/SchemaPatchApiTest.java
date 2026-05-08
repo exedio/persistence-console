@@ -77,8 +77,8 @@ public class SchemaPatchApiTest {
       () -> request("SOME BROKEN SQL"),
       ApiTextException.class,
       "400 model not connected, use Model#connect for " +
-      SchemaPatchApiTest.class.getName() +
-      "#MODEL"
+        SchemaPatchApiTest.class.getName() +
+        "#MODEL"
     );
   }
 

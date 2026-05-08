@@ -149,13 +149,13 @@ final class Api {
       final JsonLocation location = e.getLocation();
       throw ApiTextException.badRequest(
         e.getOriginalMessage() +
-        " / " +
-        "line: " +
-        location.getLineNr() +
-        ", column: " +
-        location.getColumnNr() +
-        " / " +
-        e.getPathReference(),
+          " / " +
+          "line: " +
+          location.getLineNr() +
+          ", column: " +
+          location.getColumnNr() +
+          " / " +
+          e.getPathReference(),
         e
       );
     }
