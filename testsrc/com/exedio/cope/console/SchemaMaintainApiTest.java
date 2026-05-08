@@ -96,8 +96,8 @@ public class SchemaMaintainApiTest {
       () -> request(Operation.create),
       ApiTextException.class,
       "400 model not connected, use Model#connect for " +
-      SchemaMaintainApiTest.class.getName() +
-      "#MODEL"
+        SchemaMaintainApiTest.class.getName() +
+        "#MODEL"
     );
   }
 

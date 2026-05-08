@@ -40,7 +40,8 @@ final class ApiTest {
   }
 
   private static final class Response
-    extends AssertionFailedHttpServletResponse {
+    extends AssertionFailedHttpServletResponse
+  {
 
     private final Out out = new Out();
     private boolean outReturned = false;

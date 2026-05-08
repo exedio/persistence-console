@@ -2902,14 +2902,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-java@npm:2.7.1":
-  version: 2.7.1
-  resolution: "prettier-plugin-java@npm:2.7.1"
+"prettier-plugin-java@npm:2.8.1":
+  version: 2.8.1
+  resolution: "prettier-plugin-java@npm:2.8.1"
   dependencies:
     java-parser: "npm:3.0.1"
   peerDependencies:
     prettier: ^3.0.0
-  checksum: 10c0/e9554a4f7eaf2c3112e528924dc4537c427ae3afb812663fda58b69485a47e6fb5550799f8d081710e7c073050e5a902ae8807fb25569f7c2f2dbd4f37ff99f8
+  checksum: 10c0/85c8ded14a0aaf1df1d5367ebe0f18c9d7d7284780a13bd1e037ca0190ebc4d42e69a849ddd3a2440c4c14cc19fbeb3b57acec1a3cd61076e917a1432dd72c75
   languageName: node
   linkType: hard
 
@@ -2954,7 +2954,7 @@ __metadata:
     eslint-plugin-svelte: "npm:3.17.1"
     jsdom: "npm:26.1.0"
     prettier: "npm:3.5.3"
-    prettier-plugin-java: "npm:2.7.1"
+    prettier-plugin-java: "npm:2.8.1"
     prettier-plugin-svelte: "npm:3.4.0"
     svelte: "npm:5.55.3"
     svelte-check: "npm:4.2.1"

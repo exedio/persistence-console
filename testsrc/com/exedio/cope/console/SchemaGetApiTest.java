@@ -543,9 +543,9 @@ public class SchemaGetApiTest {
       .drop();
     execute(
       "ALTER TABLE \"MyType\" " +
-      "ADD CONSTRAINT \"MyType_myTarget_Fk\" " +
-      "FOREIGN KEY (\"myTarget\") REFERENCES \"MyTarget\" " +
-      "ON DELETE CASCADE"
+        "ADD CONSTRAINT \"MyType_myTarget_Fk\" " +
+        "FOREIGN KEY (\"myTarget\") REFERENCES \"MyTarget\" " +
+        "ON DELETE CASCADE"
     );
     assertEquals(
       """
@@ -568,9 +568,9 @@ public class SchemaGetApiTest {
       .drop();
     execute(
       "ALTER TABLE \"MyType\" " +
-      "ADD CONSTRAINT \"MyType_myTarget_Fk\" " +
-      "FOREIGN KEY (\"myTarget\") REFERENCES \"MyTarget\" " +
-      "ON DELETE CASCADE ON UPDATE CASCADE"
+        "ADD CONSTRAINT \"MyType_myTarget_Fk\" " +
+        "FOREIGN KEY (\"myTarget\") REFERENCES \"MyTarget\" " +
+        "ON DELETE CASCADE ON UPDATE CASCADE"
     );
     assertEquals(
       """
@@ -593,9 +593,9 @@ public class SchemaGetApiTest {
       .drop();
     execute(
       "ALTER TABLE \"MyType\" " +
-      "ADD CONSTRAINT \"MyType_myTarget_Fk\" " +
-      "FOREIGN KEY (\"myInt\") REFERENCES \"MyTarget\" " +
-      "ON DELETE CASCADE ON UPDATE CASCADE"
+        "ADD CONSTRAINT \"MyType_myTarget_Fk\" " +
+        "FOREIGN KEY (\"myInt\") REFERENCES \"MyTarget\" " +
+        "ON DELETE CASCADE ON UPDATE CASCADE"
     );
     assertEquals(
       """

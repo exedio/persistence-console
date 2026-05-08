@@ -39,7 +39,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-svelte", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:3.17.1"],\
           ["jsdom", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:26.1.0"],\
           ["prettier", "npm:3.5.3"],\
-          ["prettier-plugin-java", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:2.7.1"],\
+          ["prettier-plugin-java", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:2.8.1"],\
           ["prettier-plugin-svelte", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:3.4.0"],\
           ["project", "workspace:."],\
           ["svelte", "npm:5.55.3"],\
@@ -3350,20 +3350,20 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["prettier-plugin-java", [\
-      ["npm:2.7.1", {\
-        "packageLocation": "./.yarn/cache/prettier-plugin-java-npm-2.7.1-f7dca1f7e4-e9554a4f7e.zip/node_modules/prettier-plugin-java/",\
+      ["npm:2.8.1", {\
+        "packageLocation": "./.yarn/cache/prettier-plugin-java-npm-2.8.1-91fb980b9a-85c8ded14a.zip/node_modules/prettier-plugin-java/",\
         "packageDependencies": [\
-          ["prettier-plugin-java", "npm:2.7.1"]\
+          ["prettier-plugin-java", "npm:2.8.1"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:2.7.1", {\
-        "packageLocation": "./.yarn/__virtual__/prettier-plugin-java-virtual-b2ab3d57e5/0/cache/prettier-plugin-java-npm-2.7.1-f7dca1f7e4-e9554a4f7e.zip/node_modules/prettier-plugin-java/",\
+      ["virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:2.8.1", {\
+        "packageLocation": "./.yarn/__virtual__/prettier-plugin-java-virtual-b6c70efff8/0/cache/prettier-plugin-java-npm-2.8.1-91fb980b9a-85c8ded14a.zip/node_modules/prettier-plugin-java/",\
         "packageDependencies": [\
           ["@types/prettier", null],\
           ["java-parser", "npm:3.0.1"],\
           ["prettier", "npm:3.5.3"],\
-          ["prettier-plugin-java", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:2.7.1"]\
+          ["prettier-plugin-java", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:2.8.1"]\
         ],\
         "packagePeers": [\
           "@types/prettier",\
@@ -3422,7 +3422,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-plugin-svelte", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:3.17.1"],\
           ["jsdom", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:26.1.0"],\
           ["prettier", "npm:3.5.3"],\
-          ["prettier-plugin-java", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:2.7.1"],\
+          ["prettier-plugin-java", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:2.8.1"],\
           ["prettier-plugin-svelte", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:3.4.0"],\
           ["project", "workspace:."],\
           ["svelte", "npm:5.55.3"],\
