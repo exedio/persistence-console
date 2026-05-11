@@ -28,6 +28,7 @@ const RAW_RUNTIME_STATE =
       [null, {\
         "packageLocation": "./",\
         "packageDependencies": [\
+          ["@eslint-community/eslint-plugin-eslint-comments", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:4.7.1"],\
           ["@eslint/js", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:10.0.1"],\
           ["@sveltejs/vite-plugin-svelte", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:6.2.0"],\
           ["@tsconfig/svelte", "npm:5.0.4"],\
@@ -489,6 +490,30 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/unplugged/@esbuild-win32-x64-npm-0.27.7-18b847315a/node_modules/@esbuild/win32-x64/",\
         "packageDependencies": [\
           ["@esbuild/win32-x64", "npm:0.27.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@eslint-community/eslint-plugin-eslint-comments", [\
+      ["npm:4.7.1", {\
+        "packageLocation": "./.yarn/cache/@eslint-community-eslint-plugin-eslint-comments-npm-4.7.1-5680ea30f9-055cef9263.zip/node_modules/@eslint-community/eslint-plugin-eslint-comments/",\
+        "packageDependencies": [\
+          ["@eslint-community/eslint-plugin-eslint-comments", "npm:4.7.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:4.7.1", {\
+        "packageLocation": "./.yarn/__virtual__/@eslint-community-eslint-plugin-eslint-comments-virtual-4d7f30c7e1/0/cache/@eslint-community-eslint-plugin-eslint-comments-npm-4.7.1-5680ea30f9-055cef9263.zip/node_modules/@eslint-community/eslint-plugin-eslint-comments/",\
+        "packageDependencies": [\
+          ["@eslint-community/eslint-plugin-eslint-comments", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:4.7.1"],\
+          ["@types/eslint", "npm:9.6.1"],\
+          ["escape-string-regexp", "npm:4.0.0"],\
+          ["eslint", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:10.2.1"],\
+          ["ignore", "npm:7.0.5"]\
+        ],\
+        "packagePeers": [\
+          "@types/eslint",\
+          "eslint"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3411,6 +3436,7 @@ const RAW_RUNTIME_STATE =
       ["workspace:.", {\
         "packageLocation": "./",\
         "packageDependencies": [\
+          ["@eslint-community/eslint-plugin-eslint-comments", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:4.7.1"],\
           ["@eslint/js", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:10.0.1"],\
           ["@sveltejs/vite-plugin-svelte", "virtual:60611c34abfa5d0e50347b37b4bb5e03ea14ee083b8189b2eff7245d9921722a149efd7915b831cde12b7129e35797367ac607eeaddefad70edeb4071fb65a16#npm:6.2.0"],\
           ["@tsconfig/svelte", "npm:5.0.4"],\

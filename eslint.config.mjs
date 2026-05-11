@@ -7,6 +7,7 @@ import { configs } from "typescript-eslint";
 import svelte from "eslint-plugin-svelte";
 import svelteConfig from "./svelte.config.js";
 import ts from "typescript-eslint";
+import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 
 function globalIgnore(ignores) {
   return {
@@ -44,4 +45,5 @@ export default [
     ...conf,
     files: ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
   })),
+  comments.recommended,
 ];
