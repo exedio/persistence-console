@@ -23,6 +23,7 @@ export default [
     ".yarn/**",
     "!*.mjs", // check javascript in root
     "!*.ts", // check typescript in root
+    ".pnp.loader.mjs",
   ]),
   {
     ...eslint.configs.recommended,
