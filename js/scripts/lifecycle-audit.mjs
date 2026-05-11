@@ -161,3 +161,4 @@ function readPackageJsonsFromZip(zipPath) {
   }
   return result;
 }
+/* eslint-enable no-undef */
