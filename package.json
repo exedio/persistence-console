@@ -16,6 +16,7 @@
     "audit:lifecycle": "node js/scripts/lifecycle-audit.mjs"
   },
   "devDependencies": {
+    "@eslint-community/eslint-plugin-eslint-comments": "4.7.1",
     "@eslint/js": "10.0.1",
     "@sveltejs/vite-plugin-svelte": "6.2.0",
     "@tsconfig/svelte": "5.0.4",
