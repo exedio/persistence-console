@@ -33,6 +33,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.locks.ReentrantLock;
 import javax.annotation.Nonnull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class HashApi {
 
@@ -72,12 +74,13 @@ final class HashApi {
     final Model model,
     final HttpServletRequest request
   ) throws ApiTextException {
-    final HashAlgorithm algorithm = Api.resolveFeature(
+    final Hash feature = Api.resolveFeature(
       model,
       requireParameter("type", request),
       requireParameter("name", request),
       Hash.class
-    ).getAlgorithm2();
+    );
+    final HashAlgorithm algorithm = feature.getAlgorithm2();
 
     final long start;
     final long end;
@@ -89,7 +92,14 @@ final class HashApi {
     } finally {
       l.unlock();
     }
-    return new MeasureResponse(end - start);
+    final long elapsed = end - start;
+    if (logger.isInfoEnabled()) logger.info(
+      "measured {} on {} {}ns ",
+      feature,
+      request.getHeader("Host"),
+      elapsed
+    );
+    return new MeasureResponse(elapsed);
   }
 
   @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
@@ -135,6 +145,8 @@ final class HashApi {
   private record MeasureResponse(long elapsedNanos) {}
 
   private record HashResponse(String hash, long elapsedNanos) {}
+
+  private static final Logger logger = LoggerFactory.getLogger(HashApi.class);
 
   private HashApi() {
     // prevent instantiation
