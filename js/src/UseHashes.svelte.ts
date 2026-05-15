@@ -5,6 +5,7 @@ import type {
   HashMeasureResponse as MeasureResponse,
 } from "@/api/types";
 import { get, post } from "@/api/api";
+import { SvelteMap } from "svelte/reactivity";
 
 export class Hash {
   private api: ApiHash;
@@ -18,7 +19,7 @@ export class Hash {
   private toggled = $state(false);
   plainText = $state("");
   private plainTextHashed: string | undefined = $state(undefined);
-  private measurement: number | undefined = $state(undefined);
+  private readonly measurement = new SvelteMap<string, number>();
 
   constructor(apiParameterForAssigmentOnly: ApiHash) {
     this.api = $state(apiParameterForAssigmentOnly);
@@ -58,23 +59,28 @@ export class Hash {
     return this.plainTextHashed;
   }
 
-  measure(errors: Error[]): Promise<void> {
-    return this.doMeasure()
+  measure(errors: Error[], hosts: string[]): Promise<void[]> {
+    return Promise.all(hosts.map((host) => this.measureHost(errors, host)));
+  }
+
+  measureHost(errors: Error[], host: string): Promise<void> {
+    return this.doMeasure(host)
       .then((r) => {
-        this.measurement = r.elapsedNanos;
+        this.measurement.set(host, r.elapsedNanos);
       })
       .catch((e) => {
         errors.push(e);
       });
   }
 
-  getMeasurement(): number | undefined {
-    return this.measurement;
+  getMeasurement(host: string): number | undefined {
+    return this.measurement.get(host);
   }
 
-  private doMeasure(): Promise<MeasureResponse> {
+  private doMeasure(host: string): Promise<MeasureResponse> {
     return get<MeasureResponse>(
       "hashes/measure?type=" + this.type + "&name=" + this.name,
+      host,
     );
   }
 

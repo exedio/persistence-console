@@ -69,6 +69,18 @@ import java.util.List;
 public class ConsoleServlet extends CopsServlet
 {
 	/**
+	 * May be overridden by subclasses to specify URLs of peer cluster nodes.
+	 * The default implementation returns an empty list.
+	 * Specify the root URL of the peer, such as
+	 * {@code "https://peer1.example.com"} or
+	 * {@code "https://peer1.example.com:8443"}.
+	 */
+	protected List<String> getPeers()
+	{
+		return List.of();
+	}
+
+	/**
 	 * May be overridden by subclasses to specify allowed prefixes of media urls.
 	 * These prefixes will be prepended to results of {@link com.exedio.cope.pattern.MediaPath.Locator#getPath()}.
 	 * The default implementation returns an empty list.
