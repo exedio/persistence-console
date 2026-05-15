@@ -33,7 +33,7 @@ describe("Hashes", () => {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(responseSuccess([] satisfies ApiHash[]));
       mock.mockResolvedValueOnce(
-        responseSuccess(["peer1", "peer2"] satisfies string[]),
+        responseSuccess(["http://peer1", "https://peer2"] satisfies string[]),
       );
       await mountComponent();
       expect(mock).toHaveBeenNthCalledWith(1, "/myApiPath/hashes");
