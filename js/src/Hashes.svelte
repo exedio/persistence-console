@@ -74,7 +74,7 @@
       <th>Description</th>
       <!-- eslint-disable-next-line svelte/require-each-key -- hosts are not necessarily unique -->
       {#each hostsLast as host}
-        <th>{host}</th>
+        <th class:self={host === SELF}>{host}</th>
       {/each}
     </tr>
   </thead>
@@ -181,6 +181,10 @@
 
   tr.relative {
     position: relative;
+  }
+
+  th.self {
+    font-style: italic;
   }
 
   th.time {
