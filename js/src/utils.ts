@@ -1,3 +1,5 @@
+import { SELF } from "@/api/api";
+
 export function delay<T>(
   call: Promise<T>,
   fail: boolean = false,
@@ -62,4 +64,10 @@ export function ratioLog10(
 ): number | undefined {
   if (!dividend || !divisor) return undefined;
   return Math.log10(dividend / divisor);
+}
+
+export function shortifyPeer(host: string) {
+  if (host === SELF) return host;
+
+  return host.replace(/^http(s)?:\/\//, "");
 }

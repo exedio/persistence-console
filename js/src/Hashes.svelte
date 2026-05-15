@@ -6,7 +6,7 @@
   import { PromiseTracker } from "@/api/PromiseTracker.svelte.js";
   import PromiseTrackerReload from "@/api/PromiseTrackerReload.svelte";
   import { Hash } from "@/UseHashes.svelte";
-  import { format, useWithStore } from "@/utils";
+  import { format, useWithStore, shortifyPeer } from "@/utils";
 
   const hashesStore = new Map<string, Hash>();
 
@@ -74,7 +74,9 @@
       <th>Description</th>
       <!-- eslint-disable-next-line svelte/require-each-key -- hosts are not necessarily unique -->
       {#each hostsLast as host}
-        <th class:self={host === SELF}>{host}</th>
+        <th class:self={host === SELF} title={host === SELF ? undefined : host}
+          >{shortifyPeer(host)}</th
+        >
       {/each}
     </tr>
   </thead>
