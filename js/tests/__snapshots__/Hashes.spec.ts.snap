@@ -370,8 +370,8 @@ exports[`Hashes > should render an empty table with peers 1`] = `
       <th>ID</th>
       <th>Description</th>
       <th class="svelte self">self</th>
-      <th class="svelte">peer1</th>
-      <th class="svelte">peer2</th>
+      <th class="svelte">http://peer1</th>
+      <th class="svelte">https://peer2</th>
     </tr>
   </thead>
   <tbody>
