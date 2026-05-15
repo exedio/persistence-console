@@ -19,7 +19,7 @@ exports[`Hashes > should render a non-empty table 1`] = `
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
-      <th>self</th>
+      <th class="svelte self">self</th>
     </tr>
   </thead>
   <tbody>
@@ -65,7 +65,7 @@ exports[`Hashes > should render a non-empty table 2`] = `
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
-      <th>self</th>
+      <th class="svelte self">self</th>
     </tr>
   </thead>
   <tbody>
@@ -111,9 +111,9 @@ exports[`Hashes > should render a non-empty table with peers 1`] = `
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
-      <th>self</th>
-      <th>peer1</th>
-      <th>peer2</th>
+      <th class="svelte self">self</th>
+      <th class="svelte">peer1</th>
+      <th class="svelte">peer2</th>
     </tr>
   </thead>
   <tbody>
@@ -338,7 +338,7 @@ exports[`Hashes > should render an empty table 1`] = `
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
-      <th>self</th>
+      <th class="svelte self">self</th>
     </tr>
   </thead>
   <tbody>
@@ -369,9 +369,9 @@ exports[`Hashes > should render an empty table with peers 1`] = `
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
-      <th>self</th>
-      <th>peer1</th>
-      <th>peer2</th>
+      <th class="svelte self">self</th>
+      <th class="svelte">peer1</th>
+      <th class="svelte">peer2</th>
     </tr>
   </thead>
   <tbody>
@@ -402,7 +402,7 @@ exports[`Hashes > should render an error message 1`] = `
       <th>Validator</th>
       <th>ID</th>
       <th>Description</th>
-      <th>self</th>
+      <th class="svelte self">self</th>
     </tr>
   </thead>
   <tbody>
