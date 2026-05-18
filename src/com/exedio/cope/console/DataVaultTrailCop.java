@@ -24,11 +24,10 @@ import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-final class DataVaultTrailCop extends TestCop<DataField>
+final class DataVaultTrailCop extends FeatureTestCop<DataField>
 {
 	static final String TAB = "datavaulttrail";
 	private static final String BUCKET = "bucket";
@@ -37,7 +36,7 @@ final class DataVaultTrailCop extends TestCop<DataField>
 
 	private DataVaultTrailCop(final Args args, final TestArgs testArgs, final String bucket)
 	{
-		super(TAB, "Data Vault Trail", args, testArgs);
+		super(DataField.class, TAB, "Data Vault Trail", args, testArgs);
 		this.bucket = bucket;
 		addParameter(BUCKET, bucket);
 	}
@@ -114,22 +113,12 @@ final class DataVaultTrailCop extends TestCop<DataField>
 	}
 
 	@Override
-	List<DataField> getItems()
+	boolean acceptsItem(final DataField field)
 	{
-		final ArrayList<DataField> result = new ArrayList<>();
-
-		for(final Type<?> type : app.model.getTypes())
-			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof final DataField field)
-				{
-					final String bucket = field.getVaultBucket();
-					if(this.bucket!=null
-						? this.bucket.equals(bucket)
-						: bucket!=null)
-						result.add(field);
-				}
-
-		return result;
+		final String bucket = field.getVaultBucket();
+		return this.bucket!=null
+			? this.bucket.equals(bucket)
+			: bucket!=null;
 	}
 
 	@Override
@@ -142,18 +131,6 @@ final class DataVaultTrailCop extends TestCop<DataField>
 			column("Field",  DataField::getID),
 			column("Bucket", DataField::getVaultBucket)
 	);
-
-	@Override
-	String getID(final DataField field)
-	{
-		return field.getID();
-	}
-
-	@Override
-	DataField forID(final String id)
-	{
-		return (DataField)app.model.getFeature(id);
-	}
 
 	@Override
 	long check(final DataField field)

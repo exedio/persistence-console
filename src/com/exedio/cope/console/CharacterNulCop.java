@@ -23,7 +23,6 @@ import static com.exedio.cope.SchemaInfo.getTableName;
 import static com.exedio.cope.SchemaInfo.newConnection;
 import static com.exedio.cope.SchemaInfo.quoteName;
 
-import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
@@ -33,16 +32,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-final class CharacterNulCop extends TestCop<StringField>
+final class CharacterNulCop extends FeatureTestCop<StringField>
 {
 	static final String TAB = "characterNul";
 
 	CharacterNulCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Character Nul", args, testArgs);
+		super(StringField.class, TAB, "Character Nul", args, testArgs);
 	}
 
 	@Override
@@ -68,19 +66,6 @@ final class CharacterNulCop extends TestCop<StringField>
 			"IMPACT: " +
 				"A failure here means that you cannot migrate your data to PostgreSQL."
 		};
-	}
-
-	@Override
-	List<StringField> getItems()
-	{
-		final ArrayList<StringField> result = new ArrayList<>();
-
-		for(final Type<?> type : app.model.getTypes())
-			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof StringField)
-					result.add((StringField)feature);
-
-		return result;
 	}
 
 	@Override
@@ -114,18 +99,6 @@ final class CharacterNulCop extends TestCop<StringField>
 				"SELECT COUNT(*) " +
 				"FROM "  + quoteName(model, getTableName(type)) + " " +
 				"WHERE " + quoteName(model, getColumnName(field)) + " LIKE '%\\0%'";
-	}
-
-	@Override
-	String getID(final StringField field)
-	{
-		return field.getID();
-	}
-
-	@Override
-	StringField forID(final String id)
-	{
-		return (StringField)app.model.getFeature(id);
 	}
 
 	/**

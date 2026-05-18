@@ -26,13 +26,13 @@ import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-final class MinLengthStringFieldCop extends TestCop<StringField>
+final class MinLengthStringFieldCop extends FeatureTestCop<StringField>
 {
 	static final String TAB = "minlength";
 
 	MinLengthStringFieldCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Min Length String Fields", args, testArgs);
+		super(StringField.class, TAB, "Min Length String Fields", args, testArgs);
 	}
 
 	@Override
@@ -72,18 +72,6 @@ final class MinLengthStringFieldCop extends TestCop<StringField>
 			column("Field", StringField::toString),
 			columnNonFilterable("Min Length", field -> Format.formatAndHide(0, field.getMinimumLength()))
 	);
-
-	@Override
-	String getID(final StringField field)
-	{
-		return field.getID();
-	}
-
-	@Override
-	StringField forID(final String id)
-	{
-		return (StringField)app.model.getFeature(id);
-	}
 
 	@Override
 	long check(final StringField field)

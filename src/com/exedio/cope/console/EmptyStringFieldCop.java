@@ -18,20 +18,18 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.Field;
 import com.exedio.cope.StringField;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
-import java.util.ArrayList;
 import java.util.List;
 
-final class EmptyStringFieldCop extends TestCop<StringField>
+final class EmptyStringFieldCop extends FeatureTestCop<StringField>
 {
 	static final String TAB = "emptystring";
 
 	EmptyStringFieldCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Empty String Fields", args, testArgs);
+		super(StringField.class, TAB, "Empty String Fields", args, testArgs);
 	}
 
 	@Override
@@ -47,21 +45,9 @@ final class EmptyStringFieldCop extends TestCop<StringField>
 	}
 
 	@Override
-	List<StringField> getItems()
+	boolean acceptsItem(final StringField feature)
 	{
-		final ArrayList<StringField> result = new ArrayList<>();
-
-		for(final Type<?> t : app.model.getTypes())
-		{
-			for(final Field<?> f : t.getDeclaredFields())
-				if(f instanceof final StringField sf &&
-					sf.getMinimumLength()<1)
-				{
-					result.add(sf);
-				}
-		}
-
-		return result;
+		return feature.getMinimumLength() < 1;
 	}
 
 	@Override
@@ -73,18 +59,6 @@ final class EmptyStringFieldCop extends TestCop<StringField>
 	private static final List<Column<StringField>> COLUMNS = List.of(
 			column("Field", StringField::toString)
 	);
-
-	@Override
-	String getID(final StringField field)
-	{
-		return field.getID();
-	}
-
-	@Override
-	StringField forID(final String id)
-	{
-		return (StringField)app.model.getFeature(id);
-	}
 
 	@Override
 	long check(final StringField field)

@@ -19,22 +19,19 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Condition;
-import com.exedio.cope.Feature;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
-import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Media;
-import java.util.ArrayList;
 import java.util.List;
 
-final class MediaTypeCop extends TestCop<Media>
+final class MediaTypeCop extends FeatureTestCop<Media>
 {
 	static final String TAB = "mediatype";
 
 	MediaTypeCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Media Types", args, testArgs);
+		super(Media.class, TAB, "Media Types", args, testArgs);
 	}
 
 	@Override
@@ -73,22 +70,6 @@ final class MediaTypeCop extends TestCop<Media>
 	}
 
 	@Override
-	List<Media> getItems()
-	{
-		final ArrayList<Media> result = new ArrayList<>();
-
-		for(final Type<?> type : app.model.getTypes())
-		{
-			for(final Feature feature : type.getDeclaredFeatures())
-			{
-				if(feature instanceof Media)
-					result.add((Media)feature);
-			}
-		}
-		return result;
-	}
-
-	@Override
 	List<Column<Media>> columns()
 	{
 		return List.of(
@@ -109,18 +90,6 @@ final class MediaTypeCop extends TestCop<Media>
 					writeValueLong(out, c.toString());
 			})
 		);
-	}
-
-	@Override
-	String getID(final Media media)
-	{
-		return media.getID();
-	}
-
-	@Override
-	Media forID(final String id)
-	{
-		return (Media)app.model.getFeature(id);
 	}
 
 	@Override

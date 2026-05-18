@@ -25,13 +25,13 @@ import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
+final class MultiTableCheckConstraintCop extends FeatureTestCop<CheckConstraint>
 {
 	static final String TAB = "multitablecheckconstraints";
 
 	MultiTableCheckConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Multi-Table Check Constraints", args, testArgs);
+		super(CheckConstraint.class, TAB, "Multi-Table Check Constraints", args, testArgs);
 	}
 
 	@Override
@@ -88,18 +88,6 @@ final class MultiTableCheckConstraintCop extends TestCop<CheckConstraint>
 			column("Constraint", CheckConstraint::toString),
 			column("Condition", (out,constraint) -> writeValueLong(out, constraint.getCondition().toString()))
 	);
-
-	@Override
-	String getID(final CheckConstraint constraint)
-	{
-		return constraint.getID();
-	}
-
-	@Override
-	CheckConstraint forID(final String id)
-	{
-		return (CheckConstraint)app.model.getFeature(id);
-	}
 
 	@Override
 	long check(final CheckConstraint constraint)

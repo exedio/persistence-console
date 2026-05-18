@@ -25,13 +25,13 @@ import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-final class CopyConstraintCop extends TestCop<CopyConstraint>
+final class CopyConstraintCop extends FeatureTestCop<CopyConstraint>
 {
 	static final String TAB = "copyconstraints";
 
 	CopyConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Copy Constraints", args, testArgs);
+		super(CopyConstraint.class, TAB, "Copy Constraints", args, testArgs);
 	}
 
 	@Override
@@ -78,18 +78,6 @@ final class CopyConstraintCop extends TestCop<CopyConstraint>
 			column("Constraint", constraint -> constraint.toString()),
 			column("Target",     constraint -> constraint.getTarget().getValueType().getID())
 	);
-
-	@Override
-	String getID(final CopyConstraint constraint)
-	{
-		return constraint.getID();
-	}
-
-	@Override
-	CopyConstraint forID(final String id)
-	{
-		return (CopyConstraint)app.model.getFeature(id);
-	}
 
 	@Override
 	long check(final CopyConstraint constraint)
