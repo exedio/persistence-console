@@ -22,27 +22,24 @@ import static com.exedio.cope.console.Console_Jspm.writeError;
 import static com.exedio.cope.console.Console_Jspm.writeNotConnected;
 import static com.exedio.cope.console.Console_Jspm.writeUnknown;
 
-import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.Pattern;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
-import com.exedio.cope.Type;
 import com.exedio.cope.UnsupportedQueryException;
 import com.exedio.cope.pattern.HashConstraint;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaPath;
-import java.util.ArrayList;
 import java.util.List;
 
-final class HashConstraintCop extends TestCop<HashConstraint>
+final class HashConstraintCop extends FeatureTestCop<HashConstraint>
 {
 	static final String TAB = "hashconstraint";
 
 	HashConstraintCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Hash Constraints", args, testArgs);
+		super(HashConstraint.class, TAB, "Hash Constraints", args, testArgs);
 	}
 
 	@Override
@@ -69,19 +66,6 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 				"Your application may either fail with errors or silently destroy your data. " +
 				"DANGER ZONE."
 		};
-	}
-
-	@Override
-	List<HashConstraint> getItems()
-	{
-		final ArrayList<HashConstraint> result = new ArrayList<>();
-
-		for(final Type<?> type : app.model.getTypes())
-			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof HashConstraint)
-					result.add((HashConstraint)feature);
-
-		return result;
 	}
 
 	@Override
@@ -154,18 +138,6 @@ final class HashConstraintCop extends TestCop<HashConstraint>
 	private static Query<?> getQuery(final HashConstraint constraint)
 	{
 		return constraint.getType().newQuery(constraint.hashDoesNotMatchIfSupported());
-	}
-
-	@Override
-	String getID(final HashConstraint constraint)
-	{
-		return constraint.getID();
-	}
-
-	@Override
-	HashConstraint forID(final String id)
-	{
-		return (HashConstraint)app.model.getFeature(id);
 	}
 
 	@Override

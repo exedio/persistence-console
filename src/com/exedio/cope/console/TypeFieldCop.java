@@ -22,13 +22,11 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
-import com.exedio.cope.Type;
 import com.exedio.cope.reflect.TypeField;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
-final class TypeFieldCop extends TestCop<TypeField<?>>
+final class TypeFieldCop extends FeatureTestCop<TypeField<?>>
 {
 	static final String TAB = "type";
 
@@ -43,9 +41,15 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 
 	private TypeFieldCop(final Args args, final TestArgs testArgs, final boolean all)
 	{
-		super(TAB, "Type Fields", args, testArgs);
+		super(classWildcard(), TAB, "Type Fields", args, testArgs);
 		this.all = all;
 		addParameter(ALL, all);
+	}
+
+	@SuppressWarnings("unchecked")
+	private static Class<TypeField<?>> classWildcard()
+	{
+		return (Class<TypeField<?>>)(Class<? extends Feature>)TypeField.class;
 	}
 
 	static TypeFieldCop getTypeFieldCop(final Args args, final TestArgs testArgs, final HttpServletRequest request)
@@ -77,22 +81,9 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 	}
 
 	@Override
-	List<TypeField<?>> getItems()
+	boolean acceptsItem(final TypeField<?> feature)
 	{
-		final ArrayList<TypeField<?>> result = new ArrayList<>();
-
-		for(final Type<?> type : app.model.getTypes())
-		{
-			for(final Feature feature : type.getDeclaredFeatures())
-			{
-				if(feature instanceof TypeField)
-				{
-					if (all || app.isStable((TypeField<?>)feature))
-						result.add((TypeField<?>) feature);
-				}
-			}
-		}
-		return result;
+		return all || app.isStable(feature);
 	}
 
 	@Override
@@ -111,18 +102,6 @@ final class TypeFieldCop extends TestCop<TypeField<?>>
 	void writeIntro(final Out out)
 	{
 		TypeField_Jspm.writeIntro(this, out);
-	}
-
-	@Override
-	String getID(final TypeField<?> field)
-	{
-		return field.getID();
-	}
-
-	@Override
-	TypeField<?> forID(final String id)
-	{
-		return (TypeField<?>)app.model.getFeature(id);
 	}
 
 	@Override

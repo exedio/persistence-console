@@ -18,22 +18,19 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.Feature;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
-import com.exedio.cope.Type;
 import com.exedio.cope.pattern.Dispatcher;
-import java.util.ArrayList;
 import java.util.List;
 
-final class DispatcherFailureDeprecatedCop extends TestCop<Dispatcher>
+final class DispatcherFailureDeprecatedCop extends FeatureTestCop<Dispatcher>
 {
 	static final String TAB = "dispatcherfailuredeprecated";
 
 	DispatcherFailureDeprecatedCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Dispatcher Deprecated Failures", args, testArgs);
+		super(Dispatcher.class, TAB, "Dispatcher Deprecated Failures", args, testArgs);
 	}
 
 	@Override
@@ -58,19 +55,6 @@ final class DispatcherFailureDeprecatedCop extends TestCop<Dispatcher>
 	}
 
 	@Override
-	List<Dispatcher> getItems()
-	{
-		final ArrayList<Dispatcher> result = new ArrayList<>();
-
-		for(final Type<?> type : app.model.getTypes())
-			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof Dispatcher)
-					result.add((Dispatcher)feature);
-
-		return result;
-	}
-
-	@Override
 	List<Column<Dispatcher>> columns()
 	{
 		return COLUMNS;
@@ -79,18 +63,6 @@ final class DispatcherFailureDeprecatedCop extends TestCop<Dispatcher>
 	private static final List<Column<Dispatcher>> COLUMNS = List.of(
 			column("Dispatcher", Dispatcher::getID)
 	);
-
-	@Override
-	String getID(final Dispatcher dispatcher)
-	{
-		return dispatcher.getID();
-	}
-
-	@Override
-	Dispatcher forID(final String id)
-	{
-		return (Dispatcher)app.model.getFeature(id);
-	}
 
 	@Override
 	long check(final Dispatcher dispatcher)

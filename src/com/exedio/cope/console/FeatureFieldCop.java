@@ -22,13 +22,11 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
-import com.exedio.cope.Type;
 import com.exedio.cope.reflect.FeatureField;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
-final class FeatureFieldCop extends TestCop<FeatureField<?>>
+final class FeatureFieldCop extends FeatureTestCop<FeatureField<?>>
 {
 	static final String TAB = "feature";
 
@@ -43,9 +41,15 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 
 	private FeatureFieldCop(final Args args, final TestArgs testArgs, final boolean all)
 	{
-		super(TAB, "Feature Fields", args, testArgs);
+		super(classWildcard(), TAB, "Feature Fields", args, testArgs);
 		this.all = all;
 		addParameter(ALL, all);
+	}
+
+	@SuppressWarnings("unchecked")
+	private static Class<FeatureField<?>> classWildcard()
+	{
+		return (Class<FeatureField<?>>)(Class<? extends Feature>)FeatureField.class;
 	}
 
 	static FeatureFieldCop getFeatureFieldCop(final Args args, final TestArgs testArgs, final HttpServletRequest request)
@@ -77,22 +81,9 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	}
 
 	@Override
-	List<FeatureField<?>> getItems()
+	boolean acceptsItem(final FeatureField<?> feature)
 	{
-		final ArrayList<FeatureField<?>> result = new ArrayList<>();
-
-		for(final Type<?> type : app.model.getTypes())
-		{
-			for(final Feature feature : type.getDeclaredFeatures())
-			{
-				if(feature instanceof FeatureField)
-				{
-					if (all || app.isStable((FeatureField<?>)feature))
-						result.add((FeatureField<?>) feature);
-				}
-			}
-		}
-		return result;
+		return all || app.isStable(feature);
 	}
 
 	@Override
@@ -111,18 +102,6 @@ final class FeatureFieldCop extends TestCop<FeatureField<?>>
 	void writeIntro(final Out out)
 	{
 		FeatureField_Jspm.writeIntro(this, out);
-	}
-
-	@Override
-	String getID(final FeatureField<?> field)
-	{
-		return field.getID();
-	}
-
-	@Override
-	FeatureField<?> forID(final String id)
-	{
-		return (FeatureField<?>)app.model.getFeature(id);
 	}
 
 	@Override

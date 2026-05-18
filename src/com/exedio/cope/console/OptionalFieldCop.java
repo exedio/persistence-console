@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Feature;
 import com.exedio.cope.Field;
 import com.exedio.cope.FunctionField;
 import com.exedio.cope.TransactionTry;
@@ -25,13 +26,19 @@ import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-final class OptionalFieldCop extends TestCop<FunctionField<?>>
+final class OptionalFieldCop extends FeatureTestCop<FunctionField<?>>
 {
 	static final String TAB = "optional";
 
 	OptionalFieldCop(final Args args, final TestArgs testArgs)
 	{
-		super(TAB, "Optional Fields", args, testArgs);
+		super(classWildcard(), TAB, "Optional Fields", args, testArgs);
+	}
+
+	@SuppressWarnings("unchecked")
+	private static Class<FunctionField<?>> classWildcard()
+	{
+		return (Class<FunctionField<?>>)(Class<? extends Feature>)FunctionField.class;
 	}
 
 	@Override
@@ -73,18 +80,6 @@ final class OptionalFieldCop extends TestCop<FunctionField<?>>
 	private static final List<Column<FunctionField<?>>> COLUMNS = List.of(
 			column("Field", FunctionField::toString)
 	);
-
-	@Override
-	String getID(final FunctionField<?> field)
-	{
-		return field.getID();
-	}
-
-	@Override
-	FunctionField<?> forID(final String id)
-	{
-		return (FunctionField<?>)app.model.getFeature(id);
-	}
 
 	@Override
 	long check(final FunctionField<?> field)
