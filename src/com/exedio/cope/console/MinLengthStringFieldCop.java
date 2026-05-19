@@ -18,12 +18,9 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.Field;
 import com.exedio.cope.Query;
 import com.exedio.cope.StringField;
 import com.exedio.cope.TransactionTry;
-import com.exedio.cope.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 final class MinLengthStringFieldCop extends FeatureTestCop<StringField>
@@ -45,21 +42,6 @@ final class MinLengthStringFieldCop extends FeatureTestCop<StringField>
 	protected MinLengthStringFieldCop newTestArgs(final TestArgs testArgs)
 	{
 		return new MinLengthStringFieldCop(args, testArgs);
-	}
-
-	@Override
-	List<StringField> getItems()
-	{
-		final ArrayList<StringField> result = new ArrayList<>();
-
-		for(final Type<?> t : app.model.getTypes())
-		{
-			for(final Field<?> f : t.getDeclaredFields())
-				if(f instanceof StringField)
-					result.add((StringField)f);
-		}
-
-		return result;
 	}
 
 	@Override
