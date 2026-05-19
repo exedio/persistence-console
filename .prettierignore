@@ -98,6 +98,7 @@
 /websrc/com/exedio/cope/console/example/ConditionUnsupported.java
 /websrc/com/exedio/cope/console/example/CopyItem.java
 /websrc/com/exedio/cope/console/example/CopyOriginItem.java
+/websrc/com/exedio/cope/console/example/DatePrecisionItem.java
 /websrc/com/exedio/cope/console/example/DummyStrictRefererValidationFilter.java
 /websrc/com/exedio/cope/console/example/EnumSingletonComplete.java
 /websrc/com/exedio/cope/console/example/EnumSingletonIncomplete.java
