@@ -19,11 +19,9 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
-import com.exedio.cope.Field;
 import com.exedio.cope.FunctionField;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 final class OptionalFieldCop extends FeatureTestCop<FunctionField<?>>
@@ -54,21 +52,9 @@ final class OptionalFieldCop extends FeatureTestCop<FunctionField<?>>
 	}
 
 	@Override
-	List<FunctionField<?>> getItems()
+	boolean acceptsItem(final FunctionField<?> field)
 	{
-		final ArrayList<FunctionField<?>> result = new ArrayList<>();
-
-		for(final Type<?> t : app.model.getTypes())
-		{
-			for(final Field<?> f : t.getDeclaredFields())
-				if(f instanceof final FunctionField<?> ff &&
-					!ff.isMandatory())
-				{
-					result.add(ff);
-				}
-		}
-
-		return result;
+		return !field.isMandatory();
 	}
 
 	@Override

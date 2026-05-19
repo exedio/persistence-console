@@ -19,9 +19,11 @@
 package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
+import com.exedio.cope.Field;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 abstract class FeatureTestCop<I extends Feature> extends TestCop<I>
 {
@@ -39,11 +41,17 @@ abstract class FeatureTestCop<I extends Feature> extends TestCop<I>
 	@Override
 	List<I> getItems()
 	{
+		final Function<Type<?>, List<? extends Feature>> featuresByType;
+		if(Field.class.isAssignableFrom(clazz))
+			featuresByType = Type::getDeclaredFields;
+		else
+			featuresByType = Type::getDeclaredFeatures;
+
 		final ArrayList<I> result = new ArrayList<>();
 
 		for(final Type<?> type : app.model.getTypes())
 		{
-			for(final Feature feature : type.getDeclaredFeatures())
+			for(final Feature feature : featuresByType.apply(type))
 			{
 				if(clazz.isInstance(feature))
 				{
