@@ -39,7 +39,7 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 		{
 				"The empty string is allowed, but does not appear in database.",
 				"Fails on all string fields, where there is no item with value empty string (\"\").",
-				"Does not fail if there are no items at all (the table is empty).",
+				"Does not fail if all values are null.",
 				"Lists all string fields, that allow the empty string (getMinimumLength()==0).",
 		};
 	}
@@ -80,7 +80,7 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 		{
 			final boolean result =
 				(type.newQuery(field.length().equal(0)).total()==0) &&
-				(type.newQuery().total()>0);
+				(type.newQuery(field.isNotNull()).total()>0);
 			tx.commit();
 			return result ? 1 : 0;
 		}
