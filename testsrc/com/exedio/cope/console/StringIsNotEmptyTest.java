@@ -50,6 +50,12 @@ public class StringIsNotEmptyTest {
 
     assertEquals(0, cop.check(MyType.empty)); // Does not fail if there are no items at all (the table is empty).
 
+    try (var tx = MODEL.startTransactionTry("null item")) {
+      new MyType((String) null);
+      tx.commit();
+    }
+    assertEquals(0, cop.check(MyType.empty)); // Does not fail if all values are null.
+
     try (var tx = MODEL.startTransactionTry("non-empty item")) {
       new MyType("non-empty");
       tx.commit();
