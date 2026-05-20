@@ -25,11 +25,11 @@ import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import java.util.List;
 
-final class EnumFieldCop extends FeatureTestCop<EnumField<?>> {
+final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
 
   static final String TAB = "enumField";
 
-  EnumFieldCop(final Args args, final TestArgs testArgs) {
+  EnumIsNotCompleteCop(final Args args, final TestArgs testArgs) {
     super(classWildcard(), TAB, "Enum Is Not Complete", args, testArgs);
   }
 
@@ -48,13 +48,13 @@ final class EnumFieldCop extends FeatureTestCop<EnumField<?>> {
   }
 
   @Override
-  protected EnumFieldCop newArgs(final Args args) {
-    return new EnumFieldCop(args, testArgs);
+  protected EnumIsNotCompleteCop newArgs(final Args args) {
+    return new EnumIsNotCompleteCop(args, testArgs);
   }
 
   @Override
-  protected EnumFieldCop newTestArgs(final TestArgs testArgs) {
-    return new EnumFieldCop(args, testArgs);
+  protected EnumIsNotCompleteCop newTestArgs(final TestArgs testArgs) {
+    return new EnumIsNotCompleteCop(args, testArgs);
   }
 
   @Override

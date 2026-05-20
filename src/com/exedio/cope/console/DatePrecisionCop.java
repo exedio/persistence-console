@@ -35,11 +35,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-final class DateFieldCop extends FeatureTestCop<DateField> {
+final class DatePrecisionCop extends FeatureTestCop<DateField> {
 
   static final String TAB = "dateFieldPrecision";
 
-  DateFieldCop(final Args args, final TestArgs testArgs) {
+  DatePrecisionCop(final Args args, final TestArgs testArgs) {
     super(DateField.class, TAB, "Date Has No Milliseconds", args, testArgs);
   }
 
@@ -54,13 +54,13 @@ final class DateFieldCop extends FeatureTestCop<DateField> {
   }
 
   @Override
-  protected DateFieldCop newArgs(final Args args) {
-    return new DateFieldCop(args, testArgs);
+  protected DatePrecisionCop newArgs(final Args args) {
+    return new DatePrecisionCop(args, testArgs);
   }
 
   @Override
-  protected DateFieldCop newTestArgs(final TestArgs testArgs) {
-    return new DateFieldCop(args, testArgs);
+  protected DatePrecisionCop newTestArgs(final TestArgs testArgs) {
+    return new DatePrecisionCop(args, testArgs);
   }
 
   @Override

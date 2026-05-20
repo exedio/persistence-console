@@ -217,11 +217,11 @@ abstract class ConsoleCop<S> extends Cop
 					new CustomQueryConstraintCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
-					new OptionalFieldCop(args, testArgs),
-					new EmptyStringFieldCop(args, testArgs),
+					new IsNotNullCop(args, testArgs),
+					new StringIsNotEmptyCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
-					new EnumFieldCop(args, testArgs),
-					new DateFieldCop(args, testArgs),
+					new EnumIsNotCompleteCop(args, testArgs),
+					new DatePrecisionCop(args, testArgs),
 					new TypeFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
 					new DispatcherFailureDeprecatedCop(args, testArgs),
@@ -408,16 +408,16 @@ abstract class ConsoleCop<S> extends Cop
 				return new ConnectCop(args);
 			case ConnectTokenCop.TAB:
 				return new ConnectTokenCop(args);
-			case OptionalFieldCop.TAB:
-				return new OptionalFieldCop(args, new TestCop.TestArgs(request));
-			case EmptyStringFieldCop.TAB:
-				return new EmptyStringFieldCop(args, new TestCop.TestArgs(request));
+			case IsNotNullCop.TAB:
+				return new IsNotNullCop(args, new TestCop.TestArgs(request));
+			case StringIsNotEmptyCop.TAB:
+				return new StringIsNotEmptyCop(args, new TestCop.TestArgs(request));
 			case MinLengthStringFieldCop.TAB:
 				return new MinLengthStringFieldCop(args, new TestCop.TestArgs(request));
-			case EnumFieldCop.TAB:
-				return new EnumFieldCop(args, new TestCop.TestArgs(request));
-			case DateFieldCop.TAB:
-				return new DateFieldCop(args, new TestCop.TestArgs(request));
+			case EnumIsNotCompleteCop.TAB:
+				return new EnumIsNotCompleteCop(args, new TestCop.TestArgs(request));
+			case DatePrecisionCop.TAB:
+				return new DatePrecisionCop(args, new TestCop.TestArgs(request));
 			case TypeFieldCop.TAB:
 				return TypeFieldCop.getTypeFieldCop(args, new TestCop.TestArgs(request), request);
 			case FeatureFieldCop.TAB:

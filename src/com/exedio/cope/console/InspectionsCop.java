@@ -45,10 +45,10 @@ final class InspectionsCop extends ConsoleCop<Void> {
     Inspections_Jspm.writeBody(
       out,
       new ConsoleCop<?>[] {
-        new OptionalFieldCop(args, testArgs),
-        new EmptyStringFieldCop(args, testArgs),
-        new EnumFieldCop(args, testArgs),
-        new DateFieldCop(args, testArgs),
+        new IsNotNullCop(args, testArgs),
+        new StringIsNotEmptyCop(args, testArgs),
+        new EnumIsNotCompleteCop(args, testArgs),
+        new DatePrecisionCop(args, testArgs),
       }
     );
   }
