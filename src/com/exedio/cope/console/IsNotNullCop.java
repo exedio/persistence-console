@@ -18,18 +18,19 @@
 
 package com.exedio.cope.console;
 
-import com.exedio.cope.StringField;
+import com.exedio.cope.Feature;
+import com.exedio.cope.FunctionField;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.List;
 
-final class EmptyStringFieldCop extends FeatureTestCop<StringField>
+final class IsNotNullCop extends FeatureTestCop<FunctionField<?>>
 {
-	static final String TAB = "emptystring";
+	static final String TAB = "optional";
 
-	EmptyStringFieldCop(final Args args, final TestArgs testArgs)
+	IsNotNullCop(final Args args, final TestArgs testArgs)
 	{
-		super(StringField.class, TAB, "String Is Not Empty", args, testArgs);
+		super(classWildcard(), TAB, "Is Not Null", args, testArgs);
 	}
 
 	@Override
@@ -37,49 +38,55 @@ final class EmptyStringFieldCop extends FeatureTestCop<StringField>
 	{
 		return new String[]
 		{
-				"The empty string is allowed, but does not appear in database.",
-				"Fails on all string fields, where there is no item with value empty string (\"\").",
+				"Null is allowed, but does not appear in database.",
+				"Fails on all fields, where there is no item with value null.",
 				"Does not fail if there are no items at all (the table is empty).",
-				"Lists all string fields, that allow the empty string (getMinimumLength()==0).",
+				"Lists all fields, that are optional.",
 		};
 	}
 
-	@Override
-	protected EmptyStringFieldCop newArgs(final Args args)
+	@SuppressWarnings("unchecked")
+	private static Class<FunctionField<?>> classWildcard()
 	{
-		return new EmptyStringFieldCop(args, testArgs);
+		return (Class<FunctionField<?>>)(Class<? extends Feature>)FunctionField.class;
 	}
 
 	@Override
-	protected EmptyStringFieldCop newTestArgs(final TestArgs testArgs)
+	protected IsNotNullCop newArgs(final Args args)
 	{
-		return new EmptyStringFieldCop(args, testArgs);
+		return new IsNotNullCop(args, testArgs);
 	}
 
 	@Override
-	boolean acceptsItem(final StringField feature)
+	protected IsNotNullCop newTestArgs(final TestArgs testArgs)
 	{
-		return feature.getMinimumLength() < 1;
+		return new IsNotNullCop(args, testArgs);
 	}
 
 	@Override
-	List<Column<StringField>> columns()
+	boolean acceptsItem(final FunctionField<?> field)
+	{
+		return !field.isMandatory();
+	}
+
+	@Override
+	List<Column<FunctionField<?>>> columns()
 	{
 		return COLUMNS;
 	}
 
-	private static final List<Column<StringField>> COLUMNS = List.of(
-			column("Field", StringField::toString)
+	private static final List<Column<FunctionField<?>>> COLUMNS = List.of(
+			column("Field", FunctionField::toString)
 	);
 
 	@Override
-	long check(final StringField field)
+	long check(final FunctionField<?> field)
 	{
 		final Type<?> type = field.getType();
-		try(TransactionTry tx = app.model.startTransactionTry("Console EmptyStringField " + id))
+		try(TransactionTry tx = app.model.startTransactionTry("Console OptionalField " + id))
 		{
 			final boolean result =
-				(type.newQuery(field.length().equal(0)).total()==0) &&
+				(type.newQuery(field.isNull()).total()==0) &&
 				(type.newQuery().total()>0);
 			tx.commit();
 			return result ? 1 : 0;

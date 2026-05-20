@@ -27,7 +27,6 @@
 /src/com/exedio/cope/console/DataVaultCop.java
 /src/com/exedio/cope/console/DataVaultTrailCop.java
 /src/com/exedio/cope/console/DispatcherFailureDeprecatedCop.java
-/src/com/exedio/cope/console/EmptyStringFieldCop.java
 /src/com/exedio/cope/console/EnumCop.java
 /src/com/exedio/cope/console/EnumsCop.java
 /src/com/exedio/cope/console/EnvironmentCop.java
@@ -38,6 +37,7 @@
 /src/com/exedio/cope/console/helpOnDomReady.js
 /src/com/exedio/cope/console/HiddenCop.java
 /src/com/exedio/cope/console/ItemCacheCop.java
+/src/com/exedio/cope/console/IsNotNullCop.java
 /src/com/exedio/cope/console/MediaCop.java
 /src/com/exedio/cope/console/MediaErrorLogCop.java
 /src/com/exedio/cope/console/MediaStatsCop.java
@@ -46,7 +46,6 @@
 /src/com/exedio/cope/console/MeterTable.java
 /src/com/exedio/cope/console/MinLengthStringFieldCop.java
 /src/com/exedio/cope/console/MultiTableCheckConstraintCop.java
-/src/com/exedio/cope/console/OptionalFieldCop.java
 /src/com/exedio/cope/console/OutBasic.java
 /src/com/exedio/cope/console/Out.java
 /src/com/exedio/cope/console/OutOfMemoryErrorCop.java
@@ -64,6 +63,7 @@
 /src/com/exedio/cope/console/SerializationCheckCop.java
 /src/com/exedio/cope/console/ServletUtilX.java
 /src/com/exedio/cope/console/SingletonCop.java
+/src/com/exedio/cope/console/StringIsNotEmptyCop.java
 /src/com/exedio/cope/console/TestCop.java
 /src/com/exedio/cope/console/ThreadCop.java
 /src/com/exedio/cope/console/TransactionCop.java
