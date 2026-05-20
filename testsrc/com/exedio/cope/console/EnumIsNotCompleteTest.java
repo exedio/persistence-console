@@ -48,13 +48,19 @@ public class EnumIsNotCompleteTest {
 
     assertEquals(List.of(MyType.field), cop.getItems()); // Lists all enum fields.
 
-    assertEquals(3, cop.check(MyType.field)); // Fails on all enum fields, where there is not at least one item for each facet of the enum.
+    assertEquals(0, cop.check(MyType.field)); // Does not fail if all values are null.
+
+    try (var tx = MODEL.startTransactionTry("null item")) {
+      new MyType((MyEnum) null);
+      tx.commit();
+    }
+    assertEquals(0, cop.check(MyType.field)); // Does not fail if all values are null.
 
     try (var tx = MODEL.startTransactionTry("A item")) {
       new MyType(MyEnum.A);
       tx.commit();
     }
-    assertEquals(2, cop.check(MyType.field)); // B and C missing
+    assertEquals(2, cop.check(MyType.field)); // Fails on all enum fields, where there is not at least one item for each facet of the enum.
 
     try (var tx = MODEL.startTransactionTry("second A item")) {
       new MyType(MyEnum.A);
@@ -84,7 +90,9 @@ public class EnumIsNotCompleteTest {
   private static final class MyType extends Item {
 
     @UsageEntryPoint
-    static final EnumField<MyEnum> field = EnumField.create(MyEnum.class);
+    static final EnumField<MyEnum> field = EnumField.create(
+      MyEnum.class
+    ).optional();
 
     MyType(final MyEnum field) {
       super(SetValue.map(MyType.field, field));

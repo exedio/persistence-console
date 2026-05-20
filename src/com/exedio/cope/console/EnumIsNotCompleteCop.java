@@ -38,6 +38,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
     return new String[] {
       "Some enum facets do not appear in database.",
       "Fails on all enum fields, where there is not at least one item for each facet of the enum.",
+      "Does not fail if all values are null.",
       "Lists all enum fields.",
     };
   }
@@ -78,6 +79,8 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
         "Console EnumFieldRedundancy " + id
       )
     ) {
+      if (field.getType().newQuery(field.isNotNull()).total() == 0) return 0;
+
       return Math.subtractExact(
         expected(field),
         tx.commit(getQuery(field).total())
@@ -86,7 +89,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
   }
 
   private static Query<?> getQuery(final EnumField<?> field) {
-    final Query<?> query = new Query<>(field);
+    final Query<?> query = new Query<>(field, field.isNotNull());
     query.setDistinct(true);
     return query;
   }
