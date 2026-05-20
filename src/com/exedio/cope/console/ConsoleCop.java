@@ -217,7 +217,6 @@ abstract class ConsoleCop<S> extends Cop
 					new CustomQueryConstraintCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
-					new MinLengthStringFieldCop(args, testArgs),
 					new TypeFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
 					new DispatcherFailureDeprecatedCop(args, testArgs),
@@ -226,6 +225,7 @@ abstract class ConsoleCop<S> extends Cop
 					new PurgeCop(args),
 					new RevisionCop(args),
 					new RevisionSheetCop(args),
+					new MinLengthStringFieldCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
 					new DatabaseLogCop(args),
