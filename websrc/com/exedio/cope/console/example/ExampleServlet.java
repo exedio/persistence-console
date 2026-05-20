@@ -233,9 +233,9 @@ public final class ExampleServlet extends CopsServlet
 		try(TransactionTry tx = Main.model.startTransactionTry(thisClass.getName() + "#createSampleData"))
 		{
 			new AnItem("aField1", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
-			new AnItem("aField2", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
-			new ASubItem("aField1s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35, "aSubField1s");
-			new ASubItem("aField2s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35, "aSubField2s");
+			new AnItem("aField2", AnItem.Letter.A, AnItem.Letter.B, AnItem.Color.blue35);
+			new ASubItem("aField1s", AnItem.Letter.A, AnItem.Letter.C, AnItem.Color.blue35, "aSubField1s");
+			new ASubItem("aField2s", AnItem.Letter.A, AnItem.Letter.D, AnItem.Color.blue35, "aSubField2s");
 			new ASubItem("aField3s", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35, "aSubField3s");
 			new OptionalItem("mandatory", "optional", "optionalOk");
 			new OptionalItem("mandatory", "optional", null);
