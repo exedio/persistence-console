@@ -30,7 +30,16 @@ final class EnumFieldCop extends FeatureTestCop<EnumField<?>> {
   static final String TAB = "enumField";
 
   EnumFieldCop(final Args args, final TestArgs testArgs) {
-    super(classWildcard(), TAB, "Enum Fields", args, testArgs);
+    super(classWildcard(), TAB, "Enum Is Not Complete", args, testArgs);
+  }
+
+  @Override
+  String[] getHeadingHelp() {
+    return new String[] {
+      "Some enum facets do not appear in database.",
+      "Fails on all enum fields, where there is not at least one item for each facet of the enum.",
+      "Lists all enum fields.",
+    };
   }
 
   @SuppressWarnings("unchecked")
