@@ -217,11 +217,7 @@ abstract class ConsoleCop<S> extends Cop
 					new CustomQueryConstraintCop(args, testArgs),
 				},
 				new ConsoleCop<?>[]{
-					new IsNotNullCop(args, testArgs),
-					new StringIsNotEmptyCop(args, testArgs),
 					new MinLengthStringFieldCop(args, testArgs),
-					new EnumIsNotCompleteCop(args, testArgs),
-					new DatePrecisionCop(args, testArgs),
 					new TypeFieldCop(args, testArgs),
 					new FeatureFieldCop(args, testArgs),
 					new DispatcherFailureDeprecatedCop(args, testArgs),
@@ -268,6 +264,10 @@ abstract class ConsoleCop<S> extends Cop
 				new ConsoleCop<?>[]{
 					new ChecklistsCop(args),
 					new InspectionsCop(args),
+					new IsNotNullCop(args, testArgs),
+					new StringIsNotEmptyCop(args, testArgs),
+					new EnumIsNotCompleteCop(args, testArgs),
+					new DatePrecisionCop(args, testArgs),
 				}};
 	}
 
