@@ -40,7 +40,17 @@ final class DateFieldCop extends FeatureTestCop<DateField> {
   static final String TAB = "dateFieldPrecision";
 
   DateFieldCop(final Args args, final TestArgs testArgs) {
-    super(DateField.class, TAB, "Date Fields", args, testArgs);
+    super(DateField.class, TAB, "Date Has No Milliseconds", args, testArgs);
+  }
+
+  @Override
+  String[] getHeadingHelp() {
+    return new String[] {
+      "Milliseconds are allowed, but do not appear in database.",
+      "Fails on all date fields, where there is no item with non-zero milliseconds part of the value.",
+      "Does not fail if all values are null.",
+      "Lists all date fields, that allow milliseconds (getPrecision()==MILLI).",
+    };
   }
 
   @Override

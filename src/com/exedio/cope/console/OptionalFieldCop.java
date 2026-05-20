@@ -30,7 +30,19 @@ final class OptionalFieldCop extends FeatureTestCop<FunctionField<?>>
 
 	OptionalFieldCop(final Args args, final TestArgs testArgs)
 	{
-		super(classWildcard(), TAB, "Optional Fields", args, testArgs);
+		super(classWildcard(), TAB, "Is Not Null", args, testArgs);
+	}
+
+	@Override
+	String[] getHeadingHelp()
+	{
+		return new String[]
+		{
+				"Null is allowed, but does not appear in database.",
+				"Fails on all fields, where there is no item with value null.",
+				"Does not fail if there are no items at all (the table is empty).",
+				"Lists all fields, that are optional.",
+		};
 	}
 
 	@SuppressWarnings("unchecked")

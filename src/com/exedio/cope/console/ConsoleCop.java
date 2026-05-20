@@ -267,6 +267,7 @@ abstract class ConsoleCop<S> extends Cop
 				},
 				new ConsoleCop<?>[]{
 					new ChecklistsCop(args),
+					new InspectionsCop(args),
 				}};
 	}
 
@@ -491,6 +492,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new ChangeListenerCop(args, request);
 			case ChecklistsCop.TAB:
 				return new ChecklistsCop(args);
+			case InspectionsCop.TAB:
+				return new InspectionsCop(args);
 		}
 
 		final MediaCop mediaCop = MediaCop.getMediaCop(model, args, request);

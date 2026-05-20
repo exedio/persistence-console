@@ -1,0 +1,53 @@
+<%
+/*
+ * Copyright (C) 2004-2009  exedio GmbH (www.exedio.com)
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package com.exedio.cope.console;
+
+final class Inspections_Jspm
+{
+	static void writeBody(
+			final Out out,
+			final ConsoleCop<?>[] targets)
+	{
+		%>
+		<div>Finds possible issues in the model.</div><%
+		%>
+		<ul><%
+
+		for(final ConsoleCop<?> target : targets)
+		{
+			final String[] help = target.getHeadingHelp();
+			%>
+			<li><a href="<%=target%>"><%=target.name%></a><%
+				if(help.length>=1) { %> - <%=help[0]%><% }
+				%></li><%
+		}
+		%>
+			<li>Is Always Null - Value null only appears in database (not yet implemented).</li>
+			<li>Number Is Not Zero - Value zero is allowed, but does not appear in database (not yet implemented).</li>
+			<li>Number Is Not Negative - Negative values are allowed, but do not appear in database (not yet implemented).</li>
+			<li>Type Is Empty - There are no items of a type in database at all. (not yet implemented).</li>
+		</ul><%
+	}
+
+	private Inspections_Jspm()
+	{
+		// prevent instantiation
+	}
+}%>

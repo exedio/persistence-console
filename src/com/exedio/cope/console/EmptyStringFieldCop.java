@@ -29,7 +29,19 @@ final class EmptyStringFieldCop extends FeatureTestCop<StringField>
 
 	EmptyStringFieldCop(final Args args, final TestArgs testArgs)
 	{
-		super(StringField.class, TAB, "Empty String Fields", args, testArgs);
+		super(StringField.class, TAB, "String Is Not Empty", args, testArgs);
+	}
+
+	@Override
+	String[] getHeadingHelp()
+	{
+		return new String[]
+		{
+				"The empty string is allowed, but does not appear in database.",
+				"Fails on all string fields, where there is no item with value empty string (\"\").",
+				"Does not fail if there are no items at all (the table is empty).",
+				"Lists all string fields, that allow the empty string (getMinimumLength()==0).",
+		};
 	}
 
 	@Override
