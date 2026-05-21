@@ -37,10 +37,37 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class IsAlwaysNullTest {
+public class IsNullTest {
 
   @Test
-  void test() {
+  void testIsNotNull() {
+    final var cop = new IsNotNullCop(CopTest.args(MODEL), CopTest.testArgs);
+
+    assertEquals(List.of(MyType.optional), cop.getItems()); // Lists all fields, that are optional.
+
+    assertEquals(0, cop.check(MyType.optional)); // Does not fail if there are no items at all (the table is empty).
+
+    try (var tx = MODEL.startTransactionTry("non-null item")) {
+      new MyType("non-null");
+      tx.commit();
+    }
+    assertEquals(1, cop.check(MyType.optional)); // Fails on all fields, where there is no item with value null.
+
+    try (var tx = MODEL.startTransactionTry("second non-null item")) {
+      new MyType("non-null");
+      tx.commit();
+    }
+    assertEquals(1, cop.check(MyType.optional)); // another non-null item does not change anything
+
+    try (var tx = MODEL.startTransactionTry("non-null item")) {
+      new MyType((String) null);
+      tx.commit();
+    }
+    assertEquals(0, cop.check(MyType.optional)); // OK
+  }
+
+  @Test
+  void testIsAlwaysNull() {
     final var cop = new IsAlwaysNullCop(CopTest.args(MODEL), CopTest.testArgs);
 
     assertEquals(List.of(MyType.optional), cop.getItems()); // Lists all fields, that are optional.
