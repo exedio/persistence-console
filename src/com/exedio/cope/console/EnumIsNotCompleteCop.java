@@ -74,9 +74,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
 
   @Override
   long check(final EnumField<?> field) {
-    try (
-      TransactionTry tx = startTransaction()
-    ) {
+    try (TransactionTry tx = startTransaction()) {
       if (field.getType().newQuery(field.isNotNull()).total() == 0) return 0;
 
       return Math.subtractExact(

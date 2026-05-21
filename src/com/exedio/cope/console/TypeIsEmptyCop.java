@@ -82,9 +82,7 @@ final class TypeIsEmptyCop extends TestCop<Type<?>> {
 
   @Override
   long check(final Type<?> type) {
-    try (
-      TransactionTry tx = startTransaction()
-    ) {
+    try (TransactionTry tx = startTransaction()) {
       final boolean result = getQuery(type).total() == 0;
       tx.commit();
       return result ? 1 : 0;

@@ -93,9 +93,7 @@ final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
   @Override
   long check(final NumberField<?> field) {
     final Type<?> type = field.getType();
-    try (
-      var tx = startTransaction()
-    ) {
+    try (var tx = startTransaction()) {
       if (type.newQuery(field.isNotNull()).total() == 0) return tx.commit(0);
 
       final long total = getQuery(field).total();
