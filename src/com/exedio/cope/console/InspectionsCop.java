@@ -45,6 +45,7 @@ final class InspectionsCop extends ConsoleCop<Void> {
     Inspections_Jspm.writeBody(
       out,
       new ConsoleCop<?>[] {
+        new TypeIsEmptyCop(args, testArgs),
         new IsNotNullCop(args, testArgs),
         new IsAlwaysNullCop(args, testArgs),
         new StringIsNotEmptyCop(args, testArgs),

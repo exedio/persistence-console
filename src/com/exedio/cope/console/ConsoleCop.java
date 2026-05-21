@@ -264,6 +264,7 @@ abstract class ConsoleCop<S> extends Cop
 				new ConsoleCop<?>[]{
 					new ChecklistsCop(args),
 					new InspectionsCop(args),
+					new TypeIsEmptyCop(args, testArgs),
 					new IsNotNullCop(args, testArgs),
 					new IsAlwaysNullCop(args, testArgs),
 					new StringIsNotEmptyCop(args, testArgs),
@@ -409,6 +410,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new ConnectCop(args);
 			case ConnectTokenCop.TAB:
 				return new ConnectTokenCop(args);
+			case TypeIsEmptyCop.TAB:
+				return new TypeIsEmptyCop(args, new TestCop.TestArgs(request));
 			case IsNotNullCop.TAB:
 				return new IsNotNullCop(args, new TestCop.TestArgs(request));
 			case IsAlwaysNullCop.TAB:
