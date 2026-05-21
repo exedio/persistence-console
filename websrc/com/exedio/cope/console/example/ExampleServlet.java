@@ -30,7 +30,6 @@ import com.exedio.cope.ChangeListener;
 import com.exedio.cope.DataField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Transaction;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.pattern.Media;

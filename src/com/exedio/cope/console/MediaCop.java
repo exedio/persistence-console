@@ -24,7 +24,6 @@ import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.NoSuchIDException;
 import com.exedio.cope.Query;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.pattern.Media;
 import com.exedio.cope.pattern.MediaFilter;
 import com.exedio.cope.pattern.MediaPath;
