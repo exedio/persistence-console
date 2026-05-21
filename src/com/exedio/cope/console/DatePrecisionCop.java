@@ -23,6 +23,7 @@ import static com.exedio.cope.SchemaInfo.getTableName;
 import static com.exedio.cope.SchemaInfo.newConnection;
 import static com.exedio.cope.SchemaInfo.quoteName;
 import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+import static com.exedio.cope.console.InspectionsCop.noFailureOnEmpty;
 import static java.util.Locale.ENGLISH;
 
 import com.exedio.cope.DateField;
@@ -84,35 +85,33 @@ final class DatePrecisionCop extends FeatureTestCop<DateField> {
 
   @Override
   long check(final DateField field) {
-    final long all;
-    final long even;
+    try (var tx = startTransaction()) {
+      if (!noFailureOnEmpty(field)) return tx.commit(0);
+      tx.commit();
+    }
+
+    final long total;
     try (
       Connection con = newConnection(app.model);
       Statement st = con.createStatement()
     ) {
-      try (ResultSet rs = st.executeQuery(getSQL(field, false))) {
+      try (ResultSet rs = st.executeQuery(getSQL(field))) {
         rs.next();
-        all = rs.getLong(1);
-      }
-      if (all == 0) return 0;
-
-      try (ResultSet rs = st.executeQuery(getSQL(field, true))) {
-        rs.next();
-        even = rs.getLong(1);
+        total = rs.getLong(1);
       }
     } catch (final SQLException e) {
       throw new SQLRuntimeException(e, field.toString());
     }
-    return (all == even) ? 1 : 0;
+    return (total == 0) ? 1 : 0;
   }
 
   @Override
   String getViolationSql(final DateField field) {
     if (!field.getType().getModel().isConnected()) return "NOT YET CONNECTED";
-    return getSQL(field, true);
+    return getSQL(field);
   }
 
-  private static String getSQL(final DateField field, final boolean even) {
+  private static String getSQL(final DateField field) {
     final Type<?> type = field.getType();
     final Model model = type.getModel();
 
@@ -122,11 +121,9 @@ final class DatePrecisionCop extends FeatureTestCop<DateField> {
       " WHERE " +
       quoteName(model, getColumnName(field)) +
       " IS NOT NULL" +
-      (even
-        ? (" AND EXTRACT(MICROSECOND FROM " +
-            quoteName(model, getColumnName(field)) +
-            ")=0")
-        : "")
+      " AND EXTRACT(MICROSECOND FROM " +
+      quoteName(model, getColumnName(field)) +
+      ")>0"
     );
   }
 }
