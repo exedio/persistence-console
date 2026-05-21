@@ -265,6 +265,7 @@ abstract class ConsoleCop<S> extends Cop
 					new ChecklistsCop(args),
 					new InspectionsCop(args),
 					new IsNotNullCop(args, testArgs),
+					new IsAlwaysNullCop(args, testArgs),
 					new StringIsNotEmptyCop(args, testArgs),
 					new EnumIsNotCompleteCop(args, testArgs),
 					new DatePrecisionCop(args, testArgs),
@@ -410,6 +411,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new ConnectTokenCop(args);
 			case IsNotNullCop.TAB:
 				return new IsNotNullCop(args, new TestCop.TestArgs(request));
+			case IsAlwaysNullCop.TAB:
+				return new IsAlwaysNullCop(args, new TestCop.TestArgs(request));
 			case StringIsNotEmptyCop.TAB:
 				return new StringIsNotEmptyCop(args, new TestCop.TestArgs(request));
 			case MinLengthStringFieldCop.TAB:
