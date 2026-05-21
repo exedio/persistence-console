@@ -30,7 +30,6 @@ import com.exedio.cope.ChangeListener;
 import com.exedio.cope.DataField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Transaction;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.pattern.Media;
@@ -140,7 +139,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 			else if(request.getParameter(UNIQUE_CACHE)!=null)
 			{
-				try(TransactionTry tx = Main.model.startTransactionTry("uniqueCache"))
+				try(var tx = Main.model.startTransactionTry("uniqueCache"))
 				{
 					final var item = EnumSingletonIncomplete.feature.getOnce().searchUnique(
 							EnumSingletonIncomplete.class,
@@ -152,7 +151,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 			else if(request.getParameter(QUERY_CACHE_SEARCH)!=null)
 			{
-				try(TransactionTry tx = Main.model.startTransactionTry("queryCache"))
+				try(var tx = Main.model.startTransactionTry("queryCache"))
 				{
 					AnItem.TYPE.search(AnItem.aField.equal(request.getParameter(QUERY_CACHE_PARAMETER)));
 					tx.commit();
@@ -172,7 +171,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 			else if(request.getParameter(NUL_CHARACTER)!=null)
 			{
-				try(TransactionTry tx = Main.model.startTransactionTry("nulChar"))
+				try(var tx = Main.model.startTransactionTry("nulChar"))
 				{
 					new AnItem("\0start" , AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.red   );
 					new AnItem("mid\0dle", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.green );
@@ -182,7 +181,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 			else if(request.getParameter(BREAK_MEDIA_HASH)!=null)
 			{
-				try(TransactionTry tx = Main.model.startTransactionTry("breakMediaHash"))
+				try(var tx = Main.model.startTransactionTry("breakMediaHash"))
 				{
 					final UniqueHashedMedia feature = UniqueHashedMediaItem.feature;
 					final MessageDigest digest = MessageDigestUtil.getInstance(feature.getMessageDigestAlgorithm());
@@ -195,7 +194,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 			else if(request.getParameter(TYPE_FIELD_SUBMIT)!=null)
 			{
-				try(TransactionTry tx = Main.model.startTransactionTry("create type item"))
+				try(var tx = Main.model.startTransactionTry("create type item"))
 				{
 					new TypeItem(
 							replaceNullName(request.getParameter(TYPE_FIELD_FEATURE)),
@@ -205,7 +204,7 @@ public final class ExampleServlet extends CopsServlet
 			}
 			else if(request.getParameter(FEATURE_FIELD_SUBMIT)!=null)
 			{
-				try(TransactionTry tx = Main.model.startTransactionTry("create feature"))
+				try(var tx = Main.model.startTransactionTry("create feature"))
 				{
 					new FeatureItem(
 						replaceNullName(request.getParameter(FEATURE_FIELD_FEATURE)),
@@ -230,7 +229,7 @@ public final class ExampleServlet extends CopsServlet
 		final Class<?> thisClass = ExampleServlet.class;
 		connect(thisClass.getName() + "#createSampleData");
 		Main.model.createSchema();
-		try(TransactionTry tx = Main.model.startTransactionTry(thisClass.getName() + "#createSampleData"))
+		try(var tx = Main.model.startTransactionTry(thisClass.getName() + "#createSampleData"))
 		{
 			new AnItem("aField1", AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
 			new AnItem("aField2", AnItem.Letter.A, AnItem.Letter.B, AnItem.Color.blue35);
@@ -315,7 +314,7 @@ public final class ExampleServlet extends CopsServlet
 			final int postCommitHooks,
 			final boolean duplicateCommitHooks)
 	{
-		try(TransactionTry tx = Main.model.startTransactionTry(replaceNullName(name)))
+		try(var tx = Main.model.startTransactionTry(replaceNullName(name)))
 		{
 			for(int i = 0; i<items; i++)
 				new AnItem(name + "#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
@@ -357,13 +356,13 @@ public final class ExampleServlet extends CopsServlet
 
 	private static void replaceItemCache()
 	{
-		try(TransactionTry tx = Main.model.startTransactionTry("ItemCache create"))
+		try(var tx = Main.model.startTransactionTry("ItemCache create"))
 		{
 			for(int i = 0; i<30000; i++)
 				new AnItem("ItemCache#" + i, AnItem.Letter.A, AnItem.Letter.A, AnItem.Color.blue35);
 			tx.commit();
 		}
-		try(TransactionTry tx = Main.model.startTransactionTry("ItemCache read"))
+		try(var tx = Main.model.startTransactionTry("ItemCache read"))
 		{
 			for(final AnItem i : AnItem.TYPE.search())
 				i.getAField();

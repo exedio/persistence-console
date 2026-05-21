@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -139,7 +138,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 
 		long check(final Model model)
 		{
-			try(TransactionTry tx = model.startTransactionTry(TypeCompletenessCop.class.getName() + ' ' + superType + ' ' + subType))
+			try(var tx = model.startTransactionTry(TypeCompletenessCop.class.getName() + ' ' + superType + ' ' + subType))
 			{
 				return tx.commit(
 						superType.checkCompletenessL(subType));
