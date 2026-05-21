@@ -82,7 +82,7 @@ final class CopyConstraintCop extends FeatureTestCop<CopyConstraint>
 	@Override
 	long check(final CopyConstraint constraint)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					constraint.check());

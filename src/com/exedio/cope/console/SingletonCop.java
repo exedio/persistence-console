@@ -116,7 +116,7 @@ final class SingletonCop extends TestCop<SingletonCop.Line>
 	@Override
 	long check(final Line singleton)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return Math.subtractExact(
 					singleton.expected(),

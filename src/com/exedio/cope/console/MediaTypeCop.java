@@ -97,7 +97,7 @@ final class MediaTypeCop extends FeatureTestCop<Media>
 	{
 		final Query<?> query = getQuery(media);
 
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					query.total());

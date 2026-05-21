@@ -78,7 +78,7 @@ final class IsAlwaysNullCop extends FeatureTestCop<FunctionField<?>> {
   @Override
   long check(final FunctionField<?> field) {
     final Type<?> type = field.getType();
-    try (TransactionTry tx = startTransaction()) {
+    try (var tx = startTransaction()) {
       final boolean result =
         (getQuery(field).total() == 0) && (type.newQuery().total() > 0);
       tx.commit();

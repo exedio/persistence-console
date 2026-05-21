@@ -108,7 +108,7 @@ final class FeatureFieldCop extends FeatureTestCop<FeatureField<?>>
 	long check(final FeatureField<?> field)
 	{
 		final Query<?> query = getQuery(field);
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					query.total());

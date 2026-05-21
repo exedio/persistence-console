@@ -60,7 +60,7 @@ final class MinLengthStringFieldCop extends FeatureTestCop<StringField>
 	{
 		final Query<Integer> q = new Query<>(field.length().min());
 
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			final Integer result = q.searchSingleton();
 			tx.commit();

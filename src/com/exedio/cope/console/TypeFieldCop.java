@@ -108,7 +108,7 @@ final class TypeFieldCop extends FeatureTestCop<TypeField<?>>
 	long check(final TypeField<?> field)
 	{
 		final Query<?> query = getQuery(field);
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					query.total());

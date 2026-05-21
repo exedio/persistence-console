@@ -87,7 +87,7 @@ final class CustomQueryConstraintCop extends TestCop<Query<?>>
 	@Override
 	long check(final Query<?> query)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(query.total());
 		}

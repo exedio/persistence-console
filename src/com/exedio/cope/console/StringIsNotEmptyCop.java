@@ -78,7 +78,7 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 	long check(final StringField field)
 	{
 		final Type<?> type = field.getType();
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			final boolean result =
 				(getQuery(field).total()==0) &&

@@ -67,7 +67,7 @@ final class DispatcherFailureDeprecatedCop extends FeatureTestCop<Dispatcher>
 	@Override
 	long check(final Dispatcher dispatcher)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(getQuery(dispatcher).total());
 		}
