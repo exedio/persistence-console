@@ -46,6 +46,7 @@ final class InspectionsCop extends ConsoleCop<Void> {
       out,
       new ConsoleCop<?>[] {
         new IsNotNullCop(args, testArgs),
+        new IsAlwaysNullCop(args, testArgs),
         new StringIsNotEmptyCop(args, testArgs),
         new EnumIsNotCompleteCop(args, testArgs),
         new DatePrecisionCop(args, testArgs),

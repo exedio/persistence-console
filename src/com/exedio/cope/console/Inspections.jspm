@@ -39,7 +39,6 @@ final class Inspections_Jspm
 				%></li><%
 		}
 		%>
-			<li>Is Always Null - Value null only appears in database (not yet implemented).</li>
 			<li>Number Is Not Zero - Value zero is allowed, but does not appear in database (not yet implemented).</li>
 			<li>Number Is Not Negative - Negative values are allowed, but do not appear in database (not yet implemented).</li>
 			<li>Type Is Empty - There are no items of a type in database at all. (not yet implemented).</li>
