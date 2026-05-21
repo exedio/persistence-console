@@ -115,7 +115,7 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	@Override
 	long check(final ItemFunction<?> function)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console TypeColumn " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(
 					function.checkTypeColumnL());

@@ -87,7 +87,7 @@ final class CustomQueryConstraintCop extends TestCop<Query<?>>
 	@Override
 	long check(final Query<?> query)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console CustomQueryConstraint " + query))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(query.total());
 		}

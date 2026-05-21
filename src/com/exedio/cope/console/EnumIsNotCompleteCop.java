@@ -75,9 +75,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
   @Override
   long check(final EnumField<?> field) {
     try (
-      TransactionTry tx = app.model.startTransactionTry(
-        "Console EnumFieldRedundancy " + id
-      )
+      TransactionTry tx = startTransaction()
     ) {
       if (field.getType().newQuery(field.isNotNull()).total() == 0) return 0;
 

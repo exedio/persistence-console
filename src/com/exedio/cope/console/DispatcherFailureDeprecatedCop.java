@@ -67,7 +67,7 @@ final class DispatcherFailureDeprecatedCop extends FeatureTestCop<Dispatcher>
 	@Override
 	long check(final Dispatcher dispatcher)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console DispatcherFailureDeprecated " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(getQuery(dispatcher).total());
 		}

@@ -23,6 +23,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Objects.requireNonNull;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.TransactionTry;
 import com.exedio.cope.misc.TimeUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -517,4 +518,11 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	abstract String getID(I item);
 	abstract I forID(String id);
 	abstract long check(I item);
+
+	protected final TransactionTry startTransaction()
+	{
+		return app.model.startTransactionTry(
+				getClass().getName() + '#' + id
+		);
+	}
 }

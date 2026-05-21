@@ -107,7 +107,7 @@ final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
   long check(final NumberField<?> field) {
     final Type<?> type = field.getType();
     try (
-      var tx = app.model.startTransactionTry(getClass().getName() + '#' + id)
+      var tx = startTransaction()
     ) {
       if (type.newQuery(field.isNotNull()).total() == 0) return tx.commit(0);
 

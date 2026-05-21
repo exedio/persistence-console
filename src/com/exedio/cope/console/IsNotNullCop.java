@@ -85,7 +85,7 @@ final class IsNotNullCop extends FeatureTestCop<FunctionField<?>>
 	long check(final FunctionField<?> field)
 	{
 		final Type<?> type = field.getType();
-		try(TransactionTry tx = app.model.startTransactionTry("Console OptionalField " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			final boolean result =
 				(getQuery(field).total()==0) &&

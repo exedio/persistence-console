@@ -97,7 +97,7 @@ final class MediaTypeCop extends FeatureTestCop<Media>
 	{
 		final Query<?> query = getQuery(media);
 
-		try(TransactionTry tx = app.model.startTransactionTry("Console MediaType " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(
 					query.total());

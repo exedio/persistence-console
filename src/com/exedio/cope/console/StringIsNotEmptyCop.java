@@ -78,7 +78,7 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 	long check(final StringField field)
 	{
 		final Type<?> type = field.getType();
-		try(TransactionTry tx = app.model.startTransactionTry("Console EmptyStringField " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			final boolean result =
 				(getQuery(field).total()==0) &&

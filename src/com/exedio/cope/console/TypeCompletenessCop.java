@@ -139,7 +139,7 @@ final class TypeCompletenessCop extends TestCop<TypeCompletenessCop.Constraint<?
 
 		long check(final Model model)
 		{
-			try(TransactionTry tx = model.startTransactionTry("Console TypeCompleteness " + superType + ' ' + subType))
+			try(TransactionTry tx = model.startTransactionTry(TypeCompletenessCop.class.getName() + ' ' + superType + ' ' + subType))
 			{
 				return tx.commit(
 						superType.checkCompletenessL(subType));

@@ -83,9 +83,7 @@ final class TypeIsEmptyCop extends TestCop<Type<?>> {
   @Override
   long check(final Type<?> type) {
     try (
-      TransactionTry tx = app.model.startTransactionTry(
-        "Console TypeIsEmptyCop " + id
-      )
+      TransactionTry tx = startTransaction()
     ) {
       final boolean result = getQuery(type).total() == 0;
       tx.commit();
