@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Query;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.StringField;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
@@ -79,10 +81,21 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 		try(TransactionTry tx = app.model.startTransactionTry("Console EmptyStringField " + id))
 		{
 			final boolean result =
-				(type.newQuery(field.length().equal(0)).total()==0) &&
+				(getQuery(field).total()==0) &&
 				(type.newQuery(field.isNotNull()).total()>0);
 			tx.commit();
 			return result ? 1 : 0;
 		}
+	}
+
+	@Override
+	String getViolationSql(final StringField field)
+	{
+		return SchemaInfo.total(getQuery(field));
+	}
+
+	private static Query<?> getQuery(final StringField field)
+	{
+		return field.getType().newQuery(field.length().equal(0));
 	}
 }

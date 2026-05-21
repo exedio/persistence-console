@@ -20,6 +20,8 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Feature;
 import com.exedio.cope.FunctionField;
+import com.exedio.cope.Query;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.List;
@@ -82,10 +84,18 @@ final class IsAlwaysNullCop extends FeatureTestCop<FunctionField<?>> {
       )
     ) {
       final boolean result =
-        (type.newQuery(field.isNotNull()).total() == 0) &&
-        (type.newQuery().total() > 0);
+        (getQuery(field).total() == 0) && (type.newQuery().total() > 0);
       tx.commit();
       return result ? 1 : 0;
     }
+  }
+
+  @Override
+  String getViolationSql(final FunctionField<?> field) {
+    return SchemaInfo.total(getQuery(field));
+  }
+
+  private static Query<?> getQuery(final FunctionField<?> field) {
+    return field.getType().newQuery(field.isNotNull());
   }
 }

@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.Query;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
@@ -85,9 +87,18 @@ final class TypeIsEmptyCop extends TestCop<Type<?>> {
         "Console TypeIsEmptyCop " + id
       )
     ) {
-      final boolean result = type.newQuery().total() == 0;
+      final boolean result = getQuery(type).total() == 0;
       tx.commit();
       return result ? 1 : 0;
     }
+  }
+
+  @Override
+  String getViolationSql(final Type<?> type) {
+    return SchemaInfo.total(getQuery(type));
+  }
+
+  private static Query<?> getQuery(final Type<?> type) {
+    return type.newQuery();
   }
 }
