@@ -50,6 +50,7 @@ final class DatePrecisionCop extends FeatureTestCop<DateField> {
       "Fails on all date fields, where there is no item with non-zero milliseconds part of the value.",
       "Does not fail if all values are null.",
       "Lists all date fields, that allow milliseconds (getPrecision()==MILLI).",
+      "This check currently works on MySQL only.",
     };
   }
 
