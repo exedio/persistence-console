@@ -26,6 +26,8 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.LongField;
 import com.exedio.cope.NumberField;
+import com.exedio.cope.Query;
+import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.Type;
 import java.util.List;
 
@@ -96,16 +98,25 @@ final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
     ) {
       if (type.newQuery(field.isNotNull()).total() == 0) return tx.commit(0);
 
-      final Condition condition;
-      // TODO use NumberField#lessZero when available in cope
-      if (field instanceof final IntegerField f) condition = f.less(0);
-      else if (field instanceof final LongField f) condition = f.less(0l);
-      else if (field instanceof final DoubleField f) condition = f.less(0.0);
-      else throw new RuntimeException(field.toString());
-
-      final long total = type.newQuery(condition).total();
+      final long total = getQuery(field).total();
       tx.commit();
       return total == 0 ? 1 : 0;
     }
+  }
+
+  @Override
+  String getViolationSql(final NumberField<?> field) {
+    return SchemaInfo.total(getQuery(field));
+  }
+
+  private static Query<?> getQuery(final NumberField<?> field) {
+    final Condition condition;
+    // TODO use NumberField#lessZero when available in cope
+    if (field instanceof final IntegerField f) condition = f.less(0);
+    else if (field instanceof final LongField f) condition = f.less(0l);
+    else if (field instanceof final DoubleField f) condition = f.less(0.0);
+    else throw new RuntimeException(field.toString());
+
+    return field.getType().newQuery(condition);
   }
 }
