@@ -22,7 +22,6 @@ import com.exedio.cope.EnumField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import java.util.List;
 
 final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {

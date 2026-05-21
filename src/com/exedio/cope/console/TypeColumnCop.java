@@ -24,7 +24,6 @@ import com.exedio.cope.ItemField;
 import com.exedio.cope.ItemFunction;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.This;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;

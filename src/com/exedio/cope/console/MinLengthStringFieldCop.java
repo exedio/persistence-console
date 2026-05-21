@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Query;
 import com.exedio.cope.StringField;
-import com.exedio.cope.TransactionTry;
 import java.util.List;
 
 final class MinLengthStringFieldCop extends FeatureTestCop<StringField>

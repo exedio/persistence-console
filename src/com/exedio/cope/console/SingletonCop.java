@@ -22,7 +22,6 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Pattern;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import com.exedio.cope.pattern.EnumSingleton;
 import com.exedio.cope.pattern.Singleton;

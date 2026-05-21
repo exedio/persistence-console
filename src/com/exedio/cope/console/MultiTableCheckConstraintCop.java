@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.CheckConstraint;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;

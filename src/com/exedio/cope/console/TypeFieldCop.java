@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.reflect.TypeField;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
