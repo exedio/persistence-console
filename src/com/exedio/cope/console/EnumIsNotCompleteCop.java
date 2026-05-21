@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Query;
@@ -37,7 +39,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
     return new String[] {
       "Some enum facets do not appear in database.",
       "Fails on all enum fields, where there is not at least one item for each facet of the enum.",
-      "Does not fail if all values are null.",
+      NO_FAILURE_ON_EMPTY,
       "Lists all enum fields.",
     };
   }

@@ -18,6 +18,7 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
 import static java.lang.String.valueOf;
 
 import com.exedio.cope.Condition;
@@ -44,7 +45,7 @@ final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
     return new String[] {
       "Negative values are allowed, but do not appear in database.",
       "Fails on all number fields, where there is no item with a negative value.",
-      "Does not fail if all values are null or there are no values at all.",
+      NO_FAILURE_ON_EMPTY,
       "Lists all number fields, that allow negative values (getMinimum()<0).",
     };
   }
