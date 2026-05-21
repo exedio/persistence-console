@@ -171,7 +171,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 			final String[] touchOtherIds = request.getParameterValues(TOUCH_OTHER);
 			if(touchIds!=null || touchOtherIds!=null)
 			{
-				try(TransactionTry tx = model.startTransactionTry("Console Media touch"))
+				try(var tx = model.startTransactionTry("Console Media touch"))
 				{
 					final Date now = new Date();
 					touchInternal(model, now, media, touchIds);
@@ -239,7 +239,7 @@ final class MediaCop extends ConsoleCop<Void> implements Pageable
 				Media_Jspm.writeMediaURLPrefixes(out, this, args.mediaURLPrefix, prefixes);
 		}
 
-		try(TransactionTry tx = model.startTransactionTry("Console Media list"))
+		try(var tx = model.startTransactionTry("Console Media list"))
 		{
 			final Query<? extends Item> q = media.getType().newQuery(isNotNull());
 			if(contentTypeMismatch)
