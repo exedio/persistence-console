@@ -92,7 +92,7 @@ final class MultiTableCheckConstraintCop extends FeatureTestCop<CheckConstraint>
 	@Override
 	long check(final CheckConstraint constraint)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console CheckConstraint " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(
 					constraint.check());

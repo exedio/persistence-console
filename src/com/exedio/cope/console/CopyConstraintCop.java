@@ -82,7 +82,7 @@ final class CopyConstraintCop extends FeatureTestCop<CopyConstraint>
 	@Override
 	long check(final CopyConstraint constraint)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console CopyConstraint " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(
 					constraint.check());

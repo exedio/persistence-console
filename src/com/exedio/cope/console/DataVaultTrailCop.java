@@ -135,7 +135,7 @@ final class DataVaultTrailCop extends FeatureTestCop<DataField>
 	@Override
 	long check(final DataField field)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console DataVaultTrailCop " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(
 					field.checkVaultTrail());

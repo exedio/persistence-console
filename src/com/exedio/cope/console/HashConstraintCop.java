@@ -143,7 +143,7 @@ final class HashConstraintCop extends FeatureTestCop<HashConstraint>
 	@Override
 	long check(final HashConstraint constraint)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console HashConstraint " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(
 					getQuery(constraint).total());

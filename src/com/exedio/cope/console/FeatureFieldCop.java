@@ -108,7 +108,7 @@ final class FeatureFieldCop extends FeatureTestCop<FeatureField<?>>
 	long check(final FeatureField<?> field)
 	{
 		final Query<?> query = getQuery(field);
-		try(TransactionTry tx = app.model.startTransactionTry("Console FeatureField " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return tx.commit(
 					query.total());

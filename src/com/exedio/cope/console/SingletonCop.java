@@ -116,7 +116,7 @@ final class SingletonCop extends TestCop<SingletonCop.Line>
 	@Override
 	long check(final Line singleton)
 	{
-		try(TransactionTry tx = app.model.startTransactionTry("Console [Enum]Singleton " + id))
+		try(TransactionTry tx = startTransaction())
 		{
 			return Math.subtractExact(
 					singleton.expected(),
