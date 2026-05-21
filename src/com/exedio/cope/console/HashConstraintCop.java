@@ -26,7 +26,6 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Pattern;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.UnsupportedQueryException;
 import com.exedio.cope.pattern.HashConstraint;
 import com.exedio.cope.pattern.Media;
@@ -143,7 +142,7 @@ final class HashConstraintCop extends FeatureTestCop<HashConstraint>
 	@Override
 	long check(final HashConstraint constraint)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					getQuery(constraint).total());

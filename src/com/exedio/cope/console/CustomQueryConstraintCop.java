@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import java.util.List;
 
 final class CustomQueryConstraintCop extends TestCop<Query<?>>
@@ -87,7 +86,7 @@ final class CustomQueryConstraintCop extends TestCop<Query<?>>
 	@Override
 	long check(final Query<?> query)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(query.total());
 		}

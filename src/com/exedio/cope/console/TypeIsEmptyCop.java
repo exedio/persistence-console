@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,7 @@ final class TypeIsEmptyCop extends TestCop<Type<?>> {
 
   @Override
   long check(final Type<?> type) {
-    try (TransactionTry tx = startTransaction()) {
+    try (var tx = startTransaction()) {
       final boolean result = getQuery(type).total() == 0;
       tx.commit();
       return result ? 1 : 0;

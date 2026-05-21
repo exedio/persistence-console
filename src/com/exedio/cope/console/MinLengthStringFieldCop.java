@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Query;
 import com.exedio.cope.StringField;
-import com.exedio.cope.TransactionTry;
 import java.util.List;
 
 final class MinLengthStringFieldCop extends FeatureTestCop<StringField>
@@ -60,7 +59,7 @@ final class MinLengthStringFieldCop extends FeatureTestCop<StringField>
 	{
 		final Query<Integer> q = new Query<>(field.length().min());
 
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			final Integer result = q.searchSingleton();
 			tx.commit();

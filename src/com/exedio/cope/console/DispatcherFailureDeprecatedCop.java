@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.pattern.Dispatcher;
 import java.util.List;
 
@@ -67,7 +66,7 @@ final class DispatcherFailureDeprecatedCop extends FeatureTestCop<Dispatcher>
 	@Override
 	long check(final Dispatcher dispatcher)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(getQuery(dispatcher).total());
 		}

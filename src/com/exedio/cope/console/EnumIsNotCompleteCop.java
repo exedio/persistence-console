@@ -22,7 +22,6 @@ import com.exedio.cope.EnumField;
 import com.exedio.cope.Feature;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import java.util.List;
 
 final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
@@ -74,7 +73,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
 
   @Override
   long check(final EnumField<?> field) {
-    try (TransactionTry tx = startTransaction()) {
+    try (var tx = startTransaction()) {
       if (field.getType().newQuery(field.isNotNull()).total() == 0) return 0;
 
       return Math.subtractExact(

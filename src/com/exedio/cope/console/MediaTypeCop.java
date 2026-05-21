@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 import com.exedio.cope.Condition;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.pattern.Media;
 import java.util.List;
 
@@ -97,7 +96,7 @@ final class MediaTypeCop extends FeatureTestCop<Media>
 	{
 		final Query<?> query = getQuery(media);
 
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					query.total());

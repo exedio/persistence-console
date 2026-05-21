@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.CheckConstraint;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +91,7 @@ final class MultiTableCheckConstraintCop extends FeatureTestCop<CheckConstraint>
 	@Override
 	long check(final CheckConstraint constraint)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					constraint.check());

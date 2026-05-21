@@ -21,7 +21,6 @@ package com.exedio.cope.console;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.StringField;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.List;
 
@@ -78,7 +77,7 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 	long check(final StringField field)
 	{
 		final Type<?> type = field.getType();
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			final boolean result =
 				(getQuery(field).total()==0) &&

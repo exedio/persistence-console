@@ -24,7 +24,6 @@ import com.exedio.cope.ItemField;
 import com.exedio.cope.ItemFunction;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.This;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +114,7 @@ final class TypeColumnCop extends TestCop<ItemFunction<?>>
 	@Override
 	long check(final ItemFunction<?> function)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					function.checkTypeColumnL());

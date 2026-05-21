@@ -22,7 +22,6 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.FunctionField;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.List;
 
@@ -85,7 +84,7 @@ final class IsNotNullCop extends FeatureTestCop<FunctionField<?>>
 	long check(final FunctionField<?> field)
 	{
 		final Type<?> type = field.getType();
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			final boolean result =
 				(getQuery(field).total()==0) &&

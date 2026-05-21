@@ -20,7 +20,6 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.CopyConstraint;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.TransactionTry;
 import com.exedio.cope.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,7 @@ final class CopyConstraintCop extends FeatureTestCop<CopyConstraint>
 	@Override
 	long check(final CopyConstraint constraint)
 	{
-		try(TransactionTry tx = startTransaction())
+		try(var tx = startTransaction())
 		{
 			return tx.commit(
 					constraint.check());
