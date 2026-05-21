@@ -22,6 +22,7 @@ import static com.exedio.cope.SchemaInfo.getColumnName;
 import static com.exedio.cope.SchemaInfo.getTableName;
 import static com.exedio.cope.SchemaInfo.newConnection;
 import static com.exedio.cope.SchemaInfo.quoteName;
+import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
 import static java.util.Locale.ENGLISH;
 
 import com.exedio.cope.DateField;
@@ -48,7 +49,7 @@ final class DatePrecisionCop extends FeatureTestCop<DateField> {
     return new String[] {
       "Milliseconds are allowed, but do not appear in database.",
       "Fails on all date fields, where there is no item with non-zero milliseconds part of the value.",
-      "Does not fail if all values are null.",
+      NO_FAILURE_ON_EMPTY,
       "Lists all date fields, that allow milliseconds (getPrecision()==MILLI).",
       "This check currently works on MySQL only.",
     };

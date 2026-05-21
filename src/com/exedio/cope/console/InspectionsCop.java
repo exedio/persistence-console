@@ -56,4 +56,7 @@ final class InspectionsCop extends ConsoleCop<Void> {
       }
     );
   }
+
+  static final String NO_FAILURE_ON_EMPTY =
+    "Does not fail if all values are null or there are no values at all.";
 }

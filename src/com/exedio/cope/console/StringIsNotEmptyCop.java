@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.StringField;
@@ -40,7 +42,7 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 		{
 				"The empty string is allowed, but does not appear in database.",
 				"Fails on all string fields, where there is no item with value empty string (\"\").",
-				"Does not fail if all values are null.",
+				NO_FAILURE_ON_EMPTY,
 				"Lists all string fields, that allow the empty string (getMinimumLength()==0).",
 		};
 	}
