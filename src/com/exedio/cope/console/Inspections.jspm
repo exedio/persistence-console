@@ -35,6 +35,7 @@ final class Inspections_Jspm
 			final String[] help = target.getHeadingHelp();
 			%>
 			<li><a href="<%=target%>"><%=target.name%></a><%
+				Checklists_Jspm.write(out, target.getChecklistSummary());
 				if(help.length>=1) { %> - <%=help[0]%><% }
 				%></li><%
 		}
