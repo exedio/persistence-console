@@ -97,9 +97,9 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	}
 
 	@Override
-	ChecklistIcon getChecklistIcon()
+	ChecklistSummary getChecklistSummary()
 	{
-		return variant.getChecklistIcon(app.model);
+		return ChecklistSummary.forZeroErrors(variant.getChecklistIcon(app.model));
 	}
 
 	enum Variant

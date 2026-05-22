@@ -305,7 +305,7 @@ abstract class ConsoleCop<S> extends Cop
 		return false;
 	}
 
-	ChecklistIcon getChecklistIcon()
+	ChecklistSummary getChecklistSummary()
 	{
 		return null;
 	}

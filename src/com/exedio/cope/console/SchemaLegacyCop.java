@@ -82,9 +82,9 @@ final class SchemaLegacyCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 	}
 
 	@Override
-	ChecklistIcon getChecklistIcon()
+	ChecklistSummary getChecklistSummary()
 	{
-		return store().get();
+		return ChecklistSummary.forZeroErrors(store().get());
 	}
 
 	@Override boolean requiresUnsafeInlineStyle() { return true; }
