@@ -349,9 +349,10 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 
 		ChecklistIcon getChecklistIcon(final List<String> itemIDs)
 		{
+			boolean complete = true;
+
 			synchronized(infos)
 			{
-				boolean complete = true;
 				for (final String id: itemIDs)
 				{
 					final Info info = infos.get(id);
@@ -360,9 +361,10 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 					else if(info.isError())
 						return ChecklistIcon.error;
 				}
-				if(!complete)
-					return ChecklistIcon.unknown;
 			}
+			if(!complete)
+				return ChecklistIcon.unknown;
+
 			return ChecklistIcon.ok;
 		}
 
