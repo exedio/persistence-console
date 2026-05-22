@@ -58,10 +58,10 @@ final class Checklists_Jspm
 
 		for(final ConsoleCop<?> target : targets)
 		{
-			final ChecklistIcon icon = target.getChecklistIcon();
+			final ChecklistSummary summary = target.getChecklistSummary();
 			%>
 			<li><a href="<%=target%>"><%=target.name%></a><%
-				if(icon!=null) { %> <% icon.write(out); }
+				if(summary!=null) { %> <% summary.icon().write(out); if(summary.errors()>0) { %><%=summary.errors()%><% } }
 				%></li><%
 		}
 		%>

@@ -61,12 +61,12 @@ final class SavepointCop extends ConsoleCop<ArrayList<SavepointCop.Point>>
 	}
 
 	@Override
-	ChecklistIcon getChecklistIcon()
+	ChecklistSummary getChecklistSummary()
 	{
 		final ArrayList<Point> store = store();
 		synchronized(store)
 		{
-			return getChecklistIcon(store);
+			return ChecklistSummary.forZeroErrors(getChecklistIcon(store));
 		}
 	}
 

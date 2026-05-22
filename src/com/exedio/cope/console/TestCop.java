@@ -98,16 +98,16 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 	abstract TestCop<I> newTestArgs(TestArgs testArgs);
 
 	@Override
-	final ChecklistIcon getChecklistIcon()
+	final ChecklistSummary getChecklistSummary()
 	{
 		if(requiresConnect() && !app.model.isConnected())
-			return ChecklistIcon.unknown;
+			return ChecklistSummary.unknown;
 
 		final List<I> items = getItems();
 		if(items.isEmpty())
-			return ChecklistIcon.empty;
+			return ChecklistSummary.empty;
 
-		return store().getChecklistIcon(getItemIDs(items));
+		return store().getChecklistResult(getItemIDs(items));
 	}
 
 	@Override boolean requiresUnsafeInlineStyle() { return true; }
@@ -347,9 +347,10 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 			}
 		}
 
-		ChecklistIcon getChecklistIcon(final List<String> itemIDs)
+		ChecklistSummary getChecklistResult(final List<String> itemIDs)
 		{
 			boolean complete = true;
+			long errors = 0;
 
 			synchronized(infos)
 			{
@@ -359,13 +360,15 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 					if(info == null)
 						complete = false;
 					else if(info.isError())
-						return ChecklistIcon.error;
+						errors += info.failures();
 				}
 			}
 			if(!complete)
-				return ChecklistIcon.unknown;
+				return new ChecklistSummary(ChecklistIcon.unknown, errors);
+			if(errors>0)
+				return new ChecklistSummary(ChecklistIcon.error, errors);
 
-			return ChecklistIcon.ok;
+			return ChecklistSummary.ok;
 		}
 
 		Summary summarize(final List<String> summarizedItemsIds)

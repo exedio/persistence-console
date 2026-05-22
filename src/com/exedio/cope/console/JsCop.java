@@ -63,10 +63,10 @@ final class JsCop extends ConsoleCop<Void> {
   }
 
   @Override
-  ChecklistIcon getChecklistIcon() {
+  ChecklistSummary getChecklistSummary() {
     return checklistIcon != null
-      ? checklistIcon.apply(app.model)
-      : super.getChecklistIcon();
+      ? new ChecklistSummary(checklistIcon.apply(app.model), 0) // TODO ChecklistSummary errors
+      : super.getChecklistSummary();
   }
 
   @Override
