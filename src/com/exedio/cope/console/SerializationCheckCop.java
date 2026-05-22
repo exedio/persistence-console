@@ -53,10 +53,11 @@ final class SerializationCheckCop extends ConsoleCop<Void>
 	@Override
 	ChecklistSummary getChecklistSummary()
 	{
-		return new ChecklistSummary(
-				SerializationCheck.check(app.model).isEmpty()
-				? ChecklistIcon.ok
-				: ChecklistIcon.error, 0); // TODO ChecklistSummary errors
+		final int errors = SerializationCheck.check(app.model).size();
+		return
+				errors>0
+				? new ChecklistSummary(ChecklistIcon.error, errors)
+				: ChecklistSummary.ok;
 	}
 
 	@Override
