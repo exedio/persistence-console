@@ -67,7 +67,7 @@ final class Checklists_Jspm
 		</ul><%
 	}
 
-	private static void write(
+	static void write(
 			final Out out,
 			final ChecklistSummary summary)
 	{
