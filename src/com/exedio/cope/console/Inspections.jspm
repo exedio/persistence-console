@@ -30,7 +30,7 @@ final class Inspections_Jspm
 		%>
 		<ul><%
 
-		for(final ConsoleCop<?> target : targets)
+		for(final var target : targets)
 		{
 			final String[] help = target.getHeadingHelp();
 			%>
