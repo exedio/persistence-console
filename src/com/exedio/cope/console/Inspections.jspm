@@ -23,7 +23,7 @@ final class Inspections_Jspm
 {
 	static void writeBody(
 			final Out out,
-			final ConsoleCop<?>[] targets)
+			final TestCop<?>[] targets)
 	{
 		%>
 		<div>Finds possible issues in the model.</div><%
