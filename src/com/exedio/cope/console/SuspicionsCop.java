@@ -38,18 +38,22 @@ final class SuspicionsCop {
         "Checks DateFields and DayFields whether their default constants are equal or close to time of model initialization.",
         "This means, that you probably should have used defaultToNow instead."
       ),
-      SuspicionsCop::getChecklistIcon
+      SuspicionsCop::getChecklistSummary
     );
   }
 
   /**
    * Must be consistent to {@link SuspicionsApi#get(Model)}
    */
-  static ChecklistIcon getChecklistIcon(final Model model) {
+  static ChecklistSummary getChecklistSummary(final Model model) {
+    int errors = 0;
     for (final Type<?> t : model.getTypes())
       for (final Feature f : t.getDeclaredFeatures())
-        if (!f.getSuspicions().isEmpty()) return ChecklistIcon.error;
-    return ChecklistIcon.empty;
+        errors += f.getSuspicions().size();
+
+    return errors > 0
+      ? new ChecklistSummary(ChecklistIcon.error, errors)
+      : ChecklistSummary.empty;
   }
 
   private SuspicionsCop() {
