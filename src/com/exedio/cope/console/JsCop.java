@@ -29,7 +29,7 @@ final class JsCop extends ConsoleCop<Void> {
   private final String tab;
   private final String id;
   private final List<String> help;
-  private final Function<Model, ChecklistIcon> checklistIcon;
+  private final Function<Model, ChecklistSummary> checklistSummary;
 
   JsCop(
     final String tab,
@@ -37,19 +37,19 @@ final class JsCop extends ConsoleCop<Void> {
     final String name,
     final Args args,
     final List<String> help,
-    final Function<Model, ChecklistIcon> checklistIcon
+    final Function<Model, ChecklistSummary> checklistSummary
   ) {
     super(tab, name, args);
     this.tab = tab;
     this.id = id;
     //noinspection AssignmentOrReturnOfFieldWithMutableType
     this.help = help;
-    this.checklistIcon = checklistIcon;
+    this.checklistSummary = checklistSummary;
   }
 
   @Override
   protected JsCop newArgs(final Args args) {
-    return new JsCop(tab, id, name, args, help, checklistIcon);
+    return new JsCop(tab, id, name, args, help, checklistSummary);
   }
 
   @Override
@@ -64,8 +64,8 @@ final class JsCop extends ConsoleCop<Void> {
 
   @Override
   ChecklistSummary getChecklistSummary() {
-    return checklistIcon != null
-      ? new ChecklistSummary(checklistIcon.apply(app.model), 0) // TODO ChecklistSummary errors
+    return checklistSummary != null
+      ? checklistSummary.apply(app.model)
       : super.getChecklistSummary();
   }
 
