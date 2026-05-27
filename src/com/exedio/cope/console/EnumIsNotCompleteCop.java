@@ -95,6 +95,10 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
 
   @Override
   String getViolationSql(final EnumField<?> field) {
-    return SchemaInfo.total(getQuery(field)) + " -- inspection fails if result is less than " + expected(field);
+    return (
+      SchemaInfo.total(getQuery(field)) +
+      " -- inspection fails if result is less than " +
+      expected(field)
+    );
   }
 }
