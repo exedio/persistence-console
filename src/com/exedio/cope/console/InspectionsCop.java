@@ -18,6 +18,8 @@
 
 package com.exedio.cope.console;
 
+import com.exedio.cope.FunctionField;
+
 final class InspectionsCop extends ConsoleCop<Void> {
 
   static final String TAB = "inspections";
@@ -57,6 +59,16 @@ final class InspectionsCop extends ConsoleCop<Void> {
     );
   }
 
+  /**
+   * Must be used consistently to {@link #noFailureOnEmpty(FunctionField)}.
+   */
   static final String NO_FAILURE_ON_EMPTY =
     "Does not fail if all values are null or there are no values at all.";
+
+  /**
+   * Must be used consistently to {@link #NO_FAILURE_ON_EMPTY}.
+   */
+  static boolean noFailureOnEmpty(final FunctionField<?> field) {
+    return field.getType().newQuery(field.isNotNull()).total() > 0;
+  }
 }

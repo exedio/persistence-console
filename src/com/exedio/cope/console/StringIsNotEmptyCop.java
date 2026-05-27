@@ -19,11 +19,11 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+import static com.exedio.cope.console.InspectionsCop.noFailureOnEmpty;
 
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.StringField;
-import com.exedio.cope.Type;
 import java.util.List;
 
 final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
@@ -78,12 +78,11 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 	@Override
 	long check(final StringField field)
 	{
-		final Type<?> type = field.getType();
 		try(var tx = startTransaction())
 		{
 			final boolean result =
 				(getQuery(field).total()==0) &&
-				(type.newQuery(field.isNotNull()).total()>0);
+				noFailureOnEmpty(field);
 			tx.commit();
 			return result ? 1 : 0;
 		}

@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+import static com.exedio.cope.console.InspectionsCop.noFailureOnEmpty;
 import static java.lang.String.valueOf;
 
 import com.exedio.cope.Condition;
@@ -29,7 +30,6 @@ import com.exedio.cope.LongField;
 import com.exedio.cope.NumberField;
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
-import com.exedio.cope.Type;
 import java.util.List;
 
 final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
@@ -93,9 +93,8 @@ final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
 
   @Override
   long check(final NumberField<?> field) {
-    final Type<?> type = field.getType();
     try (var tx = startTransaction()) {
-      if (type.newQuery(field.isNotNull()).total() == 0) return tx.commit(0);
+      if (!noFailureOnEmpty(field)) return tx.commit(0);
 
       final long total = getQuery(field).total();
       tx.commit();
