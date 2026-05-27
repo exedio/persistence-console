@@ -131,7 +131,7 @@ final class SingletonCop extends TestCop<SingletonCop.Line>
 	@Override
 	String getViolationSql(final Line singleton)
 	{
-		return SchemaInfo.total(getQuery(singleton)) + " < " + singleton.expected();
+		return SchemaInfo.total(getQuery(singleton)) + " -- inspection fails if result is less than " + singleton.expected();
 	}
 
 	abstract static class Line
