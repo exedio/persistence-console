@@ -77,9 +77,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
   @Override
   long check(final EnumField<?> field) {
     try (var tx = startTransaction()) {
-      if (
-        !noFailureOnEmpty(field)
-      ) return tx.commit(0);
+      if (!noFailureOnEmpty(field)) return tx.commit(0);
 
       return Math.subtractExact(
         expected(field),
