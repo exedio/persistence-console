@@ -19,13 +19,11 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.ApiTest.writeJson;
-import static com.exedio.cope.console.SchemaGetApiTest.assertOrphaned;
 import static com.exedio.cope.console.SchemaMaintainApi.maintain;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.StringField;
@@ -33,18 +31,17 @@ import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.console.SchemaMaintainApi.Operation;
 import com.exedio.cope.console.SchemaMaintainApi.Request;
-import com.exedio.cope.util.Sources;
 import java.io.IOException;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(ConnectRule.class)
 public class SchemaMaintainApiTest {
 
   @Test
-  void testCreate() throws IOException, ApiTextException {
+  void testCreate(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connectWithoutCreate(MODEL);
     assertEquals(
       """
       {
@@ -55,7 +52,9 @@ public class SchemaMaintainApiTest {
   }
 
   @Test
-  void testTearDown() throws IOException, ApiTextException {
+  void testTearDown(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -66,8 +65,9 @@ public class SchemaMaintainApiTest {
   }
 
   @Test
-  void testDrop() throws IOException, ApiTextException {
-    MODEL.createSchema();
+  void testDrop(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -78,8 +78,9 @@ public class SchemaMaintainApiTest {
   }
 
   @Test
-  void testDelete() throws IOException, ApiTextException {
-    MODEL.createSchema();
+  void testDelete(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -91,7 +92,6 @@ public class SchemaMaintainApiTest {
 
   @Test
   void testNotConnectedException() {
-    MODEL.disconnect();
     assertFails(
       () -> request(Operation.create),
       ApiTextException.class,
@@ -102,7 +102,8 @@ public class SchemaMaintainApiTest {
   }
 
   @Test
-  void testSQLRuntimeException() {
+  void testSQLRuntimeException(final ConnectRule connect) {
+    connect.connectWithoutCreate(MODEL);
     assertFails(
       () -> request(Operation.delete),
       ApiTextException.class,
@@ -137,36 +138,5 @@ public class SchemaMaintainApiTest {
 
   static {
     MODEL.enableSerialization(SchemaMaintainApiTest.class, "MODEL");
-  }
-
-  @BeforeAll
-  static void connect() {
-    final java.util.Properties props = new java.util.Properties();
-    props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
-    props.setProperty("connection.username", "sa");
-    props.setProperty("connection.password", "");
-    MODEL.connect(
-      assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
-    );
-  }
-
-  @BeforeEach
-  void beforeEach() {
-    if (!MODEL.isConnected()) {
-      connect();
-    }
-  }
-
-  @AfterAll
-  static void disconnect() {
-    MODEL.disconnect();
-  }
-
-  @AfterEach
-  void tearDownSchema() {
-    if (MODEL.isConnected()) {
-      MODEL.rollbackIfNotCommitted();
-      MODEL.tearDownSchema();
-    }
   }
 }

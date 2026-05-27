@@ -21,12 +21,10 @@ package com.exedio.cope.console;
 import static com.exedio.cope.console.ApiTest.writeJson;
 import static com.exedio.cope.console.ParameterRequest.NULL;
 import static com.exedio.cope.console.SchemaAlterApi.alter;
-import static com.exedio.cope.console.SchemaGetApiTest.assertOrphaned;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.ItemField;
@@ -35,19 +33,18 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.UniqueConstraint;
-import com.exedio.cope.util.Sources;
 import java.io.IOException;
 import java.util.Map;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(ConnectRule.class)
 public class SchemaAlterApiTest {
 
   @Test
-  void testTableAdd() throws IOException, ApiTextException {
+  void testTableAdd(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -58,7 +55,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testTableDrop() throws IOException, ApiTextException {
+  void testTableDrop(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -69,7 +68,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testTableRename() throws IOException, ApiTextException {
+  void testTableRename(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -82,7 +83,8 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testTableAddNotExists() {
+  void testTableAddNotExists(final ConnectRule connect) {
+    connect.connect(MODEL);
     assertFails(
       () -> alter(MODEL, request("table", "", "MyTypex", "add")),
       ApiTextException.class,
@@ -91,7 +93,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnAdd() throws IOException, ApiTextException {
+  void testColumnAdd(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -102,7 +106,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnAddInitialEmpty() throws IOException, ApiTextException {
+  void testColumnAddInitialEmpty(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -113,7 +119,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnAddInitial() throws IOException, ApiTextException {
+  void testColumnAddInitial(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -124,7 +132,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnDrop() throws IOException, ApiTextException {
+  void testColumnDrop(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -135,7 +145,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnDropDefault() throws IOException, ApiTextException {
+  void testColumnDropDefault(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -148,7 +160,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnRename() throws IOException, ApiTextException {
+  void testColumnRename(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -161,7 +175,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnModify() throws IOException, ApiTextException {
+  void testColumnModify(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -172,7 +188,8 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnAddNotExistsTable() {
+  void testColumnAddNotExistsTable(final ConnectRule connect) {
+    connect.connect(MODEL);
     assertFails(
       () -> alter(MODEL, request("column", "MyTypex", "this", "add")),
       ApiTextException.class,
@@ -181,7 +198,8 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testColumnAddNotExistsColumn() {
+  void testColumnAddNotExistsColumn(final ConnectRule connect) {
+    connect.connect(MODEL);
     assertFails(
       () -> alter(MODEL, request("column", "MyType", "thisx", "add")),
       ApiTextException.class,
@@ -190,7 +208,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testConstraintAdd() throws IOException, ApiTextException {
+  void testConstraintAdd(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -203,7 +223,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testConstraintDrop() throws IOException, ApiTextException {
+  void testConstraintDrop(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -216,7 +238,8 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testConstraintAddNotExistsTable() {
+  void testConstraintAddNotExistsTable(final ConnectRule connect) {
+    connect.connect(MODEL);
     assertFails(
       () ->
         alter(MODEL, request("constraint", "MyTypex", "MyType_this_MN", "add")),
@@ -226,7 +249,8 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testConstraintAddNotExistsConstraint() {
+  void testConstraintAddNotExistsConstraint(final ConnectRule connect) {
+    connect.connect(MODEL);
     assertFails(
       () ->
         alter(MODEL, request("constraint", "MyType", "MyType_this_MNx", "add")),
@@ -236,7 +260,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testSequenceAdd() throws IOException, ApiTextException {
+  void testSequenceAdd(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -249,7 +275,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testSequenceDrop() throws IOException, ApiTextException {
+  void testSequenceDrop(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -262,7 +290,9 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testSequenceRename() throws IOException, ApiTextException {
+  void testSequenceRename(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -284,7 +314,8 @@ public class SchemaAlterApiTest {
   }
 
   @Test
-  void testSequenceAddNotExists() {
+  void testSequenceAddNotExists(final ConnectRule connect) {
+    connect.connect(MODEL);
     assertFails(
       () -> alter(MODEL, request("sequence", "", "MyType_myInt_Seqx", "add")),
       ApiTextException.class,
@@ -385,31 +416,4 @@ public class SchemaAlterApiTest {
   }
 
   private static final Model MODEL = new Model(MyType.TYPE, MyTarget.TYPE);
-
-  @BeforeAll
-  static void connect() {
-    final java.util.Properties props = new java.util.Properties();
-    props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
-    props.setProperty("connection.username", "sa");
-    props.setProperty("connection.password", "");
-    MODEL.connect(
-      assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
-    );
-  }
-
-  @AfterAll
-  static void disconnect() {
-    MODEL.disconnect();
-  }
-
-  @BeforeEach
-  void createSchema() {
-    MODEL.createSchema();
-  }
-
-  @AfterEach
-  void tearDownSchema() {
-    MODEL.rollbackIfNotCommitted();
-    MODEL.tearDownSchema();
-  }
 }

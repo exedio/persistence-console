@@ -18,35 +18,31 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.SchemaGetApiTest.assertOrphaned;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.SetValue;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
-import com.exedio.cope.util.Sources;
 import java.util.List;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(ConnectRule.class)
 public class EnumIsNotCompleteTest {
 
   @Test
-  void test() {
+  void test(final ConnectRule connect) {
     final var cop = new EnumIsNotCompleteCop(
       CopTest.args(MODEL),
       CopTest.testArgs
     );
 
     assertEquals(List.of(MyType.field), cop.getItems()); // Lists all enum fields.
+    connect.connect(MODEL);
     assertEquals(
       "SELECT COUNT(*) FROM ( SELECT DISTINCT \"field\" FROM \"MyType\" WHERE \"field\" IS NOT NULL ) -- inspection fails if result is less than 3",
       cop.getViolationSql(MyType.field)
@@ -113,31 +109,4 @@ public class EnumIsNotCompleteTest {
   }
 
   private static final Model MODEL = new Model(MyType.TYPE);
-
-  @BeforeAll
-  static void connect() {
-    final java.util.Properties props = new java.util.Properties();
-    props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
-    props.setProperty("connection.username", "sa");
-    props.setProperty("connection.password", "");
-    MODEL.connect(
-      assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
-    );
-  }
-
-  @AfterAll
-  static void disconnect() {
-    MODEL.disconnect();
-  }
-
-  @BeforeEach
-  void createSchema() {
-    MODEL.createSchema();
-  }
-
-  @AfterEach
-  void tearDownSchema() {
-    MODEL.rollbackIfNotCommitted();
-    MODEL.tearDownSchema();
-  }
 }

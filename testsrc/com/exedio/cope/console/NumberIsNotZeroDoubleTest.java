@@ -18,29 +18,24 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.SchemaGetApiTest.assertOrphaned;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.DoubleField;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.SetValue;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
-import com.exedio.cope.util.Sources;
 import java.util.List;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(ConnectRule.class)
 public class NumberIsNotZeroDoubleTest {
 
   @Test
-  void test() {
+  void test(final ConnectRule connect) {
     final var cop = new NumberIsNotZeroCop(
       CopTest.args(MODEL),
       CopTest.testArgs
@@ -50,6 +45,7 @@ public class NumberIsNotZeroDoubleTest {
       List.of(MyType.negativeAndZero, MyType.positiveAndZero),
       cop.getItems()
     ); // Lists all number fields, that allow negative values.
+    connect.connect(MODEL);
     assertEquals(
       "SELECT COUNT(*) FROM \"MyType\" WHERE \"negativeAndZero\"=0.0 -- inspection fails if result is zero",
       cop.getViolationSql(MyType.negativeAndZero)
@@ -118,31 +114,4 @@ public class NumberIsNotZeroDoubleTest {
   }
 
   private static final Model MODEL = new Model(MyType.TYPE);
-
-  @BeforeAll
-  static void connect() {
-    final java.util.Properties props = new java.util.Properties();
-    props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
-    props.setProperty("connection.username", "sa");
-    props.setProperty("connection.password", "");
-    MODEL.connect(
-      assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
-    );
-  }
-
-  @AfterAll
-  static void disconnect() {
-    MODEL.disconnect();
-  }
-
-  @BeforeEach
-  void createSchema() {
-    MODEL.createSchema();
-  }
-
-  @AfterEach
-  void tearDownSchema() {
-    MODEL.rollbackIfNotCommitted();
-    MODEL.tearDownSchema();
-  }
 }

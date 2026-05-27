@@ -23,7 +23,6 @@ import static com.exedio.cope.console.SchemaGetApi.get;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.IntegerField;
 import com.exedio.cope.Item;
 import com.exedio.cope.ItemField;
@@ -35,22 +34,20 @@ import com.exedio.cope.TypesBound;
 import com.exedio.cope.UniqueConstraint;
 import com.exedio.cope.console.SchemaGetApi.Column;
 import com.exedio.cope.console.SchemaGetApi.Table;
-import com.exedio.cope.util.Sources;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Set;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(ConnectRule.class)
 public class SchemaGetApiTest {
 
   @Test
-  void testOk() throws IOException, ApiTextException {
+  void testOk(final ConnectRule connect) throws IOException, ApiTextException {
+    connect.connect(MODEL);
     assertEquals(
       """
       {
@@ -167,7 +164,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testTableMissing() throws IOException, ApiTextException {
+  void testTableMissing(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema().getTable(SchemaInfo.getTableName(MyType.TYPE)).drop();
     assertEquals(
       """
@@ -258,7 +257,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testTableUnused() throws IOException, ApiTextException {
+  void testTableUnused(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .renameTo("MyTypeZ");
@@ -342,7 +343,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testColumnMissing() throws IOException, ApiTextException {
+  void testColumnMissing(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     final com.exedio.dsmf.Table table = MODEL.getSchema().getTable(
       SchemaInfo.getTableName(MyType.TYPE)
     );
@@ -371,8 +374,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testColumnUnexpectedType()
+  void testColumnUnexpectedType(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     final com.exedio.dsmf.Table table = MODEL.getSchema().getTable(
       SchemaInfo.getTableName(MyType.TYPE)
     );
@@ -412,7 +416,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testColumnUnused() throws IOException, SQLException, ApiTextException {
+  void testColumnUnused(final ConnectRule connect)
+    throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     execute(
       "ALTER TABLE \"MyType\" ADD COLUMN \"myStringZ\" VARCHAR(80) not null"
     );
@@ -428,8 +434,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testColumnUnusedOptional()
+  void testColumnUnusedOptional(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     execute("ALTER TABLE \"MyType\" ADD COLUMN \"myStringZ\" VARCHAR(80)");
     assertEquals(
       """
@@ -444,7 +451,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintMissing() throws IOException, ApiTextException {
+  void testConstraintMissing(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_this_MN")
@@ -462,8 +471,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintUnexpectedType()
+  void testConstraintUnexpectedType(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     final com.exedio.dsmf.Table table = MODEL.getSchema().getTable(
       SchemaInfo.getTableName(MyType.TYPE)
     );
@@ -486,8 +496,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintUnexpectedClause()
+  void testConstraintUnexpectedClause(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_this_MN")
@@ -508,8 +519,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintUnexpectedClauseWithRaw()
+  void testConstraintUnexpectedClauseWithRaw(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_this_MN")
@@ -535,8 +547,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintAdditionalError()
+  void testConstraintAdditionalError(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_myTarget_Fk")
@@ -560,8 +573,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintAdditionalErrorMultiple()
+  void testConstraintAdditionalErrorMultiple(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_myTarget_Fk")
@@ -585,8 +599,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintAdditionalErrorAndClause()
+  void testConstraintAdditionalErrorAndClause(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getTable(SchemaInfo.getTableName(MyType.TYPE))
       .getConstraint("MyType_myTarget_Fk")
@@ -611,8 +626,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testConstraintUnused()
+  void testConstraintUnused(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     execute(
       "ALTER TABLE \"MyType\" ADD CONSTRAINT \"MyType_this_MZ\" CHECK (\"this\">=44)"
     );
@@ -629,7 +645,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testSequenceMissing() throws IOException, ApiTextException {
+  void testSequenceMissing(final ConnectRule connect)
+    throws IOException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getSequence(SchemaInfo.getDefaultToNextSequenceName(MyType.myInt))
       .drop();
@@ -646,8 +664,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testSequenceUnexpectedType()
+  void testSequenceUnexpectedType(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getSequence(SchemaInfo.getDefaultToNextSequenceName(MyType.myInt))
       .drop();
@@ -667,8 +686,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testSequenceUnexpectedStart()
+  void testSequenceUnexpectedStart(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getSequence(SchemaInfo.getDefaultToNextSequenceName(MyType.myInt))
       .drop();
@@ -688,8 +708,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testSequenceUnexpectedTypeAndStart()
+  void testSequenceUnexpectedTypeAndStart(final ConnectRule connect)
     throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     MODEL.getSchema()
       .getSequence(SchemaInfo.getDefaultToNextSequenceName(MyType.myInt))
       .drop();
@@ -714,7 +735,9 @@ public class SchemaGetApiTest {
   }
 
   @Test
-  void testSequenceUnused() throws IOException, SQLException, ApiTextException {
+  void testSequenceUnused(final ConnectRule connect)
+    throws IOException, SQLException, ApiTextException {
+    connect.connect(MODEL);
     execute(
       "CREATE SEQUENCE \"MyType_myIntZ_Seq\" AS INTEGER START WITH 77 INCREMENT BY 1"
     );
@@ -781,38 +804,10 @@ public class SchemaGetApiTest {
 
   private static final Model MODEL = new Model(MyType.TYPE, MyTarget.TYPE);
 
-  @BeforeAll
-  static void connect() {
-    final java.util.Properties props = new java.util.Properties();
-    props.setProperty("connection.url", "jdbc:hsqldb:mem:copeconsoletest");
-    props.setProperty("connection.username", "sa");
-    props.setProperty("connection.password", "");
-    props.setProperty("schema.primaryKeyGenerator", "sequence");
-    MODEL.connect(
-      assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
-    );
-  }
-
-  static ConnectProperties assertOrphaned(final ConnectProperties properties) {
-    assertEquals(Set.of(), properties.getOrphanedKeys());
-    return properties;
-  }
-
-  @AfterAll
-  static void disconnect() {
-    MODEL.disconnect();
-  }
-
-  @BeforeEach
-  void createSchema() {
-    MODEL.createSchema();
-  }
-
   @AfterEach
   void tearDownSchema() throws SQLException {
     MODEL.rollbackIfNotCommitted();
     execute("DROP TABLE IF EXISTS \"MyTypeZ\"");
-    MODEL.tearDownSchema();
   }
 
   private static void execute(final String sql) throws SQLException {
