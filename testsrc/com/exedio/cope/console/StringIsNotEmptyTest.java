@@ -47,6 +47,10 @@ public class StringIsNotEmptyTest {
     );
 
     assertEquals(List.of(MyType.empty), cop.getItems()); // Lists all string fields, that allow the empty string.
+    assertEquals(
+      "SELECT COUNT(*) FROM \"MyType\" WHERE CHAR_LENGTH(\"empty\")=0 -- inspection fails if result is zero",
+      cop.getViolationSql(MyType.empty)
+    );
 
     assertEquals(0, cop.check(MyType.empty)); // Does not fail if there are no items at all (the table is empty).
 

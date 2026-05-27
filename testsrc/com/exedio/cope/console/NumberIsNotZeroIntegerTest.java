@@ -50,6 +50,10 @@ public class NumberIsNotZeroIntegerTest {
       List.of(MyType.negativeAndZero, MyType.positiveAndZero),
       cop.getItems()
     ); // Lists all number fields, that allow negative values.
+    assertEquals(
+      "SELECT COUNT(*) FROM \"MyType\" WHERE \"negativeAndZero\"=0 -- inspection fails if result is zero",
+      cop.getViolationSql(MyType.negativeAndZero)
+    );
 
     assertEquals(0, cop.check(MyType.negativeAndZero)); // Does not fail if there are no values at all.
 

@@ -42,6 +42,10 @@ public class TypeIsEmptyTest {
     final var cop = new TypeIsEmptyCop(CopTest.args(MODEL), CopTest.testArgs);
 
     assertEquals(List.of(MyType.TYPE), cop.getItems()); // Lists all non-abstract types.
+    assertEquals(
+      "SELECT COUNT(*) FROM \"MyType\" -- inspection fails if result is zero",
+      cop.getViolationSql(MyType.TYPE)
+    );
 
     assertEquals(1, cop.check(MyType.TYPE)); // There are no items of a type in database at all.
 
