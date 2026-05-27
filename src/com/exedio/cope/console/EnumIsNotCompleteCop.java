@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+import static com.exedio.cope.console.InspectionsCop.noFailureOnEmpty;
 
 import com.exedio.cope.EnumField;
 import com.exedio.cope.Feature;
@@ -77,7 +78,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
   long check(final EnumField<?> field) {
     try (var tx = startTransaction()) {
       if (
-        field.getType().newQuery(field.isNotNull()).total() == 0
+        !noFailureOnEmpty(field)
       ) return tx.commit(0);
 
       return Math.subtractExact(
