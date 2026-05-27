@@ -40,7 +40,7 @@ class AnItem extends Item
 
 	enum Letter
 	{
-		A, B, C, D
+		A, @CopeSchemaValue(15) B, C, @CopeSchemaValue(25) D
 	}
 
 	static final EnumField<Letter> letter = EnumField.create(Letter.class);

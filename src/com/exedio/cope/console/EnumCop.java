@@ -66,6 +66,6 @@ final class EnumCop extends ConsoleCop<Void>
 	@Override
 	void writeBody(final Out out)
 	{
-		Enum_Jspm.write(out, clazz);
+		Enum_Jspm.write(out, app.model, clazz);
 	}
 }
