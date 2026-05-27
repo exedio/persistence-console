@@ -18,7 +18,9 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.InspectionsCop.FAILS_WITH_ONE;
 import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+import static com.exedio.cope.console.InspectionsCop.failWithOne;
 import static com.exedio.cope.console.InspectionsCop.noFailureOnEmpty;
 import static java.lang.String.valueOf;
 
@@ -45,6 +47,7 @@ final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
     return new String[] {
       "Value zero is allowed, but does not appear in database.",
       "Fails on all number fields, where there is no item with a value of zero.",
+      FAILS_WITH_ONE,
       NO_FAILURE_ON_EMPTY,
       "Lists all number fields, that allow zero (getMinimum() <= 0 <= getMaximum()).",
     };
@@ -111,7 +114,7 @@ final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
 
       final long total = getQuery(field).total();
       tx.commit();
-      return total == 0 ? 1 : 0;
+      return failWithOne(total == 0);
     }
   }
 
