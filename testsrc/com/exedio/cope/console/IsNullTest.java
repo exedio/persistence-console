@@ -44,6 +44,10 @@ public class IsNullTest {
     final var cop = new IsNotNullCop(CopTest.args(MODEL), CopTest.testArgs);
 
     assertEquals(List.of(MyType.optional), cop.getItems()); // Lists all fields, that are optional.
+    assertEquals(
+      "SELECT COUNT(*) FROM \"MyType\" WHERE \"optional\" IS NULL -- inspection fails if result is zero",
+      cop.getViolationSql(MyType.optional)
+    );
 
     assertEquals(0, cop.check(MyType.optional)); // Does not fail if there are no items at all (the table is empty).
 
@@ -71,6 +75,10 @@ public class IsNullTest {
     final var cop = new IsAlwaysNullCop(CopTest.args(MODEL), CopTest.testArgs);
 
     assertEquals(List.of(MyType.optional), cop.getItems()); // Lists all fields, that are optional.
+    assertEquals(
+      "SELECT COUNT(*) FROM \"MyType\" WHERE \"optional\" IS NOT NULL -- inspection fails if result is zero",
+      cop.getViolationSql(MyType.optional)
+    );
 
     assertEquals(0, cop.check(MyType.optional)); // Does not fail if there are no items at all (the table is empty).
 

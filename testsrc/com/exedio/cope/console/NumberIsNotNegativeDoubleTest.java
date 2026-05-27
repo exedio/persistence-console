@@ -47,6 +47,10 @@ public class NumberIsNotNegativeDoubleTest {
     );
 
     assertEquals(List.of(MyType.negative), cop.getItems()); // Lists all number fields, that allow negative values.
+    assertEquals(
+      "SELECT COUNT(*) FROM \"MyType\" WHERE \"negative\"<0.0 -- inspection fails if result is zero",
+      cop.getViolationSql(MyType.negative)
+    );
 
     assertEquals(0, cop.check(MyType.negative)); // Does not fail if there are no values at all.
 
