@@ -31,8 +31,7 @@ final class Enums_Jspm
 	static void write(
 			final Out out,
 			final EnumsCop cop,
-			final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map,
-			final String changeHooks)
+			final LinkedHashMap<Class<? extends Enum<?>>, ArrayList<EnumField<?>>> map)
 	{
 		%>
 		<table>
@@ -64,7 +63,15 @@ final class Enums_Jspm
 		}
 	}
 			%>
-		</table>
+		</table><%
+	}
+
+	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
+	static void writeChangeHooks(
+			final Out out,
+			final String changeHooks)
+	{
+		%>
 		<h2>Change Hooks</h2>
 		<div>
 			Result of <a href="https://exedio.github.io/api/com/exedio/cope/Model.html#getChangeHookString()">Model.getChangeHookString()</a>:

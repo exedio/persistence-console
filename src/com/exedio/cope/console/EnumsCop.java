@@ -56,6 +56,6 @@ final class EnumsCop extends ConsoleCop<Void>
 					final Class<? extends Enum<?>> c = f.getValueClass();
 					map.computeIfAbsent(c, k -> new ArrayList<>()).add(f);
 				}
-		Enums_Jspm.write(out, this, map, app.model.getChangeHookString());
+		Enums_Jspm.write(out, this, map);
 	}
 }
