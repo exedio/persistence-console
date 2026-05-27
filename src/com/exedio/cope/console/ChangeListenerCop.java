@@ -113,6 +113,7 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 				pager.init(model.getChangeListeners()),
 				model.getChangeListenersInfo(),
 				dispatcherInfo(model));
+		Enums_Jspm.writeChangeHooks(out, model.getChangeHookString());
 	}
 
 	String toID(final ChangeListener listener)
