@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.InspectionsCop.FAILS_WITH_ONE;
+import static com.exedio.cope.console.InspectionsCop.SQL_FAILS_IF_ZERO;
 import static com.exedio.cope.console.InspectionsCop.failWithOne;
 
 import com.exedio.cope.Query;
@@ -94,7 +95,7 @@ final class TypeIsEmptyCop extends TestCop<Type<?>> {
 
   @Override
   String getViolationSql(final Type<?> type) {
-    return SchemaInfo.total(getQuery(type));
+    return SchemaInfo.total(getQuery(type)) + SQL_FAILS_IF_ZERO;
   }
 
   private static Query<?> getQuery(final Type<?> type) {

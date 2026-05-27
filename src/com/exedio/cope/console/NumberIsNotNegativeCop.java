@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.InspectionsCop.FAILS_WITH_ONE;
 import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+import static com.exedio.cope.console.InspectionsCop.SQL_FAILS_IF_ZERO;
 import static com.exedio.cope.console.InspectionsCop.failWithOne;
 import static com.exedio.cope.console.InspectionsCop.noFailureOnEmpty;
 import static java.lang.String.valueOf;
@@ -107,7 +108,7 @@ final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
 
   @Override
   String getViolationSql(final NumberField<?> field) {
-    return SchemaInfo.total(getQuery(field));
+    return SchemaInfo.total(getQuery(field)) + SQL_FAILS_IF_ZERO;
   }
 
   private static Query<?> getQuery(final NumberField<?> field) {
