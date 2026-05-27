@@ -21,27 +21,25 @@ package com.exedio.cope.console;
 import static com.exedio.cope.SetValue.map;
 import static com.exedio.cope.console.ApiTest.writeJson;
 import static com.exedio.cope.console.MetricsApi.get;
-import static com.exedio.cope.console.SchemaGetApiTest.assertOrphaned;
 import static com.exedio.cope.junit.CopeAssert.assertFails;
 import static io.micrometer.core.instrument.Metrics.globalRegistry;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
-import com.exedio.cope.ConnectProperties;
 import com.exedio.cope.Item;
 import com.exedio.cope.Model;
 import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.pattern.Media;
-import com.exedio.cope.util.Sources;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import java.io.IOException;
 import java.util.Map;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith(ConnectRule.class)
 public class MetricsApiTest {
 
   @Test
@@ -281,18 +279,8 @@ public class MetricsApiTest {
   private static final Model MODEL = new Model(MyType.TYPE);
 
   @BeforeAll
-  static void connect() {
-    final java.util.Properties props = new java.util.Properties();
-    props.setProperty(
-      "connection.url",
-      "jdbc:hsqldb:mem:copeconsoletestmetrics"
-    );
-    props.setProperty("connection.username", "sa");
-    props.setProperty("connection.password", "");
-    MODEL.connect(
-      assertOrphaned(ConnectProperties.create(Sources.view(props, "DESC")))
-    );
-    MODEL.createSchema();
+  static void connect(final ConnectRule connect) {
+    connect.connect(MODEL);
     final MyType item1, item2;
     try (var tx = MODEL.startTransactionTry(MetricsApiTest.class.getName())) {
       item1 = MyType.TYPE.newItem(map(MyType.myString, "myStringValue1"));
@@ -315,11 +303,6 @@ public class MetricsApiTest {
       ); // miss in unique cache
       tx.commit();
     }
-  }
-
-  @AfterAll
-  static void disconnect() {
-    MODEL.disconnect();
   }
 
   static {
