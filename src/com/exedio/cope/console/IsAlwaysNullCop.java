@@ -19,6 +19,7 @@
 package com.exedio.cope.console;
 
 import static com.exedio.cope.console.InspectionsCop.FAILS_WITH_ONE;
+import static com.exedio.cope.console.InspectionsCop.SQL_FAILS_IF_ZERO;
 import static com.exedio.cope.console.InspectionsCop.failWithOne;
 
 import com.exedio.cope.Feature;
@@ -91,7 +92,7 @@ final class IsAlwaysNullCop extends FeatureTestCop<FunctionField<?>> {
 
   @Override
   String getViolationSql(final FunctionField<?> field) {
-    return SchemaInfo.total(getQuery(field));
+    return SchemaInfo.total(getQuery(field)) + SQL_FAILS_IF_ZERO;
   }
 
   private static Query<?> getQuery(final FunctionField<?> field) {

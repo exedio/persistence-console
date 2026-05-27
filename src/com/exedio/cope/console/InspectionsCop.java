@@ -83,4 +83,7 @@ final class InspectionsCop extends ConsoleCop<Void> {
   static long failWithOne(final boolean result) {
     return result ? 1 : 0;
   }
+
+  static final String SQL_FAILS_IF_ZERO =
+    " -- inspection fails if result is zero";
 }

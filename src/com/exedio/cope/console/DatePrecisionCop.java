@@ -24,6 +24,7 @@ import static com.exedio.cope.SchemaInfo.newConnection;
 import static com.exedio.cope.SchemaInfo.quoteName;
 import static com.exedio.cope.console.InspectionsCop.FAILS_WITH_ONE;
 import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
+import static com.exedio.cope.console.InspectionsCop.SQL_FAILS_IF_ZERO;
 import static com.exedio.cope.console.InspectionsCop.failWithOne;
 import static com.exedio.cope.console.InspectionsCop.noFailureOnEmpty;
 import static java.util.Locale.ENGLISH;
@@ -111,7 +112,7 @@ final class DatePrecisionCop extends FeatureTestCop<DateField> {
   @Override
   String getViolationSql(final DateField field) {
     if (!field.getType().getModel().isConnected()) return "NOT YET CONNECTED";
-    return getSQL(field);
+    return getSQL(field) + SQL_FAILS_IF_ZERO;
   }
 
   private static String getSQL(final DateField field) {
