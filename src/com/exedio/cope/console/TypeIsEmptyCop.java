@@ -18,6 +18,9 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.InspectionsCop.FAILS_WITH_ONE;
+import static com.exedio.cope.console.InspectionsCop.failWithOne;
+
 import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import com.exedio.cope.Type;
@@ -36,6 +39,7 @@ final class TypeIsEmptyCop extends TestCop<Type<?>> {
   String[] getHeadingHelp() {
     return new String[] {
       "There are no items of a type in database at all.",
+      FAILS_WITH_ONE,
       "Lists all non-abstract types.",
     };
   }
@@ -84,7 +88,7 @@ final class TypeIsEmptyCop extends TestCop<Type<?>> {
     try (var tx = startTransaction()) {
       final boolean result = getQuery(type).total() == 0;
       tx.commit();
-      return result ? 1 : 0;
+      return failWithOne(result);
     }
   }
 

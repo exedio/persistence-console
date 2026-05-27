@@ -18,6 +18,9 @@
 
 package com.exedio.cope.console;
 
+import static com.exedio.cope.console.InspectionsCop.FAILS_WITH_ONE;
+import static com.exedio.cope.console.InspectionsCop.failWithOne;
+
 import com.exedio.cope.Feature;
 import com.exedio.cope.FunctionField;
 import com.exedio.cope.Query;
@@ -41,6 +44,7 @@ final class IsNotNullCop extends FeatureTestCop<FunctionField<?>>
 		{
 				"Null is allowed, but does not appear in database.",
 				"Fails on all fields, where there is no item with value null.",
+				FAILS_WITH_ONE,
 				"Does not fail if there are no items at all (the table is empty).",
 				"Lists all fields, that are optional.",
 		};
@@ -90,7 +94,7 @@ final class IsNotNullCop extends FeatureTestCop<FunctionField<?>>
 				(getQuery(field).total()==0) &&
 				(type.newQuery().total()>0);
 			tx.commit();
-			return result ? 1 : 0;
+			return failWithOne(result);
 		}
 	}
 

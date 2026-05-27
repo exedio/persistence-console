@@ -40,6 +40,7 @@ final class EnumIsNotCompleteCop extends FeatureTestCop<EnumField<?>> {
     return new String[] {
       "Some enum facets do not appear in database.",
       "Fails on all enum fields, where there is not at least one item for each facet of the enum.",
+      "Count of failures is the number of facets not found.",
       NO_FAILURE_ON_EMPTY,
       "Lists all enum fields.",
     };

@@ -71,4 +71,16 @@ final class InspectionsCop extends ConsoleCop<Void> {
   static boolean noFailureOnEmpty(final FunctionField<?> field) {
     return field.getType().newQuery(field.isNotNull()).total() > 0;
   }
+
+  /**
+   * Must be used consistently to {@link #failWithOne(boolean)}.
+   */
+  static final String FAILS_WITH_ONE = "Count of failures is always just one.";
+
+  /**
+   * Must be used consistently to {@link #FAILS_WITH_ONE}.
+   */
+  static long failWithOne(final boolean result) {
+    return result ? 1 : 0;
+  }
 }
