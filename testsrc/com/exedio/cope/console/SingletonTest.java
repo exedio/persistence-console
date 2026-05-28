@@ -18,7 +18,6 @@
 
 package com.exedio.cope.console;
 
-import static com.exedio.cope.console.SingletonCop.wrap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.exedio.cope.ActivationParameters;
@@ -39,27 +38,20 @@ public class SingletonTest {
   void test(final ConnectRule connect) {
     final var cop = new SingletonCop(CopTest.args(MODEL), CopTest.testArgs);
 
-    assertEquals(
-      List.of(MyType.singleton),
-      cop
-        .getItems()
-        .stream()
-        .map(l -> l.feature)
-        .toList()
-    );
+    assertEquals(List.of(MyType.singleton), cop.getItems());
     connect.connect(MODEL);
     assertEquals(
       "SELECT COUNT(*) FROM \"MyType\" -- inspection fails if result is less than 1",
-      cop.getViolationSql(wrap(MyType.singleton))
+      cop.getViolationSql(MyType.singleton)
     );
 
-    assertEquals(1, cop.check(wrap(MyType.singleton)));
+    assertEquals(1, cop.check(MyType.singleton));
 
     try (var tx = MODEL.startTransactionTry("the one item")) {
       new MyType();
       tx.commit();
     }
-    assertEquals(0, cop.check(wrap(MyType.singleton)));
+    assertEquals(0, cop.check(MyType.singleton));
   }
 
   private static final class MyType extends Item {
