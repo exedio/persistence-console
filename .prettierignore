@@ -28,6 +28,7 @@
 /src/com/exedio/cope/console/DataVaultTrailCop.java
 /src/com/exedio/cope/console/DispatcherFailureDeprecatedCop.java
 /src/com/exedio/cope/console/EnumCop.java
+/src/com/exedio/cope/console/EnumSingletonCop.java
 /src/com/exedio/cope/console/EnumsCop.java
 /src/com/exedio/cope/console/EnvironmentCop.java
 /src/com/exedio/cope/console/FeatureFieldCop.java
