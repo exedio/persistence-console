@@ -76,7 +76,7 @@ final class SingletonCop extends TestCop<SingletonCop.Line>
 		return result;
 	}
 
-	private static Line wrap(final Feature feature)
+	static Line wrap(final Feature feature) // TODO drop
 	{
 		if(feature instanceof final Singleton s)
 			return new SingleLine(s);
