@@ -391,7 +391,7 @@
                 {fix.name}
                 {fix.fix.method}
               {:then response}
-                {encodePatch(fix.joinable, patchesEncodedForJava, response.sql)}
+                {@render renderLinebreaks(encodePatch(fix.joinable, patchesEncodedForJava, response.sql))}
               {:catch error}
                 <span class="red">{error.message}</span>
               {/await}
@@ -631,6 +631,18 @@
       {/each}
     </ul>
   {/if}
+{/snippet}
+
+/** Most important purpose of this snippet is to inject markup (the <br />) into
+the DOM without sacrificing html escaping of everything else in the string */
+{#snippet renderLinebreaks(value: String)}
+  <!-- eslint-disable-next-line svelte/require-each-key -- patch lines are not unique -->
+  {#each value.split("\n") as line, index}
+    {#if index > 0}
+      <br />
+    {/if}
+    {line}
+  {/each}
 {/snippet}
 
 <style>
