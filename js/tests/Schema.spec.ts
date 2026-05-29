@@ -2158,7 +2158,14 @@ describe("Schema", () => {
     {
       const mock = mockFetch();
       mock.mockResolvedValueOnce(
-        responseSuccessAlter('CREATE TABLE "myTable1Name"'),
+        responseSuccessAlter(
+          'CREATE TABLE "myTable1Name"(' +
+            '"column" int not null,' +
+            '"column2" int not null,' +
+            'CONSTRAINT "myTable1Name_PK" PRIMARY KEY("column"),' +
+            'CONSTRAINT "myTable1Name_column_MN" CHECK("column">=0),' +
+            'CONSTRAINT "myTable1Name_column_MX" CHECK("column"<=55))',
+        ),
       );
       create().click();
       await flushPromises();

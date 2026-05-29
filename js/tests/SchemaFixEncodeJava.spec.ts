@@ -91,4 +91,50 @@ describe("EncodePatch", () => {
       ),
     ).toBe('ALTER TABLE "AnItem` ADD COLUMN `col1` int,');
   });
+
+  const createTable =
+    'CREATE TABLE "myTable1Name"(' +
+    '"column" int not null,' +
+    '"column2" int not null,' +
+    'CONSTRAINT "myTable1Name_PK" PRIMARY KEY("column"),' +
+    'CONSTRAINT "myTable1Name_column_MN" CHECK("column">=0),' +
+    'CONSTRAINT "myTable1Name_column_MX" CHECK("column"<=55))';
+  it("should split create table non-java", async () => {
+    expect(encodePatch(undefined, false, createTable)).toBe(
+      'CREATE TABLE "myTable1Name"(' +
+        '"column" int not null,' +
+        '"column2" int not null,' +
+        'CONSTRAINT "myTable1Name_PK" PRIMARY KEY("column"),' +
+        'CONSTRAINT "myTable1Name_column_MN" CHECK("column">=0),' +
+        'CONSTRAINT "myTable1Name_column_MX" CHECK("column"<=55));',
+    );
+  });
+  it("should split create table java", async () => {
+    expect(encodePatch(undefined, true, createTable)).toBe(
+      '"CREATE TABLE \\"myTable1Name\\"(' +
+        '\\"column\\" int not null,' +
+        '\\"column2\\" int not null,' +
+        'CONSTRAINT \\"myTable1Name_PK\\" PRIMARY KEY(\\"column\\"),' +
+        'CONSTRAINT \\"myTable1Name_column_MN\\" CHECK(\\"column\\">=0),' +
+        'CONSTRAINT \\"myTable1Name_column_MX\\" CHECK(\\"column\\"<=55))",',
+    );
+  });
+  it("should not split non-create table non-java", async () => {
+    expect(encodePatch(undefined, false, "X" + createTable)).toBe(
+      "X" + createTable + ";",
+    );
+  });
+  it("should not split non-create table java", async () => {
+    expect(encodePatch(undefined, true, "X" + createTable)).toBe(
+      '"X' + createTable.replaceAll('"', '\\"') + '",',
+    );
+  });
+  it("should not split create table joinable non-java", async () => {
+    expect(encodePatch("head", false, createTable)).toBe(createTable + ",");
+  });
+  it("should not split create table joinable java", async () => {
+    expect(encodePatch("head", true, createTable)).toBe(
+      '"' + createTable.replaceAll('"', '\\"') + '," +',
+    );
+  });
 });
