@@ -391,7 +391,13 @@
                 {fix.name}
                 {fix.fix.method}
               {:then response}
-                {@render renderLinebreaks(encodePatch(fix.joinable, patchesEncodedForJava, response.sql))}
+                {@render renderLinebreaks(
+                  encodePatch(
+                    fix.joinable,
+                    patchesEncodedForJava,
+                    response.sql,
+                  ),
+                )}
               {:catch error}
                 <span class="red">{error.message}</span>
               {/await}
