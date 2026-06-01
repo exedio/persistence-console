@@ -103,9 +103,9 @@ describe("EncodePatch", () => {
     expect(encodePatch(undefined, false, createTable)).toBe(
       'CREATE TABLE "myTable1Name"(' +
         '"column" int not null,' +
-        '"column2" int not null,' +
-        'CONSTRAINT "myTable1Name_PK" PRIMARY KEY("column"),' +
-        'CONSTRAINT "myTable1Name_column_MN" CHECK("column">=0),' +
+        '"column2" int not null,\n' +
+        'CONSTRAINT "myTable1Name_PK" PRIMARY KEY("column"),\n' +
+        'CONSTRAINT "myTable1Name_column_MN" CHECK("column">=0),\n' +
         'CONSTRAINT "myTable1Name_column_MX" CHECK("column"<=55));',
     );
   });
@@ -113,10 +113,10 @@ describe("EncodePatch", () => {
     expect(encodePatch(undefined, true, createTable)).toBe(
       '"CREATE TABLE \\"myTable1Name\\"(' +
         '\\"column\\" int not null,' +
-        '\\"column2\\" int not null,' +
-        'CONSTRAINT \\"myTable1Name_PK\\" PRIMARY KEY(\\"column\\"),' +
-        'CONSTRAINT \\"myTable1Name_column_MN\\" CHECK(\\"column\\">=0),' +
-        'CONSTRAINT \\"myTable1Name_column_MX\\" CHECK(\\"column\\"<=55))",',
+        '\\"column2\\" int not null," +\n' +
+        '"CONSTRAINT \\"myTable1Name_PK\\" PRIMARY KEY(\\"column\\")," +\n' +
+        '"CONSTRAINT \\"myTable1Name_column_MN\\" CHECK(\\"column\\">=0)," +\n' +
+        '"CONSTRAINT \\"myTable1Name_column_MX\\" CHECK(\\"column\\"<=55))",',
     );
   });
   it("should not split non-create table non-java", async () => {

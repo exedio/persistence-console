@@ -324,19 +324,20 @@ exports[`Schema > should join ALTER TABLE statements on the same table 2`] = `
 exports[`Schema > should patches encoded for java 1`] = `
 "<li class="svelte">
   "CREATE TABLE \\"myTable1Name\\"(\\"column\\" int not null,\\"column2\\" int not
-  null,CONSTRAINT \\"myTable1Name_PK\\" PRIMARY KEY(\\"column\\"),CONSTRAINT
-  \\"myTable1Name_column_MN\\" CHECK(\\"column\\"&gt;=0),CONSTRAINT
-  \\"myTable1Name_column_MX\\" CHECK(\\"column\\"&lt;=55))",
+  null," +<br />
+  "CONSTRAINT \\"myTable1Name_PK\\" PRIMARY KEY(\\"column\\")," +<br />
+  "CONSTRAINT \\"myTable1Name_column_MN\\" CHECK(\\"column\\"&gt;=0)," +<br />
+  "CONSTRAINT \\"myTable1Name_column_MX\\" CHECK(\\"column\\"&lt;=55))",
 </li>
 "
 `;
 
 exports[`Schema > should patches encoded for java 2`] = `
 "<li class="svelte">
-  CREATE TABLE "myTable1Name"("column" int not null,"column2" int not
-  null,CONSTRAINT "myTable1Name_PK" PRIMARY KEY("column"),CONSTRAINT
-  "myTable1Name_column_MN" CHECK("column"&gt;=0),CONSTRAINT
-  "myTable1Name_column_MX" CHECK("column"&lt;=55));
+  CREATE TABLE "myTable1Name"("column" int not null,"column2" int not null,<br />
+  CONSTRAINT "myTable1Name_PK" PRIMARY KEY("column"),<br />
+  CONSTRAINT "myTable1Name_column_MN" CHECK("column"&gt;=0),<br />
+  CONSTRAINT "myTable1Name_column_MX" CHECK("column"&lt;=55));
 </li>
 "
 `;

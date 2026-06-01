@@ -157,11 +157,16 @@ export function encodePatch(
   if (joinable === "middle" || joinable === "tail")
     s = s.replace(/^ALTER +TABLE *([`"])[0-9A-Za-z_]+\1 */, "");
 
+  const splitWithin = !joinable && s.startsWith("CREATE TABLE ");
+  if (splitWithin) {
+    s = s.replaceAll(",CONSTRAINT ", ",\nCONSTRAINT "); // TODO for columns as well
+  }
+
   // another part of the same statement comes after me
   const moreToCome = joinable === "head" || joinable === "middle";
   if (moreToCome) s = s + ",";
 
-  if (java) s = '"' + s.replaceAll('"', '\\"') + '"';
+  if (java) s = '"' + s.replaceAll('"', '\\"').replaceAll("\n", '" +\n"') + '"';
 
   if (moreToCome) {
     if (java) s = s + " +";
