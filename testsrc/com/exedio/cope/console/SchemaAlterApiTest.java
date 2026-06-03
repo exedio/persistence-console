@@ -127,7 +127,9 @@ public class SchemaAlterApiTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"this\\" INTEGER not null DEFAULT 777'888'999"
       }""",
-      writeJson(alter(MODEL, request("column", "MyType", "this", "add", "777'888'999")))
+      writeJson(
+        alter(MODEL, request("column", "MyType", "this", "add", "777'888'999"))
+      )
     );
   }
 
@@ -140,7 +142,12 @@ public class SchemaAlterApiTest {
       {
         "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"myString\\" VARCHAR(80) not null DEFAULT 777'888'999"
       }""",
-      writeJson(alter(MODEL, request("column", "MyType", "myString", "add", "777'888'999")))
+      writeJson(
+        alter(
+          MODEL,
+          request("column", "MyType", "myString", "add", "777'888'999")
+        )
+      )
     );
   }
 
