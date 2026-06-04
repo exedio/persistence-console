@@ -1,0 +1,7 @@
+{
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true
+}
