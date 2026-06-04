@@ -140,7 +140,7 @@ public class SchemaAlterApiTest {
     assertEquals(
       """
       {
-        "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"myString\\" VARCHAR(80) not null DEFAULT 777'888'999"
+        "sql" : "ALTER TABLE \\"MyType\\" ADD COLUMN \\"myString\\" VARCHAR(80) not null DEFAULT '777''888''999'"
       }""",
       writeJson(
         alter(

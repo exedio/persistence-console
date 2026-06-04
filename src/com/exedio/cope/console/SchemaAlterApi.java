@@ -66,10 +66,18 @@ final class SchemaAlterApi {
         yield switch (method) {
           case ADD -> {
             final Response response = apply(node::create);
-            final String value = request.getParameter(VALUE);
+            String value = request.getParameter(VALUE);
             if (value == null || value.isEmpty()) yield response;
 
             // TODO do this in dsmf
+            final String type = node.getRequiredType();
+            if (
+              // MUST correspond to com.exedio.cope.Dialect#getStringType
+              type.contains("VARCHAR") ||
+              type.contains("varchar") ||
+              type.contains("character varying") ||
+              type.contains("text")
+            ) value = '\'' + value.replaceAll("'", "''") + '\'';
             // https://www.postgresql.org/docs/current/sql-altertable.html
             yield new Response(response.sql + " DEFAULT " + value);
           }
