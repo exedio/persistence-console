@@ -55,6 +55,8 @@ final class Console_Jspm
 		<link rel="icon" href="<%=ConsoleServlet.shortcutIcon%>" type="image/png">
 		<link rel="preload" as="font" crossorigin href="<%= ConsoleServlet.regularFont %>">
 		<link rel="preload" as="font" crossorigin href="<%= ConsoleServlet.italicFont %>">
+		<link rel="preload" as="font" crossorigin href="<%= ConsoleServlet.monospaceFont %>">
+		<link rel="preload" as="font" crossorigin href="<%= ConsoleServlet.monospaceItalicFont %>">
 		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheetFont%>">
 		<link rel="STYLESHEET" type="text/css" href="<%=ConsoleServlet.stylesheet%>"><%
 		if(cop.hasJsComponent())

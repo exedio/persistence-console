@@ -353,7 +353,7 @@
       ><br />
       {#if patchesLog.length > 0}
         <button class="run" onclick={() => flushPatchesLog()}>flush</button>
-        <ul>
+        <ul class="monospace">
           <!-- eslint-disable-next-line svelte/require-each-key -- patches are not unique -->
           {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
@@ -383,7 +383,7 @@
       {#if patches.length > 0}
         <button class="run" onclick={() => copyPatches()}>copy</button>
         <button class="run" onclick={() => runPatches()}>RUN</button>
-        <ul>
+        <ul class="monospace">
           {#each patches as { fix, url, promise } (url)}
             <li class={{ more: hasMore(fix) }}>
               {#await promise}
@@ -673,7 +673,7 @@ the DOM without sacrificing html escaping of everything else in the string -->
     max-width: 50vw;
     overflow-y: scroll;
     ul {
-      font-size: 60%;
+      font-size: 75%;
       padding-left: 1.5em;
       li {
         list-style-type: disc;
