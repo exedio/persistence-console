@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Inter";
+  src: url("InterVariable.woff2") format("woff2-variations");
+  src: url("InterVariable.woff2") format("woff2") tech("variations");
+  font-weight: 100 900;
+  font-optical-sizing: auto;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("InterVariable-Italic.woff2") format("woff2-variations");
+  src: url("InterVariable-Italic.woff2") format("woff2") tech("variations");
+  font-style: italic;
+  font-weight: 100 900;
+  font-optical-sizing: auto;
+  font-display: swap;
+}
+
+* {
+  font-family: Inter, sans-serif;
+  font-feature-settings: "tnum", "zero", "ss01", "ss02";
+}
