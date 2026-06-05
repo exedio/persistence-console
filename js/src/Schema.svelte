@@ -639,8 +639,8 @@
   {/if}
 {/snippet}
 
-/** Most important purpose of this snippet is to inject markup (the <br />) into
-the DOM without sacrificing html escaping of everything else in the string */
+<!-- Most important purpose of this snippet is to inject markup (the <br />) into
+the DOM without sacrificing html escaping of everything else in the string -->
 {#snippet renderLinebreaks(value: String)}
   <!-- eslint-disable-next-line svelte/require-each-key -- patch lines are not unique -->
   {#each value.split("\n") as line, index}
