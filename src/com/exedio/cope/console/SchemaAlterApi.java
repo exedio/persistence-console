@@ -73,9 +73,14 @@ final class SchemaAlterApi {
             final String type = node.getRequiredType();
             if (
               // MUST correspond to com.exedio.cope.Dialect#getStringType
+              // https://hsqldb.org/doc/guide/sqlgeneral-chapt.html#sgc_char_types
               type.contains("VARCHAR") ||
+              // https://dev.mysql.com/doc/refman/9.7/en/char.html
               type.contains("varchar") ||
+              // https://www.postgresql.org/docs/18/datatype-character.html
               type.contains("character varying") ||
+              // https://dev.mysql.com/doc/refman/9.7/en/blob.html
+              // https://www.postgresql.org/docs/18/datatype-character.html
               type.contains("text")
             ) value = '\'' + value.replaceAll("'", "''") + '\'';
             // https://www.postgresql.org/docs/current/sql-altertable.html
