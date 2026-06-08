@@ -37,6 +37,7 @@
   import { useWithStoreSingle } from "@/utils";
   import SchemaMaintain from "@/SchemaMaintain.svelte";
   import CopyButton from "@/CopyButton.svelte";
+  import SqlStatement from "@/SqlStatement.svelte";
 
   const schemaStore = new Map<string, Schema>();
 
@@ -353,7 +354,7 @@
           <!-- eslint-disable-next-line svelte/require-each-key -- patches are not unique -->
           {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
-              {encodePatch(undefined, "Raw", sql)}
+              <SqlStatement statement={encodePatch(undefined, "Raw", sql)} />
               {#if failure}
                 <br />
               {/if}
@@ -635,7 +636,7 @@ the DOM without sacrificing html escaping of everything else in the string -->
     {#if index > 0}
       <br />
     {/if}
-    {line}
+    <SqlStatement statement={line} />
   {/each}
 {/snippet}
 
