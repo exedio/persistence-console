@@ -36,6 +36,7 @@
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
   import SchemaMaintain from "@/SchemaMaintain.svelte";
+  import CopyButton from "@/CopyButton.svelte";
 
   const schemaStore = new Map<string, Schema>();
 
@@ -182,18 +183,15 @@
     return message.substring(prefix.length);
   }
 
-  async function copyPatches(): Promise<void> {
+  async function copyPatches(mode: PatchEncoding): Promise<void> {
     return Promise.all(patches.map((patch) => patch.promise)).then(
       (responses) => {
         navigator.clipboard.writeText(
           responses
             .map(
               (response, index) =>
-                encodePatch(
-                  patches[index].fix.joinable,
-                  patchEncoding,
-                  response.sql,
-                ) + "\n",
+                encodePatch(patches[index].fix.joinable, mode, response.sql) +
+                "\n",
             )
             .join(""),
         );
@@ -387,7 +385,7 @@
         <hr />
       {/if}
       {#if patches.length > 0}
-        <button class="run" onclick={() => copyPatches()}>copy</button>
+        <CopyButton copyHandler={copyPatches} />
         <button class="run" onclick={() => runPatches()}>RUN</button>
         <ul class="monospace">
           {#each patches as { fix, url, promise } (url)}
