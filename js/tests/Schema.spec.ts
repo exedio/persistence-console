@@ -9,7 +9,7 @@ import {
   responseFailure,
   responseSuccess,
 } from "@t/mockApi";
-import { flushPromises, formatHtml } from "@t/utils";
+import { flushPromises, formatHtml, formatOuterHtml } from "@t/utils";
 import { expect } from "vitest";
 import type {
   SchemaAlterResponse,
@@ -2196,6 +2196,64 @@ describe("Schema", () => {
     encode().click();
     await flushPromises();
     expect(await formatHtml(sql())).toMatchSnapshot();
+  });
+
+  it("should toggle syntax highlighting", async () => {
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccess({
+          tables: [
+            {
+              name: "myTableName",
+              columns: [
+                { name: "myColumn1Name", type: "string", existence: "missing" },
+                { name: "myColumn2Name", type: "string", existence: "missing" },
+                { name: "myColumn3Name", type: "string", existence: "missing" },
+              ],
+            },
+          ],
+        } satisfies ApiSchema),
+      );
+      await mountComponent();
+      expect(mock).toHaveBeenCalledTimes(1);
+    }
+    const add1 = () => checkbox("add", 0);
+    const add2 = () => checkbox("add", 1);
+    const add3 = () => checkbox("add", 2);
+    const join = () =>
+      checkbox("join ALTER TABLE statements on the same table", 0);
+    const syntaxHighlight = () => checkbox("syntax highlighting", 0);
+
+    await clickBullet(1);
+    {
+      const mock = mockFetch();
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          'ALTER TABLE "myTableName" ADD COLUMN "myColumn1Name" string',
+        ),
+      );
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          'ALTER TABLE "myTableName" ADD COLUMN "myColumn2Name" string',
+        ),
+      );
+      mock.mockResolvedValueOnce(
+        responseSuccessAlter(
+          'ALTER TABLE "myTableName" ADD COLUMN "myColumn3Name" string',
+        ),
+      );
+      add1().click();
+      add2().click();
+      add3().click();
+      await flushPromises();
+      join().click();
+      expect(mock).toHaveBeenCalledTimes(3);
+    }
+    expect(await formatOuterHtml(sql())).toMatchSnapshot();
+    syntaxHighlight().click();
+    await flushPromises();
+    expect(await formatOuterHtml(sql())).toMatchSnapshot();
   });
 
   it("should run patches", async () => {

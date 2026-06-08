@@ -1,5 +1,5 @@
 <script lang="ts">
-  import highlighter, { type Segment } from "sql-highlight";
+  import highlighter from "sql-highlight";
   const {
     statement,
     highlight,
