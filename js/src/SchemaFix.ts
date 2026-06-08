@@ -148,6 +148,9 @@ function orderIndex(cb: FixedFixable): number {
   throw new Error(JSON.stringify(cb));
 }
 
+export const patchEncodings = ["Java", "SQL Script"] as const;
+export type PatchEncoding = (typeof patchEncodings)[number];
+
 export function encodePatch(
   joinable: Joinable | undefined,
   java: boolean,
