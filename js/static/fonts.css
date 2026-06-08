@@ -35,9 +35,20 @@
   font-display: swap;
 }
 
+:root {
+  --default-font-settings: "ss01", "ss04", "cv12", "cv13";
+  --font-settings: var(--default-font-settings);
+}
+
 * {
   font-family: Inter, sans-serif;
-  font-feature-settings: "tnum", "zero", "ss01", "ss02";
+  font-feature-settings: var(--font-settings);
+}
+
+table,
+table *,
+.number {
+  --font-settings: var(--default-font-settings), "tnum", "zero";
 }
 
 pre,
