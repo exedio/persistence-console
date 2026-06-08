@@ -43,5 +43,8 @@
   "resolutions": {
     "svelte": "5.55.7"
   },
-  "packageManager": "yarn@4.16.0"
+  "packageManager": "yarn@4.16.0",
+  "dependencies": {
+    "sql-highlight": "^6.1.0"
+  }
 }
