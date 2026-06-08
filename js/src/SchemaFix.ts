@@ -153,7 +153,7 @@ export type PatchEncoding = (typeof patchEncodings)[number];
 
 export function encodePatch(
   joinable: Joinable | undefined,
-  java: boolean,
+  encoding: PatchEncoding,
   s: string,
 ): string {
   // another part of the same statement came before me
@@ -169,12 +169,13 @@ export function encodePatch(
   const moreToCome = joinable === "head" || joinable === "middle";
   if (moreToCome) s = s + ",";
 
-  if (java) s = '"' + s.replaceAll('"', '\\"').replaceAll("\n", '" +\n"') + '"';
+  if (encoding === "Java")
+    s = '"' + s.replaceAll('"', '\\"').replaceAll("\n", '" +\n"') + '"';
 
   if (moreToCome) {
-    if (java) s = s + " +";
+    if (encoding === "Java") s = s + " +";
   } else {
-    s = s + (java ? "," : ";");
+    s = s + (encoding === "Java" ? "," : ";");
   }
 
   return s;

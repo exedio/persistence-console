@@ -32,6 +32,7 @@
     workOnFixes,
     type FixedFixable,
     setFix,
+    type PatchEncoding,
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
   import SchemaMaintain from "@/SchemaMaintain.svelte";
@@ -86,6 +87,9 @@
   };
 
   let patchesEncodedForJava = $state(true);
+  const patchEncoding: PatchEncoding = $derived(
+    patchesEncodedForJava ? "Java" : "SQL Script",
+  );
   let patchesAlterTablesJoined = $state(true);
 
   const patches: Patch[] = $derived(
@@ -187,7 +191,7 @@
               (response, index) =>
                 encodePatch(
                   patches[index].fix.joinable,
-                  patchesEncodedForJava,
+                  patchEncoding,
                   response.sql,
                 ) + "\n",
             )
@@ -359,7 +363,7 @@
           <!-- eslint-disable-next-line svelte/require-each-key -- patches are not unique -->
           {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
-              {encodePatch(undefined, patchesEncodedForJava, sql)}
+              {encodePatch(undefined, patchEncoding, sql)}
               {#if failure}
                 <br />
               {/if}
@@ -394,11 +398,7 @@
                 {fix.fix.method}
               {:then response}
                 {@render renderLinebreaks(
-                  encodePatch(
-                    fix.joinable,
-                    patchesEncodedForJava,
-                    response.sql,
-                  ),
+                  encodePatch(fix.joinable, patchEncoding, response.sql),
                 )}
               {:catch error}
                 <span class="red">{error.message}</span>
