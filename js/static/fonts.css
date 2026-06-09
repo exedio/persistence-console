@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "Inter";
+  src: url("InterVariable.woff2") format("woff2-variations");
+  src: url("InterVariable.woff2") format("woff2") tech("variations");
+  font-weight: 100 900;
+  font-optical-sizing: auto;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("InterVariable-Italic.woff2") format("woff2-variations");
+  src: url("InterVariable-Italic.woff2") format("woff2") tech("variations");
+  font-style: italic;
+  font-weight: 100 900;
+  font-optical-sizing: auto;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("JetBrainsMono-Variable.woff2") format("woff2-variations");
+  src: url("JetBrainsMono-Variable.woff2") format("woff2") tech("variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("JetBrainsMono-Variable-Italic.woff2") format("woff2-variations");
+  src: url("JetBrainsMono-Variable-Italic.woff2") format("woff2")
+    tech("variations");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --default-font-settings: "ss01", "ss04", "cv12", "cv13";
+  --font-settings: var(--default-font-settings);
+}
+
+* {
+  font-family: Inter, sans-serif;
+  font-feature-settings: var(--font-settings);
+}
+
+table,
+table *,
+.number {
+  --font-settings: var(--default-font-settings), "tnum", "zero";
+}
+
+pre,
+code,
+.monospace,
+.monospace * {
+  font-family: "JetBrains Mono", monospace;
+  font-feature-settings: normal;
+  font-variant-ligatures: none;
+}

@@ -127,6 +127,11 @@ public class ConsoleServlet extends CopsServlet
 	private final SecureRandom nonceSource = new SecureRandom();
 
 	static final Resource stylesheet = new Resource("console.css");
+	static final Resource stylesheetFont = new Resource("fonts.css");
+	static final Resource regularFont = new Resource("InterVariable.woff2", "font/woff2");
+	static final Resource italicFont = new Resource("InterVariable-Italic.woff2", "font/woff2");
+	static final Resource monospaceFont = new Resource("JetBrainsMono-Variable.woff2", "font/woff2");
+	static final Resource monospaceItalicFont = new Resource("JetBrainsMono-Variable-Italic.woff2", "font/woff2");
 	static final Resource stylesheetBody = new Resource("console-body.css");
 	static final Resource propertiesScript = new Resource("properties.js");
 	static final Resource schemaScript = new Resource("schema.js");
@@ -270,6 +275,7 @@ public class ConsoleServlet extends CopsServlet
 					"connect-src 'self'; " +
 					"frame-ancestors 'none'; " +
 					"block-all-mixed-content; " +
+					"font-src 'self';" +
 					"base-uri 'none'");
 
 			// Do not leak information to external servers, not even the (typically private) hostname.

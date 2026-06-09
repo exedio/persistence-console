@@ -118,6 +118,11 @@
 		</compile>
 		<copy file="dist/assets/app.js"  todir="build/classes/src/com/exedio/cope/console" />
 		<copy file="dist/assets/app.css" todir="build/classes/src/com/exedio/cope/console" />
+		<copy file="js/static/fonts.css" todir="build/classes/src/com/exedio/cope/console" />
+		<copy file="js/static/InterVariable.woff2" todir="build/classes/src/com/exedio/cope/console" />
+		<copy file="js/static/InterVariable-Italic.woff2" todir="build/classes/src/com/exedio/cope/console" />
+		<copy file="js/static/JetBrainsMono-Variable.woff2" todir="build/classes/src/com/exedio/cope/console" />
+		<copy file="js/static/JetBrainsMono-Variable-Italic.woff2" todir="build/classes/src/com/exedio/cope/console" />
 	</target>
 
 	<target name="jar" depends="src.compile">
