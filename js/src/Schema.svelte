@@ -660,17 +660,20 @@ the DOM without sacrificing html escaping of everything else in the string -->
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    width: 100vw;
+    width: 100%;
     height: 80vh;
   }
 
   div.tree {
     overflow-y: scroll;
+    width: max-content;
+    max-width: 50%;
   }
 
   div.sql {
-    min-width: 40vw;
-    max-width: 50vw;
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
     overflow-y: scroll;
     ul {
       font-size: 75%;
