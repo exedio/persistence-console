@@ -656,6 +656,15 @@ the DOM without sacrificing html escaping of everything else in the string -->
     overflow-y: scroll;
     width: max-content;
     max-width: 50%;
+
+    --neutral-background-color: #eeeeee;
+    --error-color: #ce2d4f;
+    --error-color-light: hsl(from var(--error-color) h 50% calc(l * 1.2));
+    --error-color-dark: hsl(from var(--error-color) h 50% calc(l * 0.4));
+    --warning-color: #faa916;
+    --warning-color-light: hsl(from var(--warning-color) h 50% calc(l * 1.2));
+    --warning-color-dark: hsl(from var(--warning-color) h 50% calc(l * 0.4));
+    --contrast-color: #4b77d1;
   }
 
   div.sql {
@@ -690,34 +699,35 @@ the DOM without sacrificing html escaping of everything else in the string -->
   }
 
   label.bullet {
-    border: 1px black solid;
-    border-radius: 2px;
+    border-radius: 3px;
     padding: 0;
     display: inline-block;
     width: 1.1em; /* corresponds to li.node text-indent */
     vertical-align: 20%;
     text-align: center;
-    font-size: 60%;
-    background: #ffffff;
+    font-size: 70%;
+    background: var(--neutral-background-color);
     input {
       display: none;
     }
   }
 
   label.bullet.red {
-    background: #dd3a3a;
+    background: var(--error-color);
+    color: white;
   }
 
   label.bullet.redFixed {
-    background: #d88d8d;
+    background: var(--error-color-light);
+    color: white;
   }
 
   label.bullet.yellow {
-    background: #ffff00;
+    background: var(--warning-color);
   }
 
   label.bullet.yellowFixed {
-    background: #f8f8a7;
+    background: var(--warning-color-light);
   }
 
   span.nodeType {
@@ -725,20 +735,20 @@ the DOM without sacrificing html escaping of everything else in the string -->
   }
 
   span.red {
-    color: #880000;
+    color: var(--error-color);
   }
 
   span.redFixed {
-    color: #884444;
+    color: var(--error-color-dark);
     text-decoration: line-through;
   }
 
   span.yellow {
-    color: #887800;
+    color: var(--warning-color);
   }
 
   span.yellowFixed {
-    color: #87785b;
+    color: var(--warning-color-dark);
     text-decoration: line-through;
   }
 
@@ -790,17 +800,21 @@ the DOM without sacrificing html escaping of everything else in the string -->
       font-size: 80%;
       display: inline-block;
       padding: 0.05em 0.2em;
-      border: 1px solid grey;
-      background-color: white;
-      border-radius: 2px;
+      background-color: var(--neutral-background-color);
+      border-radius: 3px;
       cursor: pointer;
       user-select: none;
+      &:hover {
+        background-color: var(--contrast-color);
+        color: white;
+      }
     }
     input[type="checkbox"] {
       display: none; /* hides the actual checkbox */
     }
     input[type="checkbox"]:checked + span {
-      background-color: grey;
+      background-color: var(--contrast-color);
+      color: white;
     }
   }
 </style>
