@@ -11,7 +11,7 @@
   title="Reload"
   disabled={tracker.pending()}
   onclick={() => tracker.reload()}
-  >🗘
+  >↺
 </button>
 
 <style>

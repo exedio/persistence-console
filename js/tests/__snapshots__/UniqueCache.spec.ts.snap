@@ -4,7 +4,7 @@ exports[`UniqueCache > should render a non-empty table 1`] = `
 "<table class="grey">
   <caption>
     Unique Constraint Caches
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr>
@@ -60,7 +60,7 @@ exports[`UniqueCache > should render an empty table 1`] = `
 "<table class="grey">
   <caption>
     Unique Constraint Caches
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr>
@@ -91,7 +91,7 @@ exports[`UniqueCache > should render an error message 1`] = `
 "<table class="grey">
   <caption>
     Unique Constraint Caches
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr>

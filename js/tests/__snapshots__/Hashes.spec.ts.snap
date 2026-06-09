@@ -4,7 +4,7 @@ exports[`Hashes > should render a non-empty table 1`] = `
 "<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr class="relative svelte">
@@ -50,7 +50,7 @@ exports[`Hashes > should render a non-empty table 2`] = `
 "<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr class="relative svelte">
@@ -96,7 +96,7 @@ exports[`Hashes > should render a non-empty table with peers 1`] = `
 "<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr class="relative svelte">
@@ -323,7 +323,7 @@ exports[`Hashes > should render an empty table 1`] = `
 "<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr class="relative svelte">
@@ -354,7 +354,7 @@ exports[`Hashes > should render an empty table with peers 1`] = `
 "<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr class="relative svelte">
@@ -387,7 +387,7 @@ exports[`Hashes > should render an error message 1`] = `
 "<table class="grey svelte">
   <caption>
     Hashes
-    <button class="reload svelte" title="Reload">🗘</button>
+    <button class="reload svelte" title="Reload">↺</button>
   </caption>
   <thead>
     <tr class="relative svelte">
