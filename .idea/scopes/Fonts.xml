@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Fonts" pattern="file:*.woff2" />
+</component>
