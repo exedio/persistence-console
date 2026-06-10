@@ -178,8 +178,8 @@
     return message.substring(prefix.length);
   }
 
-  function copyPatches(): void {
-    Promise.all(patches.map((patch) => patch.promise)).then((responses) => {
+  async function copyPatches(): Promise<void> {
+    return Promise.all(patches.map((patch) => patch.promise)).then((responses) => {
       navigator.clipboard.writeText(
         responses
           .map(
