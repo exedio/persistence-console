@@ -35,6 +35,9 @@ import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import java.util.List;
 
+/**
+ * @see com.exedio.cope.console.annotations.SuppressIsNotZero
+ */
 final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
 
   static final String TAB = "numberNotZero";
