@@ -178,21 +178,23 @@
     return message.substring(prefix.length);
   }
 
-  function copyPatches(): void {
-    Promise.all(patches.map((patch) => patch.promise)).then((responses) => {
-      navigator.clipboard.writeText(
-        responses
-          .map(
-            (response, index) =>
-              encodePatch(
-                patches[index].fix.joinable,
-                patchesEncodedForJava,
-                response.sql,
-              ) + "\n",
-          )
-          .join(""),
-      );
-    });
+  async function copyPatches(): Promise<void> {
+    return Promise.all(patches.map((patch) => patch.promise)).then(
+      (responses) => {
+        navigator.clipboard.writeText(
+          responses
+            .map(
+              (response, index) =>
+                encodePatch(
+                  patches[index].fix.joinable,
+                  patchesEncodedForJava,
+                  response.sql,
+                ) + "\n",
+            )
+            .join(""),
+        );
+      },
+    );
   }
 
   function flushPatchesLog(): void {
