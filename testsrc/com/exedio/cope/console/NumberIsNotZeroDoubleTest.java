@@ -94,12 +94,16 @@ public class NumberIsNotZeroDoubleTest {
     @UsageEntryPoint
     static final DoubleField positiveAndZero = new DoubleField().min(0);
 
+    @UsageEntryPoint
+    static final DoubleField suppressed = new DoubleField();
+
     MyType(final Double negativeAndZero) {
       super(
         SetValue.map(negativeOnly, -0.1),
         SetValue.map(positiveOnly, 0.1),
         SetValue.map(MyType.negativeAndZero, negativeAndZero),
-        SetValue.map(positiveAndZero, 0.0)
+        SetValue.map(positiveAndZero, 0.0),
+        SetValue.map(suppressed, Double.MIN_VALUE)
       );
     }
 
