@@ -40,113 +40,128 @@ describe("EncodePatch", () => {
     });
   });
   describe("simple SQL statements", () => {
-    it("should handle joined non-java ", async () => {
-      const s = "ALTER TABLE `AnItem` ADD COLUMN `col1` int";
-      expect(encodePatch(undefined, false, s)).toBe(
-        "ALTER TABLE `AnItem` ADD COLUMN `col1` int;",
-      );
-      expect(encodePatch("head", false, s)).toBe(
-        "ALTER TABLE `AnItem` ADD COLUMN `col1` int,",
-      );
-      expect(encodePatch("middle", false, s)).toBe("ADD COLUMN `col1` int,");
-      expect(encodePatch("tail", false, s)).toBe("ADD COLUMN `col1` int;");
-    });
-    it("should handle joined java", async () => {
-      const s = "ALTER TABLE `AnItem` ADD COLUMN `col1` int";
-      expect(encodePatch(undefined, true, s)).toBe(
-        '"ALTER TABLE `AnItem` ADD COLUMN `col1` int",',
-      );
-      expect(encodePatch("head", true, s)).toBe(
-        '"ALTER TABLE `AnItem` ADD COLUMN `col1` int," +',
-      );
-      expect(encodePatch("middle", true, s)).toBe('"ADD COLUMN `col1` int," +');
-      expect(encodePatch("tail", true, s)).toBe('"ADD COLUMN `col1` int",');
-    });
-    it("should handle joined with many spaces", async () => {
-      expect(
-        encodePatch(
-          "middle",
-          false,
-          "ALTER   TABLE   `AnItem`   ADD   COLUMN   `col1`   int  ",
-        ),
-      ).toBe("ADD   COLUMN   `col1`   int  ,");
-    });
-    it("should handle joined with many spaces java", async () => {
-      expect(
-        encodePatch(
-          "middle",
-          true,
-          "ALTER   TABLE   `AnItem`   ADD   COLUMN   `col1`   int  ",
-        ),
-      ).toBe('"ADD   COLUMN   `col1`   int  ," +');
+    const s = "ALTER TABLE `AnItem` ADD COLUMN `col1` int";
+    describe("standalone", () => {
+      it("should handle simple non-java encoding", () => {
+        expect(encodePatch(undefined, false, s)).toBe(
+          "ALTER TABLE `AnItem` ADD COLUMN `col1` int;",
+        );
+      });
+      it("should handle simple java encoding", () => {
+        expect(encodePatch(undefined, true, s)).toBe(
+          '"ALTER TABLE `AnItem` ADD COLUMN `col1` int",',
+        );
+      });
     });
 
-    it("should handle joined with minimal spaces", async () => {
-      expect(
-        encodePatch("middle", false, "ALTER TABLE`AnItem`ADD COLUMN`col1`int"),
-      ).toBe("ADD COLUMN`col1`int,");
-    });
-    it("should handle joined with minimal spaces java", async () => {
-      expect(
-        encodePatch("middle", true, "ALTER TABLE`AnItem`ADD COLUMN`col1`int"),
-      ).toBe('"ADD COLUMN`col1`int," +');
-    });
+    describe("joined", () => {
+      it("should handle joined non-java ", async () => {
+        expect(encodePatch("head", false, s)).toBe(
+          "ALTER TABLE `AnItem` ADD COLUMN `col1` int,",
+        );
+        expect(encodePatch("middle", false, s)).toBe("ADD COLUMN `col1` int,");
+        expect(encodePatch("tail", false, s)).toBe("ADD COLUMN `col1` int;");
+      });
+      it("should handle joined java", async () => {
+        const s = "ALTER TABLE `AnItem` ADD COLUMN `col1` int";
+        expect(encodePatch("head", true, s)).toBe(
+          '"ALTER TABLE `AnItem` ADD COLUMN `col1` int," +',
+        );
+        expect(encodePatch("middle", true, s)).toBe(
+          '"ADD COLUMN `col1` int," +',
+        );
+        expect(encodePatch("tail", true, s)).toBe('"ADD COLUMN `col1` int",');
+      });
+      it("should handle joined with many spaces", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            false,
+            "ALTER   TABLE   `AnItem`   ADD   COLUMN   `col1`   int  ",
+          ),
+        ).toBe("ADD   COLUMN   `col1`   int  ,");
+      });
+      it("should handle joined with many spaces java", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            true,
+            "ALTER   TABLE   `AnItem`   ADD   COLUMN   `col1`   int  ",
+          ),
+        ).toBe('"ADD   COLUMN   `col1`   int  ," +');
+      });
 
-    it("should handle joined with various characters", async () => {
-      expect(
-        encodePatch(
-          "middle",
-          false,
-          "ALTER TABLE `AnItem_09AZaz` ADD COLUMN `col1` int",
-        ),
-      ).toBe("ADD COLUMN `col1` int,");
-    });
-    it("should handle joined with various characters java", async () => {
-      expect(
-        encodePatch(
-          "middle",
-          true,
-          "ALTER TABLE `AnItem_09AZaz` ADD COLUMN `col1` int",
-        ),
-      ).toBe('"ADD COLUMN `col1` int," +');
-    });
+      it("should handle joined with minimal spaces", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            false,
+            "ALTER TABLE`AnItem`ADD COLUMN`col1`int",
+          ),
+        ).toBe("ADD COLUMN`col1`int,");
+      });
+      it("should handle joined with minimal spaces java", async () => {
+        expect(
+          encodePatch("middle", true, "ALTER TABLE`AnItem`ADD COLUMN`col1`int"),
+        ).toBe('"ADD COLUMN`col1`int," +');
+      });
 
-    it("should handle joined with double quotes", async () => {
-      expect(
-        encodePatch(
-          "middle",
-          false,
-          'ALTER TABLE "AnItem" ADD COLUMN "col1" int',
-        ),
-      ).toBe('ADD COLUMN "col1" int,');
-    });
-    it("should handle joined with double quotes in java", async () => {
-      expect(
-        encodePatch(
-          "middle",
-          true,
-          'ALTER TABLE "AnItem" ADD COLUMN "col1" int',
-        ),
-      ).toBe('"ADD COLUMN \\"col1\\" int," +');
-    });
-    it("should handle joined with inconsistent quotes", async () => {
-      expect(
-        encodePatch(
-          "middle",
-          false,
-          'ALTER TABLE "AnItem` ADD COLUMN `col1` int',
-        ),
-      ).toBe('ALTER TABLE "AnItem` ADD COLUMN `col1` int,');
-    });
+      it("should handle joined with various characters", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            false,
+            "ALTER TABLE `AnItem_09AZaz` ADD COLUMN `col1` int",
+          ),
+        ).toBe("ADD COLUMN `col1` int,");
+      });
+      it("should handle joined with various characters java", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            true,
+            "ALTER TABLE `AnItem_09AZaz` ADD COLUMN `col1` int",
+          ),
+        ).toBe('"ADD COLUMN `col1` int," +');
+      });
 
-    it("should handle joined with inconsistent quotes java", async () => {
-      expect(
-        encodePatch(
-          "middle",
-          true,
-          'ALTER TABLE "AnItem` ADD COLUMN `col1` int',
-        ),
-      ).toBe('"ALTER TABLE \\"AnItem` ADD COLUMN `col1` int," +');
+      it("should handle joined with double quotes", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            false,
+            'ALTER TABLE "AnItem" ADD COLUMN "col1" int',
+          ),
+        ).toBe('ADD COLUMN "col1" int,');
+      });
+      it("should handle joined with double quotes in java", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            true,
+            'ALTER TABLE "AnItem" ADD COLUMN "col1" int',
+          ),
+        ).toBe('"ADD COLUMN \\"col1\\" int," +');
+      });
+      it("should handle joined with inconsistent quotes", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            false,
+            'ALTER TABLE "AnItem` ADD COLUMN `col1` int',
+          ),
+        ).toBe('ALTER TABLE "AnItem` ADD COLUMN `col1` int,');
+      });
+
+      it("should handle joined with inconsistent quotes java", async () => {
+        expect(
+          encodePatch(
+            "middle",
+            true,
+            'ALTER TABLE "AnItem` ADD COLUMN `col1` int',
+          ),
+        ).toBe('"ALTER TABLE \\"AnItem` ADD COLUMN `col1` int," +');
+      });
     });
   });
 
