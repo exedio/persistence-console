@@ -104,15 +104,20 @@
 		</copy>
 	</target>
 
+	<target name="annosrc.compile">
+		<compile srcdir="annosrc" />
+	</target>
+
 	<target name="src.jspm">
 		<jspm>
 			<fileset dir="src" includes="**/*.jspm" />
 		</jspm>
 	</target>
 
-	<target name="src.compile" depends="src.jspm, js.dist">
+	<target name="src.compile" depends="annosrc.compile, src.jspm, js.dist">
 		<compile srcdir="src">
 			<classpath>
+				<pathelement location="build/classes/annosrc" />
 				<fileset dir="lib/runtime" />
 			</classpath>
 		</compile>
@@ -129,6 +134,7 @@
 		<jar-exedio
 				name="cope console"
 				jarfile="build/exedio-cope-console.jar">
+			<fileset dir="build/classes/annosrc" />
 			<fileset dir="build/classes/src" />
 		</jar-exedio>
 	</target>
@@ -152,6 +158,7 @@
 	<target name="testsrc.compile" depends="src.compile">
 		<compile srcdir="testsrc">
 			<classpath>
+				<pathelement location="build/classes/annosrc" />
 				<pathelement location="build/classes/src" />
 				<fileset dir="lib/test" />
 			</classpath>
@@ -161,6 +168,7 @@
 	<target name="test" depends="src.compile, testsrc.compile">
 		<ljunit test="com.exedio.cope.console.PackageTest">
 			<classpath>
+				<pathelement location="build/classes/annosrc" />
 				<pathelement location="build/classes/src" />
 				<pathelement location="build/classes/testsrc" />
 				<fileset dir="lib/test" />
@@ -303,6 +311,7 @@
 				notree="true"
 				noindex="true"
 				failonerror="true">
+			<fileset dir="annosrc" includes="**/*.java" />
 			<fileset file="src/com" includes="**/*.java" />
 			<arg value="-Xdoclint:all,-missing" />
 			<classpath>
