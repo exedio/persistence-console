@@ -75,6 +75,6 @@ final class App
 
 	boolean suppressNumberIsNotZeroCop(final NumberField<?> field)
 	{
-		return servlet.suppressNumberIsNotZeroCop(field);
+		return servlet.suppressNumberIsNotZero(field);
 	}
 }
