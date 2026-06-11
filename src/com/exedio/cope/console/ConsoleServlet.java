@@ -124,7 +124,7 @@ public class ConsoleServlet extends CopsServlet
 	 * May be overridden by subclasses to suppress number fields in NumberIsNotZeroCop.
 	 * Default returns {@code field.isAnnotationPresent(}{@link SuppressIsNotZero}{@code )}.
 	 */
-	protected boolean suppressNumberIsNotZeroCop(final NumberField<?> field)
+	protected boolean suppressNumberIsNotZero(final NumberField<?> field)
 	{
 		return field.isAnnotationPresent(SuppressIsNotZero.class);
 	}
