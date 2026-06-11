@@ -25,7 +25,7 @@ describe("EncodePatch", () => {
     expect(encodePatch(undefined, false, 'some"thing')).toBe('some"thing;');
   });
 
-  it("should handle something with a two double quotes", async () => {
+  it("should handle something with two double quotes", async () => {
     expect(encodePatch(undefined, true, 'some"thing"else')).toBe(
       '"some\\"thing\\"else",',
     );
