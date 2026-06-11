@@ -73,7 +73,7 @@ final class App
 		return servlet.isStable(featureField);
 	}
 
-	boolean suppressNumberIsNotZeroCop(final NumberField<?> field)
+	boolean suppressNumberIsNotZero(final NumberField<?> field)
 	{
 		return servlet.suppressNumberIsNotZero(field);
 	}
