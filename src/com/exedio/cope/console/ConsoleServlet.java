@@ -23,6 +23,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import com.exedio.cope.Model;
 import com.exedio.cope.NumberField;
 import com.exedio.cope.Query;
+import com.exedio.cope.console.annotations.SuppressIsNotZero;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.reflect.FeatureField;
 import com.exedio.cope.reflect.TypeField;
@@ -121,11 +122,11 @@ public class ConsoleServlet extends CopsServlet
 
 	/**
 	 * May be overridden by subclasses to suppress number fields in NumberIsNotZeroCop.
-	 * Default returns false.
+	 * Default returns {@code field.isAnnotationPresent(}{@link SuppressIsNotZero}{@code )}.
 	 */
 	protected boolean suppressNumberIsNotZeroCop(final NumberField<?> field)
 	{
-		return false;
+		return field.isAnnotationPresent(SuppressIsNotZero.class);
 	}
 
 

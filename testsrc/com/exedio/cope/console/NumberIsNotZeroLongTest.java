@@ -27,6 +27,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.SetValue;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
+import com.exedio.cope.console.annotations.SuppressIsNotZero;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -93,6 +94,7 @@ public class NumberIsNotZeroLongTest {
     static final LongField positiveAndZero = new LongField().min(0);
 
     @UsageEntryPoint
+    @SuppressIsNotZero
     static final LongField suppressed = new LongField();
 
     MyType(final Long negativeAndZero) {
