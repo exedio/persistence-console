@@ -18,7 +18,10 @@
 
 package com.exedio.cope.console;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import com.exedio.cope.Model;
+import com.exedio.cope.NumberField;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.Serial;
 import java.util.List;
@@ -33,6 +36,13 @@ public final class CopTest {
         final HttpServletRequest request
       ) {
         return List.of("mupx");
+      }
+
+      @Override
+      protected boolean suppressNumberIsNotZeroCop(final NumberField<?> field) {
+        final String name = field.getName();
+        assertNotNull(name);
+        return "suppressed".equals(name);
       }
 
       @Serial

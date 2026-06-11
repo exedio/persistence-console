@@ -51,6 +51,7 @@ final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
       FAILS_WITH_ONE,
       NO_FAILURE_ON_EMPTY,
       "Lists all number fields, that allow zero (getMinimum() <= 0 <= getMaximum()).",
+      "Does not list fields suppressed by ConsoleServlet#suppressNumberIsNotZeroCop.",
     };
   }
 
@@ -71,6 +72,8 @@ final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
 
   @Override
   boolean acceptsItem(final NumberField<?> field) {
+    if (app.suppressNumberIsNotZeroCop(field)) return false;
+
     // TODO use NumberField#isMinimumLessOrEqualZero and #isMaximumGreaterOrEqualZero when available in cope
     if (field instanceof final IntegerField f) return (
       f.getMinimum() <= 0 && 0 <= f.getMaximum()

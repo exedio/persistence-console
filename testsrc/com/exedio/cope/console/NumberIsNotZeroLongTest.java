@@ -92,12 +92,16 @@ public class NumberIsNotZeroLongTest {
     @UsageEntryPoint
     static final LongField positiveAndZero = new LongField().min(0);
 
+    @UsageEntryPoint
+    static final LongField suppressed = new LongField();
+
     MyType(final Long negativeAndZero) {
       super(
         SetValue.map(negativeOnly, -1l),
         SetValue.map(positiveOnly, 1l),
         SetValue.map(MyType.negativeAndZero, negativeAndZero),
-        SetValue.map(positiveAndZero, 0l)
+        SetValue.map(positiveAndZero, 0l),
+        SetValue.map(suppressed, Long.MIN_VALUE)
       );
     }
 

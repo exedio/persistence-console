@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.exedio.cope.Model;
+import com.exedio.cope.NumberField;
 import com.exedio.cope.Query;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.reflect.FeatureField;
@@ -116,6 +117,15 @@ public class ConsoleServlet extends CopsServlet
 	protected boolean isStable(final FeatureField<?> featureField)
 	{
 		return true;
+	}
+
+	/**
+	 * May be overridden by subclasses to suppress number fields in NumberIsNotZeroCop.
+	 * Default returns false.
+	 */
+	protected boolean suppressNumberIsNotZeroCop(final NumberField<?> field)
+	{
+		return false;
 	}
 
 

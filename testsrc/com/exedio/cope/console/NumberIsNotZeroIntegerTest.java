@@ -94,12 +94,16 @@ public class NumberIsNotZeroIntegerTest {
     @UsageEntryPoint
     static final IntegerField positiveAndZero = new IntegerField().min(0);
 
+    @UsageEntryPoint
+    static final IntegerField suppressed = new IntegerField();
+
     MyType(final Integer negativeAndZero) {
       super(
         SetValue.map(negativeOnly, -1),
         SetValue.map(positiveOnly, 1),
         SetValue.map(MyType.negativeAndZero, negativeAndZero),
-        SetValue.map(positiveAndZero, 0)
+        SetValue.map(positiveAndZero, 0),
+        SetValue.map(suppressed, Integer.MIN_VALUE)
       );
     }
 
