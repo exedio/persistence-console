@@ -226,6 +226,7 @@
 
 	<target name="web" depends="web.compile, src.compile">
 		<copy todir="web/WEB-INF/classes">
+			<fileset dir="build/classes/annosrc" />
 			<fileset dir="build/classes/src" />
 			<fileset dir="build/classes/websrc" />
 		</copy>
