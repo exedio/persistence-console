@@ -78,6 +78,9 @@ abstract class FeatureTestCop<I extends Feature> extends TestCop<I>
 	@Override
 	final I forID(final String id)
 	{
-		return clazz.cast(app.model.getFeature(id));
+		final I result = clazz.cast(app.model.getFeature(id));
+		if(!acceptsItem(result)) // mitigate misuse of API
+			throw new IllegalArgumentException(id);
+		return result;
 	}
 }
