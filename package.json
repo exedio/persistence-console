@@ -37,7 +37,7 @@
     "typescript": "5.8.3",
     "typescript-eslint": "8.59.0",
     "typescript-svelte-plugin": "0.3.52",
-    "vite": "7.3.5",
+    "vite": "8.0.16",
     "vitest": "4.1.4"
   },
   "resolutions": {
