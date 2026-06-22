@@ -87,7 +87,8 @@ final class SchemaAlterApi {
             yield new Response(response.sql + " DEFAULT " + value);
           }
           case DROP -> apply(node::drop);
-          case DROP_DEFAULT -> new Response( // TODO do this in dsmf
+          case DROP_DEFAULT -> new Response(
+            // TODO do this in dsmf
             "ALTER TABLE " +
               quoteName(model, node.getTable().getName()) +
               " ALTER COLUMN " +

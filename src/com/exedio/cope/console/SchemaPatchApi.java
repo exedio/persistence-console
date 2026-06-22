@@ -51,7 +51,8 @@ final class SchemaPatchApi {
 
   record Request(@JsonProperty(required = true) String sql) {
     @JsonCreator
-    Request {}
+    Request {
+    }
   }
 
   private record Response(int rows, long elapsedNanos) {}
