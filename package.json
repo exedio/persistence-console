@@ -43,10 +43,5 @@
   "resolutions": {
     "svelte": "5.55.7"
   },
-  "dependenciesMeta": {
-    "esbuild": {
-      "built": false
-    }
-  },
   "packageManager": "yarn@4.16.0"
 }

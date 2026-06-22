@@ -2557,9 +2557,6 @@ __metadata:
     typescript-svelte-plugin: "npm:0.3.52"
     vite: "npm:8.0.16"
     vitest: "npm:4.1.4"
-  dependenciesMeta:
-    esbuild:
-      built: false
   languageName: unknown
   linkType: soft
 
