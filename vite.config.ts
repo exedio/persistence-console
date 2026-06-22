@@ -9,12 +9,12 @@ export default defineConfig(({ mode }) => {
     plugins: [svelte()],
     cacheDir: ".yarn/.vite",
     build: {
-      minify: mode === "development" ? false : "esbuild",
-      rollupOptions: {
+      rolldownOptions: {
         input: {
           app: "./js/index.html",
         },
         output: {
+          minify: mode !== "development",
           entryFileNames: `assets/[name].js`,
           assetFileNames: `assets/[name].[ext]`,
         },
