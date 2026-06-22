@@ -72,8 +72,7 @@ final class EnumRenumber {
     if (mapping.isEmpty()) return null;
 
     final String column = quoteName(model, getColumnName(field));
-    sb
-      .append("UPDATE ")
+    sb.append("UPDATE ")
       .append(quoteName(model, getTableName(field.getType())))
       .append(" SET ")
       .append(column)

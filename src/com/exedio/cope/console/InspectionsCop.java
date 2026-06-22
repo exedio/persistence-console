@@ -37,26 +37,23 @@ final class InspectionsCop extends ConsoleCop<Void> {
   String[] getHeadingHelp() {
     return new String[] {
       "Organizes inspections into a list. " +
-      "All items listed here can be found somewhere else in the menu as well.",
+        "All items listed here can be found somewhere else in the menu as well.",
     };
   }
 
   @Override
   void writeBody(final Out out) {
     final TestCop.TestArgs testArgs = new TestCop.TestArgs();
-    Inspections_Jspm.writeBody(
-      out,
-      new TestCop<?>[] {
-        new TypeIsEmptyCop(args, testArgs),
-        new IsNotNullCop(args, testArgs),
-        new IsAlwaysNullCop(args, testArgs),
-        new StringIsNotEmptyCop(args, testArgs),
-        new NumberIsNotZeroCop(args, testArgs),
-        new NumberIsNotNegativeCop(args, testArgs),
-        new EnumIsNotCompleteCop(args, testArgs),
-        new DatePrecisionCop(args, testArgs),
-      }
-    );
+    Inspections_Jspm.writeBody(out, new TestCop<?>[] {
+      new TypeIsEmptyCop(args, testArgs),
+      new IsNotNullCop(args, testArgs),
+      new IsAlwaysNullCop(args, testArgs),
+      new StringIsNotEmptyCop(args, testArgs),
+      new NumberIsNotZeroCop(args, testArgs),
+      new NumberIsNotNegativeCop(args, testArgs),
+      new EnumIsNotCompleteCop(args, testArgs),
+      new DatePrecisionCop(args, testArgs),
+    });
   }
 
   /**

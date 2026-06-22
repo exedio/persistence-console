@@ -106,7 +106,8 @@ final class PeerApi {
       .ifPresent(value -> to.setHeader(name, value));
   }
 
-  private static final HttpClient httpClient = HttpClient.newBuilder() // TODO close it when HttpClient becomes AutoClosable in JDK 21
+  private static final HttpClient httpClient = HttpClient
+    .newBuilder() // TODO close it when HttpClient becomes AutoClosable in JDK 21
     .connectTimeout(ofSeconds(10)) // TODO allow customization
     .followRedirects(HttpClient.Redirect.NEVER)
     .proxy(HttpClient.Builder.NO_PROXY) // must not use any proxy for peers

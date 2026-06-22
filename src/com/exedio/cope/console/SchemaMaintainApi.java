@@ -53,7 +53,8 @@ final class SchemaMaintainApi {
 
   record Request(@JsonProperty(required = true) Operation operation) {
     @JsonCreator
-    Request {}
+    Request {
+    }
   }
 
   private record Response(long elapsedNanos) {}

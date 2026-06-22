@@ -134,7 +134,8 @@ final class HashApi {
     @JsonProperty(required = true) String plainText
   ) {
     @JsonCreator
-    HashRequest {}
+    HashRequest {
+    }
 
     @Nonnull
     Hash get(final Model model) throws ApiTextException {

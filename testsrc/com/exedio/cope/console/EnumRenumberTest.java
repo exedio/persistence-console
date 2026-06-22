@@ -86,8 +86,10 @@ public class EnumRenumberTest {
 
   private enum Normal {
     a,
+
     @CopeSchemaValue(15)
     b,
+
     c,
   }
 
@@ -170,6 +172,7 @@ public class EnumRenumberTest {
   private enum Single {
     a,
     b,
+
     @CopeSchemaValue(25)
     c,
   }
@@ -200,8 +203,10 @@ public class EnumRenumberTest {
 
   private enum Redundant {
     a,
+
     @CopeSchemaValue(20) // This is the value that would have been assigned without the annotation anyway
     b,
+
     c,
   }
 
