@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE ivy-module [
 		<!ENTITY artifacts.name "exedio-cope-console">
-		<!ENTITY jackson.version "2.15.2">
+		<!ENTITY jackson.version "2.18.8">
 		<!ENTITY junit.version.minor "13.3">
 	]>
 <ivy-module
