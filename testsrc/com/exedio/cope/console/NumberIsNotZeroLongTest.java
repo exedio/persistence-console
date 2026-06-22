@@ -28,6 +28,8 @@ import com.exedio.cope.SetValue;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.console.annotations.SuppressIsNotZero;
+import com.exedio.cope.pattern.Price;
+import com.exedio.cope.pattern.PriceField;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -97,13 +99,18 @@ public class NumberIsNotZeroLongTest {
     @SuppressIsNotZero
     static final LongField suppressed = new LongField();
 
+    @UsageEntryPoint
+    @SuppressIsNotZero
+    static final PriceField suppressedPattern = new PriceField();
+
     MyType(final Long negativeAndZero) {
       super(
         SetValue.map(negativeOnly, -1l),
         SetValue.map(positiveOnly, 1l),
         SetValue.map(MyType.negativeAndZero, negativeAndZero),
         SetValue.map(positiveAndZero, 0l),
-        SetValue.map(suppressed, Long.MIN_VALUE)
+        SetValue.map(suppressed, Long.MIN_VALUE),
+        SetValue.map(suppressedPattern, Price.MIN_VALUE)
       );
     }
 

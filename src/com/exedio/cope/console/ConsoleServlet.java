@@ -20,6 +20,7 @@ package com.exedio.cope.console;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.NumberField;
 import com.exedio.cope.Query;
@@ -122,11 +123,17 @@ public class ConsoleServlet extends CopsServlet
 
 	/**
 	 * May be overridden by subclasses to suppress number fields in NumberIsNotZeroCop.
-	 * Default returns {@code field.isAnnotationPresent(}{@link SuppressIsNotZero}{@code )}.
+	 * Default implementation returns true, if {@code field}
+	 * or any of it's {@link Feature#getPattern() super patterns}
+	 * is annotated with {@link SuppressIsNotZero}.
 	 */
 	protected boolean suppressNumberIsNotZero(final NumberField<?> field)
 	{
-		return field.isAnnotationPresent(SuppressIsNotZero.class);
+		for(Feature f = field; f!=null; f = f.getPattern())
+			if(f.isAnnotationPresent(SuppressIsNotZero.class))
+				return true;
+
+		return false;
 	}
 
 
