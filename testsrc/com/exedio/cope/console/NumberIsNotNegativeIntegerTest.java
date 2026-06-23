@@ -27,6 +27,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.SetValue;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
+import com.exedio.cope.console.annotations.SuppressIsNotNegative;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -82,6 +83,12 @@ public class NumberIsNotNegativeIntegerTest {
 
     @UsageEntryPoint
     static final IntegerField negative = new IntegerField().min(-1).optional();
+
+    @UsageEntryPoint
+    @SuppressIsNotNegative
+    static final IntegerField negativeSuppressed = new IntegerField()
+      .min(-1)
+      .optional();
 
     MyType(final Integer negative) {
       super(

@@ -71,6 +71,8 @@ final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
 
   @Override
   boolean acceptsItem(final NumberField<?> field) {
+    if (app.suppressNumberIsNotNegative(field)) return false;
+
     // TODO use NumberField#isMinimumLessZero when available in cope
     if (field instanceof final IntegerField f) return f.getMinimum() < 0;
     if (field instanceof final LongField f) return f.getMinimum() < 0;
