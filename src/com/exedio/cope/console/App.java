@@ -77,4 +77,9 @@ final class App
 	{
 		return servlet.suppressNumberIsNotZero(field);
 	}
+
+	boolean suppressNumberIsNotNegative(final NumberField<?> field)
+	{
+		return servlet.suppressNumberIsNotNegative(field);
+	}
 }

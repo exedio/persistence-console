@@ -24,6 +24,7 @@ import com.exedio.cope.Feature;
 import com.exedio.cope.Model;
 import com.exedio.cope.NumberField;
 import com.exedio.cope.Query;
+import com.exedio.cope.console.annotations.SuppressIsNotNegative;
 import com.exedio.cope.console.annotations.SuppressIsNotZero;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.reflect.FeatureField;
@@ -38,6 +39,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.Serial;
+import java.lang.annotation.Annotation;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.Principal;
@@ -129,8 +131,26 @@ public class ConsoleServlet extends CopsServlet
 	 */
 	protected boolean suppressNumberIsNotZero(final NumberField<?> field)
 	{
+		return suppress(field, SuppressIsNotZero.class);
+	}
+
+	/**
+	 * May be overridden by subclasses to suppress number fields in NumberIsNotNegativeCop.
+	 * Default implementation returns true, if {@code field}
+	 * or any of it's {@link Feature#getPattern() super patterns}
+	 * is annotated with {@link SuppressIsNotNegative}.
+	 */
+	protected boolean suppressNumberIsNotNegative(final NumberField<?> field)
+	{
+		return suppress(field, SuppressIsNotNegative.class);
+	}
+
+	private static boolean suppress(
+			final NumberField<?> field,
+			final Class<? extends Annotation> annotationClass)
+	{
 		for(Feature f = field; f!=null; f = f.getPattern())
-			if(f.isAnnotationPresent(SuppressIsNotZero.class))
+			if(f.isAnnotationPresent(annotationClass))
 				return true;
 
 		return false;
