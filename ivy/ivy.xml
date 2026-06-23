@@ -19,7 +19,8 @@
 	</info>
 	<configurations>
 		<!-- There should be an assertIvyExtends in Jenkinsfile for each <conf name="abc" extends="def" /> here. -->
-		<conf name="runtime" />
+		<conf name="annotations" />
+		<conf name="runtime" extends="annotations" />
 		<conf name="sources" />
 		<conf name="changelog" />
 		<conf visibility="private" name="compile-annotations" />
@@ -37,6 +38,7 @@
 				description="classpath for IDEs such as Eclipse and IntelliJ, includes java sources and changelogs" />
 	</configurations>
 	<publications>
+		<artifact name="&artifacts.name;-annotations" conf="annotations" type="jar" ext="jar" />
 		<artifact name="&artifacts.name;" conf="runtime"   type="jar" ext="jar" />
 		<artifact name="&artifacts.name;" conf="sources"   type="src" ext="zip" />
 		<artifact name="&artifacts.name;" conf="changelog" type="log" ext="txt" />

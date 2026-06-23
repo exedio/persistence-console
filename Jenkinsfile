@@ -82,12 +82,25 @@ try
 				exclZero: false,
 				keepRecords: false,
 				group: 'Sizes',
-				title: 'exedio-cope-console.jar',
+				title: '1: exedio-cope-console.jar',
 				numBuilds: '150',
 				style: 'line',
 				useDescr: false,
 				propertiesSeries: [
 					[ file: 'build/exedio-cope-console.jar-plot.properties', label: 'exedio-cope-console.jar' ]
+				],
+			)
+			plot(
+				csvFileName: 'plots-annotations.csv',
+				exclZero: false,
+				keepRecords: false,
+				group: 'Sizes',
+				title: '2: exedio-cope-console-annotations.jar',
+				numBuilds: '150',
+				style: 'line',
+				useDescr: false,
+				propertiesSeries: [
+					[ file: 'build/exedio-cope-console-annotations.jar-plot.properties', label: 'exedio-cope-console-annotations.jar' ]
 				],
 			)
 		}
