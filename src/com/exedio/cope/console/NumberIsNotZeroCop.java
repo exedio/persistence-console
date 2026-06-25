@@ -46,6 +46,9 @@ final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
     super(classWildcard(), TAB, "Number Is Not Zero", args, testArgs);
   }
 
+  /**
+   * @see ConsoleServlet#suppressNumberIsNotZero(NumberField)
+   */
   @Override
   String[] getHeadingHelp() {
     return new String[] {
@@ -54,7 +57,7 @@ final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
       FAILS_WITH_ONE,
       NO_FAILURE_ON_EMPTY,
       "Lists all number fields, that allow zero (getMinimum() <= 0 <= getMaximum()).",
-      "Does not list fields suppressed by ConsoleServlet#suppressNumberIsNotZeroCop.",
+      "Does not list fields suppressed by ConsoleServlet#suppressNumberIsNotZero.",
     };
   }
 
