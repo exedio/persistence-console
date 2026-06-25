@@ -35,6 +35,9 @@ import com.exedio.cope.Query;
 import com.exedio.cope.SchemaInfo;
 import java.util.List;
 
+/**
+ * @see com.exedio.cope.console.annotations.SuppressIsNotNegative
+ */
 final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
 
   static final String TAB = "numberNotNegative";
@@ -43,6 +46,9 @@ final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
     super(classWildcard(), TAB, "Number Is Not Negative", args, testArgs);
   }
 
+  /**
+   * @see ConsoleServlet#suppressNumberIsNotNegative(NumberField)
+   */
   @Override
   String[] getHeadingHelp() {
     return new String[] {
@@ -51,6 +57,7 @@ final class NumberIsNotNegativeCop extends FeatureTestCop<NumberField<?>> {
       FAILS_WITH_ONE,
       NO_FAILURE_ON_EMPTY,
       "Lists all number fields, that allow negative values (getMinimum()<0).",
+      "Does not list fields suppressed by ConsoleServlet#suppressNumberIsNotNegative.",
     };
   }
 
