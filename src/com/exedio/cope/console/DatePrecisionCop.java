@@ -90,7 +90,7 @@ final class DatePrecisionCop extends FeatureTestCop<DateField> {
   @Override
   long check(final DateField field) {
     try (var tx = startTransaction()) {
-      if (!noFailureOnEmpty(field)) return tx.commit(0);
+      if (noFailureOnEmpty(field)) return tx.commit(0);
       tx.commit();
     }
 

@@ -86,7 +86,7 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 		{
 			final boolean result =
 				(getQuery(field).total()==0) &&
-				noFailureOnEmpty(field);
+				!noFailureOnEmpty(field);
 			tx.commit();
 			return failWithOne(result);
 		}

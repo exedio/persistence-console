@@ -120,7 +120,7 @@ final class NumberIsNotZeroCop extends FeatureTestCop<NumberField<?>> {
   @Override
   long check(final NumberField<?> field) {
     try (var tx = startTransaction()) {
-      if (!noFailureOnEmpty(field)) return tx.commit(0);
+      if (noFailureOnEmpty(field)) return tx.commit(0);
 
       final long total = getQuery(field).total();
       tx.commit();
