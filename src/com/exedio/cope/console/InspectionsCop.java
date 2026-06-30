@@ -66,7 +66,7 @@ final class InspectionsCop extends ConsoleCop<Void> {
    * Must be used consistently to {@link #NO_FAILURE_ON_EMPTY}.
    */
   static boolean noFailureOnEmpty(final FunctionField<?> field) {
-    return field.getType().newQuery(field.isNotNull()).total() > 0;
+    return field.getType().newQuery(field.isNotNull()).exists();
   }
 
   /**
