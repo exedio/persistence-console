@@ -44,7 +44,8 @@ public class NumberIsNotNegativeDoubleTest {
 
     assertEquals(List.of(MyType.negative), cop.getItems()); // Lists all number fields, that allow negative values.
     connect.connect(MODEL);
-    assertEquals("""
+    assertEquals(
+      """
       SELECT COUNT(*) FROM "MyType" WHERE "negative"<0.0 -- inspection fails if result is zero""",
       cop.getViolationSql(MyType.negative)
     );

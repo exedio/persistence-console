@@ -38,7 +38,8 @@ public class TypeIsEmptyTest {
 
     assertEquals(List.of(MyType.TYPE), cop.getItems()); // Lists all non-abstract types.
     connect.connect(MODEL);
-    assertEquals("""
+    assertEquals(
+      """
       SELECT COUNT(*) FROM "MyType" -- inspection fails if result is zero""",
       cop.getViolationSql(MyType.TYPE)
     );

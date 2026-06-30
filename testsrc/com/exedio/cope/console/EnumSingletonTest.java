@@ -41,7 +41,8 @@ public class EnumSingletonTest {
 
     assertEquals(List.of(MyType.singleton), cop.getItems());
     connect.connect(MODEL);
-    assertEquals("""
+    assertEquals(
+      """
       SELECT COUNT(*) FROM "MyType" -- inspection fails if result is less than 3""",
       cop.getViolationSql(MyType.singleton)
     );
