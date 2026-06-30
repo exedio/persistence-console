@@ -84,9 +84,9 @@ final class StringIsNotEmptyCop extends FeatureTestCop<StringField>
 	{
 		try(var tx = startTransaction())
 		{
-			final boolean result =
-				(getQuery(field).total()==0) &&
-				!noFailureOnEmpty(field);
+			if (noFailureOnEmpty(field)) return tx.commit(0);
+
+			final boolean result = getQuery(field).total()==0;
 			tx.commit();
 			return failWithOne(result);
 		}
