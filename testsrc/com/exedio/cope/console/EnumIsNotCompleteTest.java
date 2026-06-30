@@ -44,7 +44,8 @@ public class EnumIsNotCompleteTest {
     assertEquals(List.of(MyType.field), cop.getItems()); // Lists all enum fields.
     connect.connect(MODEL);
     assertEquals(
-      "SELECT COUNT(*) FROM ( SELECT DISTINCT \"field\" FROM \"MyType\" WHERE \"field\" IS NOT NULL ) -- inspection fails if result is less than 3",
+      """
+      SELECT COUNT(*) FROM ( SELECT DISTINCT "field" FROM "MyType" WHERE "field" IS NOT NULL ) -- inspection fails if result is less than 3""",
       cop.getViolationSql(MyType.field)
     );
 

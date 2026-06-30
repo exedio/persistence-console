@@ -41,7 +41,8 @@ public class IsNullTest {
     assertEquals(List.of(MyType.optional), cop.getItems()); // Lists all fields, that are optional.
     connect.connect(MODEL);
     assertEquals(
-      "SELECT COUNT(*) FROM \"MyType\" WHERE \"optional\" IS NULL -- inspection fails if result is zero",
+      """
+      SELECT COUNT(*) FROM "MyType" WHERE "optional" IS NULL -- inspection fails if result is zero""",
       cop.getViolationSql(MyType.optional)
     );
 
@@ -73,7 +74,8 @@ public class IsNullTest {
     assertEquals(List.of(MyType.optional), cop.getItems()); // Lists all fields, that are optional.
     connect.connect(MODEL);
     assertEquals(
-      "SELECT COUNT(*) FROM \"MyType\" WHERE \"optional\" IS NOT NULL -- inspection fails if result is zero",
+      """
+      SELECT COUNT(*) FROM "MyType" WHERE "optional" IS NOT NULL -- inspection fails if result is zero""",
       cop.getViolationSql(MyType.optional)
     );
 
