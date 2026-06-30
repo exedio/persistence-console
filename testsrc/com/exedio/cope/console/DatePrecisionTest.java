@@ -43,8 +43,8 @@ public class DatePrecisionTest {
     assertEquals(List.of(MyType.millis), cop.getItems()); // Lists all date fields, that allow milliseconds (getPrecision()==MILLI).
     assertEquals("NOT YET CONNECTED", cop.getViolationSql(MyType.millis));
     connect.connect(MODEL);
-    assertEquals(
-      "SELECT COUNT(*) FROM \"MyType\" WHERE \"millis\" IS NOT NULL AND EXTRACT(MICROSECOND FROM \"millis\")>0 -- inspection fails if result is zero",
+    assertEquals("""
+      SELECT COUNT(*) FROM "MyType" WHERE "millis" IS NOT NULL AND EXTRACT(MICROSECOND FROM "millis")>0 -- inspection fails if result is zero""",
       cop.getViolationSql(MyType.millis)
     );
 

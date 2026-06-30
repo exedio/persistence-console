@@ -40,8 +40,8 @@ public class SingletonTest {
 
     assertEquals(List.of(MyType.singleton), cop.getItems());
     connect.connect(MODEL);
-    assertEquals(
-      "SELECT COUNT(*) FROM \"MyType\" -- inspection fails if result is less than 1",
+    assertEquals("""
+      SELECT COUNT(*) FROM "MyType" -- inspection fails if result is less than 1""",
       cop.getViolationSql(MyType.singleton)
     );
 

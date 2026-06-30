@@ -47,8 +47,8 @@ public class NumberIsNotZeroIntegerTest {
       cop.getItems()
     ); // Lists all number fields, that allow negative values.
     connect.connect(MODEL);
-    assertEquals(
-      "SELECT COUNT(*) FROM \"MyType\" WHERE \"negativeAndZero\"=0 -- inspection fails if result is zero",
+    assertEquals("""
+      SELECT COUNT(*) FROM "MyType" WHERE "negativeAndZero"=0 -- inspection fails if result is zero""",
       cop.getViolationSql(MyType.negativeAndZero)
     );
 

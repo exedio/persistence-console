@@ -43,8 +43,8 @@ public class StringIsNotEmptyTest {
 
     assertEquals(List.of(MyType.empty), cop.getItems()); // Lists all string fields, that allow the empty string.
     connect.connect(MODEL);
-    assertEquals(
-      "SELECT COUNT(*) FROM \"MyType\" WHERE CHAR_LENGTH(\"empty\")=0 -- inspection fails if result is zero",
+    assertEquals("""
+      SELECT COUNT(*) FROM "MyType" WHERE CHAR_LENGTH("empty")=0 -- inspection fails if result is zero""",
       cop.getViolationSql(MyType.empty)
     );
 
