@@ -32,6 +32,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.SetValue;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
+import com.exedio.cope.util.UsageEntryPoint;
 import com.exedio.dsmf.Schema;
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -35,6 +35,7 @@ import com.exedio.cope.TypesBound;
 import com.exedio.cope.console.HashApi.HashRequest;
 import com.exedio.cope.pattern.Hash;
 import com.exedio.cope.pattern.HashAlgorithm;
+import com.exedio.cope.util.UsageEntryPoint;
 import java.io.IOException;
 import java.util.Map;
 import org.junit.jupiter.api.Test;

@@ -31,6 +31,7 @@ import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.console.SchemaMaintainApi.Operation;
 import com.exedio.cope.console.SchemaMaintainApi.Request;
+import com.exedio.cope.util.UsageEntryPoint;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

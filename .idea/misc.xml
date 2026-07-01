@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="com.exedio.cope.console.UsageEntryPoint" />
-      <item index="1" class="java.lang.String" itemvalue="com.exedio.cope.console.example.UsageEntryPoint" />
-      <item index="2" class="java.lang.String" itemvalue="com.exedio.cope.instrument.Generated" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="com.exedio.cope.instrument.Generated" />
+      <item index="1" class="java.lang.String" itemvalue="com.exedio.cope.util.UsageEntryPoint" />
     </list>
     <pattern value="com.exedio.cope.console.ConsoleServlet" method="doRequest" />
   </component>

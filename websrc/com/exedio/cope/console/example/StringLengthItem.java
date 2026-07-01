@@ -22,6 +22,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 import com.exedio.cope.instrument.WrapperIgnore;
 import com.exedio.cope.util.CharSet;
+import com.exedio.cope.util.UsageEntryPoint;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class StringLengthItem extends Item

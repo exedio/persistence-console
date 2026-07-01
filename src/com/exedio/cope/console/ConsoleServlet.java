@@ -29,6 +29,7 @@ import com.exedio.cope.console.annotations.SuppressIsNotZero;
 import com.exedio.cope.misc.ConnectToken;
 import com.exedio.cope.reflect.FeatureField;
 import com.exedio.cope.reflect.TypeField;
+import com.exedio.cope.util.UsageEntryPoint;
 import com.exedio.cops.Cop;
 import com.exedio.cops.CopsServlet;
 import com.exedio.cops.Resource;

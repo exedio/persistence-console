@@ -34,6 +34,7 @@ import com.exedio.cope.TypesBound;
 import com.exedio.cope.UniqueConstraint;
 import com.exedio.cope.console.SchemaGetApi.Column;
 import com.exedio.cope.console.SchemaGetApi.Table;
+import com.exedio.cope.util.UsageEntryPoint;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
