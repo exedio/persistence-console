@@ -388,10 +388,8 @@ public class SchemaAlterApiTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final StringField myString = new StringField().toFinal();
 
-    @UsageEntryPoint
     static final StringField myString2 = new StringField().toFinal();
 
     @UsageEntryPoint

@@ -57,7 +57,6 @@ public class SingletonTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final Singleton singleton = new Singleton();
 
     @UsageEntryPoint

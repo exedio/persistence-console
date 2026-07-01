@@ -755,13 +755,10 @@ public class SchemaGetApiTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final StringField myString = new StringField().toFinal();
 
-    @UsageEntryPoint
     static final StringField myString2 = new StringField().toFinal();
 
-    @UsageEntryPoint
     static final IntegerField myInt = new IntegerField()
       .toFinal()
       .defaultToNext(77);

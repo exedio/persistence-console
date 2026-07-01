@@ -79,10 +79,8 @@ public class NumberIsNotNegativeIntegerTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final IntegerField nonNegative = new IntegerField().min(0);
 
-    @UsageEntryPoint
     static final IntegerField negative = new IntegerField().min(-1).optional();
 
     @UsageEntryPoint

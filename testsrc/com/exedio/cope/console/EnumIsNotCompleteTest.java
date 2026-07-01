@@ -90,7 +90,6 @@ public class EnumIsNotCompleteTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final EnumField<MyEnum> field = EnumField.create(
       MyEnum.class
     ).optional();

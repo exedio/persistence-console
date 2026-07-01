@@ -79,10 +79,8 @@ public class NumberIsNotNegativeLongTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final LongField nonNegative = new LongField().min(0);
 
-    @UsageEntryPoint
     static final LongField negative = new LongField().min(-1).optional();
 
     @UsageEntryPoint

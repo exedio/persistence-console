@@ -72,10 +72,8 @@ public class StringIsNotEmptyTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final StringField normal = new StringField().optional();
 
-    @UsageEntryPoint
     static final StringField empty = new StringField().optional().lengthMin(0);
 
     MyType(final String empty) {
