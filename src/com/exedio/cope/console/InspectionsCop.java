@@ -46,6 +46,7 @@ final class InspectionsCop extends ConsoleCop<Void> {
     final TestCop.TestArgs testArgs = new TestCop.TestArgs();
     Inspections_Jspm.writeBody(out, new TestCop<?>[] {
       new TypeIsEmptyCop(args, testArgs),
+      new SingletonNotDeclaredCop(args, testArgs),
       new IsNotNullCop(args, testArgs),
       new IsAlwaysNullCop(args, testArgs),
       new StringIsNotEmptyCop(args, testArgs),
