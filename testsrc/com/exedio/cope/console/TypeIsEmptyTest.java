@@ -46,7 +46,7 @@ public class TypeIsEmptyTest {
 
     assertEquals(1, cop.check(MyType.TYPE)); // There are no items of a type in database at all.
 
-    try (var tx = MODEL.startTransactionTry("null item")) {
+    try (var tx = MODEL.startTransactionTry("first item")) {
       new MyType();
       tx.commit();
     }
