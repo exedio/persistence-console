@@ -271,6 +271,7 @@ abstract class ConsoleCop<S> extends Cop
 					new StringIsNotEmptyCop(args, testArgs),
 					new NumberIsNotZeroCop(args, testArgs),
 					new NumberIsNotNegativeCop(args, testArgs),
+					new BooleanIsNotCompleteCop(args, testArgs),
 					new EnumIsNotCompleteCop(args, testArgs),
 					new DatePrecisionCop(args, testArgs),
 				}};
@@ -429,6 +430,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new NumberIsNotZeroCop(args, new TestCop.TestArgs(request));
 			case NumberIsNotNegativeCop.TAB:
 				return new NumberIsNotNegativeCop(args, new TestCop.TestArgs(request));
+			case BooleanIsNotCompleteCop.TAB:
+				return new BooleanIsNotCompleteCop(args, new TestCop.TestArgs(request));
 			case EnumIsNotCompleteCop.TAB:
 				return new EnumIsNotCompleteCop(args, new TestCop.TestArgs(request));
 			case DatePrecisionCop.TAB:
