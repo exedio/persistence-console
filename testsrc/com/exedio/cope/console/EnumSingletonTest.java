@@ -76,7 +76,6 @@ public class EnumSingletonTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final EnumSingleton<MyEnum> singleton = EnumSingleton.create(
       MyEnum.class
     );

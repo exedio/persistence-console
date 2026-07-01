@@ -84,23 +84,17 @@ public class NumberIsNotZeroLongTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final LongField negativeOnly = new LongField().max(-1);
 
-    @UsageEntryPoint
     static final LongField positiveOnly = new LongField().min(1);
 
-    @UsageEntryPoint
     static final LongField negativeAndZero = new LongField().max(0).optional();
 
-    @UsageEntryPoint
     static final LongField positiveAndZero = new LongField().min(0);
 
-    @UsageEntryPoint
     @SuppressIsNotZero
     static final LongField suppressed = new LongField();
 
-    @UsageEntryPoint
     @SuppressIsNotZero
     static final PriceField suppressedPattern = new PriceField();
 

@@ -102,10 +102,8 @@ public class IsNullTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final StringField mandatory = new StringField();
 
-    @UsageEntryPoint
     static final StringField optional = new StringField().optional();
 
     MyType(final String optional) {

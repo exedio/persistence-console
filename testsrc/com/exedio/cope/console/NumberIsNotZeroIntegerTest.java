@@ -82,21 +82,16 @@ public class NumberIsNotZeroIntegerTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final IntegerField negativeOnly = new IntegerField().max(-1);
 
-    @UsageEntryPoint
     static final IntegerField positiveOnly = new IntegerField().min(1);
 
-    @UsageEntryPoint
     static final IntegerField negativeAndZero = new IntegerField()
       .max(0)
       .optional();
 
-    @UsageEntryPoint
     static final IntegerField positiveAndZero = new IntegerField().min(0);
 
-    @UsageEntryPoint
     @SuppressIsNotZero
     static final IntegerField suppressed = new IntegerField();
 

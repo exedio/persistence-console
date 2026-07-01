@@ -257,7 +257,6 @@ public class MetricsApiTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final StringField myString = new StringField().unique().toFinal();
 
     @UsageEntryPoint

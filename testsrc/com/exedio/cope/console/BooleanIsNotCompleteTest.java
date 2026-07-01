@@ -79,7 +79,6 @@ public class BooleanIsNotCompleteTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final BooleanField field = new BooleanField().optional();
 
     MyType(final Boolean field) {

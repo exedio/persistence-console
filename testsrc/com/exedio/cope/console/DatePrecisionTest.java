@@ -72,7 +72,6 @@ public class DatePrecisionTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final DateField millis = new DateField().toFinal().optional();
 
     @UsageEntryPoint

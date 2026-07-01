@@ -82,21 +82,16 @@ public class NumberIsNotZeroDoubleTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final DoubleField negativeOnly = new DoubleField().max(-0.1);
 
-    @UsageEntryPoint
     static final DoubleField positiveOnly = new DoubleField().min(0.1);
 
-    @UsageEntryPoint
     static final DoubleField negativeAndZero = new DoubleField()
       .max(0)
       .optional();
 
-    @UsageEntryPoint
     static final DoubleField positiveAndZero = new DoubleField().min(0);
 
-    @UsageEntryPoint
     @SuppressIsNotZero
     static final DoubleField suppressed = new DoubleField();
 

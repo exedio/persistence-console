@@ -96,7 +96,6 @@ public class SchemaPatchApiTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final StringField myString = new StringField().toFinal();
 
     MyType() {

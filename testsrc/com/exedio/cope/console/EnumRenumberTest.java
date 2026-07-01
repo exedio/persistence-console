@@ -212,17 +212,14 @@ public class EnumRenumberTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final EnumField<Normal> normal = EnumField.create(
       Normal.class
     ).optional();
 
-    @UsageEntryPoint
     static final EnumField<Single> single = EnumField.create(
       Single.class
     ).optional();
 
-    @UsageEntryPoint
     static final EnumField<Single> single2 = EnumField.create(
       Single.class
     ).optional();
@@ -258,7 +255,6 @@ public class EnumRenumberTest {
 
   private static final class MyType2 extends Item {
 
-    @UsageEntryPoint
     static final EnumField<Single> single3 = EnumField.create(
       Single.class
     ).optional();

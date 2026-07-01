@@ -79,10 +79,8 @@ public class NumberIsNotNegativeDoubleTest {
 
   private static final class MyType extends Item {
 
-    @UsageEntryPoint
     static final DoubleField nonNegative = new DoubleField().min(0);
 
-    @UsageEntryPoint
     static final DoubleField negative = new DoubleField().min(-0.1).optional();
 
     @UsageEntryPoint
