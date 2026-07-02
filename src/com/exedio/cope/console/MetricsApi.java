@@ -59,6 +59,16 @@ final class MetricsApi {
         final String modelActual = id.getTag(modelKey);
         if (modelActual != null && !modelActual.equals(modelValue)) continue;
       }
+      {
+        // This is another attempt to filter out meters that do not belong to
+        // the model. Needed for meters that do not have a "model"-tag.
+        final String feature = id.getTag("feature");
+        if (
+          feature != null &&
+          !"NONE".equals(feature) && // created in cope by MediaMeter for noSuchPath
+          model.getFeature(feature) == null
+        ) continue;
+      }
 
       resultMeters.add(m);
     }
