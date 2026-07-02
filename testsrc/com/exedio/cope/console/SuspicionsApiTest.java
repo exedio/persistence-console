@@ -28,6 +28,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.Pattern;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
+import com.exedio.cope.util.UsageEntryPoint;
 import java.io.IOException;
 import java.io.Serial;
 import java.util.Collection;

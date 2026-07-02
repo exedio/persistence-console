@@ -25,6 +25,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 import com.exedio.cope.pattern.MediaPath;
 import com.exedio.cope.pattern.MediaUtil;
+import com.exedio.cope.util.UsageEntryPoint;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;

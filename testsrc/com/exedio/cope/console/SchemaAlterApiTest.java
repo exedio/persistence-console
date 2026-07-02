@@ -33,6 +33,7 @@ import com.exedio.cope.StringField;
 import com.exedio.cope.Type;
 import com.exedio.cope.TypesBound;
 import com.exedio.cope.UniqueConstraint;
+import com.exedio.cope.util.UsageEntryPoint;
 import java.io.IOException;
 import java.util.Map;
 import org.junit.jupiter.api.Test;

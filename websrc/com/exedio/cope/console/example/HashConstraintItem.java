@@ -23,6 +23,7 @@ import com.exedio.cope.Item;
 import com.exedio.cope.StringField;
 import com.exedio.cope.instrument.Wrapper;
 import com.exedio.cope.pattern.HashConstraint;
+import com.exedio.cope.util.UsageEntryPoint;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass") // OK: for example TYPE
 final class HashConstraintItem extends Item
