@@ -274,6 +274,7 @@ abstract class ConsoleCop<S> extends Cop
 					new NumberIsNotNegativeCop(args, testArgs),
 					new BooleanIsNotCompleteCop(args, testArgs),
 					new EnumIsNotCompleteCop(args, testArgs),
+					new ItemIsNotCompleteCop(args, testArgs),
 					new DatePrecisionCop(args, testArgs),
 				}};
 	}
@@ -437,6 +438,8 @@ abstract class ConsoleCop<S> extends Cop
 				return new BooleanIsNotCompleteCop(args, new TestCop.TestArgs(request));
 			case EnumIsNotCompleteCop.TAB:
 				return new EnumIsNotCompleteCop(args, new TestCop.TestArgs(request));
+			case ItemIsNotCompleteCop.TAB:
+				return new ItemIsNotCompleteCop(args, new TestCop.TestArgs(request));
 			case DatePrecisionCop.TAB:
 				return new DatePrecisionCop(args, new TestCop.TestArgs(request));
 			case TypeFieldCop.TAB:
