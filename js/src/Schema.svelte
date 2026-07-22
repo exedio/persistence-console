@@ -87,10 +87,6 @@
     readonly promise: Promise<SchemaAlterResponse>;
   };
 
-  let patchesEncodedForJava = $state(true);
-  const patchEncoding: PatchEncoding = $derived(
-    patchesEncodedForJava ? "Java" : "SQL Script",
-  );
   let patchesAlterTablesJoined = $state(true);
 
   const patches: Patch[] = $derived(
@@ -348,10 +344,6 @@
   {#if patchesLog.length > 0 || patches.length > 0}
     <div class="sql">
       <label
-        ><input type="checkbox" bind:checked={patchesEncodedForJava} />encoded
-        for java</label
-      ><br />
-      <label
         ><input type="checkbox" bind:checked={patchesAlterTablesJoined} />join
         ALTER TABLE statements on the same table</label
       ><br />
@@ -361,15 +353,11 @@
           <!-- eslint-disable-next-line svelte/require-each-key -- patches are not unique -->
           {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
-              {encodePatch(undefined, patchEncoding, sql)}
+              {encodePatch(undefined, "SQL Script", sql)}
               {#if failure}
                 <br />
               {/if}
-              {#if patchesEncodedForJava}<!-- the end-of-line comment -->
-                //
-              {:else}
-                --
-              {/if}
+              --
               {#if success}
                 {#if success.rows > 0}
                   {success.rows}&nbsp;rows,
@@ -396,7 +384,7 @@
                 {fix.fix.method}
               {:then response}
                 {@render renderLinebreaks(
-                  encodePatch(fix.joinable, patchEncoding, response.sql),
+                  encodePatch(fix.joinable, "SQL Script", response.sql),
                 )}
               {:catch error}
                 <span class="red">{error.message}</span>
