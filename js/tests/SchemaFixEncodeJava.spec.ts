@@ -16,7 +16,9 @@ describe("EncodePatch", () => {
       expect(encodePatch(undefined, "Java", "something")).toBe('"something",');
     });
     it("should handle something non-java", async () => {
-      expect(encodePatch(undefined, "SQL Script", "something")).toBe("something;");
+      expect(encodePatch(undefined, "SQL Script", "something")).toBe(
+        "something;",
+      );
     });
 
     it("should handle something with a double quote", async () => {
@@ -25,7 +27,9 @@ describe("EncodePatch", () => {
       );
     });
     it("should handle something with a double quote non-java", async () => {
-      expect(encodePatch(undefined, "SQL Script", 'some"thing')).toBe('some"thing;');
+      expect(encodePatch(undefined, "SQL Script", 'some"thing')).toBe(
+        'some"thing;',
+      );
     });
 
     it("should handle something with two double quotes", async () => {
@@ -59,8 +63,12 @@ describe("EncodePatch", () => {
         expect(encodePatch("head", "SQL Script", s)).toBe(
           "ALTER TABLE `AnItem` ADD COLUMN `col1` int,",
         );
-        expect(encodePatch("middle", "SQL Script", s)).toBe("ADD COLUMN `col1` int,");
-        expect(encodePatch("tail", "SQL Script", s)).toBe("ADD COLUMN `col1` int;");
+        expect(encodePatch("middle", "SQL Script", s)).toBe(
+          "ADD COLUMN `col1` int,",
+        );
+        expect(encodePatch("tail", "SQL Script", s)).toBe(
+          "ADD COLUMN `col1` int;",
+        );
       });
       it("should handle joined java", async () => {
         const s = "ALTER TABLE `AnItem` ADD COLUMN `col1` int";
@@ -102,7 +110,11 @@ describe("EncodePatch", () => {
       });
       it("should handle joined with minimal spaces java", async () => {
         expect(
-          encodePatch("middle", "Java", "ALTER TABLE`AnItem`ADD COLUMN`col1`int"),
+          encodePatch(
+            "middle",
+            "Java",
+            "ALTER TABLE`AnItem`ADD COLUMN`col1`int",
+          ),
         ).toBe('"ADD COLUMN`col1`int," +');
       });
 
@@ -204,7 +216,9 @@ describe("EncodePatch", () => {
       );
     });
     it("should not split create table joinable non-java", async () => {
-      expect(encodePatch("head", "SQL Script", createTable)).toBe(createTable + ",");
+      expect(encodePatch("head", "SQL Script", createTable)).toBe(
+        createTable + ",",
+      );
     });
     it("should not split create table joinable java", async () => {
       expect(encodePatch("head", "Java", createTable)).toBe(
