@@ -5,6 +5,7 @@
     copyHandler,
   }: { copyHandler: (mode: PatchEncoding) => Promise<void> } = $props();
 
+  let popoverId = $props.id();
   let popover: HTMLDivElement | undefined = $state(undefined);
   let notificationVisible: boolean = $state(false);
 
@@ -19,24 +20,22 @@
   };
 </script>
 
-<button id="copybutton" popovertarget="modes" popovertargetaction="toggle"
-  >copy</button
->
+<button popovertarget={popoverId} popovertargetaction="toggle">copy</button>
 {#if notificationVisible}
   <span id="notification">Copied ✓</span>
 {/if}
-<div id="modes" popover bind:this={popover}>
+<div id={popoverId} popover bind:this={popover}>
   {#each patchEncodings as mode (mode)}
     <button class="mode" onclick={() => copy(mode)}>{mode}</button>
   {/each}
 </div>
 
 <style>
-  #copybutton {
+  button {
     float: inline-end;
     anchor-name: --copy-button-anchor;
   }
-  #modes {
+  div[popover] {
     border: none;
     position: fixed;
     position-area: bottom;

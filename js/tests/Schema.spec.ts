@@ -2339,7 +2339,7 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce();
       copy().click();
       expect(
-        await formatHtml(document.getElementById("modes")),
+        await formatHtml(document.querySelector("div[popover]")),
       ).toMatchSnapshot();
       button("Java", 0).click();
       await flushPromises();
@@ -2364,7 +2364,7 @@ describe("Schema", () => {
       mock.mockResolvedValueOnce();
       copy().click();
       expect(
-        await formatHtml(document.getElementById("modes")),
+        await formatHtml(document.querySelector("div[popover]")),
       ).toMatchSnapshot();
       button("SQL Script", 0).click();
       await flushPromises();
