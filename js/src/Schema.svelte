@@ -32,9 +32,11 @@
     workOnFixes,
     type FixedFixable,
     setFix,
+    type PatchEncoding,
   } from "@/SchemaFix";
   import { useWithStoreSingle } from "@/utils";
   import SchemaMaintain from "@/SchemaMaintain.svelte";
+  import CopyButton from "@/CopyButton.svelte";
 
   const schemaStore = new Map<string, Schema>();
 
@@ -86,6 +88,9 @@
   };
 
   let patchesEncodedForJava = $state(true);
+  const patchEncoding: PatchEncoding = $derived(
+    patchesEncodedForJava ? "Java" : "SQL Script",
+  );
   let patchesAlterTablesJoined = $state(true);
 
   const patches: Patch[] = $derived(
@@ -178,18 +183,15 @@
     return message.substring(prefix.length);
   }
 
-  async function copyPatches(): Promise<void> {
+  async function copyPatches(mode: PatchEncoding): Promise<void> {
     return Promise.all(patches.map((patch) => patch.promise)).then(
       (responses) => {
         navigator.clipboard.writeText(
           responses
             .map(
               (response, index) =>
-                encodePatch(
-                  patches[index].fix.joinable,
-                  patchesEncodedForJava,
-                  response.sql,
-                ) + "\n",
+                encodePatch(patches[index].fix.joinable, mode, response.sql) +
+                "\n",
             )
             .join(""),
         );
@@ -359,7 +361,7 @@
           <!-- eslint-disable-next-line svelte/require-each-key -- patches are not unique -->
           {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
-              {encodePatch(undefined, patchesEncodedForJava, sql)}
+              {encodePatch(undefined, patchEncoding, sql)}
               {#if failure}
                 <br />
               {/if}
@@ -383,7 +385,7 @@
         <hr />
       {/if}
       {#if patches.length > 0}
-        <button class="run" onclick={() => copyPatches()}>copy</button>
+        <CopyButton copyHandler={copyPatches} />
         <button class="run" onclick={() => runPatches()}>RUN</button>
         <ul class="monospace">
           {#each patches as { fix, url, promise } (url)}
@@ -394,11 +396,7 @@
                 {fix.fix.method}
               {:then response}
                 {@render renderLinebreaks(
-                  encodePatch(
-                    fix.joinable,
-                    patchesEncodedForJava,
-                    response.sql,
-                  ),
+                  encodePatch(fix.joinable, patchEncoding, response.sql),
                 )}
               {:catch error}
                 <span class="red">{error.message}</span>

@@ -2338,6 +2338,10 @@ describe("Schema", () => {
       const mock = mockClipboardWriteText();
       mock.mockResolvedValueOnce();
       copy().click();
+      expect(
+        await formatHtml(document.querySelector("div[popover]")),
+      ).toMatchSnapshot();
+      button("Java", 0).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         // considers enabled "encoded for java"
@@ -2359,6 +2363,10 @@ describe("Schema", () => {
       const mock = mockClipboardWriteText();
       mock.mockResolvedValueOnce();
       copy().click();
+      expect(
+        await formatHtml(document.querySelector("div[popover]")),
+      ).toMatchSnapshot();
+      button("SQL Script", 0).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
         // considers disabled "encoded for java"

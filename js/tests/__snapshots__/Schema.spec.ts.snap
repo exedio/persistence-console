@@ -652,8 +652,8 @@ exports[`Schema > should render a column with an additional error 3`] = `
           ⧉
         </button>
         <ul class="svelte">
-          <li>additionalErrors1</li>
-          <li>additionalErrors2</li>
+          <li class="svelte">additionalErrors1</li>
+          <li class="svelte">additionalErrors2</li>
         </ul>
       </li>
     </ul>
@@ -975,8 +975,8 @@ exports[`Schema > should render a constraint with an additional error 2`] = `
           ⧉
         </button>
         <ul class="svelte">
-          <li>additionalErrors1</li>
-          <li>additionalErrors2</li>
+          <li class="svelte">additionalErrors1</li>
+          <li class="svelte">additionalErrors2</li>
         </ul>
       </li>
     </ul>
@@ -2649,8 +2649,8 @@ exports[`Schema > should render a sequence with an additional error 1`] = `
     </button>
     55<button class="clipboard svelte" title="55">⧉</button>
     <ul class="svelte">
-      <li>additionalErrors1</li>
-      <li>additionalErrors2</li>
+      <li class="svelte">additionalErrors1</li>
+      <li class="svelte">additionalErrors2</li>
     </ul>
   </li>
 </ul>
@@ -2789,8 +2789,8 @@ exports[`Schema > should render a table with an additional error 2`] = `
     >
     myTable1Name
     <ul class="svelte">
-      <li>additionalErrors1</li>
-      <li>additionalErrors2</li>
+      <li class="svelte">additionalErrors1</li>
+      <li class="svelte">additionalErrors2</li>
     </ul>
     <label class="checkbox-as-button svelte" title="show all columns"
       ><input type="checkbox" class="svelte" /><span class="svelte"
@@ -3968,6 +3968,12 @@ exports[`Schema > should run patches 3`] = `
 `;
 
 exports[`Schema > should run patches 4`] = `
+"<button class="mode svelte">Java</button
+><button class="mode svelte">SQL Script</button>
+"
+`;
+
+exports[`Schema > should run patches 5`] = `
 "<li class="svelte">CREATE TABLE "myTable1"; -- 11&nbsp;rows, 1111ms</li>
 <li class="svelte">CREATE TABLE "myTable2"; -- 22&nbsp;rows, 2222ms</li>
 <li class="svelte">
@@ -3979,6 +3985,12 @@ exports[`Schema > should run patches 4`] = `
 <li class="svelte">
   ALTER TABLE "myTable3" ADD COLUMN "myColumn3" string; -- 55&nbsp;rows, 5555ms
 </li>
+"
+`;
+
+exports[`Schema > should run patches 6`] = `
+"<button class="mode svelte">Java</button
+><button class="mode svelte">SQL Script</button>
 "
 `;
 
