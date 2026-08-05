@@ -2140,44 +2140,6 @@ describe("Schema", () => {
     expect(await formatHtml(sql())).toMatchSnapshot();
   });
 
-  it("should patches encoded for java", async () => {
-    {
-      const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccess({
-          tables: [{ name: "myTable1Name", existence: "missing" }],
-        } satisfies ApiSchema),
-      );
-      await mountComponent();
-      expect(mock).toHaveBeenCalledTimes(1);
-    }
-    expect(sql()).toBeNull();
-
-    const create = () => checkbox("create", 0);
-    const encode = () => checkbox("encoded for java", 0);
-    {
-      const mock = mockFetch();
-      mock.mockResolvedValueOnce(
-        responseSuccessAlter(
-          'CREATE TABLE "myTable1Name"(' +
-            '"column" int not null,' +
-            '"column2" int not null,' +
-            'CONSTRAINT "myTable1Name_PK" PRIMARY KEY("column"),' +
-            'CONSTRAINT "myTable1Name_column_MN" CHECK("column">=0),' +
-            'CONSTRAINT "myTable1Name_column_MX" CHECK("column"<=55))',
-        ),
-      );
-      create().click();
-      await flushPromises();
-      expect(mock).toHaveBeenCalledTimes(1);
-    }
-    expect(await formatHtml(sql())).toMatchSnapshot();
-
-    encode().click();
-    await flushPromises();
-    expect(await formatHtml(sql())).toMatchSnapshot();
-  });
-
   it("should join ALTER TABLE statements on the same table", async () => {
     {
       const mock = mockFetch();
@@ -2354,9 +2316,6 @@ describe("Schema", () => {
       );
     }
 
-    const encode = () => checkbox("encoded for java", 0);
-    encode().click();
-    await flushPromises();
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(sql(1)).toBeTruthy();
     {
@@ -2435,9 +2394,6 @@ describe("Schema", () => {
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(sql(1)).toBeTruthy();
 
-    const encode = () => checkbox("encoded for java", 0);
-    encode().click();
-    await flushPromises();
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(sql(1)).toBeTruthy();
   });
