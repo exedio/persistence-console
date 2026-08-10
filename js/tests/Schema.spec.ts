@@ -2306,7 +2306,6 @@ describe("Schema", () => {
       button("Java", 0).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
-        // considers enabled "encoded for java"
         '"CREATE TABLE \\"myTable1\\"",\n' +
           '"CREATE TABLE \\"myTable2\\"",\n' +
           // sqlAdd1-3 joined into one sql statement
@@ -2328,7 +2327,6 @@ describe("Schema", () => {
       button("SQL Script", 0).click();
       await flushPromises();
       expect(mock).toHaveBeenCalledExactlyOnceWith(
-        // considers disabled "encoded for java"
         'CREATE TABLE "myTable1";\n' +
           'CREATE TABLE "myTable2";\n' +
           // sqlAdd1-3 joined into one sql statement
