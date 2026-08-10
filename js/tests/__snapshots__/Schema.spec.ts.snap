@@ -304,19 +304,19 @@ exports[`Schema > should join ALTER TABLE statements on the same table 1`] = `
   ALTER TABLE "myTableName" ADD COLUMN "myColumn1Name" string,
 </li>
 <li class="more svelte">ADD COLUMN "myColumn2Name" string,</li>
-<li class="more svelte">ADD COLUMN "myColumn3Name" string;</li>
+<li class="more svelte">ADD COLUMN "myColumn3Name" string</li>
 "
 `;
 
 exports[`Schema > should join ALTER TABLE statements on the same table 2`] = `
 "<li class="svelte">
-  ALTER TABLE "myTableName" ADD COLUMN "myColumn1Name" string;
+  ALTER TABLE "myTableName" ADD COLUMN "myColumn1Name" string
 </li>
 <li class="svelte">
-  ALTER TABLE "myTableName" ADD COLUMN "myColumn2Name" string;
+  ALTER TABLE "myTableName" ADD COLUMN "myColumn2Name" string
 </li>
 <li class="svelte">
-  ALTER TABLE "myTableName" ADD COLUMN "myColumn3Name" string;
+  ALTER TABLE "myTableName" ADD COLUMN "myColumn3Name" string
 </li>
 "
 `;
@@ -529,7 +529,7 @@ exports[`Schema > should render a column with a wrong type 4`] = `
 
 exports[`Schema > should render a column with a wrong type 5`] = `
 "<li class="svelte">
-  ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type;
+  ALTER TABLE myTable1Name ALTER myColumn1Name TYPE myColumn1Type
 </li>
 "
 `;
@@ -676,7 +676,7 @@ exports[`Schema > should render a connect button 2`] = `
 `;
 
 exports[`Schema > should render a connect button 3`] = `
-"<li class="svelte">CREATE TABLE myTable1Name;</li>
+"<li class="svelte">CREATE TABLE myTable1Name</li>
 "
 `;
 
@@ -880,10 +880,10 @@ exports[`Schema > should render a constraint with a wrong clause 3`] = `
 
 exports[`Schema > should render a constraint with a wrong clause 4`] = `
 "<li class="svelte">
-  ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name;
+  ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name
 </li>
 <li class="svelte">
-  ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name;
+  ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name
 </li>
 "
 `;
@@ -1429,16 +1429,16 @@ exports[`Schema > should render a missing column 4`] = `
 `;
 
 exports[`Schema > should render a missing column 5`] = `
-"<li class="svelte">ALTER TABLE myTable1Name ADD COLUMN myColumn1Name;</li>
+"<li class="svelte">ALTER TABLE myTable1Name ADD COLUMN myColumn1Name</li>
 "
 `;
 
 exports[`Schema > should render a missing column 6`] = `
 "<li class="svelte">
-  ALTER TABLE myTable1Name ADD COLUMN myColumn1Name DEFAULT 777;
+  ALTER TABLE myTable1Name ADD COLUMN myColumn1Name DEFAULT 777
 </li>
 <li class="svelte">
-  ALTER TABLE myTable1Name ALTER COLUMN myColumn1Name DROP DEFAULT;
+  ALTER TABLE myTable1Name ALTER COLUMN myColumn1Name DROP DEFAULT
 </li>
 "
 `;
@@ -1588,7 +1588,7 @@ exports[`Schema > should render a missing column to be renamed from an unused 2`
 exports[`Schema > should render a missing column to be renamed from an unused 3`] = `
 "<li class="svelte">
   ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO
-  "myMissingColumnName";
+  "myMissingColumnName"
 </li>
 "
 `;
@@ -1677,7 +1677,7 @@ exports[`Schema > should render a missing constraint 2`] = `
 
 exports[`Schema > should render a missing constraint 3`] = `
 "<li class="svelte">
-  ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name;
+  ALTER TABLE myTable1Name ADD CONSTRAINT myConstraint1Name
 </li>
 "
 `;
@@ -1719,7 +1719,7 @@ exports[`Schema > should render a missing sequence 1`] = `
 `;
 
 exports[`Schema > should render a missing sequence 2`] = `
-"<li class="svelte">CREATE SEQUENCE myOnlyName;</li>
+"<li class="svelte">CREATE SEQUENCE myOnlyName</li>
 "
 `;
 
@@ -1859,7 +1859,7 @@ exports[`Schema > should render a missing sequence to be renamed from an unused 
 
 exports[`Schema > should render a missing sequence to be renamed from an unused 3`] = `
 "<li class="svelte">
-  ALTER TABLE "myUnusedSequenceName" RENAME TO "myMissingSequenceName";
+  ALTER TABLE "myUnusedSequenceName" RENAME TO "myMissingSequenceName"
 </li>
 "
 `;
@@ -1928,7 +1928,7 @@ exports[`Schema > should render a missing table 2`] = `
 `;
 
 exports[`Schema > should render a missing table 3`] = `
-"<li class="svelte">CREATE TABLE myTable1Name;</li>
+"<li class="svelte">CREATE TABLE myTable1Name</li>
 "
 `;
 
@@ -2060,7 +2060,7 @@ exports[`Schema > should render a missing table to be renamed from an unused 2`]
 
 exports[`Schema > should render a missing table to be renamed from an unused 3`] = `
 "<li class="svelte">
-  ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName";
+  ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"
 </li>
 "
 `;
@@ -3012,7 +3012,7 @@ exports[`Schema > should render a unused column 3`] = `
 `;
 
 exports[`Schema > should render a unused column 4`] = `
-"<li class="svelte">ALTER TABLE myTable1Name DROP COLUMN myColumn1Name;</li>
+"<li class="svelte">ALTER TABLE myTable1Name DROP COLUMN myColumn1Name</li>
 "
 `;
 
@@ -3161,7 +3161,7 @@ exports[`Schema > should render a unused column to be renamed to a missing 2`] =
 exports[`Schema > should render a unused column to be renamed to a missing 3`] = `
 "<li class="svelte">
   ALTER TABLE "myTableName" ALTER COLUMN "myUnusedColumnName" RENAME TO
-  "myMissingColumnName";
+  "myMissingColumnName"
 </li>
 "
 `;
@@ -3250,7 +3250,7 @@ exports[`Schema > should render a unused constraint 2`] = `
 
 exports[`Schema > should render a unused constraint 3`] = `
 "<li class="svelte">
-  ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name;
+  ALTER TABLE myTable1Name DROP CONSTRAINT myConstraint1Name
 </li>
 "
 `;
@@ -3292,7 +3292,7 @@ exports[`Schema > should render a unused sequence 1`] = `
 `;
 
 exports[`Schema > should render a unused sequence 2`] = `
-"<li class="svelte">DROP SEQUENCE myOnlyName;</li>
+"<li class="svelte">DROP SEQUENCE myOnlyName</li>
 "
 `;
 
@@ -3432,7 +3432,7 @@ exports[`Schema > should render a unused sequence to be renamed to a missing 2`]
 
 exports[`Schema > should render a unused sequence to be renamed to a missing 3`] = `
 "<li class="svelte">
-  ALTER TABLE "myUnusedSequenceName" RENAME TO "myMissingSequenceName";
+  ALTER TABLE "myUnusedSequenceName" RENAME TO "myMissingSequenceName"
 </li>
 "
 `;
@@ -3501,7 +3501,7 @@ exports[`Schema > should render a unused table 2`] = `
 `;
 
 exports[`Schema > should render a unused table 3`] = `
-"<li class="svelte">DROP TABLE myTable1Name;</li>
+"<li class="svelte">DROP TABLE myTable1Name</li>
 "
 `;
 
@@ -3623,7 +3623,7 @@ exports[`Schema > should render a unused table to be renamed to a missing 2`] = 
 
 exports[`Schema > should render a unused table to be renamed to a missing 3`] = `
 "<li class="svelte">
-  ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName";
+  ALTER TABLE "myUnusedTableName" RENAME TO "myMissingTableName"
 </li>
 "
 `;
@@ -3907,68 +3907,77 @@ Schema
 `;
 
 exports[`Schema > should run patches 1`] = `
-"<li class="svelte">CREATE TABLE "myTable1";</li>
-<li class="svelte">CREATE TABLE "myTable2";</li>
+"<li class="svelte">CREATE TABLE "myTable1"</li>
+<li class="svelte">CREATE TABLE "myTable2"</li>
 <li class="svelte">ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string,</li>
 <li class="more svelte">ADD COLUMN "myColumn2" string,</li>
-<li class="more svelte">ADD COLUMN "myColumn3" string;</li>
+<li class="more svelte">ADD COLUMN "myColumn3" string</li>
 "
 `;
 
 exports[`Schema > should run patches 2`] = `
-"<li class="svelte">CREATE TABLE "myTable1"; -- 11&nbsp;rows, 1111ms</li>
-<li class="svelte">CREATE TABLE "myTable2"; -- 22&nbsp;rows, 2222ms</li>
+"<li class="svelte">CREATE TABLE "myTable1" -- 11&nbsp;rows, 1111ms</li>
+<li class="svelte">CREATE TABLE "myTable2" -- 22&nbsp;rows, 2222ms</li>
 <li class="svelte">
-  ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string; -- 33&nbsp;rows, 3333ms
+  ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string -- 33&nbsp;rows, 3333ms
 </li>
 <li class="svelte">
-  ALTER TABLE "myTable3" ADD COLUMN "myColumn2" string; -- 44&nbsp;rows, 4444ms
+  ALTER TABLE "myTable3" ADD COLUMN "myColumn2" string -- 44&nbsp;rows, 4444ms
 </li>
 <li class="svelte">
-  ALTER TABLE "myTable3" ADD COLUMN "myColumn3" string; -- 55&nbsp;rows, 5555ms
+  ALTER TABLE "myTable3" ADD COLUMN "myColumn3" string -- 55&nbsp;rows, 5555ms
 </li>
 "
 `;
 
 exports[`Schema > should run patches 3`] = `
-"<li class="svelte">CREATE TABLE "myTable1";</li>
-<li class="svelte">CREATE TABLE "myTable2";</li>
+"<li class="svelte">CREATE TABLE "myTable1"</li>
+<li class="svelte">CREATE TABLE "myTable2"</li>
 <li class="svelte">ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string,</li>
 <li class="more svelte">ADD COLUMN "myColumn2" string,</li>
-<li class="more svelte">ADD COLUMN "myColumn3" string;</li>
+<li class="more svelte">ADD COLUMN "myColumn3" string</li>
 "
 `;
 
 exports[`Schema > should run patches 4`] = `
 "<button class="mode svelte">Java</button
-><button class="mode svelte">SQL Script</button>
+><button class="mode svelte">SQL Script</button
+><button class="mode svelte">Raw</button>
 "
 `;
 
 exports[`Schema > should run patches 5`] = `
-"<li class="svelte">CREATE TABLE "myTable1"; -- 11&nbsp;rows, 1111ms</li>
-<li class="svelte">CREATE TABLE "myTable2"; -- 22&nbsp;rows, 2222ms</li>
-<li class="svelte">
-  ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string; -- 33&nbsp;rows, 3333ms
-</li>
-<li class="svelte">
-  ALTER TABLE "myTable3" ADD COLUMN "myColumn2" string; -- 44&nbsp;rows, 4444ms
-</li>
-<li class="svelte">
-  ALTER TABLE "myTable3" ADD COLUMN "myColumn3" string; -- 55&nbsp;rows, 5555ms
-</li>
+"<button class="mode svelte">Java</button
+><button class="mode svelte">SQL Script</button
+><button class="mode svelte">Raw</button>
 "
 `;
 
 exports[`Schema > should run patches 6`] = `
+"<li class="svelte">CREATE TABLE "myTable1" -- 11&nbsp;rows, 1111ms</li>
+<li class="svelte">CREATE TABLE "myTable2" -- 22&nbsp;rows, 2222ms</li>
+<li class="svelte">
+  ALTER TABLE "myTable3" ADD COLUMN "myColumn1" string -- 33&nbsp;rows, 3333ms
+</li>
+<li class="svelte">
+  ALTER TABLE "myTable3" ADD COLUMN "myColumn2" string -- 44&nbsp;rows, 4444ms
+</li>
+<li class="svelte">
+  ALTER TABLE "myTable3" ADD COLUMN "myColumn3" string -- 55&nbsp;rows, 5555ms
+</li>
+"
+`;
+
+exports[`Schema > should run patches 7`] = `
 "<button class="mode svelte">Java</button
-><button class="mode svelte">SQL Script</button>
+><button class="mode svelte">SQL Script</button
+><button class="mode svelte">Raw</button>
 "
 `;
 
 exports[`Schema > should run patches with error 1`] = `
 "<li class="failure svelte">
-  CREATE TABLE "myTable1"; <br />
+  CREATE TABLE "myTable1" <br />
   -- table "myTable1" already exists
 </li>
 "
@@ -3976,7 +3985,7 @@ exports[`Schema > should run patches with error 1`] = `
 
 exports[`Schema > should run patches with error 2`] = `
 "<li class="failure svelte">
-  CREATE TABLE "myTable1"; <br />
+  CREATE TABLE "myTable1" <br />
   -- table "myTable1" already exists
 </li>
 "

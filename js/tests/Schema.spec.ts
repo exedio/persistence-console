@@ -2315,6 +2315,25 @@ describe("Schema", () => {
       );
     }
 
+    {
+      const mock = mockClipboardWriteText();
+      mock.mockResolvedValueOnce();
+      copy().click();
+      expect(
+        await formatHtml(document.querySelector("div[popover]")),
+      ).toMatchSnapshot();
+      button("Raw", 0).click();
+      await flushPromises();
+      expect(mock).toHaveBeenCalledExactlyOnceWith(
+        'CREATE TABLE \"myTable1\"\n' +
+          'CREATE TABLE \"myTable2\"\n' +
+          // sqlAdd1-3 joined into one sql statement
+          'ALTER TABLE \"myTable3\" ADD COLUMN \"myColumn1\" string,\n' +
+          'ADD COLUMN \"myColumn2\" string,\n' +
+          'ADD COLUMN \"myColumn3\" string\n',
+      );
+    }
+
     expect(await formatHtml(sql(0))).toMatchSnapshot();
     expect(sql(1)).toBeTruthy();
     {

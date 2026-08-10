@@ -148,7 +148,7 @@ function orderIndex(cb: FixedFixable): number {
   throw new Error(JSON.stringify(cb));
 }
 
-export const patchEncodings = ["Java", "SQL Script"] as const;
+export const patchEncodings = ["Java", "SQL Script", "Raw"] as const;
 export type PatchEncoding = (typeof patchEncodings)[number];
 
 export function encodePatch(
@@ -169,13 +169,15 @@ export function encodePatch(
   const moreToCome = joinable === "head" || joinable === "middle";
   if (moreToCome) s = s + ",";
 
-  if (encoding === "Java")
-    s = '"' + s.replaceAll('"', '\\"').replaceAll("\n", '" +\n"') + '"';
+  if (encoding !== "Raw") {
+    if (encoding === "Java")
+      s = '"' + s.replaceAll('"', '\\"').replaceAll("\n", '" +\n"') + '"';
 
-  if (moreToCome) {
-    if (encoding === "Java") s = s + " +";
-  } else {
-    s = s + (encoding === "Java" ? "," : ";");
+    if (moreToCome) {
+      if (encoding === "Java") s = s + " +";
+    } else {
+      s = s + (encoding === "Java" ? "," : ";");
+    }
   }
 
   return s;
