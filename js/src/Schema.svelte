@@ -353,7 +353,7 @@
           <!-- eslint-disable-next-line svelte/require-each-key -- patches are not unique -->
           {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
-              {encodePatch(undefined, "SQL Script", sql)}
+              {encodePatch(undefined, "Raw", sql)}
               {#if failure}
                 <br />
               {/if}
@@ -384,7 +384,7 @@
                 {fix.fix.method}
               {:then response}
                 {@render renderLinebreaks(
-                  encodePatch(fix.joinable, "SQL Script", response.sql),
+                  encodePatch(fix.joinable, "Raw", response.sql),
                 )}
               {:catch error}
                 <span class="red">{error.message}</span>
