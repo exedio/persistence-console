@@ -2475,7 +2475,7 @@ describe("Schema", () => {
 });
 
 async function mountComponent() {
-  mount(Schema, { target: document.body }); // `document` exists because of jsdom
+  mount(Schema, { target: document.body, props: { syntaxHighlight: false } }); // `document` exists because of jsdom
   await flushPromises();
 }
 

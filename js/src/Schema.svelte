@@ -39,6 +39,8 @@
   import CopyButton from "@/CopyButton.svelte";
   import SqlStatement from "@/SqlStatement.svelte";
 
+  const { syntaxHighlight = true }: { syntaxHighlight?: boolean } = $props();
+
   const schemaStore = new Map<string, Schema>();
 
   const schemaT = new PromiseTracker(() =>
@@ -89,7 +91,8 @@
   };
 
   let patchesAlterTablesJoined = $state(true);
-  let patchesSyntaxHighlighting = $state(true);
+  // svelte-ignore state_referenced_locally
+  let patchesSyntaxHighlighting = $state(syntaxHighlight);
 
   const patches: Patch[] = $derived(
     workOnFixes(fixes, patchesAlterTablesJoined).map((fix) => {
