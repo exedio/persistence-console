@@ -37,6 +37,9 @@
   import { useWithStoreSingle } from "@/utils";
   import SchemaMaintain from "@/SchemaMaintain.svelte";
   import CopyButton from "@/CopyButton.svelte";
+  import SqlStatement from "@/SqlStatement.svelte";
+
+  const { syntaxHighlight = true }: { syntaxHighlight?: boolean } = $props();
 
   const schemaStore = new Map<string, Schema>();
 
@@ -88,6 +91,8 @@
   };
 
   let patchesAlterTablesJoined = $state(true);
+  // svelte-ignore state_referenced_locally
+  let patchesSyntaxHighlighting = $state(syntaxHighlight);
 
   const patches: Patch[] = $derived(
     workOnFixes(fixes, patchesAlterTablesJoined).map((fix) => {
@@ -347,13 +352,21 @@
         ><input type="checkbox" bind:checked={patchesAlterTablesJoined} />join
         ALTER TABLE statements on the same table</label
       ><br />
+      <label>
+        <input type="checkbox" bind:checked={patchesSyntaxHighlighting} />syntax
+        highlighting</label
+      >
+      <br />
       {#if patchesLog.length > 0}
         <button class="run" onclick={() => flushPatchesLog()}>flush</button>
         <ul class="monospace">
           <!-- eslint-disable-next-line svelte/require-each-key -- patches are not unique -->
           {#each patchesLog as { sql, success, failure }}
             <li class={{ failure }}>
-              {encodePatch(undefined, "Raw", sql)}
+              <SqlStatement
+                statement={encodePatch(undefined, "Raw", sql)}
+                highlight={patchesSyntaxHighlighting}
+              />
               {#if failure}
                 <br />
               {/if}
@@ -635,7 +648,7 @@ the DOM without sacrificing html escaping of everything else in the string -->
     {#if index > 0}
       <br />
     {/if}
-    {line}
+    <SqlStatement statement={line} highlight={patchesSyntaxHighlighting} />
   {/each}
 {/snippet}
 

@@ -3990,3 +3990,59 @@ exports[`Schema > should run patches with error 2`] = `
 </li>
 "
 `;
+
+exports[`Schema > should toggle syntax highlighting 1`] = `
+"<ul class="monospace svelte">
+  <li class="svelte">
+    ALTER TABLE "myTableName" ADD COLUMN "myColumn1Name" string,
+  </li>
+  <li class="more svelte">ADD COLUMN "myColumn2Name" string,</li>
+  <li class="more svelte">ADD COLUMN "myColumn3Name" string</li>
+</ul>
+"
+`;
+
+exports[`Schema > should toggle syntax highlighting 2`] = `
+"<ul class="monospace svelte">
+  <li class="svelte">
+    <span class="sql keyword svelte">ALTER TABLE</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql string svelte">"myTableName"</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql keyword svelte">ADD</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql keyword svelte">COLUMN</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql string svelte">"myColumn1Name"</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql identifier svelte">string</span>
+  </li>
+  <li class="svelte">
+    <span class="sql keyword svelte">ALTER TABLE</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql string svelte">"myTableName"</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql keyword svelte">ADD</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql keyword svelte">COLUMN</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql string svelte">"myColumn2Name"</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql identifier svelte">string</span>
+  </li>
+  <li class="svelte">
+    <span class="sql keyword svelte">ALTER TABLE</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql string svelte">"myTableName"</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql keyword svelte">ADD</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql keyword svelte">COLUMN</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql string svelte">"myColumn3Name"</span
+    ><span class="sql whitespace svelte"> </span
+    ><span class="sql identifier svelte">string</span>
+  </li>
+</ul>
+"
+`;
