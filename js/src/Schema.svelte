@@ -456,8 +456,8 @@
 {#snippet bulletExpandable(bullet: ExpandableBullet)}
   <label class={["bullet", bullet.bulletColor]}>
     <input type="checkbox" bind:checked={bullet.expanded} />{bullet.expanded
-      ? "-"
-      : "+"}</label
+      ? "⮟"
+      : "⮞"}</label
   >
 {/snippet}
 
