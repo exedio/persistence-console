@@ -313,7 +313,6 @@ public class ConsoleServlet extends CopsServlet
 					"img-src 'self'" + (externalImgSrc!=null ? (" " + externalImgSrc) : "") + "; " +
 					"connect-src 'self'; " +
 					"frame-ancestors 'none'; " +
-					"block-all-mixed-content; " +
 					"font-src 'self';" +
 					"base-uri 'none'");
 
