@@ -22,6 +22,7 @@ import com.exedio.cope.Model;
 import com.exedio.cope.misc.TimeUtil;
 import com.exedio.dsmf.Column;
 import com.exedio.dsmf.Constraint;
+import com.exedio.dsmf.Node;
 import com.exedio.dsmf.Schema;
 import com.exedio.dsmf.Sequence;
 import com.exedio.dsmf.StatementListener;
@@ -382,5 +383,13 @@ final class SchemaLegacyCop extends ConsoleCop<AtomicReference<ChecklistIcon>>
 			out.write(rows);
 			out.writeRaw(" rows</span></div>");
 		}
+	}
+
+	@SuppressWarnings({
+			"deprecation", // OK: is just the schema legacy cop
+			"StaticMethodOnlyUsedInOneClass"}) // ok for jspm
+	static String getError(final Node node)
+	{
+		return node.getError();
 	}
 }

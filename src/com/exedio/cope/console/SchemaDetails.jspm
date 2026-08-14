@@ -21,6 +21,7 @@ package com.exedio.cope.console;
 
 import static com.exedio.cops.Cop.isPost;
 import static com.exedio.cope.console.Console_Jspm.writeToggle;
+import static com.exedio.cope.console.SchemaLegacyCop.getError;
 
 import java.util.ArrayList;
 
@@ -103,7 +104,7 @@ final class SchemaDetails_Jspm
 					<%=tableName%><%
 					}
 
-					final String tableError = table.getError();
+					final String tableError = getError(table);
 					if(tableError!=null)
 					{
 					%>
@@ -146,7 +147,7 @@ final class SchemaDetails_Jspm
 							<%=column.getType()%><%
 							}
 
-							final String error = column.getError();
+							final String error = getError(column);
 							if(error!=null)
 							{
 							%>
@@ -193,7 +194,7 @@ final class SchemaDetails_Jspm
 							<small><%=constraintCondition%></small><%
 							}
 
-							final String constraintError = constraint.getError();
+							final String constraintError = getError(constraint);
 							if(constraintError!=null)
 							{
 							%>
@@ -238,7 +239,7 @@ final class SchemaDetails_Jspm
 
 					%> (<%=sequence.getStartL()%>,<%=sequence.getType()%>)<%
 
-					final String sequenceError = sequence.getError();
+					final String sequenceError = getError(sequence);
 					if(sequenceError!=null)
 					{
 					%>
