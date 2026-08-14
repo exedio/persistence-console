@@ -41,16 +41,16 @@ final class OutOfMemoryError_Jspm
 	{
 		%>
 		<form method="post">
-			<input type="submit" name="<%= LOG_OUT %>" value="Log to System.out"      onclick="return confirm('This operation may cause your application server to be restarted.\nDo you really want to do this?')"></input>
-			<input type="submit" name="<%= LOG_ERR %>" value="Log to System.err"      onclick="return confirm('This operation may cause your application server to be restarted.\nDo you really want to do this?')"></input>
-			<input type="submit" name="<%= THROW   %>" value="throw OutOfMemoryError" onclick="return confirm('This operation may cause your application server to be restarted.\nDo you really want to do this?')"></input>
+			<input type="submit" name="<%= LOG_OUT %>" value="Log to System.out"      confirmation="This operation may cause your application server to be restarted.&#13;Do you really want to do this?"></input>
+			<input type="submit" name="<%= LOG_ERR %>" value="Log to System.err"      confirmation="This operation may cause your application server to be restarted.&#13;Do you really want to do this?"></input>
+			<input type="submit" name="<%= THROW   %>" value="throw OutOfMemoryError" confirmation="This operation may cause your application server to be restarted.&#13;Do you really want to do this?"></input>
 			<hr>
 			<table>
 				<caption>allocate arrays</caption>
 				<tr><th>Size  </th><td><input name="<%= ALLOCATE_SIZE   %>" value="1000" size="10"></input></td></tr>
 				<tr><th>Number</th><td><input name="<%= ALLOCATE_NUMBER %>" value="1000" size="10"></input> (currently <%=currentNumber%>)</td></tr>
 				<tr><td colspan="2">
-					<input type="submit" name="<%= ALLOCATE       %>" value="allocate" onclick="return confirm('This operation will probably cause your application server to be restarted.\nDo you really want to do this?')"></input>
+					<input type="submit" name="<%= ALLOCATE       %>" value="allocate" confirmation="This operation will probably cause your application server to be restarted.&#13;Do you really want to do this?"></input>
 					<input type="submit" name="<%= ALLOCATE_CLEAR %>" value="clear"></input>
 				</td></tr>
 			</table>

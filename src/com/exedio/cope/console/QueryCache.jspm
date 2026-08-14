@@ -96,7 +96,7 @@ final class QueryCache_Jspm
 		%>
 		<form action="<%=cop%>" method="POST">
 			<input type="submit" name="<%=CLEAR%>" value="clear all caches"
-				onclick="return confirm('This operation will clear all global (cross-transactional) caches, such as item cache and query cache.\nDo you really want to do this?')" />
+				confirmation="This operation will clear all global (cross-transactional) caches, such as item cache and query cache.&#13;Do you really want to do this?" />
 		</form>
 		<hr>
 		<% writeToggle(out, cop.toToggleCondense(), cop.condense); %> condense<%

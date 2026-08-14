@@ -125,7 +125,7 @@ final class ChangeListener_Jspm
 	{
 			%>
 			<input type="submit" name="<%=REMOVE_SELECTED%>" value="remove selected" />
-			<input type="submit" name="<%=REMOVE_ALL     %>" value="remove all" onclick="return confirm('This operation will remove all Change Listeners. This may affect the proper function of your application.\nDo you really want to do this?')" /><%
+			<input type="submit" name="<%=REMOVE_ALL     %>" value="remove all" confirmation="This operation will remove all Change Listeners. This may affect the proper function of your application.&#13;Do you really want to do this?" /><%
 	}
 
 	private ChangeListener_Jspm()

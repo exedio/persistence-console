@@ -44,10 +44,10 @@ final class MediaFingerprint_Jspm
 		%>
 		<form action="<%=cop%>" method="post">
 			<span<%  if(!initial){%> style="font-weight:bold;"<%} %>><%= info %></span>
-			<input<% if( initial){%> disabled="true"<%} %> type="submit" name="<%=FINGER_OFFSET_RESET%>" value="Reset" onclick="return confirm('<%=FINGER_OFFSET_WARNING%>')">
+			<input<% if( initial){%> disabled="true"<%} %> type="submit" name="<%=FINGER_OFFSET_RESET%>" value="Reset" confirmation="<%=FINGER_OFFSET_WARNING%>">
 			<br>
 			<input name="<%=FINGER_OFFSET_SET_VALUE_PARAM%>" size="3" value="">
-			<input type="submit" name="<%=FINGER_OFFSET_SET_VALUE%>" value="Set Value And Reset Ramp" onclick="return confirm('<%=FINGER_OFFSET_WARNING%>')">
+			<input type="submit" name="<%=FINGER_OFFSET_SET_VALUE%>" value="Set Value And Reset Ramp" confirmation="<%=FINGER_OFFSET_WARNING%>">
 		</form>
 		<br>
 		Ramp:

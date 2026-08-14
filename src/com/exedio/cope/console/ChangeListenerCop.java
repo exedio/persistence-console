@@ -50,6 +50,8 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 
 		//noinspection ThisEscapedInObjectConstruction
 		pager.addParameters(this);
+
+		onDomReady(ConsoleServlet.onDomReadyConfirmation);
 	}
 
 	ChangeListenerCop(final Args args, final HttpServletRequest request)
@@ -76,8 +78,6 @@ final class ChangeListenerCop extends ConsoleCop<Void> implements Pageable
 	}
 
 	@Override boolean requiresUnsafeInlineStyle() { return true; }
-
-	@Override boolean requiresUnsafeInlineScript() { return true; }
 
 	@Override
 	void doPost(final HttpServletRequest request, final Model model)

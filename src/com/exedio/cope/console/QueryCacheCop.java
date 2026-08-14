@@ -59,6 +59,8 @@ final class QueryCacheCop extends ConsoleCop<Void>
 		this.deprecated = deprecated;
 		this.histogramLimit = histogramLimit;
 		this.condense = condense;
+
+		onDomReady(ConsoleServlet.onDomReadyConfirmation);
 	}
 
 	static QueryCacheCop getQueryCacheCop(final Args args, final HttpServletRequest request)
@@ -321,8 +323,6 @@ final class QueryCacheCop extends ConsoleCop<Void>
 	}
 
 	@Override boolean requiresUnsafeInlineStyle() { return true; }
-
-	@Override boolean requiresUnsafeInlineScript() { return true; }
 
 	@Override
 	void writeBody(final Out out)
