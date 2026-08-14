@@ -47,7 +47,7 @@
 		<dependency org="jakarta.servlet" name="jakarta.servlet-api" rev="6.0.0" conf="runtime,instrument->default; ide->sources" />
 		<dependency org="com.exedio" name="cops" rev="388" conf="runtime->runtime; ide->runtime,sources,changelog" />
 		<dependency org="com.exedio" name="cope" rev="12141" conf="runtime->runtime; compile-annotations->instrument-annotations; test,example->hsqldb,mysql; instrument->instrument,servlet; ide->sources,changelog" />
-		<dependency org="com.exedio" name="copeutil" rev="1109" conf="runtime->runtime; ide->sources,changelog" />
+		<dependency org="com.exedio" name="copeutil" rev="1118" conf="runtime->runtime; ide->sources,changelog" />
 		<dependency org="com.fasterxml.jackson.core" name="jackson-annotations" rev="&jackson.version;" conf="runtime->default; ide->sources" />
 		<dependency org="com.fasterxml.jackson.core" name="jackson-databind"    rev="&jackson.version;" conf="runtime->default; ide->sources" />
 		<dependency org="org.apache.ant" name="ant"       rev="1.10.11" conf="ant->default" />
