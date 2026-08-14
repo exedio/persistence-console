@@ -138,7 +138,7 @@ final class UnsupportedCheckConstraintByTableCop extends TestCop<Table>
 					sb.append(" AND ");
 
 				sb.append('(').
-					append(constraint.getRequiredCondition()).
+					append(constraint.getRequiredClause()).
 					append(')');
 			}
 		}

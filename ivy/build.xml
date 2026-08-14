@@ -5,8 +5,6 @@
 
 		<jakartaee-migrate file="exedio-cops-jar.jar" otherconfs="runtime,example,test" />
 		<jakartaee-migrate file="exedio-cops-src.zip" />
-		<jakartaee-migrate file="exedio-cope-jar.jar" otherconfs="runtime,example,test,instrument" />
-		<jakartaee-migrate file="exedio-cope-src.zip" />
 
 		<syncContents from="artifacts/lib" to="../lib">
 			<firstmatchmapper>

@@ -118,7 +118,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	private static final List<Column<Constraint>> COLUMNS = List.of(
 			column("Table", constraint -> constraint.getTable().getName()),
 			column("Name",  constraint -> constraint.getName()),
-			columnNonFilterable("Condition", (out, constraint) -> writeValueLong(out, constraint.getRequiredCondition()))
+			columnNonFilterable("Condition", (out, constraint) -> writeValueLong(out, constraint.getRequiredClause()))
 	);
 
 	@Override
@@ -151,7 +151,7 @@ final class UnsupportedConstraintCop extends TestCop<Constraint>
 	{
 		if (constraint instanceof CheckConstraint)
 			return "SELECT * FROM " + SchemaInfo.quoteName(app.model, constraint.getTable().getName()) +
-					 " WHERE NOT(" + constraint.getRequiredCondition() + ')';
+					 " WHERE NOT(" + constraint.getRequiredClause() + ')';
 		else
 			return null;
 	}

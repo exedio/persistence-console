@@ -119,12 +119,12 @@ final class SchemaGetApi {
       final Existence tableExistence,
       final com.exedio.dsmf.Constraint c
     ) {
-      final String clause = c.getMismatchingCondition();
-      final String clauseRaw = c.getMismatchingConditionRaw();
+      final String clause = c.getMismatchingClause();
+      final String clauseRaw = c.getMismatchingClauseRaw();
       return new Constraint(
         c.getName(),
         c.getType().name(),
-        c.getCondition(),
+        c.getClause(),
         filterContainer(
           c.getType() == com.exedio.dsmf.Constraint.Type.ForeignKey &&
             tableExistence == Existence.missing

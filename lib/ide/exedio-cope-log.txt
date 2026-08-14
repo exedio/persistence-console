@@ -7,14 +7,61 @@ omit bug fixes.
 The items are sorted inversely, i.e. the latest items are on top.
 
 --------------------------------------------------------------------------
+* constructors of classes
+	- IsNullCondition
+	- InstanceOfCondition
+	- AverageAggregate
+	- ExtremumAggregate
+	dropped.
+	This breaks backwards API compatibility - check for usage of dropped API in your project, including used libraries!
+* MediaResponse#addCacheControlPrivate added.
+	BEWARE: If you override method MediaServlet#filterResponse, your implementation
+	MUST call the super method. Otherwise, the implementation of
+	isCacheControlPrivate (either yours or the default) no longer takes effect.
+* MediaServlet#doFlushBufferOnNotModified no longer supported, method has been dropped.
+	If you don't override this method, nothing changes.
+* Model#getSchemaSavepoint dropped.
+	Was deprecated since February 2021.
+	Use #getSchemaSavepointNew() instead.
+	This breaks backwards API compatibility - check for usage of dropped API in your project, including used libraries!
+* MySQL innodb_strict_mode required for connecting to MySQL before 8.0.
+	On MySQL 8.0 and later you don't have to do anything, because there
+	innodb_strict_mode was required already.
+* class ItemCacheSummary dropped.
+	This breaks backwards API compatibility - check for usage of dropped API in your project, including used libraries!
+* Random API dropped.
+	- class Random
+	- method Type#random
+	This breaks backwards API compatibility - check for usage of dropped API in your project, including used libraries!
+* Model#clear[Item|Query]Cache added.
+* ConnectProperties: key "cluster" changes its values:
+	- value "true" becomes "com.exedio.cope.ClusterUdpService"
+	- value "false" becomes "com.exedio.cope.ClusterNoneService"
+	The old values do still work, so you don't have to adjust your properties.
+* Classes Sampler and SamplerProperties dropped.
+	This breaks backwards API compatibility - check for usage of dropped API in your project, including used libraries!
+* ConnectProperties: key "cluster.listenLoopback" no longer supported.
+	Check your deployed systems! Probably this key is at its default (true),
+	then you don't have to do anything.
+* ConnectProperties: key "cluster.sendLoopback" changes its default from true to false.
+	This breaks backwards API compatibility, check your deployed systems!
+	If this key is set explicitly you don't have to do anything.
+* Class com.exedio.cope.Dumper dropped.
+	This breaks backwards API compatibility - check for usage of dropped API in your project, including used libraries!
+* Instrumentor enables capital serialVersionUID suffix by default. Affects instrumented code.
+	Use this parameter:
+		<instrument serialVersionUIDSuffix="small" ...
+	to revert to previous default behaviour.
+* servlet-api 6.0.0 required.
+	jakartaee-migration no longer needed.
 * Feature becomes an interface.
 	This breaks backwards API compatibility!
 	You MUST update (if present in your project):
-	- copebuilder to rev>=(not yet available)
-	- copedumpshuffler to rev>=(not yet available)
-	- copeconsole to rev>=(not yet available)
-	- copehistory to rev>=(not yet available)
-	- insightcope to rev>=(not yet available)
+	- copebuilder to rev>=395
+	- copedumpshuffler to rev>=38
+	- copeconsole to rev>=7431
+	- copehistory to rev>=111
+	- insightcope to rev>=10.137 (wicket10) or 9.1288 (wicket9)
 	- copeview to rev>=(not yet available)
 * VaultReferenceService renamed to VaultFallbackService.
 	This breaks backwards API compatibility - check for usage of moved API in your project, including used libraries!

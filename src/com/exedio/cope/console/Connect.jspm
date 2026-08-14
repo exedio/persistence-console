@@ -38,11 +38,7 @@ final class Connect_Jspm
 		%>
 		<hr>
 		<table style="float:left;">
-			<caption>Supports</caption>
-			<tr>
-				<th>Random</th>
-				<td class="text"><%if(model.supportsRandom()){%>yes<%}else{%>no<%}%></td>
-			</tr><%
+			<caption>Supports</caption><%
 
 			final SortedSet<String> hashes = model.getSupportedDataHashAlgorithms();
 			final Iterator<String> hashesIter = hashes.iterator();
