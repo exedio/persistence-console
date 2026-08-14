@@ -116,7 +116,23 @@ public class MetricsApiTest {
   void testUniqueConstraint() throws IOException, ApiTextException {
     assertEquals(
       """
-      [ ]""",
+      [ {
+        "name" : "com.exedio.cope.UniqueConstraint.cache",
+        "description" : "Cache hits/misses when searching by a unique constraint",
+        "tags" : {
+          "feature" : "MyType.myStringImplicitUnique",
+          "result" : "hit"
+        },
+        "count" : 0.0
+      }, {
+        "name" : "com.exedio.cope.UniqueConstraint.cache",
+        "description" : "Cache hits/misses when searching by a unique constraint",
+        "tags" : {
+          "feature" : "MyType.myStringImplicitUnique",
+          "result" : "miss"
+        },
+        "count" : 23.0
+      } ]""",
       writeJson(get(MODEL, request("com.exedio.cope.UniqueConstraint")))
     );
   }
