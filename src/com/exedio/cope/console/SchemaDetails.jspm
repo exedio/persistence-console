@@ -186,7 +186,7 @@ final class SchemaDetails_Jspm
 							<%=constraintName%><%
 							}
 
-							final String constraintCondition = constraint.getRequiredCondition();
+							final String constraintCondition = constraint.getRequiredClause();
 							if(constraintCondition!=null)
 							{
 							%>
