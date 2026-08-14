@@ -21,6 +21,8 @@ package com.exedio.cope.console;
 
 import static com.exedio.cope.console.Console_Jspm.writeToggle;
 import static com.exedio.cope.console.Format.formatAndHide;
+import static com.exedio.cope.console.ItemCacheCop.CLEAR;
+import static com.exedio.cope.console.ItemCacheCop.CLEAR_ITEM;
 
 import com.exedio.cope.ItemCacheInfo;
 import com.exedio.cope.ItemCacheStatistics;
@@ -111,11 +113,19 @@ final class ItemCache_Jspm
 	}
 
 	static void writeBody(
+			final ItemCacheCop cop,
 			final boolean displayNonEmptyRows,
 			final MeterTable table,
 			final Out out)
 	{
 		%>
+		<form action="<%=cop%>" method="POST">
+			<input type="submit" name="<%=CLEAR_ITEM%>" value="clear item cache"
+				confirmation="This operation will clear the global (cross-transactional) item cache.&#13;Do you really want to do this?" />
+			<br>
+			<input type="submit" name="<%=CLEAR%>" value="clear all caches"
+				confirmation="This operation will clear all global (cross-transactional) caches, such as item cache and query cache.&#13;Do you really want to do this?" />
+		</form>
 		<hr>
 		<table class="matrixTable">
 			<tr>

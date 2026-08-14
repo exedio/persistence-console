@@ -20,11 +20,14 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.ItemCacheInfo;
 import com.exedio.cope.ItemCacheStatistics;
+import com.exedio.cope.Model;
 import com.exedio.cope.Type;
 import io.micrometer.core.instrument.Tags;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class ItemCacheCop extends ConsoleCop<Void>
 {
@@ -48,6 +51,8 @@ final class ItemCacheCop extends ConsoleCop<Void>
 
 		addParameter(DETAILED, detailed);
 		addParameter(DEPRECATED, deprecated);
+
+		onDomReady(ConsoleServlet.onDomReadyConfirmation);
 	}
 
 	static ItemCacheCop getItemCacheCop(final Args args, final HttpServletRequest request)
@@ -59,6 +64,24 @@ final class ItemCacheCop extends ConsoleCop<Void>
 	protected ItemCacheCop newArgs(final Args args)
 	{
 		return new ItemCacheCop(args);
+	}
+
+	static final String CLEAR = "cache.clear";
+	static final String CLEAR_ITEM = "cache.clear.item";
+
+	@Override
+	void doPost(final HttpServletRequest request, final Model model)
+	{
+		if(request.getParameter(CLEAR_ITEM)!=null)
+		{
+			logger.info("clearItemCache");
+			model.clearItemCache();
+		}
+		if(request.getParameter(CLEAR)!=null)
+		{
+			logger.info("clearCache");
+			model.clearCache();
+		}
 	}
 
 	@Override
@@ -104,7 +127,7 @@ final class ItemCacheCop extends ConsoleCop<Void>
 				"model", app.model.toString(), // filter key/value
 				"type"); // row key
 		Meter_Jspm.write("Statistics", null, list, out);
-		ItemCache_Jspm.writeBody(detailed, table, out);
+		ItemCache_Jspm.writeBody(this, detailed, table, out);
 	}
 
 	ItemCacheCop toToggleDetailed()
@@ -131,4 +154,6 @@ final class ItemCacheCop extends ConsoleCop<Void>
 			|| info.getStampsHits()!=0
 			|| info.getStampsPurged()!=0;
 	}
+
+	private static final Logger logger = LoggerFactory.getLogger(ItemCacheCop.class);
 }

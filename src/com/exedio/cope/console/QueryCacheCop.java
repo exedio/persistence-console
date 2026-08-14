@@ -98,10 +98,16 @@ final class QueryCacheCop extends ConsoleCop<Void>
 	}
 
 	static final String CLEAR = "cache.clear";
+	static final String CLEAR_QUERY = "cache.clear.query";
 
 	@Override
 	void doPost(final HttpServletRequest request, final Model model)
 	{
+		if(request.getParameter(CLEAR_QUERY)!=null)
+		{
+			logger.info("clearQueryCache");
+			model.clearQueryCache();
+		}
 		{
 			if(request.getParameter(CLEAR)!=null)
 			{
