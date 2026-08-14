@@ -45,6 +45,8 @@ final class OutOfMemoryErrorCop extends ConsoleCop<Void>
 	OutOfMemoryErrorCop(final Args args)
 	{
 		super(TAB, "Out Of Memory Error", args);
+
+		onDomReady(ConsoleServlet.onDomReadyConfirmation);
 	}
 
 	static OutOfMemoryErrorCop getOutOfMemoryErrorCop(final Args args)

@@ -28,6 +28,8 @@ final class ConnectionPoolCop extends ConsoleCop<Void>
 	ConnectionPoolCop(final Args args)
 	{
 		super(TAB, "Connection Pool", args);
+
+		onDomReady(ConsoleServlet.onDomReadyConfirmation);
 	}
 
 	@Override
@@ -51,8 +53,6 @@ final class ConnectionPoolCop extends ConsoleCop<Void>
 	}
 
 	@Override boolean requiresUnsafeInlineStyle() { return true; }
-
-	@Override boolean requiresUnsafeInlineScript() { return true; }
 
 	@Override
 	void writeBody(final Out out)

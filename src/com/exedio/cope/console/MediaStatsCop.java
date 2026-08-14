@@ -63,6 +63,9 @@ final class MediaStatsCop extends ConsoleCop<Void>
 		this.fingerprintRampStep = fingerprintRampStep;
 
 		addParameter(FINGER_OFFSET_RAMP_STEP, fingerprintRampStep, FINGER_OFFSET_RAMP_STEP_DEFAULT);
+
+		if(variant==Variant.fingerprint)
+			onDomReady(ConsoleServlet.onDomReadyConfirmation);
 	}
 
 	static MediaStatsCop getMediaStatsCop(final Args args, final Variant variant, final HttpServletRequest request)
@@ -188,7 +191,7 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	static final String FINGER_OFFSET_RAMP_UP         = "fingerprintOffset.ramp.up";
 	@SuppressWarnings("StaticMethodOnlyUsedInOneClass") // ok for jspm
 	static final String FINGER_OFFSET_WARNING =
-			"This operation invalidates media caches on all levels.\\n" +
+			"This operation invalidates media caches on all levels. --- " + // '---' used instead of line break, because line break would be encoded by Out#write
 			"Do you really want to do this?";
 
 	@Override
@@ -224,8 +227,6 @@ final class MediaStatsCop extends ConsoleCop<Void>
 	}
 
 	@Override boolean requiresUnsafeInlineStyle() { return true; }
-
-	@Override boolean requiresUnsafeInlineScript() { return true; }
 
 	@Override
 	void writeBody(final Out out)

@@ -218,6 +218,7 @@ public class ConsoleServlet extends CopsServlet
 	static final Resource databaseEdit = new Resource("silk_database_edit.png");
 	static final Resource databaseGear = new Resource("silk_database_gear.png");
 	static final Resource helpOnDomReady = new Resource("helpOnDomReady.js");
+	static final Resource onDomReadyConfirmation = new Resource("onDomReadyConfirmation.js");
 
 	@Override
 	public final void init() throws ServletException
