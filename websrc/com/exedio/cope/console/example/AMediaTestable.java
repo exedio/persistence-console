@@ -67,6 +67,7 @@ public final class AMediaTestable extends MediaFilter implements MediaTestable
 	}
 
 	@Override
+	@Deprecated
 	public void test() throws Exception
 	{
 		if(fail)

@@ -77,16 +77,17 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 		return COLUMNS;
 	}
 
+	@SuppressWarnings("Convert2MethodRef") // OK: better readable together with the other lines
 	private static final List<Column<MediaTestable>> COLUMNS = List.of(
-			column("Type",  testable -> ((Feature)testable).getType().getID()),
-			column("Name",  testable -> ((Feature)testable).getName()),
+			column("Type",  testable -> testable.getType().getID()),
+			column("Name",  testable -> testable.getName()),
 			column("Class", (out, testable) -> out.write(testable.getClass()))
 	);
 
 	@Override
 	String getID(final MediaTestable testable)
 	{
-		return ((Feature)testable).getID();
+		return testable.getID();
 	}
 
 	@Override
@@ -96,6 +97,7 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 	}
 
 	@Override
+	@SuppressWarnings("deprecation") // TODO
 	long check(final MediaTestable testable)
 	{
 		try
