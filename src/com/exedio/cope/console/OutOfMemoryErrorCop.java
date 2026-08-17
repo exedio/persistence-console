@@ -67,9 +67,9 @@ final class OutOfMemoryErrorCop extends ConsoleCop<Void>
 	void doPost(final HttpServletRequest request, final Model model)
 	{
 		if(request.getParameter(LOG_OUT)!=null)
-			System.out.println(OutOfMemoryError.class.getName());
+			System.out.println(OutOfMemoryError.class.getName()); // MUST NOT be changed to logging because System.out is to be tested here
 		if(request.getParameter(LOG_ERR)!=null)
-			System.err.println(OutOfMemoryError.class.getName());
+			System.err.println(OutOfMemoryError.class.getName()); // MUST NOT be changed to logging because System.err is to be tested here
 		if(request.getParameter(THROW)!=null)
 			throw new OutOfMemoryError();
 		if(request.getParameter(ALLOCATE)!=null)
