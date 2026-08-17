@@ -65,8 +65,8 @@ final class MediaTestableCop extends TestCop<MediaTestable>
 
 		for(final Type<?> type : app.model.getTypes())
 			for(final Feature feature : type.getDeclaredFeatures())
-				if(feature instanceof MediaTestable)
-					result.add((MediaTestable)feature);
+				if(feature instanceof final MediaTestable testable)
+					result.add(testable);
 
 		return result;
 	}
