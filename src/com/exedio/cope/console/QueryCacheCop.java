@@ -31,6 +31,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class QueryCacheCop extends ConsoleCop<Void>
 {
@@ -103,7 +105,7 @@ final class QueryCacheCop extends ConsoleCop<Void>
 		{
 			if(request.getParameter(CLEAR)!=null)
 			{
-				System.out.println("QueryCacheCop#clear");
+				logger.info("clearCache");
 				model.clearCache();
 			}
 		}
@@ -405,4 +407,6 @@ final class QueryCacheCop extends ConsoleCop<Void>
 			return ((double)sum) / count;
 		}
 	}
+
+	private static final Logger logger = LoggerFactory.getLogger(QueryCacheCop.class);
 }

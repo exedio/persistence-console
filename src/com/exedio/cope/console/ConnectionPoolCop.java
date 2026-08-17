@@ -20,6 +20,8 @@ package com.exedio.cope.console;
 
 import com.exedio.cope.Model;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 final class ConnectionPoolCop extends ConsoleCop<Void>
 {
@@ -46,7 +48,7 @@ final class ConnectionPoolCop extends ConsoleCop<Void>
 		{
 			if(request.getParameter(FLUSH)!=null)
 			{
-				System.out.println("ConnectionPoolCop#flush");
+				logger.info("flushConnectionPool");
 				model.flushConnectionPool();
 			}
 		}
@@ -59,4 +61,6 @@ final class ConnectionPoolCop extends ConsoleCop<Void>
 	{
 		ConnectionPool_Jspm.writeBody(out, this, app.model.getConnectionPoolInfo());
 	}
+
+	private static final Logger logger = LoggerFactory.getLogger(ConnectionPoolCop.class);
 }

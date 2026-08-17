@@ -46,6 +46,8 @@ import java.net.UnknownHostException;
 import java.security.Principal;
 import java.security.SecureRandom;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The servlet providing the COPE Console application.
@@ -227,7 +229,7 @@ public class ConsoleServlet extends CopsServlet
 
 		if(app!=null)
 		{
-			System.out.println("reinvokation of jspInit");
+			logger.error("reinvokation of jspInit");
 			return;
 		}
 
@@ -367,4 +369,6 @@ public class ConsoleServlet extends CopsServlet
 	}
 
 	private static final String API_PATH_ELEMENT = "/api/";
+
+	private static final Logger logger = LoggerFactory.getLogger(ConsoleServlet.class);
 }
