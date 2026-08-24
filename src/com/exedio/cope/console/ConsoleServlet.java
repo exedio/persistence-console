@@ -292,7 +292,12 @@ public class ConsoleServlet extends CopsServlet
 			final ConsoleCop<?> cop = ConsoleCop.getCop(app, model, request, this);
 			cop.start = System.currentTimeMillis();
 			if(Cop.isPost(request))
+			{
+				if(request.getParameter(CONNECT)!=null)
+					connect();
+
 				cop.doPost(request, model);
+			}
 			response.setStatus(cop.getResponseStatus());
 
 			final String externalImgSrc = cop.getExternalImgSrc();
@@ -341,9 +346,6 @@ public class ConsoleServlet extends CopsServlet
 				cop.writeAjax(out);
 			else
 			{
-				if(Cop.isPost(request) && request.getParameter(CONNECT)!=null)
-					connect();
-
 				final Principal principal = request.getUserPrincipal();
 				final String authentication = principal!=null ? principal.getName() : null;
 				String hostname = null;
