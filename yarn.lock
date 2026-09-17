@@ -2568,7 +2568,7 @@ __metadata:
     prettier: "npm:3.5.3"
     prettier-plugin-java: "npm:2.9.7"
     prettier-plugin-svelte: "npm:3.4.0"
-    sql-highlight: "npm:^6.1.0"
+    sql-highlight: "npm:6.1.0"
     svelte: "npm:5.55.7"
     svelte-check: "npm:4.2.1"
     svelte-language-server: "npm:0.18.2"
@@ -2783,7 +2783,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sql-highlight@npm:^6.1.0":
+"sql-highlight@npm:6.1.0":
   version: 6.1.0
   resolution: "sql-highlight@npm:6.1.0"
   checksum: 10c0/9614f4608bfde8ea7bf9b2fe9233dcc99a619c91cbc3f5cd85a6fb5ad4b2177f4ac8ca4a0191f4243ff8aea3b6f2a1229efc88635298269e0049b2ac08bde263

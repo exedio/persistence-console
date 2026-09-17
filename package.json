@@ -45,6 +45,6 @@
   },
   "packageManager": "yarn@4.16.0",
   "dependencies": {
-    "sql-highlight": "^6.1.0"
+    "sql-highlight": "6.1.0"
   }
 }
