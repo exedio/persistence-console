@@ -151,7 +151,7 @@ final class DatabaseLogListener implements DatabaseListener
 			logsLeft--;
 
 			final StringBuilder sb = new StringBuilder(
-					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS z (Z)", Locale.ENGLISH).format(new Date()));
+					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS z (Z)", Locale.ROOT).format(new Date()));
 
 			sb.append('|');
 			sb.append(durationPrepare);

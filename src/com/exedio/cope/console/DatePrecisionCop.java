@@ -27,7 +27,6 @@ import static com.exedio.cope.console.InspectionsCop.NO_FAILURE_ON_EMPTY;
 import static com.exedio.cope.console.InspectionsCop.SQL_FAILS_IF_ZERO;
 import static com.exedio.cope.console.InspectionsCop.failWithOne;
 import static com.exedio.cope.console.InspectionsCop.noFailureOnEmpty;
-import static java.util.Locale.ENGLISH;
 
 import com.exedio.cope.DateField;
 import com.exedio.cope.DateField.Precision;
@@ -39,6 +38,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Locale;
 
 final class DatePrecisionCop extends FeatureTestCop<DateField> {
 
@@ -83,7 +83,7 @@ final class DatePrecisionCop extends FeatureTestCop<DateField> {
   private static final List<Column<DateField>> COLUMNS = List.of(
     column("Field", DateField::toString),
     columnNonFilterable("Precision", field ->
-      field.getPrecision().name().toLowerCase(ENGLISH)
+      field.getPrecision().name().toLowerCase(Locale.ROOT)
     )
   );
 
