@@ -166,7 +166,7 @@ final class Out extends OutBasic
 	void write(final Thread.State state)
 	{
 		if(state!=null)
-			write(state.name().toLowerCase(Locale.ENGLISH));
+			write(state.name().toLowerCase(Locale.ROOT));
 	}
 
 	void write(final Constraint.Type type)
