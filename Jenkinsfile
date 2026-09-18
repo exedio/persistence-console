@@ -2,6 +2,7 @@
 import groovy.transform.Field
 import groovy.transform.stc.ClosureParams
 import groovy.transform.stc.SimpleType
+import java.nio.file.Files
 
 @Field
 String projectNamePattern = "^exedio/([a-z]*)/.*" // depends on location of multibranch pipeline in jenkins
@@ -44,7 +45,7 @@ try
 
 	parallelBranches["Main"] = {
 		nodeCheckoutAndDelete { scmResult ->
-			nodejsImage(imageName('MainYarn')).inside(dockerRunDefaults()) {
+			nodejsImage().inside(dockerRunDefaults()) {
 				shSilent(
 					"yarnpkg install && " +
 					"yarnpkg build"
@@ -52,7 +53,7 @@ try
 			}
 			def buildTag = makeBuildTag(scmResult)
 
-			mainImage(imageName("Main")).inside(dockerRunDefaults()) {
+			mainImage().inside(dockerRunDefaults()) {
 				ant 'clean jenkins' +
 				    ' "-Dbuild.revision=${BUILD_NUMBER}"' +
 				    ' "-Dbuild.tag=' + buildTag + '"' +
@@ -135,8 +136,7 @@ try
 
 	parallelBranches["Idea"] = {
 		nodeCheckoutAndDelete {
-			def ideaImage = docker.build(
-				imageName('Idea'),
+			def ideaImage = dockerBuild(
 				'--build-arg DEBIAN_RELEASE=' + debianRelease + ' ' +
 				'--build-arg DEBIAN_SNAPSHOT=' + debianSnapshot + ' ' +
 				'--build-arg JDK=' + jdk + ' ' +
@@ -163,7 +163,7 @@ try
 	parallelBranches["Ivy"] = {
 		def cache = 'jenkins-build-survivor-' + projectName() + "-Ivy"
 		lockNodeCheckoutAndDelete(cache, "jenkins-build-survivor") {
-			mainImage(imageName('Ivy')).inside(
+			mainImage().inside(
 				dockerRunDefaults('bridge') +
 				"--mount type=volume,src=" + cache + ",target=/var/jenkins-build-survivor") {
 				ant "-buildfile ivy" +
@@ -183,7 +183,7 @@ try
 	parallelBranches["Yarn"] = {
 		nodeCheckoutAndDelete {
 			int yarnResult = 999
-			nodejsImage(imageName('Yarn')).inside(dockerRunDefaults()) {
+			nodejsImage().inside(dockerRunDefaults()) {
 				shSilent(
 					"yarnpkg install --immutable --immutable-cache && " +
 					"yarnpkg dedupe --check && " +
@@ -236,7 +236,7 @@ try
 
 		nodeCheckoutAndDelete {
 			int yarnResult = 999
-			nodejsImage(imageName('YarnAudit')).inside(dockerRunDefaults('bridge')) {
+			nodejsImage().inside(dockerRunDefaults('bridge')) {
 				yarnResult = shStatus "yarnpkg npm audit --recursive > yarnpkg-audit.txt"
 			}
 			if (yarnResult == 0) return
@@ -314,15 +314,9 @@ void nodeCheckoutAndDelete(
 	}
 }
 
-String jobNameAndBuildNumber()
+def mainImage()
 {
-	env.JOB_NAME.replace("/", "-").replace(" ", "_") + "-" + env.BUILD_NUMBER
-}
-
-def mainImage(String imageName)
-{
-	return docker.build(
-		imageName,
+	return dockerBuild(
 		'--build-arg DEBIAN_RELEASE=' + debianRelease + ' ' +
 		'--build-arg DEBIAN_SNAPSHOT=' + debianSnapshot + ' ' +
 		'--build-arg JDK=' + jdk + ' ' +
@@ -330,13 +324,24 @@ def mainImage(String imageName)
 		'conf/main')
 }
 
-def nodejsImage(String imageName)
+def nodejsImage()
 {
-	return docker.build(
-		imageName,
+	return dockerBuild(
 		'--build-arg NODEJS=' + nodejs + ' ' +
 		buildArgJenkinsOwner() +
 		'conf/nodejs')
+}
+
+// replaces docker.build without requiring a tag name
+def dockerBuild(String args)
+{
+	def iidfile = Files.createTempFile("docker-build-iidfile-", ".txt")
+	sh('docker build ' +
+	   '--provenance=false ' + // makes image hashes repeatable between builds
+	   '--iidfile ' + iidfile + ' ' + args)
+	def result = docker.image(readFile(iidfile.toString()).trim())
+	Files.delete(iidfile)
+	return result
 }
 
 def buildArgJenkinsOwner()
@@ -344,14 +349,6 @@ def buildArgJenkinsOwner()
 	return '--build-arg JENKINS_OWNER=' +
 			shStdout("id --user") + ':' +
 			shStdout("id --group") + ' '
-}
-
-String imageName(String pipelineBranch, String subImage = '')
-{
-	String isoToday = new Date().format("yyyyMMdd")
-	String name = 'exedio-jenkins:' + jobNameAndBuildNumber() + '-' + pipelineBranch + '-' + isoToday
-	if (!subImage.isEmpty()) name += '-' + subImage
-	return name
 }
 
 static String dockerRunDefaults(String network = 'none', String hostname = '')
