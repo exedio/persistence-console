@@ -446,7 +446,7 @@ abstract class TestCop<I> extends ConsoleCop<TestCop.Store>
 		}
 
 		out.writeStatic("<div class=\"long\">");
-		out.write(s.replaceAll(",", ", ")); // allow word wrap
+		out.write(s.replace(",", ", ")); // allow word wrap
 		out.writeStatic("</div>");
 	}
 

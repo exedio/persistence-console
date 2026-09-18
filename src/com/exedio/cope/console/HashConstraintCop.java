@@ -90,7 +90,7 @@ final class HashConstraintCop extends FeatureTestCop<HashConstraint>
 			{
 				final Pattern pattern = constraint.getData().getPattern();
 				if(pattern instanceof Media)
-					out.write(((Media)pattern).getContentTypeDescription().replaceAll(",", ", "));
+					out.write(((Media)pattern).getContentTypeDescription().replace(",", ", "));
 			}),
 			columnNonFilterable("Hash", (out, constraint) ->
 			{
