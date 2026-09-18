@@ -82,7 +82,7 @@ final class SchemaAlterApi {
               // https://dev.mysql.com/doc/refman/9.7/en/blob.html
               // https://www.postgresql.org/docs/18/datatype-character.html
               type.contains("text")
-            ) value = '\'' + value.replaceAll("'", "''") + '\'';
+            ) value = '\'' + value.replace("'", "''") + '\'';
             // https://www.postgresql.org/docs/current/sql-altertable.html
             yield new Response(response.sql + " DEFAULT " + value);
           }

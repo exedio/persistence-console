@@ -81,7 +81,7 @@ final class MediaTypeCop extends FeatureTestCop<Media>
 				out.write(media.getName());
 				out.writeRaw("</a>");
 			}),
-			columnNonFilterable("Content Type", media -> media.getContentTypeDescription().replaceAll(",", ", ")),
+			columnNonFilterable("Content Type", media -> media.getContentTypeDescription().replace(",", ", ")),
 			columnNonFilterable("Query", (out, media) ->
 			{
 				final Condition c = media.bodyMismatchesContentTypeIfSupported();

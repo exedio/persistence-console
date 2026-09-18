@@ -12,9 +12,9 @@ String debianSnapshot = '20240904'
 @Field
 String jdk = 'openjdk-17'
 @Field
-String idea = '2025.2-PATCHED'
+String idea = '2026.2-PATCHED'
 @Field
-String ideaSHA256 = 'd530962a6aabcbf2387c14c1ae7641e1bfa18d8fa435819a2f797a34a0ecf83c'
+String ideaSHA256 = '3b273e8aee94c28975da8ba8ecb057ae5006e03f13e62e93ef22a0693dd24954'
 @Field
 String nodejs = '22'
 
@@ -149,6 +149,7 @@ try
 				shSilent 'cp /tmp/idea/.cache/JetBrains/*/log/idea.log .'
 			}
 			archiveArtifacts 'idea-inspection-output/**,idea.log'
+			shSilent "rm idea-inspection-output/GrazieStyle.xml"
 			// replace project dir to prevent UnsupportedOperationException - will not be exposed in artifacts
 			shSilent "find idea-inspection-output -name '*.xml' | " +
 			         "xargs --no-run-if-empty sed --in-place -- 's=\\\$PROJECT_DIR\\\$=" + env.WORKSPACE + "=g'"
