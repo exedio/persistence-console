@@ -13,7 +13,7 @@
 					filesonly="true"
 					duplicate="fail"
 					strict="fail"
-					modificationtime="2026-02-10T11:22:33Z"
+					modificationtime="${archive.modificationtime}"
 					level="9">
 				<implicit-element />
 				<manifest>

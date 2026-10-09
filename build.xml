@@ -9,6 +9,8 @@
 	<!--suppress AntMissingPropertiesFileInspection -->
 	<property file="local.properties" />
 	<property file="project.properties" />
+	<!-- arbitrary timestamp to build repeatable zip archives (and jar and war) with even seconds -->
+	<property name="archive.modificationtime" value="1981-11-11T22:22:22Z" />
 
 	<condition property="yarnPath" value="yarnpkg" else="yarn.cmd">
 		<os family="unix" />
@@ -150,7 +152,7 @@
 				filesonly="true"
 				whenempty="fail"
 				duplicate="fail"
-				modificationtime="2026-02-10T11:22:33Z"
+				modificationtime="${archive.modificationtime}"
 				level="9">
 			<zipfileset dir="${basedir}/annosrc">
 				<include name="**/*.java" />
